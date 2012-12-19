@@ -40,7 +40,7 @@ __windows:__ http://windows.github.com/
 ### Clone your GitHub fork to your machine
 To make edits and work on the files in the repository, clone your repository to 
 your local machine using Git. The url is provided on the home page of your 
-repository (ex. https://github.com/adlnet/ADL_LRS.git)  
+repository (example: https://github.com/garemoko/xAPI-Spec)  
 
 __Git__  
 ```git clone <url_to_your_repository>```  
@@ -64,7 +64,7 @@ app home screen. On the repository screen select 'tools' and 'open a shell
 here'. Alternatively use the 'Git Shell' shortcut if it was created during 
 installation.  
 In the shell, enter..  
-```git remote add upstream <url_to_base_repository>```  
+```git remote add upstream https://github.com/adlnet/xAPI-Spec```  
 
 
 ## Workflow
