@@ -213,6 +213,8 @@ __Experience API (XAPI)__: The API defined in this document, the product of
 and retrieve extensible learning records, learner and learning experience profiles, 
 regardless of the platform used.  
 
+__Inverse Functional Identifier__: An identifier which is unique to a particular persona or group. Used to identify Agents and Groups. See section 4.1.2
+
 __Learning Activity (activity)__: Like a SCORM Activity, a unit of instruction, 
 experience, or performance that is to be tracked.
 
@@ -227,10 +229,10 @@ the term will be used when talking about existing systems that implement learnin
 standards. The XAPI can work independently of an LMS, but is built with knowledge 
 of the suite of services an LMS provides.
 
-__Learning Record Store (LRS)__: A system that stores learning information. Currently, 
+__Learning Record Store (LRS)__: A system that stores learning information. Prior to the XAPI 
 most LRSs are Learning Management Systems (LMSs), however this document uses the term 
 LRS to be clear that a full LMS is not necessary to implement the XAPI. The XAPI 
-is dependent on an LRS to function correctly.
+is dependent on an LRS to function.
 
 __Profile__: A construct where information about the learner or activity is kept, 
 typically in name/document pairs that have meaning to an instructional system component.
@@ -258,6 +260,8 @@ several statements may be used to track complete details about a learning experi
 
 <a name="tcapi"/>
 __Tin Can API (TCAPI)__: The previous name of the API defined in this document.  
+
+__URI__: Uniform Resource Identifier. A unique identifier which may be a URL. This should be a full absolute URI including a scheme. Relative URIs should not be used. URLs should be defined within a domain controlled by the person creating the URL. 
 
 <a name="statement"/> 
 #4.0 Statement  
