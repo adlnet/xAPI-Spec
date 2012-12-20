@@ -40,7 +40,7 @@ __windows:__ http://windows.github.com/
 ### Clone your GitHub fork to your machine
 To make edits and work on the files in the repository, clone your repository to 
 your local machine using Git. The url is provided on the home page of your 
-repository (ex. https://github.com/garemoko/xAPI-Spec/)  
+repository (ex. https://github.com/<your username>/xAPI-Spec/)  
 
 __Git__  
 ```git clone <url_to_your_repository>```  
