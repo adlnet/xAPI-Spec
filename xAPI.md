@@ -4,7 +4,7 @@
 >This document was authored by members of the Experience API Working Group (see 
 >list on pp. 7-8) in support of the Office of the Deputy Assistant Secretary of 
 >Defense (Readiness) Advanced Distributed Learning (ADL) Initiative. Please 
->send all feedback and inquiries to helpdesk@adlnet.gov This is a test commit
+>send all feedback and inquiries to helpdesk@adlnet.gov  
 
 # Table of Contents
 [1.0. Revision History](#revhistory)  
