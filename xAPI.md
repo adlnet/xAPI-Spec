@@ -199,44 +199,72 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 <a name="defintions"/> 
 # 3.0 Definitions  
 
+* [Authentication](#def-authentication)
+* [Authorization](#def-authorization)
+* [Community of Practice](#def-community-of-practice)
+* [Experience API (xAPI)](#def-experience-api)
+* [Inverse Functional Identifier](#def-inverse-functinal-identifier)
+* [Learning Activity (activity)](#def-learning-activity)
+* [Learning Activity Provider](#def-activity-provider)
+* [Learning Management System (LMS)](#def-learning-management-system)
+* [Learning Record Store (LRS)](#def-learning-record-store)
+* [Profile](#def-profile)
+* [Registration](#def-registration)
+* [Service](#def-service)
+* [State](#def-state)
+* [Statement](#def-statement)
+* [Tin Can API (TCAPI)](#tcapi)
+* [URI](#def-uri)
+
+<a name="def-authentication" />
 __Authentication__: The concept of verifying the identity of a user or system. This 
 allows interactions between the two “trusted” parties.
 
+<a name="def-authorization" />
 __Authorization__: The affordance of permissions based on a user or system's role: 
 the process of making one user or system "trusted" by another.
 
+<a name="def-community-of-practice" />
 __Community of Practice__: A group, usually connected by a common cause, role or 
 purpose, which operates in a common modality.
 
-__Experience API (XAPI)__: The API defined in this document, the product of 
+<a name="def-experience-api" />
+__Experience API (xAPI)__: The API defined in this document, the product of 
 "Project Tin Can API". A simple, lightweight way for any permitted actor to store 
 and retrieve extensible learning records, learner and learning experience profiles, 
 regardless of the platform used.  
 
+<a name="def-inverse-functinal-identifier" />
 __Inverse Functional Identifier__: An identifier which is unique to a particular persona or group. Used to identify Agents and Groups. See section 4.1.2
 
+<a name="def-learning-activity" />
 __Learning Activity (activity)__: Like a SCORM Activity, a unit of instruction, 
 experience, or performance that is to be tracked.
 
+<a name="def-activity-provider" />
 __Learning Activity Provider (AP)__: The software object that is communicating with 
 the LRS to record information about a learning experience. May be similar to a SCORM 
 package as it is possible to bundle assets with the software object that does this 
 communication, but may also be separate from the experience it is reporting about.
 
+<a name="def-learning-management-system" />
 __Learning Management System (LMS)__: Provides the tracking functionality of an LRS, 
 but provides additional administrative and reporting functionality. In this document 
 the term will be used when talking about existing systems that implement learning 
 standards. The XAPI can work independently of an LMS, but is built with knowledge 
 of the suite of services an LMS provides.
 
+<a name="def-learning-record-store" />
 __Learning Record Store (LRS)__: A system that stores learning information. Prior to the XAPI 
 most LRSs are Learning Management Systems (LMSs), however this document uses the term 
 LRS to be clear that a full LMS is not necessary to implement the XAPI. The XAPI 
 is dependent on an LRS to function.
 
+<a name="def-profile" />
 __Profile__: A construct where information about the learner or activity is kept, 
 typically in name/document pairs that have meaning to an instructional system component.
 
+<a name="def-registration" />
 __Registration__: If the LRS is an LMS, it likely has a concept of registration, 
 an instance of a learner signing up for a particular learning activity. The LMS may 
 also close the registration at some point when it considers the learning experience 
@@ -246,21 +274,25 @@ statements in one registration. Note: activity providers are cautioned against r
 registration other than when assigned by an LRS. An LRS that assigns registrations is 
 likely to reject statements containing unassigned registration IDs.
 
+<a name="def-service" />
 __Service__: A software component responsible for one or more aspects of the distributed 
 learning process. An LMS typically combines many services to design a complete learning 
 experience.
 
+<a name="def-state" />
 __State__: Similar to SCORM suspend data, but allows storage of arbitrary key/document 
 pairs. The LRS does not have to retain state once the learning experience is considered 
 "done" (LRS has closed its "registration").
 
-__Statement__: A simple statement consisting of <Actor (learner)> <verb> <object>, 
-with <result>, in <context> to track an aspect of a learning experience. A set of 
+<a name="def-statement" />
+__Statement__: A simple statement consisting of ```<Actor (learner)>``` ```<verb>``` ```<object>```, 
+with ```<result>```, in ```<context>``` to track an aspect of a learning experience. A set of 
 several statements may be used to track complete details about a learning experience.
 
 <a name="tcapi"/>
 __Tin Can API (TCAPI)__: The previous name of the API defined in this document.  
 
+<a name="def-uri" />
 __URI__: Uniform Resource Identifier. A unique identifier which may be a URL. This should be a full absolute URI including a scheme. Relative URIs should not be used. URLs should be defined within a domain controlled by the person creating the URL. 
 
 <a name="statement"/> 
