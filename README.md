@@ -64,7 +64,7 @@ app home screen. On the repository screen select 'tools' and 'open a shell
 here'. Alternatively use the 'Git Shell' shortcut if it was created during 
 installation.  
 In the shell, enter..  
-```git remote add upstream <url_to_base_repository>```  
+```git remote add upstream https://github.com/adlnet/xAPI-Spec```  
 
 
 ## Workflow
