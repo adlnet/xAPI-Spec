@@ -265,14 +265,8 @@ __Profile__: A construct where information about the learner or activity is kept
 typically in name/document pairs that have meaning to an instructional system component.
 
 <a name="def-registration" />
-__Registration__: If the LRS is an LMS, it likely has a concept of registration, 
-an instance of a learner signing up for a particular learning activity. The LMS may 
-also close the registration at some point when it considers the learning experience 
-complete. For Experience API purposes, a registration may be applied more broadly; an 
-LMS could assign a group of students to a group of activities and track all related 
-statements in one registration. Note: activity providers are cautioned against reporting 
-registration other than when assigned by an LRS. An LRS that assigns registrations is 
-likely to reject statements containing unassigned registration IDs.
+__Registration__: When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration, 
+an instance of a learner signing up for a particular learning activity. See [section 4.1.6](#context).
 
 <a name="def-service" />
 __Service__: A software component responsible for one or more aspects of the distributed 
@@ -901,7 +895,14 @@ into some broader activity.
 	<tr><th>Property</th><th>Description</th></tr>
 	<tr>
 		<td>registration</td>
-		<td>UUID of the registration statement is associated with.</td>
+		<td>UUID of the registration statement is associated with.
+		
+		When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration, 
+			an instance of a learner signing up for a particular learning activity. The LMS may 
+			also close the registration at some point when it considers the learning experience 
+			complete. For Experience API purposes, a registration may be applied more broadly; an 
+			LMS could assign a group of students to a group of activities and track all related 
+			statements in one registration.</td>
 	</tr>
 	<tr>
 		<td>instructor</td>
