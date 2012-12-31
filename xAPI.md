@@ -359,15 +359,21 @@ Example of a simple statement:
 	},
 	"verb":{
 		"id":"http://adlnet.gov/expapi/verbs/created",
-		"display":{ "en-US":"created" }
+		"display":{ 
+			"en-US":"created" 
+		}
 	},
 	"object":{
 		"id":"http://example.adlnet.gov/xapi/example/simplestatement",
 		"definition":{
-		"name":{ "en-US":"simple statement" },
-		"description":{ "en-US":"A simple Experience API statement. Note that the LRS 
-		does not need to have any prior information about the actor (learner), the 
-		verb, or the activity/object." }
+			"name":{ 
+				"en-US":"simple statement" 
+			},
+			"description":{ 
+				"en-US":"A simple Experience API statement. Note that the LRS 
+				does not need to have any prior information about the actor (learner), the 
+				verb, or the activity/object." 
+			}
 		}
 	}
 }
@@ -823,15 +829,35 @@ action. The concrete example that follows logically states that
 
 ```
 {
-	"actor": {"objectType": "Agent", "mbox":"mailto:test@example.com" },
-	"verb" : { "id":"http://example.com/planned", "display":{"en-US":"planned"} },
+	"actor": {
+		"objectType": "Agent", 
+		"mbox":"mailto:test@example.com" 
+	},
+	"verb" : { 
+		"id":"http://example.com/planned", 
+		"display":{
+			"en-US":"planned"
+		} 
+	},
 	"object": {
 		"objectType": "SubStatement",
-		"actor" : {"objectType": "Agent", "mbox":"mailto:test@example.com" },
-		"verb" : { "id":"http://example.com/read", "display":{"en-US":"read"} },
+		"actor" : {
+			"objectType": "Agent", 
+			"mbox":"mailto:test@example.com" 
+		},
+		"verb" : { 
+			"id":"http://example.com/read", 
+			"display":{
+				"en-US":"read"
+			} 
+		},
 		"object": {
 			"id":"http://example.com/book",
-			"definition": { "name" : {"en-US":"Some Awesome Book"}}
+			"definition": { 
+				"name" : {
+					"en-US":"Some Awesome Book"
+				}
+			}
 		}
 	}
 }
@@ -851,13 +877,23 @@ comment could be issued on the original statement, using a new statement:
 
 ```
 {
-	"actor" : { "objectType": "Agent", "mbox":"mailto:test@example.com" },
-	"verb" : { "id":"http://example.com/commented", "display": {"en-US":"commented"} },
+	"actor" : { 
+		"objectType": "Agent", 
+		"mbox":"mailto:test@example.com" 
+	},
+	"verb" : { 
+		"id":"http://example.com/commented", 
+		"display": {
+			"en-US":"commented"
+		} 
+	},
 	"object" : {
 		"objectType":"StatementRef",
 		"id":"8f87ccde-bb56-4c2e-ab83-44982ef22df0"
 	},
-	"result" : { "response" : "Wow, nice work!" }
+	"result" : { 
+		"response" : "Wow, nice work!" 
+	}
 }
 ``` 
 
@@ -932,7 +968,9 @@ into some broader activity.
 			activity, and the context type is "other".<br/><br/>
 			<pre><code>
 			{
-				"other" : {"id" : "http://example.adlnet.gov/xapi/example/test"}
+				"other" : {
+					"id" : "http://example.adlnet.gov/xapi/example/test"
+				}
 			}
 			</code></pre><br/><br/>
 			This activity could also be a session, like a section of a specific 
@@ -946,8 +984,12 @@ into some broader activity.
 			statements about "Algebra 1". This can be done using parent and grouping:<br/>
 			<pre><code>
 			{
-				"parent" : {"id" : "http://example.adlnet.gov/xapi/example/test 1"},
-				"grouping" : {"id" : "http://example.adlnet.gov/xapi/example/Algebra1"}
+				"parent" : {
+					"id" : "http://example.adlnet.gov/xapi/example/test 1"
+				},
+				"grouping" : {
+					"id" : "http://example.adlnet.gov/xapi/example/Algebra1"
+				}
 			}
 			</code></pre><br/><br/>
 			This is particularly useful with the object of the statement is an agent, 
@@ -1076,7 +1118,9 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 				"name":"oauth_consumer_x75db"
 			}
 		},
-		{ "mbox":"mailto:bob@example.com" }
+		{ 
+			"mbox":"mailto:bob@example.com" 
+		}
 	]
 }
 ```
@@ -1112,7 +1156,9 @@ field set to "Statement", and must specify the target statement's ID using the
 	},
 	"verb" : {
 		"id":"http://adlnet.gov/xapi/verbs#voided",
-		"display":{"en-US":"voided"}
+		"display":{
+			"en-US":"voided"
+		}
 	},
 	"object" : {
 		"objectType":"StatementRef",
@@ -1904,7 +1950,7 @@ a responsibility carried out by community of practice, in any way they see fit.
 
 XAPI enables using an "I learned this" bookmarklet to self-report learning. 
 The following is an example of such a bookmarklet, and the statement that this 
-bookmarklet would send if used on the page: http://scorm.com/xapi.  
+bookmarklet would send if used on the page: http://adlnet.gov/xapi.  
 
 The bookmarklet would be provided by the LRS to track to, for a specific user. 
 Therefore the LRS URL, authentication, and actor information is hard coded in 
@@ -2037,25 +2083,53 @@ __true-false__
 
 ```
 "definition": {
-	"description": {"en-US": "Does the XAPI include the concept of statements?"},
+	"description": {
+		"en-US": "Does the XAPI include the concept of statements?"
+	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "true-false",
-	"correctResponsesPattern": ["true"]
+	"correctResponsesPattern": [
+		"true"
+	]
 }
 ```
 
 __choice__  
 ```
 "definition": {
-	"description": {"en-US": "Which of these prototypes are available at the beta site?"},
+	"description": {
+		"en-US": "Which of these prototypes are available at the beta site?"
+	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "multiple-choice",
-	"correctResponsesPattern": ["golf[,]tetris"],
+	"correctResponsesPattern": [
+		"golf[,]tetris"
+	],
 	"choices": [
-		{"id": "golf", "description": {"en-US": "Golf Example"}},
-		{"id": "facebook", "description": {"en-US": "Facebook App"}},
-		{"id": "tetris", "description": {"en-US": "Tetris Example"}},
-		{"id": "scrabble", "description": {"en-US": "Scrabble Example"}}
+		{
+			"id": "golf", 
+			"description": {
+				"en-US": "Golf Example"
+			}
+		},
+		{
+			"id": "facebook", 
+			"description": {
+				"en-US": "Facebook App"
+			}
+		},
+		{
+			"id": "tetris", 
+			"description": {
+				"en-US": "Tetris Example"
+			}
+		},
+		{
+			"id": "scrabble", 
+			"description": {
+				"en-US": "Scrabble Example"
+			}
+		}
 	]
 }
 ```
@@ -2063,25 +2137,53 @@ __choice__
 __fill-in__  
 ```
 "definition": {
-	"description": {"en-US": "Ben is often heard saying: "},
+	"description": {
+		"en-US": "Ben is often heard saying: "
+	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "fill-in",
-	"correctResponsesPattern": ["Bob’s your uncle"]
+	"correctResponsesPattern": [
+		"Bob’s your uncle"
+	]
 }
 ```
 
 __likert__  
 ```
 "definition": {
-	"description": {"en-US": "How awesome is Experience API?"},
+	"description": {
+		"en-US": "How awesome is Experience API?"
+	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "likert",
-	"correctResponsesPattern": ["likert_3"],
+	"correctResponsesPattern": [
+		"likert_3"
+	],
 	"scale": [
-		{"id": "likert_0", "description": {"en-US": "It’s OK"}},
-		{"id": "likert_1", "description": {"en-US": "It’s Pretty Cool"}},
-		{"id": "likert_2", "description": {"en-US": "It’s Damn Cool"}},
-		{"id": "likert_3", "description": {"en-US": "It’s Gonna Change the World"}}
+		{
+			"id": "likert_0", 
+			"description": {
+				"en-US": "It’s OK"
+			}
+		},
+		{
+			"id": "likert_1", 
+			"description": {
+				"en-US": "It’s Pretty Cool"
+			}
+		},
+		{
+			"id": "likert_2", 
+			"description": {
+				"en-US": "It’s Damn Cool"
+			}
+		},
+		{
+			"id": "likert_3", 
+			"description": {
+				"en-US": "It’s Gonna Change the World"
+			}
+		}
 	]
 }
 ```
@@ -2090,7 +2192,9 @@ __matching__
 ```
 {
 	"definition":{
-		"description":{"en-US":"Match these people to their kickball team:"},
+		"description":{
+			"en-US":"Match these people to their kickball team:"
+		},
 		"type":"http://adlnet.gov/expapi/activities/cmi.interaction",
 		"interactionType":"matching",
 		"correctResponsesPattern":[
@@ -2099,37 +2203,53 @@ __matching__
 		"source":[
 			{
 				"id":"ben",
-				"description":{"en-US":"Ben"}
+				"description":{
+					"en-US":"Ben"
+				}
 			},
 			{
 				"id":"chris",
-				"description":{"en-US":"Chris"}
+				"description":{
+					"en-US":"Chris"
+				}
 			},
 			{
 				"id":"troy",
-				"description":{"en-US":"Troy"}
+				"description":{
+					"en-US":"Troy"
+				}
 			},
 			{
 				"id":"freddie",
-				"description":{"en-US":"Freddie"}
+				"description":{
+					"en-US":"Freddie"
+				}
 			}
 		],
 		"target":[
 			{
 				"id":"1",
-				"description":{"en-US":"SCORM Engine"}
+				"description":{
+					"en-US":"SCORM Engine"
+				}
 			},
 			{
 				"id":"2",
-				"description":{"en-US":"Pure-sewage"}
+				"description":{
+					"en-US":"Pure-sewage"
+				}
 			},
 			{
 				"id":"3",
-				"description":{"en-US":"Project Tin Can API"}
+				"description":{
+					"en-US":"Project Tin Can API"
+				}
 			},
 			{
 				"id":"4",
-				"description":{"en-US":"SCORM Cloud"}
+				"description":{
+					"en-US":"SCORM Cloud"
+				}
 			}
 		]
 	}
@@ -2139,14 +2259,33 @@ __matching__
 __performance__  
 ```
 "definition": {
-	"description": {"en-US": "This interaction measures performance over a day of RS sports:"},
+	"description": {
+		"en-US": "This interaction measures performance over a day of RS sports:"
+	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "performance",
-	"correctResponsesPattern": ["pong[.]1:[,]dg[.]:10[,]lunch[.]"],
+	"correctResponsesPattern": [
+		"pong[.]1:[,]dg[.]:10[,]lunch[.]"
+	],
 	"steps": [
-		{"id": "pong", "description": {"en-US": "Net pong matches won"}},
-		{"id": "dg", "description": {"en-US": "Strokes over par in disc golf at Liberty"}},
-		{"id": "lunch", "description": {"en-US": "Lunch having been eaten"}}
+		{
+			"id": "pong", 
+			"description": {
+				"en-US": "Net pong matches won"
+			}
+		},
+		{
+			"id": "dg", 
+			"description": {
+				"en-US": "Strokes over par in disc golf at Liberty"
+				}
+			},
+		{
+			"id": "lunch", 
+			"description": {
+				"en-US": "Lunch having been eaten"
+			}
+		}
 	]
 }
 ```
@@ -2154,15 +2293,38 @@ __performance__
 __sequencing__  
 ```
 "definition": {
-	"description": {"en-US": "Order players by their pong ladder position:"},
+	"description": {
+		"en-US": "Order players by their pong ladder position:"
+	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "sequencing",
-	"correctResponsesPattern": ["tim[,]mike[,]ells[,]ben"],
+	"correctResponsesPattern": [
+		"tim[,]mike[,]ells[,]ben"
+	],
 	"choices": [
-		{"id": "tim", "description": {"en-US": "Tim"}},
-		{"id": "ben", "description": {"en-US": "Ben"}},
-		{"id": "ells", "description": {"en-US": "Ells"}},
-		{"id": "mike", "description": {"en-US": "Mike"}}
+		{
+			"id": "tim", 
+			"description": {
+				"en-US": "Tim"
+			}
+		},
+		{
+			"id": "ben", "description": {
+				"en-US": "Ben"
+			}
+		},
+		{
+			"id": "ells", 
+			"description": {
+				"en-US": "Ells"
+			}
+		},
+		{
+			"id": "mike", 
+			"description": {
+				"en-US": "Mike"
+			}
+		}
 	]
 }
 ```
@@ -2170,19 +2332,27 @@ __sequencing__
 __numeric__  
 ```
 "definition": {
-	"description": {"en-US": "How many jokes is Chris the butt of each day?"},
+	"description": {
+		"en-US": "How many jokes is Chris the butt of each day?
+	"},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "numeric",
-	"correctResponsesPattern": ["4:"]
+	"correctResponsesPattern": [
+		"4:"
+	]
 }
 ```
 
 __other__  
 ```
 "definition": {
-	"description": {"en-US": "On this map, please mark Franklin, TN"},
+	"description": {
+		"en-US": "On this map, please mark Franklin, TN"
+	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "other",
-	"correctResponsesPattern": ["(35.937432,-86.868896)"]
+	"correctResponsesPattern": [
+		"(35.937432,-86.868896)"
+	]
 }
 ```
