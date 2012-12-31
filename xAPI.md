@@ -203,6 +203,7 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 * [Authorization](#def-authorization)
 * [Community of Practice](#def-community-of-practice)
 * [Experience API (xAPI)](#def-experience-api)
+* [Immutable](#def-immutable)
 * [Inverse Functional Identifier](#def-inverse-functinal-identifier)
 * [Learning Activity (activity)](#def-learning-activity)
 * [Learning Activity Provider](#def-activity-provider)
@@ -230,12 +231,19 @@ purpose, which operates in a common modality.
 
 <a name="def-experience-api" />
 __Experience API (xAPI)__: The API defined in this document, the product of 
-"Project Tin Can API". A simple, lightweight way for any permitted actor to store 
+"Project Tin Can". A simple, lightweight way for any permitted actor to store 
 and retrieve extensible learning records, learner and learning experience profiles, 
 regardless of the platform used.  
 
+<a name ="def-immutable" />
+__Immutable__:  Adjective used  describe things which cannot be changed. With 
+some exceptions, statements in the xAPI are immutable. This ensures that when 
+statements are shared between LRS, multiple copies of the statement remain
+the same.
+
 <a name="def-inverse-functinal-identifier" />
-__Inverse Functional Identifier__: An identifier which is unique to a particular persona or group. Used to identify Agents and Groups. See section 4.1.2
+__Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
+ Used to identify Agents and Groups. See section 4.1.2
 
 <a name="def-learning-activity" />
 __Learning Activity (activity)__: Like a SCORM Activity, a unit of instruction, 
