@@ -403,40 +403,57 @@ an account with an opaque account name to identify the person.
 The table below lists all properties of Agent objects. Inverse functional 
 identifiers are marked with a *."  
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
 		<td>objectType</td>
-		<td>"Agent" (Optional, except when used as a statement's object)</td>
+		<td>String</td>
+		<td>(Optional, except when used as a statement's object) "Agent"</td>
 	</tr>
-	<tr><td>name</td><td>String (Optional)</td></tr>
+	<tr>
+		<td>name</td>
+		<td>String</td>
+		<td>(Optional) Full name of the agent</td>
+	</tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox">mbox*</a></td>
-		<td>String in the form "mailto:email address". (Note: Only emails that 
+		<td>URI in the form "mailto:email address".</td> 
+		<td>Note: Only emails that 
 			have only ever been and will ever be assigned to this Agent, 
-			but no others, should be used for this property and mbox_sha1sum).</td>
+			but no others, should be used for this property and mbox_sha1sum.</td>
 	</tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox_sha1sum">mbox_sha1sum*</a></td>
-		<td>String containing the SHA1 hash of a mailto URI (such as goes in an mbox 
+		<td>String</td>
+		<td>The SHA1 hash of a mailto URI (such as goes in an mbox 
 			property). An LRS MAY include Agents with a matching hash when a 
 			request is based on an mbox.</td>
 	</tr>
-	<tr><td>openid*</td><td>The URI of an openid that uniquely identifies this agent.</td></tr>
-	<tr><td>account*</td><td>An account object, <a href="#agentaccount">see below</a>.</td></tr>
+	<tr>
+		<td>openid*</td>
+		<td>URI</td>
+		<td>An openid that uniquely identifies this agent.</td>
+	</tr>
+	<tr>
+		<td>account*</td>
+		<td>An account object</td>
+		<td><a href="#agentaccount">see below</a>.</td>
+	</tr>
 </table>
 
 <a name="agentaccount"/>
 __Account__  
 
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
 		<td>homePage</td>
-		<td>The URI to the canonical home page for the system the account is on. 
+		<td>URL</td>
+		<td>The canonical home page for the system the account is on. 
 			This is based on FOAF's accountServiceHomePage.</td>
 	</tr>
 	<tr>
 		<td>name</td>
+		<td>String</td>
 		<td>The unique ID or name used to log in to this account. This is based 
 			on FOAF's accountName.</td>
 	</tr>
@@ -473,37 +490,41 @@ list of agents in an anonymous or identified Group.
 
 __Anonymous Group__  
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>"Group" (Required)</td></tr>
-	<tr><td>name</td><td>String (Optional)</td></tr>
-	<tr><td>member</td>
-		<td>(array of) <a href="#agent">Agent</a> (not Group) objects representing 
-			members of this Group.</td>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>objectType</td><td>String</td><td>(Required) "Group"</td></tr>
+	<tr><td>name</td><td>String</td><td>(Optional) Name of the Group</td></tr>
+	<tr>
+		<td>member</td>
+		<td>Array of <a href="#agent">Agent</a> (not Group) objects</td>
+		<td>The members of this Group.</td>
 	</tr>
 </table>
 
 __Identified Group__  
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>"Group" (Required)</td></tr>
-	<tr><td>name</td><td>String (Optional)</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>objectType</td><td>String</td><td>(Required) "Group"</td></tr>
+	<tr><td>name</td><td>String</td><td>(Optional) Name of the Group</td></tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox">mbox*</a></td>
-		<td>String in the form "mailto:email address". (Note: Only emails that 
-			have only ever been and will ever be assigned to this Agent, 
-			but no others, should be used for this property and mbox_sha1sum).</td>
+		<td>URI in the form "mailto:email address".</td>
+		<td>Note: Only emails that 
+			have only ever been and will ever be assigned to this Group, 
+			but no others, should be used for this property and mbox_sha1sum.</td>
 	</tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox_sha1sum">mbox_sha1sum*</a></td>
-		<td>String containing the SHA1 hash of a mailto URI (such as goes in an mbox 
+		<td>String</td>
+		<td>The SHA1 hash of a mailto URI (such as goes in an mbox 
 			property). An LRS MAY include Agents with a matching hash when a 
 			request is based on an mbox.</td>
 	</tr>
-	<tr><td>openid*</td><td>The URI of an openid that uniquely identifies this agent.</td></tr>
-	<tr><td>account*</td><td>An account object, <a href="#agentaccount">see below</a>.</td></tr>
-	<tr><td>member</td>
-		<td>(array of) <a href="#agent">Agent</a> (not Group) objects representing 
-			members of this Group.</td>
+	<tr><td>openid*</td><td>URI</td><td>An openid that uniquely identifies this agent.</td></tr>
+	<tr><td>account*</td><td>An account object</td><td><a href="#agentaccount">see 4.1.2.1 above</a>.</td></tr>
+	<tr>
+		<td>member</td>
+		<td>Array of <a href="#agent">Agent</a> (not Group) objects</td>
+		<td>The members of this Group.</td>
 	</tr>
 </table>  
 
@@ -566,19 +587,21 @@ MUST NOT use the display property to infer any meaning from the statement,
 rather it MUST use the verb URI to infer meaning, and the display property only 
 for display to a human.  
 <table>
-	<tr><th>Property</th><th>Description</th><th>Example</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Example</th></tr>
 	<tr>
 		<td>id</td>
-		<td>A URI that corresponds to a verb definition. Each verb definition 
-			corresponds to the meaning of a verb, not the word. A URI should 
+		<td>URI</td>
+		<td>Corresponds to a verb definition. Each verb definition 
+			corresponds to the meaning of a verb, not the word. The URI should 
 			be human-readable and contain the verb meaning.</td>
 		<td>www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)</td>
 	</tr>
 	<tr>
 		<td>display</td>
-		<td>A language map containing the human readable representation of the 
+		<td><a href="#misclangmap">Language Map</a></td>
+		<td>The human readable representation of the 
 			verb in at least one language. This does not have any impact on the 
-			meaning of the statement, but only serves to give a human-readable 
+			meaning of the statement, but serves to give a human-readable 
 			display of the meaning already determined by the chosen verb.</td>
 		<td>display : { "en-US" : "ran"}<br/>
 			display : { "en-US" : "ran", "es" : "corrió" }</td>
@@ -595,15 +618,20 @@ is assumed to be an Activity.
 #### 4.1.4.1 – Activity as "object"
 A statement may represent a Learning Activity as an object in the statement.  
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
 		<td>objectType</td>
+		<td>String</td>
 		<td>Should always be "Activity" when present. Used in cases where type 
 			cannot otherwise be determined, such as the value of a statement's 
 			"object" field.</td>
 	</tr>
-	<tr><td><a href="#acturi">id</a></td><td>URI. If a URL, the URL should refer to metadata for this activity.</td></tr>
-	<tr><td><a href="#actdef">definition</a></td><td>Metadata, See below</td></tr>
+	<tr><td><a href="#acturi">id</a></td><td>URI</td><td>If a URL, the URL should refer to metadata for this activity.</td></tr>
+	<tr>
+		<td><a href="#actdef">definition</a></td>
+		<td>Activity Definition Object</td>
+		<td>Metadata, <a href="#actdef">See below</a></td>
+	</tr>
 </table>
 <a name="acturi"/>
 __Activity URI__  
@@ -636,22 +664,36 @@ conflict with another system arise.
 <a name="actdef"/>
 __Activity Definition__  
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
-	<tr><td>name</td><td><a href="#misclangmap">Language Map</a>, The human readable/visual name of the activity</td></tr>
-	<tr><td>description</td><td><a href="misclangmap">Language Map</a>, A description of the activity</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr>
+		<td>name</td>
+		<td><a href="#misclangmap">Language Map</a></td>
+		<td>The human readable/visual name of the activity</td>
+	</tr>
+	<tr>
+		<td>description</td>
+		<td><a href="misclangmap">Language Map</a></td>
+		<td>A description of the activity</td>
+	</tr>
 	<tr>
 		<td>type</td>
-		<td>URI, the type of activity. Note, URI fragments (sometimes called 
+		<td>URI</td>
+		<td>the type of activity. Note, URI fragments (sometimes called 
 			relative URLs) are not valid URIs. Similar to verbs, we recommend 
 			that Learning Activity Providers look for and use established, 
-			widely adopted, activity types.</td>
+			widely adopted, activity types.
+		</td>
 	</tr>
 	<tr>
 		<td>interactionType | correctResponsesPattern | choices | scale | 
 			source | target | steps</td>
-		<td><a href="#interactionacts">See "Interaction Activities"</a></td>
+		<td colspan="2"><a href="#interactionacts">See "Interaction Activities"</a></td>
 	</tr>
-	<tr><td>extensions</td><td>A map of other properties as needed (see: <a href="#miscext">Extensions</a>)</td></tr>
+	<tr>
+		<td>extensions</td>
+		<td>Extensions Object</td>
+		<td>A map of other properties as needed (see: <a href="#miscext">Extensions</a>)</td>
+	</tr>
 </table>  
 An LRS should update its internal representation of an activity's definition 
 upon receiving a statement with a different definition of the activity from the 
@@ -691,22 +733,25 @@ is specified, an LRS processing MAY validate the remaining properties as
 specified in the table below, and return HTTP 400 "Bad Request" if the 
 remaining properties are not valid for the interaction type.  
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
 		<td>interactionType</td>
+		<td>String</td>
 		<td>As in "cmi.interactions.n.type" as defined in the SCORM 2004 4th 
 			edition Runtime Environment.</td>
 	</tr>
 	<tr>
 		<td>correctResponsesPattern</td>
-		<td>An array of strings, corresponding to 
+		<td>An array of strings</td>
+		<td>Correspons to 
 			"cmi.interactions.n.correct_responses.n.pattern" as defined in 
 			the SCORM 2004 4th edition Runtime Environment, where the final 
 			<em>n</em> is the index of the array.</td>
 	</tr>
 	<tr>
 		<td>choices | scale | source | target | steps</td>
-		<td>Array of interaction components specific to the given interaction type (see below).</td>
+		<td>Array of interaction components</td>
+		<td>Specific to the given interaction type (see below).</td>
 	</tr>
 </table>  
 
@@ -714,14 +759,16 @@ __Interaction Components__
 
 Interaction components are defined as follows:  
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
 		<td>id</td>
+		<td>String</td>
 		<td>As in "cmi.interactions.n.id" as defined in the SCORM 2004 4th 
 			edition Runtime Environment</td> 
 	<tr>
-		<td>description</td> 
-		<td><a href="misclangmap">Language Map</a>, a description of the interaction component 
+		<td>description</td>
+		<td><a href="#misclangmap">Language Map</a></td>
+		<td>a description of the interaction component 
 			(for example, the text for a given choice in a multiple-choice interaction)</td>
 	</tr>
 </table>  
@@ -844,18 +891,39 @@ as completion, success, or score. It is also extendible to allow for arbitrary
 measurements to be included.
 
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
-	<tr><td>score</td><td><a href="#score">Score</a> object (or not specified) - see section 4.1.5.1</td></tr>
-	<tr><td>success</td><td>true, false, or not specified</td></tr>
-	<tr><td>completion</td><td>true, false, or not specified</td></tr>
-	<tr><td>response</td><td>A string response appropriately formatted for the given activity.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr>
+		<td>score</td>
+		<td><a href="#score">Score</a> object</td>
+		<td>(optional) See section 4.1.5.1</td>
+	</tr>
+	<tr>
+		<td>success</td>
+		<td>Boolean</td>
+		<td>(optional) Was the learning activity successful?</td>
+	</tr>
+	<tr>
+		<td>completion</td>
+		<td>Boolean</td>
+		<td>(optional) Was the learning activity completed?</td>
+	</tr>
+	<tr>
+		<td>response</td>
+		<td>String</td>
+		<td>A response appropriately formatted for the given activity.</td>
+	</tr>
 	<tr>
 		<td>duration</td>
-		<td>Period of time over which the statement occurred. Formatted according 
-			to <a href="https://en.wikipedia.org/wiki/ISO_8601%22%20%5Cl%20%22Durations">ISO 8601</a>, 
+		<td>Formatted according 
+			to <a href="https://en.wikipedia.org/wiki/ISO_8601%22%20%5Cl%20%22Durations">ISO 8601</a>, 
 			with a precision of 0.01 seconds.</td>
+		<td>Period of time over which the statement occurred.</td>
 	</tr>
-	<tr><td><a href="#miscext">extensions</a></td><td>A map of other properties as needed (see extensions)</td></tr>
+	<tr>
+		<td><a href="#miscext">extensions</a></td>
+		<td>Extensions object</td>
+		<td>A map of other properties as needed (see <a href="#miscext">extensions</a>)</td>
+	</tr>
 </table>
 <a name="score"/> 
 #### 4.1.5.1 Score
