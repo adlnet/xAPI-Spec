@@ -51,6 +51,7 @@
 [Appendix A: Bookmarklet](#AppendixA)  
 [Appendix B: Creating an "IE Mode" Request](#AppendixB)  
 [Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
+[Appendix D: Example statements](#AppendixD)  
 
 <a name="revhistory"/>  
 # 1.0 Revision History
@@ -348,36 +349,7 @@ statement itself. So while the statement is immutable, the activities referenced
 by that statement are not. This means a deep serialization of a statement into 
 JSON will change if the referenced activities change.  
 
-Example of a simple statement:  
-```
-{
-	"id":"fd41c918-b88b-4b20-a0a5-a4c32391aaa0",
-	"actor":{
-		"objectType": "Agent",
-		"name":"Project Tin Can API",
-		"mbox":"mailto:user@example.com"
-	},
-	"verb":{
-		"id":"http://adlnet.gov/expapi/verbs/created",
-		"display":{ 
-			"en-US":"created" 
-		}
-	},
-	"object":{
-		"id":"http://example.adlnet.gov/xapi/example/simplestatement",
-		"definition":{
-			"name":{ 
-				"en-US":"simple statement" 
-			},
-			"description":{ 
-				"en-US":"A simple Experience API statement. Note that the LRS 
-				does not need to have any prior information about the actor (learner), the 
-				verb, or the activity/object." 
-			}
-		}
-	}
-}
-```   
+ 
 Simplest possible statement using all properties that MUST or SHOULD be used:  
 ```
 {
@@ -395,41 +367,9 @@ Simplest possible statement using all properties that MUST or SHOULD be used:
 		"id":"http://example.adlnet.gov/xapi/example/activity"
 	}
 }
-```   
-Typical simple completion with verb "attempted":  
-```
-{
-	"actor":{
-        "objectType": "Agent",
-		"name":"Example Learner",
-		"mbox":"mailto:example.learner@adlnet.gov"
-	},
-	"verb":{
-		"id":"http://adlnet.gov/expapi/verbs/attempted",
-		"display":{
-			"en-US":"attempted"
-		}
-	},
-	"object":{
-		"id":"http://example.adlnet.gov/xapi/example/simpleCBT",
-		"definition":{
-			"name":{
-				"en-US":"simple CBT course"
-			},
-			"description":{
-				"en-US":"A fictitious example CBT course."
-			}
-		}
-	},
-	"result":{
-		"score":{
-			"scaled":0.95
-		},
-		"success":true,
-		"completion":true
-	}
-}
 ```  
+See [Appendix D: Example statements](#AppendixD) for more examples. 
+
 <a name="stmtid"/> 
 ### 4.1.1 ID:  
 
@@ -2356,3 +2296,73 @@ __other__
 	]
 }
 ```
+
+<a name="AppendixD"/>   
+# Appendix D: Example statements
+
+Example of a simple statement:  
+```
+{
+	"id":"fd41c918-b88b-4b20-a0a5-a4c32391aaa0",
+	"actor":{
+		"objectType": "Agent",
+		"name":"Project Tin Can API",
+		"mbox":"mailto:user@example.com"
+	},
+	"verb":{
+		"id":"http://adlnet.gov/expapi/verbs/created",
+		"display":{ 
+			"en-US":"created" 
+		}
+	},
+	"object":{
+		"id":"http://example.adlnet.gov/xapi/example/simplestatement",
+		"definition":{
+			"name":{ 
+				"en-US":"simple statement" 
+			},
+			"description":{ 
+				"en-US":"A simple Experience API statement. Note that the LRS 
+				does not need to have any prior information about the actor (learner), the 
+				verb, or the activity/object." 
+			}
+		}
+	}
+}
+```   
+Typical simple completion with verb "attempted":  
+```
+{
+	"actor":{
+        "objectType": "Agent",
+		"name":"Example Learner",
+		"mbox":"mailto:example.learner@adlnet.gov"
+	},
+	"verb":{
+		"id":"http://adlnet.gov/expapi/verbs/attempted",
+		"display":{
+			"en-US":"attempted"
+		}
+	},
+	"object":{
+		"id":"http://example.adlnet.gov/xapi/example/simpleCBT",
+		"definition":{
+			"name":{
+				"en-US":"simple CBT course"
+			},
+			"description":{
+				"en-US":"A fictitious example CBT course."
+			}
+		}
+	},
+	"result":{
+		"score":{
+			"scaled":0.95
+		},
+		"success":true,
+		"completion":true
+	}
+}
+```  
+
+
