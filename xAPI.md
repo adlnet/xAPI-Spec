@@ -928,11 +928,11 @@ measurements to be included.
 <a name="score"/> 
 #### 4.1.5.1 Score
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
-	<tr><td>scaled</td><td>cmi.score.scaled (recommended)</td></tr>
-	<tr><td>raw</td><td>cmi.score.raw</td></tr>
-	<tr><td>min</td><td>cmi.score.min</td></tr>
-	<tr><td>max</td><td>cmi.score.max</td><tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>scaled</td>decimal number between 0 and 1<td>cmi.score.scaled (recommended)</td></tr>
+	<tr><td>raw</td>integer<td>cmi.score.raw</td></tr>
+	<tr><td>min</td>integer<td>cmi.score.min</td></tr>
+	<tr><td>max</td>integer<td>cmi.score.max</td><tr>
 </table>
 
 <a name="context"/>
