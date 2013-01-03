@@ -950,9 +950,13 @@ into some broader activity.
 		<td>UUID</td>
 		<td>The registration statement is associated with.
 		<br/><br/>
-		When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration, 
-			an instance of a learner signing up for a particular learning activity. The LMS may 
-			also close the registration at some point when it considers the learning experience 
+		When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration. 
+			Registration is an instance of a learner undertaking a particular learning activity. 
+			For example all the statements about one time a person took a test might have one 
+			registration. If the learner takes the test again, the statements from this second 
+			occasion would have a different registration from the first occasion.
+		<br/><br/>
+		 The LMS may also close the registration at some point when it considers the learning experience 
 			complete. For Experience API purposes, a registration may be applied more broadly; an 
 			LMS could assign a group of students to a group of activities and track all related 
 			statements in one registration.</td>
@@ -971,6 +975,7 @@ into some broader activity.
 	</tr>
 	<tr>
 		<td>contextActivities</td>
+		<td>contextActivities object</td>
 		<td>A map of the types of context to learning activities "activity this 
 			statement is related to.<br/><br/>
 			Valid context types are: "parent", "grouping", and "other".<br/>
@@ -1009,6 +1014,7 @@ into some broader activity.
 	</tr>
 	<tr>
 		<td>revision</td>
+		<td>String</td>
 		<td>Revision of the learning activity associated with this statement.<br/><br/>
 			
 			Revisions are to track fixes of minor issues (like a spelling error), 
@@ -1023,6 +1029,7 @@ into some broader activity.
 	</tr>
 	<tr>
 		<td>platform</td>
+		<td>String</td>
 		<td>Platform used in the experience of this learning activity. Not 
 			applicable if statement's object is a Person. Defined vocabulary, 
 			TBD.
@@ -1030,18 +1037,18 @@ into some broader activity.
 	</tr>
 	<tr>
 		<td>language</td>
+		<td>Format for this value is as defined in 
+			<a href="http://tools.ietf.org/html/rfc5646">RFC 5646</a><br/><br/>
+			For example, US English would be recorded as: en-US
+		</td>
 		<td>Code representing the language in which the experience being recorded 
 			in this statement (mainly) occurred in, if applicable and known. Do 
-			not specify any value if not applicable or not known.<br/><br/>
-
-			Format for this value is as defined in 
-			<a href="http://tools.ietf.org/html/rfc5646">RFC 5646</a><br/><br/>
-
-			For example, US English would be recorded as: en-US
+			not specify any value if not applicable or not known.<br/><br/>			
 		</td>
 	</tr>
 	<tr>
 		<td>statement</td>
+		<td>statement either by reference or object</td>
 		<td>Another statement (either existing or new), which should be considered 
 			as context for this statement. See section <a href="#stmtasobj">4.1.4.3</a> 
 			for details about including statements within other statements.
@@ -1049,6 +1056,7 @@ into some broader activity.
 	</tr>
 	<tr>
 		<td><a href="#miscext">extensions</a></td>
+		<td>Extensions object</td>
 		<td>A map of any other domain-specific context relevant to this statement. 
 			For example, in a flight simulator altitude, airspeed, wind, attitude, 
 			GPS coordinates might all be relevant (see extensions)
