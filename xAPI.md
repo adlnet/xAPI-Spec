@@ -944,11 +944,12 @@ this experience happened as part of a team activity, or how an experience fits
 into some broader activity.  
 
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type<th/><th>Description</th></tr>
 	<tr>
 		<td>registration</td>
-		<td>UUID of the registration statement is associated with.
-		
+		<td>UUID</td>
+		<td>The registration statement is associated with.
+		<br/><br/>
 		When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration, 
 			an instance of a learner signing up for a particular learning activity. The LMS may 
 			also close the registration at some point when it considers the learning experience 
@@ -958,13 +959,15 @@ into some broader activity.
 	</tr>
 	<tr>
 		<td>instructor</td>
+		<td>Agent (may be a group)</td>
 		<td>Instructor that the statement relates to, if not included as the 
-			Agent or Group of the statement.</td>
+			Actor of the statement.</td>
 	</tr>
 	<tr>
 		<td>team</td>
-		<td>Team that this statement relates to, if not included as the Agent 
-			or Group of the statement.</td>
+		<td>Group</td>
+		<td>Team that this statement relates to, if not included as the Actor
+		 of the statement.</td>
 	</tr>
 	<tr>
 		<td>contextActivities</td>
