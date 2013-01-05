@@ -540,8 +540,10 @@ __Identified Group__
 <a name="verb"/>
 ### 4.1.3 Verb:
 
-A verb defines what the action is between actors, activities, or most commonly, 
-between an actor and activity. The Tin Can API does not specify any particular 
+The verb defines the action between actor and activity. It asserts what is done by the actor 
+in relation to the activity. 
+
+The Tin Can API does not specify any particular 
 verbs, but rather defines how verbs are to be created. It is expected that verb 
 lists exist for various communities of practice. Verbs appear in statements as 
 objects consisting of a URI and a set of display names.
