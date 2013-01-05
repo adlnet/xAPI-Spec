@@ -436,12 +436,16 @@ identifiers are marked with a *."
 	<tr>
 		<td>account*</td>
 		<td>An account object</td>
-		<td><a href="#agentaccount">see below</a>.</td>
+		<td>A user account on an existing system e.g. an LMS or intranet <a href="#agentaccount">see below</a>.</td>
 	</tr>
 </table>
 
 <a name="agentaccount"/>
 __Account__  
+
+A user account on an existing system. This might be a private system such as a LMS or intranet or might be a 
+public system e.g. a social networking site. Note: if the system uses open ids, the statement author may consider 
+using these instead. 
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
