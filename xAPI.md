@@ -543,9 +543,10 @@ __Identified Group__
 The verb defines the action between actor and activity. It asserts what is done by the actor 
 in relation to the activity. 
 
-The Tin Can API does not specify any particular 
-verbs, but rather defines how verbs are to be created. It is expected that verb 
-lists exist for various communities of practice. Verbs appear in statements as 
+The Experience API does not specify any particular verbs (except the reserved 
+“http://adlnet.gov/expapi/verbs/voided"), but rather defines how verbs are to 
+be created. It is expected that communities of practice will develop verbs they find useful and make 
+them available to the general community for use. Verbs appear in statements as 
 objects consisting of a URI and a set of display names.
 
 The Verb URI should identify the particular semantics of a word, not the word 
@@ -554,26 +555,21 @@ depending on context, such as "fired a weapon", "fired a kiln", or "fired an
 employee". In this case, a URI should identify one of these specific meanings, 
 not the word "fired".
 
-The Tin Can API does not specify any particular verbs (except the reserved 
-“http://adlnet.gov/expapi/verbs/voided"), but rather defines how verbs are to 
-be used. Communities of practice will develop verbs they find useful and make 
-them available to the general community for use.
-
-A verb in the Tin Can API is a URI, and denotes a specific meaning not tied to 
+A verb in the Experience API is a URI, and denotes a specific meaning not tied to 
 any particular language. For example, a particular verb URI such as 
 http://example.org/firearms#fire or tag:example.com,2012:xQr73H might denote 
 the action of firing a gun, or the verb URI http://example.com/فعل/خواندن 
 might denote the action of reading a book. 
 
-The person who comes up with a new verb should own the URI, or have permission 
-from the owner to use the URI to denote a Tin Can API verb. The owner of a URI 
+The person who coins a new verb should own the URI, or have permission 
+from the owner to use the URI to denote an Experience API verb. The owner of a URI 
 SHOULD make a human-readable description of the intended usage of the verb 
 accessible at the URI.
 
 __NOTE__: In some future version, this specification might specify additional 
 machine-readable information about the verb be made available, but the choice 
-to do so is postponed to monitor emerging practices and pain points. ADL plans 
-to release a set of recommended verbs at the same time as this specification. 
+to do so is postponed to monitor emerging practices and pain points. ADL released 
+a set of recommended verbs at the same time as the 0.95 version of this specification. 
 Learning Activity Providers MAY use one these verbs, or other verb which have 
 wide adoption, if applicable. The verb list to be created by ADL will include 
 verbs corresponding to the verbs previously defined in this specification. If 
