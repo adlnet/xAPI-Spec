@@ -396,9 +396,7 @@ functional property in XAPI Agents.
 
 For reasons of practicality and privacy, TCAPI Agents MUST be identified by 
 one and only one inverse functional identifier. Agents MUST NOT include more 
-than one inverse functional identifier. If an Activity Provider is concerned 
-about revealing identifying information such as emails, it SHOULD instead use 
-an account with an opaque account name to identify the person.  
+than one inverse functional identifier.  
 
 The table below lists all properties of Agent objects. Inverse functional 
 identifiers are marked with a *."  
@@ -462,6 +460,12 @@ using these instead.
 			on FOAF's accountName.</td>
 	</tr>
 </table>  
+
+If an Activity Provider is concerned about revealing identifying information such as emails, it SHOULD instead use 
+an account with an opaque account name to identify the person. An 'opaque account name' might be
+an account number or any other unique account name for the person which does not give away their identity in
+any way. This ensures that all statements about the one person can be identified, whilst protecting their anonymity.
+
 An example using an opaque account:  
 ```
 {
