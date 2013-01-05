@@ -1242,10 +1242,10 @@ endpoint, see section [7.2 "Statement API"](#stmtapi) for details.
 The Experience API provides a facility for Activity Providers to save arbitrary data in 
 the form of documents, which may be related to an Activity, Agent, or combination of both.  
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
-	<tr><td>id</td><td>String, set by AP, unique within state scope (learner, activity)</td></tr>
-	<tr><td>updated</td><td>Timestamp</td></tr>
-	<tr><td>contents</td><td>Free form.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>id</td><td>String</td><td>Set by AP, unique within state scope (learner, activity).</td></tr>
+	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
+	<tr><td>contents</td><td>Free form</td><td>The contents of the document</td></tr>
 </table>
 Note that in the REST binding, State is a document not an object. ID is stored in the URL, 
 updated is HTTP header information, and contents is the HTTP document itself.  
@@ -1871,18 +1871,32 @@ Person properties. All array properties must be populated with members with the
 same definition as the similarly named property from Agent objects.  
 
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>Person. Required.</td></tr>
-	<tr><td>name</td><td>Array of strings. Optional.</td></tr>
-	<tr><td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox">mbox*</a>
-		</td><td>Array of strings.</td>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>objectType</td><td>String</td><td>"Person". Required.</td></tr>
+	<tr><td>name</td><td>Array of strings.</td><td> Optional. List of names of Agents to retrieve.</td></tr>
+	<tr>
+		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox">mbox*</a></td>
+		<td>Array of URIs in the form "mailto:email address".</td>
+		<td>List of e-mail addresses of Agents to retrieve.</td>
 	</tr>
-	<tr><td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox_sha1sum">mbox_sha1sum*</a></td>
+	<tr>
+		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox_sha1sum">mbox_sha1sum*</a></td>
 		<td>Array of strings.</td>
+		<td>List of the SHA1 hashes of mailto URIs (such as go in an mbox property)</td>
 	</tr>
-	<tr><td>openid*</td><td>Array of strings.</td></tr>
-	<tr><td>account*</td><td>Array of account objects.</td></tr>
-</table>  
+	<tr>
+		<td>openid*</td>
+		<td>Array of strings.</td>
+		<td>List of openids that uniquely identify the agents to retrieve.</td>
+	</tr>
+	<tr>
+		<td>account*</td>
+		<td>Array of account objects.</td>
+		<td>List of accounts to match. Complete account objects (homePage and name) must be provided.</td>
+	</tr>
+</table> 
+
+See also: <a href="#agent">section 4.1.2.1 Agent</a>.
 
 Returns: 200 OK - Expanded Agent Object  
 
