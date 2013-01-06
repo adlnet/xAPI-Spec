@@ -549,10 +549,10 @@ be created. It is expected that communities of practice will develop verbs they 
 them available to the general community for use. Verbs appear in statements as 
 objects consisting of a URI and a set of display names.
 
-The Verb URI should identify the particular semantics of a word, not the word 
+The Verb URI identifies the particular semantics of a word, not the word 
 itself. For example, the English word "fired" could mean different things 
 depending on context, such as "fired a weapon", "fired a kiln", or "fired an 
-employee". In this case, a URI should identify one of these specific meanings, 
+employee". In this case, a URI MUST identify one of these specific meanings, 
 not the word "fired".
 
 A verb in the Experience API is a URI, and denotes a specific meaning not tied to 
@@ -561,7 +561,7 @@ http://example.org/firearms#fire or tag:example.com,2012:xQr73H might denote
 the action of firing a gun, or the verb URI http://example.com/فعل/خواندن 
 might denote the action of reading a book. 
 
-The person who coins a new verb should own the URI, or have permission 
+The person who coins a new verb MUST own the URI, or have permission 
 from the owner to use the URI to denote an Experience API verb. The owner of a URI 
 SHOULD make a human-readable description of the intended usage of the verb 
 accessible at the URI.
@@ -571,9 +571,11 @@ machine-readable information about the verb be made available, but the choice
 to do so is postponed to monitor emerging practices and pain points. ADL released 
 a set of recommended verbs at the same time as the 0.95 version of this specification. 
 Learning Activity Providers MAY use one these verbs, or other verb which have 
-wide adoption, if applicable. The verb list to be created by ADL will include 
+wide adoption, if applicable. 
+
+The verb list created by ADL included
 verbs corresponding to the verbs previously defined in this specification. If 
-the meaning of one of those verbs is intended, Learning Activity Providers 
+the meaning of one of those previously defined verbs is intended, Learning Activity Providers 
 SHOULD use the corresponding ADL verb. Learning Activity Providers MAY create 
 their own verbs instead, as needed.  
 
@@ -600,7 +602,7 @@ for display to a human.
 		<td>Corresponds to a verb definition. Each verb definition 
 			corresponds to the meaning of a verb, not the word. The URI should 
 			be human-readable and contain the verb meaning.</td>
-		<td>www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)</td>
+		<td>id : "http://www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)"</td>
 	</tr>
 	<tr>
 		<td>display</td>
@@ -613,11 +615,15 @@ for display to a human.
 			display : { "en-US" : "ran", "es" : "corrió" }</td>
 	</tr>
 </table>
+
+Note, the verb in the table above is included for illustrative purposes only. This is not intended to imply that a verb
+with this meaning has been defined with this id. This applies to all example verbs given in this specification document. 
+
 <a name="object"/>
 ### 4.1.4 Object:  
 The object of a statement is the Activity, Agent, or Statement that is the object 
 of the statement, "this". Note that objects which are provided as a value for 
-this field should include an "objectType" field. If not specified, the object 
+this field SHOULD include an "objectType" field. If not specified, the object 
 is assumed to be an Activity.  
 
 <a name="activity"/>
@@ -632,7 +638,11 @@ A statement may represent a Learning Activity as an object in the statement.
 			cannot otherwise be determined, such as the value of a statement's 
 			"object" field.</td>
 	</tr>
-	<tr><td><a href="#acturi">id</a></td><td>URI</td><td>If a URL, the URL should refer to metadata for this activity.</td></tr>
+	<tr>
+		<td><a href="#acturi">id</a></td><td>URI</td>
+		<td>MAY be a URL, which points to the logical definition of the activity. 
+			This MAY be metadata or the URL for the activity</td>
+	</tr>
 	<tr>
 		<td><a href="#actdef">definition</a></td>
 		<td>Activity Definition Object</td>
@@ -641,9 +651,6 @@ A statement may represent a Learning Activity as an object in the statement.
 </table>
 <a name="acturi"/>
 __Activity URI__  
-An activity URI must always refer to a single unique activity. There may be 
-corrections to that activity's definition. Spelling fixes would be appropriate, 
-for example, but changing correct responses would not.  
 
 The activity URI is unique, and any reference to it always refers to the same 
 activity. Activity Providers must ensure this is true and the LRS may not attempt 
@@ -701,10 +708,11 @@ __Activity Definition__
 		<td>A map of other properties as needed (see: <a href="#miscext">Extensions</a>)</td>
 	</tr>
 </table>  
-An LRS should update its internal representation of an activity's definition 
-upon receiving a statement with a different definition of the activity from the 
-one stored, but only if it considers the Learning Activity Provider to have the 
-authority to do so.  
+There may be corrections to that activity's definition. Spelling fixes would be appropriate, 
+for example, but changing correct responses would not.  An LRS SHOULD update its internal representation 
+of an activity's definition upon receiving a statement with a different definition of the activity from the 
+one stored, but only if it considers the Learning Activity Provider to have the authority to do so. An LRS might, 
+for example, only allow modifications of activity definitions from domains matching the domain of the activity id.
 
 Activities may be defined in XML according to the schema http://www.adlnet.gov/xapi. 
 LRS's MAY attempt to look up an XML document at the URL given by the activity URI, 
@@ -712,9 +720,9 @@ and check if it conforms to the Experience API schema. If it does, the LRS SHOUL
 fill in its internal representation of the activities definition based on that 
 document. Note that activity URI's are not required to resolve to such metadata.  
 
-Note that multiple activities may be defined in the same metadata document. The 
-LRS MAY choose whether to store information about activities other than those 
-it has received statements for or not.  
+Note that multiple activities may be defined in the same metadata document. The LRS 
+MAY choose whether to store information about activities other than those for 
+which it has received statements. 
 
 As part of each group of activities, the activity metadata document may define 
 information about an associated activity provider, which the LRS SHOULD consider 
@@ -757,7 +765,7 @@ remaining properties are not valid for the interaction type.
 	<tr>
 		<td>choices | scale | source | target | steps</td>
 		<td>Array of interaction components</td>
-		<td>Specific to the given interaction type (see below).</td>
+		<td>Specific to the given interactionType (<a href="#interactionType">see below</a>).</td>
 	</tr>
 </table>  
 
@@ -779,6 +787,8 @@ Interaction components are defined as follows:
 	</tr>
 </table>  
 
+<a name="interactionType"/>
+
 The following table shows the supported lists of CMI interaction components for 
 an interaction activity with the given interactionType.  
 <table>
@@ -794,7 +804,7 @@ an interaction activity with the given interactionType.
 
 <a name="agentasobj"/>
 #### 4.1.4.2 - Agent or Group as "object"
-A statement may specify an Agent as an object in the statement. Agents that do 
+A statement may specify an Agent or Group as an object in the statement. Agents that do 
 this MUST specify an "objectType" property.  See [section 4.1.2](#actor) for details 
 regarding Agents.  
 
@@ -817,8 +827,11 @@ sub-statement as they would other statements, with the addition of these rules.
 One interesting use of sub-statements is in creating statements of intention. 
 For example, using sub-statements we can create statements of the form 
 "<I> <planned> (<I> <did> <this>)" to indicate that we've planned to take some 
-action. The concrete example that follows logically states that
- "I planned to read 'Some Awesome Book'".  
+action. The concrete example that follows logically states that 
+"I planned to visit 'Some Awesome Website'". 
+ 
+Note that whilst the verb display MAY take the future tense, the verb id SHOULD remain past tense.
+Later, when 'I' actually visit 'Some Awesome Website', reporting tools can therefore match the verb ids. 
 
 ```
 {
@@ -839,16 +852,16 @@ action. The concrete example that follows logically states that
 			"mbox":"mailto:test@example.com" 
 		},
 		"verb" : { 
-			"id":"http://example.com/read", 
+			"id":"http://example.com/visited", 
 			"display":{
-				"en-US":"read"
+				"en-US":"will visit"
 			} 
 		},
 		"object": {
-			"id":"http://example.com/book",
+			"id":"http://example.com/website",
 			"definition": { 
 				"name" : {
-					"en-US":"Some Awesome Book"
+					"en-US":"Some Awesome Website"
 				}
 			}
 		}
