@@ -1000,37 +1000,7 @@ optional.
 		<td>A map of the types of context to learning activities or activity this 
 			statement is related to.<br/><br/>
 			Valid context types are: "parent", "grouping", and "other".<br/>
-			For example, if I am studying a textbook, for a test, the textbook 
-			is the activity the statement is about, but the test is a context 
-			activity, and the context type is "other".<br/><br/>
-			<pre><code>
-			{
-				"other" : {
-					"id" : "http://example.adlnet.gov/xapi/example/test"
-				}
-			}
-			</code></pre><br/><br/>
-			This activity could also be a session, like a section of a specific 
-			course, or a particular run through of a scenario. So the statement 
-			could be about "Algebra I", but in the context of "Section 1 of Algebra I".
-			<br/><br/>
-			There could be an activity hierarchy to keep track of, for example 
-			"question 1" on "test 1" for the course "Algebra 1". When recording 
-			results for "question 1", it we can declare that the question is 
-			part of "test 1", but also that it should be grouped with other 
-			statements about "Algebra 1". This can be done using parent and grouping:<br/>
-			<pre><code>
-			{
-				"parent" : {
-					"id" : "http://example.adlnet.gov/xapi/example/test 1"
-				},
-				"grouping" : {
-					"id" : "http://example.adlnet.gov/xapi/example/Algebra1"
-				}
-			}
-			</code></pre><br/><br/>
-			This is particularly useful with the object of the statement is an agent, 
-			not an activity. "I mentored Ben with context Algebra I".
+			<a href="#contextActivities">See below</a>
 		</td>
 	</tr>
 	<tr>
@@ -1084,6 +1054,46 @@ optional.
 		</td>
 	</tr>
 </table>
+
+<a name="contextActivities"/>
+__Context Activities__
+
+A map of the types of context to learning activities or activity this 
+statement is related to. Valid context types are: "parent", "grouping", and "other".
+<br/><br/>
+For example, if I am studying a textbook, for a test, the textbook 
+is the activity the statement is about, but the test is a context 
+activity, and the context type is "other".<br/><br/>
+<pre><code>
+{
+	"other" : {
+	"id" : "http://example.adlnet.gov/xapi/example/test"
+	}
+}
+</code></pre>
+<br/><br/>
+This activity could also be a session, like a section of a specific 
+course, or a particular run through of a scenario. So the statement 
+could be about "Algebra I", but in the context of "Section 1 of Algebra I".
+<br/><br/>
+There could be an activity hierarchy to keep track of, for example 
+"question 1" on "test 1" for the course "Algebra 1". When recording 
+results for "question 1", it we can declare that the question is 
+part of "test 1", but also that it should be grouped with other 
+statements about "Algebra 1". This can be done using parent and grouping:<br/>
+<pre><code>
+{
+	"parent" : {
+	"id" : "http://example.adlnet.gov/xapi/example/test 1"
+	},
+	"grouping" : {
+	"id" : "http://example.adlnet.gov/xapi/example/Algebra1"
+	}
+}
+</code></pre>
+<br/><br/>
+This is particularly useful with the object of the statement is an agent, 
+not an activity. "I mentored Ben with context Algebra I".
  
 <a name="timestamp"/>
 ### 4.1.7 Timestamp:
