@@ -907,24 +907,25 @@ comment could be issued on the original statement, using a new statement:
 ### 4.1.5 Result:
 The result field represents a measured outcome related to the statement, such 
 as completion, success, or score. It is also extendible to allow for arbitrary 
-measurements to be included.
+measurements to be included. Result and all its properties are optional properties
+which the Learning Activity Provider may or may not include in the statement.
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
 		<td>score</td>
 		<td><a href="#score">Score</a> object</td>
-		<td>(optional) See section 4.1.5.1</td>
+		<td>See section 4.1.5.1</td>
 	</tr>
 	<tr>
 		<td>success</td>
 		<td>Boolean</td>
-		<td>(optional) Was the learning activity successful?</td>
+		<td>Was the learning activity successful?</td>
 	</tr>
 	<tr>
 		<td>completion</td>
 		<td>Boolean</td>
-		<td>(optional) Was the learning activity completed?</td>
+		<td>Was the learning activity completed?</td>
 	</tr>
 	<tr>
 		<td>response</td>
@@ -960,7 +961,8 @@ measurements to be included.
 The "context" field provides a place to add some contextual information to a 
 statement. We can add information such as the instructor for an experience, if 
 this experience happened as part of a team activity, or how an experience fits 
-into some broader activity.  
+into some broader activity. As with Result, Context and its properties are 
+optional.
 
 <table>
 	<tr><th>Property</th><th>Type<th/><th>Description</th></tr>
@@ -995,7 +997,7 @@ into some broader activity.
 	<tr>
 		<td>contextActivities</td>
 		<td>contextActivities object</td>
-		<td>A map of the types of context to learning activities "activity this 
+		<td>A map of the types of context to learning activities or activity this 
 			statement is related to.<br/><br/>
 			Valid context types are: "parent", "grouping", and "other".<br/>
 			For example, if I am studying a textbook, for a test, the textbook 
@@ -1087,8 +1089,15 @@ into some broader activity.
 ### 4.1.7 Timestamp:
 The time at which the statement took place, formatted according to 
 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601%22%20%5Cl%20%22Durations). 
-Note that this can differ from the system time of the event, such as in the 
-case of formal or informal learning that occurs outside of the system.  
+This should include the timezone and reporting tools MAY consider 
+timestamps from different timezones that represent the same logical times
+to be equivalent.
+
+Note that timestamp can differ from the system time of the event, such as in the 
+case of formal or informal learning that occurs outside of the system.  Timestamps
+in subStatements MAY be in the future to denote a deadline for planned
+learning. Outside of subStatement objects, timestamps SHOULD normally
+be the current or a past time.
 
 <a name="stored"/> 
 ### 4.1.8 Stored: 
@@ -1965,7 +1974,7 @@ One of the goals of the XAPI is to allow cross-domain tracking, and even though
 XAPI seeks to enable tracking from applications other than browsers, browsers 
 still need to be supported. Internet Explorer 8 and 9 do not implement Cross 
 Origin Resource Sharing, but rather use their own Cross Domain Request API, 
-which can not use all of the XAPI as describe above due to only supporting "GET" 
+which cannot use all of the XAPI as described above due to only supporting "GET" 
 and "POST", and not allowing HTTP headers to be set.  
 
 The following describes alternate syntax for consumers to use only when unable 
