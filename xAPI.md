@@ -396,9 +396,7 @@ functional property in XAPI Agents.
 
 For reasons of practicality and privacy, TCAPI Agents MUST be identified by 
 one and only one inverse functional identifier. Agents MUST NOT include more 
-than one inverse functional identifier. If an Activity Provider is concerned 
-about revealing identifying information such as emails, it SHOULD instead use 
-an account with an opaque account name to identify the person.  
+than one inverse functional identifier.  
 
 The table below lists all properties of Agent objects. Inverse functional 
 identifiers are marked with a *."  
@@ -436,12 +434,16 @@ identifiers are marked with a *."
 	<tr>
 		<td>account*</td>
 		<td>An account object</td>
-		<td><a href="#agentaccount">see below</a>.</td>
+		<td>A user account on an existing system e.g. an LMS or intranet <a href="#agentaccount">see below</a>.</td>
 	</tr>
 </table>
 
 <a name="agentaccount"/>
 __Account__  
+
+A user account on an existing system. This might be a private system such as a LMS or intranet or might be a 
+public system e.g. a social networking site. Note: if the system uses open ids, the statement author may consider 
+using these instead. 
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -458,6 +460,12 @@ __Account__
 			on FOAF's accountName.</td>
 	</tr>
 </table>  
+
+If an Activity Provider is concerned about revealing identifying information such as emails, it SHOULD instead use 
+an account with an opaque account name to identify the person. An 'opaque account name' might be
+an account number or any other unique account name for the person which does not give away their identity in
+any way. This ensures that all statements about the one person can be identified, whilst protecting their anonymity.
+
 An example using an opaque account:  
 ```
 {
@@ -532,42 +540,42 @@ __Identified Group__
 <a name="verb"/>
 ### 4.1.3 Verb:
 
-A verb defines what the action is between actors, activities, or most commonly, 
-between an actor and activity. The Tin Can API does not specify any particular 
-verbs, but rather defines how verbs are to be created. It is expected that verb 
-lists exist for various communities of practice. Verbs appear in statements as 
+The verb defines the action between actor and activity. It asserts what is done by the actor 
+in relation to the activity. 
+
+The Experience API does not specify any particular verbs (except the reserved 
+“http://adlnet.gov/expapi/verbs/voided"), but rather defines how verbs are to 
+be created. It is expected that communities of practice will develop verbs they find useful and make 
+them available to the general community for use. Verbs appear in statements as 
 objects consisting of a URI and a set of display names.
 
-The Verb URI should identify the particular semantics of a word, not the word 
+The Verb URI identifies the particular semantics of a word, not the word 
 itself. For example, the English word "fired" could mean different things 
 depending on context, such as "fired a weapon", "fired a kiln", or "fired an 
-employee". In this case, a URI should identify one of these specific meanings, 
+employee". In this case, a URI MUST identify one of these specific meanings, 
 not the word "fired".
 
-The Tin Can API does not specify any particular verbs (except the reserved 
-“http://adlnet.gov/expapi/verbs/voided"), but rather defines how verbs are to 
-be used. Communities of practice will develop verbs they find useful and make 
-them available to the general community for use.
-
-A verb in the Tin Can API is a URI, and denotes a specific meaning not tied to 
+A verb in the Experience API is a URI, and denotes a specific meaning not tied to 
 any particular language. For example, a particular verb URI such as 
 http://example.org/firearms#fire or tag:example.com,2012:xQr73H might denote 
 the action of firing a gun, or the verb URI http://example.com/فعل/خواندن 
 might denote the action of reading a book. 
 
-The person who comes up with a new verb should own the URI, or have permission 
-from the owner to use the URI to denote a Tin Can API verb. The owner of a URI 
+The person who coins a new verb MUST own the URI, or have permission 
+from the owner to use the URI to denote an Experience API verb. The owner of a URI 
 SHOULD make a human-readable description of the intended usage of the verb 
 accessible at the URI.
 
 __NOTE__: In some future version, this specification might specify additional 
 machine-readable information about the verb be made available, but the choice 
-to do so is postponed to monitor emerging practices and pain points. ADL plans 
-to release a set of recommended verbs at the same time as this specification. 
+to do so is postponed to monitor emerging practices and pain points. ADL released 
+a set of recommended verbs at the same time as the 0.95 version of this specification. 
 Learning Activity Providers MAY use one these verbs, or other verb which have 
-wide adoption, if applicable. The verb list to be created by ADL will include 
+wide adoption, if applicable. 
+
+The verb list created by ADL included
 verbs corresponding to the verbs previously defined in this specification. If 
-the meaning of one of those verbs is intended, Learning Activity Providers 
+the meaning of one of those previously defined verbs is intended, Learning Activity Providers 
 SHOULD use the corresponding ADL verb. Learning Activity Providers MAY create 
 their own verbs instead, as needed.  
 
@@ -594,7 +602,7 @@ for display to a human.
 		<td>Corresponds to a verb definition. Each verb definition 
 			corresponds to the meaning of a verb, not the word. The URI should 
 			be human-readable and contain the verb meaning.</td>
-		<td>www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)</td>
+		<td>id : "http://www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)"</td>
 	</tr>
 	<tr>
 		<td>display</td>
@@ -607,11 +615,15 @@ for display to a human.
 			display : { "en-US" : "ran", "es" : "corrió" }</td>
 	</tr>
 </table>
+
+Note, the verb in the table above is included for illustrative purposes only. This is not intended to imply that a verb
+with this meaning has been defined with this id. This applies to all example verbs given in this specification document. 
+
 <a name="object"/>
 ### 4.1.4 Object:  
 The object of a statement is the Activity, Agent, or Statement that is the object 
 of the statement, "this". Note that objects which are provided as a value for 
-this field should include an "objectType" field. If not specified, the object 
+this field SHOULD include an "objectType" field. If not specified, the object 
 is assumed to be an Activity.  
 
 <a name="activity"/>
@@ -626,7 +638,11 @@ A statement may represent a Learning Activity as an object in the statement.
 			cannot otherwise be determined, such as the value of a statement's 
 			"object" field.</td>
 	</tr>
-	<tr><td><a href="#acturi">id</a></td><td>URI</td><td>If a URL, the URL should refer to metadata for this activity.</td></tr>
+	<tr>
+		<td><a href="#acturi">id</a></td><td>URI</td>
+		<td>MAY be a URL, which points to the logical definition of the activity. 
+			This MAY be metadata or the URL for the activity</td>
+	</tr>
 	<tr>
 		<td><a href="#actdef">definition</a></td>
 		<td>Activity Definition Object</td>
@@ -635,9 +651,6 @@ A statement may represent a Learning Activity as an object in the statement.
 </table>
 <a name="acturi"/>
 __Activity URI__  
-An activity URI must always refer to a single unique activity. There may be 
-corrections to that activity's definition. Spelling fixes would be appropriate, 
-for example, but changing correct responses would not.  
 
 The activity URI is unique, and any reference to it always refers to the same 
 activity. Activity Providers must ensure this is true and the LRS may not attempt 
@@ -695,10 +708,11 @@ __Activity Definition__
 		<td>A map of other properties as needed (see: <a href="#miscext">Extensions</a>)</td>
 	</tr>
 </table>  
-An LRS should update its internal representation of an activity's definition 
-upon receiving a statement with a different definition of the activity from the 
-one stored, but only if it considers the Learning Activity Provider to have the 
-authority to do so.  
+There may be corrections to that activity's definition. Spelling fixes would be appropriate, 
+for example, but changing correct responses would not.  An LRS SHOULD update its internal representation 
+of an activity's definition upon receiving a statement with a different definition of the activity from the 
+one stored, but only if it considers the Learning Activity Provider to have the authority to do so. An LRS might, 
+for example, only allow modifications of activity definitions from domains matching the domain of the activity id.
 
 Activities may be defined in XML according to the schema http://www.adlnet.gov/xapi. 
 LRS's MAY attempt to look up an XML document at the URL given by the activity URI, 
@@ -706,9 +720,9 @@ and check if it conforms to the Experience API schema. If it does, the LRS SHOUL
 fill in its internal representation of the activities definition based on that 
 document. Note that activity URI's are not required to resolve to such metadata.  
 
-Note that multiple activities may be defined in the same metadata document. The 
-LRS MAY choose whether to store information about activities other than those 
-it has received statements for or not.  
+Note that multiple activities may be defined in the same metadata document. The LRS 
+MAY choose whether to store information about activities other than those for 
+which it has received statements. 
 
 As part of each group of activities, the activity metadata document may define 
 information about an associated activity provider, which the LRS SHOULD consider 
@@ -751,7 +765,7 @@ remaining properties are not valid for the interaction type.
 	<tr>
 		<td>choices | scale | source | target | steps</td>
 		<td>Array of interaction components</td>
-		<td>Specific to the given interaction type (see below).</td>
+		<td>Specific to the given interactionType (<a href="#interactionType">see below</a>).</td>
 	</tr>
 </table>  
 
@@ -773,6 +787,8 @@ Interaction components are defined as follows:
 	</tr>
 </table>  
 
+<a name="interactionType"/>
+
 The following table shows the supported lists of CMI interaction components for 
 an interaction activity with the given interactionType.  
 <table>
@@ -788,7 +804,7 @@ an interaction activity with the given interactionType.
 
 <a name="agentasobj"/>
 #### 4.1.4.2 - Agent or Group as "object"
-A statement may specify an Agent as an object in the statement. Agents that do 
+A statement may specify an Agent or Group as an object in the statement. Agents that do 
 this MUST specify an "objectType" property.  See [section 4.1.2](#actor) for details 
 regarding Agents.  
 
@@ -811,8 +827,11 @@ sub-statement as they would other statements, with the addition of these rules.
 One interesting use of sub-statements is in creating statements of intention. 
 For example, using sub-statements we can create statements of the form 
 "<I> <planned> (<I> <did> <this>)" to indicate that we've planned to take some 
-action. The concrete example that follows logically states that
- "I planned to read 'Some Awesome Book'".  
+action. The concrete example that follows logically states that 
+"I planned to visit 'Some Awesome Website'". 
+ 
+Note that whilst the verb display MAY take the future tense, the verb id SHOULD remain past tense.
+Later, when 'I' actually visit 'Some Awesome Website', reporting tools can therefore match the verb ids. 
 
 ```
 {
@@ -833,16 +852,16 @@ action. The concrete example that follows logically states that
 			"mbox":"mailto:test@example.com" 
 		},
 		"verb" : { 
-			"id":"http://example.com/read", 
+			"id":"http://example.com/visited", 
 			"display":{
-				"en-US":"read"
+				"en-US":"will visit"
 			} 
 		},
 		"object": {
-			"id":"http://example.com/book",
+			"id":"http://example.com/website",
 			"definition": { 
 				"name" : {
-					"en-US":"Some Awesome Book"
+					"en-US":"Some Awesome Website"
 				}
 			}
 		}
@@ -888,24 +907,25 @@ comment could be issued on the original statement, using a new statement:
 ### 4.1.5 Result:
 The result field represents a measured outcome related to the statement, such 
 as completion, success, or score. It is also extendible to allow for arbitrary 
-measurements to be included.
+measurements to be included. Result and all its properties are optional properties
+which the Learning Activity Provider may or may not include in the statement.
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
 		<td>score</td>
 		<td><a href="#score">Score</a> object</td>
-		<td>(optional) See section 4.1.5.1</td>
+		<td>See section 4.1.5.1</td>
 	</tr>
 	<tr>
 		<td>success</td>
 		<td>Boolean</td>
-		<td>(optional) Was the learning activity successful?</td>
+		<td>Was the learning activity successful?</td>
 	</tr>
 	<tr>
 		<td>completion</td>
 		<td>Boolean</td>
-		<td>(optional) Was the learning activity completed?</td>
+		<td>Was the learning activity completed?</td>
 	</tr>
 	<tr>
 		<td>response</td>
@@ -941,7 +961,8 @@ measurements to be included.
 The "context" field provides a place to add some contextual information to a 
 statement. We can add information such as the instructor for an experience, if 
 this experience happened as part of a team activity, or how an experience fits 
-into some broader activity.  
+into some broader activity. As with Result, Context and its properties are 
+optional.
 
 <table>
 	<tr><th>Property</th><th>Type<th/><th>Description</th></tr>
@@ -976,7 +997,7 @@ into some broader activity.
 	<tr>
 		<td>contextActivities</td>
 		<td>contextActivities object</td>
-		<td>A map of the types of context to learning activities "activity this 
+		<td>A map of the types of context to learning activities or activity this 
 			statement is related to.<br/><br/>
 			Valid context types are: "parent", "grouping", and "other".<br/>
 			For example, if I am studying a textbook, for a test, the textbook 
@@ -1068,8 +1089,15 @@ into some broader activity.
 ### 4.1.7 Timestamp:
 The time at which the statement took place, formatted according to 
 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601%22%20%5Cl%20%22Durations). 
-Note that this can differ from the system time of the event, such as in the 
-case of formal or informal learning that occurs outside of the system.  
+This should include the timezone and reporting tools MAY consider 
+timestamps from different timezones that represent the same logical times
+to be equivalent.
+
+Note that timestamp can differ from the system time of the event, such as in the 
+case of formal or informal learning that occurs outside of the system.  Timestamps
+in subStatements MAY be in the future to denote a deadline for planned
+learning. Outside of subStatement objects, timestamps SHOULD normally
+be the current or a past time.
 
 <a name="stored"/> 
 ### 4.1.8 Stored: 
@@ -1242,10 +1270,10 @@ endpoint, see section [7.2 "Statement API"](#stmtapi) for details.
 The Experience API provides a facility for Activity Providers to save arbitrary data in 
 the form of documents, which may be related to an Activity, Agent, or combination of both.  
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
-	<tr><td>id</td><td>String, set by AP, unique within state scope (learner, activity)</td></tr>
-	<tr><td>updated</td><td>Timestamp</td></tr>
-	<tr><td>contents</td><td>Free form.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>id</td><td>String</td><td>Set by AP, unique within state scope (learner, activity).</td></tr>
+	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
+	<tr><td>contents</td><td>Free form</td><td>The contents of the document</td></tr>
 </table>
 Note that in the REST binding, State is a document not an object. ID is stored in the URL, 
 updated is HTTP header information, and contents is the HTTP document itself.  
@@ -1871,18 +1899,32 @@ Person properties. All array properties must be populated with members with the
 same definition as the similarly named property from Agent objects.  
 
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>Person. Required.</td></tr>
-	<tr><td>name</td><td>Array of strings. Optional.</td></tr>
-	<tr><td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox">mbox*</a>
-		</td><td>Array of strings.</td>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>objectType</td><td>String</td><td>"Person". Required.</td></tr>
+	<tr><td>name</td><td>Array of strings.</td><td> Optional. List of names of Agents to retrieve.</td></tr>
+	<tr>
+		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox">mbox*</a></td>
+		<td>Array of URIs in the form "mailto:email address".</td>
+		<td>List of e-mail addresses of Agents to retrieve.</td>
 	</tr>
-	<tr><td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox_sha1sum">mbox_sha1sum*</a></td>
+	<tr>
+		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox_sha1sum">mbox_sha1sum*</a></td>
 		<td>Array of strings.</td>
+		<td>List of the SHA1 hashes of mailto URIs (such as go in an mbox property)</td>
 	</tr>
-	<tr><td>openid*</td><td>Array of strings.</td></tr>
-	<tr><td>account*</td><td>Array of account objects.</td></tr>
-</table>  
+	<tr>
+		<td>openid*</td>
+		<td>Array of strings.</td>
+		<td>List of openids that uniquely identify the agents to retrieve.</td>
+	</tr>
+	<tr>
+		<td>account*</td>
+		<td>Array of account objects.</td>
+		<td>List of accounts to match. Complete account objects (homePage and name) must be provided.</td>
+	</tr>
+</table> 
+
+See also: <a href="#agent">section 4.1.2.1 Agent</a>.
 
 Returns: 200 OK - Expanded Agent Object  
 
@@ -1932,7 +1974,7 @@ One of the goals of the XAPI is to allow cross-domain tracking, and even though
 XAPI seeks to enable tracking from applications other than browsers, browsers 
 still need to be supported. Internet Explorer 8 and 9 do not implement Cross 
 Origin Resource Sharing, but rather use their own Cross Domain Request API, 
-which can not use all of the XAPI as describe above due to only supporting "GET" 
+which cannot use all of the XAPI as described above due to only supporting "GET" 
 and "POST", and not allowing HTTP headers to be set.  
 
 The following describes alternate syntax for consumers to use only when unable 
