@@ -1058,12 +1058,23 @@ optional.
 <a name="contextActivities"/>
 __Context Activities__
 
-A map of the types of context to learning activities or activity this 
-statement is related to. Valid context types are: "parent", "grouping", and "other".
-<br/><br/>
+A map of the types of context to ids of learning activities or a learning activity this 
+statement is related to. Valid context types are: "parent", "grouping", and "other". All, any
+or none of these MAY be used in a given statement. 
+
+The parent activity is an activity which directly contains the activity which is the object of the 
+statement. So if a statement is about a quiz question, the parent activity would be the quiz. 
+
+The grouping activity is an activity which contains the statement activity, but not directly. A class
+might be part of a course which is itself part of a qualification. The qualification might then be
+the grouping of the class and the parent of the course.
+
+Other can be used for context activities which cannot be considered a parent or grouping. 
+
 For example, if I am studying a textbook, for a test, the textbook 
 is the activity the statement is about, but the test is a context 
-activity, and the context type is "other".<br/><br/>
+activity, then the context activity type is "other".
+
 <pre><code>
 {
 	"other" : {
@@ -1071,16 +1082,18 @@ activity, and the context type is "other".<br/><br/>
 	}
 }
 </code></pre>
-<br/><br/>
+
+
 This activity could also be a session, like a section of a specific 
 course, or a particular run through of a scenario. So the statement 
 could be about "Algebra I", but in the context of "Section 1 of Algebra I".
-<br/><br/>
+
 There could be an activity hierarchy to keep track of, for example 
 "question 1" on "test 1" for the course "Algebra 1". When recording 
 results for "question 1", it we can declare that the question is 
 part of "test 1", but also that it should be grouped with other 
-statements about "Algebra 1". This can be done using parent and grouping:<br/>
+statements about "Algebra 1". This can be done using parent and grouping:
+
 <pre><code>
 {
 	"parent" : {
@@ -1091,9 +1104,17 @@ statements about "Algebra 1". This can be done using parent and grouping:<br/>
 	}
 }
 </code></pre>
-<br/><br/>
+
 This is particularly useful with the object of the statement is an agent, 
-not an activity. "I mentored Ben with context Algebra I".
+not an activity. "Andrew mentored Ben with context Algebra I". 
+
+Note: This statement could also be written as "Ben was mentored (on) Alegbra I with 
+instructor Andrew" or "Ben was mentored (by) Andrew with context Algebra I". The order 
+of the statement affects where the emphasis is placed. The original statement 
+emphasises that Andrew did some mentoring and who he mentored, the next that Ben was mentored
+and what he was mentored on, and the third that Ben was mentored and who mentored him. 
+In some cases it may make sense to issue multiple statements emphasising different sides of 
+the same event. 
  
 <a name="timestamp"/>
 ### 4.1.7 Timestamp:
