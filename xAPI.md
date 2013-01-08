@@ -1041,7 +1041,9 @@ optional.
 		<td>statement</td>
 		<td>statement either by reference or object</td>
 		<td>Another statement (either existing or new), which should be considered 
-			as context for this statement. See section <a href="#stmtasobj">4.1.4.3</a> 
+			as context for this statement. 
+			
+			See section <a href="#stmtasobj">4.1.4.3</a> 
 			for details about including statements within other statements.
 		</td>
 	</tr>
@@ -1319,12 +1321,12 @@ languages.
 
 <a name="miscext"/> 
 ## 5.3 Extensions
-Extensions are defined by a map. The keys of that map MUST be URIs, and the 
+Extensions are defined by a map. The keys of that map MUST be URLs, and the 
 values MAY be any JSON value or data structure. The meaning and structure of 
-extension values under a URI key are defined by the person who coined the URI, 
-who SHOULD be the owner of the URI, or have permission from the owner. The owner 
-of the URI SHOULD make a human-readable description of the intended meaning of 
-the extension supported by the URI accessible at the URI. A learning record store 
+extension values under a URL key are defined by the person who coined the URL, 
+who SHOULD be the owner of the URL, or have permission from the owner. The owner 
+of the URL SHOULD make a human-readable description of the intended meaning of 
+the extension supported by the URL accessible at the URL. A learning record store 
 MUST NOT reject a Experience API statement based on the values of the extensions 
 map.  
 
