@@ -1721,7 +1721,7 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
 	<tr><td>verb</td><td>String</td><td> </td>
-		<td>Filter, only return statements matching the specified verb.</td>
+		<td>Filter, only return statements matching the specified verb id.</td>
 	</tr>
 	<tr><td>object</td><td>Activity, Agent, or Statement Object (JSON)</td><td> </td>
 		<td>Filter, only return statements matching the specified object 
@@ -1966,10 +1966,12 @@ An LRS capable of returning multiple identifying properties for an Person SHOULD
 require the connecting credentials have increased, explicitly given permissions. 
 An LRS SHOULD reject insufficiently privileged requests with 403 "Forbidden". 
 If an LRS does not have any additional information about an Agent to return, the 
-LRS MUST still return an Person when queried, but that Person object will only 
+LRS MUST still return a Person when queried, but that Person object will only 
 include the information associated with the requested Agent.  
 
-Person properties. All array properties must be populated with members with the 
+___Person properties___
+
+All array properties must be populated with members with the 
 same definition as the similarly named property from Agent objects.  
 
 <table>
@@ -2079,10 +2081,10 @@ which transforms a normal request into one using this alternate syntax.
 The function of the LRS within the XAPI is to store and retrieve statements. 
 As long as it has sufficient information to perform these tasks, it is 
 expected that it does them. Validation of statements in the Experience API is 
-focused solely on syntax, not semantics. It is required to enforce rules 
-regarding structure, but not rules regarding meaning. Enforcing the rules that 
-ensure valid meaning among verb definitions, activity types, and extensions is 
-a responsibility carried out by community of practice, in any way they see fit.  
+focused solely on syntax, not semantics. It SHOULD enforce rules regarding structure, 
+but SHOULD NOT enforce rules regarding meaning. Enforcing the rules that ensure 
+valid meaning among verb definitions, activity types, and extensions is the 
+responsibility of the Activity Provider sending the statement.  
 
 <a name="AppendixA"/> 
 # Appendix A: Bookmarklet
