@@ -1000,37 +1000,7 @@ optional.
 		<td>A map of the types of context to learning activities or activity this 
 			statement is related to.<br/><br/>
 			Valid context types are: "parent", "grouping", and "other".<br/>
-			For example, if I am studying a textbook, for a test, the textbook 
-			is the activity the statement is about, but the test is a context 
-			activity, and the context type is "other".<br/><br/>
-			<pre><code>
-			{
-				"other" : {
-					"id" : "http://example.adlnet.gov/xapi/example/test"
-				}
-			}
-			</code></pre><br/><br/>
-			This activity could also be a session, like a section of a specific 
-			course, or a particular run through of a scenario. So the statement 
-			could be about "Algebra I", but in the context of "Section 1 of Algebra I".
-			<br/><br/>
-			There could be an activity hierarchy to keep track of, for example 
-			"question 1" on "test 1" for the course "Algebra 1". When recording 
-			results for "question 1", it we can declare that the question is 
-			part of "test 1", but also that it should be grouped with other 
-			statements about "Algebra 1". This can be done using parent and grouping:<br/>
-			<pre><code>
-			{
-				"parent" : {
-					"id" : "http://example.adlnet.gov/xapi/example/test 1"
-				},
-				"grouping" : {
-					"id" : "http://example.adlnet.gov/xapi/example/Algebra1"
-				}
-			}
-			</code></pre><br/><br/>
-			This is particularly useful with the object of the statement is an agent, 
-			not an activity. "I mentored Ben with context Algebra I".
+			<a href="#contextActivities">See below</a>
 		</td>
 	</tr>
 	<tr>
@@ -1071,7 +1041,9 @@ optional.
 		<td>statement</td>
 		<td>statement either by reference or object</td>
 		<td>Another statement (either existing or new), which should be considered 
-			as context for this statement. See section <a href="#stmtasobj">4.1.4.3</a> 
+			as context for this statement. 
+			
+			See section <a href="#stmtasobj">4.1.4.3</a> 
 			for details about including statements within other statements.
 		</td>
 	</tr>
@@ -1084,6 +1056,67 @@ optional.
 		</td>
 	</tr>
 </table>
+
+<a name="contextActivities"/>
+__Context Activities__
+
+A map of the types of context to ids of learning activities or a learning activity this 
+statement is related to. Valid context types are: "parent", "grouping", and "other". All, any
+or none of these MAY be used in a given statement. 
+
+The parent activity is an activity which directly contains the activity which is the object of the 
+statement. So if a statement is about a quiz question, the parent activity would be the quiz. 
+
+The grouping activity is an activity which contains the statement activity, but not directly. A class
+might be part of a course which is itself part of a qualification. The qualification might then be
+the grouping of the class and the parent of the course.
+
+Other can be used for context activities which cannot be considered a parent or grouping. 
+
+For example, if I am studying a textbook, for a test, the textbook 
+is the activity the statement is about, but the test is a context 
+activity, then the context activity type is "other".
+
+<pre><code>
+{
+	"other" : {
+	"id" : "http://example.adlnet.gov/xapi/example/test"
+	}
+}
+</code></pre>
+
+
+This activity could also be a session, like a section of a specific 
+course, or a particular run through of a scenario. So the statement 
+could be about "Algebra I", but in the context of "Section 1 of Algebra I".
+
+There could be an activity hierarchy to keep track of, for example 
+"question 1" on "test 1" for the course "Algebra 1". When recording 
+results for "question 1", it we can declare that the question is 
+part of "test 1", but also that it should be grouped with other 
+statements about "Algebra 1". This can be done using parent and grouping:
+
+<pre><code>
+{
+	"parent" : {
+	"id" : "http://example.adlnet.gov/xapi/example/test 1"
+	},
+	"grouping" : {
+	"id" : "http://example.adlnet.gov/xapi/example/Algebra1"
+	}
+}
+</code></pre>
+
+This is particularly useful with the object of the statement is an agent, 
+not an activity. "Andrew mentored Ben with context Algebra I". 
+
+Note: This statement could also be written as "Ben was mentored (on) Alegbra I with 
+instructor Andrew" or "Ben was mentored (by) Andrew with context Algebra I". The order 
+of the statement affects where the emphasis is placed. The original statement 
+emphasises that Andrew did some mentoring and who he mentored, the next that Ben was mentored
+and what he was mentored on, and the third that Ben was mentored and who mentored him. 
+In some cases it may make sense to issue multiple statements emphasising different sides of 
+the same event. 
  
 <a name="timestamp"/>
 ### 4.1.7 Timestamp:
@@ -1288,13 +1321,13 @@ languages.
 
 <a name="miscext"/> 
 ## 5.3 Extensions
-Extensions are defined by a map. The keys of that map MUST be URIs, and the 
+Extensions are defined by a map. The keys of that map MUST be URLs, and the 
 values MAY be any JSON value or data structure. The meaning and structure of 
-extension values under a URI key are defined by the person who coined the URI, 
-who SHOULD be the owner of the URI, or have permission from the owner. The owner 
-of the URI SHOULD make a human-readable description of the intended meaning of 
-the extension supported by the URI accessible at the URI. A learning record store 
-MUST NOT reject a Experience API statement based on the values of the extensions 
+extension values under a URL key are defined by the person who coined the URL, 
+who SHOULD be the owner of the URL, or have permission from the owner. The owner 
+of the URL SHOULD make a human-readable description of the intended meaning of 
+the extension supported by the URL accessible at the URL. A learning record store 
+MUST NOT reject an Experience API statement based on the values of the extensions 
 map.  
 
 Extensions are available as part of activity definitions, as part of statement 
@@ -1317,6 +1350,12 @@ Experience API conformant tools.
 
 <a name="rtcom"/>
 # 6.0 Runtime Communication
+
+Sections 6 and 7 detail the more technical side of the Experience API, dealing with 
+how statements are transferred between Activity Provider and LRS. A number of libraries 
+are under development for a range of technologies (including JavaScript) which handle 
+this part of the specification. It therefore may not be necessary for content developers 
+to fully understand every detail of this part of the specification.
 
 <a name="encoding"/> 
 ## 6.1 Encoding:
@@ -1451,7 +1490,7 @@ __2) Registered Application + Unknown User__
 An LRS may choose to trust certain applications to access the XAPI without 
 additional user credentials, that is without invoking the authorize or token 
 steps of the OAuth workflow. In that case, the LRS will consider requests 
-valid that are signed using OAuth with that application"s credentials and with 
+valid that are signed using OAuth with that application's credentials and with 
 an empty token and token secret. In this case, the application must have been 
 registered with the LRS.  
 
@@ -1495,8 +1534,8 @@ for HTTP Basic Authentication based on a blank username and password.
 
 <a name="oauthscope"/> 
 ### 6.4.2 OAuth Authorization Scope
-The LRS will accept a scope parameter as defined in 
-[OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3). 
+The LRS will accept a scope parameter as defined in 
+[OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3). 
 If no scope is specified, a requested scope of "statements/write" and 
 "statements/read/mine" will be assumed. The list of scopes determines the set 
 of permissions that is being requested. An API client should request only the 
@@ -1559,14 +1598,28 @@ OAuth 1.0, and therefore if used should be passed as query string or form
 parameters, not in the OAuth header.  
 
 __OAuth Endpoints__  
-Temporary Credential Request:  
-http://example.com/XAPI/OAuth/initiate  
-
-Resource Owner Authorization:  
-http://example.com/XAPI/OAuth/authorize  
-
-Token Request:  
-http://example.com/XAPI/OAuth/token  
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Endpoint</th>
+		<th>Example</th>
+	</tr>
+	<tr>
+		<td>Temporary Credential Request</td>
+		<td>OAuth/initiate</td>
+		<td>http://example.com/XAPI/OAuth/initiate</td>
+	</tr>
+	<tr>
+		<td>Resource Owner Authorization</td>
+		<td>OAuth/authorize</td>
+		<td>http://example.com/XAPI/OAuth/authorize</td>
+	</tr>
+	<tr>
+		<td>Token Request</td>
+		<td>OAuth/token</td>
+		<td>http://example.com/XAPI/OAuth/token </td>
+	</tr>
+</table>
 
 <a name="datatransfer"/> 
 # 7.0 Data Transfer (REST)
@@ -1574,6 +1627,10 @@ This section describes The XAPI consists of 4 sub-APIs: statement, state,
 learner, and activity profile. The four sub-APIs of the Experience API 
 are handled via RESTful HTTP methods. The statement API can be used by itself 
 to track learning records.  
+
+Note: In all of the example endpoints given in the specification, "http://example.com/XAPI/"
+is the example URL of the LRS and everything after this represents the endpoint which MUST
+be used. 
 
 <a name="errorcodes"/> 
 ## 7.1 Error Codes
@@ -1608,7 +1665,8 @@ unexpected exception in processing on the server.
 ## 7.2 Statement API:
 The basic communication mechanism of the Experience API.  
 
-### PUT http://example.com/XAPI/statements
+### PUT statements
+Example endpoint: http://example.com/XAPI/statements
 
 Stores statement with the given ID. This MUST NOT modify an existing statement. 
 If the statement ID already exists, the receiving system SHOULD verify the 
@@ -1626,7 +1684,8 @@ Returns: 204 No Content
 	<tr><td>statementId</td><td>String</td><td> </td><td>ID of statement to record</td></tr>
 </table>
 
-### POST http://example.com/XAPI/statements
+### POST statements
+Example endpoint: http://example.com/XAPI/statements
 
 Stores a statement, or a set of statements. Since the PUT method targets a specific 
 statement ID, POST must be used rather than PUT to save multiple statements, or to 
@@ -1638,7 +1697,8 @@ that provide a lot of data to the LRS.
 
 Returns: 200 OK, statement ID(s) (UUID).  
 
-### GET http://example.com/XAPI/statements
+### GET statements
+Example endpoint: http://example.com/XAPI/statements
 
 This method may be called to fetch a single statement, if the statementId 
 parameter is specified, or a list of statements otherwise, filtered by the 
@@ -1661,7 +1721,7 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
 	<tr><td>verb</td><td>String</td><td> </td>
-		<td>Filter, only return statements matching the specified verb.</td>
+		<td>Filter, only return statements matching the specified verb id.</td>
 	</tr>
 	<tr><td>object</td><td>Activity, Agent, or Statement Object (JSON)</td><td> </td>
 		<td>Filter, only return statements matching the specified object 
@@ -1748,7 +1808,9 @@ defined state document identified by "stateId". Otherwise, GET will return the
 available IDs, and DELETE will delete all state in the context given through the 
 other parameters.  
 
-### PUT | GET | DELETE http://example.com/XAPI/activities/state
+### PUT | GET | DELETE activities/state
+Example endpoint: http://example.com/XAPI/activities/state
+
 Stores, fetches, or deletes the document specified by the given stateId that 
 exists in the context of the specified activity, agent, and registration (if specified).  
 
@@ -1769,7 +1831,9 @@ Returns: (PUT | DELETE) 204 No Content, (GET) 200 OK - State Content
 	</tr>
 </table>
 
-### GET http://example.com/XAPI/activities/state
+### GET activities/state
+Example endpoint: http://example.com/XAPI/activities/state
+
 Fetches IDs of all state data for this context (activity + agent \[ + 
 registration if specified\]). If “since” parameter is specified, this 
 is limited to entries that have been stored or updated since the specified 
@@ -1792,7 +1856,9 @@ Returns: 200 OK, Array of IDs
 	</tr>
 </table>
 
-### DELETE http://example.com/XAPI/activities/state
+### DELETE activities/state
+Example endpoint: http://example.com/XAPI/activities/state
+
 Deletes all state data for this context (activity + agent \[+ registration if 
 specified\]).  
 
@@ -1822,7 +1888,9 @@ context given through the other parameters.
 The Activity Profile API also includes a method to retrieve a full description 
 of an activity from the LRS.  
 
-### GET http://example.com/XAPI/activities
+### GET activities
+Example endpoint: http://example.com/XAPI/activities
+
 Loads the complete activity object specified.  
 
 Returns: 200 OK - Content  
@@ -1833,7 +1901,9 @@ Returns: 200 OK - Content
 	</td>
 </table>
 
-### PUT | GET | DELETE http://example.com/XAPI/activities/profile
+### PUT | GET | DELETE activities/profile
+Example endpoint: http://example.com/XAPI/activities/profile
+
 Saves/retrieves/deletes the specified profile document in the context of the 
 specified activity.  
 
@@ -1848,7 +1918,9 @@ Returns: (PUT | DELETE) 204 No Content, (GET) 200 OK - Profile Content
 	</tr>
 </table>
 
-### GET http://example.com/XAPI/activities/profile
+### GET activities/profile
+Example endpoint: http://example.com/XAPI/activities/profile
+
 Loads IDs of all profile entries for an activity. If "since" parameter is 
 specified, this is limited to entries that have been stored or updated since 
 the specified timestamp (exclusive).  
@@ -1878,7 +1950,9 @@ The Agent Profile API also includes a method to retrieve a special object with
 combined information about an Agent derived from an outside service, such as a 
 directory service.  
 
-### GET http://example.com/XAPI/agents
+### GET agents
+Example endpoint: http://example.com/XAPI/agents
+
 Return a special, Person object for a specified agent. The Person object is 
 very similar to an Agent object, but instead of each attribute having a single 
 value, each attribute has an array value, and it is legal to include multiple 
@@ -1892,10 +1966,12 @@ An LRS capable of returning multiple identifying properties for an Person SHOULD
 require the connecting credentials have increased, explicitly given permissions. 
 An LRS SHOULD reject insufficiently privileged requests with 403 "Forbidden". 
 If an LRS does not have any additional information about an Agent to return, the 
-LRS MUST still return an Person when queried, but that Person object will only 
+LRS MUST still return a Person when queried, but that Person object will only 
 include the information associated with the requested Agent.  
 
-Person properties. All array properties must be populated with members with the 
+___Person properties___
+
+All array properties must be populated with members with the 
 same definition as the similarly named property from Agent objects.  
 
 <table>
@@ -1935,7 +2011,9 @@ Returns: 200 OK - Expanded Agent Object
 	</tr>
 </table>  
 
-### PUT | GET | DELETE http://example.com/XAPI/agents/profile
+### PUT | GET | DELETE agents/profile
+Example endpoint: http://example.com/XAPI/agents/profile
+
 Saves/retrieves/deletes the specified profile document in the context of the 
 specified agent.  
 
@@ -1951,7 +2029,9 @@ Returns: (PUT | DELETE) 204 No Content, (GET) 200 OK - Profile Content
 	</tr>
 </table>  
 
-### GET http://example.com/XAPI/agents/profile
+### GET agents/profile
+Example endpoint: http://example.com/XAPI/agents/profile
+
 Loads IDs of all profile entries for an agent. If "since" parameter is specified, 
 this is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
@@ -1983,7 +2063,7 @@ above. All LRSs must support this syntax.
 
 __Method__: All XAPI requests issued must be POST. The intended XAPI method 
 must be included as the only query string parameter on the request. 
-(ex: /XAPI/statements?method=PUT)  
+(example: http://example.com/XAPI/statements?method=PUT)  
 
 __Headers__: Any required parameters which are expected to appear in the HTTP 
 header must instead be included as a form parameter with the same name.  
@@ -2001,10 +2081,10 @@ which transforms a normal request into one using this alternate syntax.
 The function of the LRS within the XAPI is to store and retrieve statements. 
 As long as it has sufficient information to perform these tasks, it is 
 expected that it does them. Validation of statements in the Experience API is 
-focused solely on syntax, not semantics. It is required to enforce rules 
-regarding structure, but not rules regarding meaning. Enforcing the rules that 
-ensure valid meaning among verb definitions, activity types, and extensions is 
-a responsibility carried out by community of practice, in any way they see fit.  
+focused solely on syntax, not semantics. It SHOULD enforce rules regarding structure, 
+but SHOULD NOT enforce rules regarding meaning. Enforcing the rules that ensure 
+valid meaning among verb definitions, activity types, and extensions is the 
+responsibility of the Activity Provider sending the statement.  
 
 <a name="AppendixA"/> 
 # Appendix A: Bookmarklet
