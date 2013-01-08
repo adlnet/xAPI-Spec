@@ -1111,8 +1111,8 @@ This is particularly useful with the object of the statement is an agent,
 not an activity. "Andrew mentored Ben with context Algebra I". 
 
 Note: This statement could also be written as "Ben was mentored (on) Alegbra I with 
-instructor Andrew" or "Ben was mentored (by) Andrew with context Algebra I". The order 
-of the statement affects where the emphasis is placed. The original statement 
+instructor Andrew" or "Ben was mentored (by) Andrew with context Algebra I". The placement 
+of objects and actors in the statement affects where the emphasis is placed. The original statement 
 emphasises that Andrew did some mentoring and who he mentored, the next that Ben was mentored
 and what he was mentored on, and the third that Ben was mentored and who mentored him. 
 In some cases it may make sense to issue multiple statements emphasising different sides of 
