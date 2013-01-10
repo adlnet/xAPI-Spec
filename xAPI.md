@@ -929,10 +929,10 @@ measurements to be included.
 #### 4.1.5.1 Score
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>scaled</td><td>decimal number between 0 and 1</td><td>cmi.score.scaled (recommended)</td></tr>
-	<tr><td>raw</td><td>integer</td><td>cmi.score.raw</td></tr>
-	<tr><td>min</td><td>integer</td><td>cmi.score.min</td></tr>
-	<tr><td>max</td><td>integer</td><td>cmi.score.max</td><tr>
+	<tr><td>scaled</td><td>decimal number between -1 and 1, inclusive</td><td>From cmi.score.scaled in SCORM 2004 4th Edition</td></tr>
+	<tr><td>raw</td><td>decimal number between min and max (if present, otherwise unrestricted), inclusive</td><td>cmi.score.raw</td></tr>
+	<tr><td>min</td><td>decimal number less than max (if present)</td><td>cmi.score.min</td></tr>
+	<tr><td>max</td><td>decimal number greater than min (if present)</td><td>cmi.score.max</td><tr>
 </table>
 
 <a name="context"/>
