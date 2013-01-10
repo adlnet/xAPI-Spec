@@ -51,6 +51,7 @@
 [Appendix A: Bookmarklet](#AppendixA)  
 [Appendix B: Creating an "IE Mode" Request](#AppendixB)  
 [Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
+[Appendix D: Example statements](#AppendixD)  
 
 <a name="revhistory"/>  
 # 1.0 Revision History
@@ -199,68 +200,102 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 <a name="defintions"/> 
 # 3.0 Definitions  
 
+* [Authentication](#def-authentication)
+* [Authorization](#def-authorization)
+* [Community of Practice](#def-community-of-practice)
+* [Experience API (xAPI)](#def-experience-api)
+* [Immutable](#def-immutable)
+* [Inverse Functional Identifier](#def-inverse-functinal-identifier)
+* [Learning Activity (activity)](#def-learning-activity)
+* [Learning Activity Provider](#def-activity-provider)
+* [Learning Management System (LMS)](#def-learning-management-system)
+* [Learning Record Store (LRS)](#def-learning-record-store)
+* [Profile](#def-profile)
+* [Registration](#def-registration)
+* [Service](#def-service)
+* [State](#def-state)
+* [Statement](#def-statement)
+* [Tin Can API (TCAPI)](#tcapi)
+* [URI](#def-uri)
+
+<a name="def-authentication" />
 __Authentication__: The concept of verifying the identity of a user or system. This 
 allows interactions between the two “trusted” parties.
 
+<a name="def-authorization" />
 __Authorization__: The affordance of permissions based on a user or system's role: 
 the process of making one user or system "trusted" by another.
 
+<a name="def-community-of-practice" />
 __Community of Practice__: A group, usually connected by a common cause, role or 
 purpose, which operates in a common modality.
 
-__Experience API (XAPI)__: The API defined in this document, the product of 
-"Project Tin Can API". A simple, lightweight way for any permitted actor to store 
+<a name="def-experience-api" />
+__Experience API (xAPI)__: The API defined in this document, the product of 
+"Project Tin Can". A simple, lightweight way for any permitted actor to store 
 and retrieve extensible learning records, learner and learning experience profiles, 
 regardless of the platform used.  
 
-__Inverse Functional Identifier__: An identifier which is unique to a particular persona or group. Used to identify Agents and Groups. See section 4.1.2
+<a name ="def-immutable" />
+__Immutable__:  Adjective used  describe things which cannot be changed. With 
+some exceptions, statements in the xAPI are immutable. This ensures that when 
+statements are shared between LRS, multiple copies of the statement remain
+the same.
 
+<a name="def-inverse-functinal-identifier" />
+__Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
+ Used to identify Agents and Groups. See section 4.1.2
+
+<a name="def-learning-activity" />
 __Learning Activity (activity)__: Like a SCORM Activity, a unit of instruction, 
 experience, or performance that is to be tracked.
 
+<a name="def-activity-provider" />
 __Learning Activity Provider (AP)__: The software object that is communicating with 
 the LRS to record information about a learning experience. May be similar to a SCORM 
 package as it is possible to bundle assets with the software object that does this 
 communication, but may also be separate from the experience it is reporting about.
 
+<a name="def-learning-management-system" />
 __Learning Management System (LMS)__: Provides the tracking functionality of an LRS, 
 but provides additional administrative and reporting functionality. In this document 
 the term will be used when talking about existing systems that implement learning 
 standards. The XAPI can work independently of an LMS, but is built with knowledge 
 of the suite of services an LMS provides.
 
+<a name="def-learning-record-store" />
 __Learning Record Store (LRS)__: A system that stores learning information. Prior to the XAPI 
 most LRSs are Learning Management Systems (LMSs), however this document uses the term 
 LRS to be clear that a full LMS is not necessary to implement the XAPI. The XAPI 
 is dependent on an LRS to function.
 
+<a name="def-profile" />
 __Profile__: A construct where information about the learner or activity is kept, 
 typically in name/document pairs that have meaning to an instructional system component.
 
-__Registration__: If the LRS is an LMS, it likely has a concept of registration, 
-an instance of a learner signing up for a particular learning activity. The LMS may 
-also close the registration at some point when it considers the learning experience 
-complete. For Experience API purposes, a registration may be applied more broadly; an 
-LMS could assign a group of students to a group of activities and track all related 
-statements in one registration. Note: activity providers are cautioned against reporting 
-registration other than when assigned by an LRS. An LRS that assigns registrations is 
-likely to reject statements containing unassigned registration IDs.
+<a name="def-registration" />
+__Registration__: When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration, 
+an instance of a learner signing up for a particular learning activity. See [section 4.1.6](#context).
 
+<a name="def-service" />
 __Service__: A software component responsible for one or more aspects of the distributed 
 learning process. An LMS typically combines many services to design a complete learning 
 experience.
 
+<a name="def-state" />
 __State__: Similar to SCORM suspend data, but allows storage of arbitrary key/document 
 pairs. The LRS does not have to retain state once the learning experience is considered 
 "done" (LRS has closed its "registration").
 
-__Statement__: A simple statement consisting of <Actor (learner)> <verb> <object>, 
-with <result>, in <context> to track an aspect of a learning experience. A set of 
+<a name="def-statement" />
+__Statement__: A simple statement consisting of ```<Actor (learner)>``` ```<verb>``` ```<object>```, 
+with ```<result>```, in ```<context>``` to track an aspect of a learning experience. A set of 
 several statements may be used to track complete details about a learning experience.
 
 <a name="tcapi"/>
 __Tin Can API (TCAPI)__: The previous name of the API defined in this document.  
 
+<a name="def-uri" />
 __URI__: Uniform Resource Identifier. A unique identifier which may be a URL. This should be a full absolute URI including a scheme. Relative URIs should not be used. URLs should be defined within a domain controlled by the person creating the URL. 
 
 <a name="statement"/> 
@@ -314,30 +349,7 @@ statement itself. So while the statement is immutable, the activities referenced
 by that statement are not. This means a deep serialization of a statement into 
 JSON will change if the referenced activities change.  
 
-Example of a simple statement:  
-```
-{
-	"id":"fd41c918-b88b-4b20-a0a5-a4c32391aaa0",
-	"actor":{
-		"objectType": "Agent",
-		"name":"Project Tin Can API",
-		"mbox":"mailto:user@example.com"
-	},
-	"verb":{
-		"id":"http://adlnet.gov/expapi/verbs/created",
-		"display":{ "en-US":"created" }
-	},
-	"object":{
-		"id":"http://example.adlnet.gov/xapi/example/simplestatement",
-		"definition":{
-		"name":{ "en-US":"simple statement" },
-		"description":{ "en-US":"A simple Experience API statement. Note that the LRS 
-		does not need to have any prior information about the actor (learner), the 
-		verb, or the activity/object." }
-		}
-	}
-}
-```   
+ 
 Simplest possible statement using all properties that MUST or SHOULD be used:  
 ```
 {
@@ -355,41 +367,9 @@ Simplest possible statement using all properties that MUST or SHOULD be used:
 		"id":"http://example.adlnet.gov/xapi/example/activity"
 	}
 }
-```   
-Typical simple completion with verb "attempted":  
-```
-{
-	"actor":{
-        "objectType": "Agent",
-		"name":"Example Learner",
-		"mbox":"mailto:example.learner@adlnet.gov"
-	},
-	"verb":{
-		"id":"http://adlnet.gov/expapi/verbs/attempted",
-		"display":{
-			"en-US":"attempted"
-		}
-	},
-	"object":{
-		"id":"http://example.adlnet.gov/xapi/example/simpleCBT",
-		"definition":{
-			"name":{
-				"en-US":"simple CBT course"
-			},
-			"description":{
-				"en-US":"A fictitious example CBT course."
-			}
-		}
-	},
-	"result":{
-		"score":{
-			"scaled":0.95
-		},
-		"success":true,
-		"completion":true
-	}
-}
 ```  
+See [Appendix D: Example statements](#AppendixD) for more examples. 
+
 <a name="stmtid"/> 
 ### 4.1.1 ID:  
 
@@ -423,40 +403,57 @@ an account with an opaque account name to identify the person.
 The table below lists all properties of Agent objects. Inverse functional 
 identifiers are marked with a *."  
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
 		<td>objectType</td>
-		<td>"Agent" (Optional, except when used as a statement's object)</td>
+		<td>String</td>
+		<td>(Optional, except when used as a statement's object) "Agent"</td>
 	</tr>
-	<tr><td>name</td><td>String (Optional)</td></tr>
+	<tr>
+		<td>name</td>
+		<td>String</td>
+		<td>(Optional) Full name of the agent</td>
+	</tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox">mbox*</a></td>
-		<td>String in the form "mailto:email address". (Note: Only emails that 
+		<td>URI in the form "mailto:email address".</td> 
+		<td>Note: Only emails that 
 			have only ever been and will ever be assigned to this Agent, 
-			but no others, should be used for this property and mbox_sha1sum).</td>
+			but no others, should be used for this property and mbox_sha1sum.</td>
 	</tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox_sha1sum">mbox_sha1sum*</a></td>
-		<td>String containing the SHA1 hash of a mailto URI (such as goes in an mbox 
+		<td>String</td>
+		<td>The SHA1 hash of a mailto URI (such as goes in an mbox 
 			property). An LRS MAY include Agents with a matching hash when a 
 			request is based on an mbox.</td>
 	</tr>
-	<tr><td>openid*</td><td>The URI of an openid that uniquely identifies this agent.</td></tr>
-	<tr><td>account*</td><td>An account object, <a href="#agentaccount">see below</a>.</td></tr>
+	<tr>
+		<td>openid*</td>
+		<td>URI</td>
+		<td>An openid that uniquely identifies this agent.</td>
+	</tr>
+	<tr>
+		<td>account*</td>
+		<td>An account object</td>
+		<td><a href="#agentaccount">see below</a>.</td>
+	</tr>
 </table>
 
 <a name="agentaccount"/>
 __Account__  
 
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
 		<td>homePage</td>
-		<td>The URI to the canonical home page for the system the account is on. 
+		<td>URL</td>
+		<td>The canonical home page for the system the account is on. 
 			This is based on FOAF's accountServiceHomePage.</td>
 	</tr>
 	<tr>
 		<td>name</td>
+		<td>String</td>
 		<td>The unique ID or name used to log in to this account. This is based 
 			on FOAF's accountName.</td>
 	</tr>
@@ -493,37 +490,41 @@ list of agents in an anonymous or identified Group.
 
 __Anonymous Group__  
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>"Group" (Required)</td></tr>
-	<tr><td>name</td><td>String (Optional)</td></tr>
-	<tr><td>member</td>
-		<td>(array of) <a href="#agent">Agent</a> (not Group) objects representing 
-			members of this Group.</td>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>objectType</td><td>String</td><td>(Required) "Group"</td></tr>
+	<tr><td>name</td><td>String</td><td>(Optional) Name of the Group</td></tr>
+	<tr>
+		<td>member</td>
+		<td>Array of <a href="#agent">Agent</a> (not Group) objects</td>
+		<td>The members of this Group.</td>
 	</tr>
 </table>
 
 __Identified Group__  
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>"Group" (Required)</td></tr>
-	<tr><td>name</td><td>String (Optional)</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>objectType</td><td>String</td><td>(Required) "Group"</td></tr>
+	<tr><td>name</td><td>String</td><td>(Optional) Name of the Group</td></tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox">mbox*</a></td>
-		<td>String in the form "mailto:email address". (Note: Only emails that 
-			have only ever been and will ever be assigned to this Agent, 
-			but no others, should be used for this property and mbox_sha1sum).</td>
+		<td>URI in the form "mailto:email address".</td>
+		<td>Note: Only emails that 
+			have only ever been and will ever be assigned to this Group, 
+			but no others, should be used for this property and mbox_sha1sum.</td>
 	</tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox_sha1sum">mbox_sha1sum*</a></td>
-		<td>String containing the SHA1 hash of a mailto URI (such as goes in an mbox 
+		<td>String</td>
+		<td>The SHA1 hash of a mailto URI (such as goes in an mbox 
 			property). An LRS MAY include Agents with a matching hash when a 
 			request is based on an mbox.</td>
 	</tr>
-	<tr><td>openid*</td><td>The URI of an openid that uniquely identifies this agent.</td></tr>
-	<tr><td>account*</td><td>An account object, <a href="#agentaccount">see below</a>.</td></tr>
-	<tr><td>member</td>
-		<td>(array of) <a href="#agent">Agent</a> (not Group) objects representing 
-			members of this Group.</td>
+	<tr><td>openid*</td><td>URI</td><td>An openid that uniquely identifies this agent.</td></tr>
+	<tr><td>account*</td><td>An account object</td><td><a href="#agentaccount">see 4.1.2.1 above</a>.</td></tr>
+	<tr>
+		<td>member</td>
+		<td>Array of <a href="#agent">Agent</a> (not Group) objects</td>
+		<td>The members of this Group.</td>
 	</tr>
 </table>  
 
@@ -586,19 +587,21 @@ MUST NOT use the display property to infer any meaning from the statement,
 rather it MUST use the verb URI to infer meaning, and the display property only 
 for display to a human.  
 <table>
-	<tr><th>Property</th><th>Description</th><th>Example</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Example</th></tr>
 	<tr>
 		<td>id</td>
-		<td>A URI that corresponds to a verb definition. Each verb definition 
-			corresponds to the meaning of a verb, not the word. A URI should 
+		<td>URI</td>
+		<td>Corresponds to a verb definition. Each verb definition 
+			corresponds to the meaning of a verb, not the word. The URI should 
 			be human-readable and contain the verb meaning.</td>
 		<td>www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)</td>
 	</tr>
 	<tr>
 		<td>display</td>
-		<td>A language map containing the human readable representation of the 
+		<td><a href="#misclangmap">Language Map</a></td>
+		<td>The human readable representation of the 
 			verb in at least one language. This does not have any impact on the 
-			meaning of the statement, but only serves to give a human-readable 
+			meaning of the statement, but serves to give a human-readable 
 			display of the meaning already determined by the chosen verb.</td>
 		<td>display : { "en-US" : "ran"}<br/>
 			display : { "en-US" : "ran", "es" : "corrió" }</td>
@@ -615,15 +618,20 @@ is assumed to be an Activity.
 #### 4.1.4.1 – Activity as "object"
 A statement may represent a Learning Activity as an object in the statement.  
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
 		<td>objectType</td>
+		<td>String</td>
 		<td>Should always be "Activity" when present. Used in cases where type 
 			cannot otherwise be determined, such as the value of a statement's 
 			"object" field.</td>
 	</tr>
-	<tr><td><a href="#acturi">id</a></td><td>URI. If a URL, the URL should refer to metadata for this activity.</td></tr>
-	<tr><td><a href="#actdef">definition</a></td><td>Metadata, See below</td></tr>
+	<tr><td><a href="#acturi">id</a></td><td>URI</td><td>If a URL, the URL should refer to metadata for this activity.</td></tr>
+	<tr>
+		<td><a href="#actdef">definition</a></td>
+		<td>Activity Definition Object</td>
+		<td>Metadata, <a href="#actdef">See below</a></td>
+	</tr>
 </table>
 <a name="acturi"/>
 __Activity URI__  
@@ -656,22 +664,36 @@ conflict with another system arise.
 <a name="actdef"/>
 __Activity Definition__  
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
-	<tr><td>name</td><td><a href="#misclangmap">Language Map</a>, The human readable/visual name of the activity</td></tr>
-	<tr><td>description</td><td><a href="misclangmap">Language Map</a>, A description of the activity</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr>
+		<td>name</td>
+		<td><a href="#misclangmap">Language Map</a></td>
+		<td>The human readable/visual name of the activity</td>
+	</tr>
+	<tr>
+		<td>description</td>
+		<td><a href="misclangmap">Language Map</a></td>
+		<td>A description of the activity</td>
+	</tr>
 	<tr>
 		<td>type</td>
-		<td>URI, the type of activity. Note, URI fragments (sometimes called 
+		<td>URI</td>
+		<td>the type of activity. Note, URI fragments (sometimes called 
 			relative URLs) are not valid URIs. Similar to verbs, we recommend 
 			that Learning Activity Providers look for and use established, 
-			widely adopted, activity types.</td>
+			widely adopted, activity types.
+		</td>
 	</tr>
 	<tr>
 		<td>interactionType | correctResponsesPattern | choices | scale | 
 			source | target | steps</td>
-		<td><a href="#interactionacts">See "Interaction Activities"</a></td>
+		<td colspan="2"><a href="#interactionacts">See "Interaction Activities"</a></td>
 	</tr>
-	<tr><td>extensions</td><td>A map of other properties as needed (see: <a href="#miscext">Extensions</a>)</td></tr>
+	<tr>
+		<td>extensions</td>
+		<td>Extensions Object</td>
+		<td>A map of other properties as needed (see: <a href="#miscext">Extensions</a>)</td>
+	</tr>
 </table>  
 An LRS should update its internal representation of an activity's definition 
 upon receiving a statement with a different definition of the activity from the 
@@ -711,22 +733,25 @@ is specified, an LRS processing MAY validate the remaining properties as
 specified in the table below, and return HTTP 400 "Bad Request" if the 
 remaining properties are not valid for the interaction type.  
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
 		<td>interactionType</td>
+		<td>String</td>
 		<td>As in "cmi.interactions.n.type" as defined in the SCORM 2004 4th 
 			edition Runtime Environment.</td>
 	</tr>
 	<tr>
 		<td>correctResponsesPattern</td>
-		<td>An array of strings, corresponding to 
+		<td>An array of strings</td>
+		<td>Correspons to 
 			"cmi.interactions.n.correct_responses.n.pattern" as defined in 
 			the SCORM 2004 4th edition Runtime Environment, where the final 
 			<em>n</em> is the index of the array.</td>
 	</tr>
 	<tr>
 		<td>choices | scale | source | target | steps</td>
-		<td>Array of interaction components specific to the given interaction type (see below).</td>
+		<td>Array of interaction components</td>
+		<td>Specific to the given interaction type (see below).</td>
 	</tr>
 </table>  
 
@@ -734,14 +759,16 @@ __Interaction Components__
 
 Interaction components are defined as follows:  
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
 		<td>id</td>
+		<td>String</td>
 		<td>As in "cmi.interactions.n.id" as defined in the SCORM 2004 4th 
 			edition Runtime Environment</td> 
 	<tr>
-		<td>description</td> 
-		<td><a href="misclangmap">Language Map</a>, a description of the interaction component 
+		<td>description</td>
+		<td><a href="#misclangmap">Language Map</a></td>
+		<td>a description of the interaction component 
 			(for example, the text for a given choice in a multiple-choice interaction)</td>
 	</tr>
 </table>  
@@ -789,15 +816,35 @@ action. The concrete example that follows logically states that
 
 ```
 {
-	"actor": {"objectType": "Agent", "mbox":"mailto:test@example.com" },
-	"verb" : { "id":"http://example.com/planned", "display":{"en-US":"planned"} },
+	"actor": {
+		"objectType": "Agent", 
+		"mbox":"mailto:test@example.com" 
+	},
+	"verb" : { 
+		"id":"http://example.com/planned", 
+		"display":{
+			"en-US":"planned"
+		} 
+	},
 	"object": {
 		"objectType": "SubStatement",
-		"actor" : {"objectType": "Agent", "mbox":"mailto:test@example.com" },
-		"verb" : { "id":"http://example.com/read", "display":{"en-US":"read"} },
+		"actor" : {
+			"objectType": "Agent", 
+			"mbox":"mailto:test@example.com" 
+		},
+		"verb" : { 
+			"id":"http://example.com/read", 
+			"display":{
+				"en-US":"read"
+			} 
+		},
 		"object": {
 			"id":"http://example.com/book",
-			"definition": { "name" : {"en-US":"Some Awesome Book"}}
+			"definition": { 
+				"name" : {
+					"en-US":"Some Awesome Book"
+				}
+			}
 		}
 	}
 }
@@ -817,13 +864,23 @@ comment could be issued on the original statement, using a new statement:
 
 ```
 {
-	"actor" : { "objectType": "Agent", "mbox":"mailto:test@example.com" },
-	"verb" : { "id":"http://example.com/commented", "display": {"en-US":"commented"} },
+	"actor" : { 
+		"objectType": "Agent", 
+		"mbox":"mailto:test@example.com" 
+	},
+	"verb" : { 
+		"id":"http://example.com/commented", 
+		"display": {
+			"en-US":"commented"
+		} 
+	},
 	"object" : {
 		"objectType":"StatementRef",
 		"id":"8f87ccde-bb56-4c2e-ab83-44982ef22df0"
 	},
-	"result" : { "response" : "Wow, nice work!" }
+	"result" : { 
+		"response" : "Wow, nice work!" 
+	}
 }
 ``` 
 
@@ -834,27 +891,48 @@ as completion, success, or score. It is also extendible to allow for arbitrary
 measurements to be included.
 
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
-	<tr><td>score</td><td><a href="#score">Score</a> object (or not specified) - see section 4.1.5.1</td></tr>
-	<tr><td>success</td><td>true, false, or not specified</td></tr>
-	<tr><td>completion</td><td>true, false, or not specified</td></tr>
-	<tr><td>response</td><td>A string response appropriately formatted for the given activity.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr>
+		<td>score</td>
+		<td><a href="#score">Score</a> object</td>
+		<td>(optional) See section 4.1.5.1</td>
+	</tr>
+	<tr>
+		<td>success</td>
+		<td>Boolean</td>
+		<td>(optional) Was the learning activity successful?</td>
+	</tr>
+	<tr>
+		<td>completion</td>
+		<td>Boolean</td>
+		<td>(optional) Was the learning activity completed?</td>
+	</tr>
+	<tr>
+		<td>response</td>
+		<td>String</td>
+		<td>A response appropriately formatted for the given activity.</td>
+	</tr>
 	<tr>
 		<td>duration</td>
-		<td>Period of time over which the statement occurred. Formatted according 
-			to <a href="https://en.wikipedia.org/wiki/ISO_8601%22%20%5Cl%20%22Durations">ISO 8601</a>, 
+		<td>Formatted according 
+			to <a href="https://en.wikipedia.org/wiki/ISO_8601%22%20%5Cl%20%22Durations">ISO 8601</a>, 
 			with a precision of 0.01 seconds.</td>
+		<td>Period of time over which the statement occurred.</td>
 	</tr>
-	<tr><td><a href="#miscext">extensions</a></td><td>A map of other properties as needed (see extensions)</td></tr>
+	<tr>
+		<td><a href="#miscext">extensions</a></td>
+		<td>Extensions object</td>
+		<td>A map of other properties as needed (see <a href="#miscext">extensions</a>)</td>
+	</tr>
 </table>
 <a name="score"/> 
 #### 4.1.5.1 Score
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
-	<tr><td>scaled</td><td>cmi.score.scaled (recommended)</td></tr>
-	<tr><td>raw</td><td>cmi.score.raw</td></tr>
-	<tr><td>min</td><td>cmi.score.min</td></tr>
-	<tr><td>max</td><td>cmi.score.max</td><tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>scaled</td><td>decimal number between 0 and 1</td><td>cmi.score.scaled (recommended)</td></tr>
+	<tr><td>raw</td><td>integer</td><td>cmi.score.raw</td></tr>
+	<tr><td>min</td><td>integer</td><td>cmi.score.min</td></tr>
+	<tr><td>max</td><td>integer</td><td>cmi.score.max</td><tr>
 </table>
 
 <a name="context"/>
@@ -866,23 +944,38 @@ this experience happened as part of a team activity, or how an experience fits
 into some broader activity.  
 
 <table>
-	<tr><th>Property</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type<th/><th>Description</th></tr>
 	<tr>
 		<td>registration</td>
-		<td>UUID of the registration statement is associated with.</td>
+		<td>UUID</td>
+		<td>The registration statement is associated with.
+		<br/><br/>
+		When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration. 
+			Registration is an instance of a learner undertaking a particular learning activity. 
+			For example all the statements about one time a person took a test might have one 
+			registration. If the learner takes the test again, the statements from this second 
+			occasion would have a different registration from the first occasion.
+		<br/><br/>
+		 The LMS may also close the registration at some point when it considers the learning experience 
+			complete. For Experience API purposes, a registration may be applied more broadly; an 
+			LMS could assign a group of students to a group of activities and track all related 
+			statements in one registration.</td>
 	</tr>
 	<tr>
 		<td>instructor</td>
+		<td>Agent (may be a group)</td>
 		<td>Instructor that the statement relates to, if not included as the 
-			Agent or Group of the statement.</td>
+			Actor of the statement.</td>
 	</tr>
 	<tr>
 		<td>team</td>
-		<td>Team that this statement relates to, if not included as the Agent 
-			or Group of the statement.</td>
+		<td>Group</td>
+		<td>Team that this statement relates to, if not included as the Actor
+		 of the statement.</td>
 	</tr>
 	<tr>
 		<td>contextActivities</td>
+		<td>contextActivities object</td>
 		<td>A map of the types of context to learning activities "activity this 
 			statement is related to.<br/><br/>
 			Valid context types are: "parent", "grouping", and "other".<br/>
@@ -891,7 +984,9 @@ into some broader activity.
 			activity, and the context type is "other".<br/><br/>
 			<pre><code>
 			{
-				"other" : {"id" : "http://example.adlnet.gov/xapi/example/test"}
+				"other" : {
+					"id" : "http://example.adlnet.gov/xapi/example/test"
+				}
 			}
 			</code></pre><br/><br/>
 			This activity could also be a session, like a section of a specific 
@@ -905,8 +1000,12 @@ into some broader activity.
 			statements about "Algebra 1". This can be done using parent and grouping:<br/>
 			<pre><code>
 			{
-				"parent" : {"id" : "http://example.adlnet.gov/xapi/example/test 1"},
-				"grouping" : {"id" : "http://example.adlnet.gov/xapi/example/Algebra1"}
+				"parent" : {
+					"id" : "http://example.adlnet.gov/xapi/example/test 1"
+				},
+				"grouping" : {
+					"id" : "http://example.adlnet.gov/xapi/example/Algebra1"
+				}
 			}
 			</code></pre><br/><br/>
 			This is particularly useful with the object of the statement is an agent, 
@@ -915,6 +1014,7 @@ into some broader activity.
 	</tr>
 	<tr>
 		<td>revision</td>
+		<td>String</td>
 		<td>Revision of the learning activity associated with this statement.<br/><br/>
 			
 			Revisions are to track fixes of minor issues (like a spelling error), 
@@ -929,6 +1029,7 @@ into some broader activity.
 	</tr>
 	<tr>
 		<td>platform</td>
+		<td>String</td>
 		<td>Platform used in the experience of this learning activity. Not 
 			applicable if statement's object is a Person. Defined vocabulary, 
 			TBD.
@@ -936,18 +1037,18 @@ into some broader activity.
 	</tr>
 	<tr>
 		<td>language</td>
+		<td>Format for this value is as defined in 
+			<a href="http://tools.ietf.org/html/rfc5646">RFC 5646</a><br/><br/>
+			For example, US English would be recorded as: en-US
+		</td>
 		<td>Code representing the language in which the experience being recorded 
 			in this statement (mainly) occurred in, if applicable and known. Do 
-			not specify any value if not applicable or not known.<br/><br/>
-
-			Format for this value is as defined in 
-			<a href="http://tools.ietf.org/html/rfc5646">RFC 5646</a><br/><br/>
-
-			For example, US English would be recorded as: en-US
+			not specify any value if not applicable or not known.<br/><br/>			
 		</td>
 	</tr>
 	<tr>
 		<td>statement</td>
+		<td>statement either by reference or object</td>
 		<td>Another statement (either existing or new), which should be considered 
 			as context for this statement. See section <a href="#stmtasobj">4.1.4.3</a> 
 			for details about including statements within other statements.
@@ -955,6 +1056,7 @@ into some broader activity.
 	</tr>
 	<tr>
 		<td><a href="#miscext">extensions</a></td>
+		<td>Extensions object</td>
 		<td>A map of any other domain-specific context relevant to this statement. 
 			For example, in a flight simulator altitude, airspeed, wind, attitude, 
 			GPS coordinates might all be relevant (see extensions)
@@ -1035,7 +1137,9 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 				"name":"oauth_consumer_x75db"
 			}
 		},
-		{ "mbox":"mailto:bob@example.com" }
+		{ 
+			"mbox":"mailto:bob@example.com" 
+		}
 	]
 }
 ```
@@ -1071,7 +1175,9 @@ field set to "Statement", and must specify the target statement's ID using the
 	},
 	"verb" : {
 		"id":"http://adlnet.gov/xapi/verbs#voided",
-		"display":{"en-US":"voided"}
+		"display":{
+			"en-US":"voided"
+		}
 	},
 	"object" : {
 		"objectType":"StatementRef",
@@ -1863,7 +1969,7 @@ a responsibility carried out by community of practice, in any way they see fit.
 
 XAPI enables using an "I learned this" bookmarklet to self-report learning. 
 The following is an example of such a bookmarklet, and the statement that this 
-bookmarklet would send if used on the page: http://scorm.com/xapi.  
+bookmarklet would send if used on the page: http://adlnet.gov/xapi.  
 
 The bookmarklet would be provided by the LRS to track to, for a specific user. 
 Therefore the LRS URL, authentication, and actor information is hard coded in 
@@ -1996,25 +2102,53 @@ __true-false__
 
 ```
 "definition": {
-	"description": {"en-US": "Does the XAPI include the concept of statements?"},
+	"description": {
+		"en-US": "Does the XAPI include the concept of statements?"
+	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "true-false",
-	"correctResponsesPattern": ["true"]
+	"correctResponsesPattern": [
+		"true"
+	]
 }
 ```
 
 __choice__  
 ```
 "definition": {
-	"description": {"en-US": "Which of these prototypes are available at the beta site?"},
+	"description": {
+		"en-US": "Which of these prototypes are available at the beta site?"
+	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "multiple-choice",
-	"correctResponsesPattern": ["golf[,]tetris"],
+	"correctResponsesPattern": [
+		"golf[,]tetris"
+	],
 	"choices": [
-		{"id": "golf", "description": {"en-US": "Golf Example"}},
-		{"id": "facebook", "description": {"en-US": "Facebook App"}},
-		{"id": "tetris", "description": {"en-US": "Tetris Example"}},
-		{"id": "scrabble", "description": {"en-US": "Scrabble Example"}}
+		{
+			"id": "golf", 
+			"description": {
+				"en-US": "Golf Example"
+			}
+		},
+		{
+			"id": "facebook", 
+			"description": {
+				"en-US": "Facebook App"
+			}
+		},
+		{
+			"id": "tetris", 
+			"description": {
+				"en-US": "Tetris Example"
+			}
+		},
+		{
+			"id": "scrabble", 
+			"description": {
+				"en-US": "Scrabble Example"
+			}
+		}
 	]
 }
 ```
@@ -2022,25 +2156,53 @@ __choice__
 __fill-in__  
 ```
 "definition": {
-	"description": {"en-US": "Ben is often heard saying: "},
+	"description": {
+		"en-US": "Ben is often heard saying: "
+	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "fill-in",
-	"correctResponsesPattern": ["Bob’s your uncle"]
+	"correctResponsesPattern": [
+		"Bob’s your uncle"
+	]
 }
 ```
 
 __likert__  
 ```
 "definition": {
-	"description": {"en-US": "How awesome is Experience API?"},
+	"description": {
+		"en-US": "How awesome is Experience API?"
+	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "likert",
-	"correctResponsesPattern": ["likert_3"],
+	"correctResponsesPattern": [
+		"likert_3"
+	],
 	"scale": [
-		{"id": "likert_0", "description": {"en-US": "It’s OK"}},
-		{"id": "likert_1", "description": {"en-US": "It’s Pretty Cool"}},
-		{"id": "likert_2", "description": {"en-US": "It’s Damn Cool"}},
-		{"id": "likert_3", "description": {"en-US": "It’s Gonna Change the World"}}
+		{
+			"id": "likert_0", 
+			"description": {
+				"en-US": "It’s OK"
+			}
+		},
+		{
+			"id": "likert_1", 
+			"description": {
+				"en-US": "It’s Pretty Cool"
+			}
+		},
+		{
+			"id": "likert_2", 
+			"description": {
+				"en-US": "It’s Damn Cool"
+			}
+		},
+		{
+			"id": "likert_3", 
+			"description": {
+				"en-US": "It’s Gonna Change the World"
+			}
+		}
 	]
 }
 ```
@@ -2049,7 +2211,9 @@ __matching__
 ```
 {
 	"definition":{
-		"description":{"en-US":"Match these people to their kickball team:"},
+		"description":{
+			"en-US":"Match these people to their kickball team:"
+		},
 		"type":"http://adlnet.gov/expapi/activities/cmi.interaction",
 		"interactionType":"matching",
 		"correctResponsesPattern":[
@@ -2058,37 +2222,53 @@ __matching__
 		"source":[
 			{
 				"id":"ben",
-				"description":{"en-US":"Ben"}
+				"description":{
+					"en-US":"Ben"
+				}
 			},
 			{
 				"id":"chris",
-				"description":{"en-US":"Chris"}
+				"description":{
+					"en-US":"Chris"
+				}
 			},
 			{
 				"id":"troy",
-				"description":{"en-US":"Troy"}
+				"description":{
+					"en-US":"Troy"
+				}
 			},
 			{
 				"id":"freddie",
-				"description":{"en-US":"Freddie"}
+				"description":{
+					"en-US":"Freddie"
+				}
 			}
 		],
 		"target":[
 			{
 				"id":"1",
-				"description":{"en-US":"SCORM Engine"}
+				"description":{
+					"en-US":"SCORM Engine"
+				}
 			},
 			{
 				"id":"2",
-				"description":{"en-US":"Pure-sewage"}
+				"description":{
+					"en-US":"Pure-sewage"
+				}
 			},
 			{
 				"id":"3",
-				"description":{"en-US":"Project Tin Can API"}
+				"description":{
+					"en-US":"Project Tin Can API"
+				}
 			},
 			{
 				"id":"4",
-				"description":{"en-US":"SCORM Cloud"}
+				"description":{
+					"en-US":"SCORM Cloud"
+				}
 			}
 		]
 	}
@@ -2098,14 +2278,33 @@ __matching__
 __performance__  
 ```
 "definition": {
-	"description": {"en-US": "This interaction measures performance over a day of RS sports:"},
+	"description": {
+		"en-US": "This interaction measures performance over a day of RS sports:"
+	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "performance",
-	"correctResponsesPattern": ["pong[.]1:[,]dg[.]:10[,]lunch[.]"],
+	"correctResponsesPattern": [
+		"pong[.]1:[,]dg[.]:10[,]lunch[.]"
+	],
 	"steps": [
-		{"id": "pong", "description": {"en-US": "Net pong matches won"}},
-		{"id": "dg", "description": {"en-US": "Strokes over par in disc golf at Liberty"}},
-		{"id": "lunch", "description": {"en-US": "Lunch having been eaten"}}
+		{
+			"id": "pong", 
+			"description": {
+				"en-US": "Net pong matches won"
+			}
+		},
+		{
+			"id": "dg", 
+			"description": {
+				"en-US": "Strokes over par in disc golf at Liberty"
+				}
+			},
+		{
+			"id": "lunch", 
+			"description": {
+				"en-US": "Lunch having been eaten"
+			}
+		}
 	]
 }
 ```
@@ -2113,15 +2312,38 @@ __performance__
 __sequencing__  
 ```
 "definition": {
-	"description": {"en-US": "Order players by their pong ladder position:"},
+	"description": {
+		"en-US": "Order players by their pong ladder position:"
+	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "sequencing",
-	"correctResponsesPattern": ["tim[,]mike[,]ells[,]ben"],
+	"correctResponsesPattern": [
+		"tim[,]mike[,]ells[,]ben"
+	],
 	"choices": [
-		{"id": "tim", "description": {"en-US": "Tim"}},
-		{"id": "ben", "description": {"en-US": "Ben"}},
-		{"id": "ells", "description": {"en-US": "Ells"}},
-		{"id": "mike", "description": {"en-US": "Mike"}}
+		{
+			"id": "tim", 
+			"description": {
+				"en-US": "Tim"
+			}
+		},
+		{
+			"id": "ben", "description": {
+				"en-US": "Ben"
+			}
+		},
+		{
+			"id": "ells", 
+			"description": {
+				"en-US": "Ells"
+			}
+		},
+		{
+			"id": "mike", 
+			"description": {
+				"en-US": "Mike"
+			}
+		}
 	]
 }
 ```
@@ -2129,19 +2351,97 @@ __sequencing__
 __numeric__  
 ```
 "definition": {
-	"description": {"en-US": "How many jokes is Chris the butt of each day?"},
+	"description": {
+		"en-US": "How many jokes is Chris the butt of each day?
+	"},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "numeric",
-	"correctResponsesPattern": ["4:"]
+	"correctResponsesPattern": [
+		"4:"
+	]
 }
 ```
 
 __other__  
 ```
 "definition": {
-	"description": {"en-US": "On this map, please mark Franklin, TN"},
+	"description": {
+		"en-US": "On this map, please mark Franklin, TN"
+	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "other",
-	"correctResponsesPattern": ["(35.937432,-86.868896)"]
+	"correctResponsesPattern": [
+		"(35.937432,-86.868896)"
+	]
 }
 ```
+
+<a name="AppendixD"/>   
+# Appendix D: Example statements
+
+Example of a simple statement:  
+```
+{
+	"id":"fd41c918-b88b-4b20-a0a5-a4c32391aaa0",
+	"actor":{
+		"objectType": "Agent",
+		"name":"Project Tin Can API",
+		"mbox":"mailto:user@example.com"
+	},
+	"verb":{
+		"id":"http://adlnet.gov/expapi/verbs/created",
+		"display":{ 
+			"en-US":"created" 
+		}
+	},
+	"object":{
+		"id":"http://example.adlnet.gov/xapi/example/simplestatement",
+		"definition":{
+			"name":{ 
+				"en-US":"simple statement" 
+			},
+			"description":{ 
+				"en-US":"A simple Experience API statement. Note that the LRS 
+				does not need to have any prior information about the actor (learner), the 
+				verb, or the activity/object." 
+			}
+		}
+	}
+}
+```   
+Typical simple completion with verb "attempted":  
+```
+{
+	"actor":{
+        "objectType": "Agent",
+		"name":"Example Learner",
+		"mbox":"mailto:example.learner@adlnet.gov"
+	},
+	"verb":{
+		"id":"http://adlnet.gov/expapi/verbs/attempted",
+		"display":{
+			"en-US":"attempted"
+		}
+	},
+	"object":{
+		"id":"http://example.adlnet.gov/xapi/example/simpleCBT",
+		"definition":{
+			"name":{
+				"en-US":"simple CBT course"
+			},
+			"description":{
+				"en-US":"A fictitious example CBT course."
+			}
+		}
+	},
+	"result":{
+		"score":{
+			"scaled":0.95
+		},
+		"success":true,
+		"completion":true
+	}
+}
+```  
+
+
