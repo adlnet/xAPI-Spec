@@ -137,7 +137,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Jonathan Poltrack</td><td>ADL</td></tr>
 	<tr><td>Al Bejcek</td><td>NetDimensions</td></tr>
 	<tr><td>Ali Shahrazad</td><td>SaLTBOX</td></tr>
-	<tr><td>Andrew Downes</td><td> </td></tr>
+	<tr><td>Andrew Downes</td><td>Epic</td></tr>
 	<tr><td>Andy Johnson</td><td>ADL</td></tr>
     <tr><td>Andy Whitaker</td><td>Rustici Software</td></tr>
 	<tr><td>Anthony Altieri</td><td>American Red Cross</td></tr>
@@ -651,6 +651,9 @@ A statement may represent a Learning Activity as an object in the statement.
 </table>
 <a name="acturi"/>
 __Activity URI__  
+An activity URI must always refer to a single unique activity. There may be 
+corrections to that activity's definition. Spelling fixes would be appropriate, 
+for example, but changing correct responses would not.  
 
 The activity URI is unique, and any reference to it always refers to the same 
 activity. Activity Providers must ensure this is true and the LRS may not attempt 
@@ -708,11 +711,10 @@ __Activity Definition__
 		<td>A map of other properties as needed (see: <a href="#miscext">Extensions</a>)</td>
 	</tr>
 </table>  
-There may be corrections to that activity's definition. Spelling fixes would be appropriate, 
-for example, but changing correct responses would not.  An LRS SHOULD update its internal representation 
-of an activity's definition upon receiving a statement with a different definition of the activity from the 
-one stored, but only if it considers the Learning Activity Provider to have the authority to do so. An LRS might, 
-for example, only allow modifications of activity definitions from domains matching the domain of the activity id.
+An LRS should update its internal representation of an activity's definition 
+upon receiving a statement with a different definition of the activity from the 
+one stored, but only if it considers the Learning Activity Provider to have the 
+authority to do so.  
 
 Activities may be defined in XML according to the schema http://www.adlnet.gov/xapi. 
 LRS's MAY attempt to look up an XML document at the URL given by the activity URI, 
@@ -1109,14 +1111,6 @@ statements about "Algebra 1". This can be done using parent and grouping:
 
 This is particularly useful with the object of the statement is an agent, 
 not an activity. "Andrew mentored Ben with context Algebra I". 
-
-Note: This statement could also be written as "Ben was mentored (on) Alegbra I with 
-instructor Andrew" or "Ben was mentored (by) Andrew with context Algebra I". The placement 
-of objects and actors in the statement affects where the emphasis is placed. The original statement 
-emphasises that Andrew did some mentoring and who he mentored, the next that Ben was mentored
-and what he was mentored on, and the third that Ben was mentored and who mentored him. 
-In some cases it may make sense to issue multiple statements emphasising different sides of 
-the same event. 
  
 <a name="timestamp"/>
 ### 4.1.7 Timestamp:
@@ -1306,7 +1300,7 @@ the form of documents, which may be related to an Activity, Agent, or combinatio
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>id</td><td>String</td><td>Set by AP, unique within state scope (learner, activity).</td></tr>
 	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
-	<tr><td>contents</td><td>Free form</td><td>The contents of the document</td></tr>
+	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
 Note that in the REST binding, State is a document not an object. ID is stored in the URL, 
 updated is HTTP header information, and contents is the HTTP document itself.  
@@ -1344,9 +1338,10 @@ define an activity within some custom application or community.
 
 __Note__: A statement should not be totally defined by its extensions, and be 
 meaningless otherwise. Experience API statements should be capturing experiences 
-among actors and objects, and should always strive to map as much information as 
+among actors and objects, and SHOULD always strive to map as much information as 
 possible into the built in elements, in order to leverage interoperability among 
 Experience API conformant tools.  
+
 
 <a name="rtcom"/>
 # 6.0 Runtime Communication
