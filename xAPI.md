@@ -27,7 +27,6 @@
 		[4.1.8. Stored](#stored)  
 		[4.1.9. Authority](#authority)  
 		[4.1.10. Voided](#voided)  
-		[4.1.11. Metadata](#metadata)  
     [4.2. Retrieval of Statements](#retstmts)  
 [5.0. Miscellaneous Types](#misctypes)  
     [5.1. Document](#miscdocument)  
@@ -1252,16 +1251,6 @@ that would like to "unvoid" a voided statement should reissue the statement unde
 a new ID. Though voided and voiding statements must be reported as usual through 
 the Experience API, it is recommended that reporting systems do not show voided 
 or voiding statements by default.  
-
-<a name="metadata"/>
-### 4.1.11 Metadata:
-The Experience API is extensible to allow any form of metadata, but recommends 
-that existing fields are used to convey information. While metadata is extremely 
-useful for the classification, storage, search, discovery, and retrieval of objects, 
-it is out of the scope of the Experience API. It is recommended that content 
-brokering services enforce metadata on created and distributed content and that 
-querying services create metadata from Experience API statements and other 
-available data.  
 
 <a name="retstmts"/> 
 ## 4.2 Retrieval of Statements:
