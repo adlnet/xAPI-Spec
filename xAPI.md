@@ -2070,6 +2070,16 @@ with this syntax.
 
 See [Appendix B](#AppendixB) for an example function written in Javascript 
 which transforms a normal request into one using this alternate syntax.  
+
+It should also be noted that versions of Internet Explorer lower than 10 do not
+support Cross Domain Requests between http and https. This means that for IE9 and lower,
+if the LRS is on an https domain, the client sending the statement must also be on https. 
+If the LRS is on http, the client must be too. 
+
+There may be cases where there is a requirement for the client activity provider to support 
+IE8 and 9  where the client code is hosted on a different scheme (http or https) from 
+the LRS. In these cases, a simple solution would be to host an intermediary server side LRS on 
+the same scheme as the client code to route statements to the target LRS. 
  
 <a name="validation"/> 
 ## 7.7 Validation:
