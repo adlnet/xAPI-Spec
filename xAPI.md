@@ -743,7 +743,7 @@ practice requiring richer interactions definitions will do so through the use
 of extensions to an activity's type and definition.  
 
 When defining interaction activities, the activity type: 
-"http://www.adlnet.gov/experienceapi/activity-types/cmi.interaction" SHOULD 
+"http://adlnet.gov/expapi/activities/cmi.interaction" SHOULD 
 be used, and a valid interactionType MUST be specified. If interactionType 
 is specified, an LRS processing MAY validate the remaining properties as 
 specified in the table below, and return HTTP 400 "Bad Request" if the 
