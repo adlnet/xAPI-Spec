@@ -2114,10 +2114,41 @@ the "Access-Control-Allow-Origin" and "Access-Control-Allow-Methods" headers
 must be used, such as IE 8+, FF 3.5+, Safari 4+, Safari iOS Chrome, or Android 
 browser. Additionally the server must set the required headers.  
 
+In the example below, the following values in the first few lines should be replaced
+with your own values. All other values should be left as they are. 
+
+<table>
+	<tr>
+		<th>Value in example</th>
+		<th>Explanation</th>
+	</tr>
+	<tr>
+		<td>http://localhost:8080/XAPI/</td>
+		<td>Endpoint of the LRS to send the statements to.</td>
+	</tr>
+	<tr>
+		<td>dGVzdDpwYXNzd29yZA==</td>
+		<td>Base 64 encoded username and password, usually in the form "username : password".</td>
+	</tr>
+	<tr>
+		<td>learner@example.adlnet.gov</td>
+		<td>Email address of the learner using the bookmarklet.</td>
+	</tr>
+</table>
+
 ```javascript
 var url = "http://localhost:8080/XAPI/Statements/?statementId="+_ruuid();
 var auth = "Basic dGVzdDpwYXNzd29yZA==";
-var statement = {actor:{ "objectType": "Agent", "mbox" : "mailto:learner@example.adlnet.gov"},verb:"",object:{id:""}};
+var statement = {
+	actor:{ 
+		"objectType": "Agent", 
+		"mbox" : "mailto:learner@example.adlnet.gov"
+	},
+	verb:"",
+	object:{
+		id:""
+	}
+};
 var definition = statement.object.definition;
 
 
@@ -2130,9 +2161,9 @@ xhr.open("PUT", url, true);
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Authorization", auth);
 xhr.onreadystatechange = function() {
-if(xhr.readyState == 4) {
-alert(xhr.status + " : " + xhr.responseText);
-}
+	if(xhr.readyState == 4) {
+		alert(xhr.status + " : " + xhr.responseText);
+	}
 };
 xhr.send(JSON.stringify(statement));
 
@@ -2145,10 +2176,10 @@ Copyright (c) 2010 Robert Kieffer
 Dual licensed under the MIT and GPL licenses.
 */
 function _ruuid() {
-return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-return v.toString(16);
-});
+	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+		var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+		return v.toString(16);
+	});
 }
 ```
 
@@ -2378,25 +2409,25 @@ __matching__
 			{
 				"id":"1",
 				"description":{
-					"en-US":"SCORM Engine"
+					"en-US":"Swift Kick in the Grass"
 				}
 			},
 			{
 				"id":"2",
 				"description":{
-					"en-US":"Pure-sewage"
+					"en-US":"We got Runs"
 				}
 			},
 			{
 				"id":"3",
 				"description":{
-					"en-US":"Project Tin Can API"
+					"en-US":"Duck"
 				}
 			},
 			{
 				"id":"4",
 				"description":{
-					"en-US":"SCORM Cloud"
+					"en-US":"Van Delay Industries"
 				}
 			}
 		]
