@@ -1793,6 +1793,18 @@ __Note__: Due to query string limits, this method may be called using POST and
 form fields if necessary. The LRS will differentiate a POST to add a statement 
 or to list statements based on the parameters passed.  
 
+__Note__: For filter parameters which are not time or sequence based (that is, other than
+since, until, or limit), statements which target another statement will meet the filter
+condition if that statement, or the targeted statement meet the condition. The targeted
+statement refers to any statement included in another statement's object property either
+as a sub-statement or statementRef.
+
+For example, consider the statement "Ben passed explosives training", and a follow up
+statement: "Administrator voided \<statementRef to original statement\>". The voiding
+statement will not mention "Ben" or "explosives training", but when fetching statements
+with an actor filter of "Ben" or an activity filter of "explosives training", both
+statements will be returned.
+
 <a name="stateapi"/> 
 ## 7.3 State API:
 Generally, this is a scratch area for activity providers that do not have their 
