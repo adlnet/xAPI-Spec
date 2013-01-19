@@ -1296,6 +1296,40 @@ the form of documents, which may be related to an Activity, Agent, or combinatio
 Note that in the REST binding, State is a document not an object. ID is stored in the URL, 
 updated is HTTP header information, and contents is the HTTP document itself.  
 
+__5.1.1 JSON Documents:__
+
+APs MAY use Documents of content type "application/json" to store arrays of variables. For example a document 
+contains:
+
+```
+{
+	"x" : "foo",
+	"y" : "bar"
+}
+```  
+When an LRS receives a PUT request for an existing document of this content type, it MUST update only the
+properties of of the JSON that have changed. For example, this document is PUT with the same id as the existing 
+document above:
+
+```
+{
+	"x" : "bash",
+	"z" : "faz"
+}
+```  
+the resulting document stored in the LRS is:
+```
+{
+	"x" : "bash",
+	"y" : "bar",
+	"z" : "faz"
+}
+```
+The LRS MAY order JSON properties in any order when storing and retrieving documents. If an AP needs to delete
+a property, it SHOULD delete and replace the whole document. As an alternative to deleting a property, the AP
+could set it to an empty string. 
+
+
 <a name="misclangmap"/>
 ## 5.2 Language Map
 A language map is a dictionary where the key is a 
