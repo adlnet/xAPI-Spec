@@ -27,7 +27,6 @@
 		[4.1.8. Stored](#stored)  
 		[4.1.9. Authority](#authority)  
 		[4.1.10. Voided](#voided)  
-		[4.1.11. Metadata](#metadata)  
     [4.2. Retrieval of Statements](#retstmts)  
 [5.0. Miscellaneous Types](#misctypes)  
     [5.1. Document](#miscdocument)  
@@ -35,7 +34,7 @@
     [5.3. Extensions](#miscext)  
 [6.0. Runtime Communication](#rtcom)  
     [6.1. Encoding](#encoding)  
-    [6.2. Version Header](#versionheader)  
+    [6.2. API Versioning](#apiversioning)  
     [6.3. Concurrency](#concurrency)  
     [6.4. Security](#security)  
 		[6.4.1. Authentication Definitions](#authdefs)  
@@ -340,6 +339,8 @@ below.
 	authentication, and set by LRS if left blank.</td></tr>
 	<tr><td><a href="#voided">voided</a></td><td>Boolean</td><td>false</td>
 	<td>Indicates that the statement has been voided (see below)</td></tr>
+	<tr><td><a href="#version">version</a></td><td>String</td><td>false</td>
+	<td>API version the statement conforms to. Set by LRS.</td></tr>
 </table>  
 Aside from (potential or required) assignments of properties during initial 
 processing ("id", "authority", "stored", "timestamp"), and the special case of 
@@ -743,7 +744,7 @@ practice requiring richer interactions definitions will do so through the use
 of extensions to an activity's type and definition.  
 
 When defining interaction activities, the activity type: 
-"http://www.adlnet.gov/experienceapi/activity-types/cmi.interaction" SHOULD 
+"http://adlnet.gov/expapi/activities/cmi.interaction" SHOULD 
 be used, and a valid interactionType MUST be specified. If interactionType 
 is specified, an LRS processing MAY validate the remaining properties as 
 specified in the table below, and return HTTP 400 "Bad Request" if the 
@@ -951,10 +952,10 @@ which the Learning Activity Provider may or may not include in the statement.
 #### 4.1.5.1 Score
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>scaled</td><td>decimal number between 0 and 1</td><td>cmi.score.scaled (recommended)</td></tr>
-	<tr><td>raw</td><td>integer</td><td>cmi.score.raw</td></tr>
-	<tr><td>min</td><td>integer</td><td>cmi.score.min</td></tr>
-	<tr><td>max</td><td>integer</td><td>cmi.score.max</td><tr>
+	<tr><td>scaled</td><td>decimal number between -1 and 1, inclusive</td><td>From cmi.score.scaled in SCORM 2004 4th Edition</td></tr>
+	<tr><td>raw</td><td>decimal number between min and max (if present, otherwise unrestricted), inclusive</td><td>cmi.score.raw</td></tr>
+	<tr><td>min</td><td>decimal number less than max (if present)</td><td>cmi.score.min</td></tr>
+	<tr><td>max</td><td>decimal number greater than min (if present)</td><td>cmi.score.max</td><tr>
 </table>
 
 <a name="context"/>
@@ -1253,16 +1254,6 @@ a new ID. Though voided and voiding statements must be reported as usual through
 the Experience API, it is recommended that reporting systems do not show voided 
 or voiding statements by default.  
 
-<a name="metadata"/>
-### 4.1.11 Metadata:
-The Experience API is extensible to allow any form of metadata, but recommends 
-that existing fields are used to convey information. While metadata is extremely 
-useful for the classification, storage, search, discovery, and retrieval of objects, 
-it is out of the scope of the Experience API. It is recommended that content 
-brokering services enforce metadata on created and distributed content and that 
-querying services create metadata from Experience API statements and other 
-available data.  
-
 <a name="retstmts"/> 
 ## 4.2 Retrieval of Statements:
 A collection of statements can be retrieved by performing a query on the "statements" 
@@ -1356,38 +1347,41 @@ to fully understand every detail of this part of the specification.
 ## 6.1 Encoding:
 All strings must be encoded and interpreted as UTF-8.  
 
-<a name="versionheader"/> 
-## 6.2 Version Header:
+<a name="apiversioning"/> 
+## 6.2 API Versioning:
+
+
+
 Requests to an LRS MUST include an HTTP header with name "X-Experience-API-Version" 
 to indicate what version of the specification was used to construct the request. 
 For systems written against this version of the specification, the value should 
-always be "0.95". If an LRS cannot fulfill the request due to version 
+always be "1.0". If an LRS cannot fulfill the request due to version 
 incompatibilities, it MUST reject the request with a response of 400 and an 
 error message explaining the problem. Conversely, every response from an LRS 
 MUST include the HTTP header "X-Experience-API-Version" to indicate the version 
 of the specification that was used to process the request.  
 
-The versions of the request and response will typically agree, but the version 
-returned from the LRS may be higher in the case of compatible versions 
-(i.e. the client has sent a 0.95 request which can be processed correctly 
-under the 1.0 specification). The LRS MUST NOT attempt to process a request 
-under the rules of a version less than that specified in the request (i.e. 
-an LRS will not attempt to process a 1.0 request using the 0.95 specification). 
-In such cases, the LRS will return a 400 error and an explanation of the problem.  
+Currently, there are no versions which are considered compatible. Therefore,
+the LRS MUST set the HTTP header "X-Experience-API-Version" to "1.0" for every response.
+The LRS MUST reject requests which do not have the "X-Experience-API-Version" header set to "1.0"
+and return a HTTP 400 error.
 
-Clients should use the lowest version of the specification which is compatible 
-with the latest released version, and provides all the features the client needs. 
-This will enable those clients to work with LRSs that only support the compatible 
-earlier version specified by the client, as well as those that support the latest 
-version.  
+__Note__: a single URL MAY resolve to different LRS implementations
+based on the version header. If this is done, each LRS MUST conform to the
+version routed to it. Those implementations SHOULD share data to the extent it is
+practical to do so, however systems MUST NOT convert statements created in later
+versions into a prior version format. If a system converts a  statement into a later
+format, it MUST use the method described in this companion document (to be created, insert location here). 
 
-An LRS supporting the latest version MUST use that version to process requests 
-from older compatible versions, rather than having a parallel implementation for 
-those versions. However, in the case of incompatible versions, the LRS MAY have 
-a concurrent implementation to process legacy requests. While it is imperative 
-that this specification strives for backwards compatibility, this behavior would 
-allow clients to transition smoothly over time if breaking changes became 
-unavoidable.  
+Clients SHOULD tolerate receiving a response with a version of "1.0" or later, and data structures 
+with additional properties. Clients SHOULD ignore any properties that are not defined in "1.0".
+
+The requirements in this section and the addition of "version" to statements are mostly intended
+to allow for future revisions. In particular we anticipate that additional properties may
+be added to statements, so systems retrieving statements may encounter responses that include
+statements of different versions. Minor versions of the specification are not expected to remove or modify
+existing properties. The note on resolving a URL to multiple different LRS implementations is to
+enable backwards compatibility for versions before "1.0".
 
 <a name="concurrency"/> 
 ## 6.3 Concurrency:
@@ -1793,6 +1787,18 @@ __Note__: Due to query string limits, this method may be called using POST and
 form fields if necessary. The LRS will differentiate a POST to add a statement 
 or to list statements based on the parameters passed.  
 
+__Note__: For filter parameters which are not time or sequence based (that is, other than
+since, until, or limit), statements which target another statement will meet the filter
+condition if that statement, or the targeted statement meet the condition. The targeted
+statement refers to any statement included in another statement's object property either
+as a sub-statement or statementRef.
+
+For example, consider the statement "Ben passed explosives training", and a follow up
+statement: "Administrator voided \<statementRef to original statement\>". The voiding
+statement will not mention "Ben" or "explosives training", but when fetching statements
+with an actor filter of "Ben" or an activity filter of "explosives training", both
+statements will be returned.
+
 <a name="stateapi"/> 
 ## 7.3 State API:
 Generally, this is a scratch area for activity providers that do not have their 
@@ -2070,6 +2076,16 @@ with this syntax.
 
 See [Appendix B](#AppendixB) for an example function written in Javascript 
 which transforms a normal request into one using this alternate syntax.  
+
+It should also be noted that versions of Internet Explorer lower than 10 do not
+support Cross Domain Requests between http and https. This means that for IE9 and lower,
+if the LRS is on an https domain, the client sending the statement must also be on https. 
+If the LRS is on http, the client must be too. 
+
+There may be cases where there is a requirement for the client activity provider to support 
+IE8 and 9  where the client code is hosted on a different scheme (http or https) from 
+the LRS. In these cases, a simple solution would be to host an intermediary server side LRS on 
+the same scheme as the client code to route statements to the target LRS. 
  
 <a name="validation"/> 
 ## 7.7 Validation:
@@ -2102,10 +2118,41 @@ the "Access-Control-Allow-Origin" and "Access-Control-Allow-Methods" headers
 must be used, such as IE 8+, FF 3.5+, Safari 4+, Safari iOS Chrome, or Android 
 browser. Additionally the server must set the required headers.  
 
+In the example below, the following values in the first few lines should be replaced
+with your own values. All other values should be left as they are. 
+
+<table>
+	<tr>
+		<th>Value in example</th>
+		<th>Explanation</th>
+	</tr>
+	<tr>
+		<td>http://localhost:8080/XAPI/</td>
+		<td>Endpoint of the LRS to send the statements to.</td>
+	</tr>
+	<tr>
+		<td>dGVzdDpwYXNzd29yZA==</td>
+		<td>Base 64 encoded username and password, usually in the form "username : password".</td>
+	</tr>
+	<tr>
+		<td>learner@example.adlnet.gov</td>
+		<td>Email address of the learner using the bookmarklet.</td>
+	</tr>
+</table>
+
 ```javascript
 var url = "http://localhost:8080/XAPI/Statements/?statementId="+_ruuid();
 var auth = "Basic dGVzdDpwYXNzd29yZA==";
-var statement = {actor:{ "objectType": "Agent", "mbox" : "mailto:learner@example.adlnet.gov"},verb:"",object:{id:""}};
+var statement = {
+	actor:{ 
+		"objectType": "Agent", 
+		"mbox" : "mailto:learner@example.adlnet.gov"
+	},
+	verb:"",
+	object:{
+		id:""
+	}
+};
 var definition = statement.object.definition;
 
 
@@ -2118,9 +2165,9 @@ xhr.open("PUT", url, true);
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Authorization", auth);
 xhr.onreadystatechange = function() {
-if(xhr.readyState == 4) {
-alert(xhr.status + " : " + xhr.responseText);
-}
+	if(xhr.readyState == 4) {
+		alert(xhr.status + " : " + xhr.responseText);
+	}
 };
 xhr.send(JSON.stringify(statement));
 
@@ -2133,10 +2180,10 @@ Copyright (c) 2010 Robert Kieffer
 Dual licensed under the MIT and GPL licenses.
 */
 function _ruuid() {
-return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-return v.toString(16);
-});
+	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+		var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+		return v.toString(16);
+	});
 }
 ```
 
@@ -2366,25 +2413,25 @@ __matching__
 			{
 				"id":"1",
 				"description":{
-					"en-US":"SCORM Engine"
+					"en-US":"Swift Kick in the Grass"
 				}
 			},
 			{
 				"id":"2",
 				"description":{
-					"en-US":"Pure-sewage"
+					"en-US":"We got Runs"
 				}
 			},
 			{
 				"id":"3",
 				"description":{
-					"en-US":"Project Tin Can API"
+					"en-US":"Duck"
 				}
 			},
 			{
 				"id":"4",
 				"description":{
-					"en-US":"SCORM Cloud"
+					"en-US":"Van Delay Industries"
 				}
 			}
 		]
