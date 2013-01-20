@@ -538,6 +538,7 @@ __Identified Group__
 </table>  
 
 __Large Groups__
+
 Where the LRS has previously been made aware of the members of an identified group, an AP MAY refer to the
 group by its identifier and rely on the LRS to add the member property to the statement. The following rules 
 apply:
