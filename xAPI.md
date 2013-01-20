@@ -2012,6 +2012,12 @@ Returns: 200 OK - Expanded Agent Object
 	</tr>
 </table>  
 
+### PUT agents
+Example endpoint: http://example.com/XAPI/agents
+
+### PUT | DELETE agents/member
+Example endpoint: http://example.com/XAPI/agents/member
+
 ### PUT | GET | DELETE agents/profile
 Example endpoint: http://example.com/XAPI/agents/profile
 
