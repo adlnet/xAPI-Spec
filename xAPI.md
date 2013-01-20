@@ -537,6 +537,30 @@ __Identified Group__
 	</tr>
 </table>  
 
+__Large Groups__
+
+Where the LRS has previously been made aware of the members of an identified group, an AP MAY refer to the
+group by its identifier and rely on the LRS to add the member property to the statement. The following rules 
+apply:
+
+1. If an LRS receives a statement containing an identified group that it already knows about and that groups has a 
+members property (including an empty property), then it should return that array of agents whenever the statement is 
+returned. It should not update its internal record of that identified group.
+
+2. If an LRS receives a statement containing an identified group that it already knows about but which does not have a 
+members property, the LRS should add its own internal record of the group members to the statement as though this 
+were sent with the statement. The list of members at the time the statement is <strong>stored</strong> should be used, 
+not at the timestamp of the statement or the time the statement is retrieved. 
+
+3. If the LRS does not have any record of an identified group, it should create a record using the list of agents 
+in the members property.
+
+An empty members property will be used to denote groups that deliberately contain no members, and groups with an 
+empty members property should not be treated as groups without a members property. This prevents members being 
+added later when the statement passes to another LRS.
+
+The Agent Profile API can also be used to create groups within the LRS, and is the only way to modify the member
+property of the LRS's internal definition of the group
 
 <a name="verb"/>
 ### 4.1.3 Verb:
@@ -2011,6 +2035,12 @@ Returns: 200 OK - Expanded Agent Object
 		<td>The agent representation to use in fetching expanded agent information.</td>
 	</tr>
 </table>  
+
+### PUT agents
+Example endpoint: http://example.com/XAPI/agents
+
+### PUT | DELETE agents/member
+Example endpoint: http://example.com/XAPI/agents/member
 
 ### PUT | GET | DELETE agents/profile
 Example endpoint: http://example.com/XAPI/agents/profile
