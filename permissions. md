@@ -2,3 +2,7 @@ This profile defines how a Learning Activity Provider (AP) MAY assign security
 permissions to statements, activity definitions and agents asserting who is able to
  retrieve, modify and delete these objects. It also defines how an LRS implementing
  this profile MUST interpret these permissions and reject unauthorized requests.
+
+__Dependencies__
+This profile allows APs to assign permissions to Groups.Often these will be large
+
