@@ -2,7 +2,33 @@ This profile defines how a Learning Activity Provider (AP) MAY assign security
 permissions to statements, activity definitions and agents asserting who is able to
  retrieve, modify and delete these objects. It also defines how an LRS implementing
  this profile MUST interpret these permissions and reject unauthorized requests.
+ 
+__A Note On Profiles__
+Profiles are add-ons to the core Tin Can specification. An LRS, AP or reporting tool does not have to implement any profiles to be Tin Can compliant. When this profile says 'an LRS MUST', it refers only to an LRS implementing this profile. Compliance with a particular profile enables tools do more together, for example this profile enables definition of who can view, edit and delete what in a standard way.
 
-__Dependencies__
-This profile allows APs to assign permissions to Groups.Often these will be large
+__Groups__
+This profile allows APs to assign permissions to identified groups, and therefore requires a standard way for the AP to create, modify and delete groups. As a minimum, the LRS MUST implement the following methods of managing groups. It MAY also implement additional methods.
+
+An AP SHOULD create, modify and delete groups using statements. In all cases the actor SHOULD be the Agent performing the action, the verb SHOULD be one of those listed below and the object should be an identified group. In all instances, the LRS MUST check permissions as described below and reject unauthorized statements.
+
+___Verbs___
+Created
+http://www.
+Used to create a group. The members property of the group defines the initial group membership. The LRS MUST add the group to its internal list of agents accessible via the Agent Profile API. If a group with the same id already exists, the LRS  MUST reject the statement. 
+
+Deleted
+http://www.
+Used to remove a group from the LRS. No members property is required. The LRS MUST remove the group from its own internal list of agents accessible via the Agent Profile API. If the group does not exist, the LRS MUST reject the statement.
+
+Enrolled
+http://www.
+Used to add members to a group. The object of the statement SHOULD be the group of agents to add and MAY be an anonymous or identified group. The context team of the statement SHOULD be an identified group that the members are added to. 
+
+The LRS MUST add these agents to the group if they are not already members of that group. The LRS SHOULD NOT reject statements because agents are already part of the group.
+
+Unenrolled
+http://www.
+Used to remove members from groups. The object of the statement SHOULD be the group of agents to remove and MAY be an anonymous or identified group. The context team of the statement SHOULD be an identified group that the members are removed from.
+
+The LRS MUST remove these agents from the group, if found in that group. The LRS SHOULD NOT reject statements because agents are not found. 
 
