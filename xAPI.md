@@ -1296,39 +1296,6 @@ the form of documents, which may be related to an Activity, Agent, or combinatio
 Note that in the REST binding, State is a document not an object. ID is stored in the URL, 
 updated is HTTP header information, and contents is the HTTP document itself.  
 
-__5.1.1 JSON Documents:__
-
-APs MAY use Documents of content type "application/json" to store arrays of variables. For example a document 
-contains:
-
-```
-{
-	"x" : "foo",
-	"y" : "bar"
-}
-```  
-When an LRS receives a PUT request for an existing document of this content type, it MUST update only the
-properties of of the JSON that have changed. For example, this document is PUT with the same id as the existing 
-document above:
-
-```
-{
-	"x" : "bash",
-	"z" : "faz"
-}
-```  
-the resulting document stored in the LRS is:
-```
-{
-	"x" : "bash",
-	"y" : "bar",
-	"z" : "faz"
-}
-```
-The LRS MAY order JSON properties in any order when storing and retrieving documents. If an AP needs to delete
-a property, it SHOULD delete and replace the whole document. As an alternative to deleting a property, the AP
-could set it to an empty string. 
-
 
 <a name="misclangmap"/>
 ## 5.2 Language Map
@@ -1843,7 +1810,7 @@ defined state document identified by "stateId". Otherwise, GET will return the
 available IDs, and DELETE will delete all state in the context given through the 
 other parameters.  
 
-### PUT | GET | DELETE activities/state
+### PUT | POST | GET | DELETE activities/state
 Example endpoint: http://example.com/XAPI/activities/state
 
 Stores, fetches, or deletes the document specified by the given stateId that 
@@ -1910,6 +1877,40 @@ Returns: 204 No Content
 		<td>The registration ID associated with this state.</td>
 	</tr>
 </table>
+
+### POST activities/state
+Example endpoint: http://example.com/XAPI/activities/state
+APs MAY use Documents of content type "application/json" to store arrays of variables. For example a document 
+contains:
+
+```
+{
+	"x" : "foo",
+	"y" : "bar"
+}
+```  
+When an LRS receives a POST request for an existing document, it SHOULD try to merge the posted document with 
+the existing document. For example, for application/json documents, the LRS SHOULD update only the properties 
+of the JSON that have changed. For example, this document is PUT with the same id as the existing 
+document above:
+
+```
+{
+	"x" : "bash",
+	"z" : "faz"
+}
+```  
+the resulting document stored in the LRS is:
+```
+{
+	"x" : "bash",
+	"y" : "bar",
+	"z" : "faz"
+}
+```
+The LRS MAY order JSON properties in any order when merging documents. If an AP needs to delete
+a property, it SHOULD use a PUT request to replace the whole document. 
+
 <a name="actprofapi"/> 
 ## 7.4 Activity Profile API:
 The Activity Profile API is much like the State API, allowing for arbitrary key 
