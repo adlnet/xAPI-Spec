@@ -17,45 +17,16 @@ definition of who can view, edit and delete what in a standard way.
 ## 0.2 Contents  
  [0.1 A Note On Profiles](#0.1)  
  [0.2 Contents](#0.2)  
-[1.0 Completed and Failed Actions](#1.0)  
- [1.1 Verbs](#1.1)  
+[1.0 REMOVED](#1.0)    
 [2.0 Groups](#2.0)  
 [3.0 Statement Permissions](#3.0)  
 [4.0 Activity Definition Permissions](#4.0)  
 [5.0 Agent Profile Permissions](#5.0)  
 [6.0 Leaning Activity Provider Authority Permissions](#6.0)  
 [7.0 Agent Authority Permissions](#7.0)  
-[8.0 Global Default Permissions](#8.0)  
-
-<a name="1.0" /> 
-## 1.0 Completed and Failed Actions
-This profile defines actions that can be requested by issuing statements with specific verbs. If the action is 
-either not possible or the authority making the statement does not have permission to do so, the LRS will not 
-complete the action. In some cases, for example when large batches of statements are sent together, the LRS will 
-need to make the decision to accept or reject  statement before it is able to work out whether or not it can 
-complete the action. In addition to this, some users may find it helpful to have records of failed actions.
-
-For these reasons, the LRS SHOULD accept statements from any authority which has permission to send it statements. 
-It should then issue statements to indicate whether or not the action has succeeded.
-
-The actor of these statements SHOULD be an agent representing the LRS, for example an agent using an account name 
-of "root". This agent should be used for all statements issued by the LRS. The LRS itself SHOULD be assumed to have 
-permission to do anything.
-
-The object of these statements SHOULD be the reference of the statement requesting the action.
-
-<a name="1.1" /> 
-### 1.1 Verbs
-The verbs are as follows:
-
-#### Completed
-__http://adlnet.gov/expapi/verbs/permissions#completed__
-The LRS asserts that the action described in the object statement has been successfully completed.
-
-####Failed to Complete
-__http://adlnet.gov/expapi/verbs/permissions#failedtocomplete__
-The LRS asserts that the action described in the object statement has not been successfully completed. The reason for 
-the failure SHOULD be explained in the statement's result response property.
+[8.0 Global Default Permissions](#8.0) 
+ 
+<a name="1.0" />
 
 <a name="2.0" /> 
 ## 2.0 Groups
@@ -63,32 +34,28 @@ This profile allows APs to assign permissions to identified groups, and therefor
 to create, modify and delete groups. As a minimum, the LRS MUST implement the following methods of managing groups. 
 It MAY also implement additional methods.
 
+This section coins the term group consumer (GC). A GC may be any system that wants to maintain a list of agents in a group.
+This may be a reporting tool, or may be an LRS. 
+
 The core Tin Can specification refers to anonymous groups and identified groups. The key difference is that identified 
 groups have an identifier which can be any identifier allowed for an agent. It is recommended that the account 
-identifier be used for most groups. In the core specification, both types of group can contain a member property. 
-APs implementing this profile, however, SHOULD NOT include a member property with identified groups. The LRS will 
-need to handle the member property on identified groups in the same way that it does for statements from APs not 
-implementing this profile.
+identifier be used for most identified groups. 
 
 An AP SHOULD create, modify and delete groups using statements. In all cases the actor SHOULD be the Agent performing 
 the action and MUST match the authority issuing the statement. The verb SHOULD be one of those listed below and the 
 object should be an identified group. In all instances, the LRS MUST check permissions as described below and reject 
-unauthorized statements.
+unauthorized statements. Identified groups SHOULD not include a member property when used in group management statements.  
 
 ###Verbs
 ####Created
 __http://adlnet.gov/expapi/verbs/groups#created__
-Used to create a group. The object of the statement MUST be an identified group.
-
-The LRS MUST add the group to its internal list of agents accessible via the Agent Profile API. If a group with the 
-same id already exists, the LRS  MUST reject the statement. 
+Instructs the GC to create a group. The object of the statement MUST be an identified group. Where a group with the same id
+is created multiple times, the earliest timestamp SHOULD be considered to be when the group was created. 
 
 ####Deleted
 __http://adlnet.gov/expapi/verbs/groups#deleted__
-Used to remove a group from the LRS. The object of the statement MUST be an identified group.
-
-The LRS MUST remove the group from its own internal list of agents accessible via the Agent Profile API. If the group 
-does not exist, the LRS MUST reject the statement.
+Instructs the GC to remove all members from the group. The object of the statement MUST be an identified group. It is up to 
+the GC whether or not it still considers the group to exist.
 
 ####Enrolled
 __http://adlnet.gov/expapi/verbs/groups#enrolled__
@@ -96,11 +63,11 @@ Used to add members to a group. The object of the statement SHOULD be the group 
 a single agent, an anonymous group or an identified group. The context team of the statement SHOULD be an identified 
 group that the members are added to. 
 
-The LRS MUST add these agents to the group if they are not already members of that group. When identified groups are 
-used, the identified group itself MUST be enrolled, rather than the members of that group. The LRS SHOULD NOT reject 
-statements because agents are already part of the group. Identified groups MAY be nested indefinitely using this verb, 
-but each group has a maximum of one parent. The LRS MUST reject statements that attempt to enrol groups which already 
-have a parent.
+This instructs the GC to add these agents to the group if they are not already members of that group. When identified groups are 
+used, the identified group itself SHOULD be enrolled, rather than the members of that group. 
+
+Identified groups MAY be nested indefinitely using this verb, but each group has a maximum of one parent. Statements that attempt to enrol 
+groups which already have a parent should be ignored. The statement's stored property SHOULD be used to determine priority. 
 
 ####Unenrolled
 __http://adlnet.gov/expapi/verbs/groups#unenrolled__
@@ -108,23 +75,35 @@ Used to remove members from groups. The object of the statement SHOULD be the gr
 an anonymous or identified group. The context team of the statement SHOULD be an identified group that the members 
 are removed from.
 
-The LRS MUST remove these agents from the group, if found in that group. The LRS SHOULD NOT reject statements because 
-agents are not found. 
+This instructs the GC to remove these agents from the group, if found in that group. 
  
 <a name="3.0" /> 
 ## 3.0 Statement Permissions
+Statement permissions deal with who can read, and reference statements (including voiding). 
+This is defined using an extension as part of the statement's context by the issuer of the statement.
 
 <a name="4.0" /> 
-## 4.0 Activity Definition Permissions
+## 4.0 Activity Profile Permissions
+Activity definition permissions deal with who can create, read, modify and delete activity definitions and documents
+accessible via the activity profile API. This is defined by the AP authority and/or other authorised authorities 
+in a document within the activity profile API.
 
 <a name="5.0" /> 
 ## 5.0 Agent Profile Permissions
+Agent profile permissions deal with who can create, read, modify and delete agent profiles and documents accessible
+via the agent profile API. This is defined by authorised authorities in a document within the Agent profile API.
 
 <a name="6.0" /> 
 ## 6.0 Leaning Activity Provider Authority Permissions
+AP authority permissions deal with permissions specifically granted to or revoked from AP authorities. This is defined 
+by authorised authorities in a document within the Activity Profile API.
 
 <a name="7.0" /> 
 ##7.0 Agent Authority Permissions
+Agent authority permissions deal with permissions specifically granted to or revoked from agent authorities. 
+This is defined by authorised authorities in a document within the agent profile API.
 
 <a name="8.0" /> 
 ## 8.0 Global Default Permissions
+Global default permissions provide default permissions to be used when no specific permissions are defined. These are
+defined by authorised authorities in a document within the Activity Profile API for an activity representing the LRS.
