@@ -760,7 +760,7 @@ remaining properties are not valid for the interaction type.
 	<tr>
 		<td>correctResponsesPattern</td>
 		<td>An array of strings</td>
-		<td>Correspons to 
+		<td>Corresponds to 
 			"cmi.interactions.n.correct_responses.n.pattern" as defined in 
 			the SCORM 2004 4th edition Runtime Environment, where the final 
 			<em>n</em> is the index of the array.</td>
