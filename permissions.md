@@ -17,8 +17,8 @@ definition of who can view, edit and delete what in a standard way.
 ## 0.2 Contents  
  [0.1 A Note On Profiles](#0.1)  
  [0.2 Contents](#0.2)  
-[1.0 REMOVED](#1.0)    
-[2.0 Groups](#2.0)  
+[1.0 Groups](#1.0)    
+[2.0 The Permissions Object](#2.0)  
 [3.0 Statement Permissions](#3.0)  
 [4.0 Activity Definition Permissions](#4.0)  
 [5.0 Agent Profile Permissions](#5.0)  
@@ -27,15 +27,14 @@ definition of who can view, edit and delete what in a standard way.
 [8.0 Global Default Permissions](#8.0) 
  
 <a name="1.0" />
-
-<a name="2.0" /> 
-## 2.0 Groups
+## 1.0 Groups
 This profile allows APs to assign permissions to identified groups, and therefore requires a standard way for the AP 
 to create, modify and delete groups. As a minimum, the LRS MUST implement the following methods of managing groups. 
 It MAY also implement additional methods.
 
 This section coins the term group consumer (GC). A GC may be any system that wants to maintain a list of agents in a group.
-This may be a reporting tool, or may be an LRS. 
+This may be a reporting tool, or may be an LRS. An LRS implementing this permissions profile SHOULD also implement
+this mechanism of group management and return groups via its agent profile API accordingly.
 
 The core Tin Can specification refers to anonymous groups and identified groups. The key difference is that identified 
 groups have an identifier which can be any identifier allowed for an agent. It is recommended that the account 
@@ -47,13 +46,13 @@ object should be an identified group. In all instances, the LRS MUST check permi
 unauthorized statements. Identified groups SHOULD not include a member property when used in group management statements.  
 
 ###Verbs
-####Created
-__http://adlnet.gov/expapi/verbs/groups#created__
+####Formed
+__http://adlnet.gov/expapi/verbs/groups#formed__
 Instructs the GC to create a group. The object of the statement MUST be an identified group. Where a group with the same id
 is created multiple times, the earliest timestamp SHOULD be considered to be when the group was created. 
 
-####Deleted
-__http://adlnet.gov/expapi/verbs/groups#deleted__
+####Disbanded
+__http://adlnet.gov/expapi/verbs/groups#disbanded__
 Instructs the GC to remove all members from the group. The object of the statement MUST be an identified group. It is up to 
 the GC whether or not it still considers the group to exist.
 
@@ -76,11 +75,94 @@ an anonymous or identified group. The context team of the statement SHOULD be an
 are removed from.
 
 This instructs the GC to remove these agents from the group, if found in that group. 
- 
+
+<a name="2.0" /> 
+## 2.0 The Permissions Object
+Blah blah blah....what this is....
+
+Identified groups SHOULD NOT have a member property when used in this extension.
+
+In lists of agents, verbs and activities, these objects SHOULD NOT
+contain any properties for that object.
+
+''''
+<table>
+	<tr>
+		<th>property</th>
+		<th>type</th>
+		<th>description</th>
+	</tr>
+	<tr>
+		<td>requireDualAuthority</td>
+		<td>Boolean</td>
+		<td>If true, both agent and activity are required to have permissions for the action</td>
+	</tr>
+	<tr>
+		<td>activities</td>
+		<td>Array of activities</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>agents</td>
+		<td>Array of agents and identified groups</td>
+		<td></td>
+	</tr>
+</table>
+''''
+
 <a name="3.0" /> 
 ## 3.0 Statement Permissions
 Statement permissions deal with who can read, and reference statements (including voiding). 
 This is defined using an extension as part of the statement's context by the issuer of the statement.
+
+Statements are forever, and so are statement permissions. To give or remove statement permissions 
+to or from an agent, that agent should be enrolled to or unenrolled from a group which has that statement
+permission. Statement issuers should plan ahead when defining groups and permissions.
+
+This extension URI to be used is http://adlnet.gov/xapi/extensions/permissions#statement
+
+This extension has two properties, 'permissions' and 'blocks'. 'permissions' defines actions that
+are explicitly allowed. 'blocks' defines actions that are explicitly banned. Where 'permissions'
+and 'blocks' contradict, the 'block' should take priority.
+
+'permissions' and 'blocks' contain objects. The table below outlines the properties of that object.
+For convenience, descriptions state what each property allows, but for 'blocks', these properties
+instead define what is banned. 
+
+''''
+<table>
+	<tr>
+		<th>property</th>
+		<th>type</th>
+		<th>description</th>
+	</tr>
+	<tr>
+		<td>read</td>
+		<td>permissions object</td>
+		<td>Who is allowed to retrieve this statement</td>
+	</tr>
+	<tr>
+		<td>readAnonymised</td>
+		<td>permissions object</td>
+		<td>blah action may not be supported by lrs blah</td>
+	</tr>
+	<tr>
+		<td>reference</td>
+		<td>object</td>
+		<td>blah verb permissions pairs blah</td>
+	</tr>
+	<tr>
+		<td>reference/verb</td>
+		<td>verb object</td>
+		<td>blah</td>
+	</tr>
+	<tr>
+		<td>reference/permissions</td>
+		<td>verb object</td>
+		<td>permissions object</td>
+	</tr>
+</table>
+''''
 
 <a name="4.0" /> 
 ## 4.0 Activity Profile Permissions
