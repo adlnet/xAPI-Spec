@@ -918,7 +918,12 @@ which the Learning Activity Provider may or may not include in the statement.
 	<tr>
 		<td>score</td>
 		<td><a href="#score">Score</a> object</td>
-		<td>See section 4.1.5.1</td>
+		<td>The score achieved by the agent in the activity. See section 4.1.5.1</td>
+	</tr>
+	<tr>
+		<td>progress</td>
+		<td><a href="#score">Score</a> object</td>
+		<td>The progress made by the agent through the activity. See section 4.1.5.1</td>
 	</tr>
 	<tr>
 		<td>success</td>
