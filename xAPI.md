@@ -957,12 +957,23 @@ which the Learning Activity Provider may or may not include in the statement.
 </table>
 <a name="score"/> 
 #### 4.1.5.1 Score
+The table below defines the score object. All properties are optional, but statement issuers SHOULD
+use a scaled score rather than a raw score for scores which are intended to be measured as a percentage.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>scaled</td><td>decimal number between -1 and 1, inclusive</td><td>From cmi.score.scaled in SCORM 2004 4th Edition</td></tr>
-	<tr><td>raw</td><td>decimal number between min and max (if present, otherwise unrestricted), inclusive</td><td>cmi.score.raw</td></tr>
-	<tr><td>min</td><td>decimal number less than max (if present)</td><td>cmi.score.min</td></tr>
-	<tr><td>max</td><td>decimal number greater than min (if present)</td><td>cmi.score.max</td><tr>
+	<tr><td>scaled</td><td>Decimal number between -1 and 1, inclusive</td><td>From cmi.score.scaled in SCORM 2004 4th Edition</td></tr>
+	<tr><td>raw</td><td>Decimal number between min and max (if present, otherwise unrestricted), inclusive</td><td>cmi.score.raw</td></tr>
+	<tr><td>min</td><td>Decimal number less than max (if present)</td><td>cmi.score.min</td></tr>
+	<tr><td>max</td><td>Decimal number greater than min (if present)</td><td>cmi.score.max</td></tr>
+	<tr>
+		<td>units</td>
+		<td>String</td>
+		<td>
+			The code representing the units that the score is measured in. Where they exist, standard
+			codes SHOULD be used. For example, currencies SHOULD be formatted according to
+			<a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 417</a>.
+		</td>
+	</tr>
 </table>
 
 <a name="context"/>
