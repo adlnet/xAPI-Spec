@@ -916,24 +916,26 @@ which the Learning Activity Provider may or may not include in the statement.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
-		<td>score</td>
-		<td><a href="#score">Score</a> object</td>
-		<td>The score achieved by the agent in the activity. See section 4.1.5.1</td>
-	</tr>
-	<tr>
-		<td>progress</td>
-		<td><a href="#score">Score</a> object</td>
-		<td>The progress made by the agent through the activity. See section 4.1.5.1</td>
-	</tr>
-	<tr>
 		<td>success</td>
 		<td>Boolean</td>
 		<td>Was the learning activity successful?</td>
 	</tr>
 	<tr>
+		<td>score</td>
+		<td><a href="#score">Score</a> object See section 4.1.5.1.</td>
+		<td>The score of the agent in the activity in relation to the success of the activity.
+		For example: quiz scores, success at a task.</td>
+	</tr>
+	<tr>
 		<td>completion</td>
 		<td>Boolean</td>
 		<td>Was the learning activity completed?</td>
+	</tr>
+	<tr>
+		<td>progress</td>
+		<td><a href="#score">Score</a> object See section 4.1.5.1.</td>
+		<td>The score of the agent in the activity in relation to the completion of the activity.
+		For example: page progress, completion of a task.</td>
 	</tr>
 	<tr>
 		<td>response</td>
