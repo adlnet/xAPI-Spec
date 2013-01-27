@@ -922,7 +922,7 @@ which the Learning Activity Provider may or may not include in the statement.
 	</tr>
 	<tr>
 		<td>score</td>
-		<td><a href="#score">Score</a> object See section 4.1.5.1.</td>
+		<td><a href="#score">Score</a> object. See section 4.1.5.1.</td>
 		<td>The score of the agent in the activity in relation to the success of the activity.
 		For example: quiz scores, success at a task.</td>
 	</tr>
@@ -933,7 +933,7 @@ which the Learning Activity Provider may or may not include in the statement.
 	</tr>
 	<tr>
 		<td>progress</td>
-		<td><a href="#score">Score</a> object See section 4.1.5.1.</td>
+		<td><a href="#score">Score</a> object. See section 4.1.5.1.</td>
 		<td>The score of the agent in the activity in relation to the completion of the activity.
 		For example: page progress, completion of a task.</td>
 	</tr>
