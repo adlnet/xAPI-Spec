@@ -1425,101 +1425,110 @@ resolve the conflict. In this case, the LRS must make no modification to the res
 <a name="security"/>
 ## 6.4 Security:
 
-The LRS will support authentication using at least one of the following methods:  
-- OAuth 1.0 ([rfc5849](http://tools.ietf.org/html/rfc5849)), with signature 
-methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
+#####Requirement
+
+The LRS MUST support authentication using at least one of the following methods:
+-	OAuth 1.0 (rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
 - HTTP Basic Authentication
 - Common Access Cards (implementation details to follow in a later version)
 
-There are a number of expected authentication scenarios to consider for the XAPI. 
-In all cases, the LRS is responsible for making, or delegating, decisions on the 
-validity of statements, and determining what operations may be performed based 
-on the credentials used. It must be possible to configure any LRS to completely 
-support the XAPI using any of the above authentication methods, and any of the 
-workflows describe below. However, LRS may only support favored authentication 
-mechanisms, or limit the known users or registered applications that may 
-authenticate at all or using a specific authentication type. This is to allow 
-administrators to strike the desired balance between interoperability and security.  
+#####Rationale
 
-In particular, the "PLAINTEXT" signature method of OAuth and HTTP Basic 
-Authentication are likely to be turned off by security focused LRS administrators. 
-Therefore LRS administrators are urged to minimally leave OAuth enabled, with at 
-least the signature methods of "HMAC-SHA1" and "RSA-SHA1", and XAPI consumers 
-are urged to use OAuth with one of those signature methods to maximize interoperability.  
+The LRS is always responsible for making, or delegating, decisions on the validity of statements, and determining what operations may be performed based on the credentials used.
+
+#####Authentication scenarios
+
+The below matrix describes the possible authentication scenarios.
+
+A **registered application** is an application that will authenticate to the LRS as an OAuth  consumer that has been registered with the LRS.
+A **known user** is a user account on the LRS, or on a system which the LRS trusts to define users.
+
+
+<table border="1">
+<tr><th></th><th>Known user</th><th>User unknown</th></tr>
+<tr>
+<td>Application is registered</td>
+<td>Standard workflow for OAuth.</td>
+<td>LRS trusts application to access XAPI without additional user credentials. OAuth token steps are not invoked</td>
+</tr>
+<tr>
+<td>Application is not registered</td>
+<td>The application Agent is not identified as a registered Agent and the LRS cannot make assumptions on its identity.</td>
+<td></br></td>
+</tr>
+<tr>
+<td>No application</td>
+<td>HTTPBasicAuthentication is used instead of OAuth, since no application is involved.</td>
+<td></br></td>
+</tr>
+<tr>
+<td>No authentication</td>
+<td align="center"colspan="2">MAY be supported by the LRS, possibly for testing purposes.</td>
+
+</tr>
+
+</table> 
+
+	
+###6.4.1	
+#####How to handle each scenario
+
+General
+-------
+* The LRS must record the application's name and a unique consumer key (identifier);
+* The LRS must provide a mechanism to complete this registration, or delegate to another system that provides such a mechanism;
+The means by which this registration is accomplished are not defined by OAuth or the XAPI.
+
+Application registered + known user
+----------------------------------- 
+
+* Use endpoints below to complete the standard workflow.
+* If this form of authentication is used  to record statements and no  authority  is specified, the LRS should record the  authority  as a group consisting of an Agent representing the registered application, and a Person representing the known user.
+
+Application not registered + user unknown
+-----------------------------------------
+
+* LRS will honor requests that are signed using OAuth with the registered application’s credentials and with an empty token and token secret.
+* If this form of authentication is used  to record statements and no  authority  is specified, the LRS should record the  authorityas the Agent representing the registered application.
+
+
+
+Application not registered + known user 
+---------------------------------------
+
+* Use a blank consumer secret;
+* Call “Temporary Credential” request;
+* Specify “consumer_ name” and other usual parameters;
+User will then see “consumer_ name” plus a warning that the identity of the application requesting authorization cannot be verified.
+* the LRS MUST record an  authority that includes both that application and the authenticating user, as a group, since OAuth specifies an application.
+
+No application + known user 
+---------------------------
+
+* Use username/password combination that corresponds to an LRS login.
+* Authority to be recorded as the Agent identified by the login, **unless…**
+	* other Authority is specified **and…**
+	* LRS trusts the known user to specify this Authority.
+
+No authorization
+----------------
+
+* Requests should include headers for HTTP Basic Authentication based on a blank username and password, in order to distinguish an explicitly unauthenticated request from a  request that should be given a HTTP Basic Authentication challenge.
+
+#####Details
+
+Requirements for the LRS:
+
+* MUST be able to be configured for complete support of the XAPI 
+	* With any of the above methods;
+	* In any of the workflow scenarios above.
+* MAY (for security reasons): 
+	* Support a subset of the above methods;
+	* Limit the known users or registered applications.
+* SHOULD at a minimum supply Oauth with "HMAC-SHA1" and "RSA-SHA1" signatures.
+
+
  
-<a name="authdefs"/> 
-### 6.4.1 Authentication Definitions:
-
-A <b>registered application</b> is an application that will authenticate to the 
-LRS as an OAuth consumer that has been registered with the LRS. As part of 
-that registration the application's name and a unique consumer key (identifier) 
-shall be recorded by the LRS. Either the application has been assigned a consumer 
-secret, or it has recorded its public key. The LRS must provide a mechanism to 
-complete this registration, or delegate to another system that provides such a 
-mechanism. The means by which this registration is accomplished are not defined 
-by OAuth or the XAPI.  
-
-A <b>known user</b> is a user account on the LRS, or on a system which the LRS 
-trusts to define users.  
-
-The following authentication workflows are anticipated.  
-
-__1) Registered Application + Known User__  
-
-This is the standard workflow for OAuth. Use the endpoints described further 
-below to complete the standard OAuth workflow.  
-
-If this form of authentication is used to record statements and no authority 
-is specified, the LRS should record the authority as a group consisting of 
-an Agent representing the registered application, and a Person representing 
-the known user.  
-
-__2) Registered Application + Unknown User__  
-
-An LRS may choose to trust certain applications to access the XAPI without 
-additional user credentials, that is without invoking the authorize or token 
-steps of the OAuth workflow. In that case, the LRS will consider requests 
-valid that are signed using OAuth with that application's credentials and with 
-an empty token and token secret. In this case, the application must have been 
-registered with the LRS.  
-
-If this form of authentication is used to record statements and no authority 
-is specified, the LRS should record the authority as the Agent representing 
-the registered application.  
-
-__3) Unregistered Application + Known User__
-
-The following must be applied to the standard OAuth workflow:  
-
-Since the application is not registered, its representing Agent will not be 
-identified in the same way as a registered Agent, and the LRS must be careful 
-about making assumptions regarding identity. See the section on Authority. A 
-blank consumer secret should be used. The "Temporary Credential" request 
-should then be called. Along with the usual parameters, "consumer_name" should 
-be specified. During the user authentication phase, this name will be displayed 
-to the user, along with a warning that the identity of the application 
-requesting authentication cannot be verified.  
-
-Since OAuth is specifying an application, even though it is unverified, the LRS 
-MUST record an authority that includes both that application and the 
-authenticating user, as a group.  
-
-__4) Known User, no application__  
-
-This workflow uses 
-[HTTP Basic Authentication](http://www.w3.org/Protocols/HTTP/1.0/spec.html%22%20%5Cl%20%22BasicAA). 
-A username/password combination corresponding to an LRS login should be used, 
-and the LRS should record the authority as an Agent identified by the login used, 
-unless another authority is specified and the LRS trusts the known user to specify 
-that authority.  
-
-__5) No Authentication__  
-
-Some LRSs may wish to support API access with no authentication, possibly for 
-testing purposes, although there is no requirement to do so. To distinguish an 
-explicitly unauthenticated request from a request that should be given a HTTP 
-Basic Authentication challenge, unauthenticated requests should include headers 
-for HTTP Basic Authentication based on a blank username and password.  
 
 <a name="oauthscope"/> 
 ### 6.4.2 OAuth Authorization Scope
