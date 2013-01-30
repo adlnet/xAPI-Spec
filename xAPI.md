@@ -1360,7 +1360,7 @@ Example:  ``X-Experience-API Version : 1.0``
 #####Rationale
 
 Future revisions of the spec may introduce changes such as properties added to statements.
-Systems retrieving statements may then receive responses that include statements of different versions. The version header allows for these version differences to be handled correctly.
+Systems retrieving statements may then receive responses that include statements of different versions. The version header allows for these version differences to be handled correctly, and to ascertain that no partial or mixed LRS version implementations exist.
 
 #####Details
 
@@ -1368,7 +1368,7 @@ Requirements for the LRS:
 
 * MUST include the "X-Experience-API Version" header in every response;
 * MUST set this header to "1.0";
-* MUST reject requests with version header prior to "1.0";
+* MUST reject requests with version header prior to "1.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header;
 * MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
 
 
