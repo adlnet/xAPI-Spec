@@ -1351,37 +1351,38 @@ All strings must be encoded and interpreted as UTF-8.
 ## 6.2 API Versioning:
 
 
+#####Requirement
 
-Requests to an LRS MUST include an HTTP header with name "X-Experience-API-Version" 
-to indicate what version of the specification was used to construct the request. 
-For systems written against this version of the specification, the value should 
-always be "1.0". If an LRS cannot fulfill the request due to version 
-incompatibilities, it MUST reject the request with a response of 400 and an 
-error message explaining the problem. Conversely, every response from an LRS 
-MUST include the HTTP header "X-Experience-API-Version" to indicate the version 
-of the specification that was used to process the request.  
+Every request from a client and every response from the LRS must include an HTTP header with the name “X-Experience-API Version” and the version number as the value.
 
-Currently, there are no versions which are considered compatible. Therefore,
-the LRS MUST set the HTTP header "X-Experience-API-Version" to "1.0" for every response.
-The LRS MUST reject requests which do not have the "X-Experience-API-Version" header set to "1.0"
-and return a HTTP 400 error.
+Example:  ``X-Experience-API Version : 1.0``
+ 
+#####Rationale
 
-__Note__: a single URL MAY resolve to different LRS implementations
-based on the version header. If this is done, each LRS MUST conform to the
-version routed to it. Those implementations SHOULD share data to the extent it is
-practical to do so, however systems MUST NOT convert statements created in later
-versions into a prior version format. If a system converts a  statement into a later
-format, it MUST use the method described in this companion document (to be created, insert location here). 
+Future revisions of the spec may introduce changes such as properties added to statements.
+Systems retrieving statements may then receive responses that include statements of different versions. The version header allows for these version differences to be handled correctly.
 
-Clients SHOULD tolerate receiving a response with a version of "1.0" or later, and data structures 
-with additional properties. Clients SHOULD ignore any properties that are not defined in "1.0".
+#####Details
 
-The requirements in this section and the addition of "version" to statements are mostly intended
-to allow for future revisions. In particular we anticipate that additional properties may
-be added to statements, so systems retrieving statements may encounter responses that include
-statements of different versions. Minor versions of the specification are not expected to remove or modify
-existing properties. The note on resolving a URL to multiple different LRS implementations is to
-enable backwards compatibility for versions before "1.0".
+Requirements for the LRS:
+
+* MUST include the "X-Experience-API Version" header in every response;
+* MUST set this header to "1.0";
+* MUST reject requests with version header prior to "1.0";
+* MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
+
+
+Requirements for the client:
+
+* SHOULD tolerate receiving responses with a version of "1.0" or later;
+* SHOULD tolerate receiving data structures with additional properties;
+* SHOULD ignore any properties not defined in version 1.0 of the spec.
+
+
+Converting statements to other versions:
+
+* Systems MUST NOT convert statements of newer versions into a prior version format e.g. in order to handle version differences.
+* Systems MAY convert statements of older versions into a newer version only by following the methods described in the companion document.
 
 <a name="concurrency"/> 
 ## 6.3 Concurrency:
