@@ -916,26 +916,23 @@ which the Learning Activity Provider may or may not include in the statement.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
+		<td>score</td>
+		<td>Score object. See <a href="#score">section 4.1.5.1</a>.</td>
+		<td>The score of the agent in the activity in relation to the success of the activity.
+		For example: quiz scores, success at a task. This property SHOULD NOT be used for
+		scores relating to progress or completion. Consider using an extension from the CMI5
+		profile instead.
+		</td>
+	</tr>
+	<tr>
 		<td>success</td>
 		<td>Boolean</td>
 		<td>Was the learning activity successful?</td>
 	</tr>
 	<tr>
-		<td>score</td>
-		<td><a href="#score">Score</a> object. See section 4.1.5.1.</td>
-		<td>The score of the agent in the activity in relation to the success of the activity.
-		For example: quiz scores, success at a task.</td>
-	</tr>
-	<tr>
 		<td>completion</td>
 		<td>Boolean</td>
 		<td>Was the learning activity completed?</td>
-	</tr>
-	<tr>
-		<td>progress</td>
-		<td><a href="#score">Score</a> object. See section 4.1.5.1.</td>
-		<td>The score of the agent in the activity in relation to the completion of the activity.
-		For example: page progress, completion of a task.</td>
 	</tr>
 	<tr>
 		<td>response</td>
@@ -965,15 +962,6 @@ use a scaled score rather than a raw score for scores which are intended to be m
 	<tr><td>raw</td><td>Decimal number between min and max (if present, otherwise unrestricted), inclusive</td><td>cmi.score.raw</td></tr>
 	<tr><td>min</td><td>Decimal number less than max (if present)</td><td>cmi.score.min</td></tr>
 	<tr><td>max</td><td>Decimal number greater than min (if present)</td><td>cmi.score.max</td></tr>
-	<tr>
-		<td>units</td>
-		<td>String</td>
-		<td>
-			The code representing the units that the score is measured in. Where they exist, standard
-			codes SHOULD be used. For example, currencies SHOULD be formatted according to
-			<a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 417</a>.
-		</td>
-	</tr>
 </table>
 
 <a name="context"/>
