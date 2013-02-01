@@ -1,0 +1,10 @@
+Very rough draft of items for the CMI5 profile.
+<table>
+  <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+<tr>
+  	<td>progress</td>
+		<td><a href="#score">Score</a> object. See section 4.1.5.1.</td>
+		<td>The score of the agent in the activity in relation to the completion of the activity.
+		For example: page progress, completion of a task.</td>
+	</tr>
+</table>
