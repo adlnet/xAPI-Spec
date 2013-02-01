@@ -42,11 +42,12 @@
 [7.0. Data Transfer (REST)](#datatransfer)  
     [7.1. Error Codes](#errorcodes)  
     [7.2. Statement API](#stmtapi)  
-    [7.3. State API](#stateapi)  
-    [7.4. Activity Profile API](#actprofapi)  
-    [7.5. Agent Profile API](#agentprofapi)  
-    [7.6. Cross Origin Requests](#cors)  
-    [7.7. Validation](#validation)  
+    [7.3. Document APIs](#docapis)  
+    [7.4. State API](#stateapi)  
+    [7.5. Activity Profile API](#actprofapi)  
+    [7.6. Agent Profile API](#agentprofapi)  
+    [7.7. Cross Origin Requests](#cors)  
+    [7.8. Validation](#validation)  
 [Appendix A: Bookmarklet](#AppendixA)  
 [Appendix B: Creating an "IE Mode" Request](#AppendixB)  
 [Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
@@ -1800,8 +1801,73 @@ statement will not mention "Ben" or "explosives training", but when fetching sta
 with an actor filter of "Ben" or an activity filter of "explosives training", both
 statements will be returned.
 
+<a name="docapis"/> 
+## 7.3 Document APIs:
+The 3 Document APIs provide <a href="#miscdocument">document</a> storage for learning activity providers
+and agents. The details of each API are found in the following sections, and the information in this section 
+applies to all three APIs.
+
+###POST to store application/json arrays of variables
+<table>
+	<tr>
+		<th>API</th>
+		<th>Method</th>
+		<th>Endpoint</th>
+		<th>Example</th>
+	</tr>
+	<tr>
+		<td>State API</td>
+		<td>POST</td>
+		<td>activities/state</td>
+		<td>http://example.com/XAPI/activities/state</td>
+	</tr>
+	<tr>
+		<td>Activity Profile API</td>
+		<td>POST</td>
+		<td>activities/profile</td>
+		<td>http://example.com/XAPI/activities/profile</td>
+	</tr>
+	<tr>
+		<td>Agent Profile API</td>
+		<td>POST</td>
+		<td>agent/profile</td>
+		<td>http://example.com/XAPI/agents/profile</td>
+	</tr>
+</table>
+
+APs MAY use Documents of content type "application/json" to store arrays of variables. For example a document 
+contains:
+
+```
+{
+	"x" : "foo",
+	"y" : "bar"
+}
+```  
+When an LRS receives a POST request for an existing document, it SHOULD try to merge the posted document with 
+the existing document. For example, for application/json documents, the LRS SHOULD update only the properties 
+of the JSON that have changed. For example, this document is PUT with the same id as the existing 
+document above:
+
+```
+{
+	"x" : "bash",
+	"z" : "faz"
+}
+```  
+the resulting document stored in the LRS is:
+```
+{
+	"x" : "bash",
+	"y" : "bar",
+	"z" : "faz"
+}
+```
+The LRS MAY order JSON properties in any order when merging documents. If an AP needs to delete
+a property, it SHOULD use a PUT request to replace the whole document as described below. 
+
 <a name="stateapi"/> 
-## 7.3 State API:
+## 7.4 State API:
 Generally, this is a scratch area for activity providers that do not have their 
 own internal storage, or need to persist state across devices. When using the 
 state API, be aware of how the stateId parameter affects the semantics of the 
@@ -1878,41 +1944,10 @@ Returns: 204 No Content
 	</tr>
 </table>
 
-### POST activities/state
-Example endpoint: http://example.com/XAPI/activities/state
-APs MAY use Documents of content type "application/json" to store arrays of variables. For example a document 
-contains:
 
-```
-{
-	"x" : "foo",
-	"y" : "bar"
-}
-```  
-When an LRS receives a POST request for an existing document, it SHOULD try to merge the posted document with 
-the existing document. For example, for application/json documents, the LRS SHOULD update only the properties 
-of the JSON that have changed. For example, this document is PUT with the same id as the existing 
-document above:
-
-```
-{
-	"x" : "bash",
-	"z" : "faz"
-}
-```  
-the resulting document stored in the LRS is:
-```
-{
-	"x" : "bash",
-	"y" : "bar",
-	"z" : "faz"
-}
-```
-The LRS MAY order JSON properties in any order when merging documents. If an AP needs to delete
-a property, it SHOULD use a PUT request to replace the whole document. 
 
 <a name="actprofapi"/> 
-## 7.4 Activity Profile API:
+## 7.5 Activity Profile API:
 The Activity Profile API is much like the State API, allowing for arbitrary key 
 / document pairs to be saved which are related to an Activity. When using the 
 profile API for manipulating documents, be aware of how the profileId parameter
@@ -1973,7 +2008,7 @@ Returns: 200 OK - List of IDs
 </table>
 
 <a name="agentprofapi"/> 
-## 7.5 Agent Profile API:
+## 7.6 Agent Profile API:
 The Agent Profile API is much like the State API, allowing for arbitrary key / 
 document pairs to be saved which are related to an Agent. When using the 
 profile API for manipulating documents, be aware of how the profileId parameter 
@@ -2085,7 +2120,7 @@ Returns: 200 OK - List of IDs
 </table>  
 
 <a name="cors"/>
-## 7.6 Cross Origin Requests:
+## 7.7 Cross Origin Requests:
 One of the goals of the XAPI is to allow cross-domain tracking, and even though 
 XAPI seeks to enable tracking from applications other than browsers, browsers 
 still need to be supported. Internet Explorer 8 and 9 do not implement Cross 
@@ -2123,7 +2158,7 @@ the LRS. In these cases, a simple solution would be to host an intermediary serv
 the same scheme as the client code to route statements to the target LRS. 
  
 <a name="validation"/> 
-## 7.7 Validation:
+## 7.8 Validation:
 The function of the LRS within the XAPI is to store and retrieve statements. 
 As long as it has sufficient information to perform these tasks, it is 
 expected that it does them. Validation of statements in the Experience API is 
