@@ -918,9 +918,9 @@ which the Learning Activity Provider may or may not include in the statement.
 	<tr>
 		<td>score</td>
 		<td>Score object. See <a href="#score">section 4.1.5.1</a>.</td>
-		<td>The score of the agent in the activity in relation to the success of the activity.
+		<td>The score of the agent in relation to the success or quality of the experience.
 		For example: quiz scores, success at a task. This property SHOULD NOT be used for
-		scores relating to progress or completion. Consider using an extension from the CMI5
+		scores relating to progress or completion. Consider using an extension from an extension
 		profile instead.
 		</td>
 	</tr>
