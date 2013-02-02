@@ -1844,8 +1844,8 @@ contains:
 	"y" : "bar"
 }
 ```  
-When an LRS receives a POST request for an existing document, it SHOULD try to merge the posted document with 
-the existing document. For example, for application/json documents, the LRS SHOULD update only the properties 
+When an LRS receives a POST request for an existing document, it MUST try to merge the posted document with 
+the existing document. For example, for application/json documents, the LRS MUST update only the properties 
 of the JSON that have changed. For example, this document is PUT with the same id as the existing 
 document above:
 
