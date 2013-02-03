@@ -47,17 +47,17 @@ unauthorized statements. Identified groups SHOULD not include a member property 
 
 ###Verbs
 ####Formed
-__http://adlnet.gov/expapi/verbs/groups#formed__
+__http://adlnet.gov/expapi/verbs/groups#formed__  
 Instructs the GC to create a group. The object of the statement MUST be an identified group. Where a group with the same id
 is created multiple times, the earliest timestamp SHOULD be considered to be when the group was created. 
 
 ####Disbanded
-__http://adlnet.gov/expapi/verbs/groups#disbanded__
+__http://adlnet.gov/expapi/verbs/groups#disbanded__  
 Instructs the GC to remove all members from the group. The object of the statement MUST be an identified group. It is up to 
 the GC whether or not it still considers the group to exist.
 
 ####Enrolled
-__http://adlnet.gov/expapi/verbs/groups#enrolled__
+__http://adlnet.gov/expapi/verbs/groups#enrolled__  
 Used to add members to a group. The object of the statement SHOULD be the group of agents to add and SHOULD be either 
 a single agent, an anonymous group or an identified group. The context team of the statement SHOULD be an identified 
 group that the members are added to. 
@@ -69,7 +69,7 @@ Identified groups MAY be nested indefinitely using this verb, but each group has
 groups which already have a parent should be ignored. The statement's stored property SHOULD be used to determine priority. 
 
 ####Unenrolled
-__http://adlnet.gov/expapi/verbs/groups#unenrolled__
+__http://adlnet.gov/expapi/verbs/groups#unenrolled__  
 Used to remove members from groups. The object of the statement SHOULD be the group of agents to remove and MAY be 
 an anonymous or identified group. The context team of the statement SHOULD be an identified group that the members 
 are removed from.
@@ -77,15 +77,11 @@ are removed from.
 This instructs the GC to remove these agents from the group, if found in that group. 
 
 <a name="2.0" /> 
-## 2.0 The Permissions Object
-Blah blah blah....what this is....
+## 2.0 The Permissions Group Object
+The permissions group object is used to define a group of applications and 
+users to be given or restricted from a particular permission. The permissions group object is used 
+in various places throughout this profile document. It's properties are defined below:
 
-Identified groups SHOULD NOT have a member property when used in this extension.
-
-In lists of agents, verbs and activities, these objects SHOULD NOT
-contain any properties for that object.
-
-''''
 <table>
 	<tr>
 		<th>property</th>
@@ -95,20 +91,34 @@ contain any properties for that object.
 	<tr>
 		<td>requireDualAuthority</td>
 		<td>Boolean</td>
-		<td>If true, both agent and activity are required to have permissions for the action</td>
+		<td>
+			If true, both user and application are required to have 
+			permissions for the action. If false, either one may have permission
+			for the action to succeed. 
+			
+			This property SHOULD only be used within 'permissions' properties and
+			MUST be ignored when used within a 'blocks' property.
+			
+			The default value is false. 
+		</td>
 	</tr>
 	<tr>
-		<td>activities</td>
-		<td>Array of activities</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>agents</td>
+		<td>applications</td>
 		<td>Array of agents and identified groups</td>
-		<td></td>
+		<td>The applications and groups of applications which have permission to carry out 
+		the action described.</td>
+	</tr>
+	<tr>
+		<td>users</td>
+		<td>Array of agents and identified groups</td>
+		<td>The users and groups of users which have permission to carry out 
+		the action described.</td>
 	</tr>
 </table>
-''''
+
+Agents and Identified Groups listed in this object SHOULD NOT have any properties other than
+those required by core specification. Agents and Identified Groups SHOULD only have a single 
+inverse functional identifier. 
 
 <a name="3.0" /> 
 ## 3.0 Statement Permissions
@@ -125,11 +135,10 @@ This extension has two properties, 'permissions' and 'blocks'. 'permissions' def
 are explicitly allowed. 'blocks' defines actions that are explicitly banned. Where 'permissions'
 and 'blocks' contradict, the 'block' should take priority.
 
-'permissions' and 'blocks' contain objects. The table below outlines the properties of that object.
-For convenience, descriptions state what each property allows, but for 'blocks', these properties
-instead define what is banned. 
+'permissions' and 'blocks' contain Statement Permissions List objects. The table below outlines the 
+properties of that object. For convenience, descriptions state what each property allows, but for 
+'blocks', these properties instead define what is banned. 
 
-''''
 <table>
 	<tr>
 		<th>property</th>
@@ -138,18 +147,33 @@ instead define what is banned.
 	</tr>
 	<tr>
 		<td>read</td>
-		<td>permissions object</td>
+		<td>permissions group object</td>
 		<td>Who is allowed to retrieve this statement</td>
 	</tr>
 	<tr>
 		<td>readAnonymised</td>
-		<td>permissions object</td>
-		<td>blah action may not be supported by lrs blah</td>
+		<td>permissions group object</td>
+		<td>Who is allowed to retrieve an annoymised version of the statement. 
+		If the LRS is not able to provide annoymised statements, it MUST ignore
+		this property. How statements are annoymised is beyond the scope of this 
+		profile.</td>
 	</tr>
 	<tr>
 		<td>reference</td>
+		<td>permissions group object</td>
+		<td>Who can issue statements referencing this statement. This applies to
+		statement references in the object or context/statement properties of the
+		statement being issued. 
+		</td>
+	</tr>
+	<tr>
+		<td>referenceWithVerb</td>
 		<td>object</td>
-		<td>blah verb permissions pairs blah</td>
+		<td>A map of verb and permissions group object pairs defining who
+		can issue statements referencing the statement. This property takes proirity
+		over the 'reference' property, but for specific verbs. Agents who are blocked
+		from referencing the statement generally in the the 'reference' property
+		MAY be permitted to reference it with specific verbs here.</td>
 	</tr>
 	<tr>
 		<td>reference/verb</td>
@@ -158,11 +182,10 @@ instead define what is banned.
 	</tr>
 	<tr>
 		<td>reference/permissions</td>
-		<td>verb object</td>
-		<td>permissions object</td>
+		<td>permissions group object</td>
+		<td></td>
 	</tr>
 </table>
-''''
 
 <a name="4.0" /> 
 ## 4.0 Activity Profile Permissions
