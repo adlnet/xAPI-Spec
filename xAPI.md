@@ -209,6 +209,7 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 * [Learning Activity Provider](#def-activity-provider)
 * [Learning Management System (LMS)](#def-learning-management-system)
 * [Learning Record Store (LRS)](#def-learning-record-store)
+* [MUST / SHOULD / MAY](<#def-must-should-may)
 * [Profile](#def-profile)
 * [Registration](#def-registration)
 * [Service](#def-service)
