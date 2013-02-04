@@ -246,8 +246,8 @@ __Inverse Functional Identifier__: An identifier which is unique to a particular
  Used to identify Agents and Groups. See section 4.1.2
 
 <a name="def-learning-activity" />
-__Learning Activity (activity)__: Like a SCORM Activity, a unit of instruction, 
-experience, or performance that is to be tracked.
+__Learning Activity (activity)__: Like a SCORM Activity, a unit of instruction, experience, or performance that is to be tracked in meaningful combination with a verb. 
+Interpretation of ‘Activity’ is broad, meaning that activities can even be tangible objects. “Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the XAPI statement, while for Anna herself the activity is the act of baking the cake.
 
 <a name="def-activity-provider" />
 __Learning Activity Provider (AP)__: The software object that is communicating with 
