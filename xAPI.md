@@ -268,6 +268,9 @@ most LRSs are Learning Management Systems (LMSs), however this document uses the
 LRS to be clear that a full LMS is not necessary to implement the XAPI. The XAPI 
 is dependent on an LRS to function.
 
+<a name="def-must-should-may" />
+__MUST / SHOULD / MAY__: Three levels of obligation with regards to conformity. A system that fails to implement a MUST (or a MUST NOT) is non-conformant. Failing to meet a SHOULD is not a violation of conformity, but goes against best practices. MAY equals an option, to be decided by the developer with no consequences for conformity.
+
 <a name="def-profile" />
 __Profile__: A construct where information about the learner or activity is kept, 
 typically in name/document pairs that have meaning to an instructional system component.
