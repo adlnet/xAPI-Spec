@@ -1835,7 +1835,7 @@ applies to all three APIs.
 	</tr>
 </table>
 
-APs MAY use Documents of content type "application/json" to store arrays of variables. For example a document 
+APs MAY use Documents of content type "application/json" to store sets of variables. For example a document 
 contains:
 
 ```
@@ -1844,9 +1844,19 @@ contains:
 	"y" : "bar"
 }
 ```  
-When an LRS receives a POST request for an existing document, it MUST try to merge the posted document with 
-the existing document. For example, for application/json documents, the LRS MUST update only the properties 
-of the JSON that have changed. For example, this document is PUT with the same id as the existing 
+When an LRS receives a POST request with content type application/json for an existing document also of
+content type application/json, it MUST merge the posted document with the existing document. 
+In this context merge is defined as:
+* de-serialize the objects represented by each document
+* for each property directly defined on the object being posted, set the corresponding
+property on the existing object equal to the value from the posted object.    
+* store any valid json serialization of the existing object as the document referenced in the request
+
+Note that only top-level properties are merged, even if a top-level property is an object
+the entire contents of each original property are replaced with the entire contents of
+each new property.
+
+For example, this document is POSTed with the same id as the existing 
 document above:
 
 ```
@@ -1863,6 +1873,11 @@ the resulting document stored in the LRS is:
 	"z" : "faz"
 }
 ```
+If either the original document or the document being posted do not have an Content-Type:
+of "application/json", or if either document can not be parsed as JSON, the LRS MUST
+respond with HTTP status code 400 "Bad Request", and MUST NOT update the target document
+as a result of the request.
+
 The LRS MAY order JSON properties in any order when merging documents. If an AP needs to delete
 a property, it SHOULD use a PUT request to replace the whole document as described below. 
 
