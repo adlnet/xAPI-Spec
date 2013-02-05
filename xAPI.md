@@ -209,6 +209,7 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 * [Learning Activity Provider](#def-activity-provider)
 * [Learning Management System (LMS)](#def-learning-management-system)
 * [Learning Record Store (LRS)](#def-learning-record-store)
+* [MUST / SHOULD / MAY](<#def-must-should-may)
 * [Profile](#def-profile)
 * [Registration](#def-registration)
 * [Service](#def-service)
@@ -246,8 +247,8 @@ __Inverse Functional Identifier__: An identifier which is unique to a particular
  Used to identify Agents and Groups. See section 4.1.2
 
 <a name="def-learning-activity" />
-__Learning Activity (activity)__: Like a SCORM Activity, a unit of instruction, 
-experience, or performance that is to be tracked.
+__Learning Activity (activity)__: Like a SCORM Activity, a unit of instruction, experience, or performance that is to be tracked in meaningful combination with a verb. 
+Interpretation of ‘Activity’ is broad, meaning that activities can even be tangible objects. “Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the XAPI statement, while for Anna herself the activity is the act of baking the cake.
 
 <a name="def-activity-provider" />
 __Learning Activity Provider (AP)__: The software object that is communicating with 
@@ -267,6 +268,9 @@ __Learning Record Store (LRS)__: A system that stores learning information. Prio
 most LRSs are Learning Management Systems (LMSs), however this document uses the term 
 LRS to be clear that a full LMS is not necessary to implement the XAPI. The XAPI 
 is dependent on an LRS to function.
+
+<a name="def-must-should-may" />
+__MUST / SHOULD / MAY__: Three levels of obligation with regards to conformity. A system that fails to implement a MUST (or a MUST NOT) is non-conformant. Failing to meet a SHOULD is not a violation of conformity, but goes against best practices. MAY equals an option, to be decided by the developer with no consequences for conformity.
 
 <a name="def-profile" />
 __Profile__: A construct where information about the learner or activity is kept, 
