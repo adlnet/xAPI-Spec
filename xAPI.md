@@ -395,7 +395,7 @@ functional identifiers”.  In addition to the standard inverse functional
 properties from FOAF of mbox, mbox_sha1sum, and openid, account is an inverse 
 functional property in XAPI Agents.  
 
-For reasons of practicality and privacy, TCAPI Agents MUST be identified by 
+For reasons of practicality and privacy, xAPI Agents MUST be identified by 
 one and only one inverse functional identifier. Agents MUST NOT include more 
 than one inverse functional identifier.  
 
