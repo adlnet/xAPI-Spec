@@ -1229,7 +1229,7 @@ which is referenced cannot be found, the LRS should report an appropriate error
 indicating as such.  
 
 When issuing a voiding statement, the object is required to have its "objectType" 
-field set to "Statement", and must specify the target statement's ID using the 
+field set to "StatementRef", and must specify the target statement's ID using the 
 "id" field. An example of a voiding statement follows:  
  
 ```
@@ -1730,7 +1730,7 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
 	<tr><td>verb</td><td>String</td><td> </td>
-		<td>Filter, only return statements matching the specified verb id.</td>
+		<td>Filter, only return statements matching the specified verb ID.</td>
 	</tr>
 	<tr><td>object</td><td>Activity, Agent, or Statement Object (JSON)</td><td> </td>
 		<td>Filter, only return statements matching the specified object 
