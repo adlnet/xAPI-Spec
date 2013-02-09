@@ -1240,7 +1240,7 @@ field set to "Statement", and must specify the target statement's ID using the
 		"mbox" : "mailto:admin@example.adlnet.gov"
 	},
 	"verb" : {
-		"id":"http://adlnet.gov/xapi/verbs#voided",
+		"id":"http://adlnet.gov/expapi/verbs/voided",
 		"display":{
 			"en-US":"voided"
 		}
