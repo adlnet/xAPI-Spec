@@ -1211,27 +1211,27 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 ```
 <a name="voided"/>
 ### 4.1.10 Voided:
-A key factor in enabling the distributed nature of Experience API is through 
-the immutability of statements. Because statements cannot be logically changed 
-or deleted, systems can be assured to have an accurate collection of data based 
-solely off of the stream of statements that are introduced into the LRS.  
+#####Rationale
 
-But, it is clear that statements may not always be valid for all of time once 
-they are made. Mistakes or other factors could require that some previous 
-statement is marked as invalid. For this case, the reserved 
-"http://adlnet.gov/expapi/verbs/voided" verb can be used, using a statement 
-reference to the invalid statement as the object. See ["Statement References"](#stmtref) 
-in section [4.1.4.3](#stmtasobj) for details.  
+The certainty that an LRS has an accurate and complete collection of data is guaranteed by the fact that statements cannot be logically changed or deleted. This immutability of statements is a key factor in enabling the distributed nature of Experience API.
+However, not all statements are perpetually valid once they have been issued. Mistakes or other factors could require that a previously made statement is marked as invalid. This is called ‘voiding a statement’ and the reserved verb “http://adlnet.gov/expapi/voided” is used for this purpose. 
 
-An LRS which has received a statement that voids another statement should mark 
-the target statement as voided using the "voided" field. If the target statement 
-which is referenced cannot be found, the LRS should report an appropriate error 
-indicating as such.  
+#####Requirements
+When issuing a statement that voids another, the object of that voiding statement...
 
-When issuing a voiding statement, the object is required to have its "objectType" 
-field set to "Statement", and must specify the target statement's ID using the 
-"id" field. An example of a voiding statement follows:  
+* MUST have the “objectType” field set to “Statement”;
+* MUST specify the ID of the statement-to-be-voided by it’s “id” field.
+
+
+Upon receiving a statement that voids another, the LRS...
+
+* MUST mark the (now voided) statement using the “voided” field;
+* MAY roll back any changes to activity or agent definitions which were introduced by the statement that was just voided;
+* SHOULD return a descriptive error if the target statement cannot be found;
+* MUST report the voided statement as usual through the Experience API when queried (see note in Details below).
+
  
+#####Example
 ```
 {
 	"actor" : {
@@ -1252,17 +1252,19 @@ field set to "Statement", and must specify the target statement's ID using the
 }
 ```  
 
-The above statement voids a previous statement which is identified with the 
-statement ID "e05aa883-acaf-40ad-bf54-02c8ce485fb0". The previous statement 
-will now be marked by setting its “voided” flag to true. Any changes to activity 
-or agent definitions which were introduced by the voided statement may be rolled 
-back by the LRS, but this not required.  
+This example statement voids a previous statement which it identifies with the statement ID "e05aa883-acaf-40ad-bf54-02c8ce485fb0". That statement will now be marked by setting it's “voided” flag to true. 
 
-Any statement that voids another cannot itself be voided. An activity provider 
-that would like to "unvoid" a voided statement should reissue the statement under 
-a new ID. Though voided and voiding statements must be reported as usual through 
-the Experience API, it is recommended that reporting systems do not show voided 
-or voiding statements by default.  
+
+#####Details
+Any statement that voids another cannot itself be voided. An activity provider that wants to “unvoid” a previously voided statement...
+
+* SHOULD issue that statement again under a new ID
+
+A reporting system...
+
+* SHOULD NOT show voided or voiding statements by default.
+
+See ["Statement References"](#stmtref) in section [4.1.4.3](#stmtasobj) for details about making references to other statements. 
 
 <a name="retstmts"/> 
 ## 4.2 Retrieval of Statements:
