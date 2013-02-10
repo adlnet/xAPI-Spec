@@ -2105,7 +2105,10 @@ If the LRS is on http, the client must be too.
 There may be cases where there is a requirement for the client activity provider to support 
 IE8 and 9  where the client code is hosted on a different scheme (http or https) from 
 the LRS. In these cases, a simple solution would be to host an intermediary server side LRS on 
-the same scheme as the client code to route statements to the target LRS. 
+the same scheme as the client code to route statements to the target LRS. An LRS MAY choose to provide 
+both http and https endpoints to support this use case. Http is inherently less secure
+than https, and both LRS and client should consider the security risks before makign the decision 
+to use this scheme. 
  
 <a name="validation"/> 
 ## 7.7 Validation:
