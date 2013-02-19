@@ -974,160 +974,138 @@ use a scaled score rather than a raw score for scores which are intended to be m
 </table>
 
 <a name="context"/>
-### 4.1.6 Context:
+###4.1.6 Context
 
-The "context" field provides a place to add some contextual information to a 
-statement. We can add information such as the instructor for an experience, if 
-this experience happened as part of a team activity, or how an experience fits 
-into some broader activity. As with Result, Context and its properties are 
-optional.
+#####Description: 
+An optional field that provides a place to add contextual information to a statement. All its field properties are optional.
 
-<table>
-	<tr><th>Property</th><th>Type<th/><th>Description</th></tr>
-	<tr>
-		<td>registration</td>
-		<td>UUID</td>
-		<td>The registration statement is associated with.
-		<br/><br/>
-		When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration. 
-			Registration is an instance of a learner undertaking a particular learning activity. 
-			For example all the statements about one time a person took a test might have one 
-			registration. If the learner takes the test again, the statements from this second 
-			occasion would have a different registration from the first occasion.
-		<br/><br/>
-		 The LMS may also close the registration at some point when it considers the learning experience 
-			complete. For Experience API purposes, a registration may be applied more broadly; an 
-			LMS could assign a group of students to a group of activities and track all related 
-			statements in one registration.</td>
-	</tr>
-	<tr>
-		<td>instructor</td>
-		<td>Agent (may be a group)</td>
-		<td>Instructor that the statement relates to, if not included as the 
-			Actor of the statement.</td>
-	</tr>
-	<tr>
-		<td>team</td>
-		<td>Group</td>
-		<td>Team that this statement relates to, if not included as the Actor
-		 of the statement.</td>
-	</tr>
-	<tr>
-		<td>contextActivities</td>
-		<td>contextActivities object</td>
-		<td>A map of the types of context to learning activities or activity this 
-			statement is related to.<br/><br/>
-			Valid context types are: "parent", "grouping", and "other".<br/>
-			<a href="#contextActivities">See below</a>
-		</td>
-	</tr>
-	<tr>
-		<td>revision</td>
-		<td>String</td>
-		<td>Revision of the learning activity associated with this statement.<br/><br/>
-			
-			Revisions are to track fixes of minor issues (like a spelling error), 
-			if there is any substantive change to the learning objectives, 
-			pedagogy, or assets associated with an activity, a new activity 
-			ID should be used.<br/><br/>
+#####Rationale: 
+The "context" field provides a place to add some contextual information to a statement. It can store information such as the instructor for an experience, if this experience happened as part of a team activity, or how an experience fits into some broader activity.
 
-			Revision format is up to the owner of the associated activity.<br/><br/>
+<table border="1">
+<tr><th>property</th><th>type</th><th>description</th></tr>
+<tr>
+<td>registration</td>
+<td>UUID</td>
+<td>The registration that the statement is associated with. <a href ="#registration">See 4.1.6.1</a></td>
 
-			Not applicable if statement's object is a Person.
-		</td>
-	</tr>
-	<tr>
-		<td>platform</td>
-		<td>String</td>
-		<td>Platform used in the experience of this learning activity. Not 
-			applicable if statement's object is a Person. Defined vocabulary, 
-			TBD.
-		</td>
-	</tr>
-	<tr>
-		<td>language</td>
-		<td>Format for this value is as defined in 
-			<a href="http://tools.ietf.org/html/rfc5646">RFC 5646</a><br/><br/>
-			For example, US English would be recorded as: en-US
-		</td>
-		<td>Code representing the language in which the experience being recorded 
-			in this statement (mainly) occurred in, if applicable and known. Do 
-			not specify any value if not applicable or not known.<br/><br/>			
-		</td>
-	</tr>
-	<tr>
-		<td>statement</td>
-		<td>statement either by reference or object</td>
-		<td>Another statement (either existing or new), which should be considered 
-			as context for this statement. 
-			
-			See section <a href="#stmtasobj">4.1.4.3</a> 
-			for details about including statements within other statements.
-		</td>
-	</tr>
-	<tr>
-		<td><a href="#miscext">extensions</a></td>
-		<td>Extensions object</td>
-		<td>A map of any other domain-specific context relevant to this statement. 
-			For example, in a flight simulator altitude, airspeed, wind, attitude, 
-			GPS coordinates might all be relevant (see extensions)
-		</td>
-	</tr>
+</tr>
+<tr>
+<td>instructor</td>
+<td>Agent (may be a group)</td>
+<td>Instructor that the statement relates to, if not included as the Actor of the statement.</td>
+
+</tr>
+<tr>
+<td>team</td>
+<td>Group</td>
+<td>Team that this statement relates to, if not included as the Actor of the statement.</td>
+
+</tr>
+<tr>
+<td>contextActivities</td>
+<td>contextActivities object</td>
+<td>A map of the types of learning activity context that this statement is related to.
+Valid context types are: "parent", "grouping", "other". <a href ="#contextactivities">See 4.1.6.2</a></td>
+
+</tr>
+<tr>
+<td>revision</td>
+<td>String</td>
+<td>Revision of the learning activity associated with this statement. Format is free.<br>
+- SHOULD be used to track fixes of minor issues (like a spelling error), <br>
+- SHOULD NOT be used if there is a major change in learning objectives, pedagogy, or assets of an activity. (Use a new activity ID instead).<br>
+- MUST NOT be used if the statement's object is a Person.
+
+
+</tr>
+<tr>
+<td>platform</td>
+<td>String</td>
+<td>Platform used in the experience of this learning activity. <br>
+- MUST NOT be used if the statement's object is a Person.
+<br>Defined vocabulary, TBD. </td>
+
+</tr>
+<tr>
+<td>language</td>
+<td>String (as defined in <a href="http://tools.ietf.org/html/rfc5646">RFC 5646</a>)</td>
+<td>Code representing the language in which the experience being recorded in this statement (mainly) occurred in, if applicable and known.<br>
+- MUST NOT be used if not applicable or unknown.
+</td>
+
+</tr>
+<tr>
+<td>statement</td>
+<td>Statement by reference or by object</td>
+<td>Another statement (either existing or new), which should be considered as context for this statement. <a href = "#stmtasobj">See section 4.1.4.3</a> for details about including statements within other statements. </td>
+
+</tr>
+<tr>
+<td>extensions</td>
+<td>Extensions object</td>
+<td>A map of any other domain-specific context relevant to this statement. For example, in a flight simulator altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a href="#miscext">See section 5.3</a>)</td>
+
+</tr>
+
 </table>
+<a name="Registration"/>
+####4.1.6.1 Registration property
+
+#####Description:
+An instance of a learner undertaking a particular learning activity.
+
+#####Details:
+When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration. For example all the statements about one time a person took a test might have one registration. If the learner takes the test again, the statements from this second occasion would have a different registration from the first occasion. 
+
+The LMS may also close the registration at some point when it considers the learning experience complete. For Experience API purposes, a registration may be applied more broadly; an LMS could assign a group of students to a group of activities and track all related statements in one registration.
 
 <a name="contextActivities"/>
-__Context Activities__
+####4.1.6.2 Context activities property
 
-A map of the types of context to ids of learning activities or a learning activity this 
-statement is related to. Valid context types are: "parent", "grouping", and "other". All, any
-or none of these MAY be used in a given statement. 
+#####Description: 
+A map of the types of context to ids of learning activities, or a learning activity this statement is related to.
 
-The parent activity is an activity which directly contains the activity which is the object of the 
-statement. So if a statement is about a quiz question, the parent activity would be the quiz. 
+#####Rationale: 
+Many activities are not autonomous or stand-alone, but form a part in a larger logical group of activities. "Context activities" allow for these larger activities to be represented in a structured manner.
 
-The grouping activity is an activity which contains the statement activity, but not directly. A class
-might be part of a course which is itself part of a qualification. The qualification might then be
-the grouping of the class and the parent of the course.
+#####Details:
+There are three valid context types. All, any or none of these MAY be used in a given statement:
 
-Other can be used for context activities which cannot be considered a parent or grouping. 
+1. __Parent__ : an activity with a direct relation to the activity which is the object of the statement.
+For example: a statement about a quiz question would have the quiz as its parent activity.
 
-For example, if I am studying a textbook, for a test, the textbook 
-is the activity the statement is about, but the test is a context 
-activity, then the context activity type is "other".
+ 
+2. __Grouping__ : an activity with an indirect relation to the activity which is the object of the statement.
+For example: a course that is part of a qualification. The course has several classes. The course relates to a class as the parent, the qualification relates to the class as the grouping.
 
-<pre><code>
+3. __Other__ : a context activity that cannot be considered a parent or a grouping.
+For example: Anna studies a textbook for a biology exam. The statement's activity refers to the textbook, and the exam is a context activity of type "other" .
+
+#####Example I:
+
+```
 {
 	"other" : {
 	"id" : "http://example.adlnet.gov/xapi/example/test"
 	}
 }
-</code></pre>
+```
+#####Example II: 
+Consider the following hierarchical structure: "Questions 1 to 6" are part of "Test 1" which in turn belongs to the course "Algebra 1". 
+The six questions are registered as part of the test by declaring "Test 1" as their parent. Also they are grouped with other statements about "Algebra 1" to fully mirror the hierarchy. This is particularly useful with the object of the statement is an agent, not an activity. "Andrew mentored Ben with context Algebra I".
 
-
-This activity could also be a session, like a section of a specific 
-course, or a particular run through of a scenario. So the statement 
-could be about "Algebra I", but in the context of "Section 1 of Algebra I".
-
-There could be an activity hierarchy to keep track of, for example 
-"question 1" on "test 1" for the course "Algebra 1". When recording 
-results for "question 1", it we can declare that the question is 
-part of "test 1", but also that it should be grouped with other 
-statements about "Algebra 1". This can be done using parent and grouping:
-
-<pre><code>
+```
 {
 	"parent" : {
-	"id" : "http://example.adlnet.gov/xapi/example/test 1"
+	"id" : "http://example.adlnet.gov/xapi/example/test 1"
 	},
 	"grouping" : {
 	"id" : "http://example.adlnet.gov/xapi/example/Algebra1"
 	}
 }
-</code></pre>
+```
 
-This is particularly useful with the object of the statement is an agent, 
-not an activity. "Andrew mentored Ben with context Algebra I". 
- 
 <a name="timestamp"/>
 ### 4.1.7 Timestamp:
 
