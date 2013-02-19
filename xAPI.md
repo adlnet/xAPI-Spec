@@ -424,7 +424,7 @@ identifiers are marked with a *."
 	</tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox">mbox*</a></td>
-		<td>URI in the form "mailto:email address".</td> 
+		<td>A mailto URI. These are in the form "mailto:email address", but the local part of the email address must be URI encoded.</td> 
 		<td>Note: Only emails that 
 			have only ever been and will ever be assigned to this Agent, 
 			but no others, should be used for this property and mbox_sha1sum.</td>
