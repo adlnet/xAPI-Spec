@@ -987,7 +987,7 @@ The "context" field provides a place to add some contextual information to a sta
 <tr>
 <td>registration</td>
 <td>UUID</td>
-<td>The registration that the statement is associated with. <a href ="#registration">See 4.1.6.1</a></td>
+<td>The registration that the statement is associated with. <a href ="#Registration">See 4.1.6.1</a></td>
 
 </tr>
 <tr>
@@ -1006,7 +1006,7 @@ The "context" field provides a place to add some contextual information to a sta
 <td>contextActivities</td>
 <td>contextActivities object</td>
 <td>A map of the types of learning activity context that this statement is related to.
-Valid context types are: "parent", "grouping", "other". <a href ="#contextactivities">See 4.1.6.2</a></td>
+Valid context types are: "parent", "grouping", "other". <a href ="#contextActivities">See 4.1.6.2</a></td>
 
 </tr>
 <tr>
