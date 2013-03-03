@@ -1874,11 +1874,11 @@ the resulting document stored in the LRS is:
 }
 ```
 If either the original document or the document being posted do not have an Content-Type:
-of "application/json", or if either document can not be parsed as JSON, the LRS MUST
+of "application/json", or if either document can not be parsed as JSON objects, the LRS MUST
 respond with HTTP status code 400 "Bad Request", and MUST NOT update the target document
 as a result of the request.
 
-The LRS MAY order JSON properties in any order when merging documents. If an AP needs to delete
+If an AP needs to delete
 a property, it SHOULD use a PUT request to replace the whole document as described below. 
 
 <a name="stateapi"/> 
