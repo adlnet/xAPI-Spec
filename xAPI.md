@@ -1663,6 +1663,9 @@ in the statement PUT call. See section 6.3 for more details.
 - 412 Precondition Failed - Indicates an error condition due to a failure of 
 a precondition posted with the request, in the case of state and profile API 
 calls. See section 6.3 for more details.
+- 413 Request Entity Too Large - Indicates that the LRS has rejected the statement or document
+because it's size is larger than the maximum allowed by the LRS. The LRS is free to
+choose any limit and MAY vary this limit on any basis e.g. per authority.
 - 500 Internal Server Error - General error condition, typically indicating an 
 unexpected exception in processing on the server.
 
