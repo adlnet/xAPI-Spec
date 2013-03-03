@@ -133,12 +133,11 @@ OSD, Training Readiness & Strategy (TRS)
 <table>
 	<tr><th>Name:</th><th>Organization:</th></tr>
 	<tr><td>Aaron Silvers</td><td>ADL</td></tr>
-	<tr><td>Jonathan Poltrack</td><td>ADL</td></tr>
 	<tr><td>Al Bejcek</td><td>NetDimensions</td></tr>
 	<tr><td>Ali Shahrazad</td><td>SaLTBOX</td></tr>
 	<tr><td>Andrew Downes</td><td>Epic</td></tr>
 	<tr><td>Andy Johnson</td><td>ADL</td></tr>
-    <tr><td>Andy Whitaker</td><td>Rustici Software</td></tr>
+	<tr><td>Andy Whitaker</td><td>Rustici Software</td></tr>
 	<tr><td>Anthony Altieri</td><td>American Red Cross</td></tr>
 	<tr><td>Anto Valan</td><td>Omnivera Learning Solutions</td></tr>
 	<tr><td>Avron Barr</td><td>Aldo Ventures, Inc.</td></tr>
@@ -160,6 +159,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Jeremy Brockman</td><td> </td></tr>
 	<tr><td>Joe Gorup</td><td>CourseAvenue</td></tr>
 	<tr><td>John Kleeman</td><td>Questionmark</td></tr>
+	<tr><td>Jonathan Poltrack</td><td>ADL</td></tr>
 	<tr><td>Kris Miller</td><td>edcetra Training</td></tr>
 	<tr><td>Kris Rockwell</td><td>Hybrid Learning Systems</td></tr>
 	<tr><td>Lang Holloman</td><td> </td></tr>
