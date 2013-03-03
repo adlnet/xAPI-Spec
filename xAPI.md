@@ -203,8 +203,9 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 * [Authorization](#def-authorization)
 * [Community of Practice](#def-community-of-practice)
 * [Experience API (xAPI)](#def-experience-api)
+* [Extension Profile](#def-extension-profile)
 * [Immutable](#def-immutable)
-* [Inverse Functional Identifier](#def-inverse-functinal-identifier)
+* [Inverse Functional Identifier](#def-inverse-functional-identifier)
 * [Learning Activity (activity)](#def-learning-activity)
 * [Learning Activity Provider](#def-activity-provider)
 * [Learning Management System (LMS)](#def-learning-management-system)
@@ -236,13 +237,17 @@ __Experience API (xAPI)__: The API defined in this document, the product of
 and retrieve extensible learning records, learner and learning experience profiles, 
 regardless of the platform used.  
 
+<a name="def-extension-profile" />
+__Extension Profile__: An extension profile is a collection of verbs, activity types, extensions
+and/or documents used to support a particular use or community of practice. 
+
 <a name ="def-immutable" />
 __Immutable__:  Adjective used  describe things which cannot be changed. With 
 some exceptions, statements in the xAPI are immutable. This ensures that when 
 statements are shared between LRS, multiple copies of the statement remain
 the same.
 
-<a name="def-inverse-functinal-identifier" />
+<a name="def-inverse-functional-identifier" />
 __Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
  Used to identify Agents and Groups. See section 4.1.2
 
