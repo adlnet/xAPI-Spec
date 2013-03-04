@@ -1127,7 +1127,7 @@ The time at which a statement about an experience took place.
 #####Requirements
 A timestamp:
 
-* MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601%22%20%5Cl%20%22Durations);
+* MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
 * SHOULD include the timezone;
 * MAY be a moment in the future, to denote a deadline for planned learning, provided it is included inside a subStatement;
 * SHOULD be the current or a past time when it is outside of a subStatement.
@@ -1146,10 +1146,16 @@ A timestamp in a statement related to learning that occurs outside of the system
 The time at which a statement is stored by the LRS.
 
 #####Requirements
+Stored time:
 
-* MUST be formatted according to ISO 8601.
+* MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
+* SHOULD include the timezone;
+* MAY be a moment in the future, to denote a deadline for planned learning, provided it is included inside a subStatement;
+* SHOULD be the current or a past time when it is outside of a subStatement.
 
+A reporting tool:
 
+* MAY consider stored time from different timezones that represent the same logical time to be equivalent.
 
 <a name="authority"/> 
 ### 4.1.9 Authority:
