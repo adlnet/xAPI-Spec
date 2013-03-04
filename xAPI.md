@@ -43,11 +43,12 @@
 [7.0. Data Transfer (REST)](#datatransfer)  
     [7.1. Error Codes](#errorcodes)  
     [7.2. Statement API](#stmtapi)  
-    [7.3. State API](#stateapi)  
-    [7.4. Activity Profile API](#actprofapi)  
-    [7.5. Agent Profile API](#agentprofapi)  
-    [7.6. Cross Origin Requests](#cors)  
-    [7.7. Validation](#validation)  
+    [7.3. Document APIs](#docapis)  
+    [7.4. State API](#stateapi)  
+    [7.5. Activity Profile API](#actprofapi)  
+    [7.6. Agent Profile API](#agentprofapi)  
+    [7.7. Cross Origin Requests](#cors)  
+    [7.8. Validation](#validation)  
 [Appendix A: Bookmarklet](#AppendixA)  
 [Appendix B: Creating an "IE Mode" Request](#AppendixB)  
 [Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
@@ -1402,6 +1403,7 @@ the form of documents, which may be related to an Activity, Agent, or combinatio
 Note that in the REST binding, State is a document not an object. ID is stored in the URL, 
 updated is HTTP header information, and contents is the HTTP document itself.  
 
+
 <a name="misclangmap"/>
 ## 5.2 Language Map
 A language map is a dictionary where the key is a 
@@ -1915,8 +1917,88 @@ statement will not mention "Ben" or "explosives training", but when fetching sta
 with an actor filter of "Ben" or an activity filter of "explosives training", both
 statements will be returned.
 
+<a name="docapis"/> 
+## 7.3 Document APIs:
+The 3 Document APIs provide <a href="#miscdocument">document</a> storage for learning activity providers
+and agents. The details of each API are found in the following sections, and the information in this section 
+applies to all three APIs.
+
+###POST to store application/json arrays of variables
+<table>
+	<tr>
+		<th>API</th>
+		<th>Method</th>
+		<th>Endpoint</th>
+		<th>Example</th>
+	</tr>
+	<tr>
+		<td>State API</td>
+		<td>POST</td>
+		<td>activities/state</td>
+		<td>http://example.com/XAPI/activities/state</td>
+	</tr>
+	<tr>
+		<td>Activity Profile API</td>
+		<td>POST</td>
+		<td>activities/profile</td>
+		<td>http://example.com/XAPI/activities/profile</td>
+	</tr>
+	<tr>
+		<td>Agent Profile API</td>
+		<td>POST</td>
+		<td>agent/profile</td>
+		<td>http://example.com/XAPI/agents/profile</td>
+	</tr>
+</table>
+
+APs MAY use Documents of content type "application/json" to store sets of variables. For example a document 
+contains:
+
+```
+{
+	"x" : "foo",
+	"y" : "bar"
+}
+```  
+When an LRS receives a POST request with content type application/json for an existing document also of
+content type application/json, it MUST merge the posted document with the existing document. 
+In this context merge is defined as:
+* de-serialize the objects represented by each document
+* for each property directly defined on the object being posted, set the corresponding
+property on the existing object equal to the value from the posted object.    
+* store any valid json serialization of the existing object as the document referenced in the request
+
+Note that only top-level properties are merged, even if a top-level property is an object
+the entire contents of each original property are replaced with the entire contents of
+each new property.
+
+For example, this document is POSTed with the same id as the existing 
+document above:
+
+```
+{
+	"x" : "bash",
+	"z" : "faz"
+}
+```  
+the resulting document stored in the LRS is:
+```
+{
+	"x" : "bash",
+	"y" : "bar",
+	"z" : "faz"
+}
+```
+If either the original document or the document being posted do not have an Content-Type:
+of "application/json", or if either document can not be parsed as JSON objects, the LRS MUST
+respond with HTTP status code 400 "Bad Request", and MUST NOT update the target document
+as a result of the request.
+
+If an AP needs to delete
+a property, it SHOULD use a PUT request to replace the whole document as described below. 
+
 <a name="stateapi"/> 
-## 7.3 State API:
+## 7.4 State API:
 Generally, this is a scratch area for activity providers that do not have their 
 own internal storage, or need to persist state across devices. When using the 
 state API, be aware of how the stateId parameter affects the semantics of the 
@@ -1925,7 +2007,7 @@ defined state document identified by "stateId". Otherwise, GET will return the
 available IDs, and DELETE will delete all state in the context given through the 
 other parameters.  
 
-### PUT | GET | DELETE activities/state
+### PUT | POST | GET | DELETE activities/state
 Example endpoint: http://example.com/XAPI/activities/state
 
 Stores, fetches, or deletes the document specified by the given stateId that 
@@ -1992,8 +2074,11 @@ Returns: 204 No Content
 		<td>The registration ID associated with this state.</td>
 	</tr>
 </table>
+
+
+
 <a name="actprofapi"/> 
-## 7.4 Activity Profile API:
+## 7.5 Activity Profile API:
 The Activity Profile API is much like the State API, allowing for arbitrary key 
 / document pairs to be saved which are related to an Activity. When using the 
 profile API for manipulating documents, be aware of how the profileId parameter
@@ -2054,7 +2139,7 @@ Returns: 200 OK - List of IDs
 </table>
 
 <a name="agentprofapi"/> 
-## 7.5 Agent Profile API:
+## 7.6 Agent Profile API:
 The Agent Profile API is much like the State API, allowing for arbitrary key / 
 document pairs to be saved which are related to an Agent. When using the 
 profile API for manipulating documents, be aware of how the profileId parameter 
@@ -2166,7 +2251,7 @@ Returns: 200 OK - List of IDs
 </table>  
 
 <a name="cors"/>
-## 7.6 Cross Origin Requests:
+## 7.7 Cross Origin Requests:
 One of the goals of the XAPI is to allow cross-domain tracking, and even though 
 XAPI seeks to enable tracking from applications other than browsers, browsers 
 still need to be supported. Internet Explorer 8 and 9 do not implement Cross 
@@ -2207,7 +2292,7 @@ than https, and both LRS and client should consider the security risks before ma
 to use this scheme. 
  
 <a name="validation"/> 
-## 7.7 Validation:
+## 7.8 Validation:
 The function of the LRS within the XAPI is to store and retrieve statements. 
 As long as it has sufficient information to perform these tasks, it is 
 expected that it does them. Validation of statements in the Experience API is 
