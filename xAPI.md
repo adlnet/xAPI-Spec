@@ -138,7 +138,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Ali Shahrazad</td><td>SaLTBOX</td></tr>
 	<tr><td>Andrew Downes</td><td>Epic</td></tr>
 	<tr><td>Andy Johnson</td><td>ADL</td></tr>
-    <tr><td>Andy Whitaker</td><td>Rustici Software</td></tr>
+	<tr><td>Andy Whitaker</td><td>Rustici Software</td></tr>
 	<tr><td>Anthony Altieri</td><td>American Red Cross</td></tr>
 	<tr><td>Anto Valan</td><td>Omnivera Learning Solutions</td></tr>
 	<tr><td>Avron Barr</td><td>Aldo Ventures, Inc.</td></tr>
@@ -199,6 +199,7 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 <a name="defintions"/> 
 # 3.0 Definitions  
 
+* [Activity](#def-activity)
 * [Authentication](#def-authentication)
 * [Authorization](#def-authorization)
 * [Community of Practice](#def-community-of-practice)
@@ -217,6 +218,9 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 * [Statement](#def-statement)
 * [Tin Can API (TCAPI)](#tcapi)
 * [URI](#def-uri)
+
+<a name="def-activity" />
+__Activity__: A thing with which to be interacted. E.g. a book, an e-learning course, a hike, a meeting.
 
 <a name="def-authentication" />
 __Authentication__: The concept of verifying the identity of a user or system. This 
