@@ -1,0 +1,51 @@
+CMI5 Profile
+============
+
+This document represents a very rough draft of items for the CMI5 profile.
+
+# Table of Contents
+[1.0. Revision History](#revhistory)  
+[2.0. Role of the CMI5 Profile](#role) 
+[3.0. Verbs](#verbs)  
+[4.0. Activity types](#activityTypes)
+[5.0. Extensions](#Extensions)  
+[5.1. Activity Definition Extensions](#activityExtensions)
+[5.2. Result Extensions](#resultExtensions) 
+[5.3. Context Extensions](#contextExtensions)  
+
+<a name="revhistory"/>  
+# 1.0 Revision History
+
+<a name="role"/>  
+# 2.0 Role of the CMI5 Profile
+
+<a name="verbs"/>  
+# 3.0. Verbs
+
+<a name="activityTypes"/>  
+# 4.0. Activity types
+
+<a name="Extensions"/>  
+# 5.0. Extensions
+
+<a name="activityExtensions"/>  
+## 5.1. Activity Definition Extensions
+
+<a name="resultExtensions"/>  
+## 5.2. Result Extensions
+<table>
+	<tr><th>Property URI</th><th>Type</th><th>Description</th></tr>
+	<tr>
+	  	<td>http://adlnet.gov/expapi/cmi5/extensions/result/progress</td>
+		<td>Score object. See <a href="https://github.com/adlnet/xAPI-Spec/blob/master/xAPI.md#4151-score">
+		section 4.1.5.1 of the specification document</a>.</td>
+		<td>The score of the agent in the activity in relation to the completion of the activity.
+		For example: page progress, completion of a task.</td>
+	</tr>
+</table>
+
+<a name="contextExtensions"/>  
+## 5.3. Context Extensions
+
+
+
