@@ -27,6 +27,7 @@
 		[4.1.8. Stored](#stored)  
 		[4.1.9. Authority](#authority)  
 		[4.1.10. Voided](#voided)  
+		[4.1.11. Attachments](#attachments)   
     [4.2. Retrieval of Statements](#retstmts)  
 [5.0. Miscellaneous Types](#misctypes)  
     [5.1. Document](#miscdocument)  
@@ -349,6 +350,12 @@ below.
 	<td>Indicates that the statement has been voided (see below)</td></tr>
 	<tr><td><a href="#version">version</a></td><td>String</td><td>false</td>
 	<td>API version the statement conforms to. Set by LRS.</td></tr>
+	<tr>
+		<td><a href="#attachments">attachments</a></td>
+		<td>Array of attachment objects</td>
+		<td>false</td>
+	    <td>Headers for attachments to the statement</td>
+	</tr>
 </table>  
 Aside from (potential or required) assignments of properties during initial 
 processing ("id", "authority", "stored", "timestamp"), and the special case of 
@@ -1263,6 +1270,95 @@ A reporting system...
 * SHOULD NOT show voided or voiding statements by default.
 
 See ["Statement References"](#stmtref) in section [4.1.4.3](#stmtasobj) for details about making references to other statements. 
+
+<a name="attachments"/>
+## 4.1.11 Attachments
+
+#####Rationale
+
+Sometimes an artifact providing evidence of a learning experience such as an audio clip (simulated communication with ATC
+for example), an image, or even a video may logically be an important part of a learning record. Also where a certificate
+has been granted as a result of an experience it should be possible to include an image of that certificate in the learning
+record.
+
+Since these attachments may lead to very large statements, it should be possible for a client to filter out attachments
+when retrieving statements.
+
+In order to allow systems receiving statements with attachments to examine the rest of the statement,
+and possibly decide to reject it, before receiving attachments, statements with attachments will be
+transmitted using a content-Type of multipart/mixed rather than in-lining the attachments. Attachments 
+will be placed at the end of such transmissions, though they are still logically part of the statements.
+
+Attachments
+
+#####Format:
+
+<table>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>usageType</td>
+		<td>URI</td>
+		<td>Identifies the usage of this attachment. For example: one expected use case
+		for attachments is to include a "completion certificate". A type URI corresponding
+		to this usage should be coined, and used with completion certificate attachments.</td>
+		<td>yes</td>
+	</tr>
+	<tr>
+		<td>display</td>
+		<td><a href="#misclangmap">Language Map</a></td>
+		<td>Display name (title) of this attachment.</td>
+		<td>yes</td>
+	</tr>
+	<tr>
+		<td>description</td>
+		<td><a href="#misclangmap">Language Map</a></td>
+		<td>A description of the attachment</td>
+		<td>no</td>
+	</tr>
+	<tr>
+		<td>content-Type</td>
+		<td><a href="https://www.ietf.org/rfc/rfc2046.txt?number=2046">Internet Media Type</a></td>
+		<td>The content type of the attachment.</td>
+		<td>yes</td>
+	</tr>
+	<tr>
+		<td>length</td>
+		<td>integer</td>
+		<td>The length of the attachment data in octets</td>
+		<td>yes</td>
+	</tr>
+	<tr>
+		<td>sha-2</td>
+		<td>base64</td>
+		<td>The SHA-2 hash of the attachment data. A minimum key size of 256 bits is recommended.</td>
+		<td>yes</td>
+	</tr>
+	<tr>
+		<td>fileUrl</td>
+		<td>URL</td>
+		<td>A URL at which the attachment data may be retrieved, or from which it used to be retrievable. </td>
+		<td>no</td>
+	</tr>
+</table>
+
+#####Transmission Format:
+
+Statement streams that include attachments will be of type "multipart/mixed" rather than "application/json".
+The first part of the multipart document contains the statements themselves, with type "applicaton/json".
+Each additional part contains the raw data for an attachment. The raw data of an attachment may be matched
+with the attachment header in a statement by comparing the SHA-2 of the raw data to the SHA-2 declared in the
+header.
+
+Requirements for the LRS:
+* MUST accept statements via the statements resource via PUT or POST that contain attachments in the Transmission Format described above
+* MUST reject statements having attachments that do not contain a fileUrl, and do not have a hash matching any raw data received
+* MUST include attachments in the Transmission Format described above when requested by the client (see query API)
+* MUST NOT pull statements from another LRS without requesting attacments
+* MUST NOT push statements into another LRS without including attachments
+* MAY reject statements, or batches of statements that are larger than the LRS is configured to allow
+
+Requirements for the client:
+* MAY send statements with attachments as described above
 
 <a name="retstmts"/> 
 ## 4.2 Retrieval of Statements:
