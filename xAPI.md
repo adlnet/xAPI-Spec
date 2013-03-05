@@ -929,61 +929,57 @@ comment could be issued on the original statement, using a new statement:
 
 <a name="result"/>
 ### 4.1.5 Result:
-The result field represents a measured outcome related to the statement, such 
-as completion, success, or score. It is also extendible to allow for arbitrary 
-measurements to be included. Result and all its properties are optional properties
-which the Learning Activity Provider may or may not include in the statement.
+####Description: 
 
-<table>
+An optional field that represents a measured outcome related to the statement in which it is included.
+
+#####Example
+
+A result can be completion, success, score, etc. 
+The 'Result' field may also contain arbitrary measurements if needed by the Learning Activity Provider.
+
+<table border="1">
+<tr><th>property</th><th>type</th><th>description</th></tr>
+<td>score</td>
+<td><a href ="#Score">Score object</a></td>
+<td>The score of the agent in relation to the success or quality of the experience. </a></td>
+</tr>
+<tr><td>success</td><td>Boolean</td><td>Was the learning activity successful?</td>
+</tr>
+<tr><td>completion</td><td>Boolean</td><td>Was the learning activity completed?</td>
+</tr>
+<tr>
+<td>response</td><td>String</td><td>A response appropriately formatted for the given activity.</td>
+</tr>
+<tr>
+<td>duration</td><td>Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601%22%20%5Cl%20%22Durations">ISO 8601</a> with  a precision of 0.01 seconds</td><td>Period of time over which the statement occurred.</td>
+</tr>
+<tr>
+<td>Extensions</td><td><a href="#miscext">Extensions object</a></td><td>A map of other properties as needed.</td>
+</tr>
+</table> 
+<a name="Score"/>
+####4.1.5.1 Score property
+
+#####Description
+An optional numeric field that represents the outcome of a graded activity achieved by an agent.
+
+
+The table below defines the score object. 
+<table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr>
-		<td>score</td>
-		<td>Score object. See <a href="#score">section 4.1.5.1</a>.</td>
-		<td>The score of the agent in relation to the success or quality of the experience.
-		For example: quiz scores, success at a task. This property SHOULD NOT be used for
-		scores relating to progress or completion. Consider using an extension from an extension
-		profile instead.
-		</td>
-	</tr>
-	<tr>
-		<td>success</td>
-		<td>Boolean</td>
-		<td>Was the learning activity successful?</td>
-	</tr>
-	<tr>
-		<td>completion</td>
-		<td>Boolean</td>
-		<td>Was the learning activity completed?</td>
-	</tr>
-	<tr>
-		<td>response</td>
-		<td>String</td>
-		<td>A response appropriately formatted for the given activity.</td>
-	</tr>
-	<tr>
-		<td>duration</td>
-		<td>Formatted according 
-			to <a href="https://en.wikipedia.org/wiki/ISO_8601%22%20%5Cl%20%22Durations">ISO 8601</a>, 
-			with a precision of 0.01 seconds.</td>
-		<td>Period of time over which the statement occurred.</td>
-	</tr>
-	<tr>
-		<td><a href="#miscext">extensions</a></td>
-		<td>Extensions object</td>
-		<td>A map of other properties as needed (see <a href="#miscext">extensions</a>)</td>
-	</tr>
+	<tr><td>scaled</td><td>Decimal number between -1 and 1, inclusive</td><td>Cf. 'cmi.score.scaled' in SCORM 2004 4th Edition</td></tr>
+	<tr><td>raw</td><td>Decimal number between min and max (if present, otherwise unrestricted), inclusive</td><td>Cf. 'cmi.score.raw'</td></tr>
+	<tr><td>min</td><td>Decimal number less than max (if present)</td><td>Cf. 'cmi.score.min'</td></tr>
+	<tr><td>max</td><td>Decimal number greater than min (if present)</td><td>Cf. 'cmi.score.max'</td></tr>
 </table>
-<a name="score"/> 
-#### 4.1.5.1 Score
-The table below defines the score object. All properties are optional, but statement issuers SHOULD
-use a scaled score rather than a raw score for scores which are intended to be measured as a percentage.
-<table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>scaled</td><td>Decimal number between -1 and 1, inclusive</td><td>From cmi.score.scaled in SCORM 2004 4th Edition</td></tr>
-	<tr><td>raw</td><td>Decimal number between min and max (if present, otherwise unrestricted), inclusive</td><td>cmi.score.raw</td></tr>
-	<tr><td>min</td><td>Decimal number less than max (if present)</td><td>cmi.score.min</td></tr>
-	<tr><td>max</td><td>Decimal number greater than min (if present)</td><td>cmi.score.max</td></tr>
-</table>
+
+#####Details
+
+The Score property...
+
+- MUST be 'scaled' (not 'raw') if it is intended to be measured as a percentage;
+- SHOULD NOT be used for scores relating to progress or completion. Consider using an extension from an extension profile instead.
 
 <a name="context"/>
 ###4.1.6 Context
