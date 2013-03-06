@@ -978,7 +978,7 @@ The table below defines the score object.
 
 The Score property...
 
-- MUST be 'scaled' (not 'raw') if it is intended to be measured as a percentage;
+- SHOULD include 'scaled' if a logical percent based score is known;
 - SHOULD NOT be used for scores relating to progress or completion. Consider using an extension from an extension profile instead.
 
 <a name="context"/>
