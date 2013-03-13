@@ -208,7 +208,6 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 * [Experience API (xAPI)](#def-experience-api)
 * [Immutable](#def-immutable)
 * [Inverse Functional Identifier](#def-inverse-functinal-identifier)
-* [Learning Activity (activity)](#def-learning-activity)
 * [Learning Activity Provider](#def-activity-provider)
 * [Learning Management System (LMS)](#def-learning-management-system)
 * [Learning Record Store (LRS)](#def-learning-record-store)
@@ -222,7 +221,11 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 * [URI](#def-uri)
 
 <a name="def-activity" />
-__Activity__: A thing with which to be interacted. E.g. a book, an e-learning course, a hike, a meeting.
+__Activity__: A thing with which to be interacted. An activty can be a unit of 
+instruction, experience, or performance that is to be tracked in meaningful combination with a verb. 
+Interpretation of ‘Activity’ is broad, meaning that activities can even be tangible objects. In the statement
+“Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the XAPI statement. 
+E.g. a book, an e-learning course, a hike, a meeting.
 
 <a name="def-authentication" />
 __Authentication__: The concept of verifying the identity of a user or system. This 
@@ -251,10 +254,6 @@ the same.
 <a name="def-inverse-functinal-identifier" />
 __Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
  Used to identify Agents and Groups. See section 4.1.2
-
-<a name="def-learning-activity" />
-__Learning Activity (activity)__: Like a SCORM Activity, a unit of instruction, experience, or performance that is to be tracked in meaningful combination with a verb. 
-Interpretation of ‘Activity’ is broad, meaning that activities can even be tangible objects. “Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the XAPI statement, while for Anna herself the activity is the act of baking the cake.
 
 <a name="def-activity-provider" />
 __Learning Activity Provider (AP)__: The software object that is communicating with 
