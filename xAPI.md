@@ -1835,7 +1835,7 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 	<tr><td>verb</td><td>String</td><td> </td>
 		<td>Filter, only return statements matching the specified verb id.</td>
 	</tr>
-	<tr><td>object</td><td>Activity, Agent</td><td> </td>
+	<tr><td>object</td><td>Activity, Agent (JSON)</td><td> </td>
 		<td>Filter, only return statements matching the specified object 
 			(activity or agent/group).<br/><br/>
 			Object is an activity: return statements with an object that is an 
