@@ -1210,10 +1210,9 @@ When issuing a statement that voids another, the object of that voiding statemen
 
 Upon receiving a statement that voids another, the LRS...
 
-* MUST mark the (now voided) statement using the “voided” field;
 * MAY roll back any changes to activity or agent definitions which were introduced by the statement that was just voided;
 * SHOULD return a descriptive error if the target statement cannot be found;
-* MUST report the voided statement as usual through the Experience API when queried (see note in Details below).
+* MUST NOT report the voided statement when queried, but MUST report the voiding statement (see 7.2 Statement API).
 
 
 #####Example
@@ -1237,7 +1236,7 @@ Upon receiving a statement that voids another, the LRS...
 }
 ```  
 
-This example statement voids a previous statement which it identifies with the statement ID "e05aa883-acaf-40ad-bf54-02c8ce485fb0". That statement will now be marked by setting it's “voided” flag to true. 
+This example statement voids a previous statement which it identifies with the statement ID "e05aa883-acaf-40ad-bf54-02c8ce485fb0".
 
 
 #####Details
@@ -1966,10 +1965,17 @@ statement refers to any statement included in another statement's object propert
 as a sub-statement or statementRef.
 
 For example, consider the statement "Ben passed explosives training", and a follow up
-statement: "Administrator voided \<statementRef to original statement\>". The voiding
+statement: "Andrew confirmed \<statementRef to original statement\>". The follow up
 statement will not mention "Ben" or "explosives training", but when fetching statements
 with an actor filter of "Ben" or an activity filter of "explosives training", both
 statements will be returned.
+
+###Voided statements
+The LRS MUST not return any statement which has been voided, unless that statement has been
+requested by statementId. The LRS MUST still return any statements targetting the voided statement,
+unless they themselves have been voided. This includes the voiding statement, which cannot be voided.
+Reporting tools can identify the presence and statementId of any voided statements by the target of the voiding 
+statement. Reporting tools wishing to retrieve voided statements SHOULD request these individually by statementId.
 
 <a name="docapis"/> 
 ## 7.3 Document APIs:
