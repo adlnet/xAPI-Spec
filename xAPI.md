@@ -27,6 +27,7 @@
 		[4.1.8. Stored](#stored)  
 		[4.1.9. Authority](#authority)  
 		[4.1.10. Voided](#voided)  
+		[4.1.11. Attachments](#attachments)   
     [4.2. Retrieval of Statements](#retstmts)  
 [5.0. Miscellaneous Types](#misctypes)  
     [5.1. Document](#miscdocument)  
@@ -42,11 +43,12 @@
 [7.0. Data Transfer (REST)](#datatransfer)  
     [7.1. Error Codes](#errorcodes)  
     [7.2. Statement API](#stmtapi)  
-    [7.3. State API](#stateapi)  
-    [7.4. Activity Profile API](#actprofapi)  
-    [7.5. Agent Profile API](#agentprofapi)  
-    [7.6. Cross Origin Requests](#cors)  
-    [7.7. Validation](#validation)  
+    [7.3. Document APIs](#docapis)  
+    [7.4. State API](#stateapi)  
+    [7.5. Activity Profile API](#actprofapi)  
+    [7.6. Agent Profile API](#agentprofapi)  
+    [7.7. Cross Origin Requests](#cors)  
+    [7.8. Validation](#validation)  
 [Appendix A: Bookmarklet](#AppendixA)  
 [Appendix B: Creating an "IE Mode" Request](#AppendixB)  
 [Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
@@ -133,12 +135,11 @@ OSD, Training Readiness & Strategy (TRS)
 <table>
 	<tr><th>Name:</th><th>Organization:</th></tr>
 	<tr><td>Aaron Silvers</td><td>ADL</td></tr>
-	<tr><td>Jonathan Poltrack</td><td>ADL</td></tr>
 	<tr><td>Al Bejcek</td><td>NetDimensions</td></tr>
 	<tr><td>Ali Shahrazad</td><td>SaLTBOX</td></tr>
 	<tr><td>Andrew Downes</td><td>Epic</td></tr>
 	<tr><td>Andy Johnson</td><td>ADL</td></tr>
-    <tr><td>Andy Whitaker</td><td>Rustici Software</td></tr>
+	<tr><td>Andy Whitaker</td><td>Rustici Software</td></tr>
 	<tr><td>Anthony Altieri</td><td>American Red Cross</td></tr>
 	<tr><td>Anto Valan</td><td>Omnivera Learning Solutions</td></tr>
 	<tr><td>Avron Barr</td><td>Aldo Ventures, Inc.</td></tr>
@@ -160,6 +161,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Jeremy Brockman</td><td> </td></tr>
 	<tr><td>Joe Gorup</td><td>CourseAvenue</td></tr>
 	<tr><td>John Kleeman</td><td>Questionmark</td></tr>
+	<tr><td>Jonathan Poltrack</td><td>ADL</td></tr>
 	<tr><td>Kris Miller</td><td>edcetra Training</td></tr>
 	<tr><td>Kris Rockwell</td><td>Hybrid Learning Systems</td></tr>
 	<tr><td>Lang Holloman</td><td> </td></tr>
@@ -199,13 +201,13 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 <a name="defintions"/> 
 # 3.0 Definitions  
 
+* [Activity](#def-activity)
 * [Authentication](#def-authentication)
 * [Authorization](#def-authorization)
 * [Community of Practice](#def-community-of-practice)
 * [Experience API (xAPI)](#def-experience-api)
 * [Immutable](#def-immutable)
 * [Inverse Functional Identifier](#def-inverse-functinal-identifier)
-* [Learning Activity (activity)](#def-learning-activity)
 * [Learning Activity Provider](#def-activity-provider)
 * [Learning Management System (LMS)](#def-learning-management-system)
 * [Learning Record Store (LRS)](#def-learning-record-store)
@@ -217,6 +219,13 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 * [Statement](#def-statement)
 * [Tin Can API (TCAPI)](#tcapi)
 * [URI](#def-uri)
+
+<a name="def-activity" />
+__Activity__: A thing with which to be interacted. An activty can be a unit of 
+instruction, experience, or performance that is to be tracked in meaningful combination with a verb. 
+Interpretation of ‘Activity’ is broad, meaning that activities can even be tangible objects. In the statement
+“Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the XAPI statement. 
+E.g. a book, an e-learning course, a hike, a meeting.
 
 <a name="def-authentication" />
 __Authentication__: The concept of verifying the identity of a user or system. This 
@@ -245,10 +254,6 @@ the same.
 <a name="def-inverse-functinal-identifier" />
 __Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
  Used to identify Agents and Groups. See section 4.1.2
-
-<a name="def-learning-activity" />
-__Learning Activity (activity)__: Like a SCORM Activity, a unit of instruction, experience, or performance that is to be tracked in meaningful combination with a verb. 
-Interpretation of ‘Activity’ is broad, meaning that activities can even be tangible objects. “Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the XAPI statement, while for Anna herself the activity is the act of baking the cake.
 
 <a name="def-activity-provider" />
 __Learning Activity Provider (AP)__: The software object that is communicating with 
@@ -345,6 +350,12 @@ below.
 	<td>Indicates that the statement has been voided (see below)</td></tr>
 	<tr><td><a href="#version">version</a></td><td>String</td><td>false</td>
 	<td>API version the statement conforms to. Set by LRS.</td></tr>
+	<tr>
+		<td><a href="#attachments">attachments</a></td>
+		<td>Array of attachment objects</td>
+		<td>false</td>
+	    <td>Headers for attachments to the statement</td>
+	</tr>
 </table>  
 Aside from (potential or required) assignments of properties during initial 
 processing ("id", "authority", "stored", "timestamp"), and the special case of 
@@ -424,7 +435,7 @@ identifiers are marked with a *."
 	</tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox">mbox*</a></td>
-		<td>URI in the form "mailto:email address".</td> 
+		<td>A mailto URI. These are in the form "mailto:email address", but the local part of the email address must be URI encoded.</td> 
 		<td>Note: Only emails that 
 			have only ever been and will ever be assigned to this Agent, 
 			but no others, should be used for this property and mbox_sha1sum.</td>
@@ -917,61 +928,57 @@ comment could be issued on the original statement, using a new statement:
 
 <a name="result"/>
 ### 4.1.5 Result:
-The result field represents a measured outcome related to the statement, such 
-as completion, success, or score. It is also extendible to allow for arbitrary 
-measurements to be included. Result and all its properties are optional properties
-which the Learning Activity Provider may or may not include in the statement.
+####Description: 
 
-<table>
+An optional field that represents a measured outcome related to the statement in which it is included.
+
+#####Example
+
+A result can be completion, success, score, etc. 
+The 'Result' field may also contain arbitrary measurements if needed by the Learning Activity Provider.
+
+<table border="1">
+<tr><th>property</th><th>type</th><th>description</th></tr>
+<td>score</td>
+<td><a href ="#Score">Score object</a></td>
+<td>The score of the agent in relation to the success or quality of the experience. </a></td>
+</tr>
+<tr><td>success</td><td>Boolean</td><td>Was the learning activity successful?</td>
+</tr>
+<tr><td>completion</td><td>Boolean</td><td>Was the learning activity completed?</td>
+</tr>
+<tr>
+<td>response</td><td>String</td><td>A response appropriately formatted for the given activity.</td>
+</tr>
+<tr>
+<td>duration</td><td>Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601%22%20%5Cl%20%22Durations">ISO 8601</a> with  a precision of 0.01 seconds</td><td>Period of time over which the statement occurred.</td>
+</tr>
+<tr>
+<td>Extensions</td><td><a href="#miscext">Extensions object</a></td><td>A map of other properties as needed.</td>
+</tr>
+</table> 
+<a name="Score"/>
+####4.1.5.1 Score property
+
+#####Description
+An optional numeric field that represents the outcome of a graded activity achieved by an agent.
+
+
+The table below defines the score object. 
+<table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr>
-		<td>score</td>
-		<td>Score object. See <a href="#score">section 4.1.5.1</a>.</td>
-		<td>The score of the agent in relation to the success or quality of the experience.
-		For example: quiz scores, success at a task. This property SHOULD NOT be used for
-		scores relating to progress or completion. Consider using an extension from an extension
-		profile instead.
-		</td>
-	</tr>
-	<tr>
-		<td>success</td>
-		<td>Boolean</td>
-		<td>Was the learning activity successful?</td>
-	</tr>
-	<tr>
-		<td>completion</td>
-		<td>Boolean</td>
-		<td>Was the learning activity completed?</td>
-	</tr>
-	<tr>
-		<td>response</td>
-		<td>String</td>
-		<td>A response appropriately formatted for the given activity.</td>
-	</tr>
-	<tr>
-		<td>duration</td>
-		<td>Formatted according 
-			to <a href="https://en.wikipedia.org/wiki/ISO_8601%22%20%5Cl%20%22Durations">ISO 8601</a>, 
-			with a precision of 0.01 seconds.</td>
-		<td>Period of time over which the statement occurred.</td>
-	</tr>
-	<tr>
-		<td><a href="#miscext">extensions</a></td>
-		<td>Extensions object</td>
-		<td>A map of other properties as needed (see <a href="#miscext">extensions</a>)</td>
-	</tr>
+	<tr><td>scaled</td><td>Decimal number between -1 and 1, inclusive</td><td>Cf. 'cmi.score.scaled' in SCORM 2004 4th Edition</td></tr>
+	<tr><td>raw</td><td>Decimal number between min and max (if present, otherwise unrestricted), inclusive</td><td>Cf. 'cmi.score.raw'</td></tr>
+	<tr><td>min</td><td>Decimal number less than max (if present)</td><td>Cf. 'cmi.score.min'</td></tr>
+	<tr><td>max</td><td>Decimal number greater than min (if present)</td><td>Cf. 'cmi.score.max'</td></tr>
 </table>
-<a name="score"/> 
-#### 4.1.5.1 Score
-The table below defines the score object. All properties are optional, but statement issuers SHOULD
-use a scaled score rather than a raw score for scores which are intended to be measured as a percentage.
-<table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>scaled</td><td>Decimal number between -1 and 1, inclusive</td><td>From cmi.score.scaled in SCORM 2004 4th Edition</td></tr>
-	<tr><td>raw</td><td>Decimal number between min and max (if present, otherwise unrestricted), inclusive</td><td>cmi.score.raw</td></tr>
-	<tr><td>min</td><td>Decimal number less than max (if present)</td><td>cmi.score.min</td></tr>
-	<tr><td>max</td><td>Decimal number greater than min (if present)</td><td>cmi.score.max</td></tr>
-</table>
+
+#####Details
+
+The Score property...
+
+- SHOULD include 'scaled' if a logical percent based score is known;
+- SHOULD NOT be used for scores relating to progress or completion. Consider using an extension from an extension profile instead.
 
 <a name="context"/>
 ###4.1.6 Context
@@ -1115,7 +1122,7 @@ The time at which a statement about an experience took place.
 #####Requirements
 A timestamp:
 
-* MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601%22%20%5Cl%20%22Durations);
+* MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
 * SHOULD include the timezone;
 * MAY be a moment in the future, to denote a deadline for planned learning, provided it is included inside a subStatement;
 * SHOULD be the current or a past time when it is outside of a subStatement.
@@ -1134,10 +1141,16 @@ A timestamp in a statement related to learning that occurs outside of the system
 The time at which a statement is stored by the LRS.
 
 #####Requirements
+Stored time:
 
-* MUST be formatted according to ISO 8601.
+* MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
+* SHOULD include the timezone;
+* MAY be a moment in the future, to denote a deadline for planned learning, provided it is included inside a subStatement;
+* SHOULD be the current or a past time when it is outside of a subStatement.
 
+A reporting tool:
 
+* MAY consider stored time from different timezones that represent the same logical time to be equivalent.
 
 <a name="authority"/> 
 ### 4.1.9 Authority:
@@ -1260,6 +1273,95 @@ A reporting system...
 
 See ["Statement References"](#stmtref) in section [4.1.4.3](#stmtasobj) for details about making references to other statements. 
 
+<a name="attachments"/>
+## 4.1.11 Attachments
+
+#####Rationale
+
+Sometimes an artifact providing evidence of a learning experience such as an audio clip (simulated communication with ATC
+for example), an image, or even a video may logically be an important part of a learning record. Also where a certificate
+has been granted as a result of an experience it should be possible to include an image of that certificate in the learning
+record.
+
+Since these attachments may lead to very large statements, it should be possible for a client to filter out attachments
+when retrieving statements.
+
+In order to allow systems receiving statements with attachments to examine the rest of the statement,
+and possibly decide to reject it, before receiving attachments, statements with attachments will be
+transmitted using a content-Type of multipart/mixed rather than in-lining the attachments. Attachments 
+will be placed at the end of such transmissions, though they are still logically part of the statements.
+
+Attachments
+
+#####Format:
+
+<table>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>usageType</td>
+		<td>URI</td>
+		<td>Identifies the usage of this attachment. For example: one expected use case
+		for attachments is to include a "completion certificate". A type URI corresponding
+		to this usage should be coined, and used with completion certificate attachments.</td>
+		<td>yes</td>
+	</tr>
+	<tr>
+		<td>display</td>
+		<td><a href="#misclangmap">Language Map</a></td>
+		<td>Display name (title) of this attachment.</td>
+		<td>yes</td>
+	</tr>
+	<tr>
+		<td>description</td>
+		<td><a href="#misclangmap">Language Map</a></td>
+		<td>A description of the attachment</td>
+		<td>no</td>
+	</tr>
+	<tr>
+		<td>content-Type</td>
+		<td><a href="https://www.ietf.org/rfc/rfc2046.txt?number=2046">Internet Media Type</a></td>
+		<td>The content type of the attachment.</td>
+		<td>yes</td>
+	</tr>
+	<tr>
+		<td>length</td>
+		<td>integer</td>
+		<td>The length of the attachment data in octets</td>
+		<td>yes</td>
+	</tr>
+	<tr>
+		<td>sha-2</td>
+		<td>base64</td>
+		<td>The SHA-2 hash of the attachment data. A minimum key size of 256 bits is recommended.</td>
+		<td>yes</td>
+	</tr>
+	<tr>
+		<td>fileUrl</td>
+		<td>URL</td>
+		<td>A URL at which the attachment data may be retrieved, or from which it used to be retrievable. </td>
+		<td>no</td>
+	</tr>
+</table>
+
+#####Transmission Format:
+
+Statement streams that include attachments will be of type "multipart/mixed" rather than "application/json".
+The first part of the multipart document contains the statements themselves, with type "applicaton/json".
+Each additional part contains the raw data for an attachment. The raw data of an attachment may be matched
+with the attachment header in a statement by comparing the SHA-2 of the raw data to the SHA-2 declared in the
+header.
+
+Requirements for the LRS:
+* MUST accept statements via the statements resource via PUT or POST that contain attachments in the Transmission Format described above
+* MUST reject statements having attachments that do not contain a fileUrl, and do not have a hash matching any raw data received
+* MUST include attachments in the Transmission Format described above when requested by the client (see query API)
+* MUST NOT pull statements from another LRS without requesting attacments
+* MUST NOT push statements into another LRS without including attachments
+* MAY reject statements, or batches of statements that are larger than the LRS is configured to allow
+
+Requirements for the client:
+* MAY send statements with attachments as described above
+
 <a name="retstmts"/> 
 ## 4.2 Retrieval of Statements:
 A collection of statements can be retrieved by performing a query on the "statements" 
@@ -1301,6 +1403,7 @@ the form of documents, which may be related to an Activity, Agent, or combinatio
 </table>
 Note that in the REST binding, State is a document not an object. ID is stored in the URL, 
 updated is HTTP header information, and contents is the HTTP document itself.  
+
 
 <a name="misclangmap"/>
 ## 5.2 Language Map
@@ -1663,6 +1766,10 @@ in the statement PUT call. See section 6.3 for more details.
 - 412 Precondition Failed - Indicates an error condition due to a failure of 
 a precondition posted with the request, in the case of state and profile API 
 calls. See section 6.3 for more details.
+- 413 Request Entity Too Large - Indicates that the LRS has rejected the statement or document
+because it's size is larger than the maximum allowed by the LRS. The LRS is free to
+choose any limit and MAY vary this limit on any basis e.g. per authority, but
+MUST be configurable to accept statements of any size.
 - 500 Internal Server Error - General error condition, typically indicating an 
 unexpected exception in processing on the server.
 
@@ -1815,8 +1922,88 @@ statement will not mention "Ben" or "explosives training", but when fetching sta
 with an actor filter of "Ben" or an activity filter of "explosives training", both
 statements will be returned.
 
+<a name="docapis"/> 
+## 7.3 Document APIs:
+The 3 Document APIs provide <a href="#miscdocument">document</a> storage for learning activity providers
+and agents. The details of each API are found in the following sections, and the information in this section 
+applies to all three APIs.
+
+###POST to store application/json arrays of variables
+<table>
+	<tr>
+		<th>API</th>
+		<th>Method</th>
+		<th>Endpoint</th>
+		<th>Example</th>
+	</tr>
+	<tr>
+		<td>State API</td>
+		<td>POST</td>
+		<td>activities/state</td>
+		<td>http://example.com/XAPI/activities/state</td>
+	</tr>
+	<tr>
+		<td>Activity Profile API</td>
+		<td>POST</td>
+		<td>activities/profile</td>
+		<td>http://example.com/XAPI/activities/profile</td>
+	</tr>
+	<tr>
+		<td>Agent Profile API</td>
+		<td>POST</td>
+		<td>agent/profile</td>
+		<td>http://example.com/XAPI/agents/profile</td>
+	</tr>
+</table>
+
+APs MAY use Documents of content type "application/json" to store sets of variables. For example a document 
+contains:
+
+```
+{
+	"x" : "foo",
+	"y" : "bar"
+}
+```  
+When an LRS receives a POST request with content type application/json for an existing document also of
+content type application/json, it MUST merge the posted document with the existing document. 
+In this context merge is defined as:
+* de-serialize the objects represented by each document
+* for each property directly defined on the object being posted, set the corresponding
+property on the existing object equal to the value from the posted object.    
+* store any valid json serialization of the existing object as the document referenced in the request
+
+Note that only top-level properties are merged, even if a top-level property is an object
+the entire contents of each original property are replaced with the entire contents of
+each new property.
+
+For example, this document is POSTed with the same id as the existing 
+document above:
+
+```
+{
+	"x" : "bash",
+	"z" : "faz"
+}
+```  
+the resulting document stored in the LRS is:
+```
+{
+	"x" : "bash",
+	"y" : "bar",
+	"z" : "faz"
+}
+```
+If either the original document or the document being posted do not have an Content-Type:
+of "application/json", or if either document can not be parsed as JSON objects, the LRS MUST
+respond with HTTP status code 400 "Bad Request", and MUST NOT update the target document
+as a result of the request.
+
+If an AP needs to delete
+a property, it SHOULD use a PUT request to replace the whole document as described below. 
+
 <a name="stateapi"/> 
-## 7.3 State API:
+## 7.4 State API:
 Generally, this is a scratch area for activity providers that do not have their 
 own internal storage, or need to persist state across devices. When using the 
 state API, be aware of how the stateId parameter affects the semantics of the 
@@ -1825,7 +2012,7 @@ defined state document identified by "stateId". Otherwise, GET will return the
 available IDs, and DELETE will delete all state in the context given through the 
 other parameters.  
 
-### PUT | GET | DELETE activities/state
+### PUT | POST | GET | DELETE activities/state
 Example endpoint: http://example.com/XAPI/activities/state
 
 Stores, fetches, or deletes the document specified by the given stateId that 
@@ -1892,8 +2079,11 @@ Returns: 204 No Content
 		<td>The registration ID associated with this state.</td>
 	</tr>
 </table>
+
+
+
 <a name="actprofapi"/> 
-## 7.4 Activity Profile API:
+## 7.5 Activity Profile API:
 The Activity Profile API is much like the State API, allowing for arbitrary key 
 / document pairs to be saved which are related to an Activity. When using the 
 profile API for manipulating documents, be aware of how the profileId parameter
@@ -1954,7 +2144,7 @@ Returns: 200 OK - List of IDs
 </table>
 
 <a name="agentprofapi"/> 
-## 7.5 Agent Profile API:
+## 7.6 Agent Profile API:
 The Agent Profile API is much like the State API, allowing for arbitrary key / 
 document pairs to be saved which are related to an Agent. When using the 
 profile API for manipulating documents, be aware of how the profileId parameter 
@@ -2066,7 +2256,7 @@ Returns: 200 OK - List of IDs
 </table>  
 
 <a name="cors"/>
-## 7.6 Cross Origin Requests:
+## 7.7 Cross Origin Requests:
 One of the goals of the XAPI is to allow cross-domain tracking, and even though 
 XAPI seeks to enable tracking from applications other than browsers, browsers 
 still need to be supported. Internet Explorer 8 and 9 do not implement Cross 
@@ -2101,10 +2291,13 @@ If the LRS is on http, the client must be too.
 There may be cases where there is a requirement for the client activity provider to support 
 IE8 and 9  where the client code is hosted on a different scheme (http or https) from 
 the LRS. In these cases, a simple solution would be to host an intermediary server side LRS on 
-the same scheme as the client code to route statements to the target LRS. 
+the same scheme as the client code to route statements to the target LRS. An LRS MAY choose to provide 	
+both http and https endpoints to support this use case. Http is inherently less secure
+than https, and both LRS and client should consider the security risks before making the decision 
+to use this scheme. 
  
 <a name="validation"/> 
-## 7.7 Validation:
+## 7.8 Validation:
 The function of the LRS within the XAPI is to store and retrieve statements. 
 As long as it has sufficient information to perform these tasks, it is 
 expected that it does them. Validation of statements in the Experience API is 
