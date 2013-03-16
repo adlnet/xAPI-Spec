@@ -1812,6 +1812,7 @@ Returns: 200 OK, statement ID(s) (UUID).
 ### GET statements
 Example endpoint: http://example.com/XAPI/statements
 
+#### A single statement by statementId
 This method may be called to fetch a single statement, if the statementId 
 parameter is specified, or a list of statements otherwise, filtered by the 
 given query parameters.  
@@ -1822,6 +1823,7 @@ Returns: 200 OK, statement
 	<tr><td>statementId</td><td>String</td><td> </td><td>ID of statement to fetch</td></tr>
 </table>
 
+#### A list of statements by query parameters
 If statementId not specified, returns: A [StatementResult](#retstmts) object, 
 a list of statements in reverse chronological order based on "stored" time, 
 subject to permissions and maximum list length. If additional results are 
@@ -1877,6 +1879,15 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 		<td>Maximum number of statements to return. 0 indicates return the 
 			maximum the server will allow.</td>
 	</tr>
+	<tr><td>sizeLimit</td><td>Nonnegative Integer</td><td>0</td>
+		<td>Maximum size of statements to return in bytes. 0 indicates return the 
+			maximum the server will allow.</td>
+	</tr>
+	<tr><td>authority</td><td>Array of Agents</td><td>0</td>
+		<td>Only statements with the authority of one of the listed agents are returned.
+		Where the authority is a group, the LRS will return statements where any member
+		of the group is matched.</td>
+	</tr>
 	<tr><td>authoritative</td><td>Boolean</td><td>True</td>
 		<td>Only include statements that are asserted by actors authorized to 
 			make this assertion (according to the LRS), and are not superseded 
@@ -1903,7 +1914,10 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 			"context:instructor".</td>
 	</tr>
 	<tr><td>ascending</td><td>Boolean</td><td>False</td>
-		<td>If true, return results in ascending order of stored time</td>
+		<td>If true, return results in ascending order.</td>
+	</tr>
+	<tr><td>orderByTimestamp</td><td>Boolean</td><td>False</td>
+		<td>If true, return results ordered by timestamp rather than stored time</td>
 	</tr>
 </table>
 __Note__: Due to query string limits, this method may be called using POST and 
