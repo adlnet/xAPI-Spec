@@ -1846,6 +1846,9 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 			against object property of statements.
 		</td>
 	</tr>
+	<tr><td>activityType</td><td>String</td><td> </td>
+		<td>Filter, only return statements matching the specified activity type id.</td>
+	</tr>
 	<tr><td>registration</td><td>UUID</td><td> </td>
 		<td>Filter, only return statements matching the specified registration 
 			ID. Note that although frequently a unique registration ID will be used 
