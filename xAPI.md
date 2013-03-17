@@ -221,7 +221,7 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 * [URI](#def-uri)
 
 <a name="def-activity" />
-__Activity__: A thing with which to be interacted. An activty can be a unit of 
+__Activity__: A thing with which to be interacted. An activity can be a unit of 
 instruction, experience, or performance that is to be tracked in meaningful combination with a verb. 
 Interpretation of ‘Activity’ is broad, meaning that activities can even be tangible objects. In the statement
 “Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the XAPI statement. 
