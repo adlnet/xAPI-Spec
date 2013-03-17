@@ -522,8 +522,8 @@ An identified group...
 
 A system consuming Statements...
 
-* MUST consider each anonymous Group distinct;
-* MUST NOT assume that Agents in the 'member' property comprise an exact list of agents in a given anonymous or identified Group.
+* MUST consider each namelesss Group distinct;
+* MUST NOT assume that Agents in the 'member' property comprise an exact list of agents in a given nameless or identified Group.
 
 
 <a name="verb"/>
