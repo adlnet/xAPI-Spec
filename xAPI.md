@@ -522,7 +522,7 @@ An identified group...
 
 A system consuming Statements...
 
-* MUST consider each namelesss Group distinct;
+* MUST consider each nameless Group distinct;
 * MUST NOT assume that Agents in the 'member' property comprise an exact list of agents in a given nameless or identified Group.
 
 
