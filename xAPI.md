@@ -400,17 +400,17 @@ A mandatory UUID.
 <a name="actor"/>
 ### 4.1.2 Actor:  
 
-#####Description: 
+####Description: 
 A mandatory Agent or Group object, identified by an "inverse functional identifier".
 
-#####Details: 
+####Details: 
 An "inverse functional identifier" is a value shared between multiple Agents that designates these Agents as the same unique identity without doubt.
 
-#####Rationale:
+####Rationale:
 Learning experiences become meaningless if they cannot be attributed to identifiable individuals and/or groups. In an XAPI statement the required element "Actor" constitutes this identification, loosely inspired on the widely accepted FOAF principle (see: <a href="http://xmlns.com/foaf/spec/#term_Agent"> Friend Of A Friend</a>).
 
 ####4.1.2.1 Agent
-Description:
+#####Description:
 An Agent (an individual) is identified by one of the following: 
 
 * an e-mail address or its hash (cf. 'mbox' and 'mbox_sha1sum' as in FOAF)
@@ -418,7 +418,7 @@ An Agent (an individual) is identified by one of the following:
 * an account on an existing system (such as twitter, an intranet or an LMS)
 
 
-####Details:
+#####Details:
 
 An agent...
 
@@ -427,30 +427,34 @@ An agent...
 * SHOULD NOT use inverse functional identifiers that are also used for any Groups;
 * is an important concept in relation to OAuth, see the section on OAuth for details.
 
-The table below lists all properties of Agent objects. The first four are inverse functional identifiers.
+The table below lists all properties of Agent objects. The last four are inverse functional identifiers.
 
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>The local part of the email address must be URI encoded.<br>Only emails that have only ever been and will ever be assigned to this Agent, but no others, should be used for this property and mbox_sha1sum.</td></tr>
+	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a statement's Object.</td></tr>
+	<tr><td>name</td><td>string</td><td>Full name of the Agent. This property is optional.</td></tr>
+	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>
+The local part of the email address must be URI encoded.<br>Only emails that have only ever been and will ever be assigned to this Agent, 
+but no others, should be used for this property and mbox_sha1sum.</td></tr>
 	<tr><td>mbox_sha1sum</td><td>string</td><td>The SHA1 hash of a mailto URI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
 	<tr><td>openID</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
 	<tr><td>account</td><td><a href="#agentaccount">account object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
-	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a statement's Object.</td></tr>
-	<tr><td>name</td><td>string</td><td>Full name of the Agent. This property is optional.</td></tr>
+
 </table>
 
 <a name="agentaccount"/>
-#####Account object
-####Description: 
+
+####Account object
+
+#####Description: 
 
 A user account on an existing system, such as a private system (LMS or intranet) or a public system (social networking site).
 
-####Details:
+#####Details:
 
 * If the system that provides the "account" uses OpenID, the Learning Activity Provider SHOULD use this as the Agent instead of the account object.
-* If the Learning Activity Provider is concerned about revealing personally identifiable information about the Agent:
-	*	it SHOULD use an opaque account name (for example an account number) to identify all statements about a person while maintaining anonimity.
+* If the Learning Activity Provider is concerned about revealing personally identifiable information about the Agent, it SHOULD use an opaque account name (for example an account number) to identify all statements about a person while maintaining anonimity.
 
 
 The table below lists all properties of Account objects.
@@ -481,25 +485,25 @@ This example uses an opaque account:
 
 A Group...
 
-* is a type of Actor just like an Agent is;
 * represents collections of Agents;
 * can be used most places an Agent can;
-* can either be nameless or identified.
+* can either be anonymous or identified.
 
 #####Details
 
-A nameless group...
+An anonymous group...
 
 * MAY be used to describe a cluster of people where there is no ready identifier for this cluster, e.g. an ad hoc team;
 * MUST include a 'member' property listing constituent Agents;
 * MUST NOT contain Group objects in the 'member' property.
 
+The table below lists all properties of an anonymous Group.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>objectType</td><td>String</td><td>"Group". This property is required.</td></tr>
 	<tr><td>name</td><td>String</td><td>Name of the group. Optional.</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent</a></td><td>The members of this Group.</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td></tr>
 </table>
 
 An identified group...
@@ -509,21 +513,27 @@ An identified group...
 * MUST NOT contain Group objects in the 'member' property.
 * SHOULD NOT use inverse functional identifiers that are also used for any Agents.
 
+The table below lists all properties of an identified Group. The last four are inverse functional identifiers.
+
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>objectType</td><td>String</td><td>"Group". This property is required.</td></tr>
 	<tr><td>name</td><td>String</td><td>Name of the group. Optional.</td></tr>
-	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>The local part of the email address must be URI encoded.<br>Only emails that have only ever been and will ever be assigned to this Group, but no others, should be used for this property and mbox_sha1sum.</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td></tr>
+	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>
+The local part of the email address must be URI encoded.<br>Only emails that have only ever been and will ever be assigned to this Group, 
+but no others, should be used for this property and mbox_sha1sum.</td></tr>
 	<tr><td>mbox_sha1sum</td><td>string</td><td>The SHA1 hash of a mailto URI (i.e. the value of an mbox property). An LRS MAY include Groups with a matching hash when a request is based on an mbox.</td></tr>
 	<tr><td>openID</td><td>URI</td><td>An openID that uniquely identifies the Group.</td></tr>
 	<tr><td>account</td><td><a href="#agentaccount">account object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
-	<tr><td>member</td><td>Array of <a href="#agent">Agent</a></td><td>The members of this Group.</td></tr>
+
 </table>
 
 A system consuming Statements...
 
-* MUST consider each nameless Group distinct;
-* MUST NOT assume that Agents in the 'member' property comprise an exact list of agents in a given nameless or identified Group.
+* MUST consider each anonymous Group distinct;
+* MUST NOT assume that Agents in the 'member' property comprise an exact list of agents in a given anonymous or identified Group.
+
 
 
 <a name="verb"/>
