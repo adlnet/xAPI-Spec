@@ -1290,10 +1290,9 @@ In order to allow systems receiving statements with attachments to examine the r
 and possibly decide to reject it, before receiving attachments, statements with attachments will be
 transmitted using a content-Type of multipart/mixed rather than in-lining the attachments. Attachments 
 will be placed at the end of such transmissions, though they are still logically part of the statements.
+This capability will be available when issuing PUT or POST against the statement resource.
 
-Attachments
-
-#####Format:
+#####Attachment Type:
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -1318,7 +1317,7 @@ Attachments
 		<td>no</td>
 	</tr>
 	<tr>
-		<td>content-Type</td>
+		<td>contentType</td>
 		<td><a href="https://www.ietf.org/rfc/rfc2046.txt?number=2046">Internet Media Type</a></td>
 		<td>The content type of the attachment.</td>
 		<td>yes</td>
@@ -1330,7 +1329,7 @@ Attachments
 		<td>yes</td>
 	</tr>
 	<tr>
-		<td>sha-2</td>
+		<td>sha2</td>
 		<td>base64</td>
 		<td>The SHA-2 hash of the attachment data. A minimum key size of 256 bits is recommended.</td>
 		<td>yes</td>
@@ -1355,12 +1354,86 @@ Requirements for the LRS:
 * MUST accept statements via the statements resource via PUT or POST that contain attachments in the Transmission Format described above
 * MUST reject statements having attachments that do not contain a fileUrl, and do not have a hash matching any raw data received
 * MUST include attachments in the Transmission Format described above when requested by the client (see query API)
-* MUST NOT pull statements from another LRS without requesting attacments
+* MUST NOT pull statements from another LRS without requesting attachments
 * MUST NOT push statements into another LRS without including attachments
 * MAY reject statements, or batches of statements that are larger than the LRS is configured to allow
+* SHOULD accept statements in the above format that don't declare any attachments
 
 Requirements for the client:
 * MAY send statements with attachments as described above
+* MAY send multiple statements where some or all have attachments if using "POST"
+
+Common requirements:
+* SHOULD only include one copy of an attachment when the same attachment is used in multiple statements.
+* MUST conform to the definition of multipart/mixed in RFC 1341
+* SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json"
+* MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part. This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the attachment included in this part
+
+
+#####Example:
+
+Below is an example of a very simple statement with an attachment. Please note the following:
+* The boundary in the sample was chosen to demonstrate valid character classes.
+* The selected boundary does not appear in any of the parts
+* For readability the sample attachment is text/plain. Even if it had been a 'binary' type
+like 'image/jpeg' no encoding would be done, the raw octets would be included
+* Per RFC 1341, the boundary is <CRLF> followed by -- followed by the boundary string declared in the header.
+Don't forget the <CRLF> when building or parsing these messages.
+
+Headers:
+
+``` 
+Content-Type: multipart/mixed; boundary=abcABC0123'()+_,-./:=?
+X-Experience-API-Version:1.0
+```
+Content:
+```
+
+--abcABC0123'()+_,-./:=?
+Content-Type:application/json
+
+{
+    "actor": {
+        "mbox": "mailto:sample.agent@example.com",
+        "name": "Sample Agent",
+        "objectType": "Agent"
+    },
+    "verb": {
+        "id": "http://adlnet.gov/expapi/verbs/answered",
+        "display": {
+            "en-US": "answered"
+        }
+    },
+    "object": {
+        "id": "http://www.example.com/tincan/activities/multipart",
+        "objectType": "Activity",
+        "definition": {
+            "name": {
+                "en-US": "Multi Part Activity"
+            },
+            "description": {
+                "en-US": "Multi Part Activity Description"
+            }
+        }
+    },
+    "attachments": [
+        {
+            "usageType": "http://example.com/attachment-usage/test",
+            "display": { "en-US": "A test attachment" },
+            "description": { "en-US": "A test attachment (description)" },
+            "contentType": "text/plain; charset=ascii",
+            "length": 27,
+            "sha2": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+    ]
+}
+--abcABC0123'()+_,-./:=?
+Content-Type:text/plain
+X-Experience-API-Hash:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+
+here is a simple attachment
+--abcABC0123'()+_,-./:=?--
+```
 
 <a name="retstmts"/> 
 ## 4.2 Retrieval of Statements:
