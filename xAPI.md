@@ -1835,12 +1835,12 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 	<tr><td>verb</td><td>String</td><td> </td>
 		<td>Filter, only return statements matching the specified verb id.</td>
 	</tr>
-	<tr><td>object</td><td>Activity, Agent, or Statement Object (JSON)</td><td> </td>
+	<tr><td>object</td><td>Activity, Agent (JSON)</td><td> </td>
 		<td>Filter, only return statements matching the specified object 
-			(activity or actor).<br/><br/>
+			(activity or agent/group).<br/><br/>
 			Object is an activity: return statements with an object that is an 
 			activity with a matching activity ID to the specified activity.<br/><br/>
-			Object is an actor: same behavior as "actor" filter, except match 
+			Object is an agent or group: same behavior as "actor" filter, except match 
 			against object property of statements.
 		</td>
 	</tr>
@@ -1857,7 +1857,7 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 			any of the context activities match the specified object.
 		</td>
 	</tr>
-	<tr><td>actor</td><td>Actor Object (JSON)</td><td> </td>
+	<tr><td>actor</td><td>Agent/Group Object (JSON)</td><td> </td>
 		<td>Filter, only return statements about the specified agent. 
 			Note: at minimum agent objects where every property is 
 			identical are considered identical. Additionaly, if the 
