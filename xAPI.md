@@ -1364,7 +1364,7 @@ Requirements for the client:
 * MAY send multiple statements where some or all have attachments if using "POST"
 
 Common requirements:
-* SHOULD only include one copy of an attachment when the same attachment is used in multiple statements.
+* SHOULD only include one copy of an attachment when the same attachment is used in multiple statements that are sent in one message.
 * MUST conform to the definition of multipart/mixed in RFC 1341
 * SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json"
 * MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part. This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the attachment included in this part
