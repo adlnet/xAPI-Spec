@@ -1877,11 +1877,6 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 		<td>Maximum number of statements to return. 0 indicates return the 
 			maximum the server will allow.</td>
 	</tr>
-	<tr><td>authoritative</td><td>Boolean</td><td>True</td>
-		<td>Only include statements that are asserted by actors authorized to 
-			make this assertion (according to the LRS), and are not superseded 
-			by later statements.</td>
-	</tr>
 	<tr><td>sparse</td><td>Boolean</td><td>True</td>
 		<td>If true, only include minimum information necessary in actor and 
 			activity objects to identify them, If false, return populated 
