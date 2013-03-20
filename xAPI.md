@@ -1886,8 +1886,8 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 		<td>Maximum size of statements to return in bytes. 0 indicates return the 
 			maximum the server will allow.</td>
 	</tr>
-	<tr><td>authority</td><td>Array of Agents</td><td>0</td>
-		<td>Only statements with the authority of one of the listed agents are returned.
+	<tr><td>authority</td><td>Agent</td><td>0</td>
+		<td>Only statements with the authority of the listed agent are returned.
 		Where the authority is a group, the LRS will return statements where any member
 		of the group is matched.</td>
 	</tr>
@@ -1918,9 +1918,6 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 	</tr>
 	<tr><td>ascending</td><td>Boolean</td><td>False</td>
 		<td>If true, return results in ascending order.</td>
-	</tr>
-	<tr><td>orderByTimestamp</td><td>Boolean</td><td>False</td>
-		<td>If true, return results ordered by timestamp rather than stored time</td>
 	</tr>
 </table>
 __Note__: Due to query string limits, this method may be called using POST and 
