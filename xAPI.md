@@ -1423,13 +1423,13 @@ Content-Type:application/json
             "description": { "en-US": "A test attachment (description)" },
             "contentType": "text/plain; charset=ascii",
             "length": 27,
-            "sha2": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            "sha2": "495395e777cd98da653df9615d09c0fd6bb2f8d4788394cd53c56a3bfdcd848a"
         }
     ]
 }
 --abcABC0123'()+_,-./:=?
 Content-Type:text/plain
-X-Experience-API-Hash:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+X-Experience-API-Hash:495395e777cd98da653df9615d09c0fd6bb2f8d4788394cd53c56a3bfdcd848a
 
 here is a simple attachment
 --abcABC0123'()+_,-./:=?--
