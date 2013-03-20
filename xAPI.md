@@ -1971,6 +1971,9 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 			statements) as a whole.
 		</td>
 	</tr>
+	<tr><td>attachments</td><td>Boolean</td><td>False</td>
+		<td>If true LRS MUST include attachments in a multipart response as described in <a href="#attachments">4.1.11. Attachments</a>, otherwise the LRS MUST NOT include attachments.</td>
+	</tr>
 	<tr><td>instructor</td><td>Actor Object (JSON)</td><td> </td>
 		<td>Same behavior as "actor" filter, except match against 
 			"context:instructor".</td>
