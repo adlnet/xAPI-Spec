@@ -409,6 +409,7 @@ An "inverse functional identifier" is a value shared between multiple Agents tha
 ####Rationale:
 Learning experiences become meaningless if they cannot be attributed to identifiable individuals and/or groups. In an XAPI statement the required element "Actor" constitutes this identification, loosely inspired on the widely accepted FOAF principle (see: <a href="http://xmlns.com/foaf/spec/#term_Agent"> Friend Of A Friend</a>).
 
+<a name="agent"/>
 ####4.1.2.1 Agent
 #####Description:
 An Agent (an individual) is identified by one of the following: 
@@ -480,6 +481,7 @@ This example uses an opaque account:
 }
 ``` 
 
+<a name="group"/>
 ####4.1.2.2 Group
 #####Description:
 
@@ -494,8 +496,9 @@ A Group...
 An anonymous group...
 
 * MAY be used to describe a cluster of people where there is no ready identifier for this cluster, e.g. an ad hoc team;
-* MUST include a 'member' property listing constituent Agents;
-* MUST NOT contain Group objects in the 'member' property.
+* SHOULD include a 'member' property listing constituent Agents or identified groups;
+* MUST NOT contain Anonymous Group objects in the 'member' property.
+* MUST NOT include any inverse functional identifiers
 
 The table below lists all properties of an anonymous Group.
 
@@ -509,8 +512,7 @@ The table below lists all properties of an anonymous Group.
 An identified group...
 
 * MUST include exactly one (1) inverse functional identifier;
-* MAY include a 'member' property listing constituent Agents;
-* MUST NOT contain Group objects in the 'member' property.
+* MUST NOT include a 'member' property
 * SHOULD NOT use inverse functional identifiers that are also used for any Agents.
 
 The table below lists all properties of an identified Group. The last four are inverse functional identifiers.
@@ -991,7 +993,7 @@ The "context" field provides a place to add some contextual information to a sta
 <td>contextActivities</td>
 <td>contextActivities object</td>
 <td>A map of the types of learning activity context that this statement is related to.
-Valid context types are: "parent", "grouping", "other". <a href ="#contextActivities">See 4.1.6.2</a></td>
+Valid context types are: "parent", "grouping", "category", "other". <a href ="#contextActivities">See 4.1.6.2</a></td>
 
 </tr>
 <tr>
@@ -1064,7 +1066,11 @@ For example: a statement about a quiz question would have the quiz as its parent
 2. __Grouping__ : an activity with an indirect relation to the activity which is the object of the statement.
 For example: a course that is part of a qualification. The course has several classes. The course relates to a class as the parent, the qualification relates to the class as the grouping.
 
-3. __Other__ : a context activity that cannot be considered a parent or a grouping.
+4. __Category__ : an activity used to categorize the statement.
+For example: Anna attempts a bilogy exam, and the statement is tracked using the CMI-5 profile.
+The statement's activity refers to the exam, and the category is the CMI-5 profile.
+
+4. __Other__ : a context activity that doesn't fit one of the other fields.
 For example: Anna studies a textbook for a biology exam. The statement's activity refers to the textbook, and the exam is a context activity of type "other" .
 
 #####Example I:
@@ -1862,31 +1868,35 @@ Returns: 200 OK, statement ID(s) (UUID).
 ### GET statements
 Example endpoint: http://example.com/XAPI/statements
 
-This method may be called to fetch a single statement, if the statementId 
-parameter is specified, or a list of statements otherwise, filtered by the 
-given query parameters.  
-
-Returns: 200 OK, statement  
-<table>
-	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
-	<tr><td>statementId</td><td>String</td><td> </td><td>ID of statement to fetch</td></tr>
-</table>
-
-If statementId not specified, returns: A [StatementResult](#retstmts) object, 
+This method may be called to fetch a single statement or multiple statements. If the
+statementId or voidedStatementId parameter is specified a single statement is returned.
+Otherwise returns: A [StatementResult](#retstmts) object,
 a list of statements in reverse chronological order based on "stored" time, 
 subject to permissions and maximum list length. If additional results are 
 available, a URL to retrieve them will be included in the StatementResult 
-object.  
+object.
 
-Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)  
+Returns: 200 OK, statement or [Statement Result](#retstmts) (See section 4.2 for details)
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
+	<tr><td>statementId</td><td>String</td><td> </td><td>ID of statement to fetch</td></tr>
+	<tr><td>voidedStatementId</td><td>String</td><td> </td><td>ID of voided statement to fetch</td></tr>
+	<tr><td>agent</td><td>Agent or identified Group Object (JSON)</td><td> </td>
+		<td>Filter, only return statements for which the specified agent or group is the actor or object of the statement.
+			* Agents or identified groups are equal when the same Inverse Functional Identifier is used in each
+			object compared and those Inverse Functional Identifiers have equal values.
+			* For the purposes of this filter, anonymous groups that have members which match the specified agent
+			or identified group based on their Inverse Functional Identifier as described above are considered a match
+			<br><br>See <a href="#actor">agent/group</a> object definition
+			for details.
+		</td>
+	</tr>
 	<tr><td>verb</td><td>String</td><td> </td>
 		<td>Filter, only return statements matching the specified verb id.</td>
 	</tr>
-	<tr><td>object</td><td>Activity, Agent (JSON)</td><td> </td>
-		<td>Filter, only return statements matching the specified object 
+	<tr><td>activity</td><td>Activity id (URI)</td><td> </td>
+		<td>Filter, only return statements for which the object of the statement is an activity with the specified id.
 			(activity or agent/group).<br/><br/>
 			Object is an activity: return statements with an object that is an 
 			activity with a matching activity ID to the specified activity.<br/><br/>
@@ -1902,19 +1912,30 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 			those parameters should also be specified.
 		</td>
 	</tr>
-	<tr><td>context</td><td>Boolean</td><td>True</td>
-		<td>When filtering on activities (object), include statements for which 
-			any of the context activities match the specified object.
+	<tr><td>viewId</td><td>String</td><td> </td>
+	   <td>The id for a view of the data in this LRS that has been predefined in the LRS. The way
+	   such views are defined is outside the scope of this specification, but they MAY be defined to
+	   designate and possibly pre-build slices of the LRS data based on any deterministic rules the LRS
+	   provides.
+
+	   The LRS MUST reject the request with an HTTP 400 status if an unknown viewId is specified
+	   The LRS MUST filter the statement data in a consistant manner as defined in the specified view, if the viewId is recognized.  
+	   </td>
+	</tr>
+	<tr><td>related_activities</td><td>Boolean</td><td>False</td>
+		<td>Apply the activity filter broadly. Include statements for which 
+			any property is of type activity and has an id matching the specified activity id.
+			This includes but is not limited to: context.activities and activities
+			referenced in sub-statements. This does NOT include activity IDs found in properties
+			that are not of type "activity", such as "extensions".
 		</td>
 	</tr>
-	<tr><td>actor</td><td>Agent/Group Object (JSON)</td><td> </td>
-		<td>Filter, only return statements about the specified agent. 
-			Note: at minimum agent objects where every property is 
-			identical are considered identical. Additionaly, if the 
-			LRS can determine that two actor objects refer to the same 
-			agent, they should be treated as identical for filtering 
-			purposes. See <a href="#agent">agent</a> object definition 
-			for details.
+	<tr><td>related_agents</td><td>Boolean</td><td>False</td>
+		<td>Apply the agent filter broadly. Include statements for which 
+			any property matches the specified agent or group. This includes but is not limited to:
+			authority, instructor, team, agents listed as part of an ad-hoc team, and agents listed within
+			sub-statements. This does NOT include agents or groups found in properties
+			that are not of type agent or group, such as "extensions".
 		</td>
 	</tr>
 	<tr><td>since</td><td>Timestamp</td><td> </td>
@@ -1927,10 +1948,15 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 		<td>Maximum number of statements to return. 0 indicates return the 
 			maximum the server will allow.</td>
 	</tr>
-	<tr><td>sparse</td><td>Boolean</td><td>True</td>
-		<td>If true, only include minimum information necessary in actor and 
-			activity objects to identify them, If false, return populated 
-			activity and actor objects.<br/><br/>
+	<tr><td>format</td><td>{"ids", "exact", "canonical"}</td><td>exact</td>
+		<td>If "ids", only include minimum information necessary in agent and 
+			activity objects to identify them, If "exact", return agent and
+			actor objects populated exactly as they were when the statement was received.<br/><br/>
+			
+			If "canonical", return agent and actor objects populated with the canonical
+			definition of the agent and activity objects as determined by the LRS, after
+			applying the language filtering process defined below.
+
 			Activity objects contain Language Map objects for name and 
 			description. Only one language should be returned in each of 
 			these maps.<br/><br/>
@@ -1941,28 +1967,34 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 			be applied to each language map individually to select which 
 			language entry to include, rather than to the resource (list of 
 			statements) as a whole.
+
+			An LRS requesting statements for the purpose of importing them SHOULD use a format of "exact".
 		</td>
 	</tr>
 	<tr><td>attachments</td><td>Boolean</td><td>False</td>
-		<td>If true LRS MUST include attachments in a multipart response as described in <a href="#attachments">4.1.11. Attachments</a>, otherwise the LRS MUST NOT include attachments.</td>
-	</tr>
-	<tr><td>instructor</td><td>Actor Object (JSON)</td><td> </td>
-		<td>Same behavior as "actor" filter, except match against 
-			"context:instructor".</td>
+		<td>If true LRS MUST use the multipart response format and include any attachments as described in <a href="#attachments">4.1.11. Attachments</a>, otherwise the LRS MUST NOT include attachments.</td>
 	</tr>
 	<tr><td>ascending</td><td>Boolean</td><td>False</td>
 		<td>If true, return results in ascending order of stored time</td>
 	</tr>
 </table>
-__Note__: Due to query string limits, this method may be called using POST and 
-form fields if necessary. The LRS will differentiate a POST to add a statement 
+
+The LRS MUST reject with an HTTP 400 error any requests to this resource which:
+* contain both statementId voidedStatementId parameters
+* contain statementId or voidedStatementId parameters, and also contain any other parameter besides "attachments" or "format".
+* contain any parameters the LRS does not recognize
+
+__Note__: Due to query string limits, this method MAY be called using POST and
+form fields if necessary. The LRS MUST differentiate a POST to add a statement
 or to list statements based on the parameters passed.  
 
 __Note__: For filter parameters which are not time or sequence based (that is, other than
 since, until, or limit), statements which target another statement will meet the filter
-condition if that statement, or the targeted statement meet the condition. The targeted
-statement refers to any statement included in another statement's object property either
-as a sub-statement or statementRef.
+condition if the targeted statement meet the condition. The time and sequence based parameters must
+still be applied to the source or "targeting" statement included in this manner. The targeted
+statement refers to any statement included in another statement's object property as a
+statementRef. This rule applies recursively, so that "statement a" is a match when a targets
+b which targets c and the filter conditions described above match for "statement c".
 
 For example, consider the statement "Ben passed explosives training", and a follow up
 statement: "Andrew confirmed \<statementRef to original statement\>". The follow up
@@ -1972,10 +2004,10 @@ statements will be returned.
 
 ###Voided statements
 The LRS MUST not return any statement which has been voided, unless that statement has been
-requested by statementId. The LRS MUST still return any statements targetting the voided statement,
+requested by voidedStatementId. The LRS MUST still return any statements targetting the voided statement,
 unless they themselves have been voided. This includes the voiding statement, which cannot be voided.
 Reporting tools can identify the presence and statementId of any voided statements by the target of the voiding 
-statement. Reporting tools wishing to retrieve voided statements SHOULD request these individually by statementId.
+statement. Reporting tools wishing to retrieve voided statements SHOULD request these individually by voidedStatementId.
 
 <a name="docapis"/> 
 ## 7.3 Document APIs:
