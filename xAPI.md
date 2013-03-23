@@ -198,6 +198,17 @@ In collection of requirements for the Experience API, there were many people and
 organizations that provided invaluable feedback to SCORM, distributed learning 
 efforts, and learning in general.  User Voice Site, Rustici Blog, etc.  
 
+##2.3 Reading guidelines for the non-technically inclined.
+
+Since you’re reading this document, it’s probably safe to say that you’re interested in understanding 
+the Experience API, informally called TinCan. The purpose of this document is to describe how the xAPI is 
+implemented in systems such as LRSes and authoring tools. It’s a fairly technical document by nature and you may
+decide that you don’t understand much of it. Even so, there are useful things to learn by reading further. Not only
+because the tools that you work with are based on the specifications described below; the technical people that you
+talk to may assume that you have a basic level of knowledge. Exactly for this reason you’re advised to read the small
+sections labeled ‘description’ and ‘rationale’ while skipping the ‘details’ and ‘examples’. Needless to say, many
+other sources can be found that explain xAPI very well, but this document is the core of them all.
+
 <a name="defintions"/> 
 # 3.0 Definitions  
 
