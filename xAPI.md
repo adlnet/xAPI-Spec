@@ -1847,7 +1847,9 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 		</td>
 	</tr>
 	<tr><td>activityType</td><td>String</td><td> </td>
-		<td>Filter, only return statements matching the specified activity type id.</td>
+		<td>Filter, only return statements where the the object is an activity matching the specified 
+		activity type. The LRS MUST use its own internal definition of the activity when matching
+		statements, rather than the activity type provided in the statement.</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td> </td>
 		<td>Filter, only return statements matching the specified registration 
