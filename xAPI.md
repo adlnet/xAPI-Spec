@@ -559,7 +559,7 @@ the activity. Verbs appear in statements as objects consisting of a URI and a se
 ### Rationale
 
 The verb in an xAPI statement describes the learning experience. The xAPI does not specify any particular 
-verbs, as SCORM did. (With one exception, namely the reserved verb <a href="#voided">'Voided'</a>). 
+verbs. (With one exception, namely the reserved verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>). 
 Instead, it defines how to create verbs so that communities of practice can coin their own meaningful verbs 
 and make them available for use by anyone. A predefined list of verbs would be limited by definition and 
 they might not be able to effectively capture all possible future learning experiences.
@@ -621,7 +621,7 @@ The verb object is the representation of a verb that is actually included in a s
 The display property:
 
 * MUST be used to illustrate the meaning which is already determined by the verb URI;
-* MUST NOT be used to alter the meaning of a statement;
+* MUST NOT be used to alter the meaning of a verb;
 * SHOULD be used by all statements.
 
 A system reading a statement:
@@ -656,7 +656,7 @@ The table below lists all properties of the Verb object.
 
 The verb in the table above is included for illustrative purposes only. This is not intended to imply that
 a verb with this meaning has been defined with this id. This applies to all example verbs given in this 
-specification document, with the exception of the reserved verb "Voided". 
+specification document, with the exception of the reserved verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>. 
 
 
 <a name="object"/>
