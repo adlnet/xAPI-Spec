@@ -202,7 +202,7 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 
 Since you’re reading this document, it’s probably safe to say that you’re interested in understanding 
 the Experience API, informally called TinCan. The purpose of this document is to describe how the xAPI is 
-implemented in systems such as LRSes and authoring tools. It’s a fairly technical document by nature and you may
+implemented in a large variety of systems. It’s a fairly technical document by nature and you may
 decide that you don’t understand much of it. Even so, there are useful things to learn by reading further. Not only
 because the tools that you work with are based on the specifications described below; the technical people that you
 talk to may assume that you have a basic level of knowledge. Exactly for this reason you’re advised to read the small
