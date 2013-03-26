@@ -496,7 +496,7 @@ A Group...
 An anonymous group...
 
 * MAY be used to describe a cluster of people where there is no ready identifier for this cluster, e.g. an ad hoc team;
-* SHOULD include a 'member' property listing constituent Agents or identified groups;
+* MUST include a 'member' property listing constituent Agents or identified groups;
 * MUST NOT contain Anonymous Group objects in the 'member' property.
 * MUST NOT include any inverse functional identifiers
 
@@ -1911,16 +1911,6 @@ Returns: 200 OK, statement or [Statement Result](#retstmts) (See section 4.2 for
 			If only statements for a certain actor or activity should be returned, 
 			those parameters should also be specified.
 		</td>
-	</tr>
-	<tr><td>viewId</td><td>String</td><td> </td>
-	   <td>The id for a view of the data in this LRS that has been predefined in the LRS. The way
-	   such views are defined is outside the scope of this specification, but they MAY be defined to
-	   designate and possibly pre-build slices of the LRS data based on any deterministic rules the LRS
-	   provides.
-
-	   The LRS MUST reject the request with an HTTP 400 status if an unknown viewId is specified
-	   The LRS MUST filter the statement data in a consistant manner as defined in the specified view, if the viewId is recognized.  
-	   </td>
 	</tr>
 	<tr><td>related_activities</td><td>Boolean</td><td>False</td>
 		<td>Apply the activity filter broadly. Include statements for which 
