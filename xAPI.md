@@ -221,7 +221,7 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 * [URI](#def-uri)
 
 <a name="def-activity" />
-__Activity__: A thing with which to be interacted. An activty can be a unit of 
+__Activity__: A thing with which to be interacted. An activity can be a unit of 
 instruction, experience, or performance that is to be tracked in meaningful combination with a verb. 
 Interpretation of ‘Activity’ is broad, meaning that activities can even be tangible objects. In the statement
 “Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the XAPI statement. 
@@ -400,94 +400,76 @@ A mandatory UUID.
 <a name="actor"/>
 ### 4.1.2 Actor:  
 
-The actor field contains an Agent or Group object, loosely inspired by Friend 
-Of A Friend (FOAF, http://xmlns.com/foaf/spec/#term_Agent ), a widely accepted 
-vocabulary for describing identifiable individuals and groups.  
+####Description: 
+A mandatory Agent or Group object, identified by an "inverse functional identifier".
 
-<a name="agent"/>
-#### 4.1.2.1 Agent:  
+####Details: 
+An "inverse functional identifier" is a value shared between multiple Agents that designates these Agents as the same unique identity without doubt.
 
-An Agent object is identified by an email address (or its hash), OpenID, or 
-account on some system (such as twitter), but only for values where any two 
-Agents that share the same identifying property definitely represent the same 
-identity. The term used for properties with that characteristic is "inverse 
-functional identifiers”.  In addition to the standard inverse functional 
-properties from FOAF of mbox, mbox_sha1sum, and openid, account is an inverse 
-functional property in XAPI Agents.  
+####Rationale:
+Learning experiences become meaningless if they cannot be attributed to identifiable individuals and/or groups. In an XAPI statement the required element "Actor" constitutes this identification, loosely inspired on the widely accepted FOAF principle (see: <a href="http://xmlns.com/foaf/spec/#term_Agent"> Friend Of A Friend</a>).
 
-For reasons of practicality and privacy, xAPI Agents MUST be identified by 
-one and only one inverse functional identifier. Agents MUST NOT include more 
-than one inverse functional identifier.  
+####4.1.2.1 Agent
+#####Description:
+An Agent (an individual) is identified by one of the following: 
 
-The table below lists all properties of Agent objects. Inverse functional 
-identifiers are marked with a *."  
-<table>
+* an e-mail address or its hash (cf. 'mbox' and 'mbox_sha1sum' as in FOAF)
+* OpenID
+* an account on an existing system (such as twitter, an intranet or an LMS)
+
+
+#####Details:
+
+An agent...
+
+* MUST be identified by one (1) of the three types of inverse functional identifiers described above;
+* MUST NOT include more than one (1) inverse functional identifier;
+* SHOULD NOT use inverse functional identifiers that are also used for any Groups;
+* is an important concept in relation to OAuth, see the section on OAuth for details.
+
+The table below lists all properties of Agent objects. The last four are inverse functional identifiers.
+
+
+<table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr>
-		<td>objectType</td>
-		<td>String</td>
-		<td>(Optional, except when used as a statement's object) "Agent"</td>
-	</tr>
-	<tr>
-		<td>name</td>
-		<td>String</td>
-		<td>(Optional) Full name of the agent</td>
-	</tr>
-	<tr>
-		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox">mbox*</a></td>
-		<td>A mailto URI. These are in the form "mailto:email address", but the local part of the email address must be URI encoded.</td> 
-		<td>Note: Only emails that 
-			have only ever been and will ever be assigned to this Agent, 
-			but no others, should be used for this property and mbox_sha1sum.</td>
-	</tr>
-	<tr>
-		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox_sha1sum">mbox_sha1sum*</a></td>
-		<td>String</td>
-		<td>The SHA1 hash of a mailto URI (such as goes in an mbox 
-			property). An LRS MAY include Agents with a matching hash when a 
-			request is based on an mbox.</td>
-	</tr>
-	<tr>
-		<td>openid*</td>
-		<td>URI</td>
-		<td>An openid that uniquely identifies this agent.</td>
-	</tr>
-	<tr>
-		<td>account*</td>
-		<td>An account object</td>
-		<td>A user account on an existing system e.g. an LMS or intranet <a href="#agentaccount">see below</a>.</td>
-	</tr>
+	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a statement's Object.</td></tr>
+	<tr><td>name</td><td>string</td><td>Full name of the Agent. This property is optional.</td></tr>
+	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>
+The local part of the email address must be URI encoded.<br>Only emails that have only ever been and will ever be assigned to this Agent, 
+but no others, should be used for this property and mbox_sha1sum.</td></tr>
+	<tr><td>mbox_sha1sum</td><td>string</td><td>The SHA1 hash of a mailto URI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
+	<tr><td>openID</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
+	<tr><td>account</td><td><a href="#agentaccount">account object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
+
 </table>
 
 <a name="agentaccount"/>
-__Account__  
 
-A user account on an existing system. This might be a private system such as a LMS or intranet or might be a 
-public system e.g. a social networking site. Note: if the system uses open ids, the statement author may consider 
-using these instead. 
+####Account object
 
-<table>
+#####Description: 
+
+A user account on an existing system, such as a private system (LMS or intranet) or a public system (social networking site).
+
+#####Details:
+
+* If the system that provides the "account" uses OpenID, the Learning Activity Provider SHOULD use this as the Agent instead of the account object.
+* If the Learning Activity Provider is concerned about revealing personally identifiable information about the Agent, it SHOULD use an opaque account name (for example an account number) to identify all statements about a person while maintaining anonimity.
+
+
+The table below lists all properties of Account objects.
+<table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr>
-		<td>homePage</td>
-		<td>URL</td>
-		<td>The canonical home page for the system the account is on. 
-			This is based on FOAF's accountServiceHomePage.</td>
-	</tr>
-	<tr>
-		<td>name</td>
-		<td>String</td>
-		<td>The unique ID or name used to log in to this account. This is based 
-			on FOAF's accountName.</td>
-	</tr>
-</table>  
+	<tr><td>homepage</td><td>URL</td><td>The canonical home page for the system the account is on. This is based on FOAF's accountServiceHomePage.</td></tr>
+	<tr><td>name</td><td>string</td><td>The unique ID or name used to log in to this account. This is based 
+			on FOAF's accountName.</td></tr>
+</table>
 
-If an Activity Provider is concerned about revealing identifying information such as emails, it SHOULD instead use 
-an account with an opaque account name to identify the person. An 'opaque account name' might be
-an account number or any other unique account name for the person which does not give away their identity in
-any way. This ensures that all statements about the one person can be identified, whilst protecting their anonymity.
 
-An example using an opaque account:  
+#####Example:
+
+This example uses an opaque account:
+
 ```
 {
 	"objectType": "Agent",
@@ -496,66 +478,62 @@ An example using an opaque account:
 		"name": "1625378"
 	}
 }
-```  
-Agents are also important in relation to OAuth. See the section on 
-[OAuth](#authdefs) for details.  
+``` 
 
-<a name="group"/>
-#### 4.1.2.2 Group:
-Groups are similar to Agents, represent collections of Agents, and can be used 
-most places Agents can. Groups can either be anonymous or identified. Anonymous 
-Groups MUST include a member property listing constituent Agents. Systems 
-consuming Statements MUST consider all anonymous Groups distinct. Anonymous 
-Groups are useful for describing collections of people where no ready identifier 
-for the group is available, such as ad hoc teams.  
+####4.1.2.2 Group
+#####Description:
 
-Identified Groups MUST, like Agents, include exactly one inverse functional 
-identifier. Identified Groups MAY also include a member property listing 
-constituent Agents. Inverse functional identifiers used for identified Groups 
-SHOULD NOT be used for any Agents.  
+A Group...
 
-Systems consuming Statements MUST NOT assume member Agents comprise an exact 
-list of agents in an anonymous or identified Group.  
+* represents collections of Agents;
+* can be used most places an Agent can;
+* can either be anonymous or identified.
 
-__Anonymous Group__  
-<table>
+#####Details
+
+An anonymous group...
+
+* MAY be used to describe a cluster of people where there is no ready identifier for this cluster, e.g. an ad hoc team;
+* MUST include a 'member' property listing constituent Agents;
+* MUST NOT contain Group objects in the 'member' property.
+
+The table below lists all properties of an anonymous Group.
+
+<table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>String</td><td>(Required) "Group"</td></tr>
-	<tr><td>name</td><td>String</td><td>(Optional) Name of the Group</td></tr>
-	<tr>
-		<td>member</td>
-		<td>Array of <a href="#agent">Agent</a> (not Group) objects</td>
-		<td>The members of this Group.</td>
-	</tr>
+	<tr><td>objectType</td><td>String</td><td>"Group". This property is required.</td></tr>
+	<tr><td>name</td><td>String</td><td>Name of the group. Optional.</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td></tr>
 </table>
 
-__Identified Group__  
-<table>
+An identified group...
+
+* MUST include exactly one (1) inverse functional identifier;
+* MAY include a 'member' property listing constituent Agents;
+* MUST NOT contain Group objects in the 'member' property.
+* SHOULD NOT use inverse functional identifiers that are also used for any Agents.
+
+The table below lists all properties of an identified Group. The last four are inverse functional identifiers.
+
+<table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>String</td><td>(Required) "Group"</td></tr>
-	<tr><td>name</td><td>String</td><td>(Optional) Name of the Group</td></tr>
-	<tr>
-		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox">mbox*</a></td>
-		<td>URI in the form "mailto:email address".</td>
-		<td>Note: Only emails that 
-			have only ever been and will ever be assigned to this Group, 
-			but no others, should be used for this property and mbox_sha1sum.</td>
-	</tr>
-	<tr>
-		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox_sha1sum">mbox_sha1sum*</a></td>
-		<td>String</td>
-		<td>The SHA1 hash of a mailto URI (such as goes in an mbox 
-			property). An LRS MAY include Agents with a matching hash when a 
-			request is based on an mbox.</td>
-	</tr>
-	<tr><td>openid*</td><td>URI</td><td>An openid that uniquely identifies this agent.</td></tr>
-	<tr><td>account*</td><td>An account object</td><td><a href="#agentaccount">see 4.1.2.1 above</a>.</td></tr>
-	<tr>
-		<td>member</td>
-		<td>Array of <a href="#agent">Agent</a> (not Group) objects</td>
-		<td>The members of this Group.</td>
-	</tr>
-</table>  
+	<tr><td>objectType</td><td>String</td><td>"Group". This property is required.</td></tr>
+	<tr><td>name</td><td>String</td><td>Name of the group. Optional.</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td></tr>
+	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>
+The local part of the email address must be URI encoded.<br>Only emails that have only ever been and will ever be assigned to this Group, 
+but no others, should be used for this property and mbox_sha1sum.</td></tr>
+	<tr><td>mbox_sha1sum</td><td>string</td><td>The SHA1 hash of a mailto URI (i.e. the value of an mbox property). An LRS MAY include Groups with a matching hash when a request is based on an mbox.</td></tr>
+	<tr><td>openID</td><td>URI</td><td>An openID that uniquely identifies the Group.</td></tr>
+	<tr><td>account</td><td><a href="#agentaccount">account object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
+
+</table>
+
+A system consuming Statements...
+
+* MUST consider each anonymous Group distinct;
+* MUST NOT assume that Agents in the 'member' property comprise an exact list of agents in a given anonymous or identified Group.
+
 
 
 <a name="verb"/>
@@ -1290,10 +1268,9 @@ In order to allow systems receiving statements with attachments to examine the r
 and possibly decide to reject it, before receiving attachments, statements with attachments will be
 transmitted using a content-Type of multipart/mixed rather than in-lining the attachments. Attachments 
 will be placed at the end of such transmissions, though they are still logically part of the statements.
+This capability will be available when issuing PUT or POST against the statement resource.
 
-Attachments
-
-#####Format:
+#####Attachment Type:
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -1318,7 +1295,7 @@ Attachments
 		<td>no</td>
 	</tr>
 	<tr>
-		<td>content-Type</td>
+		<td>contentType</td>
 		<td><a href="https://www.ietf.org/rfc/rfc2046.txt?number=2046">Internet Media Type</a></td>
 		<td>The content type of the attachment.</td>
 		<td>yes</td>
@@ -1330,7 +1307,7 @@ Attachments
 		<td>yes</td>
 	</tr>
 	<tr>
-		<td>sha-2</td>
+		<td>sha2</td>
 		<td>base64</td>
 		<td>The SHA-2 hash of the attachment data. A minimum key size of 256 bits is recommended.</td>
 		<td>yes</td>
@@ -1355,12 +1332,86 @@ Requirements for the LRS:
 * MUST accept statements via the statements resource via PUT or POST that contain attachments in the Transmission Format described above
 * MUST reject statements having attachments that do not contain a fileUrl, and do not have a hash matching any raw data received
 * MUST include attachments in the Transmission Format described above when requested by the client (see query API)
-* MUST NOT pull statements from another LRS without requesting attacments
+* MUST NOT pull statements from another LRS without requesting attachments
 * MUST NOT push statements into another LRS without including attachments
 * MAY reject statements, or batches of statements that are larger than the LRS is configured to allow
+* SHOULD accept statements in the above format that don't declare any attachments
 
 Requirements for the client:
 * MAY send statements with attachments as described above
+* MAY send multiple statements where some or all have attachments if using "POST"
+
+Common requirements:
+* SHOULD only include one copy of an attachment when the same attachment is used in multiple statements that are sent in one message.
+* MUST conform to the definition of multipart/mixed in RFC 1341
+* SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json"
+* MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part. This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the attachment included in this part
+
+
+#####Example:
+
+Below is an example of a very simple statement with an attachment. Please note the following:
+* The boundary in the sample was chosen to demonstrate valid character classes.
+* The selected boundary does not appear in any of the parts
+* For readability the sample attachment is text/plain. Even if it had been a 'binary' type
+like 'image/jpeg' no encoding would be done, the raw octets would be included
+* Per RFC 1341, the boundary is <CRLF> followed by -- followed by the boundary string declared in the header.
+Don't forget the <CRLF> when building or parsing these messages.
+
+Headers:
+
+``` 
+Content-Type: multipart/mixed; boundary=abcABC0123'()+_,-./:=?
+X-Experience-API-Version:1.0
+```
+Content:
+```
+
+--abcABC0123'()+_,-./:=?
+Content-Type:application/json
+
+{
+    "actor": {
+        "mbox": "mailto:sample.agent@example.com",
+        "name": "Sample Agent",
+        "objectType": "Agent"
+    },
+    "verb": {
+        "id": "http://adlnet.gov/expapi/verbs/answered",
+        "display": {
+            "en-US": "answered"
+        }
+    },
+    "object": {
+        "id": "http://www.example.com/tincan/activities/multipart",
+        "objectType": "Activity",
+        "definition": {
+            "name": {
+                "en-US": "Multi Part Activity"
+            },
+            "description": {
+                "en-US": "Multi Part Activity Description"
+            }
+        }
+    },
+    "attachments": [
+        {
+            "usageType": "http://example.com/attachment-usage/test",
+            "display": { "en-US": "A test attachment" },
+            "description": { "en-US": "A test attachment (description)" },
+            "contentType": "text/plain; charset=ascii",
+            "length": 27,
+            "sha2": "495395e777cd98da653df9615d09c0fd6bb2f8d4788394cd53c56a3bfdcd848a"
+        }
+    ]
+}
+--abcABC0123'()+_,-./:=?
+Content-Type:text/plain
+X-Experience-API-Hash:495395e777cd98da653df9615d09c0fd6bb2f8d4788394cd53c56a3bfdcd848a
+
+here is a simple attachment
+--abcABC0123'()+_,-./:=?--
+```
 
 <a name="retstmts"/> 
 ## 4.2 Retrieval of Statements:
@@ -1835,12 +1886,12 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 	<tr><td>verb</td><td>String</td><td> </td>
 		<td>Filter, only return statements matching the specified verb id.</td>
 	</tr>
-	<tr><td>object</td><td>Activity, Agent, or Statement Object (JSON)</td><td> </td>
+	<tr><td>object</td><td>Activity, Agent (JSON)</td><td> </td>
 		<td>Filter, only return statements matching the specified object 
-			(activity or actor).<br/><br/>
+			(activity or agent/group).<br/><br/>
 			Object is an activity: return statements with an object that is an 
 			activity with a matching activity ID to the specified activity.<br/><br/>
-			Object is an actor: same behavior as "actor" filter, except match 
+			Object is an agent or group: same behavior as "actor" filter, except match 
 			against object property of statements.
 		</td>
 	</tr>
@@ -1857,7 +1908,7 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 			any of the context activities match the specified object.
 		</td>
 	</tr>
-	<tr><td>actor</td><td>Actor Object (JSON)</td><td> </td>
+	<tr><td>actor</td><td>Agent/Group Object (JSON)</td><td> </td>
 		<td>Filter, only return statements about the specified agent. 
 			Note: at minimum agent objects where every property is 
 			identical are considered identical. Additionaly, if the 
@@ -1877,11 +1928,6 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 		<td>Maximum number of statements to return. 0 indicates return the 
 			maximum the server will allow.</td>
 	</tr>
-	<tr><td>authoritative</td><td>Boolean</td><td>True</td>
-		<td>Only include statements that are asserted by actors authorized to 
-			make this assertion (according to the LRS), and are not superseded 
-			by later statements.</td>
-	</tr>
 	<tr><td>sparse</td><td>Boolean</td><td>True</td>
 		<td>If true, only include minimum information necessary in actor and 
 			activity objects to identify them, If false, return populated 
@@ -1897,6 +1943,9 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 			language entry to include, rather than to the resource (list of 
 			statements) as a whole.
 		</td>
+	</tr>
+	<tr><td>attachments</td><td>Boolean</td><td>False</td>
+		<td>If true LRS MUST include attachments in a multipart response as described in <a href="#attachments">4.1.11. Attachments</a>, otherwise the LRS MUST NOT include attachments.</td>
 	</tr>
 	<tr><td>instructor</td><td>Actor Object (JSON)</td><td> </td>
 		<td>Same behavior as "actor" filter, except match against 
