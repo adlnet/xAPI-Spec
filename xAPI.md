@@ -910,7 +910,7 @@ comment could be issued on the original statement, using a new statement:
 
 An optional field that represents a measured outcome related to the statement in which it is included.
 
-#####Example
+#####Details
 
 A result can be completion, success, score, etc. 
 The 'Result' field may also contain arbitrary measurements if needed by the Learning Activity Provider.
