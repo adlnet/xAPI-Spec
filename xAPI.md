@@ -1977,6 +1977,11 @@ The 3 Document APIs provide <a href="#miscdocument">document</a> storage for lea
 and agents. The details of each API are found in the following sections, and the information in this section 
 applies to all three APIs.
 
+###New Agents and Activities
+An Activity Provider MAY send documents to any of the document APIs for activities and agents that
+the LRS does not have prior knowledge of. The LRS MUST NOT reject documents on the basis of not 
+having an existing definition of the activity and/or agent. 
+
 ###POST to store application/json arrays of variables
 <table>
 	<tr>
