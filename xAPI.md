@@ -2601,7 +2601,7 @@ __choice__
 		"en-US": "Which of these prototypes are available at the beta site?"
 	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
-	"interactionType": "multiple-choice",
+	"interactionType": "choice",
 	"correctResponsesPattern": [
 		"golf[,]tetris"
 	],
