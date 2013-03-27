@@ -579,9 +579,8 @@ meanings, not the word "fired".
 #### Language
 A verb in the Experience API is a URI, and denotes a specific meaning not tied to any particular language. 
 
-For example, a particular verb URI such as http://example.org/firearms#fire or tag:example.com,2012:xQr73H 
-might denote the action of firing a gun, or the verb URI http://example.com/فعل/خواندن might denote the action 
-of reading a book. 
+For example, a particular verb URI such as http://example.org/firearms#fire might denote the action of firing a gun, 
+or the verb URI http://example.com/فعل/خواندن might denote the action of reading a book. 
 
 #### A new verb
 The person who coins a new verb...
