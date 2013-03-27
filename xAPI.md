@@ -1979,8 +1979,10 @@ applies to all three APIs.
 
 ###New Agents and Activities
 An Activity Provider MAY send documents to any of the document APIs for activities and agents that
-the LRS does not have prior knowledge of. The LRS MUST NOT reject documents on the basis of not 
-having an existing definition of the activity and/or agent. 
+the LRS does not have prior knowledge of. The LRS MUST NOT reject documents on the basis of not having 
+prior knowledge of the activity and/or agent. 
+
+
 
 ###POST to store application/json arrays of variables
 <table>
