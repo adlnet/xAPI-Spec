@@ -1886,10 +1886,10 @@ Returns: 200 OK, statement or [Statement Result](#retstmts) (See section 4.2 for
 	<tr><td>voidedStatementId</td><td>String</td><td> </td><td>ID of voided statement to fetch. see <a href="#voidedStatements">Voided Statements</a></td></tr>
 	<tr><td>agent</td><td>Agent or identified Group Object (JSON)</td><td> </td>
 		<td>Filter, only return statements for which the specified agent or group is the actor or object of the statement.
-			* Agents or identified groups are equal when the same Inverse Functional Identifier is used in each
+			<ul><li> Agents or identified groups are equal when the same Inverse Functional Identifier is used in each
 			object compared and those Inverse Functional Identifiers have equal values.
-			* For the purposes of this filter, groups that have members which match the specified agent
-			based on their Inverse Functional Identifier as described above are considered a match
+			</li><li>For the purposes of this filter, groups that have members which match the specified agent
+			based on their Inverse Functional Identifier as described above are considered a match</li></ul>
 			<br><br>See <a href="#actor">agent/group</a> object definition
 			for details.
 		</td>
