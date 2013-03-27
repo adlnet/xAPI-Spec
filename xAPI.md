@@ -496,8 +496,8 @@ A Group...
 An anonymous group...
 
 * MAY be used to describe a cluster of people where there is no ready identifier for this cluster, e.g. an ad hoc team;
-* MUST include a 'member' property listing constituent Agents or identified groups;
-* MUST NOT contain Anonymous Group objects in the 'member' property.
+* MUST include a 'member' property listing constituent Agents;
+* MUST NOT contain Group objects in the 'member' property.
 * MUST NOT include any inverse functional identifiers
 
 The table below lists all properties of an anonymous Group.
@@ -512,7 +512,8 @@ The table below lists all properties of an anonymous Group.
 An identified group...
 
 * MUST include exactly one (1) inverse functional identifier;
-* MUST NOT include a 'member' property
+* MAY include a 'member' property listing constituent Agents;
+* MUST NOT contain Group objects in the 'member' property.
 * SHOULD NOT use inverse functional identifiers that are also used for any Agents.
 
 The table below lists all properties of an identified Group. The last four are inverse functional identifiers.
@@ -1886,8 +1887,8 @@ Returns: 200 OK, statement or [Statement Result](#retstmts) (See section 4.2 for
 		<td>Filter, only return statements for which the specified agent or group is the actor or object of the statement.
 			* Agents or identified groups are equal when the same Inverse Functional Identifier is used in each
 			object compared and those Inverse Functional Identifiers have equal values.
-			* For the purposes of this filter, anonymous groups that have members which match the specified agent
-			or identified group based on their Inverse Functional Identifier as described above are considered a match
+			* For the purposes of this filter, groups that have members which match the specified agent
+			based on their Inverse Functional Identifier as described above are considered a match
 			<br><br>See <a href="#actor">agent/group</a> object definition
 			for details.
 		</td>
