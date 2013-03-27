@@ -198,6 +198,17 @@ In collection of requirements for the Experience API, there were many people and
 organizations that provided invaluable feedback to SCORM, distributed learning 
 efforts, and learning in general.  User Voice Site, Rustici Blog, etc.  
 
+##2.3 Reading guidelines for the non-technically inclined.
+
+Since you’re reading this document, it’s probably safe to say that you’re interested in understanding 
+the Experience API, informally called TinCan. The purpose of this document is to describe how the xAPI is 
+implemented in a large variety of systems. It’s a fairly technical document by nature and you may
+decide that you don’t understand much of it. Even so, there are useful things to learn by reading further. Not only
+because the tools that you work with are based on the specifications described below; the technical people that you
+talk to may assume that you have a basic level of knowledge. Exactly for this reason you’re advised to read the small
+sections labeled ‘description’ and ‘rationale’ while skipping the ‘details’ and ‘examples’. Needless to say, many
+other sources can be found that explain xAPI very well, but this document is the core of them all.
+
 <a name="defintions"/> 
 # 3.0 Definitions  
 
@@ -536,63 +547,90 @@ A system consuming Statements...
 
 
 
+
+
 <a name="verb"/>
 ### 4.1.3 Verb:
 
-The verb defines the action between actor and activity. It asserts what is done by the actor 
-in relation to the activity. 
+###Description
+The verb defines the action between actor and activity. It asserts what is done by the actor in relation to 
+the activity. Verbs appear in statements as objects consisting of a URI and a set of display names.
 
-The Experience API does not specify any particular verbs (except the reserved 
-“http://adlnet.gov/expapi/verbs/voided"), but rather defines how verbs are to 
-be created. It is expected that communities of practice will develop verbs they find useful and make 
-them available to the general community for use. Verbs appear in statements as 
-objects consisting of a URI and a set of display names.
+### Rationale
 
-The Verb URI identifies the particular semantics of a word, not the word 
-itself. For example, the English word "fired" could mean different things 
-depending on context, such as "fired a weapon", "fired a kiln", or "fired an 
-employee". In this case, a URI MUST identify one of these specific meanings, 
-not the word "fired".
+The verb in an xAPI statement describes the learning experience. The xAPI does not specify any particular 
+verbs. (With one exception, namely the reserved verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>). 
+Instead, it defines how to create verbs so that communities of practice can coin their own meaningful verbs 
+and make them available for use by anyone. A predefined list of verbs would be limited by definition and 
+they might not be able to effectively capture all possible future learning experiences.
 
-A verb in the Experience API is a URI, and denotes a specific meaning not tied to 
-any particular language. For example, a particular verb URI such as 
-http://example.org/firearms#fire or tag:example.com,2012:xQr73H might denote 
-the action of firing a gun, or the verb URI http://example.com/فعل/خواندن 
-might denote the action of reading a book. 
 
-The person who coins a new verb MUST own the URI, or have permission 
-from the owner to use the URI to denote an Experience API verb. The owner of a URI 
-SHOULD make a human-readable description of the intended usage of the verb 
+
+
+
+###Details
+#### Semantics
+The Verb URI identifies the particular semantics of a word, not the word itself. 
+
+For example, the English word "fired" could mean different things depending on context, such as "fired a 
+weapon", "fired a kiln", or "fired an employee". In this case, a URI MUST identify one of these specific 
+meanings, not the word "fired". 
+
+#### Language
+A verb in the Experience API is a URI, and denotes a specific meaning not tied to any particular language. 
+
+For example, a particular verb URI such as http://example.org/firearms#fire might denote the action of firing a gun, 
+or the verb URI http://example.com/فعل/خواندن might denote the action of reading a book. 
+
+#### A new verb
+The person who coins a new verb...
+
+* MUST own the URI, or...
+* MUST have permission from the owner to use it to denote an xAPI verb;
+* SHOULD make a human-readable description of the intended usage of the verb 
 accessible at the URI.
 
-__NOTE__: In some future version, this specification might specify additional 
-machine-readable information about the verb be made available, but the choice 
-to do so is postponed to monitor emerging practices and pain points. ADL released 
-a set of recommended verbs at the same time as the 0.95 version of this specification. 
-Learning Activity Providers MAY use one these verbs, or other verb which have 
-wide adoption, if applicable. 
+####ADL verb list
+ADL released a set of recommended verbs. If the meaning of one of the verbs on this list is intended, 
+Learning Activity Providers...
 
-The verb list created by ADL included
-verbs corresponding to the verbs previously defined in this specification. If 
-the meaning of one of those previously defined verbs is intended, Learning Activity Providers 
-SHOULD use the corresponding ADL verb. Learning Activity Providers MAY create 
-their own verbs instead, as needed.  
+* SHOULD use the corresponding ADL verb;
+* MAY create and use their own verbs instead, as needed.
+
+
+
+
+#####__NOTE__: 
+In some future version, this specification might specify additional machine-readable information about 
+the verb be made available, but the choice to do so is postponed to monitor emerging practices 
+and pain points. 
+ 
 
 #### 4.1.3.1 Verb Object: 
 
-The verb object is the representation of a verb that is actually included in 
-a statement. In addition to referencing the verb itself via a URI, it includes 
-a display property which provides the human-readable meaning of the verb in 
-one or more languages.
+####Description
 
-The display property MUST NOT be used to alter the meaning of a statement, 
-rather it MUST be used to illustrate the meaning which is already determined 
-by the verb URI.
+The verb object is the representation of a verb that is actually included in a statement. It consists of:
 
-All statements SHOULD use the display property.  A system reading a statement 
-MUST NOT use the display property to infer any meaning from the statement, 
-rather it MUST use the verb URI to infer meaning, and the display property only 
-for display to a human.  
+* a reference the verb itself via a URI;
+* a display property which provides the human-readable meaning of the verb in one or more languages.
+
+
+####Details
+The display property:
+
+* MUST be used to illustrate the meaning which is already determined by the verb URI;
+* MUST NOT be used to alter the meaning of a verb;
+* SHOULD be used by all statements.
+
+A system reading a statement:
+
+* MUST use the verb URI to infer meaning;
+* MUST NOT use the display property to infer any meaning from the statement; 
+* MUST use the display property only for display to a human.
+
+The table below lists all properties of the Verb object.
+
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Example</th></tr>
 	<tr>
@@ -607,7 +645,7 @@ for display to a human.
 		<td>display</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>The human readable representation of the 
-			verb in at least one language. This does not have any impact on the 
+			verb in one or more languages. This does not have any impact on the 
 			meaning of the statement, but serves to give a human-readable 
 			display of the meaning already determined by the chosen verb.</td>
 		<td>display : { "en-US" : "ran"}<br/>
@@ -615,8 +653,10 @@ for display to a human.
 	</tr>
 </table>
 
-Note, the verb in the table above is included for illustrative purposes only. This is not intended to imply that a verb
-with this meaning has been defined with this id. This applies to all example verbs given in this specification document. 
+The verb in the table above is included for illustrative purposes only. This is not intended to imply that
+a verb with this meaning has been defined with this id. This applies to all example verbs given in this 
+specification document, with the exception of the reserved verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>. 
+
 
 <a name="object"/>
 ### 4.1.4 Object:  
