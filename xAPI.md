@@ -1131,7 +1131,6 @@ Stored time:
 
 * MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
 * SHOULD include the timezone;
-* MAY be a moment in the future, to denote a deadline for planned learning, provided it is included inside a SubStatement;
 * SHOULD be the current or a past time when it is outside of a SubStatement.
 
 A reporting tool:
@@ -1220,7 +1219,7 @@ Upon receiving a statement that voids another, the LRS...
 
 * MAY roll back any changes to activity or agent definitions which were introduced by the statement that was just voided;
 * SHOULD return a descriptive error if the target statement cannot be found;
-* MUST NOT report the voided statement when queried, but MUST report the voiding statement (see 7.2 Statement API).
+* MUST NOT report the voided statement when queried, but MUST report the voiding statement (see <a href="#queryStatementRef">StatementRef</a> in 7.2 Statement API).
 
 
 #####Example
@@ -1971,7 +1970,7 @@ Returns: 200 OK, statement or [Statement Result](#retstmts) (See section 4.2 for
 </table>
 
 The LRS MUST reject with an HTTP 400 error any requests to this resource which:
-* contain both statementId voidedStatementId parameters
+* contain both statementId and voidedStatementId parameters
 * contain statementId or voidedStatementId parameters, and also contain any other parameter besides "attachments" or "format".
 * contain any parameters the LRS does not recognize
 
@@ -1979,6 +1978,7 @@ __Note__: Due to query string limits, this method MAY be called using POST and
 form fields if necessary. The LRS MUST differentiate a POST to add a statement
 or to list statements based on the parameters passed.  
 
+<a name="queryStatementRef" />
 __Note__: For filter parameters which are not time or sequence based (that is, other than
 since, until, or limit), statements which target another statement will meet the filter
 condition if the targeted statement meet the condition. The time and sequence based parameters must
