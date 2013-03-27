@@ -1180,6 +1180,13 @@ of two Agents representing an application and user together.
 Unless used in the aforementioned 3-legged OAuth workflow, a Group MUST NOT 
 be used to assert authority.  
 
+##### LRS Requirements:
+* The LRS SHOULD overwrite the authority on all stored recieved statemensts, based on 
+ the credentials use to send those statemens.
+* The LRS MAY leave the submitted authority unchanged but SHOULD do so only where a strong
+ trust relationship has been established, and with extreme caution.
+* The LRS MUST ensure that all statements stored have an authority.
+
 If a statement is stored using a validated OAuth connection, and the LRS creates 
 or modifies the authority property of the statement, the authority MUST contain 
 an agent object that represents the OAuth consumer, either by itself, or as part 
@@ -1198,10 +1205,7 @@ coming from the same source, as there is no way to verify that, since multiple
 unregistered applications could choose the same consumer key. Each unregistered 
 consumer SHOULD pick a unique consumer key.  
 
-If a statement is received from another, fully trusted LRS, an LRS MAY choose 
-not to overwrite the authority property received. Otherwise, an LRS MUST completely 
-ignore any provided authority property, and instead construct its own authority 
-property as described here. If a user connects directly (using HTTP Basic Auth) 
+If a user connects directly (using HTTP Basic Auth) 
 or is included as part of a 3-legged OAuth workflow, the LRS MUST include the user 
 as an Agent in the authority, and MAY identify the user with any of the legal 
 identifying properties.  
