@@ -2087,10 +2087,15 @@ the resulting document stored in the LRS is:
 	"z" : "faz"
 }
 ```
-If either the original document or the document being posted do not have an Content-Type:
+If either the original document or the document being posted do not have a Content-Type:
 of "application/json", or if either document can not be parsed as JSON objects, the LRS MUST
 respond with HTTP status code 400 "Bad Request", and MUST NOT update the target document
-as a result of the request. If the merge is successful, the LRS MUST respond with HTTP 
+as a result of the request. 
+
+If the original document does not exist, the LRS MUST treat the request the same as it 
+would a PUT request and store the document being posted.
+
+If the merge is successful, the LRS MUST respond with HTTP 
 status code 204 "No Content".
 
 If an AP needs to delete
