@@ -1067,7 +1067,8 @@ For example: a statement about a quiz question would have the quiz as its parent
 2. __Grouping__ : an activity with an indirect relation to the activity which is the object of the statement.
 For example: a course that is part of a qualification. The course has several classes. The course relates to a class as the parent, the qualification relates to the class as the grouping.
 
-4. __Category__ : an activity used to categorize the statement.
+3. __Category__ : an activity used to categorize the statement. "Tags" would be a synonym. Main driver is to have a way to get "profile" in the statement in a searchable way, but this includes more general categories of statements.
+
 For example: Anna attempts a bilogy exam, and the statement is tracked using the CMI-5 profile.
 The statement's activity refers to the exam, and the category is the CMI-5 profile.
 
@@ -1882,7 +1883,7 @@ Returns: 200 OK, statement or [Statement Result](#retstmts) (See section 4.2 for
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
 	<tr><td>statementId</td><td>String</td><td> </td><td>ID of statement to fetch</td></tr>
-	<tr><td>voidedStatementId</td><td>String</td><td> </td><td>ID of voided statement to fetch</td></tr>
+	<tr><td>voidedStatementId</td><td>String</td><td> </td><td>ID of voided statement to fetch. see <a href="#voided">Voided Statements</a></td></tr>
 	<tr><td>agent</td><td>Agent or identified Group Object (JSON)</td><td> </td>
 		<td>Filter, only return statements for which the specified agent or group is the actor or object of the statement.
 			* Agents or identified groups are equal when the same Inverse Functional Identifier is used in each
@@ -1992,6 +1993,7 @@ statement will not mention "Ben" or "explosives training", but when fetching sta
 with an actor filter of "Ben" or an activity filter of "explosives training", both
 statements will be returned.
 
+<a name="voided">
 ###Voided statements
 The LRS MUST not return any statement which has been voided, unless that statement has been
 requested by voidedStatementId. The LRS MUST still return any statements targetting the voided statement,
