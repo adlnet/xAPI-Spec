@@ -210,7 +210,7 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 * [Inverse Functional Identifier](#def-inverse-functinal-identifier)
 * [Learning Activity Provider](#def-activity-provider)
 * [Learning Management System (LMS)](#def-learning-management-system)
-* [Learning Record Store (LRS)](#def-learning-record-store)
+* [Learning Record Store (LRS)](#def-learning-record-store)"
 * [MUST / SHOULD / MAY](<#def-must-should-may)
 * [Profile](#def-profile)
 * [Registration](#def-registration)
@@ -1883,7 +1883,7 @@ Returns: 200 OK, statement or [Statement Result](#retstmts) (See section 4.2 for
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
 	<tr><td>statementId</td><td>String</td><td> </td><td>ID of statement to fetch</td></tr>
-	<tr><td>voidedStatementId</td><td>String</td><td> </td><td>ID of voided statement to fetch. see <a href="#voided">Voided Statements</a></td></tr>
+	<tr><td>voidedStatementId</td><td>String</td><td> </td><td>ID of voided statement to fetch. see <a href="#voidedStatements">Voided Statements</a></td></tr>
 	<tr><td>agent</td><td>Agent or identified Group Object (JSON)</td><td> </td>
 		<td>Filter, only return statements for which the specified agent or group is the actor or object of the statement.
 			* Agents or identified groups are equal when the same Inverse Functional Identifier is used in each
@@ -1993,7 +1993,7 @@ statement will not mention "Ben" or "explosives training", but when fetching sta
 with an actor filter of "Ben" or an activity filter of "explosives training", both
 statements will be returned.
 
-<a name="voided">
+<a name="voidedStatements">
 ###Voided statements
 The LRS MUST not return any statement which has been voided, unless that statement has been
 requested by voidedStatementId. The LRS MUST still return any statements targetting the voided statement,
