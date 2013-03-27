@@ -1913,19 +1913,18 @@ Returns: 200 OK, statement or [Statement Result](#retstmts) (See section 4.2 for
 		</td>
 	</tr>
 	<tr><td>related_activities</td><td>Boolean</td><td>False</td>
-		<td>Apply the activity filter broadly. Include statements for which 
-			any property is of type activity and has an id matching the specified activity id.
-			This includes but is not limited to: context.activities and activities
-			referenced in sub-statements. This does NOT include activity IDs found in properties
-			that are not of type "activity", such as "extensions".
+		<td>Apply the activity filter broadly. Include statements for which the object,
+		any of the  context activities, or any of those properties in a contained SubStatement
+		match the activity parameter, instead of that parameter's normal behavior. Matching
+		is defined in the same way it is for the 'activity' parameter."
 		</td>
 	</tr>
 	<tr><td>related_agents</td><td>Boolean</td><td>False</td>
 		<td>Apply the agent filter broadly. Include statements for which 
-			any property matches the specified agent or group. This includes but is not limited to:
-			authority, instructor, team, agents listed as part of an ad-hoc team, and agents listed within
-			sub-statements. This does NOT include agents or groups found in properties
-			that are not of type agent or group, such as "extensions".
+			the actor, object, authority, instructor, team, agents listed as part of a team,
+			or any of these properties in a contained SubStatement match the agent parameter,
+			instead of that parameter's normal behavior. Matching is defined in the same way
+			it is for the 'agent' parameter.
 		</td>
 	</tr>
 	<tr><td>since</td><td>Timestamp</td><td> </td>
