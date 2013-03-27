@@ -172,6 +172,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Megan Bowe</td><td>Rustici Software</td></tr>
 	<tr><td>Melanie VanHorn</td><td>ADL</td></tr>
 	<tr><td>Michael Flores</td><td>Here Everything's Better</td></tr>
+	<tr><td>Michael Roberts</td><td>vTrainingRoom</td></tr>
 	<tr><td>Mike Palmer</td><td>OnPoint Digital</td></tr>
 	<tr><td>Mike Rustici</td><td>Rustici Software</td></tr>
 	<tr><td>Nik Hruska</td><td>ADL</td></tr>
