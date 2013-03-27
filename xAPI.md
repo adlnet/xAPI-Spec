@@ -1922,7 +1922,7 @@ Returns: 200 OK, statement or [Statement Result](#retstmts) (See section 4.2 for
 	</tr>
 	<tr><td>related_agents</td><td>Boolean</td><td>False</td>
 		<td>Apply the agent filter broadly. Include statements for which 
-			the actor, object, authority, instructor, team, agents listed as part of a team,
+			the actor, object, authority, instructor, team,
 			or any of these properties in a contained SubStatement match the agent parameter,
 			instead of that parameter's normal behavior. Matching is defined in the same way
 			it is for the 'agent' parameter.
