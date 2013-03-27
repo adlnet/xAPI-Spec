@@ -1109,8 +1109,8 @@ A timestamp:
 
 * MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
 * SHOULD include the timezone;
-* MAY be a moment in the future, to denote a deadline for planned learning, provided it is included inside a subStatement;
-* SHOULD be the current or a past time when it is outside of a subStatement.
+* MAY be a moment in the future, to denote a deadline for planned learning, provided it is included inside a SubStatement;
+* SHOULD be the current or a past time when it is outside of a SubStatement.
 
 A reporting tool:
 
@@ -1130,8 +1130,8 @@ Stored time:
 
 * MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
 * SHOULD include the timezone;
-* MAY be a moment in the future, to denote a deadline for planned learning, provided it is included inside a subStatement;
-* SHOULD be the current or a past time when it is outside of a subStatement.
+* MAY be a moment in the future, to denote a deadline for planned learning, provided it is included inside a SubStatement;
+* SHOULD be the current or a past time when it is outside of a SubStatement.
 
 A reporting tool:
 
