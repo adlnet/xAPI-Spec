@@ -358,8 +358,6 @@ below.
 	<tr><td><a href="#authority">authority</a></td><td>Object</td><td></td>
 	<td>Agent who is asserting this statement is true. Verified by LRS based on 
 	authentication, and set by LRS if left blank.</td></tr>
-	<tr><td><a href="#voided">voided</a></td><td>Boolean</td><td>false</td>
-	<td>Indicates that the statement has been voided (see below)</td></tr>
 	<tr><td><a href="#version">version</a></td><td>String</td><td>"1.0"</td>
 	<td>API version the statement conforms to. Set by LRS.</td></tr>
 	<tr>
@@ -370,8 +368,7 @@ below.
 	</tr>
 </table>  
 Aside from (potential or required) assignments of properties during initial 
-processing ("id", "authority", "stored", "timestamp"), and the special case of 
-updating the "voided" flag, statements are immutable. Note that the content of 
+processing ("id", "authority", "stored", "timestamp") statements are immutable. Note that the content of 
 activities that are referenced in statements are not considered part of the 
 statement itself. So while the statement is immutable, the activities referenced 
 by that statement are not. This means a deep serialization of a statement into 
@@ -864,8 +861,8 @@ __Sub-Statements__
 When a new statement is included as part of another statement, it is considered 
 a sub-statement, and is subject to certain restrictions. Sub-statements may only 
 be included as parts of other statements, MUST specify an "objectType" property 
-with the value "SubStatement", and MUST NOT have the "id", "stored", "authority", 
-or "voided" properties. They will be considered part of the parent statement, 
+with the value "SubStatement", and MUST NOT have the "id", "stored", or "authority" properties.
+They will be considered part of the parent statement, 
 and MUST NOT contain a sub-statement. Implementations MUST validate the 
 sub-statement as they would other statements, with the addition of these rules.
 
