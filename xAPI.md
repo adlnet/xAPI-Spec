@@ -677,14 +677,12 @@ A statement may represent a Learning Activity as an object in the statement.
 	<tr>
 		<td>objectType</td>
 		<td>String</td>
-		<td>Should always be "Activity" when present. Used in cases where type 
-			cannot otherwise be determined, such as the value of a statement's 
-			"object" field.</td>
+		<td>MUST be "Activity" when present. Optional in all cases.</td>
 	</tr>
 	<tr>
 		<td><a href="#acturi">id</a></td><td>URI</td>
 		<td>MAY be a URL, which points to the logical definition of the activity. 
-			This MAY be metadata or the URL for the activity</td>
+		This MAY point to metadata or the URL for the activity</td>
 	</tr>
 	<tr>
 		<td><a href="#actdef">definition</a></td>
@@ -693,30 +691,30 @@ A statement may represent a Learning Activity as an object in the statement.
 	</tr>
 </table>
 <a name="acturi"/>
-__Activity URI__  
-An activity URI must always refer to a single unique activity. There may be 
+__Activity ID__  
+An activity ID must always refer to a single unique activity. There may be 
 corrections to that activity's definition. Spelling fixes would be appropriate, 
 for example, but changing correct responses would not.  
 
-The activity URI is unique, and any reference to it always refers to the same 
+The activity ID is unique, and any reference to it always refers to the same 
 activity. Activity Providers must ensure this is true and the LRS may not attempt 
-to treat multiple references to the same URI as references to different activities, 
+to treat multiple references to the same ID as references to different activities, 
 regardless of any information which indicates two authors or organizations may 
-have used the same activity URI.    
+have used the same activity ID.    
 
-When defining an activity URI, care must be taken to make sure it will not be 
+When defining an activity ID, care must be taken to make sure it will not be 
 re-used. It should use a domain the creator controls or has been authorized to 
 use for this purpose, according to a scheme the domain owner has adopted to make 
-sure activity URIs within that domain remain unique.  
+sure activity IDs within that domain remain unique.  
 
-Any state or statements stored against an activity URI must be compatible and 
+Any state or statements stored against an activity ID must be compatible and 
 consistent with any other state or statements that are stored against the same 
-activity URI, even if those statements were stored in the context of a new 
+activity ID, even if those statements were stored in the context of a new 
 revision or platform.   
 
 __NOTE__: The prohibition against an LRS treating references to the same activity 
-URI as two different activities, even if the LRS can positively determine that 
-was the intent, is crucial to prevent activity id creators from creating ids 
+ID as two different activities, even if the LRS can positively determine that 
+was the intent, is crucial to prevent activity ID creators from creating IDs 
 that could be easily duplicated, as intent would be indeterminable should a 
 conflict with another system arise.  
 
