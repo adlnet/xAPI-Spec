@@ -6,7 +6,7 @@
 >Defense (Readiness) Advanced Distributed Learning (ADL) Initiative. Please 
 >send all feedback and inquiries to helpdesk@adlnet.gov  
 
-# Table of Contents
+## Table of Contents
 [1.0. Revision History](#revhistory)  
 [2.0. Role of the Experience API](#roleofxapi)  
   [2.1. ADL's Role in the Experience API](#adlrole)  
@@ -55,14 +55,14 @@
 [Appendix D: Example statements](#AppendixD)  
 
 <a name="revhistory"/>  
-# 1.0 Revision History
-__0.8 (Project Tin Can API Deliverable) to 0.9 (March 31, 2012):__  
+## 1.0 Revision History
+###### 0.8 (Project Tin Can API Deliverable) to 0.9 (March 31, 2012):  
   
 Rustici software, whom delivered Project Tin Can API, made modifications to the 
 API prior to the April 2012 Kickoff Meeting. It was voted in this meeting to 
 move those changes into the current spec and revision to 0.9.
 
-__0.90 to 0.95 (August 31, 2012):__  
+###### 0.90 to 0.95 (August 31, 2012):  
 
 "Core" verbs and activity types were removed from the specification. References 
 to these verbs in results, context, interactions, and activity definitions have 
@@ -77,14 +77,23 @@ view.
 - Agent objects must now have exactly 1 uniquely identifying property, instead 
 of at least one.
 
+###### 0.95 to 1.0 (April 26, 2013): 
+Various refinements and clarifications including:
+- Adding attachments
+- Activity metadata is now stored as JSON rather than XML
+- Changes to voiding statements
+- Clarification of the document APIs
+- Changes to querying the Statement API
+
 <a name="roleofxapi"/>
-# 2.0 Role of the Experience API  
+## 2.0 Role of the Experience API  
 The Experience API is a service that allows for statements of experience 
 (typically learning experiences, but could be any experience) to be delivered 
 to and stored securely in a Learning Record Store. The Experience API is 
 dependent on Learning Activity Providers to create and track learning experiences; 
 this specification provides a data model and associated components on how to 
 accomplish these tasks.  
+
 Specifically, the Experience API provides:  
 - Structure and definition of statement, state, learner, activity and objects, 
 which are the means by which experiences are conveyed by a Learning Activity Provider.
@@ -103,7 +112,7 @@ to work alongside. While the implementation details of these services are not
 specified here, the Experience API is designed with these components in mind.  
  
 <a name="adlrole"/>
-## 2.1 ADL's Role in the Experience API  
+### 2.1 ADL's Role in the Experience API  
 ADL has taken a role of steward and facilitator in the development of the 
 Experience API.  The Experience API is seen as one piece of the ADL Training 
 and Learning Architecture, which facilitates learning anytime and anywhere. 
@@ -113,7 +122,7 @@ and submitted by those involved in distributed learning which SCORM could not
 enable.  
  
 <a name="contributors"/> 
-##2.2 Contributors
+### 2.2 Contributors
 My thanks to everyone who contributed to the Experience API project. Many of 
 you have called into the weekly meetings and helped to shape the specification 
 into something that is useful for the entire distributed learning community. 
@@ -131,7 +140,7 @@ Director, ADL Initiative
 OSD, Training Readiness & Strategy (TRS)  
 
 <a name="wg"/>
-## 2.2.1 Working Group Participants  
+#### 2.2.1 Working Group Participants  
 <table>
 	<tr><th>Name:</th><th>Organization:</th></tr>
 	<tr><td>Aaron Silvers</td><td>ADL</td></tr>
@@ -194,15 +203,15 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Walt Grata</td><td>ADL</td></tr>
 </table> 
 <a name="reqparticipants"/> 
-## 2.2.2 Requirements Gathering Participants  
+#### 2.2.2 Requirements Gathering Participants  
 In collection of requirements for the Experience API, there were many people and 
 organizations that provided invaluable feedback to SCORM, distributed learning 
 efforts, and learning in general.  User Voice Site, Rustici Blog, etc.  
 
-##2.3 Reading guidelines for the non-technically inclined.
+### 2.3 Reading guidelines for the non-technically inclined.
 
 Since you’re reading this document, it’s probably safe to say that you’re interested in understanding 
-the Experience API, informally called TinCan. The purpose of this document is to describe how the xAPI is 
+the Experience API, informally called Tin Can. The purpose of this document is to describe how the xAPI is 
 implemented in a large variety of systems. It’s a fairly technical document by nature and you may
 decide that you don’t understand much of it. Even so, there are useful things to learn by reading further. Not only
 because the tools that you work with are based on the specifications described below; the technical people that you
@@ -211,7 +220,7 @@ sections labeled ‘description’ and ‘rationale’ while skipping the ‘det
 other sources can be found that explain xAPI very well, but this document is the core of them all.
 
 <a name="defintions"/> 
-# 3.0 Definitions  
+## 3.0 Definitions  
 
 * [Activity](#def-activity)
 * [Authentication](#def-authentication)
@@ -319,12 +328,12 @@ __Tin Can API (TCAPI)__: The previous name of the API defined in this document.
 __URI__: Uniform Resource Identifier. A unique identifier which may be a URL. This should be a full absolute URI including a scheme. Relative URIs should not be used. URLs should be defined within a domain controlled by the person creating the URL. 
 
 <a name="statement"/> 
-#4.0 Statement  
+## 4.0 Statement  
 The statement is the core of the XAPI.  All learning events are stored as statements 
 such as: "I did this".  
 
 <a name="stmtprops"/>
-##4.1 Statement Properties:  
+### 4.1 Statement Properties:  
 Actor, verb, and object are required, all other properties are optional. Properties 
 can occur in any order, but are limited to one use each. Each property is discussed 
 below.  
@@ -332,7 +341,7 @@ below.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
 	<tr><td>id</td><td>UUID</td><td></td>
-	<td>UUID assigned by LRS or other trusted source.</td></tr>
+	<td>UUID assigned by LRS if not set by the Activity provider.</td></tr>
 	<tr><td><a href="#actor">actor</a></td><td>Object</td><td></td>
 	<td>Who the statement is about, as an <a href="#agent">Agent</a> or 
 		<a href="#group">Group</a> object. 'I'</td></tr>
@@ -351,7 +360,7 @@ below.
 	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td><td></td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
 	of when what this statement describes happened. If not provided, LRS 
-	should set this to the value of "stored" time.</td></tr>
+	MUST set this to the value of "stored" time.</td></tr>
 	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td><td></td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
 	of when this statement was recorded. Set by LRS.</td></tr>
@@ -399,31 +408,31 @@ Simplest possible statement using all properties that MUST or SHOULD be used:
 See [Appendix D: Example statements](#AppendixD) for more examples. 
 
 <a name="stmtid"/> 
-### 4.1.1 ID:  
+#### 4.1.1 ID:  
 
-#####Description: 
+###### Description: 
 A mandatory UUID.
 
-#####Details: 
+###### Details: 
 
 * MAY be generated by the Learning Activity Provider.
 * MUST be generated by the LRS if a statement is received without an ID.
 
 <a name="actor"/>
-### 4.1.2 Actor:  
+#### 4.1.2 Actor:  
 
-####Description: 
+###### Description: 
 A mandatory Agent or Group object, identified by an "inverse functional identifier".
 
-####Details: 
+###### Details: 
 An "inverse functional identifier" is a value shared between multiple Agents that designates these Agents as the same unique identity without doubt.
 
-####Rationale:
+###### Rationale:
 Learning experiences become meaningless if they cannot be attributed to identifiable individuals and/or groups. In an XAPI statement the required element "Actor" constitutes this identification, loosely inspired on the widely accepted FOAF principle (see: <a href="http://xmlns.com/foaf/spec/#term_Agent"> Friend Of A Friend</a>).
 
 <a name="agent"/>
-####4.1.2.1 Agent
-#####Description:
+##### 4.1.2.1 Agent
+###### Description:
 An Agent (an individual) is identified by one of the following: 
 
 * an e-mail address or its hash (cf. 'mbox' and 'mbox_sha1sum' as in FOAF)
@@ -431,7 +440,7 @@ An Agent (an individual) is identified by one of the following:
 * an account on an existing system (such as twitter, an intranet or an LMS)
 
 
-#####Details:
+###### Details:
 
 An agent...
 
@@ -458,13 +467,13 @@ but no others, should be used for this property and mbox_sha1sum.</td></tr>
 
 <a name="agentaccount"/>
 
-####Account object
+###### Account object
 
-#####Description: 
+###### Description: 
 
 A user account on an existing system, such as a private system (LMS or intranet) or a public system (social networking site).
 
-#####Details:
+###### Details:
 
 * If the system that provides the "account" uses OpenID, the Learning Activity Provider SHOULD use this as the Agent instead of the account object.
 * If the Learning Activity Provider is concerned about revealing personally identifiable information about the Agent, it SHOULD use an opaque account name (for example an account number) to identify all statements about a person while maintaining anonimity.
@@ -479,7 +488,7 @@ The table below lists all properties of Account objects.
 </table>
 
 
-#####Example:
+###### Example:
 
 This example uses an opaque account:
 
@@ -494,8 +503,8 @@ This example uses an opaque account:
 ``` 
 
 <a name="group"/>
-####4.1.2.2 Group
-#####Description:
+##### 4.1.2.2 Group
+###### Description:
 
 A Group...
 
@@ -503,7 +512,7 @@ A Group...
 * can be used most places an Agent can;
 * can either be anonymous or identified.
 
-#####Details
+###### Details
 
 An anonymous group...
 
@@ -549,18 +558,14 @@ A system consuming Statements...
 * MUST consider each anonymous Group distinct;
 * MUST NOT assume that Agents in the 'member' property comprise an exact list of agents in a given anonymous or identified Group.
 
-
-
-
-
 <a name="verb"/>
-### 4.1.3 Verb:
+#### 4.1.3 Verb:
 
-###Description
+###### Description
 The verb defines the action between actor and activity. It asserts what is done by the actor in relation to 
 the activity. Verbs appear in statements as objects consisting of a URI and a set of display names.
 
-### Rationale
+###### Rationale
 
 The verb in an xAPI statement describes the learning experience. The xAPI does not specify any particular 
 verbs. (With one exception, namely the reserved verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>). 
@@ -568,25 +573,21 @@ Instead, it defines how to create verbs so that communities of practice can coin
 and make them available for use by anyone. A predefined list of verbs would be limited by definition and 
 they might not be able to effectively capture all possible future learning experiences.
 
-
-
-
-
-###Details
-#### Semantics
+###### Details
+###### Semantics
 The Verb URI identifies the particular semantics of a word, not the word itself. 
 
 For example, the English word "fired" could mean different things depending on context, such as "fired a 
 weapon", "fired a kiln", or "fired an employee". In this case, a URI MUST identify one of these specific 
 meanings, not the word "fired". 
 
-#### Language
+###### Language
 A verb in the Experience API is a URI, and denotes a specific meaning not tied to any particular language. 
 
 For example, a particular verb URI such as http://example.org/firearms#fire might denote the action of firing a gun, 
 or the verb URI http://example.com/فعل/خواندن might denote the action of reading a book. 
 
-#### A new verb
+###### A new verb
 The person who coins a new verb...
 
 * MUST own the URI, or...
@@ -594,7 +595,7 @@ The person who coins a new verb...
 * SHOULD make a human-readable description of the intended usage of the verb 
 accessible at the URI.
 
-####ADL verb list
+###### ADL verb list
 ADL released a set of recommended verbs. If the meaning of one of the verbs on this list is intended, 
 Learning Activity Providers...
 
@@ -602,17 +603,15 @@ Learning Activity Providers...
 * MAY create and use their own verbs instead, as needed.
 
 
-
-
-#####__NOTE__: 
+###### NOTE: 
 In some future version, this specification might specify additional machine-readable information about 
 the verb be made available, but the choice to do so is postponed to monitor emerging practices 
 and pain points. 
  
 
-#### 4.1.3.1 Verb Object: 
+##### 4.1.3.1 Verb Object: 
 
-####Description
+###### Description
 
 The verb object is the representation of a verb that is actually included in a statement. It consists of:
 
@@ -620,7 +619,7 @@ The verb object is the representation of a verb that is actually included in a s
 * a display property which provides the human-readable meaning of the verb in one or more languages.
 
 
-####Details
+###### Details
 The display property:
 
 * MUST be used to illustrate the meaning which is already determined by the verb URI;
@@ -663,14 +662,14 @@ specification document, with the exception of the reserved verb <a href="#voided
 
 
 <a name="object"/>
-### 4.1.4 Object:  
+#### 4.1.4 Object:  
 The object of a statement is the Activity, Agent, or Statement that is the object 
 of the statement, "this". Note that objects which are provided as a value for 
 this field SHOULD include an "objectType" field. If not specified, the object 
 is assumed to be an Activity.  
 
 <a name="activity"/>
-#### 4.1.4.1 – Activity as "object"
+##### 4.1.4.1 – Activity as "object"
 A statement may represent a Learning Activity as an object in the statement.  
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -693,7 +692,7 @@ A statement may represent a Learning Activity as an object in the statement.
 	</tr>
 </table>
 <a name="acturi"/>
-__Activity URI__  
+###### Activity URI  
 An activity URI must always refer to a single unique activity. There may be 
 corrections to that activity's definition. Spelling fixes would be appropriate, 
 for example, but changing correct responses would not.  
@@ -714,14 +713,14 @@ consistent with any other state or statements that are stored against the same
 activity URI, even if those statements were stored in the context of a new 
 revision or platform.   
 
-__NOTE__: The prohibition against an LRS treating references to the same activity 
+###### NOTE: The prohibition against an LRS treating references to the same activity 
 URI as two different activities, even if the LRS can positively determine that 
 was the intent, is crucial to prevent activity id creators from creating ids 
 that could be easily duplicated, as intent would be indeterminable should a 
 conflict with another system arise.  
 
 <a name="actdef"/>
-__Activity Definition__  
+###### Activity Definition 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
@@ -774,7 +773,7 @@ information about an associated activity provider, which the LRS SHOULD consider
 the authoritative source for statements about the activity.  
 
 <a name="interactionacts"/>
-__Interaction Activities__  
+###### Interaction Activities  
 
 Traditional e-learning has included structures for interactions or assessments. 
 As a way to allow these practices and structures to extend Experience API's 
@@ -814,7 +813,7 @@ remaining properties are not valid for the interaction type.
 	</tr>
 </table>  
 
-__Interaction Components__  
+###### Interaction Components  
 
 Interaction components are defined as follows:  
 <table>
@@ -848,19 +847,19 @@ an interaction activity with the given interactionType.
 >See [Appendix C](#AppendixC) for examples of activity definitions for each of the cmi.interaction types.
 
 <a name="agentasobj"/>
-#### 4.1.4.2 - Agent or Group as "object"
+##### 4.1.4.2 - Agent or Group as "object"
 A statement may specify an Agent or Group as an object in the statement. Agents that do 
 this MUST specify an "objectType" property.  See [section 4.1.2](#actor) for details 
 regarding Agents.  
 
 <a name="stmtasobj"/>
-#### 4.1.4.3 - Statement as "object"
+##### 4.1.4.3 - Statement as "object"
 Another statement may be used as an object in the statement, though some 
 restrictions apply depending on whether the included statement is new, or is 
 simply a reference to an existing statement.  
 
 <a name="substmt"/>
-__Sub-Statements__  
+###### Sub-Statements  
 When a new statement is included as part of another statement, it is considered 
 a sub-statement, and is subject to certain restrictions. Sub-statements may only 
 be included as parts of other statements, MUST specify an "objectType" property 
@@ -914,7 +913,7 @@ Later, when 'I' actually visit 'Some Awesome Website', reporting tools can there
 }
 ```
 <a name="stmtref"/>
-__Statement References__  
+###### Statement References  
 When an existing statement is included as part of another statement, a statement 
 reference should be used. A statement reference is a simple object consisting 
 an "objectType" property, which MUST be "StatementRef", and an "id" property, 
@@ -949,12 +948,12 @@ comment could be issued on the original statement, using a new statement:
 ``` 
 
 <a name="result"/>
-### 4.1.5 Result:
-####Description: 
+#### 4.1.5 Result:
+###### Description: 
 
 An optional field that represents a measured outcome related to the statement in which it is included.
 
-#####Details
+###### Details
 
 A result can be completion, success, score, etc. 
 The 'Result' field may also contain arbitrary measurements if needed by the Learning Activity Provider.
@@ -980,9 +979,9 @@ The 'Result' field may also contain arbitrary measurements if needed by the Lear
 </tr>
 </table> 
 <a name="Score"/>
-####4.1.5.1 Score property
+##### 4.1.5.1 Score property
 
-#####Description
+###### Description
 An optional numeric field that represents the outcome of a graded activity achieved by an agent.
 
 
@@ -995,7 +994,7 @@ The table below defines the score object.
 	<tr><td>max</td><td>Decimal number greater than min (if present)</td><td>Cf. 'cmi.score.max'</td></tr>
 </table>
 
-#####Details
+###### Details
 
 The Score property...
 
@@ -1003,12 +1002,12 @@ The Score property...
 - SHOULD NOT be used for scores relating to progress or completion. Consider using an extension from an extension profile instead.
 
 <a name="context"/>
-###4.1.6 Context
+#### 4.1.6 Context
 
-#####Description: 
+###### Description: 
 An optional field that provides a place to add contextual information to a statement. All its field properties are optional.
 
-#####Rationale: 
+###### Rationale: 
 The "context" field provides a place to add some contextual information to a statement. It can store information such as the instructor for an experience, if this experience happened as part of a team activity, or how an experience fits into some broader activity.
 
 <table border="1">
