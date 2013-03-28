@@ -590,12 +590,13 @@ The person who coins a new verb...
 * SHOULD make a human-readable description of the intended usage of the verb 
 accessible at the URI.
 
-####ADL verb list
-ADL released a set of recommended verbs. If the meaning of one of the verbs on this list is intended, 
+####Verb lists and repositories
+ADL released a set of recommended verbs. Other lists have been published by other groups and organisations. 
+If the meaning of one of the verbs on these lists is intended, 
 Learning Activity Providers...
 
-* SHOULD use the corresponding ADL verb;
-* MAY create and use their own verbs instead, as needed.
+* SHOULD use the corresponding existing verb;
+* MAY create and use their own verbs where a suitable verb does not already exist.
 
 
 
