@@ -198,6 +198,17 @@ In collection of requirements for the Experience API, there were many people and
 organizations that provided invaluable feedback to SCORM, distributed learning 
 efforts, and learning in general.  User Voice Site, Rustici Blog, etc.  
 
+##2.3 Reading guidelines for the non-technically inclined.
+
+Since you’re reading this document, it’s probably safe to say that you’re interested in understanding 
+the Experience API, informally called TinCan. The purpose of this document is to describe how the xAPI is 
+implemented in a large variety of systems. It’s a fairly technical document by nature and you may
+decide that you don’t understand much of it. Even so, there are useful things to learn by reading further. Not only
+because the tools that you work with are based on the specifications described below; the technical people that you
+talk to may assume that you have a basic level of knowledge. Exactly for this reason you’re advised to read the small
+sections labeled ‘description’ and ‘rationale’ while skipping the ‘details’ and ‘examples’. Needless to say, many
+other sources can be found that explain xAPI very well, but this document is the core of them all.
+
 <a name="defintions"/> 
 # 3.0 Definitions  
 
@@ -536,63 +547,90 @@ A system consuming Statements...
 
 
 
+
+
 <a name="verb"/>
 ### 4.1.3 Verb:
 
-The verb defines the action between actor and activity. It asserts what is done by the actor 
-in relation to the activity. 
+###Description
+The verb defines the action between actor and activity. It asserts what is done by the actor in relation to 
+the activity. Verbs appear in statements as objects consisting of a URI and a set of display names.
 
-The Experience API does not specify any particular verbs (except the reserved 
-“http://adlnet.gov/expapi/verbs/voided"), but rather defines how verbs are to 
-be created. It is expected that communities of practice will develop verbs they find useful and make 
-them available to the general community for use. Verbs appear in statements as 
-objects consisting of a URI and a set of display names.
+### Rationale
 
-The Verb URI identifies the particular semantics of a word, not the word 
-itself. For example, the English word "fired" could mean different things 
-depending on context, such as "fired a weapon", "fired a kiln", or "fired an 
-employee". In this case, a URI MUST identify one of these specific meanings, 
-not the word "fired".
+The verb in an xAPI statement describes the learning experience. The xAPI does not specify any particular 
+verbs. (With one exception, namely the reserved verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>). 
+Instead, it defines how to create verbs so that communities of practice can coin their own meaningful verbs 
+and make them available for use by anyone. A predefined list of verbs would be limited by definition and 
+they might not be able to effectively capture all possible future learning experiences.
 
-A verb in the Experience API is a URI, and denotes a specific meaning not tied to 
-any particular language. For example, a particular verb URI such as 
-http://example.org/firearms#fire or tag:example.com,2012:xQr73H might denote 
-the action of firing a gun, or the verb URI http://example.com/فعل/خواندن 
-might denote the action of reading a book. 
 
-The person who coins a new verb MUST own the URI, or have permission 
-from the owner to use the URI to denote an Experience API verb. The owner of a URI 
-SHOULD make a human-readable description of the intended usage of the verb 
+
+
+
+###Details
+#### Semantics
+The Verb URI identifies the particular semantics of a word, not the word itself. 
+
+For example, the English word "fired" could mean different things depending on context, such as "fired a 
+weapon", "fired a kiln", or "fired an employee". In this case, a URI MUST identify one of these specific 
+meanings, not the word "fired". 
+
+#### Language
+A verb in the Experience API is a URI, and denotes a specific meaning not tied to any particular language. 
+
+For example, a particular verb URI such as http://example.org/firearms#fire might denote the action of firing a gun, 
+or the verb URI http://example.com/فعل/خواندن might denote the action of reading a book. 
+
+#### A new verb
+The person who coins a new verb...
+
+* MUST own the URI, or...
+* MUST have permission from the owner to use it to denote an xAPI verb;
+* SHOULD make a human-readable description of the intended usage of the verb 
 accessible at the URI.
 
-__NOTE__: In some future version, this specification might specify additional 
-machine-readable information about the verb be made available, but the choice 
-to do so is postponed to monitor emerging practices and pain points. ADL released 
-a set of recommended verbs at the same time as the 0.95 version of this specification. 
-Learning Activity Providers MAY use one these verbs, or other verb which have 
-wide adoption, if applicable. 
+####ADL verb list
+ADL released a set of recommended verbs. If the meaning of one of the verbs on this list is intended, 
+Learning Activity Providers...
 
-The verb list created by ADL included
-verbs corresponding to the verbs previously defined in this specification. If 
-the meaning of one of those previously defined verbs is intended, Learning Activity Providers 
-SHOULD use the corresponding ADL verb. Learning Activity Providers MAY create 
-their own verbs instead, as needed.  
+* SHOULD use the corresponding ADL verb;
+* MAY create and use their own verbs instead, as needed.
+
+
+
+
+#####__NOTE__: 
+In some future version, this specification might specify additional machine-readable information about 
+the verb be made available, but the choice to do so is postponed to monitor emerging practices 
+and pain points. 
+ 
 
 #### 4.1.3.1 Verb Object: 
 
-The verb object is the representation of a verb that is actually included in 
-a statement. In addition to referencing the verb itself via a URI, it includes 
-a display property which provides the human-readable meaning of the verb in 
-one or more languages.
+####Description
 
-The display property MUST NOT be used to alter the meaning of a statement, 
-rather it MUST be used to illustrate the meaning which is already determined 
-by the verb URI.
+The verb object is the representation of a verb that is actually included in a statement. It consists of:
 
-All statements SHOULD use the display property.  A system reading a statement 
-MUST NOT use the display property to infer any meaning from the statement, 
-rather it MUST use the verb URI to infer meaning, and the display property only 
-for display to a human.  
+* a reference the verb itself via a URI;
+* a display property which provides the human-readable meaning of the verb in one or more languages.
+
+
+####Details
+The display property:
+
+* MUST be used to illustrate the meaning which is already determined by the verb URI;
+* MUST NOT be used to alter the meaning of a verb;
+* SHOULD be used by all statements.
+
+A system reading a statement:
+
+* MUST use the verb URI to infer meaning;
+* MUST NOT use the display property to infer any meaning from the statement; 
+* MUST use the display property only for display to a human.
+
+The table below lists all properties of the Verb object.
+
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Example</th></tr>
 	<tr>
@@ -607,7 +645,7 @@ for display to a human.
 		<td>display</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>The human readable representation of the 
-			verb in at least one language. This does not have any impact on the 
+			verb in one or more languages. This does not have any impact on the 
 			meaning of the statement, but serves to give a human-readable 
 			display of the meaning already determined by the chosen verb.</td>
 		<td>display : { "en-US" : "ran"}<br/>
@@ -615,8 +653,10 @@ for display to a human.
 	</tr>
 </table>
 
-Note, the verb in the table above is included for illustrative purposes only. This is not intended to imply that a verb
-with this meaning has been defined with this id. This applies to all example verbs given in this specification document. 
+The verb in the table above is included for illustrative purposes only. This is not intended to imply that
+a verb with this meaning has been defined with this id. This applies to all example verbs given in this 
+specification document, with the exception of the reserved verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>. 
+
 
 <a name="object"/>
 ### 4.1.4 Object:  
@@ -1140,6 +1180,13 @@ of two Agents representing an application and user together.
 Unless used in the aforementioned 3-legged OAuth workflow, a Group MUST NOT 
 be used to assert authority.  
 
+##### LRS Requirements:
+* The LRS SHOULD overwrite the authority on all stored recieved statemensts, based on 
+ the credentials use to send those statemens.
+* The LRS MAY leave the submitted authority unchanged but SHOULD do so only where a strong
+ trust relationship has been established, and with extreme caution.
+* The LRS MUST ensure that all statements stored have an authority.
+
 If a statement is stored using a validated OAuth connection, and the LRS creates 
 or modifies the authority property of the statement, the authority MUST contain 
 an agent object that represents the OAuth consumer, either by itself, or as part 
@@ -1158,10 +1205,7 @@ coming from the same source, as there is no way to verify that, since multiple
 unregistered applications could choose the same consumer key. Each unregistered 
 consumer SHOULD pick a unique consumer key.  
 
-If a statement is received from another, fully trusted LRS, an LRS MAY choose 
-not to overwrite the authority property received. Otherwise, an LRS MUST completely 
-ignore any provided authority property, and instead construct its own authority 
-property as described here. If a user connects directly (using HTTP Basic Auth) 
+If a user connects directly (using HTTP Basic Auth) 
 or is included as part of a 3-legged OAuth workflow, the LRS MUST include the user 
 as an Agent in the authority, and MAY identify the user with any of the legal 
 identifying properties.  
@@ -1252,26 +1296,17 @@ A reporting system...
 See ["Statement References"](#stmtref) in section [4.1.4.3](#stmtasobj) for details about making references to other statements. 
 
 <a name="attachments"/>
-## 4.1.11 Attachments
+##4.1.11 Attachments
 
-#####Rationale
+###Description: 
+A digital artefact providing evidence of a learning experience.
 
-Sometimes an artifact providing evidence of a learning experience such as an audio clip (simulated communication with ATC
-for example), an image, or even a video may logically be an important part of a learning record. Also where a certificate
-has been granted as a result of an experience it should be possible to include an image of that certificate in the learning
-record.
+###Rationale: 
+In some cases an attachment may logically be an important part of a learning record. Think of a simulated communication with ATC, an essay, a video,  etc. Another common example of such an attachment is (the image of) a certificate that was granted as a result of an experience. It is useful to have a way to store these attachments in and retrieve them from an LRS. 
 
-Since these attachments may lead to very large statements, it should be possible for a client to filter out attachments
-when retrieving statements.
 
-In order to allow systems receiving statements with attachments to examine the rest of the statement,
-and possibly decide to reject it, before receiving attachments, statements with attachments will be
-transmitted using a content-Type of multipart/mixed rather than in-lining the attachments. Attachments 
-will be placed at the end of such transmissions, though they are still logically part of the statements.
-This capability will be available when issuing PUT or POST against the statement resource.
-
-#####Attachment Type:
-
+###Details:
+The table below lists all properties of the Attachment object.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -1320,43 +1355,60 @@ This capability will be available when issuing PUT or POST against the statement
 	</tr>
 </table>
 
-#####Transmission Format:
+####Procedure for the exchange of attachments
+Since these attachments may lead to very large statements, it should be possible for a client to filter out attachments when retrieving statements, by following this procedure:
 
-Statement streams that include attachments will be of type "multipart/mixed" rather than "application/json".
-The first part of the multipart document contains the statements themselves, with type "applicaton/json".
-Each additional part contains the raw data for an attachment. The raw data of an attachment may be matched
-with the attachment header in a statement by comparing the SHA-2 of the raw data to the SHA-2 declared in the
-header.
+1. A statement including an attachment is construed according to the Transmission Format described below.
+2. The statement is sent to the receiving system using a content-Type of "multipart/mixed". The attachments are placed at the end of such transmissions.
+3. The receiving system decides whether to accept or reject the statement based on the information in the first part.
+4. If it accepts the attachment, it can match the raw data of an attachment with the attachment header in a statement by comparing the SHA-2 of the raw data to the SHA-2 declared in the header.
 
-Requirements for the LRS:
-* MUST accept statements via the statements resource via PUT or POST that contain attachments in the Transmission Format described above
-* MUST reject statements having attachments that do not contain a fileUrl, and do not have a hash matching any raw data received
-* MUST include attachments in the Transmission Format described above when requested by the client (see query API)
-* MUST NOT pull statements from another LRS without requesting attachments
-* MUST NOT push statements into another LRS without including attachments
-* MAY reject statements, or batches of statements that are larger than the LRS is configured to allow
-* SHOULD accept statements in the above format that don't declare any attachments
 
-Requirements for the client:
-* MAY send statements with attachments as described above
-* MAY send multiple statements where some or all have attachments if using "POST"
+####Requirements for statement streams that include attachments
 
-Common requirements:
-* SHOULD only include one copy of an attachment when the same attachment is used in multiple statements that are sent in one message.
-* MUST conform to the definition of multipart/mixed in RFC 1341
-* SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json"
-* MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part. This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the attachment included in this part
+A statement stream that includes attachments...
+
+* MUST be of type "multipart/mixed" rather than "application/json";
+	* The first part of the multipart document MUST contain the statements themselves, with type "applicaton/json";
+	* Each additional part contains the raw data for an attachment and forms a logical part of the statement. This capability will be available when issuing PUT or POST against the statement resource.
+* SHOULD only include one copy of an attachment when the same attachment is used in multiple statements that are sent in one message;
+* MUST conform to the definition of multipart/mixed in RFC 1341;
+* SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json";
+* MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part;
+	* This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the attachment included in this part.
+
+
+
+
+
+
+####Requirements for the LRS:
+
+* MUST accept statements via the statements resource via PUT or POST that contain attachments in the Transmission Format described above;
+* MUST reject statements having attachments that do not contain a fileUrl, and do not have a hash matching any raw data received;
+* MUST include attachments in the Transmission Format described above when requested by the client (see query API);
+* MUST NOT pull statements from another LRS without requesting attacments;
+* MUST NOT push statements into another LRS without including attachments;
+* MAY reject (batches of) statements that are larger than the LRS is configured to allow;
+* SHOULD accept statements in the above format that don't declare any attachments.
+
+####Requirements for the client:
+* MAY send statements with attachments as described above;
+* MAY send multiple statements where some or all have attachments if using "POST".
+
 
 
 #####Example:
 
 Below is an example of a very simple statement with an attachment. Please note the following:
-* The boundary in the sample was chosen to demonstrate valid character classes.
-* The selected boundary does not appear in any of the parts
+
+* The boundary in the sample was chosen to demonstrate valid character classes;
+* The selected boundary does not appear in any of the parts;
 * For readability the sample attachment is text/plain. Even if it had been a 'binary' type
-like 'image/jpeg' no encoding would be done, the raw octets would be included
+like 'image/jpeg' no encoding would be done, the raw octets would be included;
 * Per RFC 1341, the boundary is <CRLF> followed by -- followed by the boundary string declared in the header.
-Don't forget the <CRLF> when building or parsing these messages.
+
+Don't forget the ```<CRLF>```  when building or parsing these messages.
 
 Headers:
 
