@@ -172,6 +172,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Megan Bowe</td><td>Rustici Software</td></tr>
 	<tr><td>Melanie VanHorn</td><td>ADL</td></tr>
 	<tr><td>Michael Flores</td><td>Here Everything's Better</td></tr>
+	<tr><td>Michael Roberts</td><td>vTrainingRoom</td></tr>
 	<tr><td>Mike Palmer</td><td>OnPoint Digital</td></tr>
 	<tr><td>Mike Rustici</td><td>Rustici Software</td></tr>
 	<tr><td>Nik Hruska</td><td>ADL</td></tr>
@@ -198,6 +199,17 @@ In collection of requirements for the Experience API, there were many people and
 organizations that provided invaluable feedback to SCORM, distributed learning 
 efforts, and learning in general.  User Voice Site, Rustici Blog, etc.  
 
+##2.3 Reading guidelines for the non-technically inclined.
+
+Since you’re reading this document, it’s probably safe to say that you’re interested in understanding 
+the Experience API, informally called TinCan. The purpose of this document is to describe how the xAPI is 
+implemented in a large variety of systems. It’s a fairly technical document by nature and you may
+decide that you don’t understand much of it. Even so, there are useful things to learn by reading further. Not only
+because the tools that you work with are based on the specifications described below; the technical people that you
+talk to may assume that you have a basic level of knowledge. Exactly for this reason you’re advised to read the small
+sections labeled ‘description’ and ‘rationale’ while skipping the ‘details’ and ‘examples’. Needless to say, many
+other sources can be found that explain xAPI very well, but this document is the core of them all.
+
 <a name="defintions"/> 
 # 3.0 Definitions  
 
@@ -210,7 +222,7 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 * [Inverse Functional Identifier](#def-inverse-functinal-identifier)
 * [Learning Activity Provider](#def-activity-provider)
 * [Learning Management System (LMS)](#def-learning-management-system)
-* [Learning Record Store (LRS)](#def-learning-record-store)
+* [Learning Record Store (LRS)](#def-learning-record-store)"
 * [MUST / SHOULD / MAY](<#def-must-should-may)
 * [Profile](#def-profile)
 * [Registration](#def-registration)
@@ -348,7 +360,7 @@ below.
 	authentication, and set by LRS if left blank.</td></tr>
 	<tr><td><a href="#voided">voided</a></td><td>Boolean</td><td>false</td>
 	<td>Indicates that the statement has been voided (see below)</td></tr>
-	<tr><td><a href="#version">version</a></td><td>String</td><td>false</td>
+	<tr><td><a href="#version">version</a></td><td>String</td><td>"1.0"</td>
 	<td>API version the statement conforms to. Set by LRS.</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
@@ -409,6 +421,7 @@ An "inverse functional identifier" is a value shared between multiple Agents tha
 ####Rationale:
 Learning experiences become meaningless if they cannot be attributed to identifiable individuals and/or groups. In an XAPI statement the required element "Actor" constitutes this identification, loosely inspired on the widely accepted FOAF principle (see: <a href="http://xmlns.com/foaf/spec/#term_Agent"> Friend Of A Friend</a>).
 
+<a name="agent"/>
 ####4.1.2.1 Agent
 #####Description:
 An Agent (an individual) is identified by one of the following: 
@@ -480,6 +493,7 @@ This example uses an opaque account:
 }
 ``` 
 
+<a name="group"/>
 ####4.1.2.2 Group
 #####Description:
 
@@ -496,6 +510,7 @@ An anonymous group...
 * MAY be used to describe a cluster of people where there is no ready identifier for this cluster, e.g. an ad hoc team;
 * MUST include a 'member' property listing constituent Agents;
 * MUST NOT contain Group objects in the 'member' property.
+* MUST NOT include any inverse functional identifiers
 
 The table below lists all properties of an anonymous Group.
 
@@ -536,63 +551,90 @@ A system consuming Statements...
 
 
 
+
+
 <a name="verb"/>
 ### 4.1.3 Verb:
 
-The verb defines the action between actor and activity. It asserts what is done by the actor 
-in relation to the activity. 
+###Description
+The verb defines the action between actor and activity. It asserts what is done by the actor in relation to 
+the activity. Verbs appear in statements as objects consisting of a URI and a set of display names.
 
-The Experience API does not specify any particular verbs (except the reserved 
-“http://adlnet.gov/expapi/verbs/voided"), but rather defines how verbs are to 
-be created. It is expected that communities of practice will develop verbs they find useful and make 
-them available to the general community for use. Verbs appear in statements as 
-objects consisting of a URI and a set of display names.
+### Rationale
 
-The Verb URI identifies the particular semantics of a word, not the word 
-itself. For example, the English word "fired" could mean different things 
-depending on context, such as "fired a weapon", "fired a kiln", or "fired an 
-employee". In this case, a URI MUST identify one of these specific meanings, 
-not the word "fired".
+The verb in an xAPI statement describes the learning experience. The xAPI does not specify any particular 
+verbs. (With one exception, namely the reserved verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>). 
+Instead, it defines how to create verbs so that communities of practice can coin their own meaningful verbs 
+and make them available for use by anyone. A predefined list of verbs would be limited by definition and 
+they might not be able to effectively capture all possible future learning experiences.
 
-A verb in the Experience API is a URI, and denotes a specific meaning not tied to 
-any particular language. For example, a particular verb URI such as 
-http://example.org/firearms#fire or tag:example.com,2012:xQr73H might denote 
-the action of firing a gun, or the verb URI http://example.com/فعل/خواندن 
-might denote the action of reading a book. 
 
-The person who coins a new verb MUST own the URI, or have permission 
-from the owner to use the URI to denote an Experience API verb. The owner of a URI 
-SHOULD make a human-readable description of the intended usage of the verb 
+
+
+
+###Details
+#### Semantics
+The Verb URI identifies the particular semantics of a word, not the word itself. 
+
+For example, the English word "fired" could mean different things depending on context, such as "fired a 
+weapon", "fired a kiln", or "fired an employee". In this case, a URI MUST identify one of these specific 
+meanings, not the word "fired". 
+
+#### Language
+A verb in the Experience API is a URI, and denotes a specific meaning not tied to any particular language. 
+
+For example, a particular verb URI such as http://example.org/firearms#fire might denote the action of firing a gun, 
+or the verb URI http://example.com/فعل/خواندن might denote the action of reading a book. 
+
+#### A new verb
+The person who coins a new verb...
+
+* MUST own the URI, or...
+* MUST have permission from the owner to use it to denote an xAPI verb;
+* SHOULD make a human-readable description of the intended usage of the verb 
 accessible at the URI.
 
-__NOTE__: In some future version, this specification might specify additional 
-machine-readable information about the verb be made available, but the choice 
-to do so is postponed to monitor emerging practices and pain points. ADL released 
-a set of recommended verbs at the same time as the 0.95 version of this specification. 
-Learning Activity Providers MAY use one these verbs, or other verb which have 
-wide adoption, if applicable. 
+####ADL verb list
+ADL released a set of recommended verbs. If the meaning of one of the verbs on this list is intended, 
+Learning Activity Providers...
 
-The verb list created by ADL included
-verbs corresponding to the verbs previously defined in this specification. If 
-the meaning of one of those previously defined verbs is intended, Learning Activity Providers 
-SHOULD use the corresponding ADL verb. Learning Activity Providers MAY create 
-their own verbs instead, as needed.  
+* SHOULD use the corresponding ADL verb;
+* MAY create and use their own verbs instead, as needed.
+
+
+
+
+#####__NOTE__: 
+In some future version, this specification might specify additional machine-readable information about 
+the verb be made available, but the choice to do so is postponed to monitor emerging practices 
+and pain points. 
+ 
 
 #### 4.1.3.1 Verb Object: 
 
-The verb object is the representation of a verb that is actually included in 
-a statement. In addition to referencing the verb itself via a URI, it includes 
-a display property which provides the human-readable meaning of the verb in 
-one or more languages.
+####Description
 
-The display property MUST NOT be used to alter the meaning of a statement, 
-rather it MUST be used to illustrate the meaning which is already determined 
-by the verb URI.
+The verb object is the representation of a verb that is actually included in a statement. It consists of:
 
-All statements SHOULD use the display property.  A system reading a statement 
-MUST NOT use the display property to infer any meaning from the statement, 
-rather it MUST use the verb URI to infer meaning, and the display property only 
-for display to a human.  
+* a reference the verb itself via a URI;
+* a display property which provides the human-readable meaning of the verb in one or more languages.
+
+
+####Details
+The display property:
+
+* MUST be used to illustrate the meaning which is already determined by the verb URI;
+* MUST NOT be used to alter the meaning of a verb;
+* SHOULD be used by all statements.
+
+A system reading a statement:
+
+* MUST use the verb URI to infer meaning;
+* MUST NOT use the display property to infer any meaning from the statement; 
+* MUST use the display property only for display to a human.
+
+The table below lists all properties of the Verb object.
+
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Example</th></tr>
 	<tr>
@@ -607,7 +649,7 @@ for display to a human.
 		<td>display</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>The human readable representation of the 
-			verb in at least one language. This does not have any impact on the 
+			verb in one or more languages. This does not have any impact on the 
 			meaning of the statement, but serves to give a human-readable 
 			display of the meaning already determined by the chosen verb.</td>
 		<td>display : { "en-US" : "ran"}<br/>
@@ -615,8 +657,10 @@ for display to a human.
 	</tr>
 </table>
 
-Note, the verb in the table above is included for illustrative purposes only. This is not intended to imply that a verb
-with this meaning has been defined with this id. This applies to all example verbs given in this specification document. 
+The verb in the table above is included for illustrative purposes only. This is not intended to imply that
+a verb with this meaning has been defined with this id. This applies to all example verbs given in this 
+specification document, with the exception of the reserved verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>. 
+
 
 <a name="object"/>
 ### 4.1.4 Object:  
@@ -991,7 +1035,7 @@ The "context" field provides a place to add some contextual information to a sta
 <td>contextActivities</td>
 <td>contextActivities object</td>
 <td>A map of the types of learning activity context that this statement is related to.
-Valid context types are: "parent", "grouping", "other". <a href ="#contextActivities">See 4.1.6.2</a></td>
+Valid context types are: "parent", "grouping", "category", "other". <a href ="#contextActivities">See 4.1.6.2</a></td>
 
 </tr>
 <tr>
@@ -1064,7 +1108,12 @@ For example: a statement about a quiz question would have the quiz as its parent
 2. __Grouping__ : an activity with an indirect relation to the activity which is the object of the statement.
 For example: a course that is part of a qualification. The course has several classes. The course relates to a class as the parent, the qualification relates to the class as the grouping.
 
-3. __Other__ : a context activity that cannot be considered a parent or a grouping.
+3. __Category__ : an activity used to categorize the statement. "Tags" would be a synonym. Main driver is to have a way to get "profile" in the statement in a searchable way, but this includes more general categories of statements.
+
+For example: Anna attempts a bilogy exam, and the statement is tracked using the CMI-5 profile.
+The statement's activity refers to the exam, and the category is the CMI-5 profile.
+
+4. __Other__ : a context activity that doesn't fit one of the other fields.
 For example: Anna studies a textbook for a biology exam. The statement's activity refers to the textbook, and the exam is a context activity of type "other" .
 
 #####Example I:
@@ -1102,8 +1151,8 @@ A timestamp:
 
 * MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
 * SHOULD include the timezone;
-* MAY be a moment in the future, to denote a deadline for planned learning, provided it is included inside a subStatement;
-* SHOULD be the current or a past time when it is outside of a subStatement.
+* MAY be a moment in the future, to denote a deadline for planned learning, provided it is included inside a SubStatement;
+* SHOULD be the current or a past time when it is outside of a SubStatement.
 
 A reporting tool:
 
@@ -1123,8 +1172,7 @@ Stored time:
 
 * MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
 * SHOULD include the timezone;
-* MAY be a moment in the future, to denote a deadline for planned learning, provided it is included inside a subStatement;
-* SHOULD be the current or a past time when it is outside of a subStatement.
+* SHOULD be the current or a past time when it is outside of a SubStatement.
 
 A reporting tool:
 
@@ -1139,6 +1187,13 @@ application), or in the case of 3-legged OAuth workflows, a [Group](#group)
 of two Agents representing an application and user together. 
 Unless used in the aforementioned 3-legged OAuth workflow, a Group MUST NOT 
 be used to assert authority.  
+
+##### LRS Requirements:
+* The LRS SHOULD overwrite the authority on all stored recieved statemensts, based on 
+ the credentials use to send those statemens.
+* The LRS MAY leave the submitted authority unchanged but SHOULD do so only where a strong
+ trust relationship has been established, and with extreme caution.
+* The LRS MUST ensure that all statements stored have an authority.
 
 If a statement is stored using a validated OAuth connection, and the LRS creates 
 or modifies the authority property of the statement, the authority MUST contain 
@@ -1158,10 +1213,7 @@ coming from the same source, as there is no way to verify that, since multiple
 unregistered applications could choose the same consumer key. Each unregistered 
 consumer SHOULD pick a unique consumer key.  
 
-If a statement is received from another, fully trusted LRS, an LRS MAY choose 
-not to overwrite the authority property received. Otherwise, an LRS MUST completely 
-ignore any provided authority property, and instead construct its own authority 
-property as described here. If a user connects directly (using HTTP Basic Auth) 
+If a user connects directly (using HTTP Basic Auth) 
 or is included as part of a 3-legged OAuth workflow, the LRS MUST include the user 
 as an Agent in the authority, and MAY identify the user with any of the legal 
 identifying properties.  
@@ -1210,10 +1262,9 @@ When issuing a statement that voids another, the object of that voiding statemen
 
 Upon receiving a statement that voids another, the LRS...
 
-* MUST mark the (now voided) statement using the “voided” field;
 * MAY roll back any changes to activity or agent definitions which were introduced by the statement that was just voided;
 * SHOULD return a descriptive error if the target statement cannot be found;
-* MUST report the voided statement as usual through the Experience API when queried (see note in Details below).
+* MUST NOT report the voided statement when queried, but MUST report the voiding statement (see <a href="#queryStatementRef">StatementRef</a> in 7.2 Statement API).
 
 
 #####Example
@@ -1237,7 +1288,7 @@ Upon receiving a statement that voids another, the LRS...
 }
 ```  
 
-This example statement voids a previous statement which it identifies with the statement ID "e05aa883-acaf-40ad-bf54-02c8ce485fb0". That statement will now be marked by setting it's “voided” flag to true. 
+This example statement voids a previous statement which it identifies with the statement ID "e05aa883-acaf-40ad-bf54-02c8ce485fb0".
 
 
 #####Details
@@ -1863,31 +1914,35 @@ Returns: 200 OK, statement ID(s) (UUID).
 ### GET statements
 Example endpoint: http://example.com/XAPI/statements
 
-This method may be called to fetch a single statement, if the statementId 
-parameter is specified, or a list of statements otherwise, filtered by the 
-given query parameters.  
-
-Returns: 200 OK, statement  
-<table>
-	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
-	<tr><td>statementId</td><td>String</td><td> </td><td>ID of statement to fetch</td></tr>
-</table>
-
-If statementId not specified, returns: A [StatementResult](#retstmts) object, 
+This method may be called to fetch a single statement or multiple statements. If the
+statementId or voidedStatementId parameter is specified a single statement is returned.
+Otherwise returns: A [StatementResult](#retstmts) object,
 a list of statements in reverse chronological order based on "stored" time, 
 subject to permissions and maximum list length. If additional results are 
 available, a URL to retrieve them will be included in the StatementResult 
-object.  
+object.
 
-Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)  
+Returns: 200 OK, statement or [Statement Result](#retstmts) (See section 4.2 for details)
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
+	<tr><td>statementId</td><td>String</td><td> </td><td>ID of statement to fetch</td></tr>
+	<tr><td>voidedStatementId</td><td>String</td><td> </td><td>ID of voided statement to fetch. see <a href="#voidedStatements">Voided Statements</a></td></tr>
+	<tr><td>agent</td><td>Agent or identified Group Object (JSON)</td><td> </td>
+		<td>Filter, only return statements for which the specified agent or group is the actor or object of the statement.
+			<ul><li> Agents or identified groups are equal when the same Inverse Functional Identifier is used in each
+			object compared and those Inverse Functional Identifiers have equal values.
+			</li><li>For the purposes of this filter, groups that have members which match the specified agent
+			based on their Inverse Functional Identifier as described above are considered a match</li></ul>
+			<br><br>See <a href="#actor">agent/group</a> object definition
+			for details.
+		</td>
+	</tr>
 	<tr><td>verb</td><td>String</td><td> </td>
 		<td>Filter, only return statements matching the specified verb id.</td>
 	</tr>
-	<tr><td>object</td><td>Activity, Agent (JSON)</td><td> </td>
-		<td>Filter, only return statements matching the specified object 
+	<tr><td>activity</td><td>Activity id (URI)</td><td> </td>
+		<td>Filter, only return statements for which the object of the statement is an activity with the specified id.
 			(activity or agent/group).<br/><br/>
 			Object is an activity: return statements with an object that is an 
 			activity with a matching activity ID to the specified activity.<br/><br/>
@@ -1903,19 +1958,19 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 			those parameters should also be specified.
 		</td>
 	</tr>
-	<tr><td>context</td><td>Boolean</td><td>True</td>
-		<td>When filtering on activities (object), include statements for which 
-			any of the context activities match the specified object.
+	<tr><td>related_activities</td><td>Boolean</td><td>False</td>
+		<td>Apply the activity filter broadly. Include statements for which the object,
+		any of the  context activities, or any of those properties in a contained SubStatement
+		match the activity parameter, instead of that parameter's normal behavior. Matching
+		is defined in the same way it is for the 'activity' parameter."
 		</td>
 	</tr>
-	<tr><td>actor</td><td>Agent/Group Object (JSON)</td><td> </td>
-		<td>Filter, only return statements about the specified agent. 
-			Note: at minimum agent objects where every property is 
-			identical are considered identical. Additionaly, if the 
-			LRS can determine that two actor objects refer to the same 
-			agent, they should be treated as identical for filtering 
-			purposes. See <a href="#agent">agent</a> object definition 
-			for details.
+	<tr><td>related_agents</td><td>Boolean</td><td>False</td>
+		<td>Apply the agent filter broadly. Include statements for which 
+			the actor, object, authority, instructor, team,
+			or any of these properties in a contained SubStatement match the agent parameter,
+			instead of that parameter's normal behavior. Matching is defined in the same way
+			it is for the 'agent' parameter.
 		</td>
 	</tr>
 	<tr><td>since</td><td>Timestamp</td><td> </td>
@@ -1928,10 +1983,15 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 		<td>Maximum number of statements to return. 0 indicates return the 
 			maximum the server will allow.</td>
 	</tr>
-	<tr><td>sparse</td><td>Boolean</td><td>True</td>
-		<td>If true, only include minimum information necessary in actor and 
-			activity objects to identify them, If false, return populated 
-			activity and actor objects.<br/><br/>
+	<tr><td>format</td><td>{"ids", "exact", "canonical"}</td><td>exact</td>
+		<td>If "ids", only include minimum information necessary in agent and 
+			activity objects to identify them, If "exact", return agent and
+			actor objects populated exactly as they were when the statement was received.<br/><br/>
+			
+			If "canonical", return agent and actor objects populated with the canonical
+			definition of the agent and activity objects as determined by the LRS, after
+			applying the language filtering process defined below.
+
 			Activity objects contain Language Map objects for name and 
 			description. Only one language should be returned in each of 
 			these maps.<br/><br/>
@@ -1942,34 +2002,49 @@ Returns: 200 OK, [Statement Result](#retstmts) (See section 4.2 for details)
 			be applied to each language map individually to select which 
 			language entry to include, rather than to the resource (list of 
 			statements) as a whole.
+
+			An LRS requesting statements for the purpose of importing them SHOULD use a format of "exact".
 		</td>
 	</tr>
 	<tr><td>attachments</td><td>Boolean</td><td>False</td>
-		<td>If true LRS MUST include attachments in a multipart response as described in <a href="#attachments">4.1.11. Attachments</a>, otherwise the LRS MUST NOT include attachments.</td>
-	</tr>
-	<tr><td>instructor</td><td>Actor Object (JSON)</td><td> </td>
-		<td>Same behavior as "actor" filter, except match against 
-			"context:instructor".</td>
+		<td>If true LRS MUST use the multipart response format and include any attachments as described in <a href="#attachments">4.1.11. Attachments</a>, otherwise the LRS MUST NOT include attachments.</td>
 	</tr>
 	<tr><td>ascending</td><td>Boolean</td><td>False</td>
 		<td>If true, return results in ascending order of stored time</td>
 	</tr>
 </table>
-__Note__: Due to query string limits, this method may be called using POST and 
-form fields if necessary. The LRS will differentiate a POST to add a statement 
+
+The LRS MUST reject with an HTTP 400 error any requests to this resource which:
+* contain both statementId and voidedStatementId parameters
+* contain statementId or voidedStatementId parameters, and also contain any other parameter besides "attachments" or "format".
+* contain any parameters the LRS does not recognize
+
+__Note__: Due to query string limits, this method MAY be called using POST and
+form fields if necessary. The LRS MUST differentiate a POST to add a statement
 or to list statements based on the parameters passed.  
 
+<a name="queryStatementRef" />
 __Note__: For filter parameters which are not time or sequence based (that is, other than
 since, until, or limit), statements which target another statement will meet the filter
-condition if that statement, or the targeted statement meet the condition. The targeted
-statement refers to any statement included in another statement's object property either
-as a sub-statement or statementRef.
+condition if the targeted statement meet the condition. The time and sequence based parameters must
+still be applied to the source or "targeting" statement included in this manner. The targeted
+statement refers to any statement included in another statement's object property as a
+statementRef. This rule applies recursively, so that "statement a" is a match when a targets
+b which targets c and the filter conditions described above match for "statement c".
 
 For example, consider the statement "Ben passed explosives training", and a follow up
-statement: "Administrator voided \<statementRef to original statement\>". The voiding
+statement: "Andrew confirmed \<statementRef to original statement\>". The follow up
 statement will not mention "Ben" or "explosives training", but when fetching statements
 with an actor filter of "Ben" or an activity filter of "explosives training", both
 statements will be returned.
+
+<a name="voidedStatements">
+###Voided statements
+The LRS MUST not return any statement which has been voided, unless that statement has been
+requested by voidedStatementId. The LRS MUST still return any statements targetting the voided statement,
+unless they themselves have been voided. This includes the voiding statement, which cannot be voided.
+Reporting tools can identify the presence and statementId of any voided statements by the target of the voiding 
+statement. Reporting tools wishing to retrieve voided statements SHOULD request these individually by voidedStatementId.
 
 <a name="docapis"/> 
 ## 7.3 Document APIs:
@@ -2050,10 +2125,17 @@ the resulting document stored in the LRS is:
 	"z" : "faz"
 }
 ```
-If either the original document or the document being posted do not have an Content-Type:
+If the original document exists, and the original document or the document being posted
+do not have a Content-Type:
 of "application/json", or if either document can not be parsed as JSON objects, the LRS MUST
 respond with HTTP status code 400 "Bad Request", and MUST NOT update the target document
-as a result of the request.
+as a result of the request. 
+
+If the original document does not exist, the LRS MUST treat the request the same as it 
+would a PUT request and store the document being posted.
+
+If the merge is successful, the LRS MUST respond with HTTP 
+status code 204 "No Content".
 
 If an AP needs to delete
 a property, it SHOULD use a PUT request to replace the whole document as described below. 
@@ -2074,7 +2156,7 @@ Example endpoint: http://example.com/XAPI/activities/state
 Stores, fetches, or deletes the document specified by the given stateId that 
 exists in the context of the specified activity, agent, and registration (if specified).  
 
-Returns: (PUT | DELETE) 204 No Content, (GET) 200 OK - State Content  
+Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - State Content  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
@@ -2164,13 +2246,13 @@ Returns: 200 OK - Content
 	</td>
 </table>
 
-### PUT | GET | DELETE activities/profile
+### PUT | POST | GET | DELETE activities/profile
 Example endpoint: http://example.com/XAPI/activities/profile
 
 Saves/retrieves/deletes the specified profile document in the context of the 
 specified activity.  
 
-Returns: (PUT | DELETE) 204 No Content, (GET) 200 OK - Profile Content  
+Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
@@ -2274,13 +2356,13 @@ Returns: 200 OK - Expanded Agent Object
 	</tr>
 </table>  
 
-### PUT | GET | DELETE agents/profile
+### PUT | POST | GET | DELETE agents/profile
 Example endpoint: http://example.com/XAPI/agents/profile
 
 Saves/retrieves/deletes the specified profile document in the context of the 
 specified agent.  
 
-Returns: (PUT | DELETE) 204 No Content, (GET) 200 OK - Profile Content  
+Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
@@ -2549,7 +2631,7 @@ __choice__
 		"en-US": "Which of these prototypes are available at the beta site?"
 	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
-	"interactionType": "multiple-choice",
+	"interactionType": "choice",
 	"correctResponsesPattern": [
 		"golf[,]tetris"
 	],
