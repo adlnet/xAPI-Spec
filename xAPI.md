@@ -1300,26 +1300,20 @@ A reporting system...
 See ["Statement References"](#stmtref) in section [4.1.4.3](#stmtasobj) for details about making references to other statements. 
 
 <a name="attachments"/>
-## 4.1.11 Attachments
+###4.1.11 Attachments
 
-#####Rationale
+######Description: 
+A digital artefact providing evidence of a learning experience.
 
-Sometimes an artifact providing evidence of a learning experience such as an audio clip (simulated communication with ATC
-for example), an image, or even a video may logically be an important part of a learning record. Also where a certificate
-has been granted as a result of an experience it should be possible to include an image of that certificate in the learning
-record.
+######Rationale: 
+In some cases an attachment may logically be an important part of a learning record. Think of a simulated 
+communication with ATC, an essay, a video,  etc. Another example of such an attachment is (the image of) a 
+certificate that was granted as a result of an experience. It is useful to have a way to store these attachments 
+in and retrieve them from an LRS. 
 
-Since these attachments may lead to very large statements, it should be possible for a client to filter out attachments
-when retrieving statements.
 
-In order to allow systems receiving statements with attachments to examine the rest of the statement,
-and possibly decide to reject it, before receiving attachments, statements with attachments will be
-transmitted using a content-Type of multipart/mixed rather than in-lining the attachments. Attachments 
-will be placed at the end of such transmissions, though they are still logically part of the statements.
-This capability will be available when issuing PUT or POST against the statement resource.
-
-#####Attachment Type:
-
+###### Details:
+The table below lists all properties of the Attachment object.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -1368,43 +1362,62 @@ This capability will be available when issuing PUT or POST against the statement
 	</tr>
 </table>
 
-#####Transmission Format:
+###### Procedure for the exchange of attachments
+Since these attachments may lead to very large statements, it should be possible for a client to filter out 
+attachments when retrieving statements, by following this procedure:
 
-Statement streams that include attachments will be of type "multipart/mixed" rather than "application/json".
-The first part of the multipart document contains the statements themselves, with type "applicaton/json".
-Each additional part contains the raw data for an attachment. The raw data of an attachment may be matched
-with the attachment header in a statement by comparing the SHA-2 of the raw data to the SHA-2 declared in the
-header.
-
-Requirements for the LRS:
-* MUST accept statements via the statements resource via PUT or POST that contain attachments in the Transmission Format described above
-* MUST reject statements having attachments that do not contain a fileUrl, and do not have a hash matching any raw data received
-* MUST include attachments in the Transmission Format described above when requested by the client (see query API)
-* MUST NOT pull statements from another LRS without requesting attachments
-* MUST NOT push statements into another LRS without including attachments
-* MAY reject statements, or batches of statements that are larger than the LRS is configured to allow
-* SHOULD accept statements in the above format that don't declare any attachments
-
-Requirements for the client:
-* MAY send statements with attachments as described above
-* MAY send multiple statements where some or all have attachments if using "POST"
-
-Common requirements:
-* SHOULD only include one copy of an attachment when the same attachment is used in multiple statements that are sent in one message.
-* MUST conform to the definition of multipart/mixed in RFC 1341
-* SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json"
-* MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part. This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the attachment included in this part
+1. A statement including an attachment is construed according to the Transmission Format described below.
+2. The statement is sent to the receiving system using a content-Type of "multipart/mixed". The attachments are 
+placed at the end of such transmissions.
+3. The receiving system decides whether to accept or reject the statement based on the information in the first part.
+4. If it accepts the attachment, it can match the raw data of an attachment with the attachment header in a statement 
+by comparing the SHA-2 of the raw data to the SHA-2 declared in the header.
 
 
-#####Example:
+###### Requirements for statement streams that include attachments
+
+A statement stream that includes attachments:
+
+* MUST be of type "multipart/mixed" rather than "application/json";
+	* The first part of the multipart document MUST contain the statements themselves, with type "applicaton/json";
+	* Each additional part contains the raw data for an attachment and forms a logical part of the statement. This 
+	capability will be available when issuing PUT or POST against the statement resource.
+* SHOULD only include one copy of an attachment when the same attachment is used in multiple statements that are sent 
+in one message;
+* MUST conform to the definition of multipart/mixed in RFC 1341;
+* SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json";
+* MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part;
+	* This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
+	attachment included in this part.
+
+
+###### Requirements for the LRS:
+
+* MUST accept statements via the statements resource PUT or POST that contain attachments in the Transmission Format 
+described above;
+* MUST reject statements having attachments that do not contain a fileUrl, and do not have a hash matching any raw 
+data received;
+* MUST include attachments in the Transmission Format described above when requested by the client (see query API);
+* MUST NOT pull statements from another LRS without requesting attacments;
+* MUST NOT push statements into another LRS without including attachments;
+* MAY reject (batches of) statements that are larger than the LRS is configured to allow;
+* SHOULD accept statements in the above format that don't declare any attachments.
+
+###### Requirements for the client:
+* MAY send statements with attachments as described above;
+* MAY send multiple statements where some or all have attachments if using "POST".
+
+###### Example:
 
 Below is an example of a very simple statement with an attachment. Please note the following:
-* The boundary in the sample was chosen to demonstrate valid character classes.
-* The selected boundary does not appear in any of the parts
+
+* The boundary in the sample was chosen to demonstrate valid character classes;
+* The selected boundary does not appear in any of the parts;
 * For readability the sample attachment is text/plain. Even if it had been a 'binary' type
-like 'image/jpeg' no encoding would be done, the raw octets would be included
+like 'image/jpeg' no encoding would be done, the raw octets would be included;
 * Per RFC 1341, the boundary is <CRLF> followed by -- followed by the boundary string declared in the header.
-Don't forget the <CRLF> when building or parsing these messages.
+
+Don't forget the ```<CRLF>```  when building or parsing these messages.
 
 Headers:
 
