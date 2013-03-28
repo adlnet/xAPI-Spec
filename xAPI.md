@@ -950,7 +950,7 @@ comment could be issued on the original statement, using a new statement:
 
 An optional field that represents a measured outcome related to the statement in which it is included.
 
-#####Example
+#####Details
 
 A result can be completion, success, score, etc. 
 The 'Result' field may also contain arbitrary measurements if needed by the Learning Activity Provider.
@@ -2020,6 +2020,13 @@ statements will be returned.
 The 3 Document APIs provide <a href="#miscdocument">document</a> storage for learning activity providers
 and agents. The details of each API are found in the following sections, and the information in this section 
 applies to all three APIs.
+
+###New Agents and Activities
+An Activity Provider MAY send documents to any of the document APIs for activities and agents that
+the LRS does not have prior knowledge of. The LRS MUST NOT reject documents on the basis of not having 
+prior knowledge of the activity and/or agent. 
+
+
 
 ###POST to store application/json arrays of variables
 <table>
