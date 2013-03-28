@@ -33,6 +33,7 @@
     [5.1. Document](#miscdocument)  
     [5.2. Language Map](#misclangmap)  
     [5.3. Extensions](#miscext)  
+    [5.4. Identifier Metadata](#miscmeta)  
 [6.0. Runtime Communication](#rtcom)  
     [6.1. Encoding](#encoding)  
     [6.2. API Versioning](#apiversioning)  
@@ -732,12 +733,20 @@ __Activity Definition__
 		<td>A description of the activity</td>
 	</tr>
 	<tr>
+		<a name="acttype"/>
 		<td>type</td>
 		<td>URI</td>
 		<td>the type of activity. Note, URI fragments (sometimes called 
 			relative URLs) are not valid URIs. Similar to verbs, we recommend 
 			that Learning Activity Providers look for and use established, 
 			widely adopted, activity types.
+		</td>
+	</tr>
+	<tr>
+		<td>url</td>
+		<td>URL</td>
+		<td>An optional url which SHOULD resolve to a document human-readable information about the activity,
+		which MAY inclue a way to 'launch' the activity.
 		</td>
 	</tr>
 	<tr>
@@ -756,19 +765,20 @@ upon receiving a statement with a different definition of the activity from the
 one stored, but only if it considers the Learning Activity Provider to have the 
 authority to do so.  
 
-Activities may be defined in XML according to the schema http://www.adlnet.gov/xapi. 
-LRS's MAY attempt to look up an XML document at the URL given by the activity URI, 
-and check if it conforms to the Experience API schema. If it does, the LRS SHOULD 
-fill in its internal representation of the activities definition based on that 
-document. Note that activity URI's are not required to resolve to such metadata.  
-
-Note that multiple activities may be defined in the same metadata document. The LRS 
-MAY choose whether to store information about activities other than those for 
-which it has received statements. 
-
-As part of each group of activities, the activity metadata document may define 
-information about an associated activity provider, which the LRS SHOULD consider 
-the authoritative source for statements about the activity.  
+<a name="actmeta"/>
+__Activity Metadata__
+* Activities with URL identifiers MAY may host metadata using the <a href="#actdef">
+activity definition</a> JSON format which is used in statements, with a Content-Type of "application/json"
+* If the activity URI is a URL, LRS's SHOULD attempt to GET that URL, and include in HTTP
+headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
+first encounters the activity id.
+* If the LRS loads JSON which is a valid activity definition from a URL used as an activity id,
+ the LRS SHOULD replace its internal representation of that activity definition with the loaded definition.
+* If the LRS loads any document from which the LRS can parse an activity definition
+from a URL used as an activity id, then the LRS MAY consider this definition when determining
+its internal representation of that activity's definition.
+* The LRS MAY change its internal representation of an activity definition based on statements
+received even if it has previously loaded that definition from a URL containing a JSON activity definition, but SHOULD NOT do so if the URL still resolves and contains a JSON activity definition 
 
 <a name="interactionacts"/>
 __Interaction Activities__  
@@ -1320,6 +1330,7 @@ This capability will be available when issuing PUT or POST against the statement
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
+		<a name="attachmentUsage" />
 		<td>usageType</td>
 		<td>URI</td>
 		<td>Identifies the usage of this attachment. For example: one expected use case
@@ -1538,6 +1549,37 @@ among actors and objects, and SHOULD always strive to map as much information as
 possible into the built in elements, in order to leverage interoperability among 
 Experience API conformant tools.  
 
+<a name="miscmeta"/>
+## 5.4 Identifier Metadata
+There are several types of URI identifiers used in this specification:
+* <a href="#verb">verb</a>
+* <a href="#acturi">activity id</a>
+* <a href="#acttype">activity type</a>
+* <a href="#miscext">extension key</a>
+* <a href="#attachmentUsage">attachment usage type</a>
+
+Metadata about these identifiers may be provided in the following JSON format:
+
+<table>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr>
+		<td>name</td>
+		<td><a href="#misclangmap">Language Map</a></td>
+		<td>The human readable/visual name</td>
+	</tr>
+	<tr>
+		<td>description</td>
+		<td><a href="misclangmap">Language Map</a></td>
+		<td>description</td>
+	</tr>
+</table>
+
+* For any of the identifier URIs above, if the URI is a URL, the owner of that URL SHOULD
+make this JSON metadata available at that URL when the URL is requested and a Content-Type
+of "applicaton/json" is requested.
+* If this metadata is provided as describe above, it is the canonical source of information
+about the identifier it describes.
+* For activity ids, this format is extended as described in <a href="#actdef">activity definition</a>.
 
 <a name="rtcom"/>
 # 6.0 Runtime Communication
