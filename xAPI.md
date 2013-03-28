@@ -434,7 +434,7 @@ An Agent (an individual) is identified by one of the following:
 
 An agent...
 
-* MUST be identified by one (1) of the three types of inverse functional identifiers described above;
+* MUST be identified by one (1) of the four types of inverse functional identifiers listed in the table below;
 * MUST NOT include more than one (1) inverse functional identifier;
 * SHOULD NOT use inverse functional identifiers that are also used for any Groups;
 * is an important concept in relation to OAuth, see the section on OAuth for details.
