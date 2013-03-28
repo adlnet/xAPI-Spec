@@ -861,7 +861,8 @@ __Sub-Statements__
 When a new statement is included as part of another statement, it is considered 
 a sub-statement, and is subject to certain restrictions. Sub-statements may only 
 be included as parts of other statements, MUST specify an "objectType" property 
-with the value "SubStatement", and MUST NOT have the "id", "stored", or "authority" properties. They will be considered part of the parent statement, 
+with the value "SubStatement", and MUST NOT have the "id", "stored", or "authority" properties.
+They will be considered part of the parent statement, 
 and MUST NOT contain a sub-statement. Implementations MUST validate the 
 sub-statement as they would other statements, with the addition of these rules.
 
