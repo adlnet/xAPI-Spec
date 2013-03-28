@@ -773,12 +773,11 @@ activity definition</a> JSON format which is used in statements, with a Content-
 headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
 first encounters the activity id.
 * If the LRS loads JSON which is a valid activity definition from a URL used as an activity id,
- the LRS SHOULD replace its internal representation of that activity definition with the loaded definition.
+ the LRS SHOULD incorporate the loaded definition into its internal definition for that activity,
+while preserving names or definitions not included in the loaded definition.
 * If the LRS loads any document from which the LRS can parse an activity definition
 from a URL used as an activity id, then the LRS MAY consider this definition when determining
 its internal representation of that activity's definition.
-* The LRS MAY change its internal representation of an activity definition based on statements
-received even if it has previously loaded that definition from a URL containing a JSON activity definition, but SHOULD NOT do so if the URL still resolves and contains a JSON activity definition 
 
 <a name="interactionacts"/>
 __Interaction Activities__  
@@ -1558,7 +1557,9 @@ There are several types of URI identifiers used in this specification:
 * <a href="#miscext">extension key</a>
 * <a href="#attachmentUsage">attachment usage type</a>
 
-Metadata about these identifiers may be provided in the following JSON format:
+For activity ids, see <a href="#actdef">activity definition</a>.
+
+For all other identifiers, metadata may be provided in the following JSON format:
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -1574,12 +1575,16 @@ Metadata about these identifiers may be provided in the following JSON format:
 	</tr>
 </table>
 
-* For any of the identifier URIs above, if the URI is a URL, the owner of that URL SHOULD
+* For any of the identifier URIs above, if the URI is a URL that was coined for use with this
+specification, the owner of that URL SHOULD
 make this JSON metadata available at that URL when the URL is requested and a Content-Type
 of "applicaton/json" is requested.
 * If this metadata is provided as describe above, it is the canonical source of information
-about the identifier it describes.
-* For activity ids, this format is extended as described in <a href="#actdef">activity definition</a>.
+about the identifier it describes
+* Other sources of information MAY be used to fill in missing details, such as translations, or
+take the place of this metadata entirely if it was not provided or can not be loaded. This MAY
+include metadata in other formats stored at the URL of an identifier, particularly if that
+identifier was not coined for use with this specification.
 
 <a name="rtcom"/>
 # 6.0 Runtime Communication
