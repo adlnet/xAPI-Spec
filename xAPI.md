@@ -1986,11 +1986,12 @@ Returns: 200 OK, statement or [Statement Result](#retstmts) (See section 4.2 for
 	<tr><td>format</td><td>{"ids", "exact", "canonical"}</td><td>exact</td>
 		<td>If "ids", only include minimum information necessary in agent and 
 			activity objects to identify them, If "exact", return agent and
-			actor objects populated exactly as they were when the statement was received.<br/><br/>
+			activity objects populated exactly as they were when the statement was received.<br/><br/>
 			
-			If "canonical", return agent and actor objects populated with the canonical
-			definition of the agent and activity objects as determined by the LRS, after
-			applying the language filtering process defined below.
+			If "canonical", return activity objects populated with the canonical
+			definition of the activity objects as determined by the LRS, after
+			applying the language filtering process defined below, and return the original
+			agent objects as in "exact" mode.
 
 			Activity objects contain Language Map objects for name and 
 			description. Only one language should be returned in each of 
