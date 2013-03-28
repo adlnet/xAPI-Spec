@@ -93,6 +93,7 @@ to and stored securely in a Learning Record Store. The Experience API is
 dependent on Learning Activity Providers to create and track learning experiences; 
 this specification provides a data model and associated components on how to 
 accomplish these tasks.  
+
 Specifically, the Experience API provides:  
 - Structure and definition of statement, state, learner, activity and objects, 
 which are the means by which experiences are conveyed by a Learning Activity Provider.
@@ -210,7 +211,7 @@ efforts, and learning in general.  User Voice Site, Rustici Blog, etc.
 ### 2.3 Reading guidelines for the non-technically inclined.
 
 Since you’re reading this document, it’s probably safe to say that you’re interested in understanding 
-the Experience API, informally called TinCan. The purpose of this document is to describe how the xAPI is 
+the Experience API, informally called Tin Can. The purpose of this document is to describe how the xAPI is 
 implemented in a large variety of systems. It’s a fairly technical document by nature and you may
 decide that you don’t understand much of it. Even so, there are useful things to learn by reading further. Not only
 because the tools that you work with are based on the specifications described below; the technical people that you
@@ -340,7 +341,7 @@ below.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
 	<tr><td>id</td><td>UUID</td><td></td>
-	<td>UUID assigned by LRS or other trusted source.</td></tr>
+	<td>UUID assigned by LRS if not set by the Activity provider.</td></tr>
 	<tr><td><a href="#actor">actor</a></td><td>Object</td><td></td>
 	<td>Who the statement is about, as an <a href="#agent">Agent</a> or 
 		<a href="#group">Group</a> object. 'I'</td></tr>
@@ -359,7 +360,7 @@ below.
 	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td><td></td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
 	of when what this statement describes happened. If not provided, LRS 
-	should set this to the value of "stored" time.</td></tr>
+	MUST set this to the value of "stored" time.</td></tr>
 	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td><td></td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
 	of when this statement was recorded. Set by LRS.</td></tr>
