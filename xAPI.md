@@ -359,7 +359,7 @@ below.
 	authentication, and set by LRS if left blank.</td></tr>
 	<tr><td><a href="#voided">voided</a></td><td>Boolean</td><td>false</td>
 	<td>Indicates that the statement has been voided (see below)</td></tr>
-	<tr><td><a href="#version">version</a></td><td>String</td><td>false</td>
+	<tr><td><a href="#version">version</a></td><td>String</td><td>"1.0"</td>
 	<td>API version the statement conforms to. Set by LRS.</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
