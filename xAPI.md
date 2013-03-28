@@ -403,7 +403,8 @@ See [Appendix D: Example statements](#AppendixD) for more examples.
 ### 4.1.1 ID:  
 
 #####Description: 
-A UUID.
+A UUID (see [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt)
+for requirements, and the UUID must be in standard string form).
 
 #####Details: 
 
