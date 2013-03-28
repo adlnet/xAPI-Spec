@@ -375,7 +375,8 @@ updating the "voided" flag, statements are immutable. Note that the content of
 activities that are referenced in statements are not considered part of the 
 statement itself. So while the statement is immutable, the activities referenced 
 by that statement are not. This means a deep serialization of a statement into 
-JSON will change if the referenced activities change.  
+JSON will change if the referenced activities change (see the
+statement API's 'format' parameter for details).  
 
  
 Simplest possible statement using all properties that MUST or SHOULD be used:  
