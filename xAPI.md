@@ -382,7 +382,6 @@ Simplest possible statement using all properties that MUST or SHOULD be used:
 ```
 {
 	"actor":{
-		"objectType": "Agent",
 		"mbox":"mailto:xapi@adlnet.gov"
 	},
 	"verb":{
