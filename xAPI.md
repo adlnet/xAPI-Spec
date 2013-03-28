@@ -2094,10 +2094,17 @@ the resulting document stored in the LRS is:
 	"z" : "faz"
 }
 ```
-If either the original document or the document being posted do not have an Content-Type:
+If the original document exists, and the original document or the document being posted
+do not have a Content-Type:
 of "application/json", or if either document can not be parsed as JSON objects, the LRS MUST
 respond with HTTP status code 400 "Bad Request", and MUST NOT update the target document
-as a result of the request.
+as a result of the request. 
+
+If the original document does not exist, the LRS MUST treat the request the same as it 
+would a PUT request and store the document being posted.
+
+If the merge is successful, the LRS MUST respond with HTTP 
+status code 204 "No Content".
 
 If an AP needs to delete
 a property, it SHOULD use a PUT request to replace the whole document as described below. 
@@ -2118,7 +2125,7 @@ Example endpoint: http://example.com/XAPI/activities/state
 Stores, fetches, or deletes the document specified by the given stateId that 
 exists in the context of the specified activity, agent, and registration (if specified).  
 
-Returns: (PUT | DELETE) 204 No Content, (GET) 200 OK - State Content  
+Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - State Content  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
@@ -2208,13 +2215,13 @@ Returns: 200 OK - Content
 	</td>
 </table>
 
-### PUT | GET | DELETE activities/profile
+### PUT | POST | GET | DELETE activities/profile
 Example endpoint: http://example.com/XAPI/activities/profile
 
 Saves/retrieves/deletes the specified profile document in the context of the 
 specified activity.  
 
-Returns: (PUT | DELETE) 204 No Content, (GET) 200 OK - Profile Content  
+Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
@@ -2318,13 +2325,13 @@ Returns: 200 OK - Expanded Agent Object
 	</tr>
 </table>  
 
-### PUT | GET | DELETE agents/profile
+### PUT | POST | GET | DELETE agents/profile
 Example endpoint: http://example.com/XAPI/agents/profile
 
 Saves/retrieves/deletes the specified profile document in the context of the 
 specified agent.  
 
-Returns: (PUT | DELETE) 204 No Content, (GET) 200 OK - Profile Content  
+Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
