@@ -825,7 +825,7 @@ Interaction components are defined as follows:
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>a description of the interaction component 
-			(for example, the text for a given choice in a matching interaction)</td>
+			(for example, the text for a given choice in a multiple-choice interaction)</td>
 	</tr>
 </table>  
 
@@ -2601,7 +2601,7 @@ __choice__
 		"en-US": "Which of these prototypes are available at the beta site?"
 	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
-	"interactionType": "matching",
+	"interactionType": "multiple-choice",
 	"correctResponsesPattern": [
 		"golf[,]tetris"
 	],
