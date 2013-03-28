@@ -1308,7 +1308,7 @@ certificate that was granted as a result of an experience. It is useful to have 
 in and retrieve them from an LRS. 
 
 
-######Details:
+###### Details:
 The table below lists all properties of the Attachment object.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -1358,7 +1358,7 @@ The table below lists all properties of the Attachment object.
 	</tr>
 </table>
 
-#######Procedure for the exchange of attachments
+###### Procedure for the exchange of attachments
 Since these attachments may lead to very large statements, it should be possible for a client to filter out 
 attachments when retrieving statements, by following this procedure:
 
@@ -1370,7 +1370,7 @@ placed at the end of such transmissions.
 by comparing the SHA-2 of the raw data to the SHA-2 declared in the header.
 
 
-#######Requirements for statement streams that include attachments
+###### Requirements for statement streams that include attachments
 
 A statement stream that includes attachments:
 
@@ -1387,7 +1387,7 @@ in one message;
 	attachment included in this part.
 
 
-#######Requirements for the LRS:
+###### Requirements for the LRS:
 
 * MUST accept statements via the statements resource PUT or POST that contain attachments in the Transmission Format 
 described above;
@@ -1399,11 +1399,11 @@ data received;
 * MAY reject (batches of) statements that are larger than the LRS is configured to allow;
 * SHOULD accept statements in the above format that don't declare any attachments.
 
-#######Requirements for the client:
+###### Requirements for the client:
 * MAY send statements with attachments as described above;
 * MAY send multiple statements where some or all have attachments if using "POST".
 
-######Example:
+###### Example:
 
 Below is an example of a very simple statement with an attachment. Please note the following:
 
