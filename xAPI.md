@@ -677,14 +677,12 @@ A statement may represent a Learning Activity as an object in the statement.
 	<tr>
 		<td>objectType</td>
 		<td>String</td>
-		<td>Should always be "Activity" when present. Used in cases where type 
-			cannot otherwise be determined, such as the value of a statement's 
-			"object" field.</td>
+		<td>MUST be "Activity" when present. Optional in all cases.</td>
 	</tr>
 	<tr>
 		<td><a href="#acturi">id</a></td><td>URI</td>
 		<td>MAY be a URL, which points to the logical definition of the activity. 
-			This MAY be metadata or the URL for the activity</td>
+		This MAY point to metadata or the URL for the activity</td>
 	</tr>
 	<tr>
 		<td><a href="#actdef">definition</a></td>
