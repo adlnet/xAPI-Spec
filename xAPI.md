@@ -664,14 +664,14 @@ specification document, with the exception of the reserved verb <a href="#voided
 
 
 <a name="object"/>
-### 4.1.4 Object:  
+#### 4.1.4 Object:  
 The object of a statement is the Activity, Agent, or Statement that is the object 
 of the statement, "this". Note that objects which are provided as a value for 
 this field SHOULD include an "objectType" field. If not specified, the object 
 is assumed to be an Activity.  
 
 <a name="activity"/>
-#### 4.1.4.1 – Activity as "object"
+##### 4.1.4.1 – Activity as "object"
 A statement may represent a Learning Activity as an object in the statement.  
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -692,7 +692,7 @@ A statement may represent a Learning Activity as an object in the statement.
 	</tr>
 </table>
 <a name="acturi"/>
-__Activity ID__  
+###### Activity ID  
 An activity ID must always refer to a single unique activity. There may be 
 corrections to that activity's definition. Spelling fixes would be appropriate, 
 for example, but changing correct responses would not.  
@@ -713,14 +713,14 @@ consistent with any other state or statements that are stored against the same
 activity ID, even if those statements were stored in the context of a new 
 revision or platform.   
 
-__NOTE__: The prohibition against an LRS treating references to the same activity 
+###### NOTE: The prohibition against an LRS treating references to the same activity 
 ID as two different activities, even if the LRS can positively determine that 
 was the intent, is crucial to prevent activity ID creators from creating IDs 
 that could be easily duplicated, as intent would be indeterminable should a 
 conflict with another system arise.  
 
 <a name="actdef"/>
-__Activity Definition__  
+###### Activity Definition  
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
@@ -767,7 +767,7 @@ one stored, but only if it considers the Learning Activity Provider to have the
 authority to do so.  
 
 <a name="actmeta"/>
-__Activity Metadata__
+###### Activity Metadata
 * Activities with URL identifiers MAY may host metadata using the <a href="#actdef">
 activity definition</a> JSON format which is used in statements, with a Content-Type of "application/json"
 * If the activity URI is a URL, LRS's SHOULD attempt to GET that URL, and include in HTTP
@@ -781,7 +781,7 @@ from a URL used as an activity id, then the LRS MAY consider this definition whe
 its internal representation of that activity's definition.
 
 <a name="interactionacts"/>
-__Interaction Activities__  
+###### Interaction Activities  
 
 Traditional e-learning has included structures for interactions or assessments. 
 As a way to allow these practices and structures to extend Experience API's 
@@ -821,7 +821,7 @@ remaining properties are not valid for the interaction type.
 	</tr>
 </table>  
 
-__Interaction Components__  
+###### Interaction Components  
 
 Interaction components are defined as follows:  
 <table>
@@ -855,19 +855,19 @@ an interaction activity with the given interactionType.
 >See [Appendix C](#AppendixC) for examples of activity definitions for each of the cmi.interaction types.
 
 <a name="agentasobj"/>
-#### 4.1.4.2 - Agent or Group as "object"
+##### 4.1.4.2 - Agent or Group as "object"
 A statement may specify an Agent or Group as an object in the statement. Agents that do 
 this MUST specify an "objectType" property.  See [section 4.1.2](#actor) for details 
 regarding Agents.  
 
 <a name="stmtasobj"/>
-#### 4.1.4.3 - Statement as "object"
+##### 4.1.4.3 - Statement as "object"
 Another statement may be used as an object in the statement, though some 
 restrictions apply depending on whether the included statement is new, or is 
 simply a reference to an existing statement.  
 
 <a name="substmt"/>
-__Sub-Statements__  
+###### Sub-Statements  
 When a new statement is included as part of another statement, it is considered 
 a sub-statement, and is subject to certain restrictions. Sub-statements may only 
 be included as parts of other statements, MUST specify an "objectType" property 
@@ -921,9 +921,9 @@ Later, when 'I' actually visit 'Some Awesome Website', reporting tools can there
 }
 ```
 <a name="stmtref"/>
-__Statement References__  
+###### Statement References  
 When an existing statement is included as part of another statement, a statement 
-reference should be used. A statement reference is a simple object consisting 
+reference MUST be used. A statement reference is a simple object consisting 
 an "objectType" property, which MUST be "StatementRef", and an "id" property, 
 which MUST be set to the UUID of a statement which is present on the system.  
 
@@ -956,12 +956,12 @@ comment could be issued on the original statement, using a new statement:
 ``` 
 
 <a name="result"/>
-### 4.1.5 Result:
-####Description: 
+#### 4.1.5 Result:
+###### Description: 
 
 An optional field that represents a measured outcome related to the statement in which it is included.
 
-#####Details
+###### Details
 
 A result can be completion, success, score, etc. 
 The 'Result' field may also contain arbitrary measurements if needed by the Learning Activity Provider.
@@ -986,10 +986,11 @@ The 'Result' field may also contain arbitrary measurements if needed by the Lear
 <td>Extensions</td><td><a href="#miscext">Extensions object</a></td><td>A map of other properties as needed.</td>
 </tr>
 </table> 
-<a name="Score"/>
-####4.1.5.1 Score property
 
-#####Description
+<a name="Score"/>
+##### 4.1.5.1 Score property
+
+###### Description
 An optional numeric field that represents the outcome of a graded activity achieved by an agent.
 
 
@@ -1002,21 +1003,25 @@ The table below defines the score object.
 	<tr><td>max</td><td>Decimal number greater than min (if present)</td><td>Cf. 'cmi.score.max'</td></tr>
 </table>
 
-#####Details
+###### Details
 
 The Score property...
 
 - SHOULD include 'scaled' if a logical percent based score is known;
-- SHOULD NOT be used for scores relating to progress or completion. Consider using an extension from an extension profile instead.
+- SHOULD NOT be used for scores relating to progress or completion. Consider using an extension from an extension 
+profile instead.
 
 <a name="context"/>
-###4.1.6 Context
+#### 4.1.6 Context
 
-#####Description: 
-An optional field that provides a place to add contextual information to a statement. All its field properties are optional.
+###### Description: 
+An optional field that provides a place to add contextual information to a statement. All its field properties are 
+optional.
 
-#####Rationale: 
-The "context" field provides a place to add some contextual information to a statement. It can store information such as the instructor for an experience, if this experience happened as part of a team activity, or how an experience fits into some broader activity.
+###### Rationale: 
+The "context" field provides a place to add some contextual information to a statement. It can store information such 
+as the instructor for an experience, if this experience happened as part of a team activity, or how an experience fits 
+into some broader activity.
 
 <table border="1">
 <tr><th>property</th><th>type</th><th>description</th></tr>
@@ -1050,7 +1055,8 @@ Valid context types are: "parent", "grouping", "category", "other". <a href ="#c
 <td>String</td>
 <td>Revision of the learning activity associated with this statement. Format is free.<br>
 - SHOULD be used to track fixes of minor issues (like a spelling error), <br>
-- SHOULD NOT be used if there is a major change in learning objectives, pedagogy, or assets of an activity. (Use a new activity ID instead).<br>
+- SHOULD NOT be used if there is a major change in learning objectives, pedagogy, or assets of an activity. (Use a new 
+activity ID instead).<br>
 - MUST NOT be used if the statement's object is a Person.
 
 
@@ -1066,7 +1072,8 @@ Valid context types are: "parent", "grouping", "category", "other". <a href ="#c
 <tr>
 <td>language</td>
 <td>String (as defined in <a href="http://tools.ietf.org/html/rfc5646">RFC 5646</a>)</td>
-<td>Code representing the language in which the experience being recorded in this statement (mainly) occurred in, if applicable and known.<br>
+<td>Code representing the language in which the experience being recorded in this statement (mainly) occurred in, if 
+applicable and known.<br>
 - MUST NOT be used if not applicable or unknown.
 </td>
 
@@ -1074,56 +1081,65 @@ Valid context types are: "parent", "grouping", "category", "other". <a href ="#c
 <tr>
 <td>statement</td>
 <td>Statement by reference or by object</td>
-<td>Another statement (either existing or new), which should be considered as context for this statement. <a href = "#stmtasobj">See section 4.1.4.3</a> for details about including statements within other statements. </td>
+<td>Another statement (either existing or new), which should be considered as context for this statement. 
+<a href = "#stmtasobj">See section 4.1.4.3</a> for details about including statements within other statements. </td>
 
 </tr>
 <tr>
 <td>extensions</td>
 <td>Extensions object</td>
-<td>A map of any other domain-specific context relevant to this statement. For example, in a flight simulator altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a href="#miscext">See section 5.3</a>)</td>
+<td>A map of any other domain-specific context relevant to this statement. For example, in a flight simulator 
+altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a href="#miscext">See section 5.3</a>)</td>
 
 </tr>
 
 </table>
 <a name="Registration"/>
-####4.1.6.1 Registration property
+##### 4.1.6.1 Registration property
 
-#####Description:
+###### Description:
 An instance of a learner undertaking a particular learning activity.
 
-#####Details:
-When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration. For example all the statements about one time a person took a test might have one registration. If the learner takes the test again, the statements from this second occasion would have a different registration from the first occasion. 
+###### Details:
+When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration. For example all 
+the statements about one time a person took a test might have one registration. If the learner takes the test again, 
+the statements from this second occasion would have a different registration from the first occasion. 
 
-The LMS may also close the registration at some point when it considers the learning experience complete. For Experience API purposes, a registration may be applied more broadly; an LMS could assign a group of students to a group of activities and track all related statements in one registration.
+The LMS may also close the registration at some point when it considers the learning experience complete. For 
+Experience API purposes, a registration may be applied more broadly; an LMS could assign a group of students to a 
+group of activities and track all related statements in one registration.
 
 <a name="contextActivities"/>
-####4.1.6.2 Context activities property
+##### 4.1.6.2 Context activities property
 
-#####Description: 
+###### Description: 
 A map of the types of context to ids of learning activities, or a learning activity this statement is related to.
 
-#####Rationale: 
-Many activities are not autonomous or stand-alone, but form a part in a larger logical group of activities. "Context activities" allow for these larger activities to be represented in a structured manner.
+###### Rationale: 
+Many activities are not autonomous or stand-alone, but form a part in a larger logical group of activities. "Context 
+activities" allow for these larger activities to be represented in a structured manner.
 
-#####Details:
+###### Details:
 There are three valid context types. All, any or none of these MAY be used in a given statement:
 
 1. __Parent__ : an activity with a direct relation to the activity which is the object of the statement.
 For example: a statement about a quiz question would have the quiz as its parent activity.
-
  
 2. __Grouping__ : an activity with an indirect relation to the activity which is the object of the statement.
-For example: a course that is part of a qualification. The course has several classes. The course relates to a class as the parent, the qualification relates to the class as the grouping.
+For example: a course that is part of a qualification. The course has several classes. The course relates to a class 
+as the parent, the qualification relates to the class as the grouping.
 
-3. __Category__ : an activity used to categorize the statement. "Tags" would be a synonym. Main driver is to have a way to get "profile" in the statement in a searchable way, but this includes more general categories of statements.
+3. __Category__ : an activity used to categorize the statement. "Tags" would be a synonym. Main driver is to have a 
+4. way to get "profile" in the statement in a searchable way, but this includes more general categories of statements.
 
 For example: Anna attempts a bilogy exam, and the statement is tracked using the CMI-5 profile.
 The statement's activity refers to the exam, and the category is the CMI-5 profile.
 
 4. __Other__ : a context activity that doesn't fit one of the other fields.
-For example: Anna studies a textbook for a biology exam. The statement's activity refers to the textbook, and the exam is a context activity of type "other" .
+For example: Anna studies a textbook for a biology exam. The statement's activity refers to the textbook, and the 
+exam is a context activity of type "other".
 
-#####Example I:
+###### Example I:
 
 ```
 {
@@ -1132,7 +1148,7 @@ For example: Anna studies a textbook for a biology exam. The statement's activit
 	}
 }
 ```
-#####Example II: 
+###### Example II: 
 Consider the following hierarchical structure: "Questions 1 to 6" are part of "Test 1" which in turn belongs to the course "Algebra 1". 
 The six questions are registered as part of the test by declaring "Test 1" as their parent. Also they are grouped with other statements about "Algebra 1" to fully mirror the hierarchy. This is particularly useful with the object of the statement is an agent, not an activity. "Andrew mentored Ben with context Algebra I".
 
