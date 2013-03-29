@@ -3042,18 +3042,18 @@ Typical simple completion with verb "attempted":
 ```  
 
 <a name="AppendixE"/>
-# Appendix E: Converting Statements to 1.0
+## Appendix E: Converting Statements to 1.0
 
-####Rationale:
+######Rationale:
 This is a 1.0 specification, and as such implementers should not have to consider prior
 versions of the specification. However, prior versions did see notable adoption. This data
 conversion is specified in order
 to preserve the data tracked using earlier versions, and make it available to new implementers
 in a consistant manner.
 
-####Details:
+######Details:
 
-#####Conversion of statements created based on version 0.9
+######Conversion of statements created based on version 0.9
 
 A 1.0 system converting a statement created in 0.9 MUST follow the steps below:
 
@@ -3078,7 +3078,7 @@ system performing the conversion and an accountName of "unknown".
 * Preserve all other fields without modification, including "stored". Stored should still
 be updated if the statement is passed to another system.
 
-#####Conversion of statements created based on version 0.9
+######Conversion of statements created based on version 0.9
 
 A 1.0 system converting a statement created in 0.9 MUST follow the steps below:
 
@@ -3092,7 +3092,7 @@ system performing the conversion and an accountName of "unknown".
 be updated if the statement is passed to another system.
 
 
-####Example:
+######Example:
 
 
 A 0.9 statement:
