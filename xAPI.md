@@ -6,7 +6,7 @@
 >Defense (Readiness) Advanced Distributed Learning (ADL) Initiative. Please 
 >send all feedback and inquiries to helpdesk@adlnet.gov  
 
-# Table of Contents
+## Table of Contents
 [1.0. Revision History](#revhistory)  
 [2.0. Role of the Experience API](#roleofxapi)  
   [2.1. ADL's Role in the Experience API](#adlrole)  
@@ -56,14 +56,14 @@
 [Appendix D: Example statements](#AppendixD)  
 
 <a name="revhistory"/>  
-# 1.0 Revision History
-__0.8 (Project Tin Can API Deliverable) to 0.9 (March 31, 2012):__  
+## 1.0 Revision History
+###### 0.8 (Project Tin Can API Deliverable) to 0.9 (March 31, 2012):  
   
 Rustici software, whom delivered Project Tin Can API, made modifications to the 
 API prior to the April 2012 Kickoff Meeting. It was voted in this meeting to 
 move those changes into the current spec and revision to 0.9.
 
-__0.90 to 0.95 (August 31, 2012):__  
+###### 0.90 to 0.95 (August 31, 2012):  
 
 "Core" verbs and activity types were removed from the specification. References 
 to these verbs in results, context, interactions, and activity definitions have 
@@ -77,6 +77,14 @@ view.
 - Friend of a Friend (FOAF) agent merging requirement removed.
 - Agent objects must now have exactly 1 uniquely identifying property, instead 
 of at least one.
+
+###### 0.95 to 1.0 (April 26, 2013): 
+Various refinements and clarifications including:
+- Adding attachments
+- Activity metadata is now stored as JSON rather than XML
+- Changes to voiding statements
+- Clarification and naming of the Document APIs
+- Changes to querying the Statement API
 
 <a name="roleofxapi"/>
 # 2.0 Role of the Experience API  
