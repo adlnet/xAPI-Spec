@@ -3070,7 +3070,8 @@ A 1.0 system converting a statement created in 0.9 MUST follow the steps below:
     * If the "name" property is present, set it equal to the first element in the "name"
     array, discard the remaining elements.
     * Remove all remaining properties.
-* Remove the "voided" property from the statement, if present.
+* Remove the "voided" property from the statement, if present. Remember, if the value of the
+  voided property is true, then the statement MUST NOT be converted
 * Add "version": "1.0"
 * If an authority was not previously set, set the authority to an agent identified by
 an account with a homePage set to the home page corresponding to the
@@ -3083,7 +3084,8 @@ be updated if the statement is passed to another system.
 A 1.0 system converting a statement created in 0.95 MUST follow the steps below:
 
 * If the statement is voided, do not convert it.
-* Remove the "voided" property from the statement, if present.
+* Remove the "voided" property from the statement, if present. Remember, if the value
+  of the voided property is true, then the statement MUST NOT be converted
 * Add "version": "1.0"
 * If an authority was not previously set, set the authority to an agent identified by
 an account with a homePage set to the home page corresponding to the
