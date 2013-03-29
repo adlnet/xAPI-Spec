@@ -1513,9 +1513,9 @@ endpoint, see section [7.2 "Statement API"](#stmtapi) for details.
 </table>
 
 <a name="misctypes"/> 
-# 5.0 Miscellaneous Types
+## 5.0 Miscellaneous Types
 <a name="miscdocument"/> 
-## 5.1 Document:
+### 5.1 Document:
 The Experience API provides a facility for Activity Providers to save arbitrary data in 
 the form of documents, which may be related to an Activity, Agent, or combination of both.  
 <table>
@@ -1529,7 +1529,7 @@ updated is HTTP header information, and contents is the HTTP document itself.
 
 
 <a name="misclangmap"/>
-## 5.2 Language Map
+### 5.2 Language Map
 A language map is a dictionary where the key is a 
 [RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the value is a 
 string in the language specified in the tag. This map should be populated as 
@@ -1537,7 +1537,7 @@ fully as possible based on the knowledge of the string in question in different
 languages.  
 
 <a name="miscext"/> 
-## 5.3 Extensions
+### 5.3 Extensions
 Extensions are defined by a map. The keys of that map MUST be URLs, and the 
 values MAY be any JSON value or data structure. The meaning and structure of 
 extension values under a URL key are defined by the person who coined the URL, 
@@ -1559,14 +1559,14 @@ experience, while those in the result should provide elements related to some
 outcome. For activities, they should provide additional information that helps 
 define an activity within some custom application or community.  
 
-__Note__: A statement should not be totally defined by its extensions, and be 
+###### Note: A statement should not be totally defined by its extensions, and be 
 meaningless otherwise. Experience API statements should be capturing experiences 
 among actors and objects, and SHOULD always strive to map as much information as 
 possible into the built in elements, in order to leverage interoperability among 
 Experience API conformant tools.  
 
 <a name="miscmeta"/>
-## 5.4 Identifier Metadata
+### 5.4 Identifier Metadata
 There are several types of URI identifiers used in this specification:
 * <a href="#verb">verb</a>
 * <a href="#acturi">activity id</a>
@@ -1604,7 +1604,7 @@ include metadata in other formats stored at the URL of an identifier, particular
 identifier was not coined for use with this specification.
 
 <a name="rtcom"/>
-# 6.0 Runtime Communication
+## 6.0 Runtime Communication
 
 Sections 6 and 7 detail the more technical side of the Experience API, dealing with 
 how statements are transferred between Activity Provider and LRS. A number of libraries 
@@ -1613,25 +1613,25 @@ this part of the specification. It therefore may not be necessary for content de
 to fully understand every detail of this part of the specification.
 
 <a name="encoding"/> 
-## 6.1 Encoding:
+### 6.1 Encoding:
 All strings must be encoded and interpreted as UTF-8.  
 
 <a name="apiversioning"/> 
-## 6.2 API Versioning:
+### 6.2 API Versioning:
 
 
-#####Requirement
+###### Requirement
 
 Every request from a client and every response from the LRS must include an HTTP header with the name “X-Experience-API Version” and the version number as the value.
 
 Example:  ``X-Experience-API Version : 1.0``
  
-#####Rationale
+###### Rationale
 
 Future revisions of the spec may introduce changes such as properties added to statements.
 Systems retrieving statements may then receive responses that include statements of different versions. The version header allows for these version differences to be handled correctly, and to ascertain that no partial or mixed LRS version implementations exist.
 
-#####Details
+###### Details
 
 Requirements for the LRS:
 
@@ -1654,7 +1654,7 @@ Converting statements to other versions:
 * Systems MAY convert statements of older versions into a newer version only by following the methods described in the companion document.
 
 <a name="concurrency"/> 
-## 6.3 Concurrency:
+### 6.3 Concurrency:
 In order to prevent "lost edits" due to API consumers PUT-ing changes based on 
 old data, XAPI will use HTTP 1.1 entity tags 
 ([ETags](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19)) 
@@ -1693,20 +1693,20 @@ state of the resource and set the “If-Match” header with the current ETag to
 resolve the conflict. In this case, the LRS must make no modification to the resource.  
 
 <a name="security"/>
-## 6.4 Security:
+### 6.4 Security:
 
-#####Requirement
+###### Requirement
 
 The LRS MUST support authentication using at least one of the following methods:
 -	OAuth 1.0 (rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
 - HTTP Basic Authentication
 - Common Access Cards (implementation details to follow in a later version)
 
-#####Rationale
+###### Rationale
 
 The LRS is always responsible for making, or delegating, decisions on the validity of statements, and determining what operations may be performed based on the credentials used.
 
-#####Authentication scenarios
+###### Authentication scenarios
 
 The below matrix describes the possible authentication scenarios.
 
@@ -1740,52 +1740,53 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 </table> 
 
 	
-###6.4.1	
-#####How to handle each scenario
+#### 6.4.1	
+###### How to handle each scenario
 
-General
--------
+###### General
 * The LRS must record the application's name and a unique consumer key (identifier);
-* The LRS must provide a mechanism to complete this registration, or delegate to another system that provides such a mechanism;
+* The LRS must provide a mechanism to complete this registration, or delegate to another system that provides such 
+a mechanism;
 The means by which this registration is accomplished are not defined by OAuth or the XAPI.
 
-Application registered + known user
------------------------------------ 
+###### Application registered + known user
 
 * Use endpoints below to complete the standard workflow.
-* If this form of authentication is used  to record statements and no  authority  is specified, the LRS should record the  authority  as a group consisting of an Agent representing the registered application, and a Person representing the known user.
+* If this form of authentication is used  to record statements and no  authority  is specified, the LRS should record 
+the  authority  as a group consisting of an Agent representing the registered application, and a Person representing 
+the known user.
 
-Application not registered + user unknown
------------------------------------------
+###### Application not registered + user unknown
 
-* LRS will honor requests that are signed using OAuth with the registered application’s credentials and with an empty token and token secret.
-* If this form of authentication is used  to record statements and no  authority  is specified, the LRS should record the  authorityas the Agent representing the registered application.
+* LRS will honor requests that are signed using OAuth with the registered application’s credentials and with an empty 
+token and token secret.
+* If this form of authentication is used  to record statements and no  authority  is specified, the LRS should record 
+the  authorityas the Agent representing the registered application.
 
-
-
-Application not registered + known user 
----------------------------------------
+###### Application not registered + known user 
 
 * Use a blank consumer secret;
 * Call “Temporary Credential” request;
 * Specify “consumer_ name” and other usual parameters;
-User will then see “consumer_ name” plus a warning that the identity of the application requesting authorization cannot be verified.
-* the LRS MUST record an  authority that includes both that application and the authenticating user, as a group, since OAuth specifies an application.
+User will then see “consumer_ name” plus a warning that the identity of the application requesting authorization 
+cannot be verified.
+* the LRS MUST record an  authority that includes both that application and the authenticating user, as a group, 
+since OAuth specifies an application.
 
-No application + known user 
----------------------------
+###### No application + known user 
 
 * Use username/password combination that corresponds to an LRS login.
 * Authority to be recorded as the Agent identified by the login, **unless…**
 	* other Authority is specified **and…**
 	* LRS trusts the known user to specify this Authority.
 
-No authorization
-----------------
+###### No authorization
 
-* Requests should include headers for HTTP Basic Authentication based on a blank username and password, in order to distinguish an explicitly unauthenticated request from a  request that should be given a HTTP Basic Authentication challenge.
+* Requests should include headers for HTTP Basic Authentication based on a blank username and password, in order to 
+distinguish an explicitly unauthenticated request from a  request that should be given a HTTP Basic Authentication 
+challenge.
 
-#####Details
+###### Details
 
 Requirements for the LRS:
 
@@ -1798,10 +1799,8 @@ Requirements for the LRS:
 * SHOULD at a minimum supply Oauth with "HMAC-SHA1" and "RSA-SHA1" signatures.
 
 
- 
-
 <a name="oauthscope"/> 
-### 6.4.2 OAuth Authorization Scope
+#### 6.4.2 OAuth Authorization Scope
 The LRS will accept a scope parameter as defined in 
 [OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3). 
 If no scope is specified, a requested scope of "statements/write" and 
@@ -1860,12 +1859,12 @@ XAPI scope values:
 	<tr><td>all</td><td>unrestricted access</td></tr>
 </table>
 
-__OAuth Extended Parameters__  
+###### OAuth Extended Parameters  
 Note that the parameters "consumer_name" and "scope" are not part of 
 OAuth 1.0, and therefore if used should be passed as query string or form 
 parameters, not in the OAuth header.  
 
-__OAuth Endpoints__  
+###### OAuth Endpoints  
 <table>
 	<tr>
 		<th>Name</th>
