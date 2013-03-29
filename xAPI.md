@@ -2001,11 +2001,6 @@ Returns: 200 OK, statement or [Statement Result](#retstmts) (See section 4.2 for
 	</tr>
 	<tr><td>activity</td><td>Activity id (URI)</td><td> </td>
 		<td>Filter, only return statements for which the object of the statement is an activity with the specified id.
-			(activity or agent/group).<br/><br/>
-			Object is an activity: return statements with an object that is an 
-			activity with a matching activity ID to the specified activity.<br/><br/>
-			Object is an agent or group: same behavior as "actor" filter, except match 
-			against object property of statements.
 		</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td> </td>
