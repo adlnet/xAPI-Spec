@@ -2541,7 +2541,7 @@ valid meaning among verb definitions, activity types, and extensions is the
 responsibility of the Activity Provider sending the statement.  
 
 <a name="AppendixA"/> 
-# Appendix A: Bookmarklet
+## Appendix A: Bookmarklet
 
 XAPI enables using an "I learned this" bookmarklet to self-report learning. 
 The following is an example of such a bookmarklet, and the statement that this 
@@ -2630,9 +2630,9 @@ function _ruuid() {
 }
 ```
 
-__Example Statement Using Bookmarklet__  
+###### Example Statement Using Bookmarklet  
 
-__Headers:__  
+###### Headers:  
 ```
 { 
 	"content-type": "application/json; charset=UTF-8",
@@ -2642,7 +2642,7 @@ __Headers:__
 	"origin": "http://adlnet.gov" }
 ```
 
-__Method Path:__  
+###### Method Path:  
 ```
 PUT : /XAPI/Statements/?statementId=ed1d064a-eba6-45ea-a3f6-34cdf6e1dfd9
 
@@ -2662,7 +2662,7 @@ Body:
 }
 ```
 <a name="AppendixB"/>
-# Appendix B: Creating an “IE Mode” Request
+## Appendix B: Creating an “IE Mode” Request
 ```javascript
 function getIEModeRequest(method, url, headers, data){
 
@@ -2703,9 +2703,9 @@ function getIEModeRequest(method, url, headers, data){
 }
 ``` 
 <a name="AppendixC"/>   
-# Appendix C: Example definitions for activities of type “cmi.interaction”
+## Appendix C: Example definitions for activities of type “cmi.interaction”
 
-__true-false__  
+###### true-false  
 
 ```
 "definition": {
@@ -2720,7 +2720,7 @@ __true-false__
 }
 ```
 
-__choice__  
+###### choice  
 ```
 "definition": {
 	"description": {
@@ -2760,7 +2760,7 @@ __choice__
 }
 ```
 
-__fill-in__  
+###### fill-in  
 ```
 "definition": {
 	"description": {
@@ -2774,7 +2774,7 @@ __fill-in__
 }
 ```
 
-__likert__  
+###### likert  
 ```
 "definition": {
 	"description": {
@@ -2814,7 +2814,7 @@ __likert__
 }
 ```
 
-__matching__  
+###### matching  
 ```
 {
 	"definition":{
@@ -2882,7 +2882,7 @@ __matching__
 }
 ```
 
-__performance__  
+###### performance  
 ```
 "definition": {
 	"description": {
@@ -2916,7 +2916,7 @@ __performance__
 }
 ```
 
-__sequencing__  
+###### sequencing  
 ```
 "definition": {
 	"description": {
@@ -2955,7 +2955,7 @@ __sequencing__
 }
 ```
 
-__numeric__  
+###### numeric  
 ```
 "definition": {
 	"description": {
@@ -2969,7 +2969,7 @@ __numeric__
 }
 ```
 
-__other__  
+###### other  
 ```
 "definition": {
 	"description": {
@@ -2984,7 +2984,7 @@ __other__
 ```
 
 <a name="AppendixD"/>   
-# Appendix D: Example statements
+## Appendix D: Example statements
 
 Example of a simple statement:  
 ```
