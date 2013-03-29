@@ -692,7 +692,7 @@ A statement may represent a Learning Activity as an object in the statement.
 	</tr>
 </table>
 <a name="acturi"/>
-###### Activity URI  
+__Activity ID__  
 An activity URI must always refer to a single unique activity. There may be 
 corrections to that activity's definition. Spelling fixes would be appropriate, 
 for example, but changing correct responses would not.  
