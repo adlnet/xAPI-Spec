@@ -712,7 +712,8 @@ consistent with any other state or statements that are stored against the same
 activity ID, even if those statements were stored in the context of a new 
 revision or platform.   
 
-###### NOTE: The prohibition against an LRS treating references to the same activity 
+###### NOTE: 
+The prohibition against an LRS treating references to the same activity 
 ID as two different activities, even if the LRS can positively determine that 
 was the intent, is crucial to prevent activity ID creators from creating IDs 
 that could be easily duplicated, as intent would be indeterminable should a 
@@ -1589,7 +1590,8 @@ experience, while those in the result should provide elements related to some
 outcome. For activities, they should provide additional information that helps 
 define an activity within some custom application or community.  
 
-###### Note: A statement should not be totally defined by its extensions, and be 
+###### Note: 
+A statement should not be totally defined by its extensions, and be 
 meaningless otherwise. Experience API statements should be capturing experiences 
 among actors and objects, and SHOULD always strive to map as much information as 
 possible into the built in elements, in order to leverage interoperability among 
