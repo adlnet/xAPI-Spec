@@ -737,7 +737,7 @@ conflict with another system arise.
 		<td>type</td>
 		<td>URI</td>
 		<td>the type of activity. Note, URI fragments (sometimes called 
-			relative URLs) are not valid URIs. Similar to verbs, we recommend 
+			relative URLs) are not valid URIs. <a href="#a-new-verb">Similar to verbs</a>, we recommend 
 			that Learning Activity Providers look for and use established, 
 			widely adopted, activity types.
 		</td>
