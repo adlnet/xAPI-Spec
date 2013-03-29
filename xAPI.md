@@ -1410,6 +1410,7 @@ in one message;
 * MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part;
 	* This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
 	attachment included in this part.
+* MUST include a Content-Transfer-Encoding field with a value of "binary" in each part's header after the first (statements) part;
 
 
 ###### Requirements for the LRS:
@@ -1423,6 +1424,7 @@ data received;
 * MUST NOT push statements into another LRS without including attachments;
 * MAY reject (batches of) statements that are larger than the LRS is configured to allow;
 * SHOULD accept statements in the above format that don't declare any attachments.
+* SHOULD assume a Content-Transfer-Encoding of binary for attachment parts
 
 ###### Requirements for the client:
 * MAY send statements with attachments as described above;
@@ -1489,6 +1491,7 @@ Content-Type:application/json
 }
 --abcABC0123'()+_,-./:=?
 Content-Type:text/plain
+Content-Transfer-Encoding:binary
 X-Experience-API-Hash:495395e777cd98da653df9615d09c0fd6bb2f8d4788394cd53c56a3bfdcd848a
 
 here is a simple attachment
