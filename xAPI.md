@@ -320,12 +320,12 @@ __Tin Can API (TCAPI)__: The previous name of the API defined in this document.
 __URI__: Uniform Resource Identifier. A unique identifier which may be a URL. This should be a full absolute URI including a scheme. Relative URIs should not be used. URLs should be defined within a domain controlled by the person creating the URL. 
 
 <a name="statement"/> 
-#4.0 Statement  
+## 4.0 Statement  
 The statement is the core of the XAPI.  All learning events are stored as statements 
 such as: "I did this".  
 
 <a name="stmtprops"/>
-##4.1 Statement Properties:  
+### 4.1 Statement Properties:  
 Actor, verb, and object are required, all other properties are optional. Properties 
 can occur in any order, but are limited to one use each. Each property is discussed 
 below.  
@@ -333,7 +333,7 @@ below.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
 	<tr><td>id</td><td>UUID</td><td></td>
-	<td>UUID assigned by LRS or other trusted source.</td></tr>
+	<td>UUID assigned by LRS if not set by the Activity provider.</td></tr>
 	<tr><td><a href="#actor">actor</a></td><td>Object</td><td></td>
 	<td>Who the statement is about, as an <a href="#agent">Agent</a> or 
 		<a href="#group">Group</a> object. 'I'</td></tr>
