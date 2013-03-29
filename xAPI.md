@@ -1157,6 +1157,7 @@ The time at which a statement about an experience took place.
 A timestamp:
 
 * MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
+* MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved) 
 * SHOULD include the timezone;
 * MAY be a moment in the future, to denote a deadline for planned learning, provided it is included inside a SubStatement;
 * SHOULD be the current or a past time when it is outside of a SubStatement.
@@ -1178,8 +1179,9 @@ The time at which a statement is stored by the LRS.
 Stored time:
 
 * MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
+* MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved) 
 * SHOULD include the timezone;
-* SHOULD be the current or a past time when it is outside of a SubStatement.
+* SHOULD be the current or a past time
 
 A reporting tool:
 
@@ -1902,11 +1904,12 @@ be used.
 
 <a name="errorcodes"/> 
 ## 7.1 Error Codes
-The list below offers some general guidance on HTTP error codes that may 
-be returned from various methods in the API. An LRS MUST return an error 
-code appropriate to the error condition, and SHOULD return a message in the 
+The list below offers some general guidance on HTTP error codes that could
+be returned from various methods in the API. An LRS MUST return the error
+code most appropriate to the error condition based on the list below, and
+SHOULD return a message in the
 response explaining the cause of the error.  
-- 400 Bad Request - MAY be returned by any method of the API, and indicates 
+- 400 Bad Request - indicates
 an error condition caused by an invalid or missing argument. The term 
 "invalid arguments" includes malformed JSON or invalid object structures.
 - 401 Unauthorized - Indicates that authentication is required, or in the 
