@@ -1890,7 +1890,7 @@ __OAuth Endpoints__
 </table>
 
 <a name="datatransfer"/> 
-# 7.0 Data Transfer (REST)
+## 7.0 Data Transfer (REST)
 This section describes The XAPI consists of 4 sub-APIs: statement, state, 
 learner, and activity profile. The four sub-APIs of the Experience API 
 are handled via RESTful HTTP methods. The statement API can be used by itself 
@@ -1901,7 +1901,7 @@ is the example URL of the LRS and everything after this represents the endpoint 
 be used. 
 
 <a name="errorcodes"/> 
-## 7.1 Error Codes
+### 7.1 Error Codes
 The list below offers some general guidance on HTTP error codes that may 
 be returned from various methods in the API. An LRS MUST return an error 
 code appropriate to the error condition, and SHOULD return a message in the 
@@ -1934,10 +1934,10 @@ MUST be configurable to accept statements of any size.
 unexpected exception in processing on the server.
 
 <a name="stmtapi"/> 
-## 7.2 Statement API:
+### 7.2 Statement API:
 The basic communication mechanism of the Experience API.  
 
-### PUT statements
+###### PUT statements
 Example endpoint: http://example.com/XAPI/statements
 
 Stores statement with the given ID. This MUST NOT modify an existing statement. 
@@ -1956,7 +1956,7 @@ Returns: 204 No Content
 	<tr><td>statementId</td><td>String</td><td> </td><td>ID of statement to record</td></tr>
 </table>
 
-### POST statements
+###### POST statements
 Example endpoint: http://example.com/XAPI/statements
 
 Stores a statement, or a set of statements. Since the PUT method targets a specific 
@@ -1969,7 +1969,7 @@ that provide a lot of data to the LRS.
 
 Returns: 200 OK, statement ID(s) (UUID).  
 
-### GET statements
+###### GET statements
 Example endpoint: http://example.com/XAPI/statements
 
 This method may be called to fetch a single statement or multiple statements. If the
@@ -2073,12 +2073,12 @@ The LRS MUST reject with an HTTP 400 error any requests to this resource which:
 * contain statementId or voidedStatementId parameters, and also contain any other parameter besides "attachments" or "format".
 * contain any parameters the LRS does not recognize
 
-__Note__: Due to query string limits, this method MAY be called using POST and
+###### Note: Due to query string limits, this method MAY be called using POST and
 form fields if necessary. The LRS MUST differentiate a POST to add a statement
 or to list statements based on the parameters passed.  
 
 <a name="queryStatementRef" />
-__Note__: For filter parameters which are not time or sequence based (that is, other than
+###### Note: For filter parameters which are not time or sequence based (that is, other than
 since, until, or limit), statements which target another statement will meet the filter
 condition if the targeted statement meet the condition. The time and sequence based parameters must
 still be applied to the source or "targeting" statement included in this manner. The targeted
@@ -2093,7 +2093,7 @@ with an actor filter of "Ben" or an activity filter of "explosives training", bo
 statements will be returned.
 
 <a name="voidedStatements">
-###Voided statements
+###### Voided statements
 The LRS MUST not return any statement which has been voided, unless that statement has been
 requested by voidedStatementId. The LRS MUST still return any statements targetting the voided statement,
 unless they themselves have been voided. This includes the voiding statement, which cannot be voided.
@@ -2101,19 +2101,17 @@ Reporting tools can identify the presence and statementId of any voided statemen
 statement. Reporting tools wishing to retrieve voided statements SHOULD request these individually by voidedStatementId.
 
 <a name="docapis"/> 
-## 7.3 Document APIs:
+### 7.3 Document APIs:
 The 3 Document APIs provide <a href="#miscdocument">document</a> storage for learning activity providers
 and agents. The details of each API are found in the following sections, and the information in this section 
 applies to all three APIs.
 
-###New Agents and Activities
+###### New Agents and Activities
 An Activity Provider MAY send documents to any of the document APIs for activities and agents that
 the LRS does not have prior knowledge of. The LRS MUST NOT reject documents on the basis of not having 
 prior knowledge of the activity and/or agent. 
 
-
-
-###POST to store application/json arrays of variables
+###### POST to store application/json arrays of variables
 <table>
 	<tr>
 		<th>API</th>
@@ -2195,7 +2193,7 @@ If an AP needs to delete
 a property, it SHOULD use a PUT request to replace the whole document as described below. 
 
 <a name="stateapi"/> 
-## 7.4 State API:
+### 7.4 State API:
 Generally, this is a scratch area for activity providers that do not have their 
 own internal storage, or need to persist state across devices. When using the 
 state API, be aware of how the stateId parameter affects the semantics of the 
@@ -2204,7 +2202,7 @@ defined state document identified by "stateId". Otherwise, GET will return the
 available IDs, and DELETE will delete all state in the context given through the 
 other parameters.  
 
-### PUT | POST | GET | DELETE activities/state
+###### PUT | POST | GET | DELETE activities/state
 Example endpoint: http://example.com/XAPI/activities/state
 
 Stores, fetches, or deletes the document specified by the given stateId that 
@@ -2227,7 +2225,7 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - State Content
 	</tr>
 </table>
 
-### GET activities/state
+###### GET activities/state
 Example endpoint: http://example.com/XAPI/activities/state
 
 Fetches IDs of all state data for this context (activity + agent \[ + 
@@ -2252,7 +2250,7 @@ Returns: 200 OK, Array of IDs
 	</tr>
 </table>
 
-### DELETE activities/state
+###### DELETE activities/state
 Example endpoint: http://example.com/XAPI/activities/state
 
 Deletes all state data for this context (activity + agent \[+ registration if 
@@ -2275,7 +2273,7 @@ Returns: 204 No Content
 
 
 <a name="actprofapi"/> 
-## 7.5 Activity Profile API:
+### 7.5 Activity Profile API:
 The Activity Profile API is much like the State API, allowing for arbitrary key 
 / document pairs to be saved which are related to an Activity. When using the 
 profile API for manipulating documents, be aware of how the profileId parameter
@@ -2287,7 +2285,7 @@ context given through the other parameters.
 The Activity Profile API also includes a method to retrieve a full description 
 of an activity from the LRS.  
 
-### GET activities
+###### GET activities
 Example endpoint: http://example.com/XAPI/activities
 
 Loads the complete activity object specified.  
@@ -2300,7 +2298,7 @@ Returns: 200 OK - Content
 	</td>
 </table>
 
-### PUT | POST | GET | DELETE activities/profile
+###### PUT | POST | GET | DELETE activities/profile
 Example endpoint: http://example.com/XAPI/activities/profile
 
 Saves/retrieves/deletes the specified profile document in the context of the 
@@ -2317,7 +2315,7 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content
 	</tr>
 </table>
 
-### GET activities/profile
+###### GET activities/profile
 Example endpoint: http://example.com/XAPI/activities/profile
 
 Loads IDs of all profile entries for an activity. If "since" parameter is 
@@ -2336,7 +2334,7 @@ Returns: 200 OK - List of IDs
 </table>
 
 <a name="agentprofapi"/> 
-## 7.6 Agent Profile API:
+### 7.6 Agent Profile API:
 The Agent Profile API is much like the State API, allowing for arbitrary key / 
 document pairs to be saved which are related to an Agent. When using the 
 profile API for manipulating documents, be aware of how the profileId parameter 
@@ -2349,7 +2347,7 @@ The Agent Profile API also includes a method to retrieve a special object with
 combined information about an Agent derived from an outside service, such as a 
 directory service.  
 
-### GET agents
+###### GET agents
 Example endpoint: http://example.com/XAPI/agents
 
 Return a special, Person object for a specified agent. The Person object is 
@@ -2368,7 +2366,7 @@ If an LRS does not have any additional information about an Agent to return, the
 LRS MUST still return a Person when queried, but that Person object will only 
 include the information associated with the requested Agent.  
 
-___Person properties___
+###### Person properties
 
 All array properties must be populated with members with the 
 same definition as the similarly named property from Agent objects.  
@@ -2410,7 +2408,7 @@ Returns: 200 OK - Expanded Agent Object
 	</tr>
 </table>  
 
-### PUT | POST | GET | DELETE agents/profile
+###### PUT | POST | GET | DELETE agents/profile
 Example endpoint: http://example.com/XAPI/agents/profile
 
 Saves/retrieves/deletes the specified profile document in the context of the 
@@ -2428,7 +2426,7 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content
 	</tr>
 </table>  
 
-### GET agents/profile
+###### GET agents/profile
 Example endpoint: http://example.com/XAPI/agents/profile
 
 Loads IDs of all profile entries for an agent. If "since" parameter is specified, 
@@ -2448,7 +2446,7 @@ Returns: 200 OK - List of IDs
 </table>  
 
 <a name="cors"/>
-## 7.7 Cross Origin Requests:
+### 7.7 Cross Origin Requests:
 One of the goals of the XAPI is to allow cross-domain tracking, and even though 
 XAPI seeks to enable tracking from applications other than browsers, browsers 
 still need to be supported. Internet Explorer 8 and 9 do not implement Cross 
@@ -2489,7 +2487,7 @@ than https, and both LRS and client should consider the security risks before ma
 to use this scheme. 
  
 <a name="validation"/> 
-## 7.8 Validation:
+### 7.8 Validation:
 The function of the LRS within the XAPI is to store and retrieve statements. 
 As long as it has sufficient information to perform these tasks, it is 
 expected that it does them. Validation of statements in the Experience API is 
@@ -2499,7 +2497,7 @@ valid meaning among verb definitions, activity types, and extensions is the
 responsibility of the Activity Provider sending the statement.  
 
 <a name="AppendixA"/> 
-# Appendix A: Bookmarklet
+## Appendix A: Bookmarklet
 
 XAPI enables using an "I learned this" bookmarklet to self-report learning. 
 The following is an example of such a bookmarklet, and the statement that this 
@@ -2620,7 +2618,7 @@ Body:
 }
 ```
 <a name="AppendixB"/>
-# Appendix B: Creating an “IE Mode” Request
+## Appendix B: Creating an “IE Mode” Request
 ```javascript
 function getIEModeRequest(method, url, headers, data){
 
@@ -2661,7 +2659,7 @@ function getIEModeRequest(method, url, headers, data){
 }
 ``` 
 <a name="AppendixC"/>   
-# Appendix C: Example definitions for activities of type “cmi.interaction”
+## Appendix C: Example definitions for activities of type “cmi.interaction”
 
 __true-false__  
 
@@ -2942,7 +2940,7 @@ __other__
 ```
 
 <a name="AppendixD"/>   
-# Appendix D: Example statements
+## Appendix D: Example statements
 
 Example of a simple statement:  
 ```
