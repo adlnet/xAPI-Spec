@@ -737,7 +737,7 @@ conflict with another system arise.
 		<td>type</td>
 		<td>URI</td>
 		<td>the type of activity. Note, URI fragments (sometimes called 
-			relative URLs) are not valid URIs. <a href="#a-new-verb">Similar to verbs</a>, we recommend 
+			relative URLs) are not valid URIs. <a href="#verb-lists-and-repositories">As with verbs</a>, we recommend 
 			that Learning Activity Providers look for and use established, 
 			widely adopted, activity types.
 		</td>
@@ -1606,7 +1606,7 @@ There are several types of URI identifiers used in this specification:
 
 For activity ids, see <a href="#actdef">activity definition</a>.
 
-For all other identifiers, metadata may be provided in the following JSON format:
+For all other identifiers, metadata MAY be provided in the following JSON format:
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -1632,6 +1632,14 @@ about the identifier it describes
 take the place of this metadata entirely if it was not provided or can not be loaded. This MAY
 include metadata in other formats stored at the URL of an identifier, particularly if that
 identifier was not coined for use with this specification.
+
+<a href="#verb-lists-and-repositories">As with verbs</a>, we recommend 
+that Learning Activity Providers look for and use established, 
+widely adopted identifiers for all types of URI identifier other than activity id. Where an
+identifier already exists, the Learning Activity Provider:
+
+* SHOULD use the corresponding existing identifier;
+* MAY create and use their own verbs where a suitable identifier does not already exist.
 
 <a name="rtcom"/>
 ## 6.0 Runtime Communication
