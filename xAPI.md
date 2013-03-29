@@ -1163,12 +1163,12 @@ The six questions are registered as part of the test by declaring "Test 1" as th
 ```
 
 <a name="timestamp"/>
-### 4.1.7 Timestamp:
+#### 4.1.7 Timestamp:
 
-#####Definition
+###### Definition
 The time at which a statement about an experience took place.
 
-#####Requirements
+###### Requirements
 A timestamp:
 
 * MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
@@ -1181,16 +1181,19 @@ A reporting tool:
 
 * MAY consider timestamps from different timezones that represent the same logical time to be equivalent.
 
-#####Details
-A timestamp in a statement related to learning that occurs outside of the system can differ from [4.1.8. Stored](#stored) (the system time of the event). Namely, there can be delays between the occurrence of the experience and the reception of the corresponding statement by the LRS. Another cause is when statements are propagated to other systems.
+###### Details
+A timestamp in a statement related to learning that occurs outside of the system can differ from 
+[4.1.8. Stored](#stored) (the system time of the event). Namely, there can be delays between the occurrence of the 
+experience and the reception of the corresponding statement by the LRS. Another cause is when statements are propagated 
+to other systems.
 
 
 <a name="stored"/> 
-### 4.1.8 Stored:
-#####Definition: 
+#### 4.1.8 Stored:
+###### Definition: 
 The time at which a statement is stored by the LRS.
 
-#####Requirements
+###### Requirements
 Stored time:
 
 * MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
@@ -1203,7 +1206,7 @@ A reporting tool:
 * MAY consider stored time from different timezones that represent the same logical time to be equivalent.
 
 <a name="authority"/> 
-### 4.1.9 Authority:
+#### 4.1.9 Authority:
 The authority property provides information about who or what has asserted that 
 this statement is true. Consequently, the asserting authority may be an 
 [Agent](#agent) (representing the authenticating user or some system or 
@@ -1212,9 +1215,9 @@ of two Agents representing an application and user together.
 Unless used in the aforementioned 3-legged OAuth workflow, a Group MUST NOT 
 be used to assert authority.  
 
-##### LRS Requirements:
-* The LRS SHOULD overwrite the authority on all stored recieved statemensts, based on 
- the credentials use to send those statemens.
+###### LRS Requirements:
+* The LRS SHOULD overwrite the authority on all stored recieved statements, based on 
+ the credentials used to send those statemens.
 * The LRS MAY leave the submitted authority unchanged but SHOULD do so only where a strong
  trust relationship has been established, and with extreme caution.
 * The LRS MUST ensure that all statements stored have an authority.
@@ -1242,7 +1245,7 @@ or is included as part of a 3-legged OAuth workflow, the LRS MUST include the us
 as an Agent in the authority, and MAY identify the user with any of the legal 
 identifying properties.  
 
-__OAuth Authorities__  
+###### OAuth Authorities  
 
 In a 3-legged OAuth workflow, authentication involves both an OAuth consumer 
 and a user of the OAuth service provider. For instance, requests made by an 
@@ -1271,13 +1274,17 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 }
 ```
 <a name="voided"/>
-### 4.1.10 Voided:
-#####Rationale
+#### 4.1.10 Voided:
+###### Rationale
 
-The certainty that an LRS has an accurate and complete collection of data is guaranteed by the fact that statements cannot be logically changed or deleted. This immutability of statements is a key factor in enabling the distributed nature of Experience API.
-However, not all statements are perpetually valid once they have been issued. Mistakes or other factors could require that a previously made statement is marked as invalid. This is called ‘voiding a statement’ and the reserved verb “http://adlnet.gov/expapi/voided” is used for this purpose. 
+The certainty that an LRS has an accurate and complete collection of data is guaranteed by the fact that statements 
+cannot be logically changed or deleted. This immutability of statements is a key factor in enabling the distributed 
+nature of Experience API.
+However, not all statements are perpetually valid once they have been issued. Mistakes or other factors could require 
+that a previously made statement is marked as invalid. This is called ‘voiding a statement’ and the reserved verb 
+“http://adlnet.gov/expapi/voided” is used for this purpose. 
 
-#####Requirements
+###### Requirements
 When issuing a statement that voids another, the object of that voiding statement...
 
 * MUST have the “objectType” field set to “Statement”;
@@ -1288,10 +1295,11 @@ Upon receiving a statement that voids another, the LRS...
 
 * MAY roll back any changes to activity or agent definitions which were introduced by the statement that was just voided;
 * SHOULD return a descriptive error if the target statement cannot be found;
-* MUST NOT report the voided statement when queried, but MUST report the voiding statement (see <a href="#queryStatementRef">StatementRef</a> in 7.2 Statement API).
+* MUST NOT report the voided statement when queried, but MUST report the voiding statement 
+(see <a href="#queryStatementRef">StatementRef</a> in 7.2 Statement API).
 
 
-#####Example
+###### Example
 ```
 {
 	"actor" : {
@@ -1312,11 +1320,13 @@ Upon receiving a statement that voids another, the LRS...
 }
 ```  
 
-This example statement voids a previous statement which it identifies with the statement ID "e05aa883-acaf-40ad-bf54-02c8ce485fb0".
+This example statement voids a previous statement which it identifies with the statement ID 
+"e05aa883-acaf-40ad-bf54-02c8ce485fb0".
 
 
-#####Details
-Any statement that voids another cannot itself be voided. An activity provider that wants to “unvoid” a previously voided statement...
+###### Details
+Any statement that voids another cannot itself be voided. An activity provider that wants to “unvoid” a previously 
+voided statement...
 
 * SHOULD issue that statement again under a new ID
 
@@ -1324,20 +1334,20 @@ A reporting system...
 
 * SHOULD NOT show voided or voiding statements by default.
 
-See ["Statement References"](#stmtref) in section [4.1.4.3](#stmtasobj) for details about making references to other statements. 
+See ["Statement References"](#stmtref) in section [4.1.4.3](#stmtasobj) for details about making references to other 
+statements. 
 
 <a name="attachments"/>
-###4.1.11 Attachments
+#### 4.1.11 Attachments
 
-######Description: 
+###### Description: 
 A digital artefact providing evidence of a learning experience.
 
-######Rationale: 
+###### Rationale: 
 In some cases an attachment may logically be an important part of a learning record. Think of a simulated 
 communication with ATC, an essay, a video,  etc. Another example of such an attachment is (the image of) a 
 certificate that was granted as a result of an experience. It is useful to have a way to store these attachments 
 in and retrieve them from an LRS. 
-
 
 ###### Details:
 The table below lists all properties of the Attachment object.
@@ -1506,7 +1516,7 @@ here is a simple attachment
 ```
 
 <a name="retstmts"/> 
-## 4.2 Retrieval of Statements:
+### 4.2 Retrieval of Statements:
 A collection of statements can be retrieved by performing a query on the "statements" 
 endpoint, see section [7.2 "Statement API"](#stmtapi) for details.  
 <table>
