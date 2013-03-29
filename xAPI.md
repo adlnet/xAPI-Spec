@@ -3073,20 +3073,20 @@ A 1.0 system converting a statement created in 0.9 MUST follow the steps below:
 * Remove the "voided" property from the statement, if present.
 * Add "version": "1.0"
 * If an authority was not previously set, set the authority to an agent identified by
-an account with an accountServiceHomePage set to the home page corresponding to the
+an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
 * Preserve all other fields without modification, including "stored". Stored should still
 be updated if the statement is passed to another system.
 
-######Conversion of statements created based on version 0.9
+######Conversion of statements created based on version 0.95
 
-A 1.0 system converting a statement created in 0.9 MUST follow the steps below:
+A 1.0 system converting a statement created in 0.95 MUST follow the steps below:
 
 * If the statement is voided, do not convert it.
 * Remove the "voided" property from the statement, if present.
 * Add "version": "1.0"
 * If an authority was not previously set, set the authority to an agent identified by
-an account with an accountServiceHomePage set to the home page corresponding to the
+an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
 * Preserve all other fields without modification, including "stored". Stored should still
 be updated if the statement is passed to another system.
