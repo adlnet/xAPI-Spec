@@ -54,6 +54,7 @@
 [Appendix B: Creating an "IE Mode" Request](#AppendixB)  
 [Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
 [Appendix D: Example statements](#AppendixD)  
+[Appendix E: Converting Statements to 1.0](#AppendixE)
 
 <a name="revhistory"/>  
 ## 1.0 Revision History
@@ -1691,7 +1692,8 @@ Requirements for the client:
 Converting statements to other versions:
 
 * Systems MUST NOT convert statements of newer versions into a prior version format e.g. in order to handle version differences.
-* Systems MAY convert statements of older versions into a newer version only by following the methods described in the companion document.
+* Systems MAY convert statements of older versions into a newer version only by following the methods described in
+<a href="#AppendixE">Appendix E: Converting Statements to 1.0</a>.
 
 <a name="concurrency"/> 
 ### 6.3 Concurrency:
@@ -3049,4 +3051,180 @@ Typical simple completion with verb "attempted":
 }
 ```  
 
+<a name="AppendixE"/>
+## Appendix E: Converting Statements to 1.0
 
+######Rationale:
+This is a 1.0 specification, and as such implementers should not have to consider prior
+versions of the specification. However, prior versions did see notable adoption. This data
+conversion is specified in order
+to preserve the data tracked using earlier versions, and make it available to new implementers
+in a consistant manner.
+
+######Details:
+
+######Conversion of statements created based on version 0.9
+
+A 1.0 system converting a statement created in 0.9 MUST follow the steps below:
+
+* If the statement is voided, do not convert it.
+* Prefix "verb" with "http://adlnet.gov/expapi/verbs/".
+* Prefix any activity ids which are not a full absolute URIs with "urn:expapi:0.9:activities:"
+* Prefix activity types with "http://adlnet.gov/expapi/activities/"
+* for each agent (actor):
+    * Search for inverse functional identifiers in this order: "mbox, mbox_sha1sum, openId,
+    account". Keep the first populated inverse functional identifier found and discard the rest.
+    * For the above inverse functional identifier, take the first element in the array and
+    use that as the value of that inverse functional identifier property, discarding any
+    remaining elements.
+    * If the "name" property is present, set it equal to the first element in the "name"
+    array, discard the remaining elements.
+    * Remove all remaining properties.
+* Remove the "voided" property from the statement, if present. Remember, if the value of the
+  voided property is true, then the statement MUST NOT be converted
+* Add "version": "1.0"
+* If an authority was not previously set, set the authority to an agent identified by
+an account with a homePage set to the home page corresponding to the
+system performing the conversion and an accountName of "unknown".
+* Preserve all other fields without modification, including "stored". Stored should still
+be updated if the statement is passed to another system.
+
+######Conversion of statements created based on version 0.95
+
+A 1.0 system converting a statement created in 0.95 MUST follow the steps below:
+
+* If the statement is voided, do not convert it.
+* Remove the "voided" property from the statement, if present. Remember, if the value
+  of the voided property is true, then the statement MUST NOT be converted
+* Add "version": "1.0"
+* If an authority was not previously set, set the authority to an agent identified by
+an account with a homePage set to the home page corresponding to the
+system performing the conversion and an accountName of "unknown".
+* Preserve all other fields without modification, including "stored". Stored should still
+be updated if the statement is passed to another system.
+
+
+######Example:
+
+
+A 0.9 statement:
+```
+{
+    "id": "d1eec41f-1e93-4ed6-acbf-5c4bd0c24269",
+    "actor": {
+        "objectType": "Person",
+        "name": [
+            "Joe Schmoe",
+            "Joseph Schmoseph"
+        ],
+        "mbox": [
+            "mailto:joe@example.com"
+        ],
+        "openid": [
+            "http://openid.com/joe-schmoe"
+        ]
+    },
+    "verb": "completed",
+    "inProgress": false,
+    "object": {
+        "objectType": "Activity",
+        "id": "http://www.example.com/activities/001",
+        "definition": {
+            "name": {
+                "en-US": "Example Activity"
+            },
+            "type": "course"
+        }
+    },
+    "result": {
+        "completion": true
+    },
+    "context": {
+        "instructor": {
+            "objectType": "Person",
+            "lastName": [
+                "Dad"
+            ],
+            "firstName": [
+                "Joe's"
+            ],
+            "mbox": [
+                "mailto:joesdad@example.com"
+            ]
+        },
+        "contextActivities": {
+            "parent": {
+                "objectType": "Activity",
+                "id": "non-absolute-activity-id",
+                "definition": {
+                    "name": {
+                        "en-US": "Another Activity"
+                    }
+                }
+            }
+        }
+    },
+    "timestamp": "2012-06-01T19:09:13.245Z",
+    "stored": "2012-06-29T15:41:39.165Z",
+}
+```
+
+Converted to 1.0:
+```
+{
+    "version": "1.0",
+    "id": "d1eec41f-1e93-4ed6-acbf-5c4bd0c24269",
+    "actor": {
+        "objectType": "Agent",
+        "name": "Joe Schmoe",
+        "mbox": "mailto:joe@example.com"
+    },
+    "verb": {
+        "id": "http://adlnet.gov/expapi/verbs/completed",
+        "display": {
+            "en-US": "completed"
+        }
+    },
+    "object": {
+        "objectType": "Activity",
+        "id": "http://www.example.com/activities/001",
+        "definition": {
+            "name": {
+                "en-US": "Example Activity"
+            },
+            "type": "http://adlnet.gov/expapi/activities/course"
+        }
+    },
+    "result": {
+        "completion": true
+    },
+    "context": {
+        "instructor": {
+            "objectType": "Agent",
+            "mbox": "mailto:joesdad@example.com"
+        },
+        "contextActivities": {
+            "parent": [
+                {
+                    "objectType": "Activity",
+                    "id": "urn:expapi:0.9:activities:non-absolute-activity-id",
+                    "definition": {
+                        "name": {
+                            "en-US": "Another Activity"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "timestamp": "2012-06-01T19:09:13.245Z",
+    "stored": "2012-06-29T15:41:39.165Z",
+    "authority": {
+        "objectType": "Agent",
+        "account": {
+            "homePage": "http://www.example.com",
+            "name": "unknown"
+        }
+    }
+}
+```
