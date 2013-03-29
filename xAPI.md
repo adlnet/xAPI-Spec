@@ -1315,11 +1315,19 @@ See ["Statement References"](#stmtref) in section [4.1.4.3](#stmtasobj) for deta
 ######Description: 
 A digital artefact providing evidence of a learning experience.
 
+<<<<<<< HEAD
+###Rationale: 
+In some cases an attachment may logically be an important part of a learning record. Think of a simulated
+communication with ATC, an essay, a video,  etc. Another common example of such an attachment is (the image 
+of) a certificate that was granted as a result of an experience. It is useful to have a way to store these 
+attachments in and retrieve them from an LRS. 
+=======
 ######Rationale: 
 In some cases an attachment may logically be an important part of a learning record. Think of a simulated 
 communication with ATC, an essay, a video,  etc. Another example of such an attachment is (the image of) a 
 certificate that was granted as a result of an experience. It is useful to have a way to store these attachments 
 in and retrieve them from an LRS. 
+>>>>>>> 86252d8b7edae43606ed9f6d672046db7413ad5a
 
 
 ###### Details:
@@ -1373,6 +1381,19 @@ The table below lists all properties of the Attachment object.
 	</tr>
 </table>
 
+<<<<<<< HEAD
+####Procedure for the exchange of attachments
+Since these attachments may lead to very large statements, it should be possible for a client to 
+filter out attachments when retrieving statements, by following this procedure:
+
+1. A statement including an attachment is construed according to the Transmission Format described below.
+2. The statement is sent to the receiving system using a content-Type of "multipart/mixed". 
+The attachments are placed at the end of such transmissions.
+3. The receiving system decides whether to accept or reject the statement based on the information 
+in the first part.
+4. If it accepts the attachment, it can match the raw data of an attachment with the attachment 
+header in a statement by comparing the SHA-2 of the raw data to the SHA-2 declared in the header.
+=======
 ###### Procedure for the exchange of attachments
 Since these attachments may lead to very large statements, it should be possible for a client to filter out 
 attachments when retrieving statements, by following this procedure:
@@ -1383,6 +1404,7 @@ placed at the end of such transmissions.
 3. The receiving system decides whether to accept or reject the statement based on the information in the first part.
 4. If it accepts the attachment, it can match the raw data of an attachment with the attachment header in a statement 
 by comparing the SHA-2 of the raw data to the SHA-2 declared in the header.
+>>>>>>> 86252d8b7edae43606ed9f6d672046db7413ad5a
 
 
 ###### Requirements for statement streams that include attachments
@@ -1390,16 +1412,32 @@ by comparing the SHA-2 of the raw data to the SHA-2 declared in the header.
 A statement stream that includes attachments:
 
 * MUST be of type "multipart/mixed" rather than "application/json";
+<<<<<<< HEAD
+	* The first part of the multipart document MUST contain the statements themselves, 
+with type "applicaton/json";
+	* Each additional part contains the raw data for an attachment and forms a logical part of 
+the statement. This capability will be available when issuing PUT or POST against the statement resource.
+* SHOULD only include one copy of an attachment when the same attachment is used in 
+multiple statements that are sent in one message;
+=======
 	* The first part of the multipart document MUST contain the statements themselves, with type "applicaton/json";
 	* Each additional part contains the raw data for an attachment and forms a logical part of the statement. This 
 	capability will be available when issuing PUT or POST against the statement resource.
 * SHOULD only include one copy of an attachment when the same attachment is used in multiple statements that are sent 
 in one message;
+>>>>>>> 86252d8b7edae43606ed9f6d672046db7413ad5a
 * MUST conform to the definition of multipart/mixed in RFC 1341;
-* SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json";
+* SHOULD include a Content-type field in each part's header, for the first part this MUST 
+be "application/json";
 * MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part;
+<<<<<<< HEAD
+	* This field MUST be set to match the "sha2" property of the attachment declaration 
+corresponding to the attachment included in this part.
+
+=======
 	* This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
 	attachment included in this part.
+>>>>>>> 86252d8b7edae43606ed9f6d672046db7413ad5a
 
 
 ###### Requirements for the LRS:
