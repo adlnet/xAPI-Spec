@@ -87,7 +87,7 @@ Various refinements and clarifications including:
 - Changes to querying the Statement API
 
 <a name="roleofxapi"/>
-# 2.0 Role of the Experience API  
+## 2.0 Role of the Experience API  
 The Experience API is a service that allows for statements of experience 
 (typically learning experiences, but could be any experience) to be delivered 
 to and stored securely in a Learning Record Store. The Experience API is 
@@ -112,7 +112,7 @@ to work alongside. While the implementation details of these services are not
 specified here, the Experience API is designed with these components in mind.  
  
 <a name="adlrole"/>
-## 2.1 ADL's Role in the Experience API  
+### 2.1 ADL's Role in the Experience API  
 ADL has taken a role of steward and facilitator in the development of the 
 Experience API.  The Experience API is seen as one piece of the ADL Training 
 and Learning Architecture, which facilitates learning anytime and anywhere. 
@@ -122,7 +122,7 @@ and submitted by those involved in distributed learning which SCORM could not
 enable.  
  
 <a name="contributors"/> 
-##2.2 Contributors
+### 2.2 Contributors
 My thanks to everyone who contributed to the Experience API project. Many of 
 you have called into the weekly meetings and helped to shape the specification 
 into something that is useful for the entire distributed learning community. 
@@ -140,7 +140,7 @@ Director, ADL Initiative
 OSD, Training Readiness & Strategy (TRS)  
 
 <a name="wg"/>
-## 2.2.1 Working Group Participants  
+### 2.2.1 Working Group Participants  
 <table>
 	<tr><th>Name:</th><th>Organization:</th></tr>
 	<tr><td>Aaron Silvers</td><td>ADL</td></tr>
@@ -203,12 +203,12 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Walt Grata</td><td>ADL</td></tr>
 </table> 
 <a name="reqparticipants"/> 
-## 2.2.2 Requirements Gathering Participants  
+#### 2.2.2 Requirements Gathering Participants  
 In collection of requirements for the Experience API, there were many people and 
 organizations that provided invaluable feedback to SCORM, distributed learning 
 efforts, and learning in general.  User Voice Site, Rustici Blog, etc.  
 
-##2.3 Reading guidelines for the non-technically inclined.
+### 2.3 Reading guidelines for the non-technically inclined.
 
 Since you’re reading this document, it’s probably safe to say that you’re interested in understanding 
 the Experience API, informally called TinCan. The purpose of this document is to describe how the xAPI is 
@@ -220,7 +220,7 @@ sections labeled ‘description’ and ‘rationale’ while skipping the ‘det
 other sources can be found that explain xAPI very well, but this document is the core of them all.
 
 <a name="defintions"/> 
-# 3.0 Definitions  
+## 3.0 Definitions  
 
 * [Activity](#def-activity)
 * [Authentication](#def-authentication)
