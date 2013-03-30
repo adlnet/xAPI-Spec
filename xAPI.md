@@ -907,7 +907,8 @@ The table below lists all properties of a Statement Reference object:
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>objectType</td><td>string</td><td>MUST be "StatementRef".</td></tr>
-	<tr><td>id</td><td>UUID</td><td>MUST be set to the UUID of a statement which is present on the system.</td></tr>
+	<tr><td>id</td><td>UUID</td><td>MUST be set to the UUID of a statement 
+	which is present on the system.</td></tr>
 </table>
 
 ###### Statement References - Example
@@ -940,7 +941,6 @@ comment could be issued on the original statement, using a new statement:
 
 <a name="substmt"/>
 ###### Sub-Statements
-
 
 A Sub-Statement is a new statement included as part of a parent statement.
 
