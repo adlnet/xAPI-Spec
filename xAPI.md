@@ -664,20 +664,20 @@ specification document, with the exception of the reserved verb <a href="#voided
 
 
 <a name="object"/>
-##4.1.4 Object
-###Definition
+####4.1.4 Object
+###### Definition
 
 The object of a statement is the Activity, Agent, or Statement that is the object 
 of the statement. It is the "this" part of the statement, cf. "I did this". 
 
-#####NOTE
+###### NOTE:
 Objects which are provided as a value for this field SHOULD include an "objectType" 
 field. If not specified, the object is assumed to be an Activity. Other valid values 
 are: <a href="#agentasobj">Agent</a>, <a href="#substmt">Statement</a> or <a href="#stmtref">StatementRef</a>.
 
 
 
-###Rationale
+###### Rationale
 Objects in a statement may be either an Activity, an Agent or another statement. 
 Some examples:
 
@@ -691,7 +691,7 @@ some existing activity is graded, reviewed or commented on.
 
 
 <a name="activity"/>
-####4.1.4.1 When the "Object" is an Activity
+##### 4.1.4.1 When the "Object" is an Activity
 
 A statement may represent a Learning Activity as an object in the statement.  
 <table>
@@ -734,7 +734,8 @@ consistent with any other state or statements that are stored against the same
 activity ID, even if those statements were stored in the context of a new 
 revision or platform.   
 
-###### NOTE: The prohibition against an LRS treating references to the same activity 
+###### NOTE: 
+The prohibition against an LRS treating references to the same activity 
 ID as two different activities, even if the LRS can positively determine that 
 was the intent, is crucial to prevent activity ID creators from creating IDs 
 that could be easily duplicated, as intent would be indeterminable should a 
@@ -876,7 +877,7 @@ an interaction activity with the given interactionType.
 See [Appendix C](#AppendixC) for examples of activity definitions for each of the cmi.interaction types.
 
 <a name="agentasobj"/>
-####4.1.4.2 When the "Object" is an Agent or a Group
+##### 4.1.4.2 When the "Object" is an Agent or a Group
 
 Statements that specify an Agent or Group as an Object...
 
@@ -885,9 +886,9 @@ Statements that specify an Agent or Group as an Object...
 See [section 4.1.2](#actor) for details regarding Agents.  
 
 <a name="stmtasobj"/>
-####4.1.4.3 When the "Object" is a Statement
+##### 4.1.4.3 When the "Object" is a Statement
 
-#####Rationale
+###### Rationale
 
 A statement that is the object in another statement can either be existing or 
 new. In scenarios such as grading or commenting it is obviously existing. Also, 
@@ -899,7 +900,7 @@ An example is given further below.
 
 
 <a name="stmtref"/>
-#####Statement References
+###### Statement References
 
 A statement reference is a pointer to another pre-existing statement.
 
@@ -911,7 +912,7 @@ The table below lists all properties of a Statement Reference object:
 	<tr><td>id</td><td>UUID</td><td>MUST be set to the UUID of a statement which is present on the system.</td></tr>
 </table>
 
-#####Statement References - Example
+###### Statement References - Example
 
 Assuming that some statement has already been stored with 
 the ID 8f87ccde-bb56-4c2e-ab83-44982ef22df0, the following example shows how a 
@@ -940,12 +941,12 @@ comment could be issued on the original statement, using a new statement:
 ``` 
 
 <a name="substmt"/>
-#####Sub-Statements
+###### Sub-Statements
 
 
 A Sub-Statement is a new statement included as part of a parent statement.
 
-#####Requirements
+###### Requirements
 A Sub-Statement...
 
 * MUST specify an "objectType" property with the value "SubStatement";
@@ -955,7 +956,7 @@ A Sub-Statement...
 Implementations MUST validate the sub-statement as they would other statements, 
 with the addition of these rules.
 
-#####Sub-statements - Example
+###### Sub-statements - Example
 
 One interesting use of sub-statements is in creating statements of intention. 
 For example, using sub-statements we can create statements of the form 
@@ -1001,9 +1002,10 @@ action. The concrete example that follows logically states that
 }
 ```
 
-#####NOTE 
+###### NOTE: 
 Whilst the verb display MAY take the future tense, the verb id SHOULD remain past tense.
-Later, when 'I' actually visit 'Some Awesome Website', reporting tools can therefore match the verb ids. 
+Later, when 'I' actually visit 'Some Awesome Website', reporting tools can thereby match the verb ids. 
+
 <a name="result"/>
 #### 4.1.5 Result:
 ###### Description: 
