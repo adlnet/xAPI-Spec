@@ -675,8 +675,6 @@ Objects which are provided as a value for this field SHOULD include an "objectTy
 field. If not specified, the object is assumed to be an Activity. Other valid values 
 are: <a href="#agentasobj">Agent</a>, <a href="#substmt">Statement</a> or <a href="#stmtref">StatementRef</a>.
 
-
-
 ###### Rationale
 Objects in a statement may be either an Activity, an Agent or another statement. 
 Some examples:
@@ -890,13 +888,14 @@ See [section 4.1.2](#actor) for details regarding Agents.
 ###### Rationale
 
 A statement that is the object in another statement can either be existing or 
-new. In scenarios such as grading or commenting it is obviously existing. Also, 
+new. For example, when grading or commented on an experience that is tracked as an independant event,
+the existing statement about that experience will be the object of the statement. Also, 
 in the special case of <a href="#voided">voiding</a>, the object is an already 
-existing statement. In these situations, a so-called Statement Reference is used.
+existing statement. In these situations, a Statement Reference is used.
 
-Statements-as-objects that are new, on the other hand, are called Sub-Statements. 
+When the object is an experience that would be misleading as an independant statement,
+that experience can be tracked as a statement within a statement. These are called Sub-Statements. 
 An example is given further below.
-
 
 <a name="stmtref"/>
 ###### Statement References
