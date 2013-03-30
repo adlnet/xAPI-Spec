@@ -682,13 +682,11 @@ Objects in a statement may be either an Activity, an Agent or another statement.
 Some examples:
 
 * The object is an Activity: "Jeff wrote an essay about hiking."
-* The Object is an Agent: "Nellie interviewed Jeff about his essay."
-* The Object is a Statement: "Arnold commented on Jeff's article."
+* The Object is an Agent: "Nellie interviewed Jeff."
+* The Object is a Statement: "Nellie commented on 'Jeff wrote an essay about hiking.'"
 
 Statements as objects are typically, but not exclusively, used in scenarios where 
 some existing activity is graded, reviewed or commented on.
-
-
 
 <a name="activity"/>
 ##### 4.1.4.1 When the "Object" is an Activity
