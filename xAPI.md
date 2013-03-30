@@ -3057,9 +3057,11 @@ in a consistant manner.
 
 A 1.0 system converting a statement created in 0.9 MUST follow the steps below:
 
-* If the statement is voided, do not convert it.
+* If the statement has been voided or uses verbs, activity types, or properties not included in the
+ 0.9 specification, do not convert it.
 * Prefix "verb" with "http://adlnet.gov/expapi/verbs/".
 * Prefix any activity ids which are not a full absolute URIs with "urn:expapi:0.9:activities:"
+* Prefix any extension keys which are not a full absolute URIs with "urn:expapi:0.9:extensions:"
 * Prefix activity types with "http://adlnet.gov/expapi/activities/"
 * for each agent (actor):
     * Search for inverse functional identifiers in this order: "mbox, mbox_sha1sum, openId,
