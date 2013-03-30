@@ -691,7 +691,8 @@ some existing activity is graded, reviewed or commented on.
 <a name="activity"/>
 ##### 4.1.4.1 When the "Object" is an Activity
 
-A statement may represent a Learning Activity as an object in the statement.  
+A statement may represent an Activity as the object of the statement. An activity is any thing 
+which is interacted with. See <a href="#30-definitions">section 3.0 Definitions</a>.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
@@ -758,7 +759,7 @@ conflict with another system arise.
 		<td>type</td>
 		<td>URI</td>
 		<td>the type of activity. Note, URI fragments (sometimes called 
-			relative URLs) are not valid URIs. Similar to verbs, we recommend 
+			relative URLs) are not valid URIs. <a href="#verb-lists-and-repositories">As with verbs</a>, we recommend
 			that Learning Activity Providers look for and use established, 
 			widely adopted, activity types.
 		</td>
