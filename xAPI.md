@@ -893,7 +893,7 @@ the existing statement about that experience will be the object of the statement
 in the special case of <a href="#voided">voiding</a>, the object is an already 
 existing statement. In these situations, a Statement Reference is used.
 
-When the object is an experience that would be misleading as an independant statement,
+When the object is an experience that would be misleading as an independent statement,
 that experience can be tracked as a statement within a statement. These are called Sub-Statements. 
 An example is given further below.
 
@@ -958,7 +958,7 @@ with the addition of these rules.
 
 One interesting use of sub-statements is in creating statements of intention. 
 For example, using sub-statements we can create statements of the form 
-"<I> <planned> (<I> <did> <this>)" to indicate that we've planned to take some 
+```"<I> <planned> (<I> <did> <this>)"```  to indicate that we've planned to take some 
 action. The concrete example that follows logically states that 
 "I planned to visit 'Some Awesome Website'". 
  
