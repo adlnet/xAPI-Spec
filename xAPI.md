@@ -664,36 +664,33 @@ specification document, with the exception of the reserved verb <a href="#voided
 
 
 <a name="object"/>
-##4.1.4 Object
-###Definition
+####4.1.4 Object
+###### Definition
 
 The object of a statement is the Activity, Agent, or Statement that is the object 
 of the statement. It is the "this" part of the statement, cf. "I did this". 
 
-#####NOTE
+###### NOTE:
 Objects which are provided as a value for this field SHOULD include an "objectType" 
 field. If not specified, the object is assumed to be an Activity. Other valid values 
 are: <a href="#agentasobj">Agent</a>, <a href="#substmt">Statement</a> or <a href="#stmtref">StatementRef</a>.
 
-
-
-###Rationale
+###### Rationale
 Objects in a statement may be either an Activity, an Agent or another statement. 
 Some examples:
 
 * The object is an Activity: "Jeff wrote an essay about hiking."
-* The Object is an Agent: "Nellie interviewed Jeff about his essay."
-* The Object is a Statement: "Arnold commented on Jeff's article."
+* The Object is an Agent: "Nellie interviewed Jeff."
+* The Object is a Statement: "Nellie commented on 'Jeff wrote an essay about hiking.'"
 
 Statements as objects are typically, but not exclusively, used in scenarios where 
 some existing activity is graded, reviewed or commented on.
 
-
-
 <a name="activity"/>
-####4.1.4.1 When the "Object" is an Activity
+##### 4.1.4.1 When the "Object" is an Activity
 
-A statement may represent a Learning Activity as an object in the statement.  
+A statement may represent an Activity as the object of the statement. An activity is any thing 
+which is interacted with. See <a href="#30-definitions">section 3.0 Definitions</a>.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
@@ -734,7 +731,8 @@ consistent with any other state or statements that are stored against the same
 activity ID, even if those statements were stored in the context of a new 
 revision or platform.   
 
-###### NOTE: The prohibition against an LRS treating references to the same activity 
+###### NOTE: 
+The prohibition against an LRS treating references to the same activity 
 ID as two different activities, even if the LRS can positively determine that 
 was the intent, is crucial to prevent activity ID creators from creating IDs 
 that could be easily duplicated, as intent would be indeterminable should a 
@@ -759,7 +757,7 @@ conflict with another system arise.
 		<td>type</td>
 		<td>URI</td>
 		<td>the type of activity. Note, URI fragments (sometimes called 
-			relative URLs) are not valid URIs. Similar to verbs, we recommend 
+			relative URLs) are not valid URIs. <a href="#verb-lists-and-repositories">As with verbs</a>, we recommend
 			that Learning Activity Providers look for and use established, 
 			widely adopted, activity types.
 		</td>
@@ -876,7 +874,7 @@ an interaction activity with the given interactionType.
 See [Appendix C](#AppendixC) for examples of activity definitions for each of the cmi.interaction types.
 
 <a name="agentasobj"/>
-####4.1.4.2 When the "Object" is an Agent or a Group
+##### 4.1.4.2 When the "Object" is an Agent or a Group
 
 Statements that specify an Agent or Group as an Object...
 
@@ -885,21 +883,22 @@ Statements that specify an Agent or Group as an Object...
 See [section 4.1.2](#actor) for details regarding Agents.  
 
 <a name="stmtasobj"/>
-####4.1.4.3 When the "Object" is a Statement
+##### 4.1.4.3 When the "Object" is a Statement
 
-#####Rationale
+###### Rationale
 
 A statement that is the object in another statement can either be existing or 
-new. In scenarios such as grading or commenting it is obviously existing. Also, 
+new. For example, when grading or commented on an experience that is tracked as an independant event,
+the existing statement about that experience will be the object of the statement. Also, 
 in the special case of <a href="#voided">voiding</a>, the object is an already 
-existing statement. In these situations, a so-called Statement Reference is used.
+existing statement. In these situations, a Statement Reference is used.
 
-Statements-as-objects that are new, on the other hand, are called Sub-Statements. 
+When the object is an experience that would be misleading as an independant statement,
+that experience can be tracked as a statement within a statement. These are called Sub-Statements. 
 An example is given further below.
 
-
 <a name="stmtref"/>
-#####Statement References
+###### Statement References
 
 A statement reference is a pointer to another pre-existing statement.
 
@@ -908,10 +907,11 @@ The table below lists all properties of a Statement Reference object:
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>objectType</td><td>string</td><td>MUST be "StatementRef".</td></tr>
-	<tr><td>id</td><td>UUID</td><td>MUST be set to the UUID of a statement which is present on the system.</td></tr>
+	<tr><td>id</td><td>UUID</td><td>MUST be set to the UUID of a statement 
+	which is present on the system.</td></tr>
 </table>
 
-#####Statement References - Example
+###### Statement References - Example
 
 Assuming that some statement has already been stored with 
 the ID 8f87ccde-bb56-4c2e-ab83-44982ef22df0, the following example shows how a 
@@ -940,12 +940,11 @@ comment could be issued on the original statement, using a new statement:
 ``` 
 
 <a name="substmt"/>
-#####Sub-Statements
-
+###### Sub-Statements
 
 A Sub-Statement is a new statement included as part of a parent statement.
 
-#####Requirements
+###### Requirements
 A Sub-Statement...
 
 * MUST specify an "objectType" property with the value "SubStatement";
@@ -955,7 +954,7 @@ A Sub-Statement...
 Implementations MUST validate the sub-statement as they would other statements, 
 with the addition of these rules.
 
-#####Sub-statements - Example
+###### Sub-statements - Example
 
 One interesting use of sub-statements is in creating statements of intention. 
 For example, using sub-statements we can create statements of the form 
@@ -1001,9 +1000,10 @@ action. The concrete example that follows logically states that
 }
 ```
 
-#####NOTE 
+###### NOTE: 
 Whilst the verb display MAY take the future tense, the verb id SHOULD remain past tense.
-Later, when 'I' actually visit 'Some Awesome Website', reporting tools can therefore match the verb ids. 
+Later, when 'I' actually visit 'Some Awesome Website', reporting tools can thereby match the verb ids. 
+
 <a name="result"/>
 #### 4.1.5 Result:
 ###### Description: 
