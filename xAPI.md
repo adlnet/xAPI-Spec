@@ -60,22 +60,22 @@
 ## 1.0 Revision History
 ###### 0.8 (Project Tin Can API Deliverable) to 0.9 (March 31, 2012):  
   
-Rustici software, whom delivered Project Tin Can API, made modifications to the 
+Rustici Software, who delivered the Project Tin Can API, made modifications to the 
 API prior to the April 2012 Kickoff Meeting. It was voted in this meeting to 
 move those changes into the current spec and revision to 0.9.
 
 ###### 0.90 to 0.95 (August 31, 2012):  
 
 "Core" verbs and activity types were removed from the specification. References 
-to these verbs in results, context, interactions, and activity definitions have 
-also been removed. It is recommended that implementers prefer community defined 
+to these verbs in results, context, interactions, and activity definitions were 
+also  removed. It was recommended that implementers prefer community defined 
 verbs to creating their own verbs.
 - Verbs, activity types, and extension keys are now URIs
 - Restructured and added language around some of the other implementation 
 details and scope.
 - Changed from using a person-centric view of agents to a persona-centric 
 view.
-- Friend of a Friend (FOAF) agent merging requirement removed.
+- Friend of a Friend (FOAF) agent merging requirement was removed.
 - Agent objects must now have exactly 1 uniquely identifying property, instead 
 of at least one.
 
