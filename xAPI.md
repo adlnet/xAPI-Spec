@@ -331,8 +331,7 @@ __URI__: Uniform Resource Identifier. A unique identifier which may be a URL. In
 
 <a name="statement"/> 
 ## 4.0 Statement  
-The statement is the core of the XAPI.  All learning events are stored as statements 
-such as: "I did this".  
+The statement is the core of the xAPI. All learning events are stored as statements. A statement is akin to a sentence of the form "I did this".  
 
 <a name="stmtprops"/>
 ### 4.1 Statement Properties:  
@@ -346,19 +345,19 @@ below.
 	<td>UUID assigned by LRS if not set by the Learning Activity Provider.</td></tr>
 	<tr><td><a href="#actor">actor</a></td><td>Object</td><td></td>
 	<td>Who the statement is about, as an <a href="#agent">Agent</a> or 
-		<a href="#group">Group</a> object. 'I'</td></tr>
+		<a href="#group">Group</a> object. Represents the "I" in "I Did This".</td></tr>
 	<tr><td><a href="#verb">verb</a></td><td>Object</td><td></td>
-	<td>Action of the Learner or Team object. "Did".</td></tr>
+	<td>Action of the Learner or Team object. Represents the "Did" in "I Did This".</td></tr>
 	<tr><td><a href="#object">object</a></td><td>Object</td><td></td>
-	<td>Activity, agent, or another statement that is the object of the statement, 
-	"this". Note that objects which are provided as a value for this field should 
+	<td>Activity, agent, or another statement that is the object of the statement. 
+	Represents the "This" in "I Did This". Note that objects which are provided as a value for this field should 
 	include a "objectType" field. If not specified, the object is assumed to be 
 	an activity.</td></tr>
 	<tr><td><a href="#result">result</a></td><td>Object</td><td></td>
-	<td>Result object, further details relevant to the specified verb.</td></tr>
+	<td>Result object, further details representing a measured outcome relevant to the specified verb.</td></tr>
 	<tr><td><a href="#context">context</a></td><td>Object</td><td></td>
-	<td>Context that gives the statement more meaning. Examples: Team actor is 
-	working with, altitude in a flight simulator.</td></tr>
+	<td>Context that gives the statement more meaning. Examples: a team the actor is 
+	working with, altitude at which a scenario was attempted in a flight simulator.</td></tr>
 	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td><td></td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
 	of when what this statement describes happened. If not provided, LRS 
@@ -367,10 +366,10 @@ below.
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
 	of when this statement was recorded. Set by LRS.</td></tr>
 	<tr><td><a href="#authority">authority</a></td><td>Object</td><td></td>
-	<td>Agent who is asserting this statement is true. Verified by LRS based on 
+	<td>Agent who is asserting this statement is true. Verified by the LRS based on 
 	authentication, and set by LRS if left blank.</td></tr>
 	<tr><td><a href="#version">version</a></td><td>String</td><td>"1.0"</td>
-	<td>API version the statement conforms to. Set by LRS.</td></tr>
+	<td>xAPI version the statement conforms to. Set by LRS.</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
 		<td>Array of attachment objects</td>
@@ -380,14 +379,14 @@ below.
 </table>  
 Aside from (potential or required) assignments of properties during initial 
 processing ("id", "authority", "stored", "timestamp") statements are immutable. Note that the content of 
-activities that are referenced in statements are not considered part of the 
+activities that are referenced in statements is not considered part of the 
 statement itself. So while the statement is immutable, the activities referenced 
 by that statement are not. This means a deep serialization of a statement into 
 JSON will change if the referenced activities change (see the
 [Statement API's](#stmtapi) 'format' parameter for details).  
 
  
-Simplest possible statement using all properties that MUST or SHOULD be used:  
+An example of the simplest possible statement using all properties that MUST or SHOULD be used:  
 ```
 {
 	"id": "12345678-1234-5678-1234-567812345678",
