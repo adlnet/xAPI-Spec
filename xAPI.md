@@ -1289,7 +1289,7 @@ that a previously made statement is marked as invalid. This is called ‘voiding
 ###### Requirements
 When issuing a statement that voids another, the object of that voiding statement...
 
-* MUST have the “objectType” field set to “Statement”;
+* MUST have the “objectType” field set to “StatementRef”;
 * MUST specify the ID of the statement-to-be-voided by it’s “id” field.
 
 
