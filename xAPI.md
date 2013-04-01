@@ -90,13 +90,14 @@ Various refinements and clarifications including:
 <a name="roleofxapi"/>
 ## 2.0 Role of the Experience API  
 The Experience API is a service that allows for statements of experience 
-(typically learning experiences, but could be any experience) to be delivered 
-to and stored securely in a Learning Record Store. The Experience API is 
+(typically learning experiences, but potentially any type of experience) to be delivered 
+to, stored securely in, and retrieved from a Learning Record Store (LRS). The Experience API is 
 dependent on Learning Activity Providers to create and track learning experiences; 
 this specification provides a data model and associated components on how to 
 accomplish these tasks.  
+
 Specifically, the Experience API provides:  
-- Structure and definition of statement, state, learner, activity and objects, 
+- The structure and definition of statement, state, learner, activity and objects, 
 which are the means by which experiences are conveyed by a Learning Activity Provider.
 - Data Transfer methods for the storage and retrieval (but not validation) of 
 these objects to/from a Learning Record Store.  Note that the systems storing 
@@ -106,9 +107,9 @@ communicate with other LRSs, or reporting systems.
 the Learning Record Store and trusted sources.  
 
 The Experience API is the first of many potential specifications that will merge 
-to create a higher architecture of online learning and training. Authentication 
+to create a higher architecture for online learning and training. Authentication 
 services, querying services, visualization services, and personal data services 
-are some examples of additional components that the Experience API is designing 
+are some examples of additional components that the Experience API is designed 
 to work alongside. While the implementation details of these services are not 
 specified here, the Experience API is designed with these components in mind.  
  
@@ -207,16 +208,16 @@ OSD, Training Readiness & Strategy (TRS)
 #### 2.2.2 Requirements Gathering Participants  
 In collection of requirements for the Experience API, there were many people and 
 organizations that provided invaluable feedback to SCORM, distributed learning 
-efforts, and learning in general.  User Voice Site, Rustici Blog, etc.  
+efforts, and learning in general.  Project Tin CAnUser Voice Site, Rustici Software Blog, etc.  
 
 ### 2.3 Reading guidelines for the non-technically inclined.
 
 Since you’re reading this document, it’s probably safe to say that you’re interested in understanding 
-the Experience API, informally called TinCan. The purpose of this document is to describe how the xAPI is 
+the Experience API (xAPI), informally called the "Tin Can API". The purpose of this document is to describe how the xAPI is 
 implemented in a large variety of systems. It’s a fairly technical document by nature and you may
 decide that you don’t understand much of it. Even so, there are useful things to learn by reading further. Not only
 because the tools that you work with are based on the specifications described below; the technical people that you
-talk to may assume that you have a basic level of knowledge. Exactly for this reason you’re advised to read the small
+talk to may assume that you have a basic level of knowledge. For this reason you’re advised to read the small
 sections labeled ‘description’ and ‘rationale’ while skipping the ‘details’ and ‘examples’. Needless to say, many
 other sources can be found that explain xAPI very well, but this document is the core of them all.
 
