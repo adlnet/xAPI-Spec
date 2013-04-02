@@ -246,7 +246,7 @@ other sources can be found that explain xAPI very well, but this document is the
 __Activity__: A thing with which to be interacted. An activity can be a unit of 
 instruction, experience, or performance that is to be tracked in meaningful combination with a verb. 
 Interpretation of ‘Activity’ is broad, meaning that activities can even be tangible objects. In the statement
-“Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the XAPI statement. 
+“Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the xAPI statement. 
 E.g. a book, an e-learning course, a hike, a meeting.
 
 <a name="def-authentication" />
@@ -287,13 +287,13 @@ communication, but may also be separate from the experience it is reporting abou
 __Learning Management System (LMS)__: Provides the tracking functionality of an LRS, 
 but provides additional administrative and reporting functionality. In this document 
 the term will be used when talking about existing systems that implement learning 
-standards. The XAPI can work independently of an LMS, but is built with knowledge 
+standards. The xAPI can work independently of an LMS, but is built with knowledge 
 of the suite of services an LMS provides.
 
 <a name="def-learning-record-store" />
-__Learning Record Store (LRS)__: A system that stores learning information. Prior to the XAPI 
+__Learning Record Store (LRS)__: A system that stores learning information. Prior to the xAPI 
 most LRSs are Learning Management Systems (LMSs), however this document uses the term 
-LRS to be clear that a full LMS is not necessary to implement the XAPI. The XAPI 
+LRS to be clear that a full LMS is not necessary to implement the xAPI. The xAPI 
 is dependent on an LRS to function.
 
 <a name="def-must-should-may" />
@@ -330,7 +330,7 @@ __URI__: Uniform Resource Identifier. A unique identifier which may be a URL. Th
 
 <a name="statement"/> 
 ## 4.0 Statement  
-The statement is the core of the XAPI.  All learning events are stored as statements 
+The statement is the core of the xAPI.  All learning events are stored as statements 
 such as: "I did this".  
 
 <a name="stmtprops"/>
@@ -428,7 +428,7 @@ A mandatory Agent or Group object, identified by an "inverse functional identifi
 An "inverse functional identifier" is a value shared between multiple Agents that designates these Agents as the same unique identity without doubt.
 
 ###### Rationale:
-Learning experiences become meaningless if they cannot be attributed to identifiable individuals and/or groups. In an XAPI statement the required element "Actor" constitutes this identification, loosely inspired on the widely accepted FOAF principle (see: <a href="http://xmlns.com/foaf/spec/#term_Agent"> Friend Of A Friend</a>).
+Learning experiences become meaningless if they cannot be attributed to identifiable individuals and/or groups. In an xAPI statement the required element "Actor" constitutes this identification, loosely inspired on the widely accepted FOAF principle (see: <a href="http://xmlns.com/foaf/spec/#term_Agent"> Friend Of A Friend</a>).
 
 <a name="agent"/>
 ##### 4.1.2.1 Agent
@@ -1265,7 +1265,7 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 	"member": [
 		{
 			"account": {
-				"homePage":"http://example.com/XAPI/OAuth/Token",
+				"homePage":"http://example.com/xAPI/OAuth/Token",
 				"name":"oauth_consumer_x75db"
 			}
 		},
@@ -1698,7 +1698,7 @@ Converting statements to other versions:
 <a name="concurrency"/> 
 ### 6.3 Concurrency:
 In order to prevent "lost edits" due to API consumers PUT-ing changes based on 
-old data, XAPI will use HTTP 1.1 entity tags 
+old data, xAPI will use HTTP 1.1 entity tags 
 ([ETags](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19)) 
 to implement optimistic concurrency control in the portions of the API 
 where PUT may overwrite existing data. (State API, Actor and Activity 
@@ -1725,7 +1725,7 @@ In either of the above cases, if the header precondition specified fails,
 the LRS must return HTTP status 412 "Precondition Failed", and make no 
 modification to the resource.  
 
-XAPI consumers should use these headers to avoid concurrency problems. The State 
+xAPI consumers should use these headers to avoid concurrency problems. The State 
 API will permit PUT statements without concurrency headers, since state conflicts 
 are unlikely. For other APIs that use PUT (Actor and Activity Profile), the 
 headers are required. If a PUT request is received without either header for a 
@@ -1761,7 +1761,7 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 <tr>
 <td>Application is registered</td>
 <td>Standard workflow for OAuth.</td>
-<td>LRS trusts application to access XAPI without additional user credentials. OAuth token steps are not invoked</td>
+<td>LRS trusts application to access xAPI without additional user credentials. OAuth token steps are not invoked</td>
 </tr>
 <tr>
 <td>Application is not registered</td>
@@ -1789,7 +1789,7 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 * The LRS must record the application's name and a unique consumer key (identifier);
 * The LRS must provide a mechanism to complete this registration, or delegate to another system that provides such 
 a mechanism;
-The means by which this registration is accomplished are not defined by OAuth or the XAPI.
+The means by which this registration is accomplished are not defined by OAuth or the xAPI.
 
 ###### Application registered + known user
 
@@ -1832,7 +1832,7 @@ challenge.
 
 Requirements for the LRS:
 
-* MUST be able to be configured for complete support of the XAPI 
+* MUST be able to be configured for complete support of the xAPI 
 	* With any of the above methods;
 	* In any of the workflow scenarios above.
 * MAY (for security reasons): 
@@ -1852,7 +1852,7 @@ minimal needed scopes, to increase the chances that the request will be granted.
 
 LRSs are not required to support any of these scopes except “all”. These are 
 recommendations for scopes which should enable an LRS and an application 
-communicating using the XAPI to negotiate a level of access which accomplishes 
+communicating using the xAPI to negotiate a level of access which accomplishes 
 what the application needs while minimizing the potential for misuse. The 
 limitations of each scope are in addition to any security limitations placed on 
 the user account associated with the request.  
@@ -1862,7 +1862,7 @@ but the LRS would still limit that tool to statements that the instructor
 could read if querying the LRS with their credentials directly (such as 
 statements relating to their students).  
 
-XAPI scope values:  
+xAPI scope values:  
 <table>
 	<tr><th>Scope</th><th>Permission</th></tr>
 	<tr><td>statements/write</td><td>write any statement</td></tr>
@@ -1916,28 +1916,28 @@ parameters, not in the OAuth header.
 	<tr>
 		<td>Temporary Credential Request</td>
 		<td>OAuth/initiate</td>
-		<td>http://example.com/XAPI/OAuth/initiate</td>
+		<td>http://example.com/xAPI/OAuth/initiate</td>
 	</tr>
 	<tr>
 		<td>Resource Owner Authorization</td>
 		<td>OAuth/authorize</td>
-		<td>http://example.com/XAPI/OAuth/authorize</td>
+		<td>http://example.com/xAPI/OAuth/authorize</td>
 	</tr>
 	<tr>
 		<td>Token Request</td>
 		<td>OAuth/token</td>
-		<td>http://example.com/XAPI/OAuth/token </td>
+		<td>http://example.com/xAPI/OAuth/token </td>
 	</tr>
 </table>
 
 <a name="datatransfer"/> 
 ## 7.0 Data Transfer (REST)
-This section describes The XAPI consists of 4 sub-APIs: statement, state, 
+This section describes The xAPI consists of 4 sub-APIs: statement, state, 
 learner, and activity profile. The four sub-APIs of the Experience API 
 are handled via RESTful HTTP methods. The statement API can be used by itself 
 to track learning records.  
 
-Note: In all of the example endpoints given in the specification, "http://example.com/XAPI/"
+Note: In all of the example endpoints given in the specification, "http://example.com/xAPI/"
 is the example URL of the LRS and everything after this represents the endpoint which MUST
 be used. 
 
@@ -1980,7 +1980,7 @@ unexpected exception in processing on the server.
 The basic communication mechanism of the Experience API.  
 
 ###### PUT statements
-Example endpoint: http://example.com/XAPI/statements
+Example endpoint: http://example.com/xAPI/statements
 
 Stores statement with the given ID. This MUST NOT modify an existing statement. 
 If the statement ID already exists, the receiving system SHOULD verify the 
@@ -1999,7 +1999,7 @@ Returns: 204 No Content
 </table>
 
 ###### POST statements
-Example endpoint: http://example.com/XAPI/statements
+Example endpoint: http://example.com/xAPI/statements
 
 Stores a statement, or a set of statements. Since the PUT method targets a specific 
 statement ID, POST must be used rather than PUT to save multiple statements, or to 
@@ -2012,7 +2012,7 @@ that provide a lot of data to the LRS.
 Returns: 200 OK, statement ID(s) (UUID).  
 
 ###### GET statements
-Example endpoint: http://example.com/XAPI/statements
+Example endpoint: http://example.com/xAPI/statements
 
 This method may be called to fetch a single statement or multiple statements. If the
 statementId or voidedStatementId parameter is specified a single statement is returned.
@@ -2169,19 +2169,19 @@ prior knowledge of the activity and/or agent.
 		<td>State API</td>
 		<td>POST</td>
 		<td>activities/state</td>
-		<td>http://example.com/XAPI/activities/state</td>
+		<td>http://example.com/xAPI/activities/state</td>
 	</tr>
 	<tr>
 		<td>Activity Profile API</td>
 		<td>POST</td>
 		<td>activities/profile</td>
-		<td>http://example.com/XAPI/activities/profile</td>
+		<td>http://example.com/xAPI/activities/profile</td>
 	</tr>
 	<tr>
 		<td>Agent Profile API</td>
 		<td>POST</td>
 		<td>agent/profile</td>
-		<td>http://example.com/XAPI/agents/profile</td>
+		<td>http://example.com/xAPI/agents/profile</td>
 	</tr>
 </table>
 
@@ -2249,7 +2249,7 @@ available IDs, and DELETE will delete all state in the context given through the
 other parameters.  
 
 ###### PUT | POST | GET | DELETE activities/state
-Example endpoint: http://example.com/XAPI/activities/state
+Example endpoint: http://example.com/xAPI/activities/state
 
 Stores, fetches, or deletes the document specified by the given stateId that 
 exists in the context of the specified activity, agent, and registration (if specified).  
@@ -2272,7 +2272,7 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - State Content
 </table>
 
 ###### GET activities/state
-Example endpoint: http://example.com/XAPI/activities/state
+Example endpoint: http://example.com/xAPI/activities/state
 
 Fetches IDs of all state data for this context (activity + agent \[ + 
 registration if specified\]). If “since” parameter is specified, this 
@@ -2297,7 +2297,7 @@ Returns: 200 OK, Array of IDs
 </table>
 
 ###### DELETE activities/state
-Example endpoint: http://example.com/XAPI/activities/state
+Example endpoint: http://example.com/xAPI/activities/state
 
 Deletes all state data for this context (activity + agent \[+ registration if 
 specified\]).  
@@ -2332,7 +2332,7 @@ The Activity Profile API also includes a method to retrieve a full description
 of an activity from the LRS.  
 
 ###### GET activities
-Example endpoint: http://example.com/XAPI/activities
+Example endpoint: http://example.com/xAPI/activities
 
 Loads the complete activity object specified.  
 
@@ -2345,7 +2345,7 @@ Returns: 200 OK - Content
 </table>
 
 ###### PUT | POST | GET | DELETE activities/profile
-Example endpoint: http://example.com/XAPI/activities/profile
+Example endpoint: http://example.com/xAPI/activities/profile
 
 Saves/retrieves/deletes the specified profile document in the context of the 
 specified activity.  
@@ -2362,7 +2362,7 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content
 </table>
 
 ###### GET activities/profile
-Example endpoint: http://example.com/XAPI/activities/profile
+Example endpoint: http://example.com/xAPI/activities/profile
 
 Loads IDs of all profile entries for an activity. If "since" parameter is 
 specified, this is limited to entries that have been stored or updated since 
@@ -2394,7 +2394,7 @@ combined information about an Agent derived from an outside service, such as a
 directory service.  
 
 ###### GET agents
-Example endpoint: http://example.com/XAPI/agents
+Example endpoint: http://example.com/xAPI/agents
 
 Return a special, Person object for a specified agent. The Person object is 
 very similar to an Agent object, but instead of each attribute having a single 
@@ -2455,7 +2455,7 @@ Returns: 200 OK - Expanded Agent Object
 </table>  
 
 ###### PUT | POST | GET | DELETE agents/profile
-Example endpoint: http://example.com/XAPI/agents/profile
+Example endpoint: http://example.com/xAPI/agents/profile
 
 Saves/retrieves/deletes the specified profile document in the context of the 
 specified agent.  
@@ -2473,7 +2473,7 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content
 </table>  
 
 ###### GET agents/profile
-Example endpoint: http://example.com/XAPI/agents/profile
+Example endpoint: http://example.com/xAPI/agents/profile
 
 Loads IDs of all profile entries for an agent. If "since" parameter is specified, 
 this is limited to entries that have been stored or updated since the specified 
@@ -2493,25 +2493,25 @@ Returns: 200 OK - List of IDs
 
 <a name="cors"/>
 ### 7.7 Cross Origin Requests:
-One of the goals of the XAPI is to allow cross-domain tracking, and even though 
-XAPI seeks to enable tracking from applications other than browsers, browsers 
+One of the goals of the xAPI is to allow cross-domain tracking, and even though 
+xAPI seeks to enable tracking from applications other than browsers, browsers 
 still need to be supported. Internet Explorer 8 and 9 do not implement Cross 
 Origin Resource Sharing, but rather use their own Cross Domain Request API, 
-which cannot use all of the XAPI as described above due to only supporting "GET" 
+which cannot use all of the xAPI as described above due to only supporting "GET" 
 and "POST", and not allowing HTTP headers to be set.  
 
 The following describes alternate syntax for consumers to use only when unable 
 to use the usual syntax for specific calls due to the restrictions mentioned 
 above. All LRSs must support this syntax.  
 
-__Method__: All XAPI requests issued must be POST. The intended XAPI method 
+__Method__: All xAPI requests issued must be POST. The intended xAPI method 
 must be included as the only query string parameter on the request. 
-(example: http://example.com/XAPI/statements?method=PUT)  
+(example: http://example.com/xAPI/statements?method=PUT)  
 
 __Headers__: Any required parameters which are expected to appear in the HTTP 
 header must instead be included as a form parameter with the same name.  
 
-__Content__: If the XAPI call involved sending content, that content must now 
+__Content__: If the xAPI call involved sending content, that content must now 
 be encoded and included as a form parameter called "content". The LRS will 
 interpret this content as a UTF-8 string, storing binary data is not supported 
 with this syntax.  
@@ -2534,7 +2534,7 @@ to use this scheme.
  
 <a name="validation"/> 
 ### 7.8 Validation:
-The function of the LRS within the XAPI is to store and retrieve statements. 
+The function of the LRS within the xAPI is to store and retrieve statements. 
 As long as it has sufficient information to perform these tasks, it is 
 expected that it does them. Validation of statements in the Experience API is 
 focused solely on syntax, not semantics. It SHOULD enforce rules regarding structure, 
@@ -2545,7 +2545,7 @@ responsibility of the Activity Provider sending the statement.
 <a name="AppendixA"/> 
 ## Appendix A: Bookmarklet
 
-XAPI enables using an "I learned this" bookmarklet to self-report learning. 
+xAPI enables using an "I learned this" bookmarklet to self-report learning. 
 The following is an example of such a bookmarklet, and the statement that this 
 bookmarklet would send if used on the page: http://adlnet.gov/xapi.  
 
@@ -2572,7 +2572,7 @@ with your own values. All other values should be left as they are.
 		<th>Explanation</th>
 	</tr>
 	<tr>
-		<td>http://localhost:8080/XAPI/</td>
+		<td>http://localhost:8080/xAPI/</td>
 		<td>Endpoint of the LRS to send the statements to.</td>
 	</tr>
 	<tr>
@@ -2586,7 +2586,7 @@ with your own values. All other values should be left as they are.
 </table>
 
 ```javascript
-var url = "http://localhost:8080/XAPI/Statements/?statementId="+_ruuid();
+var url = "http://localhost:8080/xAPI/Statements/?statementId="+_ruuid();
 var auth = "Basic dGVzdDpwYXNzd29yZA==";
 var statement = {
 	actor:{ 
@@ -2646,7 +2646,7 @@ function _ruuid() {
 
 ###### Method Path:  
 ```
-PUT : /XAPI/Statements/?statementId=ed1d064a-eba6-45ea-a3f6-34cdf6e1dfd9
+PUT : /xAPI/Statements/?statementId=ed1d064a-eba6-45ea-a3f6-34cdf6e1dfd9
 
 Body:
 {
@@ -2712,7 +2712,7 @@ function getIEModeRequest(method, url, headers, data){
 ```
 "definition": {
 	"description": {
-		"en-US": "Does the XAPI include the concept of statements?"
+		"en-US": "Does the xAPI include the concept of statements?"
 	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "true-false",
