@@ -1799,12 +1799,12 @@ The means by which this registration is accomplished are not defined by OAuth or
 the  authority  as a group consisting of an Agent representing the registered application, and a Person representing 
 the known user.
 
-###### Application not registered + user unknown
+###### Application registered + user unknown
 
 * LRS will honor requests that are signed using OAuth with the registered application’s credentials and with an empty 
 token and token secret.
 * If this form of authentication is used  to record statements and no  authority  is specified, the LRS should record 
-the  authorityas the Agent representing the registered application.
+the  authority as the Agent representing the registered application.
 
 ###### Application not registered + known user 
 
