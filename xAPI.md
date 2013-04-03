@@ -504,8 +504,8 @@ in a given anonymous or identified Group.
 <a name="inversefunctional">
 ##### 4.1.2.3 Inverse Functional Identifier
 ###### Details: 
-An "inverse functional identifier" is a value shared between multiple agents or identified
-groups that designates themas the same unique identity without doubt.
+An "inverse functional identifier" is a value of agents or identified
+groups that is guaranteed to only ever refer to that agent or identified group.
 
 ###### Rationale:
 Learning experiences become meaningless if they cannot be attributed to identifiable
