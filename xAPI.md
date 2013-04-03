@@ -1438,7 +1438,8 @@ in one message;
 described above;
 * MUST reject statements having attachments that do not contain a fileUrl, and do not have a hash matching any raw 
 data received;
-* MUST include attachments in the Transmission Format described above when requested by the client (see query API);
+* MUST include attachments in the Transmission Format described above
+when requested by the client (see section [7.2 "Statement API"](#stmtapi));
 * MUST NOT pull statements from another LRS without requesting attacments;
 * MUST NOT push statements into another LRS without including attachments;
 * MAY reject (batches of) statements that are larger than the LRS is configured to allow;
