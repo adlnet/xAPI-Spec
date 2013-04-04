@@ -1115,56 +1115,91 @@ Experience API purposes, a registration may be applied more broadly; an LMS coul
 group of activities and track all related statements in one registration.
 
 <a name="contextActivities"/>
-##### 4.1.6.2 Context activities property
+##### 4.1.6.2 contextActivities property
 
 ###### Description: 
-A map of the types of context to ids of learning activities, or a learning activity this statement is related to.
+A map of the types of learning activity context that this statement is related to.
 
 ###### Rationale: 
-Many activities are not autonomous or stand-alone, but form a part in a larger logical group of activities. "Context 
-activities" allow for these larger activities to be represented in a structured manner.
+Many statements do not just involve one object activity that is the focus,
+but relate to other contextually relevant activities.
+"Context activities" allow for these related activities to be represented
+in a structured manner.
+
+###### Requirements
+* every key in the contextActivities object MUST be one of parent, grouping, category, or other.
+* every value in the contextActivities object MUST be either a single Activity object or an array of Activity objects.
+
+###### Requirements for the client
+* every value in the contextActivities object SHOULD be an array
+of Activity objects instead of a single Activity object.
+
+###### Requirements for the LRS
+* every value in the contextActivities object MUST be returned
+as an array, even if it arrived as a single Activity object (in which
+case it MUST be returned as an array of length one containing the same Activity).
 
 ###### Details:
-There are three valid context types. All, any or none of these MAY be used in a given statement:
+There are four valid context types. All, any or none of these MAY be used in a given statement:
 
-1. __Parent__ : an activity with a direct relation to the activity which is the object of the statement.
-For example: a statement about a quiz question would have the quiz as its parent activity.
+1. __Parent__ : an activity with a direct relation to the activity
+which is the object of the statement. In almost all cases there
+is only one sensible parent or none, not multiple.
+For example: a statement about a quiz question would have the quiz
+as its parent activity.
  
-2. __Grouping__ : an activity with an indirect relation to the activity which is the object of the statement.
-For example: a course that is part of a qualification. The course has several classes. The course relates to a class 
-as the parent, the qualification relates to the class as the grouping.
+2. __Grouping__ : an activity with an indirect relation to the activity
+which is the object of the statement.
+For example: a course that is part of a qualification. The course
+has several classes. The course relates to a class as the parent,
+the qualification relates to the class as the grouping.
 
-3. __Category__ : an activity used to categorize the statement. "Tags" would be a synonym. Main driver is to have a 
-4. way to get "profile" in the statement in a searchable way, but this includes more general categories of statements.
+3. __Category__ : an activity used to categorize the statement.
+"Tags" would be a synonym. Category SHOULD be used to indicate
+a "profile" of xAPI behaviors, as well as other categorizations.
+For example: Anna attempts a biology exam, and the statement is
+tracked using the CMI-5 profile. The statement's activity refers
+to the exam, and the category is the CMI-5 profile.
 
-For example: Anna attempts a bilogy exam, and the statement is tracked using the CMI-5 profile.
-The statement's activity refers to the exam, and the category is the CMI-5 profile.
+5. __Other__ : a context activity that doesn't fit one of the other fields.
+For example: Anna studies a textbook for a biology exam. The statement's
+activity refers to the textbook, and the exam is a context activity of type "other".
 
-4. __Other__ : a context activity that doesn't fit one of the other fields.
-For example: Anna studies a textbook for a biology exam. The statement's activity refers to the textbook, and the 
-exam is a context activity of type "other".
+Single Activity objects are allowed as values so that 0.95 statements will be compatible with 1.0.
+
+The values in this section are not for expressing all the relationships the statement object has.
+Instead, they are for expressing relationships appropriate for the specific statement
+(though the nature of the object will often be important in determining that).
+For instance, it is appropriate in a statement about a test to include the course
+the test is part of as parent, but not to include every possible degree
+program the course could be part of in the grouping value.
 
 ###### Example I:
 
 ```
 {
-	"other" : {
+	"other" : [{
 	"id" : "http://example.adlnet.gov/xapi/example/test"
-	}
+	}]
 }
 ```
 ###### Example II: 
-Consider the following hierarchical structure: "Questions 1 to 6" are part of "Test 1" which in turn belongs to the course "Algebra 1". 
-The six questions are registered as part of the test by declaring "Test 1" as their parent. Also they are grouped with other statements about "Algebra 1" to fully mirror the hierarchy. This is particularly useful with the object of the statement is an agent, not an activity. "Andrew mentored Ben with context Algebra I".
+Consider the following hierarchical structure: "Questions 1 to 6"
+are part of "Test 1" which in turn belongs to the course "Algebra 1". 
+The six questions are registered as part of the test by declaring
+"Test 1" as their parent. Also they are grouped with other statements
+about "Algebra 1" to fully mirror the hierarchy. This is particularly
+useful with the object of the statement is an agent, not an activity.
+"Andrew mentored Ben with context Algebra I".
 
 ```
 {
-	"parent" : {
+	"parent" : [{
 	"id" : "http://example.adlnet.gov/xapi/example/test 1"
-	},
-	"grouping" : {
+	}],
+	"grouping" : [{
 	"id" : "http://example.adlnet.gov/xapi/example/Algebra1"
-	}
+	}]
 }
 ```
 
