@@ -1124,15 +1124,15 @@ in a structured manner.
 
 ###### Requirements
 * every key in the contextActivities object MUST be one of parent, grouping, category, or other.
-* every value in the contextActivities object MUST be either a singleton Activity object or an array of Activity objects.
+* every value in the contextActivities object MUST be either a single Activity object or an array of Activity objects.
 
 ###### Requirements for the client
 * every value in the contextActivities object SHOULD be an array
-of Activity objects instead of a singleton Activity object.
+of Activity objects instead of a single Activity object.
 
 ###### Requirements for the LRS
 * every value in the contextActivities object MUST be returned
-as an array, even if it arrived as a singleton Activity (in which
+as an array, even if it arrived as a single Activity object (in which
 case it MUST be returned as an array of length one containing the same Activity).
 
 ###### Details:
@@ -1161,7 +1161,7 @@ to the exam, and the category is the CMI-5 profile.
 For example: Anna studies a textbook for a biology exam. The statement's
 activity refers to the textbook, and the exam is a context activity of type "other".
 
-Singleton Activity objects are allowed as values so that 0.95 statements will be compatible with 1.0.
+Single Activity objects are allowed as values so that 0.95 statements will be compatible with 1.0.
 
 The values in this section are not for expressing all the relationships the statement object has.
 Instead, they are for expressing relationships appropriate for the specific statement
