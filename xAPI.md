@@ -422,85 +422,32 @@ for requirements, and the UUID must be in standard string form).
 #### 4.1.2 Actor:  
 
 ###### Description: 
-A mandatory Agent or Group object, identified by an "inverse functional identifier".
-
-###### Details: 
-An "inverse functional identifier" is a value shared between multiple Agents that designates these Agents as the same unique identity without doubt.
-
-###### Rationale:
-Learning experiences become meaningless if they cannot be attributed to identifiable individuals and/or groups. In an xAPI statement the required element "Actor" constitutes this identification, loosely inspired on the widely accepted FOAF principle (see: <a href="http://xmlns.com/foaf/spec/#term_Agent"> Friend Of A Friend</a>).
+A mandatory Agent or Group object.
 
 <a name="agent"/>
 ##### 4.1.2.1 Agent
 ###### Description:
-An Agent (an individual) is identified by one of the following: 
-
-* an e-mail address or its hash (cf. 'mbox' and 'mbox_sha1sum' as in FOAF)
-* OpenID
-* an account on an existing system (such as twitter, an intranet or an LMS)
-
+An Agent (an individual) is a persona or system that can be involved in an action.
 
 ###### Details:
 
 An agent...
 
-* MUST be identified by one (1) of the four types of inverse functional identifiers listed in the table below;
+* MUST be identified by one (1) of the four types of inverse functional identifiers (see
+<a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>).
 * MUST NOT include more than one (1) inverse functional identifier;
 * SHOULD NOT use inverse functional identifiers that are also used for any Groups;
 * is an important concept in relation to OAuth, see the section on OAuth for details.
 
-The table below lists all properties of Agent objects. The last four are inverse functional identifiers.
-
+The table below lists the properties of Agent objects, other than the  inverse functional
+identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>).
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a statement's Object.</td></tr>
 	<tr><td>name</td><td>string</td><td>Full name of the Agent. This property is optional.</td></tr>
-	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>
-The local part of the email address must be URI encoded.<br>Only emails that have only ever been and will ever be assigned to this Agent, 
-but no others, should be used for this property and mbox_sha1sum.</td></tr>
-	<tr><td>mbox_sha1sum</td><td>string</td><td>The SHA1 hash of a mailto URI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
-	<tr><td>openID</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
-	<tr><td>account</td><td><a href="#agentaccount">account object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
-
 </table>
 
-<a name="agentaccount"/>
-
-###### Account object
-
-###### Description: 
-
-A user account on an existing system, such as a private system (LMS or intranet) or a public system (social networking site).
-
-###### Details:
-
-* If the system that provides the "account" uses OpenID, the Learning Activity Provider SHOULD use this as the Agent instead of the account object.
-* If the Learning Activity Provider is concerned about revealing personally identifiable information about the Agent, it SHOULD use an opaque account name (for example an account number) to identify all statements about a person while maintaining anonimity.
-
-
-The table below lists all properties of Account objects.
-<table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>homepage</td><td>URL</td><td>The canonical home page for the system the account is on. This is based on FOAF's accountServiceHomePage.</td></tr>
-	<tr><td>name</td><td>string</td><td>The unique ID or name used to log in to this account. This is based 
-			on FOAF's accountName.</td></tr>
-</table>
-
-
-###### Example:
-
-This example uses an opaque account:
-
-```
-{
-	"objectType": "Agent",
-	"account": {
-		"homePage": "http://www.example.com",
-		"name": "1625378"
-	}
-}
-``` 
 
 <a name="group"/>
 ##### 4.1.2.2 Group
@@ -537,27 +484,84 @@ An identified group...
 * MUST NOT contain Group objects in the 'member' property.
 * SHOULD NOT use inverse functional identifiers that are also used for any Agents.
 
-The table below lists all properties of an identified Group. The last four are inverse functional identifiers.
+The table below lists all properties of an identified Group, other than the  inverse functional
+identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>).
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>objectType</td><td>String</td><td>"Group". This property is required.</td></tr>
 	<tr><td>name</td><td>String</td><td>Name of the group. Optional.</td></tr>
 	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td></tr>
-	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>
-The local part of the email address must be URI encoded.<br>Only emails that have only ever been and will ever be assigned to this Group, 
-but no others, should be used for this property and mbox_sha1sum.</td></tr>
-	<tr><td>mbox_sha1sum</td><td>string</td><td>The SHA1 hash of a mailto URI (i.e. the value of an mbox property). An LRS MAY include Groups with a matching hash when a request is based on an mbox.</td></tr>
-	<tr><td>openID</td><td>URI</td><td>An openID that uniquely identifies the Group.</td></tr>
-	<tr><td>account</td><td><a href="#agentaccount">account object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
-
 </table>
 
 A system consuming Statements...
 
-* MUST consider each anonymous Group distinct;
-* MUST NOT assume that Agents in the 'member' property comprise an exact list of agents in a given anonymous or identified Group.
+* MUST consider each anonymous Group distinct even if it has an identical set of members;
+* MUST NOT assume that Agents in the 'member' property comprise an exact list of agents
+in a given anonymous or identified Group.
 
+
+<a name="inversefunctional">
+##### 4.1.2.3 Inverse Functional Identifier
+###### Details: 
+An "inverse functional identifier" is a value of agents or identified
+groups that is guaranteed to only ever refer to that agent or identified group.
+
+###### Rationale:
+Learning experiences become meaningless if they cannot be attributed to identifiable
+individuals and/or groups. In an xAPI statement this is accomplished with a set of
+inverse functional identifiers loosely inspired on the widely accepted FOAF principle
+(see: <a href="http://xmlns.com/foaf/spec/#term_Agent"> Friend Of A Friend</a>).
+
+<table border ="1">
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>
+The local part of the email address must be URI encoded.<br>Only emails that have only ever been and will ever be assigned to this Agent, 
+but no others, should be used for this property and mbox_sha1sum.</td></tr>
+	<tr><td>mbox_sha1sum</td><td>string</td><td>The SHA1 hash of a mailto URI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
+	<tr><td>openID</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
+	<tr><td>account</td><td><a href="#agentaccount">account object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
+</table>
+
+
+<a name="agentaccount"/>
+###### Account object
+
+###### Description: 
+
+A user account on an existing system, such as a private system (LMS or intranet) or a public
+system (social networking site).
+
+###### Details:
+
+* If the system that provides the "account" uses OpenID, the Learning Activity Provider
+SHOULD use the openID property instead of account.
+* If the Learning Activity Provider is concerned about revealing personally identifiable
+information about an Agent or Group, it SHOULD use an opaque account name (for example an
+account number) to identify all statements about a person while maintaining anonimity.
+
+The table below lists all properties of Account objects.
+<table border ="1">
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>homepage</td><td>URL</td><td>The canonical home page for the system the account is on. This is based on FOAF's accountServiceHomePage.</td></tr>
+	<tr><td>name</td><td>string</td><td>The unique ID or name used to log in to this account. This is based 
+			on FOAF's accountName.</td></tr>
+</table>
+
+
+###### Example:
+
+This example shows an agent identified by an opaque account:
+
+```
+{
+	"objectType": "Agent",
+	"account": {
+		"homePage": "http://www.example.com",
+		"name": "1625378"
+	}
+}
+``` 
 
 <a name="verb"/>
 #### 4.1.3 Verb:
@@ -1337,7 +1341,7 @@ that a previously made statement is marked as invalid. This is called ‘voiding
 ###### Requirements
 When issuing a statement that voids another, the object of that voiding statement...
 
-* MUST have the “objectType” field set to “Statement”;
+* MUST have the “objectType” field set to “StatementRef”;
 * MUST specify the ID of the statement-to-be-voided by it’s “id” field.
 
 
@@ -1486,7 +1490,8 @@ in one message;
 described above;
 * MUST reject statements having attachments that do not contain a fileUrl, and do not have a hash matching any raw 
 data received;
-* MUST include attachments in the Transmission Format described above when requested by the client (see query API);
+* MUST include attachments in the Transmission Format described above
+when requested by the client (see section [7.2 "Statement API"](#stmtapi));
 * MUST NOT pull statements from another LRS without requesting attacments;
 * MUST NOT push statements into another LRS without including attachments;
 * MAY reject (batches of) statements that are larger than the LRS is configured to allow;
@@ -1846,12 +1851,12 @@ The means by which this registration is accomplished are not defined by OAuth or
 the  authority  as a group consisting of an Agent representing the registered application, and a Person representing 
 the known user.
 
-###### Application not registered + user unknown
+###### Application registered + user unknown
 
 * LRS will honor requests that are signed using OAuth with the registered application’s credentials and with an empty 
 token and token secret.
 * If this form of authentication is used  to record statements and no  authority  is specified, the LRS should record 
-the  authorityas the Agent representing the registered application.
+the  authority as the Agent representing the registered application.
 
 ###### Application not registered + known user 
 
