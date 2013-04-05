@@ -2164,24 +2164,27 @@ or to list statements based on the parameters passed.
 <a name="queryStatementRef" />
 ###### Note: 
 For filter parameters which are not time or sequence based (that is, other than
-since, until, or limit), statements which target another statement will meet the filter
-condition if the targeted statement meet the condition. The time and sequence based parameters must
-still be applied to the source or "targeting" statement included in this manner. The targeted
-statement refers to any statement included in another statement's object property as a
-statementRef. This rule applies recursively, so that "statement a" is a match when a targets
-b which targets c and the filter conditions described above match for "statement c".
+since, until, or limit), statements which target another statement using StatementRef will meet the filter
+condition if the targeted statement meets the condition. The time and sequence based parameters must
+still be applied to the statement making the StatementRef in this manner. This rule applies recursively,
+so that "statement a" is a match when a targets b which targets c and the filter conditions
+described above match for "statement c".
 
 For example, consider the statement "Ben passed explosives training", and a follow up
-statement: "Andrew confirmed \<statementRef to original statement\>". The follow up
+statement: "Andrew confirmed \<StatementRef to original statement\>". The follow up
 statement will not mention "Ben" or "explosives training", but when fetching statements
 with an actor filter of "Ben" or an activity filter of "explosives training", both
-statements will be returned.
+statements match and will be returned so long as they fall into the time or sequence
+being fetched.
+
+This section does not apply when retrieving statements with statementId or voidedStatementId.
 
 <a name="voidedStatements">
 ###### Voided statements
 The LRS MUST not return any statement which has been voided, unless that statement has been
-requested by voidedStatementId. The LRS MUST still return any statements targetting the voided statement,
-unless they themselves have been voided. This includes the voiding statement, which cannot be voided.
+requested by voidedStatementId. The LRS MUST still return any statements targetting the voided statement
+when retrieving statements using explicit or implicit time or sequence based retrieval,
+unless they themselves have been voided, as described in [the section on filter conditions for StatementRefs](#queryStatementRef). This includes the voiding statement, which cannot be voided.
 Reporting tools can identify the presence and statementId of any voided statements by the target of the voiding 
 statement. Reporting tools wishing to retrieve voided statements SHOULD request these individually by voidedStatementId.
 
