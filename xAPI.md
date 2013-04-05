@@ -208,7 +208,7 @@ OSD, Training Readiness & Strategy (TRS)
 #### 2.2.2 Requirements Gathering Participants  
 In collection of requirements for the Experience API, there were many people and 
 organizations that provided invaluable feedback to SCORM, distributed learning 
-efforts, and learning in general.  Project Tin CAnUser Voice Site, Rustici Software Blog, etc.  
+efforts, and learning in general.  Project Tin Can User Voice Site, Rustici Software Blog, etc.  
 
 ### 2.3 Reading guidelines for the non-technically inclined.
 
