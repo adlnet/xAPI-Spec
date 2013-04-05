@@ -60,22 +60,22 @@
 ## 1.0 Revision History
 ###### 0.8 (Project Tin Can API Deliverable) to 0.9 (March 31, 2012):  
   
-Rustici software, whom delivered Project Tin Can API, made modifications to the 
+Rustici Software, who delivered the Project Tin Can API, made modifications to the 
 API prior to the April 2012 Kickoff Meeting. It was voted in this meeting to 
 move those changes into the current spec and revision to 0.9.
 
 ###### 0.90 to 0.95 (August 31, 2012):  
 
 "Core" verbs and activity types were removed from the specification. References 
-to these verbs in results, context, interactions, and activity definitions have 
-also been removed. It is recommended that implementers prefer community defined 
+to these verbs in results, context, interactions, and activity definitions were 
+also  removed. It was recommended that implementers prefer community defined 
 verbs to creating their own verbs.
 - Verbs, activity types, and extension keys are now URIs
 - Restructured and added language around some of the other implementation 
 details and scope.
 - Changed from using a person-centric view of agents to a persona-centric 
 view.
-- Friend of a Friend (FOAF) agent merging requirement removed.
+- Friend of a Friend (FOAF) agent merging requirement was removed.
 - Agent objects must now have exactly 1 uniquely identifying property, instead 
 of at least one.
 
@@ -90,13 +90,14 @@ Various refinements and clarifications including:
 <a name="roleofxapi"/>
 ## 2.0 Role of the Experience API  
 The Experience API is a service that allows for statements of experience 
-(typically learning experiences, but could be any experience) to be delivered 
-to and stored securely in a Learning Record Store. The Experience API is 
+(typically learning experiences, but potentially any type of experience) to be delivered 
+to, stored securely in, and retrieved from a Learning Record Store (LRS). The Experience API is 
 dependent on Learning Activity Providers to create and track learning experiences; 
 this specification provides a data model and associated components on how to 
 accomplish these tasks.  
+
 Specifically, the Experience API provides:  
-- Structure and definition of statement, state, learner, activity and objects, 
+- The structure and definition of statement, state, learner, activity and objects, 
 which are the means by which experiences are conveyed by a Learning Activity Provider.
 - Data Transfer methods for the storage and retrieval (but not validation) of 
 these objects to/from a Learning Record Store.  Note that the systems storing 
@@ -106,9 +107,9 @@ communicate with other LRSs, or reporting systems.
 the Learning Record Store and trusted sources.  
 
 The Experience API is the first of many potential specifications that will merge 
-to create a higher architecture of online learning and training. Authentication 
+to create a higher architecture for online learning and training. Authentication 
 services, querying services, visualization services, and personal data services 
-are some examples of additional components that the Experience API is designing 
+are some examples of additional components that the Experience API is designed 
 to work alongside. While the implementation details of these services are not 
 specified here, the Experience API is designed with these components in mind.  
  
@@ -207,16 +208,16 @@ OSD, Training Readiness & Strategy (TRS)
 #### 2.2.2 Requirements Gathering Participants  
 In collection of requirements for the Experience API, there were many people and 
 organizations that provided invaluable feedback to SCORM, distributed learning 
-efforts, and learning in general.  User Voice Site, Rustici Blog, etc.  
+efforts, and learning in general.  Project Tin Can User Voice Site, Rustici Software Blog, etc.  
 
 ### 2.3 Reading guidelines for the non-technically inclined.
 
 Since you’re reading this document, it’s probably safe to say that you’re interested in understanding 
-the Experience API, informally called TinCan. The purpose of this document is to describe how the xAPI is 
+the Experience API (xAPI), informally called the "Tin Can API". The purpose of this document is to describe how the xAPI is 
 implemented in a large variety of systems. It’s a fairly technical document by nature and you may
 decide that you don’t understand much of it. Even so, there are useful things to learn by reading further. Not only
 because the tools that you work with are based on the specifications described below; the technical people that you
-talk to may assume that you have a basic level of knowledge. Exactly for this reason you’re advised to read the small
+talk to may assume that you have a basic level of knowledge. For this reason you’re advised to read the small
 sections labeled ‘description’ and ‘rationale’ while skipping the ‘details’ and ‘examples’. Needless to say, many
 other sources can be found that explain xAPI very well, but this document is the core of them all.
 
@@ -246,15 +247,15 @@ other sources can be found that explain xAPI very well, but this document is the
 __Activity__: A thing with which to be interacted. An activity can be a unit of 
 instruction, experience, or performance that is to be tracked in meaningful combination with a verb. 
 Interpretation of ‘Activity’ is broad, meaning that activities can even be tangible objects. In the statement
-“Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the xAPI statement. 
-E.g. a book, an e-learning course, a hike, a meeting.
+“Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the xAPI statement.
+Other examples include a book, an e-learning course, a hike or a meeting.
 
 <a name="def-authentication" />
-__Authentication__: The concept of verifying the identity of a user or system. This 
+__Authentication__: The concept of verifying the identity of a user or system. Authentication 
 allows interactions between the two “trusted” parties.
 
 <a name="def-authorization" />
-__Authorization__: The affordance of permissions based on a user or system's role: 
+__Authorization__: The affordance of permissions based on a user or system's role; 
 the process of making one user or system "trusted" by another.
 
 <a name="def-community-of-practice" />
@@ -270,7 +271,7 @@ regardless of the platform used.
 <a name ="def-immutable" />
 __Immutable__:  Adjective used  describe things which cannot be changed. With 
 some exceptions, statements in the xAPI are immutable. This ensures that when 
-statements are shared between LRS, multiple copies of the statement remain
+statements are shared between LRSs, multiple copies of the statement remain
 the same.
 
 <a name="def-inverse-functinal-identifier" />
@@ -280,24 +281,24 @@ __Inverse Functional Identifier__: An identifier which is unique to a particular
 <a name="def-activity-provider" />
 __Learning Activity Provider (AP)__: The software object that is communicating with 
 the LRS to record information about a learning experience. May be similar to a SCORM 
-package as it is possible to bundle assets with the software object that does this 
-communication, but may also be separate from the experience it is reporting about.
+package in that it is possible to bundle learning assets with the software object that performs this 
+communication, but an Activity Provider may also be separate from the experience it is reporting about.
 
 <a name="def-learning-management-system" />
 __Learning Management System (LMS)__: Provides the tracking functionality of an LRS, 
 but provides additional administrative and reporting functionality. In this document 
 the term will be used when talking about existing systems that implement learning 
 standards. The xAPI can work independently of an LMS, but is built with knowledge 
-of the suite of services an LMS provides.
+of the suite of services an LMS typically provides.
 
 <a name="def-learning-record-store" />
 __Learning Record Store (LRS)__: A system that stores learning information. Prior to the xAPI 
-most LRSs are Learning Management Systems (LMSs), however this document uses the term 
+most LRSs were Learning Management Systems (LMSs), however this document uses the term 
 LRS to be clear that a full LMS is not necessary to implement the xAPI. The xAPI 
 is dependent on an LRS to function.
 
 <a name="def-must-should-may" />
-__MUST / SHOULD / MAY__: Three levels of obligation with regards to conformity. A system that fails to implement a MUST (or a MUST NOT) is non-conformant. Failing to meet a SHOULD is not a violation of conformity, but goes against best practices. MAY equals an option, to be decided by the developer with no consequences for conformity.
+__MUST / SHOULD / MAY__: Three levels of obligation with regards to conformance to the xAPI specification. A system that fails to implement a MUST (or a MUST NOT) requirement is non-conformant. Failing to meet a SHOULD requirement is not a violation of conformity, but goes against best practices. MAY indicates an option, to be decided by the developer with no consequences for conformity.
 
 <a name="def-profile" />
 __Profile__: A construct where information about the learner or activity is kept, 
@@ -305,7 +306,7 @@ typically in name/document pairs that have meaning to an instructional system co
 
 <a name="def-registration" />
 __Registration__: When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration, 
-an instance of a learner signing up for a particular learning activity. See [section 4.1.6](#context).
+an instance of a learner experiencing a particular learning activity. See [section 4.1.6](#context).
 
 <a name="def-service" />
 __Service__: A software component responsible for one or more aspects of the distributed 
@@ -313,9 +314,9 @@ learning process. An LMS typically combines many services to design a complete l
 experience.
 
 <a name="def-state" />
-__State__: Similar to SCORM suspend data, but allows storage of arbitrary key/document 
+__State__: Similar to SCORM suspend data, State allows storage of arbitrary key/document 
 pairs. The LRS does not have to retain state once the learning experience is considered 
-"done" (LRS has closed its "registration").
+"done" (the LRS has closed its "registration").
 
 <a name="def-statement" />
 __Statement__: A simple statement consisting of ```<Actor (learner)>``` ```<verb>``` ```<object>```, 
@@ -323,15 +324,15 @@ with ```<result>```, in ```<context>``` to track an aspect of a learning experie
 several statements may be used to track complete details about a learning experience.
 
 <a name="tcapi"/>
-__Tin Can API (TCAPI)__: The previous name of the API defined in this document.  
+__Tin Can API (TCAPI)__: The previous name of the API defined in this document, often used in informal references to teh xAPI.  
 
 <a name="def-uri" />
-__URI__: Uniform Resource Identifier. A unique identifier which may be a URL. This should be a full absolute URI including a scheme. Relative URIs should not be used. URLs should be defined within a domain controlled by the person creating the URL. 
+__URI__: Uniform Resource Identifier. A unique identifier which may be a URL. In the xAPI, all URIs should be a full absolute URI including a scheme. Relative URIs should not be used. URLs should be defined within a domain controlled by the person creating the URL. 
 
 <a name="statement"/> 
 ## 4.0 Statement  
-The statement is the core of the xAPI.  All learning events are stored as statements 
-such as: "I did this".  
+The statement is the core of the xAPI. All learning events are stored as statements.
+A statement is akin to a sentence of the form "I did this".
 
 <a name="stmtprops"/>
 ### 4.1 Statement Properties:  
@@ -345,19 +346,19 @@ below.
 	<td>UUID assigned by LRS if not set by the Learning Activity Provider.</td></tr>
 	<tr><td><a href="#actor">actor</a></td><td>Object</td><td></td>
 	<td>Who the statement is about, as an <a href="#agent">Agent</a> or 
-		<a href="#group">Group</a> object. 'I'</td></tr>
+		<a href="#group">Group</a> object. Represents the "I" in "I Did This".</td></tr>
 	<tr><td><a href="#verb">verb</a></td><td>Object</td><td></td>
-	<td>Action of the Learner or Team object. "Did".</td></tr>
+	<td>Action of the Learner or Team object. Represents the "Did" in "I Did This".</td></tr>
 	<tr><td><a href="#object">object</a></td><td>Object</td><td></td>
-	<td>Activity, agent, or another statement that is the object of the statement, 
-	"this". Note that objects which are provided as a value for this field should 
+	<td>Activity, agent, or another statement that is the object of the statement. 
+	Represents the "This" in "I Did This". Note that objects which are provided as a value for this field should 
 	include a "objectType" field. If not specified, the object is assumed to be 
 	an activity.</td></tr>
 	<tr><td><a href="#result">result</a></td><td>Object</td><td></td>
-	<td>Result object, further details relevant to the specified verb.</td></tr>
+	<td>Result object, further details representing a measured outcome relevant to the specified verb.</td></tr>
 	<tr><td><a href="#context">context</a></td><td>Object</td><td></td>
-	<td>Context that gives the statement more meaning. Examples: Team actor is 
-	working with, altitude in a flight simulator.</td></tr>
+	<td>Context that gives the statement more meaning. Examples: a team the actor is 
+	working with, altitude at which a scenario was attempted in a flight simulator.</td></tr>
 	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td><td></td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
 	of when what this statement describes happened. If not provided, LRS 
@@ -366,10 +367,10 @@ below.
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
 	of when this statement was recorded. Set by LRS.</td></tr>
 	<tr><td><a href="#authority">authority</a></td><td>Object</td><td></td>
-	<td>Agent who is asserting this statement is true. Verified by LRS based on 
+	<td>Agent who is asserting this statement is true. Verified by the LRS based on 
 	authentication, and set by LRS if left blank.</td></tr>
 	<tr><td><a href="#version">version</a></td><td>String</td><td>"1.0"</td>
-	<td>API version the statement conforms to. Set by LRS.</td></tr>
+	<td>xAPI version the statement conforms to. Set by LRS.</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
 		<td>Array of attachment objects</td>
@@ -379,14 +380,14 @@ below.
 </table>  
 Aside from (potential or required) assignments of properties during initial 
 processing ("id", "authority", "stored", "timestamp") statements are immutable. Note that the content of 
-activities that are referenced in statements are not considered part of the 
+activities that are referenced in statements is not considered part of the 
 statement itself. So while the statement is immutable, the activities referenced 
 by that statement are not. This means a deep serialization of a statement into 
 JSON will change if the referenced activities change (see the
 [Statement API's](#stmtapi) 'format' parameter for details).  
 
  
-Simplest possible statement using all properties that MUST or SHOULD be used:  
+An example of the simplest possible statement using all properties that MUST or SHOULD be used:  
 ```
 {
 	"id": "12345678-1234-5678-1234-567812345678",
