@@ -2184,9 +2184,11 @@ This section does not apply when retrieving statements with statementId or voide
 The LRS MUST not return any statement which has been voided, unless that statement has been
 requested by voidedStatementId. The LRS MUST still return any statements targetting the voided statement
 when retrieving statements using explicit or implicit time or sequence based retrieval,
-unless they themselves have been voided, as described in [the section on filter conditions for StatementRefs](#queryStatementRef). This includes the voiding statement, which cannot be voided.
-Reporting tools can identify the presence and statementId of any voided statements by the target of the voiding 
-statement. Reporting tools wishing to retrieve voided statements SHOULD request these individually by voidedStatementId.
+unless they themselves have been voided, as described in
+[the section on filter conditions for StatementRefs](#queryStatementRef). This includes the
+voiding statement, which cannot be voided. Reporting tools can identify the presence and
+statementId of any voided statements by the target of the voiding statement. Reporting 
+tools wishing to retrieve voided statements SHOULD request these individually by voidedStatementId.
 
 <a name="docapis"/> 
 ### 7.3 Document APIs:
