@@ -247,7 +247,7 @@ other sources can be found that explain xAPI very well, but this document is the
 __Activity__: A thing with which to be interacted. An activity can be a unit of 
 instruction, experience, or performance that is to be tracked in meaningful combination with a verb. 
 Interpretation of ‘Activity’ is broad, meaning that activities can even be tangible objects. In the statement
-“Anna tried a cake recipe”: the cake recipe constitutes the Activity in terms of the xAPI statement. 
+“Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the xAPI statement.
 Other examples include a book, an e-learning course, a hike or a meeting.
 
 <a name="def-authentication" />
@@ -331,7 +331,8 @@ __URI__: Uniform Resource Identifier. A unique identifier which may be a URL. In
 
 <a name="statement"/> 
 ## 4.0 Statement  
-The statement is the core of the xAPI. All learning events are stored as statements. A statement is akin to a sentence of the form "I did this".  
+The statement is the core of the xAPI. All learning events are stored as statements.
+A statement is akin to a sentence of the form "I did this".
 
 <a name="stmtprops"/>
 ### 4.1 Statement Properties:  
@@ -422,85 +423,32 @@ for requirements, and the UUID must be in standard string form).
 #### 4.1.2 Actor:  
 
 ###### Description: 
-A mandatory Agent or Group object, identified by an "inverse functional identifier".
-
-###### Details: 
-An "inverse functional identifier" is a value shared between multiple Agents that designates these Agents as the same unique identity without doubt.
-
-###### Rationale:
-Learning experiences become meaningless if they cannot be attributed to identifiable individuals and/or groups. In an XAPI statement the required element "Actor" constitutes this identification, loosely inspired on the widely accepted FOAF principle (see: <a href="http://xmlns.com/foaf/spec/#term_Agent"> Friend Of A Friend</a>).
+A mandatory Agent or Group object.
 
 <a name="agent"/>
 ##### 4.1.2.1 Agent
 ###### Description:
-An Agent (an individual) is identified by one of the following: 
-
-* an e-mail address or its hash (cf. 'mbox' and 'mbox_sha1sum' as in FOAF)
-* OpenID
-* an account on an existing system (such as twitter, an intranet or an LMS)
-
+An Agent (an individual) is a persona or system that can be involved in an action.
 
 ###### Details:
 
 An agent...
 
-* MUST be identified by one (1) of the four types of inverse functional identifiers listed in the table below;
+* MUST be identified by one (1) of the four types of inverse functional identifiers (see
+<a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>).
 * MUST NOT include more than one (1) inverse functional identifier;
 * SHOULD NOT use inverse functional identifiers that are also used for any Groups;
 * is an important concept in relation to OAuth, see the section on OAuth for details.
 
-The table below lists all properties of Agent objects. The last four are inverse functional identifiers.
-
+The table below lists the properties of Agent objects, other than the  inverse functional
+identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>).
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a statement's Object.</td></tr>
 	<tr><td>name</td><td>string</td><td>Full name of the Agent. This property is optional.</td></tr>
-	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>
-The local part of the email address must be URI encoded.<br>Only emails that have only ever been and will ever be assigned to this Agent, 
-but no others, should be used for this property and mbox_sha1sum.</td></tr>
-	<tr><td>mbox_sha1sum</td><td>string</td><td>The SHA1 hash of a mailto URI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
-	<tr><td>openID</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
-	<tr><td>account</td><td><a href="#agentaccount">account object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
-
 </table>
 
-<a name="agentaccount"/>
-
-###### Account object
-
-###### Description: 
-
-A user account on an existing system, such as a private system (LMS or intranet) or a public system (social networking site).
-
-###### Details:
-
-* If the system that provides the "account" uses OpenID, the Learning Activity Provider SHOULD use this as the Agent instead of the account object.
-* If the Learning Activity Provider is concerned about revealing personally identifiable information about the Agent, it SHOULD use an opaque account name (for example an account number) to identify all statements about a person while maintaining anonimity.
-
-
-The table below lists all properties of Account objects.
-<table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>homepage</td><td>URL</td><td>The canonical home page for the system the account is on. This is based on FOAF's accountServiceHomePage.</td></tr>
-	<tr><td>name</td><td>string</td><td>The unique ID or name used to log in to this account. This is based 
-			on FOAF's accountName.</td></tr>
-</table>
-
-
-###### Example:
-
-This example uses an opaque account:
-
-```
-{
-	"objectType": "Agent",
-	"account": {
-		"homePage": "http://www.example.com",
-		"name": "1625378"
-	}
-}
-``` 
 
 <a name="group"/>
 ##### 4.1.2.2 Group
@@ -537,27 +485,84 @@ An identified group...
 * MUST NOT contain Group objects in the 'member' property.
 * SHOULD NOT use inverse functional identifiers that are also used for any Agents.
 
-The table below lists all properties of an identified Group. The last four are inverse functional identifiers.
+The table below lists all properties of an identified Group, other than the  inverse functional
+identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>).
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>objectType</td><td>String</td><td>"Group". This property is required.</td></tr>
 	<tr><td>name</td><td>String</td><td>Name of the group. Optional.</td></tr>
 	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td></tr>
-	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>
-The local part of the email address must be URI encoded.<br>Only emails that have only ever been and will ever be assigned to this Group, 
-but no others, should be used for this property and mbox_sha1sum.</td></tr>
-	<tr><td>mbox_sha1sum</td><td>string</td><td>The SHA1 hash of a mailto URI (i.e. the value of an mbox property). An LRS MAY include Groups with a matching hash when a request is based on an mbox.</td></tr>
-	<tr><td>openID</td><td>URI</td><td>An openID that uniquely identifies the Group.</td></tr>
-	<tr><td>account</td><td><a href="#agentaccount">account object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
-
 </table>
 
 A system consuming Statements...
 
-* MUST consider each anonymous Group distinct;
-* MUST NOT assume that Agents in the 'member' property comprise an exact list of agents in a given anonymous or identified Group.
+* MUST consider each anonymous Group distinct even if it has an identical set of members;
+* MUST NOT assume that Agents in the 'member' property comprise an exact list of agents
+in a given anonymous or identified Group.
 
+
+<a name="inversefunctional">
+##### 4.1.2.3 Inverse Functional Identifier
+###### Details: 
+An "inverse functional identifier" is a value of agents or identified
+groups that is guaranteed to only ever refer to that agent or identified group.
+
+###### Rationale:
+Learning experiences become meaningless if they cannot be attributed to identifiable
+individuals and/or groups. In an xAPI statement this is accomplished with a set of
+inverse functional identifiers loosely inspired on the widely accepted FOAF principle
+(see: <a href="http://xmlns.com/foaf/spec/#term_Agent"> Friend Of A Friend</a>).
+
+<table border ="1">
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>
+The local part of the email address must be URI encoded.<br>Only emails that have only ever been and will ever be assigned to this Agent, 
+but no others, should be used for this property and mbox_sha1sum.</td></tr>
+	<tr><td>mbox_sha1sum</td><td>string</td><td>The SHA1 hash of a mailto URI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
+	<tr><td>openID</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
+	<tr><td>account</td><td><a href="#agentaccount">account object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
+</table>
+
+
+<a name="agentaccount"/>
+###### Account object
+
+###### Description: 
+
+A user account on an existing system, such as a private system (LMS or intranet) or a public
+system (social networking site).
+
+###### Details:
+
+* If the system that provides the "account" uses OpenID, the Learning Activity Provider
+SHOULD use the openID property instead of account.
+* If the Learning Activity Provider is concerned about revealing personally identifiable
+information about an Agent or Group, it SHOULD use an opaque account name (for example an
+account number) to identify all statements about a person while maintaining anonimity.
+
+The table below lists all properties of Account objects.
+<table border ="1">
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>homepage</td><td>URL</td><td>The canonical home page for the system the account is on. This is based on FOAF's accountServiceHomePage.</td></tr>
+	<tr><td>name</td><td>string</td><td>The unique ID or name used to log in to this account. This is based 
+			on FOAF's accountName.</td></tr>
+</table>
+
+
+###### Example:
+
+This example shows an agent identified by an opaque account:
+
+```
+{
+	"objectType": "Agent",
+	"account": {
+		"homePage": "http://www.example.com",
+		"name": "1625378"
+	}
+}
+``` 
 
 <a name="verb"/>
 #### 4.1.3 Verb:
@@ -1111,56 +1116,91 @@ Experience API purposes, a registration may be applied more broadly; an LMS coul
 group of activities and track all related statements in one registration.
 
 <a name="contextActivities"/>
-##### 4.1.6.2 Context activities property
+##### 4.1.6.2 contextActivities property
 
 ###### Description: 
-A map of the types of context to ids of learning activities, or a learning activity this statement is related to.
+A map of the types of learning activity context that this statement is related to.
 
 ###### Rationale: 
-Many activities are not autonomous or stand-alone, but form a part in a larger logical group of activities. "Context 
-activities" allow for these larger activities to be represented in a structured manner.
+Many statements do not just involve one object activity that is the focus,
+but relate to other contextually relevant activities.
+"Context activities" allow for these related activities to be represented
+in a structured manner.
+
+###### Requirements
+* every key in the contextActivities object MUST be one of parent, grouping, category, or other.
+* every value in the contextActivities object MUST be either a single Activity object or an array of Activity objects.
+
+###### Requirements for the client
+* every value in the contextActivities object SHOULD be an array
+of Activity objects instead of a single Activity object.
+
+###### Requirements for the LRS
+* every value in the contextActivities object MUST be returned
+as an array, even if it arrived as a single Activity object (in which
+case it MUST be returned as an array of length one containing the same Activity).
 
 ###### Details:
-There are three valid context types. All, any or none of these MAY be used in a given statement:
+There are four valid context types. All, any or none of these MAY be used in a given statement:
 
-1. __Parent__ : an activity with a direct relation to the activity which is the object of the statement.
-For example: a statement about a quiz question would have the quiz as its parent activity.
+1. __Parent__ : an activity with a direct relation to the activity
+which is the object of the statement. In almost all cases there
+is only one sensible parent or none, not multiple.
+For example: a statement about a quiz question would have the quiz
+as its parent activity.
  
-2. __Grouping__ : an activity with an indirect relation to the activity which is the object of the statement.
-For example: a course that is part of a qualification. The course has several classes. The course relates to a class 
-as the parent, the qualification relates to the class as the grouping.
+2. __Grouping__ : an activity with an indirect relation to the activity
+which is the object of the statement.
+For example: a course that is part of a qualification. The course
+has several classes. The course relates to a class as the parent,
+the qualification relates to the class as the grouping.
 
-3. __Category__ : an activity used to categorize the statement. "Tags" would be a synonym. Main driver is to have a 
-4. way to get "profile" in the statement in a searchable way, but this includes more general categories of statements.
+3. __Category__ : an activity used to categorize the statement.
+"Tags" would be a synonym. Category SHOULD be used to indicate
+a "profile" of xAPI behaviors, as well as other categorizations.
+For example: Anna attempts a biology exam, and the statement is
+tracked using the CMI-5 profile. The statement's activity refers
+to the exam, and the category is the CMI-5 profile.
 
-For example: Anna attempts a bilogy exam, and the statement is tracked using the CMI-5 profile.
-The statement's activity refers to the exam, and the category is the CMI-5 profile.
+5. __Other__ : a context activity that doesn't fit one of the other fields.
+For example: Anna studies a textbook for a biology exam. The statement's
+activity refers to the textbook, and the exam is a context activity of type "other".
 
-4. __Other__ : a context activity that doesn't fit one of the other fields.
-For example: Anna studies a textbook for a biology exam. The statement's activity refers to the textbook, and the 
-exam is a context activity of type "other".
+Single Activity objects are allowed as values so that 0.95 statements will be compatible with 1.0.
+
+The values in this section are not for expressing all the relationships the statement object has.
+Instead, they are for expressing relationships appropriate for the specific statement
+(though the nature of the object will often be important in determining that).
+For instance, it is appropriate in a statement about a test to include the course
+the test is part of as parent, but not to include every possible degree
+program the course could be part of in the grouping value.
 
 ###### Example I:
 
 ```
 {
-	"other" : {
+	"other" : [{
 	"id" : "http://example.adlnet.gov/xapi/example/test"
-	}
+	}]
 }
 ```
 ###### Example II: 
-Consider the following hierarchical structure: "Questions 1 to 6" are part of "Test 1" which in turn belongs to the course "Algebra 1". 
-The six questions are registered as part of the test by declaring "Test 1" as their parent. Also they are grouped with other statements about "Algebra 1" to fully mirror the hierarchy. This is particularly useful with the object of the statement is an agent, not an activity. "Andrew mentored Ben with context Algebra I".
+Consider the following hierarchical structure: "Questions 1 to 6"
+are part of "Test 1" which in turn belongs to the course "Algebra 1". 
+The six questions are registered as part of the test by declaring
+"Test 1" as their parent. Also they are grouped with other statements
+about "Algebra 1" to fully mirror the hierarchy. This is particularly
+useful with the object of the statement is an agent, not an activity.
+"Andrew mentored Ben with context Algebra I".
 
 ```
 {
-	"parent" : {
+	"parent" : [{
 	"id" : "http://example.adlnet.gov/xapi/example/test 1"
-	},
-	"grouping" : {
+	}],
+	"grouping" : [{
 	"id" : "http://example.adlnet.gov/xapi/example/Algebra1"
-	}
+	}]
 }
 ```
 
@@ -1265,7 +1305,7 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 	"member": [
 		{
 			"account": {
-				"homePage":"http://example.com/XAPI/OAuth/Token",
+				"homePage":"http://example.com/xAPI/OAuth/Token",
 				"name":"oauth_consumer_x75db"
 			}
 		},
@@ -1289,7 +1329,7 @@ that a previously made statement is marked as invalid. This is called ‘voiding
 ###### Requirements
 When issuing a statement that voids another, the object of that voiding statement...
 
-* MUST have the “objectType” field set to “Statement”;
+* MUST have the “objectType” field set to “StatementRef”;
 * MUST specify the ID of the statement-to-be-voided by it’s “id” field.
 
 
@@ -1438,7 +1478,8 @@ in one message;
 described above;
 * MUST reject statements having attachments that do not contain a fileUrl, and do not have a hash matching any raw 
 data received;
-* MUST include attachments in the Transmission Format described above when requested by the client (see query API);
+* MUST include attachments in the Transmission Format described above
+when requested by the client (see section [7.2 "Statement API"](#stmtapi));
 * MUST NOT pull statements from another LRS without requesting attacments;
 * MUST NOT push statements into another LRS without including attachments;
 * MAY reject (batches of) statements that are larger than the LRS is configured to allow;
@@ -1698,7 +1739,7 @@ Converting statements to other versions:
 <a name="concurrency"/> 
 ### 6.3 Concurrency:
 In order to prevent "lost edits" due to API consumers PUT-ing changes based on 
-old data, XAPI will use HTTP 1.1 entity tags 
+old data, xAPI will use HTTP 1.1 entity tags 
 ([ETags](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19)) 
 to implement optimistic concurrency control in the portions of the API 
 where PUT may overwrite existing data. (State API, Actor and Activity 
@@ -1725,7 +1766,7 @@ In either of the above cases, if the header precondition specified fails,
 the LRS must return HTTP status 412 "Precondition Failed", and make no 
 modification to the resource.  
 
-XAPI consumers should use these headers to avoid concurrency problems. The State 
+xAPI consumers should use these headers to avoid concurrency problems. The State 
 API will permit PUT statements without concurrency headers, since state conflicts 
 are unlikely. For other APIs that use PUT (Actor and Activity Profile), the 
 headers are required. If a PUT request is received without either header for a 
@@ -1761,7 +1802,7 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 <tr>
 <td>Application is registered</td>
 <td>Standard workflow for OAuth.</td>
-<td>LRS trusts application to access XAPI without additional user credentials. OAuth token steps are not invoked</td>
+<td>LRS trusts application to access xAPI without additional user credentials. OAuth token steps are not invoked</td>
 </tr>
 <tr>
 <td>Application is not registered</td>
@@ -1789,7 +1830,7 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 * The LRS must record the application's name and a unique consumer key (identifier);
 * The LRS must provide a mechanism to complete this registration, or delegate to another system that provides such 
 a mechanism;
-The means by which this registration is accomplished are not defined by OAuth or the XAPI.
+The means by which this registration is accomplished are not defined by OAuth or the xAPI.
 
 ###### Application registered + known user
 
@@ -1798,12 +1839,12 @@ The means by which this registration is accomplished are not defined by OAuth or
 the  authority  as a group consisting of an Agent representing the registered application, and a Person representing 
 the known user.
 
-###### Application not registered + user unknown
+###### Application registered + user unknown
 
 * LRS will honor requests that are signed using OAuth with the registered application’s credentials and with an empty 
 token and token secret.
 * If this form of authentication is used  to record statements and no  authority  is specified, the LRS should record 
-the  authorityas the Agent representing the registered application.
+the  authority as the Agent representing the registered application.
 
 ###### Application not registered + known user 
 
@@ -1832,7 +1873,7 @@ challenge.
 
 Requirements for the LRS:
 
-* MUST be able to be configured for complete support of the XAPI 
+* MUST be able to be configured for complete support of the xAPI 
 	* With any of the above methods;
 	* In any of the workflow scenarios above.
 * MAY (for security reasons): 
@@ -1852,7 +1893,7 @@ minimal needed scopes, to increase the chances that the request will be granted.
 
 LRSs are not required to support any of these scopes except “all”. These are 
 recommendations for scopes which should enable an LRS and an application 
-communicating using the XAPI to negotiate a level of access which accomplishes 
+communicating using the xAPI to negotiate a level of access which accomplishes 
 what the application needs while minimizing the potential for misuse. The 
 limitations of each scope are in addition to any security limitations placed on 
 the user account associated with the request.  
@@ -1862,7 +1903,7 @@ but the LRS would still limit that tool to statements that the instructor
 could read if querying the LRS with their credentials directly (such as 
 statements relating to their students).  
 
-XAPI scope values:  
+xAPI scope values:  
 <table>
 	<tr><th>Scope</th><th>Permission</th></tr>
 	<tr><td>statements/write</td><td>write any statement</td></tr>
@@ -1916,28 +1957,28 @@ parameters, not in the OAuth header.
 	<tr>
 		<td>Temporary Credential Request</td>
 		<td>OAuth/initiate</td>
-		<td>http://example.com/XAPI/OAuth/initiate</td>
+		<td>http://example.com/xAPI/OAuth/initiate</td>
 	</tr>
 	<tr>
 		<td>Resource Owner Authorization</td>
 		<td>OAuth/authorize</td>
-		<td>http://example.com/XAPI/OAuth/authorize</td>
+		<td>http://example.com/xAPI/OAuth/authorize</td>
 	</tr>
 	<tr>
 		<td>Token Request</td>
 		<td>OAuth/token</td>
-		<td>http://example.com/XAPI/OAuth/token </td>
+		<td>http://example.com/xAPI/OAuth/token </td>
 	</tr>
 </table>
 
 <a name="datatransfer"/> 
 ## 7.0 Data Transfer (REST)
-This section describes The XAPI consists of 4 sub-APIs: statement, state, 
+This section describes The xAPI consists of 4 sub-APIs: statement, state, 
 learner, and activity profile. The four sub-APIs of the Experience API 
 are handled via RESTful HTTP methods. The statement API can be used by itself 
 to track learning records.  
 
-Note: In all of the example endpoints given in the specification, "http://example.com/XAPI/"
+Note: In all of the example endpoints given in the specification, "http://example.com/xAPI/"
 is the example URL of the LRS and everything after this represents the endpoint which MUST
 be used. 
 
@@ -1980,7 +2021,7 @@ unexpected exception in processing on the server.
 The basic communication mechanism of the Experience API.  
 
 ###### PUT statements
-Example endpoint: http://example.com/XAPI/statements
+Example endpoint: http://example.com/xAPI/statements
 
 Stores statement with the given ID. This MUST NOT modify an existing statement. 
 If the statement ID already exists, the receiving system SHOULD verify the 
@@ -1999,7 +2040,7 @@ Returns: 204 No Content
 </table>
 
 ###### POST statements
-Example endpoint: http://example.com/XAPI/statements
+Example endpoint: http://example.com/xAPI/statements
 
 Stores a statement, or a set of statements. Since the PUT method targets a specific 
 statement ID, POST must be used rather than PUT to save multiple statements, or to 
@@ -2012,7 +2053,7 @@ that provide a lot of data to the LRS.
 Returns: 200 OK, statement ID(s) (UUID).  
 
 ###### GET statements
-Example endpoint: http://example.com/XAPI/statements
+Example endpoint: http://example.com/xAPI/statements
 
 This method may be called to fetch a single statement or multiple statements. If the
 statementId or voidedStatementId parameter is specified a single statement is returned.
@@ -2169,19 +2210,19 @@ prior knowledge of the activity and/or agent.
 		<td>State API</td>
 		<td>POST</td>
 		<td>activities/state</td>
-		<td>http://example.com/XAPI/activities/state</td>
+		<td>http://example.com/xAPI/activities/state</td>
 	</tr>
 	<tr>
 		<td>Activity Profile API</td>
 		<td>POST</td>
 		<td>activities/profile</td>
-		<td>http://example.com/XAPI/activities/profile</td>
+		<td>http://example.com/xAPI/activities/profile</td>
 	</tr>
 	<tr>
 		<td>Agent Profile API</td>
 		<td>POST</td>
 		<td>agent/profile</td>
-		<td>http://example.com/XAPI/agents/profile</td>
+		<td>http://example.com/xAPI/agents/profile</td>
 	</tr>
 </table>
 
@@ -2249,7 +2290,7 @@ available IDs, and DELETE will delete all state in the context given through the
 other parameters.  
 
 ###### PUT | POST | GET | DELETE activities/state
-Example endpoint: http://example.com/XAPI/activities/state
+Example endpoint: http://example.com/xAPI/activities/state
 
 Stores, fetches, or deletes the document specified by the given stateId that 
 exists in the context of the specified activity, agent, and registration (if specified).  
@@ -2272,7 +2313,7 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - State Content
 </table>
 
 ###### GET activities/state
-Example endpoint: http://example.com/XAPI/activities/state
+Example endpoint: http://example.com/xAPI/activities/state
 
 Fetches IDs of all state data for this context (activity + agent \[ + 
 registration if specified\]). If “since” parameter is specified, this 
@@ -2297,7 +2338,7 @@ Returns: 200 OK, Array of IDs
 </table>
 
 ###### DELETE activities/state
-Example endpoint: http://example.com/XAPI/activities/state
+Example endpoint: http://example.com/xAPI/activities/state
 
 Deletes all state data for this context (activity + agent \[+ registration if 
 specified\]).  
@@ -2332,7 +2373,7 @@ The Activity Profile API also includes a method to retrieve a full description
 of an activity from the LRS.  
 
 ###### GET activities
-Example endpoint: http://example.com/XAPI/activities
+Example endpoint: http://example.com/xAPI/activities
 
 Loads the complete activity object specified.  
 
@@ -2345,7 +2386,7 @@ Returns: 200 OK - Content
 </table>
 
 ###### PUT | POST | GET | DELETE activities/profile
-Example endpoint: http://example.com/XAPI/activities/profile
+Example endpoint: http://example.com/xAPI/activities/profile
 
 Saves/retrieves/deletes the specified profile document in the context of the 
 specified activity.  
@@ -2362,7 +2403,7 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content
 </table>
 
 ###### GET activities/profile
-Example endpoint: http://example.com/XAPI/activities/profile
+Example endpoint: http://example.com/xAPI/activities/profile
 
 Loads IDs of all profile entries for an activity. If "since" parameter is 
 specified, this is limited to entries that have been stored or updated since 
@@ -2394,7 +2435,7 @@ combined information about an Agent derived from an outside service, such as a
 directory service.  
 
 ###### GET agents
-Example endpoint: http://example.com/XAPI/agents
+Example endpoint: http://example.com/xAPI/agents
 
 Return a special, Person object for a specified agent. The Person object is 
 very similar to an Agent object, but instead of each attribute having a single 
@@ -2455,7 +2496,7 @@ Returns: 200 OK - Expanded Agent Object
 </table>  
 
 ###### PUT | POST | GET | DELETE agents/profile
-Example endpoint: http://example.com/XAPI/agents/profile
+Example endpoint: http://example.com/xAPI/agents/profile
 
 Saves/retrieves/deletes the specified profile document in the context of the 
 specified agent.  
@@ -2473,7 +2514,7 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content
 </table>  
 
 ###### GET agents/profile
-Example endpoint: http://example.com/XAPI/agents/profile
+Example endpoint: http://example.com/xAPI/agents/profile
 
 Loads IDs of all profile entries for an agent. If "since" parameter is specified, 
 this is limited to entries that have been stored or updated since the specified 
@@ -2493,25 +2534,25 @@ Returns: 200 OK - List of IDs
 
 <a name="cors"/>
 ### 7.7 Cross Origin Requests:
-One of the goals of the XAPI is to allow cross-domain tracking, and even though 
-XAPI seeks to enable tracking from applications other than browsers, browsers 
+One of the goals of the xAPI is to allow cross-domain tracking, and even though 
+xAPI seeks to enable tracking from applications other than browsers, browsers 
 still need to be supported. Internet Explorer 8 and 9 do not implement Cross 
 Origin Resource Sharing, but rather use their own Cross Domain Request API, 
-which cannot use all of the XAPI as described above due to only supporting "GET" 
+which cannot use all of the xAPI as described above due to only supporting "GET" 
 and "POST", and not allowing HTTP headers to be set.  
 
 The following describes alternate syntax for consumers to use only when unable 
 to use the usual syntax for specific calls due to the restrictions mentioned 
 above. All LRSs must support this syntax.  
 
-__Method__: All XAPI requests issued must be POST. The intended XAPI method 
+__Method__: All xAPI requests issued must be POST. The intended xAPI method 
 must be included as the only query string parameter on the request. 
-(example: http://example.com/XAPI/statements?method=PUT)  
+(example: http://example.com/xAPI/statements?method=PUT)  
 
 __Headers__: Any required parameters which are expected to appear in the HTTP 
 header must instead be included as a form parameter with the same name.  
 
-__Content__: If the XAPI call involved sending content, that content must now 
+__Content__: If the xAPI call involved sending content, that content must now 
 be encoded and included as a form parameter called "content". The LRS will 
 interpret this content as a UTF-8 string, storing binary data is not supported 
 with this syntax.  
@@ -2534,7 +2575,7 @@ to use this scheme.
  
 <a name="validation"/> 
 ### 7.8 Validation:
-The function of the LRS within the XAPI is to store and retrieve statements. 
+The function of the LRS within the xAPI is to store and retrieve statements. 
 As long as it has sufficient information to perform these tasks, it is 
 expected that it does them. Validation of statements in the Experience API is 
 focused solely on syntax, not semantics. It SHOULD enforce rules regarding structure, 
@@ -2545,7 +2586,7 @@ responsibility of the Activity Provider sending the statement.
 <a name="AppendixA"/> 
 ## Appendix A: Bookmarklet
 
-XAPI enables using an "I learned this" bookmarklet to self-report learning. 
+xAPI enables using an "I learned this" bookmarklet to self-report learning. 
 The following is an example of such a bookmarklet, and the statement that this 
 bookmarklet would send if used on the page: http://adlnet.gov/xapi.  
 
@@ -2572,7 +2613,7 @@ with your own values. All other values should be left as they are.
 		<th>Explanation</th>
 	</tr>
 	<tr>
-		<td>http://localhost:8080/XAPI/</td>
+		<td>http://localhost:8080/xAPI/</td>
 		<td>Endpoint of the LRS to send the statements to.</td>
 	</tr>
 	<tr>
@@ -2586,7 +2627,7 @@ with your own values. All other values should be left as they are.
 </table>
 
 ```javascript
-var url = "http://localhost:8080/XAPI/Statements/?statementId="+_ruuid();
+var url = "http://localhost:8080/xAPI/Statements/?statementId="+_ruuid();
 var auth = "Basic dGVzdDpwYXNzd29yZA==";
 var statement = {
 	actor:{ 
@@ -2646,7 +2687,7 @@ function _ruuid() {
 
 ###### Method Path:  
 ```
-PUT : /XAPI/Statements/?statementId=ed1d064a-eba6-45ea-a3f6-34cdf6e1dfd9
+PUT : /xAPI/Statements/?statementId=ed1d064a-eba6-45ea-a3f6-34cdf6e1dfd9
 
 Body:
 {
@@ -2712,7 +2753,7 @@ function getIEModeRequest(method, url, headers, data){
 ```
 "definition": {
 	"description": {
-		"en-US": "Does the XAPI include the concept of statements?"
+		"en-US": "Does the xAPI include the concept of statements?"
 	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "true-false",
