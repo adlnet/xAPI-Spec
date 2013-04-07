@@ -1282,7 +1282,7 @@ coming from the same source, as there is no way to verify that, since multiple
 unregistered applications could choose the same consumer key. Each unregistered 
 consumer SHOULD pick a unique consumer key.  
 
-If a user connects directly (using HTTP Basic Auth) 
+If a user connects directly (using HTTP Basic Authentication) 
 or is included as part of a 3-legged OAuth workflow, the LRS MUST include the user 
 as an Agent in the authority, and MAY identify the user with any of the legal 
 identifying properties.  
@@ -1811,7 +1811,7 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 </tr>
 <tr>
 <td>No application</td>
-<td>HTTPBasicAuthentication is used instead of OAuth, since no application is involved.</td>
+<td>HTTP Basic Authentication is used instead of OAuth, since no application is involved.</td>
 <td></br></td>
 </tr>
 <tr>
