@@ -1823,6 +1823,7 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 </table> 
 
 	
+<a name="authdefs"/>
 #### 6.4.1	
 ###### How to handle each scenario
 
