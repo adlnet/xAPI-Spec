@@ -2214,7 +2214,8 @@ or to list statements based on the parameters passed.
 <a name="queryStatementRef" />
 ###### Note: 
 For filter parameters which are not time or sequence based (that is, other than
-since, until, or limit), statements which target another statement using StatementRef will meet the filter
+since, until, or limit), statements which target another statement (by using a StatementRef
+as the object of the statement) will meet the filter
 condition if the targeted statement meets the condition. The time and sequence based parameters must
 still be applied to the statement making the StatementRef in this manner. This rule applies recursively,
 so that "statement a" is a match when a targets b which targets c and the filter conditions
