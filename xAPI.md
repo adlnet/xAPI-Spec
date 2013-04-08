@@ -55,7 +55,7 @@
 [Appendix B: Creating an "IE Mode" Request](#AppendixB)  
 [Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
 [Appendix D: Example statements](#AppendixD)  
-[Appendix E: Converting Statements to 1.0](#AppendixE)
+[Appendix E: Converting Statements to 1.0](#AppendixE)   
 [Appendix F: Example Signed Statement](#AppendixF)
 
 <a name="revhistory"/>  
@@ -3387,6 +3387,7 @@ lBRK8g7ZncekbGW3aRLVGVOxClnLLTzwOlamBKOUm8V6XxsMHQ6TE2D+fKJoNUY1
 ```
 
 Example public X.509 certificate
+```
 -----BEGIN CERTIFICATE-----
 MIIDATCCAmqgAwIBAgIJAMB1csNuA6+kMA0GCSqGSIb3DQEBBQUAMHExCzAJBgNV
 BAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUxGDAWBgNVBAoTD0V4YW1wbGUgQ29t
