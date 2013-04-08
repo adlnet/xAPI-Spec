@@ -50,6 +50,7 @@
     [7.6. Agent Profile API](#agentprofapi)  
     [7.7. Cross Origin Requests](#cors)  
     [7.8. Validation](#validation)  
+    [7.9. HTTP HEAD](#httphead)  
 [Appendix A: Bookmarklet](#AppendixA)  
 [Appendix B: Creating an "IE Mode" Request](#AppendixB)  
 [Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
@@ -2637,6 +2638,25 @@ focused solely on syntax, not semantics. It SHOULD enforce rules regarding struc
 but SHOULD NOT enforce rules regarding meaning. Enforcing the rules that ensure 
 valid meaning among verb definitions, activity types, and extensions is the 
 responsibility of the Activity Provider sending the statement.  
+
+<a name="httphead"/>
+### 7.9. HTTP HEAD
+
+###### Description
+The LRS will respond to requests for HTTP header information.
+
+###### Rationale
+
+Clients accessing the LRS may need to check if a particular statement exists, or determine
+the modification date of documents such as state or activity or agent profile. Particularly
+for large documents it's more efficient not to get the entire document just to check its
+modification date.
+
+###### LRS Requirements:
+* The LRS MUST respond to any HTTP HEAD request as it would have responded to an otherwise
+identical HTTP GET request except:
+    * The message-body MUST be omitted
+    * The Content-Length header MAY be omitted, in order to avoid wasting LRS resources
 
 <a name="AppendixA"/> 
 ## Appendix A: Bookmarklet
