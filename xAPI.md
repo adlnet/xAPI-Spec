@@ -48,8 +48,9 @@
     [7.4. State API](#stateapi)  
     [7.5. Activity Profile API](#actprofapi)  
     [7.6. Agent Profile API](#agentprofapi)  
-    [7.7. Cross Origin Requests](#cors)  
-    [7.8. Validation](#validation)  
+    [7.7. About resource](#aboutresource)  
+    [7.8. Cross Origin Requests](#cors)  
+    [7.9. Validation](#validation)  
 [Appendix A: Bookmarklet](#AppendixA)  
 [Appendix B: Creating an "IE Mode" Request](#AppendixB)  
 [Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
@@ -2587,8 +2588,40 @@ Returns: 200 OK - List of IDs
 	</tr>
 </table>  
 
+<a name="aboutresource"/> 
+### 7.7. About resource:
+
+###### GET about
+Example endpoint: http://example.com/xAPI/about
+
+###### Description
+Returns JSON object containing information about this LRS, including the xApi version
+supported.
+
+###### Rationale
+Primarily this resource exists to allow clients that suport multiple xAPI versions to
+decide which version to use when communicating with the LRS. Extensions are included to
+allow other uses to emerge.
+
+###### Details
+Returns: 200 OK - Single 'about' JSON document.
+<table border="1">
+<tr><th>property</th><th>type</th><th>description</th></tr>
+<td>version</td><td>string</td><td>xApi version this LRS supports</td>
+</tr>
+<tr>
+<td>Extensions</td><td><a href="#miscext">Extensions object</a></td><td>A map of other properties as needed.</td>
+</tr>
+</table>
+
+###### LRS Requirements:
+* MUST return the JSON document describe above, with a version property of "1.0"
+* SHOULD allow unauthenticated access to this resource
+* MUST NOT reject requests based on their version header as would otherwise be required
+by <a href="#apiversioning"/>6.2 API Versioning</a>.
+
 <a name="cors"/>
-### 7.7 Cross Origin Requests:
+### 7.8 Cross Origin Requests:
 One of the goals of the xAPI is to allow cross-domain tracking, and even though 
 xAPI seeks to enable tracking from applications other than browsers, browsers 
 still need to be supported. Internet Explorer 8 and 9 do not implement Cross 
@@ -2629,7 +2662,7 @@ than https, and both LRS and client should consider the security risks before ma
 to use this scheme. 
  
 <a name="validation"/> 
-### 7.8 Validation:
+### 7.9 Validation:
 The function of the LRS within the xAPI is to store and retrieve statements. 
 As long as it has sufficient information to perform these tasks, it is 
 expected that it does them. Validation of statements in the Experience API is 
