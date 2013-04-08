@@ -150,6 +150,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Dan Kuemmel</td><td>Sentry Insurance</td></tr>
 	<tr><td>Dave Mozealous</td><td>Articulate</td></tr>
 	<tr><td>David Ells</td><td>Rustici Software</td></tr>
+	<tr><td>Doug Hagy</td><td>Twin Lakes Consulting Corporation</td></tr>
 	<tr><td>Eric Johnson</td><td>Planning and Learning Technologies, Inc.</td></tr>
 	<tr><td>Fiona Leteney</td><td>Feenix e-learning</td></tr>
 	<tr><td>Greg Tatka</td><td>Menco Social Learning</td></tr>
