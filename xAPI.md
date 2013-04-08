@@ -28,6 +28,7 @@
 		[4.1.9. Authority](#authority)  
 		[4.1.10. Voided](#voided)  
 		[4.1.11. Attachments](#attachments)   
+		[4.1.12. Signed Statements](#signature)
     [4.2. Retrieval of Statements](#retstmts)  
 [5.0. Miscellaneous Types](#misctypes)  
     [5.1. Document](#miscdocument)  
@@ -55,7 +56,8 @@
 [Appendix B: Creating an "IE Mode" Request](#AppendixB)  
 [Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
 [Appendix D: Example statements](#AppendixD)  
-[Appendix E: Converting Statements to 1.0](#AppendixE)
+[Appendix E: Converting Statements to 1.0](#AppendixE)   
+[Appendix F: Example Signed Statement](#AppendixF)
 
 <a name="revhistory"/>  
 ## 1.0 Revision History
@@ -87,6 +89,7 @@ Various refinements and clarifications including:
 - Changes to voiding statements
 - Clarification and naming of the Document APIs
 - Changes to querying the Statement API
+- Signed statements
 
 <a name="roleofxapi"/>
 ## 2.0 Role of the Experience API  
@@ -1607,6 +1610,60 @@ X-Experience-API-Hash:495395e777cd98da653df9615d09c0fd6bb2f8d4788394cd53c56a3bfd
 here is a simple attachment
 --abcABC0123'()+_,-./:=?--
 ```
+<a name="signature"/>
+#### 4.1.12 Signed Statements
+
+###### Description:
+A statement may include a <a href="https://en.wikipedia.org/wiki/Digital_signature">
+digital signature</a> to provide strong and durable evidence of the authenticity and
+integrity of the statement.
+
+###### Rationale:
+Some statements will have regulatory or legal significance, or otherwise require strong
+and durable evidence of their authenticity and integrity. It may be necessary to verify
+these statements without trusting the system they were first recorded in, or perhaps
+without access to that system. Digital signatures will enable a third-party system
+to validate such statements.
+
+###### Details:
+
+Signed statements include a JSON web signature (JWS) as an attachment. This allows
+the original serialization of the statement to be included along with the signature.
+For interoperability, the "RSA + SHA" series of JWS algorithms have been selected, and
+for discoverability of the signer X.509 certificates SHOULD be used.
+
+###### Requirements for a signed statement:
+
+* MUST include a JSON web signature (JWS) as defined here:
+http://tools.ietf.org/html/draft-ietf-jose-json-web-signature, as an attachment with a usageType
+of "http://adlnet.gov/expapi/attachments/signature" and a contentType of "application/octet-stream".
+* The JWS signature MUST have a payload of a valid JSON serialization of the statement generated
+before the signature was added.
+* The JWS signature MUST use an algorithm of "RS256","RS384", or "RS512"
+* The JWS signature SHOULD have been created based on the private key associated with an
+X.509 certificate.
+* If X.509 was used to sign, the JWS header SHOULD include the "x5c" property containing
+the associated certificate chain.
+
+LRS requirements when receiving a signed statement:
+
+* The LRS MUST reject requests to store statements that contain malformed signatures,
+with HTTP 400 and SHOULD include a message describing the problem in the response.
+In order to verify signatures are well formed, the LRS MUST do the following:
+    * Decode the JWS signature, and load the signed serialization of the statement from the
+JWS signature payload.
+    * Validate that the "original" statement is logically equivalent to the received statement.
+    * If the JWS header includes an X.509 certificate, validate the signature against that
+    certificate as defined in JWS.
+
+__Note:__ The step of validating against the included X.509 certificate is intended as a
+way to catch mistakes in the signature, not as a security measure. Clients MUST NOT assume
+a signature is valid simply because an LRS has accepted it. The steps to authenticate
+a signed statement will vary based on the degree of certainty required and are outside
+the scope of this specification.
+
+See <a href="#AppendixF">Appendix F: Example Signed Statement]</a> for an example.
+
 
 <a name="retstmts"/> 
 ### 4.2 Retrieval of Statements:
@@ -3361,3 +3418,167 @@ Converted to 1.0:
     }
 }
 ```
+
+<a name="AppendixF"/>
+## Appendix F: Example Signed Statement
+An example signed statement, as described in: <a href="#signature">4.1.12. Signed Statements</a>.
+
+The original statement serialization to be signed:
+```
+{
+    "version": "1.0",
+    "id": "33cff416-e331-4c9d-969e-5373a1756120",
+    "actor": {
+        "mbox": "mailto:example@example.com",
+        "name": "Example Learner",
+        "objectType": "Agent"
+    },
+    "verb": {
+        "id": "http://adlnet.gov/expapi/verbs/experienced",
+        "display": {
+            "en-US": "experienced"
+        }
+    },
+    "object": {
+        "id": "https://www.youtube.com/watch?v=xh4kIiH3Sm8",
+        "objectType": "Activity",
+        "definition": {
+            "name": {
+                "en-US": "Tax Tips & Information : How to File a Tax Return "
+            },
+            "description": {
+                "en-US": "Filing a tax return will require filling out either a 1040, 1040A or 1040EZ form"
+            }
+        }
+    }
+    "timestamp": "2013-04-01T12:00:00Z",
+}
+```
+
+Example private key for X.590 certificate that will be used for signing:
+```
+-----BEGIN RSA PRIVATE KEY-----
+MIICXAIBAAKBgQDjxvZXF30WL4oKjZYXgR0ZyaX+u3y6+JqTqiNkFa/VTnet6Ly2
+OT6ZmmcJEPnq3UnewpHoOQ+GfhhTkW13j06j5iNn4obcCVWTL9yXNvJH+Ko+xu4Y
+l/ySPRrIPyTjtHdG0M2XzIlmmLqm+CAS+KCbJeH4tf543kIWC5pC5p3cVQIDAQAB
+AoGAOejdvGq2XKuddu1kWXl0Aphn4YmdPpPyCNTaxplU6PBYMRjY0aNgLQE6bO2p
+/HJiU4Y4PkgzkEgCu0xf/mOq5DnSkX32ICoQS6jChABAe20ErPfm5t8h9YKsTfn9
+40lAouuwD9ePRteizd4YvHtiMMwmh5PtUoCbqLefawNApAECQQD1mdBW3zL0okUx
+2pc4tttn2qArCG4CsEZMLlGRDd3FwPWJz3ZPNEEgZWXGSpA9F1QTZ6JYXIfejjRo
+UuvRMWeBAkEA7WvzDBNcv4N+xeUKvH8ILti/BM58LraTtqJlzjQSovek0srxtmDg
+5of+xrxN6IM4p7yvQa+7YOUOukrVXjG+1QJBAI2mBrjzxgm9xTa5odn97JD7UMFA
+/WHjlMe/Nx/35V52qaav1sZbluw+TvKMcqApYj5G2SUpSNudHLDGkmd2nQECQFfc
+lBRK8g7ZncekbGW3aRLVGVOxClnLLTzwOlamBKOUm8V6XxsMHQ6TE2D+fKJoNUY1
+2HGpk+FWwy2D1hRGuoUCQAXfaLSxtaWdPtlZTPVueF7ZikQDsVg+vtTFgpuHloR2
+6EVc1RbHHZm32yvGDY8IkcoMfJQqLONDdLfS/05yoNU=
+-----END RSA PRIVATE KEY-----
+```
+
+Example public X.509 certificate
+```
+-----BEGIN CERTIFICATE-----
+MIIDATCCAmqgAwIBAgIJAMB1csNuA6+kMA0GCSqGSIb3DQEBBQUAMHExCzAJBgNV
+BAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUxGDAWBgNVBAoTD0V4YW1wbGUgQ29t
+cGFueTEQMA4GA1UEAxMHRXhhbXBsZTEiMCAGCSqGSIb3DQEJARYTZXhhbXBsZUBl
+eGFtcGxlLmNvbTAeFw0xMzA0MDQxNTI4MzBaFw0xNDA0MDQxNTI4MzBaMIGWMQsw
+CQYDVQQGEwJVUzESMBAGA1UECBMJVGVubmVzc2VlMREwDwYDVQQHEwhGcmFua2xp
+bjEYMBYGA1UEChMPRXhhbXBsZSBDb21wYW55MRAwDgYDVQQLEwdFeGFtcGxlMRAw
+DgYDVQQDEwdFeGFtcGxlMSIwIAYJKoZIhvcNAQkBFhNleGFtcGxlQGV4YW1wbGUu
+Y29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDjxvZXF30WL4oKjZYXgR0Z
+yaX+u3y6+JqTqiNkFa/VTnet6Ly2OT6ZmmcJEPnq3UnewpHoOQ+GfhhTkW13j06j
+5iNn4obcCVWTL9yXNvJH+Ko+xu4Yl/ySPRrIPyTjtHdG0M2XzIlmmLqm+CAS+KCb
+JeH4tf543kIWC5pC5p3cVQIDAQABo3sweTAJBgNVHRMEAjAAMCwGCWCGSAGG+EIB
+DQQfFh1PcGVuU1NMIEdlbmVyYXRlZCBDZXJ0aWZpY2F0ZTAdBgNVHQ4EFgQUVs3v
+5afEdOeoYeVajAQE4v0WS1QwHwYDVR0jBBgwFoAUyVIc3yvra4EBz20I4BF39IAi
+xBkwDQYJKoZIhvcNAQEFBQADgYEAgS/FF5D0Hnj44rvT6kgn3kJAvv2lj/fyjztK
+IrYS33ljXGn6gGyA4qtbXA23PrO4uc/wYCSDICDpPobh62xTCd9qObKhgwWOi05P
+SBLqUu3mwfAe15LJBJBqPVZ4K0kppePBU8m6aIZoH57L/9t4OoaL8yKs/qjKFeI1
+OFWZxvA=
+-----END CERTIFICATE-----
+```
+
+Example certificate authority certificate
+```
+-----BEGIN CERTIFICATE-----
+MIIDNzCCAqCgAwIBAgIJAMB1csNuA6+jMA0GCSqGSIb3DQEBBQUAMHExCzAJBgNV
+BAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUxGDAWBgNVBAoTD0V4YW1wbGUgQ29t
+cGFueTEQMA4GA1UEAxMHRXhhbXBsZTEiMCAGCSqGSIb3DQEJARYTZXhhbXBsZUBl
+eGFtcGxlLmNvbTAeFw0xMzA0MDQxNTI1NTNaFw0yMzA0MDIxNTI1NTNaMHExCzAJ
+BgNVBAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUxGDAWBgNVBAoTD0V4YW1wbGUg
+Q29tcGFueTEQMA4GA1UEAxMHRXhhbXBsZTEiMCAGCSqGSIb3DQEJARYTZXhhbXBs
+ZUBleGFtcGxlLmNvbTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA1sBnBWPZ
+0f7WJUFTJy5+01SlS5Z6DDD6Uye9vK9AycgV5B3+WC8HC5u5h91MujAC1ARPVUOt
+svPRs45qKNFIgIGRXKPAwZjawEI2sCJRSKV47i6B8bDv4WkuGvQaveZGI0qlmN5R
+1Eim2gUItRj1hgcC9rQavjlnFKDY2rlXGukCAwEAAaOB1jCB0zAdBgNVHQ4EFgQU
+yVIc3yvra4EBz20I4BF39IAixBkwgaMGA1UdIwSBmzCBmIAUyVIc3yvra4EBz20I
+4BF39IAixBmhdaRzMHExCzAJBgNVBAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUx
+GDAWBgNVBAoTD0V4YW1wbGUgQ29tcGFueTEQMA4GA1UEAxMHRXhhbXBsZTEiMCAG
+CSqGSIb3DQEJARYTZXhhbXBsZUBleGFtcGxlLmNvbYIJAMB1csNuA6+jMAwGA1Ud
+EwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADgYEADhwTebGk735yKhm8DqCxvNnEZ0Nx
+sYEYOjgRG1yXTlW5pE691fSH5AZ+T6fpwpZcWY5QYkoN6DnwjOxGkSfQC3/yGmcU
+DKBPwiZ5O2s9C+fE1kUEnrX2Xea4agVngMzR8DQ6oOauLWqehDB+g2ENWRLoVgS+
+ma5/Ycs0GTyrECY=
+-----END CERTIFICATE-----
+```
+
+JWS Header. Note that along with specifying the algorithm, the certificate chain for
+the signing certificate has been included.
+```
+{
+    "alg": "RS256",
+    "x5c": [
+        "MIIDATCCAmqgAwIBAgIJAMB1csNuA6+kMA0GCSqGSIb3DQEBBQUAMHExCzAJBgNVBAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUxGDAWBgNVBAoTD0V4YW1wbGUgQ29tcGFueTEQMA4GA1UEAxMHRXhhbXBsZTEiMCAGCSqGSIb3DQEJARYTZXhhbXBsZUBleGFtcGxlLmNvbTAeFw0xMzA0MDQxNTI4MzBaFw0xNDA0MDQxNTI4MzBaMIGWMQswCQYDVQQGEwJVUzESMBAGA1UECBMJVGVubmVzc2VlMREwDwYDVQQHEwhGcmFua2xpbjEYMBYGA1UEChMPRXhhbXBsZSBDb21wYW55MRAwDgYDVQQLEwdFeGFtcGxlMRAwDgYDVQQDEwdFeGFtcGxlMSIwIAYJKoZIhvcNAQkBFhNleGFtcGxlQGV4YW1wbGUuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDjxvZXF30WL4oKjZYXgR0ZyaX+u3y6+JqTqiNkFa/VTnet6Ly2OT6ZmmcJEPnq3UnewpHoOQ+GfhhTkW13j06j5iNn4obcCVWTL9yXNvJH+Ko+xu4Yl/ySPRrIPyTjtHdG0M2XzIlmmLqm+CAS+KCbJeH4tf543kIWC5pC5p3cVQIDAQABo3sweTAJBgNVHRMEAjAAMCwGCWCGSAGG+EIBDQQfFh1PcGVuU1NMIEdlbmVyYXRlZCBDZXJ0aWZpY2F0ZTAdBgNVHQ4EFgQUVs3v5afEdOeoYeVajAQE4v0WS1QwHwYDVR0jBBgwFoAUyVIc3yvra4EBz20I4BF39IAixBkwDQYJKoZIhvcNAQEFBQADgYEAgS/FF5D0Hnj44rvT6kgn3kJAvv2lj/fyjztKIrYS33ljXGn6gGyA4qtbXA23PrO4uc/wYCSDICDpPobh62xTCd9qObKhgwWOi05PSBLqUu3mwfAe15LJBJBqPVZ4K0kppePBU8m6aIZoH57L/9t4OoaL8yKs/qjKFeI1OFWZxvA=",
+        "MIIDNzCCAqCgAwIBAgIJAMB1csNuA6+jMA0GCSqGSIb3DQEBBQUAMHExCzAJBgNVBAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUxGDAWBgNVBAoTD0V4YW1wbGUgQ29tcGFueTEQMA4GA1UEAxMHRXhhbXBsZTEiMCAGCSqGSIb3DQEJARYTZXhhbXBsZUBleGFtcGxlLmNvbTAeFw0xMzA0MDQxNTI1NTNaFw0yMzA0MDIxNTI1NTNaMHExCzAJBgNVBAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUxGDAWBgNVBAoTD0V4YW1wbGUgQ29tcGFueTEQMA4GA1UEAxMHRXhhbXBsZTEiMCAGCSqGSIb3DQEJARYTZXhhbXBsZUBleGFtcGxlLmNvbTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA1sBnBWPZ0f7WJUFTJy5+01SlS5Z6DDD6Uye9vK9AycgV5B3+WC8HC5u5h91MujAC1ARPVUOtsvPRs45qKNFIgIGRXKPAwZjawEI2sCJRSKV47i6B8bDv4WkuGvQaveZGI0qlmN5R1Eim2gUItRj1hgcC9rQavjlnFKDY2rlXGukCAwEAAaOB1jCB0zAdBgNVHQ4EFgQUyVIc3yvra4EBz20I4BF39IAixBkwgaMGA1UdIwSBmzCBmIAUyVIc3yvra4EBz20I4BF39IAixBmhdaRzMHExCzAJBgNVBAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUxGDAWBgNVBAoTD0V4YW1wbGUgQ29tcGFueTEQMA4GA1UEAxMHRXhhbXBsZTEiMCAGCSqGSIb3DQEJARYTZXhhbXBsZUBleGFtcGxlLmNvbYIJAMB1csNuA6+jMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADgYEADhwTebGk735yKhm8DqCxvNnEZ0NxsYEYOjgRG1yXTlW5pE691fSH5AZ+T6fpwpZcWY5QYkoN6DnwjOxGkSfQC3/yGmcUDKBPwiZ5O2s9C+fE1kUEnrX2Xea4agVngMzR8DQ6oOauLWqehDB+g2ENWRLoVgS+ma5/Ycs0GTyrECY="
+    ]
+}
+```
+
+JWS signature
+```
+ew0KICAgICJhbGciOiAiUlMyNTYiLA0KICAgICJ4NWMiOiBbDQogICAgICAgICJNSUlEQVRDQ0FtcWdBd0lCQWdJSkFNQjFjc051QTYra01BMEdDU3FHU0liM0RRRUJCUVVBTUhFeEN6QUpCZ05WQkFZVEFsVlRNUkl3RUFZRFZRUUlFd2xVWlc1dVpYTnpaV1V4R0RBV0JnTlZCQW9URDBWNFlXMXdiR1VnUTI5dGNHRnVlVEVRTUE0R0ExVUVBeE1IUlhoaGJYQnNaVEVpTUNBR0NTcUdTSWIzRFFFSkFSWVRaWGhoYlhCc1pVQmxlR0Z0Y0d4bExtTnZiVEFlRncweE16QTBNRFF4TlRJNE16QmFGdzB4TkRBME1EUXhOVEk0TXpCYU1JR1dNUXN3Q1FZRFZRUUdFd0pWVXpFU01CQUdBMVVFQ0JNSlZHVnVibVZ6YzJWbE1SRXdEd1lEVlFRSEV3aEdjbUZ1YTJ4cGJqRVlNQllHQTFVRUNoTVBSWGhoYlhCc1pTQkRiMjF3WVc1NU1SQXdEZ1lEVlFRTEV3ZEZlR0Z0Y0d4bE1SQXdEZ1lEVlFRREV3ZEZlR0Z0Y0d4bE1TSXdJQVlKS29aSWh2Y05BUWtCRmhObGVHRnRjR3hsUUdWNFlXMXdiR1V1WTI5dE1JR2ZNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0R05BRENCaVFLQmdRRGp4dlpYRjMwV0w0b0tqWllYZ1IwWnlhWCt1M3k2K0pxVHFpTmtGYS9WVG5ldDZMeTJPVDZabW1jSkVQbnEzVW5ld3BIb09RK0dmaGhUa1cxM2owNmo1aU5uNG9iY0NWV1RMOXlYTnZKSCtLbyt4dTRZbC95U1BScklQeVRqdEhkRzBNMlh6SWxtbUxxbStDQVMrS0NiSmVINHRmNTQza0lXQzVwQzVwM2NWUUlEQVFBQm8zc3dlVEFKQmdOVkhSTUVBakFBTUN3R0NXQ0dTQUdHK0VJQkRRUWZGaDFQY0dWdVUxTk1JRWRsYm1WeVlYUmxaQ0JEWlhKMGFXWnBZMkYwWlRBZEJnTlZIUTRFRmdRVVZzM3Y1YWZFZE9lb1llVmFqQVFFNHYwV1MxUXdId1lEVlIwakJCZ3dGb0FVeVZJYzN5dnJhNEVCejIwSTRCRjM5SUFpeEJrd0RRWUpLb1pJaHZjTkFRRUZCUUFEZ1lFQWdTL0ZGNUQwSG5qNDRydlQ2a2duM2tKQXZ2MmxqL2Z5anp0S0lyWVMzM2xqWEduNmdHeUE0cXRiWEEyM1ByTzR1Yy93WUNTRElDRHBQb2JoNjJ4VENkOXFPYktoZ3dXT2kwNVBTQkxxVXUzbXdmQWUxNUxKQkpCcVBWWjRLMGtwcGVQQlU4bTZhSVpvSDU3TC85dDRPb2FMOHlLcy9xaktGZUkxT0ZXWnh2QT0iLA0KICAgICAgICAiTUlJRE56Q0NBcUNnQXdJQkFnSUpBTUIxY3NOdUE2K2pNQTBHQ1NxR1NJYjNEUUVCQlFVQU1IRXhDekFKQmdOVkJBWVRBbFZUTVJJd0VBWURWUVFJRXdsVVpXNXVaWE56WldVeEdEQVdCZ05WQkFvVEQwVjRZVzF3YkdVZ1EyOXRjR0Z1ZVRFUU1BNEdBMVVFQXhNSFJYaGhiWEJzWlRFaU1DQUdDU3FHU0liM0RRRUpBUllUWlhoaGJYQnNaVUJsZUdGdGNHeGxMbU52YlRBZUZ3MHhNekEwTURReE5USTFOVE5hRncweU16QTBNREl4TlRJMU5UTmFNSEV4Q3pBSkJnTlZCQVlUQWxWVE1SSXdFQVlEVlFRSUV3bFVaVzV1WlhOelpXVXhHREFXQmdOVkJBb1REMFY0WVcxd2JHVWdRMjl0Y0dGdWVURVFNQTRHQTFVRUF4TUhSWGhoYlhCc1pURWlNQ0FHQ1NxR1NJYjNEUUVKQVJZVFpYaGhiWEJzWlVCbGVHRnRjR3hsTG1OdmJUQ0JuekFOQmdrcWhraUc5dzBCQVFFRkFBT0JqUUF3Z1lrQ2dZRUExc0JuQldQWjBmN1dKVUZUSnk1KzAxU2xTNVo2RERENlV5ZTl2SzlBeWNnVjVCMytXQzhIQzV1NWg5MU11akFDMUFSUFZVT3RzdlBSczQ1cUtORklnSUdSWEtQQXdaamF3RUkyc0NKUlNLVjQ3aTZCOGJEdjRXa3VHdlFhdmVaR0kwcWxtTjVSMUVpbTJnVUl0UmoxaGdjQzlyUWF2amxuRktEWTJybFhHdWtDQXdFQUFhT0IxakNCMHpBZEJnTlZIUTRFRmdRVXlWSWMzeXZyYTRFQnoyMEk0QkYzOUlBaXhCa3dnYU1HQTFVZEl3U0JtekNCbUlBVXlWSWMzeXZyYTRFQnoyMEk0QkYzOUlBaXhCbWhkYVJ6TUhFeEN6QUpCZ05WQkFZVEFsVlRNUkl3RUFZRFZRUUlFd2xVWlc1dVpYTnpaV1V4R0RBV0JnTlZCQW9URDBWNFlXMXdiR1VnUTI5dGNHRnVlVEVRTUE0R0ExVUVBeE1IUlhoaGJYQnNaVEVpTUNBR0NTcUdTSWIzRFFFSkFSWVRaWGhoYlhCc1pVQmxlR0Z0Y0d4bExtTnZiWUlKQU1CMWNzTnVBNitqTUF3R0ExVWRFd1FGTUFNQkFmOHdEUVlKS29aSWh2Y05BUUVGQlFBRGdZRUFEaHdUZWJHazczNXlLaG04RHFDeHZObkVaME54c1lFWU9qZ1JHMXlYVGxXNXBFNjkxZlNINUFaK1Q2ZnB3cFpjV1k1UVlrb042RG53ak94R2tTZlFDMy95R21jVURLQlB3aVo1TzJzOUMrZkUxa1VFbnJYMlhlYTRhZ1ZuZ016UjhEUTZvT2F1TFdxZWhEQitnMkVOV1JMb1ZnUyttYTUvWWNzMEdUeXJFQ1k9Ig0KICAgIF0NCn0.ew0KICAgICJ2ZXJzaW9uIjogIjEuMCIsDQogICAgImlkIjogIjMzY2ZmNDE2LWUzMzEtNGM5ZC05NjllLTUzNzNhMTc1NjEyMCIsDQogICAgImFjdG9yIjogew0KICAgICAgICAibWJveCI6ICJtYWlsdG86ZXhhbXBsZUBleGFtcGxlLmNvbSIsDQogICAgICAgICJuYW1lIjogIkV4YW1wbGUgTGVhcm5lciIsDQogICAgICAgICJvYmplY3RUeXBlIjogIkFnZW50Ig0KICAgIH0sDQogICAgInZlcmIiOiB7DQogICAgICAgICJpZCI6ICJodHRwOi8vYWRsbmV0Lmdvdi9leHBhcGkvdmVyYnMvZXhwZXJpZW5jZWQiLA0KICAgICAgICAiZGlzcGxheSI6IHsNCiAgICAgICAgICAgICJlbi1VUyI6ICJleHBlcmllbmNlZCINCiAgICAgICAgfQ0KICAgIH0sDQogICAgIm9iamVjdCI6IHsNCiAgICAgICAgImlkIjogImh0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9eGg0a0lpSDNTbTgiLA0KICAgICAgICAib2JqZWN0VHlwZSI6ICJBY3Rpdml0eSIsDQogICAgICAgICJkZWZpbml0aW9uIjogew0KICAgICAgICAgICAgIm5hbWUiOiB7DQogICAgICAgICAgICAgICAgImVuLVVTIjogIlRheCBUaXBzICYgSW5mb3JtYXRpb24gOiBIb3cgdG8gRmlsZSBhIFRheCBSZXR1cm4gIg0KICAgICAgICAgICAgfSwNCiAgICAgICAgICAgICJkZXNjcmlwdGlvbiI6IHsNCiAgICAgICAgICAgICAgICAiZW4tVVMiOiAiRmlsaW5nIGEgdGF4IHJldHVybiB3aWxsIHJlcXVpcmUgZmlsbGluZyBvdXQgZWl0aGVyIGEgMTA0MCwgMTA0MEEgb3IgMTA0MEVaIGZvcm0iDQogICAgICAgICAgICB9DQogICAgICAgIH0NCiAgICB9DQogICAgInRpbWVzdGFtcCI6ICIyMDEzLTA0LTAxVDEyOjAwOjAwWiINCn0.0Pup9CSy5mMh8zTJsqpB1mlRDVsQnclo30r5Y5Qi-mjMjoPeS3AVEzO6ow2Y8RWV8Z1eYGfMS19qXf2NEw5dbPkKROyiSpCEL9b4D0hDAyMPdeBMXNEYisWuvOYN5nwpT0qFCH0Ih2dcCRcp1BPkJPE6u6ZDIGI18OIVb4Li1Wk
+```
+
+Signed Statement
+```
+{
+    "version": "1.0",
+    "id": "33cff416-e331-4c9d-969e-5373a1756120",
+    "actor": {
+        "mbox": "mailto:example@example.com",
+        "name": "Example Learner",
+        "objectType": "Agent"
+    },
+    "verb": {
+        "id": "http://adlnet.gov/expapi/verbs/experienced",
+        "display": {
+            "en-US": "experienced"
+        }
+    },
+    "object": {
+        "id": "https://www.youtube.com/watch?v=xh4kIiH3Sm8",
+        "objectType": "Activity",
+        "definition": {
+            "name": {
+                "en-US": "Tax Tips & Information : How to File a Tax Return "
+            },
+            "description": {
+                "en-US": "Filing a tax return will require filling out either a 1040, 1040A or 1040EZ form"
+            }
+        }
+    }
+    "timestamp": "2013-04-01T12:00:00Z",
+    "attachments": [
+        {
+            "usageType": "http://adlnet.gov/expapi/attachments/signature",
+            "display": { "en-US": "Signature" },
+            "description": { "en-US": "A test signature" },
+            "contentType": "application/octet-stream",
+            "length": 4235,
+            "sha2": "dc9589e454ff375dd5dfd6f556d2583e231e8cafe55ef40102ddd988b79f86f0"
+        }
+    ]
+}
+```
+
+__Note:__ Attached signature not shown, see <a href="#attachments"> attachments</a> for
+attachment message format.
