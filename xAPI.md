@@ -102,13 +102,16 @@ this specification provides a data model and associated components on how to
 accomplish these tasks.  
 
 Specifically, the Experience API provides:  
-- The structure and definition of statement, state, learner, activity and objects, 
+
+* The structure and definition of statement, state, learner, activity and objects, 
 which are the means by which experiences are conveyed by a Learning Activity Provider.
-- Data Transfer methods for the storage and retrieval (but not validation) of 
+
+* Data Transfer methods for the storage and retrieval (but not validation) of 
 these objects to/from a Learning Record Store.  Note that the systems storing 
 or retrieving records need not be Learning Activity Providers. LRSs may 
 communicate with other LRSs, or reporting systems.
-- Security methods allowing for the trusted exchange of information between 
+
+* Security methods allowing for the trusted exchange of information between 
 the Learning Record Store and trusted sources.  
 
 The Experience API is the first of many potential specifications that will merge 
