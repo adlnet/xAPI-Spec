@@ -28,7 +28,7 @@
 		[4.1.9. Authority](#authority)  
 		[4.1.10. Voided](#voided)  
 		[4.1.11. Attachments](#attachments)   
-		[4.1.12. Signed Statements](#signature)
+		[4.1.12. Signed Statements](#signature)   
     [4.2. Retrieval of Statements](#retstmts)  
 [5.0. Miscellaneous Types](#misctypes)  
     [5.1. Document](#miscdocument)  
