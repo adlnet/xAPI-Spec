@@ -94,12 +94,7 @@ Various refinements and clarifications including:
 
 <a name="roleofxapi"/>
 ## 2.0 Role of the Experience API  
-The Experience API is a service that allows for statements of experience 
-(typically learning experiences, but potentially any type of experience) to be delivered 
-to, stored securely in, and retrieved from a Learning Record Store (LRS). The Experience API is 
-dependent on Learning Activity Providers to create and track learning experiences; 
-this specification provides a data model and associated components on how to 
-accomplish these tasks.  
+The Experience API is a service that allows for statements of experience to be delivered to and stored securely in a Learning Record Store (LRS). These statements of experience are typically learning experiences, but the API can address statements of any kind of experience. The Experience API is dependent on Learning Activity Providers to create and track these learning experiences; this specification provides a data model and associated components on how to accomplish these tasks.  
 
 Specifically, the Experience API provides:  
 
@@ -114,12 +109,10 @@ communicate with other LRSs, or reporting systems.
 * Security methods allowing for the trusted exchange of information between 
 the Learning Record Store and trusted sources.  
 
-The Experience API is the first of many potential specifications that will merge 
-to create a higher architecture for online learning and training. Authentication 
+The Experience API is the first of many envisioned technologies that will enable a richer architecture of online learning and training. Authentication 
 services, querying services, visualization services, and personal data services 
-are some examples of additional components that the Experience API is designed 
-to work alongside. While the implementation details of these services are not 
-specified here, the Experience API is designed with these components in mind.  
+are some examples of additional technologies for which the Experience API is designed 
+to support. While the implementation details of these services are not specified here, the Experience API is designed with this larger architectural vision in mind.  
  
 <a name="adlrole"/>
 ### 2.1 ADL's Role in the Experience API  
