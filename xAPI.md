@@ -2136,15 +2136,7 @@ The basic communication mechanism of the Experience API.
 ###### PUT statements
 Example endpoint: http://example.com/xAPI/statements
 
-Stores statement with the given ID. This MUST NOT modify an existing statement. 
-If the statement ID already exists, the receiving system SHOULD verify the 
-received statement matches the existing one and return 409 Conflict if they 
-do not match.  
-
-An LRS MUST NOT make any modifications to its state based on a receiving a statement 
-with a statementID that it already has a statement for. Whether it responds with 
-"409 Conflict", or "204 No Content", it MUST NOT modify the statement or any other 
-object.  
+Stores statement with the given ID.
 
 Returns: 204 No Content  
 <table>
@@ -2164,6 +2156,19 @@ statements periodically. This will likely only be a realistic option for systems
 that provide a lot of data to the LRS.  
 
 Returns: 200 OK, statement ID(s) (UUID).  
+
+###### Common requirements for PUT and POST
+
+An LRS MUST NOT make any modifications to its state based on a receiving a statement
+with a statementID that it already has a statement for. Whether it responds with
+"409 Conflict", or "204 No Content", it MUST NOT modify the statement or any other
+object.
+
+If the LRS receives a statement with an ID it already has a statement for, it SHOULD
+verify the received statement matches the existing one and return 409 Conflict if they
+do not match.
+
+The LRS MAY respond before statements that have been stored are available for retrieval.
 
 ###### GET statements
 Example endpoint: http://example.com/xAPI/statements
@@ -2268,6 +2273,13 @@ The LRS MUST reject with an HTTP 400 error any requests to this resource which:
 * contain both statementId and voidedStatementId parameters
 * contain statementId or voidedStatementId parameters, and also contain any other parameter besides "attachments" or "format".
 * contain any parameters the LRS does not recognize
+
+The LRS MUST include the header "X-Experience-API-Consistant-Through" on all responses to
+statements requests, with a value of the timestamp for which all statements that have or
+will have a "stored" property before that time are known with reasonable certainty to
+be available for retrieval. This time SHOULD take into account any temporary condition,
+such as excessive load, which might cause a delay in statements becoming available for
+retrieval.
 
 ###### Note: 
 Due to query string limits, this method MAY be called using POST and
