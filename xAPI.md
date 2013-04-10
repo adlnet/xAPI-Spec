@@ -1534,8 +1534,8 @@ in one message;
 
 * MUST accept statements via the statements resource PUT or POST that contain attachments in the Transmission Format 
 described above;
-* MUST reject statements having attachments that do not contain a fileUrl, and do not have a hash matching any raw 
-data received;
+* MUST reject statements having attachments that contain neither a fileUrl nor match a
+received attachment part based on their hash;
 * MUST include attachments in the Transmission Format described above
 when requested by the client (see section [7.2 "Statement API"](#stmtapi));
 * MUST NOT pull statements from another LRS without requesting attacments;
