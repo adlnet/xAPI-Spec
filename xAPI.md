@@ -1680,7 +1680,7 @@ to act in certain ways.
 
 ###### Client Requirements:
 The following requirements reiterate especially important requirements already
-included elsewhere, due to their importance.
+included elsewhere, to emphasize, clarify, and provide implementation guidance.
 
 * Values requiring IRIs MUST be sent with valid IRIs. Please use a library to
 construct them instead of string concatenation. Complete IRI validation is
