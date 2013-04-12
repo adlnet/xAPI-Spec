@@ -2322,7 +2322,7 @@ The LRS MUST reject with an HTTP 400 error any requests to this resource which:
 * contain both statementId and voidedStatementId parameters
 * contain statementId or voidedStatementId parameters, and also contain any other parameter besides "attachments" or "format".
 
-The LRS MUST include the header "X-Experience-API-Consistant-Through" on all responses to
+The LRS MUST include the header "X-Experience-API-Consistent-Through" on all responses to
 statements requests, with a value of the timestamp for which all statements that have or
 will have a "stored" property before that time are known with reasonable certainty to
 be available for retrieval. This time SHOULD take into account any temporary condition,
