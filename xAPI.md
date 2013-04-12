@@ -27,7 +27,7 @@
         [4.1.8. Stored](#stored)  
         [4.1.9. Authority](#authority)  
         [4.1.10. Voided](#voided)  
-        [4.1.11. Attachments](#attachments)   
+        [4.1.11. Attachments](#attachments)  
         [4.1.12. Signed Statements](#signature)  
         [4.1.13. Data Constraints](#dataconstraints)  
     [4.2. Retrieval of Statements](#retstmts)  
