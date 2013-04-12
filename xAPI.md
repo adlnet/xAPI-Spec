@@ -1706,9 +1706,8 @@ non-format-following rejection requirement.
 matches the [RFC 5646](http://tools.ietf.org/html/rfc5646) standard.
 * MUST process and store numbers with at least the precision of IEEE 754 32-bit
 floating point numbers.
-* MUST apply the same standards for validation of statement keys and values
-to parameters for runtime communication.
-
+* MUST validate parameter values to the same standards required for values of the
+same types in statements. Note: string parameter values are not quoted as they are in JSON.
 
 
 
@@ -2137,6 +2136,14 @@ Note: In all of the example endpoints given in the specification, "http://exampl
 is the example URL of the LRS and everything after this represents the endpoint which MUST
 be used. 
 
+###### LRS Requirements
+
+The LRS MUST reject with HTTP 400 status (see directly below) any request to any of
+these APIs using any parameters:
+* the LRS does not recognize (Note: LRSs may recognize and act on parameters not in this specification).
+* that match parameters described in this specification
+in all but case.
+
 <a name="errorcodes"/> 
 ### 7.1 Error Codes
 The list below offers some general guidance on HTTP error codes that could
@@ -2314,7 +2321,6 @@ Returns: 200 OK, statement or [Statement Result](#retstmts) (See section 4.2 for
 The LRS MUST reject with an HTTP 400 error any requests to this resource which:
 * contain both statementId and voidedStatementId parameters
 * contain statementId or voidedStatementId parameters, and also contain any other parameter besides "attachments" or "format".
-* contain any parameters the LRS does not recognize
 
 The LRS MUST include the header "X-Experience-API-Consistant-Through" on all responses to
 statements requests, with a value of the timestamp for which all statements that have or
