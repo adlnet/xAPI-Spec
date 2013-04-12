@@ -28,7 +28,8 @@
 		[4.1.9. Authority](#authority)  
 		[4.1.10. Voided](#voided)  
 		[4.1.11. Attachments](#attachments)   
-		[4.1.12. Signed Statements](#signature)   
+		[4.1.12. Signed Statements](#signature)
+        [4.1.13. Data Constraints](#dataconstraints)
     [4.2. Retrieval of Statements](#retstmts)  
 [5.0. Miscellaneous Types](#misctypes)  
     [5.1. Document](#miscdocument)  
@@ -1668,6 +1669,47 @@ a signed statement will vary based on the degree of certainty required and are o
 the scope of this specification.
 
 See <a href="#AppendixF">Appendix F: Example Signed Statement]</a> for an example.
+
+
+<a name="dataconstraints"/>
+#### 4.1.13 Data Constraints
+All the properties used in statements are restricted to certain types, and those types
+constrain the behavior of systems processing statements. For clarity, certain key
+requirements are documented here, emphasizing where compliant systems have a responsibility
+to act in certain ways.
+
+###### Client Requirements:
+The following requirements reiterate especially important requirements already
+included elsewhere, due to their importance.
+
+* Values requiring IRIs MUST be sent with valid IRIs. Please use a library to
+construct them instead of string concatenation. Complete IRI validation is
+extremely difficult, so much of the burden for ensuring data portability is on the client.
+* For similar reasons, keys of language maps MUST be sent with valid RFC 5646 language tags.
+
+###### LRS Requirements:
+* MUST reject statements
+    * with any null values (except inside extensions).
+    * with strings where numbers are required, even if those strings contain numbers.
+    * with strings where booleans are required, even if those strings contain booleans.
+    * with any non-format-following key or value, including the empty string, where a.
+      string with a particular format (such as mailto URI, UUID, or IRI) is required.
+    * where the case of a key does not match the case specified in the standard.
+    * where the case of a value restricted to enumerated values does not match
+      an enumerated value given in the standard exactly.
+* MAY use best-effort validation for URL, URI, and IRI formats to satisfy the
+non-format-following rejection requirement.
+* MUST reject statements containing URL, URI, or IRI values without a scheme.
+* MAY use best-effort validation for language map keys to satisfy the
+non-format-following rejection requirement.
+* MUST at least validate that the sequence of token lengths for language map keys
+matches the [RFC 5646](http://tools.ietf.org/html/rfc5646) standard.
+* MUST process and store numbers with at least the precision of IEEE 754 32-bit
+floating point numbers.
+* MUST apply the same standards for validation of statement keys and values
+to parameters for runtime communication.
+
+
 
 
 <a name="retstmts"/> 
