@@ -96,7 +96,7 @@ Various refinements and clarifications including:
 ## 2.0 Role of the Experience API  
 The Experience API is a service that allows for statements of experience 
 (typically learning experiences, but potentially any type of experience) to be delivered 
-to, stored securely in, and retrieved from a Learning Record Store (LRS). The Experience API is 
+to, stored securely in, and retrieved from a Learning Record Store (LRS). T.he Experience API is 
 dependent on Learning Activity Providers to create and track learning experiences; 
 this specification provides a data model and associated components on how to 
 accomplish these tasks.  
@@ -212,20 +212,20 @@ OSD, Training Readiness & Strategy (TRS)
 </table> 
 <a name="reqparticipants"/> 
 #### 2.2.2 Requirements Gathering Participants  
-In collection of requirements for the Experience API, there were many people and 
-organizations that provided invaluable feedback to SCORM, distributed learning 
-efforts, and learning in general.  Project Tin Can User Voice Site, Rustici Software Blog, etc.  
+During the collection of requirements for the Experience API, many people and 
+organizations provided invaluable feedback to SCORM, distributed learning 
+efforts, and learning in general: Project Tin Can User Voice Site, Rustici Software Blog, etc.  
 
 ### 2.3 Reading guidelines for the non-technically inclined.
 
 Since you’re reading this document, it’s probably safe to say that you’re interested in understanding 
 the Experience API (xAPI), informally called the "Tin Can API". The purpose of this document is to describe how the xAPI is 
-implemented in a large variety of systems. It’s a fairly technical document by nature and you may
+implemented in a large variety of systems. It’s a fairly technical document and you may
 decide that you don’t understand much of it. Even so, there are useful things to learn by reading further. Not only
-because the tools that you work with are based on the specifications described below; the technical people that you
+because the tools that you work with are based on the specifications described below; the technical people whom you
 talk to may assume that you have a basic level of knowledge. For this reason you’re advised to read the small
 sections labeled ‘description’ and ‘rationale’ while skipping the ‘details’ and ‘examples’. Needless to say, many
-other sources can be found that explain xAPI very well, but this document is the core of them all.
+other sources can be found that explain the xAPI very well, but this document is the core of them all.
 
 <a name="defintions"/> 
 ## 3.0 Definitions  
@@ -239,7 +239,7 @@ other sources can be found that explain xAPI very well, but this document is the
 * [Inverse Functional Identifier](#def-inverse-functinal-identifier)
 * [Learning Activity Provider](#def-activity-provider)
 * [Learning Management System (LMS)](#def-learning-management-system)
-* [Learning Record Store (LRS)](#def-learning-record-store)"
+* [Learning Record Store (LRS)](#def-learning-record-store)
 * [MUST / SHOULD / MAY](<#def-must-should-may)
 * [Profile](#def-profile)
 * [Registration](#def-registration)
@@ -275,7 +275,7 @@ and retrieve extensible learning records, learner and learning experience profil
 regardless of the platform used.  
 
 <a name ="def-immutable" />
-__Immutable__:  Adjective used  describe things which cannot be changed. With 
+__Immutable__:  Adjective used describe things which cannot be changed. With 
 some exceptions, statements in the xAPI are immutable. This ensures that when 
 statements are shared between LRSs, multiple copies of the statement remain
 the same.
@@ -299,12 +299,12 @@ of the suite of services an LMS typically provides.
 
 <a name="def-learning-record-store" />
 __Learning Record Store (LRS)__: A system that stores learning information. Prior to the xAPI 
-most LRSs were Learning Management Systems (LMSs), however this document uses the term 
+most LRSs were Learning Management Systems (LMSs); however, this document uses the term 
 LRS to be clear that a full LMS is not necessary to implement the xAPI. The xAPI 
 is dependent on an LRS to function.
 
 <a name="def-must-should-may" />
-__MUST / SHOULD / MAY__: Three levels of obligation with regards to conformance to the xAPI specification. A system that fails to implement a MUST (or a MUST NOT) requirement is non-conformant. Failing to meet a SHOULD requirement is not a violation of conformity, but goes against best practices. MAY indicates an option, to be decided by the developer with no consequences for conformity.
+__MUST / SHOULD / MAY__: Three levels of obligation with regard to conformance to the xAPI specification. A system that fails to implement a MUST (or a MUST NOT) requirement is non-conformant. Failing to meet a SHOULD requirement is not a violation of conformity, but goes against best practices. MAY indicates an option, to be decided by the developer with no consequences for conformity.
 
 <a name="def-profile" />
 __Profile__: A construct where information about the learner or activity is kept, 
@@ -330,7 +330,7 @@ with ```<result>```, in ```<context>``` to track an aspect of a learning experie
 several statements may be used to track complete details about a learning experience.
 
 <a name="tcapi"/>
-__Tin Can API (TCAPI)__: The previous name of the API defined in this document, often used in informal references to teh xAPI.  
+__Tin Can API (TCAPI)__: The previous name of the API defined in this document, often used in informal references to the xAPI.  
 
 <a name="def-uri" />
 __URI__: Uniform Resource Identifier. A unique identifier which may be a URL. In the xAPI, all URIs should be a full absolute URI including a scheme. Relative URIs should not be used. URLs should be defined within a domain controlled by the person creating the URL. 
@@ -342,7 +342,7 @@ A statement is akin to a sentence of the form "I did this".
 
 <a name="stmtprops"/>
 ### 4.1 Statement Properties:  
-Actor, verb, and object are required, all other properties are optional. Properties 
+Actor, verb, and object are required; all other properties are optional. Properties 
 can occur in any order, but are limited to one use each. Each property is discussed 
 below.  
 
@@ -441,12 +441,12 @@ An Agent (an individual) is a persona or system that can be involved in an actio
 An agent...
 
 * MUST be identified by one (1) of the four types of inverse functional identifiers (see
-<a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>).
+<a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>);
 * MUST NOT include more than one (1) inverse functional identifier;
 * SHOULD NOT use inverse functional identifiers that are also used for any Groups;
-* is an important concept in relation to OAuth, see the section on OAuth for details.
+* is an important concept in relation to OAuth (see the section on OAuth for details).
 
-The table below lists the properties of Agent objects, other than the  inverse functional
+The table below lists the properties of Agent objects, other than the inverse functional
 identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>).
 
 <table border ="1">
@@ -472,8 +472,8 @@ An anonymous group...
 
 * MAY be used to describe a cluster of people where there is no ready identifier for this cluster, e.g. an ad hoc team;
 * MUST include a 'member' property listing constituent Agents;
-* MUST NOT contain Group objects in the 'member' property.
-* MUST NOT include any inverse functional identifiers
+* MUST NOT contain Group objects in the 'member' property;
+* MUST NOT include any inverse functional identifiers.
 
 The table below lists all properties of an anonymous Group.
 
@@ -488,10 +488,10 @@ An identified group...
 
 * MUST include exactly one (1) inverse functional identifier;
 * MAY include a 'member' property listing constituent Agents;
-* MUST NOT contain Group objects in the 'member' property.
+* MUST NOT contain Group objects in the 'member' property;
 * SHOULD NOT use inverse functional identifiers that are also used for any Agents.
 
-The table below lists all properties of an identified Group, other than the  inverse functional
+The table below lists all properties of an identified Group, other than the inverse functional
 identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>).
 
 <table border ="1">
@@ -523,7 +523,7 @@ inverse functional identifiers loosely inspired on the widely accepted FOAF prin
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>
-The local part of the email address must be URI encoded.<br>Only emails that have only ever been and will ever be assigned to this Agent, 
+The local part of the email address must be URI encoded.<br>Only email addresses that have only ever been and will ever be assigned to this Agent, 
 but no others, should be used for this property and mbox_sha1sum.</td></tr>
 	<tr><td>mbox_sha1sum</td><td>string</td><td>The SHA1 hash of a mailto URI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
 	<tr><td>openID</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
@@ -545,7 +545,7 @@ system (social networking site).
 SHOULD use the openID property instead of account.
 * If the Learning Activity Provider is concerned about revealing personally identifiable
 information about an Agent or Group, it SHOULD use an opaque account name (for example an
-account number) to identify all statements about a person while maintaining anonimity.
+account number) to identify all statements about a person while maintaining anonymity.
 
 The table below lists all properties of Account objects.
 <table border ="1">
