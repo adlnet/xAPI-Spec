@@ -2843,7 +2843,7 @@ with your own values. All other values should be left as they are.
 		<th>Explanation</th>
 	</tr>
 	<tr>
-		<td>http://localhost:8080/xAPI/</td>
+		<td>http://localhost:8080/xAPI/statements/</td>
 		<td>Endpoint of the LRS to send the statements to.</td>
 	</tr>
 	<tr>
@@ -2857,7 +2857,7 @@ with your own values. All other values should be left as they are.
 </table>
 
 ```javascript
-var url = "http://localhost:8080/xAPI/Statements/?statementId="+_ruuid();
+var url = "http://localhost:8080/xAPI/statements/?statementId="+_ruuid();
 var auth = "Basic dGVzdDpwYXNzd29yZA==";
 var statement = {
 	actor:{ 
@@ -2907,12 +2907,13 @@ function _ruuid() {
 
 ###### Headers:  
 ```
-{ 
+{
 	"content-type": "application/json; charset=UTF-8",
 	"authorization": "d515309a-044d-4af3-9559-c041e78eb446",
 	"referer": "http://adlnet.gov/xapi/",
 	"content-length": "###",
-	"origin": "http://adlnet.gov" }
+	"origin": "http://adlnet.gov"
+}
 ```
 
 ###### Method Path:  
@@ -3232,8 +3233,8 @@ function getIEModeRequest(method, url, headers, data){
 ```
 "definition": {
 	"description": {
-		"en-US": "How many jokes is Chris the butt of each day?
-	"},
+		"en-US": "How many jokes is Chris the butt of each day?"
+	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "numeric",
 	"correctResponsesPattern": [
@@ -3440,7 +3441,7 @@ A 0.9 statement:
         }
     },
     "timestamp": "2012-06-01T19:09:13.245Z",
-    "stored": "2012-06-29T15:41:39.165Z",
+    "stored": "2012-06-29T15:41:39.165Z"
 }
 ```
 
@@ -3535,8 +3536,8 @@ The original statement serialization to be signed:
                 "en-US": "Filing a tax return will require filling out either a 1040, 1040A or 1040EZ form"
             }
         }
-    }
-    "timestamp": "2013-04-01T12:00:00Z",
+    },
+    "timestamp": "2013-04-01T12:00:00Z"
 }
 ```
 
@@ -3650,7 +3651,7 @@ Signed Statement
                 "en-US": "Filing a tax return will require filling out either a 1040, 1040A or 1040EZ form"
             }
         }
-    }
+    },
     "timestamp": "2013-04-01T12:00:00Z",
     "attachments": [
         {
