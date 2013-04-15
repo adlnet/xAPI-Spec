@@ -756,6 +756,9 @@ conflict with another system arise.
 
 <a name="actdef"/>
 ###### Activity Definition  
+
+Activity definitions SHOULD include populated name, description, and type properties.
+
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
@@ -781,7 +784,7 @@ conflict with another system arise.
 	<tr>
 		<td>url</td>
 		<td>URL</td>
-		<td>An optional url which SHOULD resolve to a document human-readable information about the activity,
+		<td>A url which SHOULD resolve to a document human-readable information about the activity,
 		which MAY inclue a way to 'launch' the activity.
 		</td>
 	</tr>
@@ -1804,6 +1807,7 @@ There are several types of URI identifiers used in this specification:
 For activity ids, see <a href="#actdef">activity definition</a>.
 
 For all other identifiers, metadata MAY be provided in the following JSON format:
+If metadata is provided, both name and description SHOULD be included.
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
