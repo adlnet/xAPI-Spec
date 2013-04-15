@@ -648,7 +648,9 @@ A system reading a statement:
 
 * MUST use the verb URI to infer meaning;
 * MUST NOT use the display property to infer any meaning from the statement; 
-* MUST use the display property only for display to a human.
+* MUST NOT use the display property for any purpose other than display to a human.
+For example, the display property MUST NOT be used for aggregation or categorization
+of statements.
 
 The table below lists all properties of the Verb object.
 
