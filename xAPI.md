@@ -2843,7 +2843,7 @@ with your own values. All other values should be left as they are.
 		<th>Explanation</th>
 	</tr>
 	<tr>
-		<td>http://localhost:8080/xAPI/statements/</td>
+		<td>http://localhost:8080/xAPI/</td>
 		<td>Endpoint of the LRS to send the statements to.</td>
 	</tr>
 	<tr>
