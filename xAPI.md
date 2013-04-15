@@ -17,18 +17,19 @@
 	[Tin Can API (TCAPI)](#tcapi)  
 [4.0. Statement](#statement)  
     [4.1. Statement Properties](#stmtprops)  
-		[4.1.1. ID](#stmtid)  
-		[4.1.2. Actor](#actor)  
-		[4.1.3. Verb](#verb)  
-		[4.1.4. Object](#object)  
-		[4.1.5. Result](#result)  
-		[4.1.6. Context](#context)  
-		[4.1.7. Timestamp](#timestamp)  
-		[4.1.8. Stored](#stored)  
-		[4.1.9. Authority](#authority)  
-		[4.1.10. Voided](#voided)  
-		[4.1.11. Attachments](#attachments)   
-		[4.1.12. Signed Statements](#signature)   
+        [4.1.1. ID](#stmtid)  
+        [4.1.2. Actor](#actor)  
+        [4.1.3. Verb](#verb)  
+        [4.1.4. Object](#object)  
+        [4.1.5. Result](#result)  
+        [4.1.6. Context](#context)  
+        [4.1.7. Timestamp](#timestamp)  
+        [4.1.8. Stored](#stored)  
+        [4.1.9. Authority](#authority)  
+        [4.1.10. Voided](#voided)  
+        [4.1.11. Attachments](#attachments)  
+        [4.1.12. Signed Statements](#signature)  
+        [4.1.13. Data Constraints](#dataconstraints)  
     [4.2. Retrieval of Statements](#retstmts)  
 [5.0. Miscellaneous Types](#misctypes)  
     [5.1. Document](#miscdocument)  
@@ -1670,6 +1671,46 @@ the scope of this specification.
 See <a href="#AppendixF">Appendix F: Example Signed Statement]</a> for an example.
 
 
+<a name="dataconstraints"/>
+#### 4.1.13 Data Constraints
+All the properties used in statements are restricted to certain types, and those types
+constrain the behavior of systems processing statements. For clarity, certain key
+requirements are documented here, emphasizing where compliant systems have a responsibility
+to act in certain ways.
+
+###### Client Requirements:
+The following requirements reiterate especially important requirements already
+included elsewhere, to emphasize, clarify, and provide implementation guidance.
+
+* Values requiring IRIs MUST be sent with valid IRIs. Please use a library to
+construct them instead of string concatenation. Complete IRI validation is
+extremely difficult, so much of the burden for ensuring data portability is on the client.
+* For similar reasons, keys of language maps MUST be sent with valid RFC 5646 language tags.
+
+###### LRS Requirements:
+* MUST reject statements
+    * with any null values (except inside extensions).
+    * with strings where numbers are required, even if those strings contain numbers.
+    * with strings where booleans are required, even if those strings contain booleans.
+    * with any non-format-following key or value, including the empty string, where a.
+      string with a particular format (such as mailto URI, UUID, or IRI) is required.
+    * where the case of a key does not match the case specified in the standard.
+    * where the case of a value restricted to enumerated values does not match
+      an enumerated value given in the standard exactly.
+* MAY use best-effort validation for URL, URI, and IRI formats to satisfy the
+non-format-following rejection requirement.
+* MUST reject statements containing URL, URI, or IRI values without a scheme.
+* MAY use best-effort validation for language map keys to satisfy the
+non-format-following rejection requirement.
+* MUST at least validate that the sequence of token lengths for language map keys
+matches the [RFC 5646](http://tools.ietf.org/html/rfc5646) standard.
+* MUST process and store numbers with at least the precision of IEEE 754 32-bit
+floating point numbers.
+* MUST validate parameter values to the same standards required for values of the
+same types in statements. Note: string parameter values are not quoted as they are in JSON.
+
+
+
 <a name="retstmts"/> 
 ### 4.2 Retrieval of Statements:
 A collection of statements can be retrieved by performing a query on the "statements" 
@@ -2095,6 +2136,14 @@ Note: In all of the example endpoints given in the specification, "http://exampl
 is the example URL of the LRS and everything after this represents the endpoint which MUST
 be used. 
 
+###### LRS Requirements
+
+The LRS MUST reject with HTTP 400 status (see directly below) any request to any of
+these APIs using any parameters:
+* the LRS does not recognize (Note: LRSs may recognize and act on parameters not in this specification).
+* that match parameters described in this specification
+in all but case.
+
 <a name="errorcodes"/> 
 ### 7.1 Error Codes
 The list below offers some general guidance on HTTP error codes that could
@@ -2272,9 +2321,8 @@ Returns: 200 OK, statement or [Statement Result](#retstmts) (See section 4.2 for
 The LRS MUST reject with an HTTP 400 error any requests to this resource which:
 * contain both statementId and voidedStatementId parameters
 * contain statementId or voidedStatementId parameters, and also contain any other parameter besides "attachments" or "format".
-* contain any parameters the LRS does not recognize
 
-The LRS MUST include the header "X-Experience-API-Consistant-Through" on all responses to
+The LRS MUST include the header "X-Experience-API-Consistent-Through" on all responses to
 statements requests, with a value of the timestamp for which all statements that have or
 will have a "stored" property before that time are known with reasonable certainty to
 be available for retrieval. This time SHOULD take into account any temporary condition,
