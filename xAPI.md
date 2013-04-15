@@ -618,11 +618,9 @@ Learning Activity Providers...
 
 ###### NOTE: 
 In some future version, this specification might specify additional machine-readable information about 
-the verb be made available, but the choice to do so is postponed to monitor emerging practices 
-and pain points. 
- 
+the verb be made available, but the choice to do so is postponed to monitor emerging practices. 
 
-##### 4.1.3.1 Verb Object: 
+4.1.3.1 Verb Object: 
 
 ###### Description
 
