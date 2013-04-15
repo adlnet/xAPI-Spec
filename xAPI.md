@@ -1537,6 +1537,8 @@ in one message;
 described above;
 * MUST reject statements having attachments that neither contain a fileUrl nor match a
 received attachment part based on their hash;
+    * MUST accept statement streams of type "application/json" where every attachment
+    object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format
 * MUST include attachments in the Transmission Format described above
 when requested by the client (see section [7.2 "Statement API"](#stmtapi));
 * MUST NOT pull statements from another LRS without requesting attacments;
@@ -1548,6 +1550,8 @@ when requested by the client (see section [7.2 "Statement API"](#stmtapi));
 ###### Requirements for the client:
 * MAY send statements with attachments as described above;
 * MAY send multiple statements where some or all have attachments if using "POST".
+* MAY send streams of type "application/json" where every attachment
+object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format
 
 ###### Example:
 
