@@ -3090,69 +3090,67 @@ function getIEModeRequest(method, url, headers, data){
 
 ###### matching  
 ```
-{
-	"definition": {
-		"description": {
-			"en-US": "Match these people to their kickball team:"
+"definition": {
+	"description": {
+		"en-US": "Match these people to their kickball team:"
+	},
+	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+	"interactionType": "matching",
+	"correctResponsesPattern": [
+		"ben[.]3[,]chris[.]2[,]troy[.]4[,]freddie[.]1"
+	],
+	"source": [
+		{
+			"id": "ben",
+			"description": {
+				"en-US": "Ben"
+			}
 		},
-		"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
-		"interactionType": "matching",
-		"correctResponsesPattern": [
-			"ben[.]3[,]chris[.]2[,]troy[.]4[,]freddie[.]1"
-		],
-		"source": [
-			{
-				"id": "ben",
-				"description": {
-					"en-US": "Ben"
-				}
-			},
-			{
-				"id": "chris",
-				"description": {
-					"en-US": "Chris"
-				}
-			},
-			{
-				"id": "troy",
-				"description": {
-					"en-US": "Troy"
-				}
-			},
-			{
-				"id": "freddie",
-				"description": {
-					"en-US": "Freddie"
-				}
+		{
+			"id": "chris",
+			"description": {
+				"en-US": "Chris"
 			}
-		],
-		"target": [
-			{
-				"id": "1",
-				"description": {
-					"en-US": "Swift Kick in the Grass"
-				}
-			},
-			{
-				"id": "2",
-				"description": {
-					"en-US": "We got Runs"
-				}
-			},
-			{
-				"id": "3",
-				"description": {
-					"en-US": "Duck"
-				}
-			},
-			{
-				"id": "4",
-				"description": {
-					"en-US": "Van Delay Industries"
-				}
+		},
+		{
+			"id": "troy",
+			"description": {
+				"en-US": "Troy"
 			}
-		]
-	}
+		},
+		{
+			"id": "freddie",
+			"description": {
+				"en-US": "Freddie"
+			}
+		}
+	],
+	"target": [
+		{
+			"id": "1",
+			"description": {
+				"en-US": "Swift Kick in the Grass"
+			}
+		},
+		{
+			"id": "2",
+			"description": {
+				"en-US": "We got Runs"
+			}
+		},
+		{
+			"id": "3",
+			"description": {
+				"en-US": "Duck"
+			}
+		},
+		{
+			"id": "4",
+			"description": {
+				"en-US": "Van Delay Industries"
+			}
+		}
+	]
 }
 ```
 
