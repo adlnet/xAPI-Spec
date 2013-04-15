@@ -58,7 +58,7 @@
 [Appendix B: Creating an "IE Mode" Request](#AppendixB)  
 [Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
 [Appendix D: Example statements](#AppendixD)  
-[Appendix E: Converting Statements to 1.0](#AppendixE)   
+[Appendix E: Converting Statements to 1.0.0](#AppendixE)   
 [Appendix F: Example Signed Statement](#AppendixF)
 
 <a name="revhistory"/>  
@@ -84,7 +84,7 @@ view.
 - Agent objects must now have exactly 1 uniquely identifying property, instead 
 of at least one.
 
-###### 0.95 to 1.0 (April 26, 2013): 
+###### 0.95 to 1.0.0 (April 26, 2013): 
 Various refinements and clarifications including:
 - Adding attachments
 - Activity metadata is now stored as JSON rather than XML
@@ -380,7 +380,7 @@ below.
 	<tr><td><a href="#authority">authority</a></td><td>Object</td><td></td>
 	<td>Agent who is asserting this statement is true. Verified by the LRS based on 
 	authentication, and set by LRS if left blank.</td></tr>
-	<tr><td><a href="#version">version</a></td><td>String</td><td>"1.0"</td>
+	<tr><td><a href="#version">version</a></td><td>String</td><td>"1.0.0"</td>
 	<td>xAPI version the statement conforms to. Set by LRS.</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
@@ -1225,7 +1225,7 @@ to the exam, and the category is the CMI-5 profile.
 For example: Anna studies a textbook for a biology exam. The statement's
 activity refers to the textbook, and the exam is a context activity of type "other".
 
-Single Activity objects are allowed as values so that 0.95 statements will be compatible with 1.0.
+Single Activity objects are allowed as values so that 0.95 statements will be compatible with 1.0.0.
 
 The values in this section are not for expressing all the relationships the statement object has.
 Instead, they are for expressing relationships appropriate for the specific statement
@@ -1565,7 +1565,7 @@ Headers:
 
 ``` 
 Content-Type: multipart/mixed; boundary=abcABC0123'()+_,-./:=?
-X-Experience-API-Version:1.0
+X-Experience-API-Version:1.0.0
 ```
 Content:
 ```
@@ -1859,7 +1859,7 @@ All strings must be encoded and interpreted as UTF-8.
 
 Every request from a client and every response from the LRS must include an HTTP header with the name “X-Experience-API Version” and the version number as the value.
 
-Example:  ``X-Experience-API Version : 1.0``
+Example:  ``X-Experience-API Version : 1.0.0``
  
 ###### Rationale
 
@@ -1871,14 +1871,14 @@ Systems retrieving statements may then receive responses that include statements
 Requirements for the LRS:
 
 * MUST include the "X-Experience-API Version" header in every response;
-* MUST set this header to "1.0";
-* MUST reject requests with version header prior to "1.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header;
+* MUST set this header to ""1.0.0"";
+* MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header;
 * MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
 
 
 Requirements for the client:
 
-* SHOULD tolerate receiving responses with a version of "1.0" or later;
+* SHOULD tolerate receiving responses with a version of "1.0.0" or later;
 * SHOULD tolerate receiving data structures with additional properties;
 * SHOULD ignore any properties not defined in version 1.0 of the spec.
 
@@ -3325,10 +3325,10 @@ Typical simple completion with verb "attempted":
 ```  
 
 <a name="AppendixE"/>
-## Appendix E: Converting Statements to 1.0
+## Appendix E: Converting Statements to 1.0.0
 
 ######Rationale:
-This is a 1.0 specification, and as such implementers should not have to consider prior
+This is a 1.0.0 specification, and as such implementers should not have to consider prior
 versions of the specification. However, prior versions did see notable adoption. This data
 conversion is specified in order
 to preserve the data tracked using earlier versions, and make it available to new implementers
@@ -3338,7 +3338,7 @@ in a consistant manner.
 
 ######Conversion of statements created based on version 0.9
 
-A 1.0 system converting a statement created in 0.9 MUST follow the steps below:
+A 1.0.0 system converting a statement created in 0.9 MUST follow the steps below:
 
 * If the statement has been voided or uses verbs, activity types, or properties not included in the
  0.9 specification, do not convert it.
@@ -3357,7 +3357,7 @@ A 1.0 system converting a statement created in 0.9 MUST follow the steps below:
     * Remove all remaining properties.
 * Remove the "voided" property from the statement, if present. Remember, if the value of the
   voided property is true, then the statement MUST NOT be converted
-* Add "version": "1.0"
+* Add "version": "1.0.0"
 * If an authority was not previously set, set the authority to an agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
@@ -3366,12 +3366,12 @@ be updated if the statement is passed to another system.
 
 ######Conversion of statements created based on version 0.95
 
-A 1.0 system converting a statement created in 0.95 MUST follow the steps below:
+A 1.0.0 system converting a statement created in 0.95 MUST follow the steps below:
 
 * If the statement is voided, do not convert it.
 * Remove the "voided" property from the statement, if present. Remember, if the value
   of the voided property is true, then the statement MUST NOT be converted
-* Add "version": "1.0"
+* Add "version": "1.0.0"
 * If an authority was not previously set, set the authority to an agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
@@ -3444,10 +3444,10 @@ A 0.9 statement:
 }
 ```
 
-Converted to 1.0:
+Converted to 1.0.0:
 ```
 {
-    "version": "1.0",
+    "version": "1.0.0",
     "id": "d1eec41f-1e93-4ed6-acbf-5c4bd0c24269",
     "actor": {
         "objectType": "Agent",
@@ -3511,7 +3511,7 @@ An example signed statement, as described in: <a href="#signature">4.1.12. Signe
 The original statement serialization to be signed:
 ```
 {
-    "version": "1.0",
+    "version": "1.0.0",
     "id": "33cff416-e331-4c9d-969e-5373a1756120",
     "actor": {
         "mbox": "mailto:example@example.com",
@@ -3626,7 +3626,7 @@ ew0KICAgICJhbGciOiAiUlMyNTYiLA0KICAgICJ4NWMiOiBbDQogICAgICAgICJNSUlEQVRDQ0FtcWdB
 Signed Statement
 ```
 {
-    "version": "1.0",
+    "version": "1.0.0",
     "id": "33cff416-e331-4c9d-969e-5373a1756120",
     "actor": {
         "mbox": "mailto:example@example.com",
