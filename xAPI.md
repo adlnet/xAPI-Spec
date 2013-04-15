@@ -1249,7 +1249,7 @@ are part of "Test 1" which in turn belongs to the course "Algebra 1".
 The six questions are registered as part of the test by declaring
 "Test 1" as their parent. Also they are grouped with other statements
 about "Algebra 1" to fully mirror the hierarchy. This is particularly
-useful with the object of the statement is an agent, not an activity.
+useful when the object of the statement is an agent, not an activity.
 "Andrew mentored Ben with context Algebra I".
 
 ```
@@ -1539,7 +1539,7 @@ described above;
 received attachment part based on their hash;
 * MUST include attachments in the Transmission Format described above
 when requested by the client (see section [7.2 "Statement API"](#stmtapi));
-* MUST NOT pull statements from another LRS without requesting attacments;
+* MUST NOT pull statements from another LRS without requesting attachments;
 * MUST NOT push statements into another LRS without including attachments;
 * MAY reject (batches of) statements that are larger than the LRS is configured to allow;
 * SHOULD accept statements in the above format that don't declare any attachments.
@@ -2771,19 +2771,19 @@ with this syntax.
 See [Appendix B](#AppendixB) for an example function written in Javascript 
 which transforms a normal request into one using this alternate syntax.  
 
-It should also be noted that versions of Internet Explorer lower than 10 do not
-support Cross Domain Requests between http and https. This means that for IE9 and lower,
-if the LRS is on an https domain, the client sending the statement must also be on https. 
-If the LRS is on http, the client must be too. 
+It should also be noted that versions of Internet Explorer lower than 10 do not 
+support Cross Domain Requests between HTTP and HTTPS. This means that for IE9 and lower, 
+if the LRS is on an HTTPS domain, the client sending the statement must also be on HTTPS. 
+If the LRS is on HTTP, the client must be too.  
 
 There may be cases where there is a requirement for the client activity provider to support 
-IE8 and 9  where the client code is hosted on a different scheme (http or https) from 
+IE8 and 9  where the client code is hosted on a different scheme (HTTP or HTTPS) from 
 the LRS. In these cases, a simple solution would be to host an intermediary server side LRS on 
-the same scheme as the client code to route statements to the target LRS. An LRS MAY choose to provide 	
-both http and https endpoints to support this use case. Http is inherently less secure
-than https, and both LRS and client should consider the security risks before making the decision 
-to use this scheme. 
- 
+the same scheme as the client code to route statements to the target LRS. An LRS MAY choose to provide 
+both HTTP and HTTPS endpoints to support this use case. HTTP is inherently less secure 
+than HTTPS, and both LRS and client should consider the security risks before making the decision 
+to use this scheme.  
+
 <a name="validation"/> 
 ### 7.9 Validation:
 The function of the LRS within the xAPI is to store and retrieve statements. 
@@ -2798,7 +2798,7 @@ responsibility of the Activity Provider sending the statement.
 ### 7.10. HTTP HEAD
 
 ###### Description
-The LRS will respond to requests for HTTP header information.
+The LRS will respond to requests for HTTP headers information.
 
 ###### Rationale
 
@@ -2827,7 +2827,7 @@ the bookmarklet, the LRS should provide a token with limited privileges,
 ideally only enabling the storage of self-reported learning statements.  
 
 The UUID generation is only necessary since the PUT method is being used, if a 
-statement is POSTED without an ID the LRS will generate it.  
+statement is POSTed without an ID the LRS will generate it.  
 
 In order to allow cross-domain reporting of statements, a browser that supports 
 the "Access-Control-Allow-Origin" and "Access-Control-Allow-Methods" headers 
