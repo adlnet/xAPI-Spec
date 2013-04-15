@@ -2798,7 +2798,8 @@ responsibility of the Activity Provider sending the statement.
 ### 7.10. HTTP HEAD
 
 ###### Description
-The LRS will respond to requests for HTTP headers information.
+The LRS will respond to requests returning the meta information only, using 
+the HTTP headers, and not the actual document.  
 
 ###### Rationale
 
