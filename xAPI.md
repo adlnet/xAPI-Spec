@@ -721,7 +721,7 @@ which is interacted with. See <a href="#30-definitions">section 3.0 Definitions<
 	</tr>
 	<tr>
 		<td><a href="#actdef">definition</a></td>
-		<td>Optinal Activity Definition Object</td>
+		<td>Optional Activity Definition Object</td>
 		<td>Metadata, <a href="#actdef">See below</a></td>
 	</tr>
 </table>
