@@ -1519,7 +1519,8 @@ by comparing the SHA-2 of the raw data to the SHA-2 declared in the header.
 
 A statement stream that includes attachments:
 
-* MUST be of type "multipart/mixed" rather than "application/json";
+* MUST be either of type "multipart/mixed" or of type "application/json" and include a
+fileUrl for every attachment;
 	* The first part of the multipart document MUST contain the statements themselves, with type "applicaton/json";
 	* Each additional part contains the raw data for an attachment and forms a logical part of the statement. This 
 	capability will be available when issuing PUT or POST against the statement resource.
@@ -1535,21 +1536,28 @@ in one message;
 
 ###### Requirements for the LRS:
 
-* MUST accept statements via the statements resource PUT or POST that contain attachments in the Transmission Format 
-described above;
-* MUST reject statements having attachments that neither contain a fileUrl nor match a
-received attachment part based on their hash;
+* MUST NOT pull statements from another LRS without requesting attachments;
+* MUST NOT push statements into another LRS without including attachments;
 * MUST include attachments in the Transmission Format described above
 when requested by the client (see section [7.2 "Statement API"](#stmtapi));
-* MUST NOT pull statements from another LRS without requesting attacments;
-* MUST NOT push statements into another LRS without including attachments;
 * MAY reject (batches of) statements that are larger than the LRS is configured to allow;
-* SHOULD accept statements in the above format that don't declare any attachments.
-* SHOULD assume a Content-Transfer-Encoding of binary for attachment parts
+* When receiving a PUT or POST with a document type of "application/json"
+    * MUST accept statements normally  which contain either no attachment objects, or
+only attachment objects with a populated fileUrl, and where all required attachment
+properties are populated;
+* Otherwise:
+    * MUST accept statements via the statements resource PUT or POST that contain attachments in the Transmission Format 
+described above;
+    * MUST reject statements having attachments that neither contain a fileUrl nor match a
+received attachment part based on their hash;
+    * SHOULD accept statements in the above format that don't declare any attachments.
+    * SHOULD assume a Content-Transfer-Encoding of binary for attachment parts
 
 ###### Requirements for the client:
 * MAY send statements with attachments as described above;
 * MAY send multiple statements where some or all have attachments if using "POST".
+* MAY send streams of type "application/json" where every attachment
+object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format
 
 ###### Example:
 
