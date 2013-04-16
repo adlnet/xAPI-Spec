@@ -1670,7 +1670,7 @@ a signature is valid simply because an LRS has accepted it. The steps to authent
 a signed statement will vary based on the degree of certainty required and are outside
 the scope of this specification.
 
-See <a href="#AppendixF">Appendix F: Example Signed Statement]</a> for an example.
+See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example.
 
 
 <a name="dataconstraints"/>
