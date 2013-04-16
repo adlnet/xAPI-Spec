@@ -1543,7 +1543,7 @@ received attachment part based on their hash;
     object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format
 * MUST include attachments in the Transmission Format described above
 when requested by the client (see section [7.2 "Statement API"](#stmtapi));
-* MUST NOT pull statements from another LRS without requesting attacments;
+* MUST NOT pull statements from another LRS without requesting attachments;
 * MUST NOT push statements into another LRS without including attachments;
 * MAY reject (batches of) statements that are larger than the LRS is configured to allow;
 * SHOULD accept statements in the above format that don't declare any attachments.
