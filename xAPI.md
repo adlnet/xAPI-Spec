@@ -1318,7 +1318,7 @@ be used to assert authority.
 
 ###### LRS Requirements:
 * The LRS SHOULD overwrite the authority on all stored recieved statements, based on 
- the credentials used to send those statemens.
+ the credentials used to send those statements.
 * The LRS MAY leave the submitted authority unchanged but SHOULD do so only where a strong
  trust relationship has been established, and with extreme caution.
 * The LRS MUST ensure that all statements stored have an authority.
@@ -2798,7 +2798,7 @@ responsibility of the Activity Provider sending the statement.
 ### 7.10. HTTP HEAD
 
 ###### Description
-The LRS will respond to requests returning the meta information only, using 
+The LRS will respond to HEAD requests by returning the meta information only, using 
 the HTTP headers, and not the actual document.  
 
 ###### Rationale
