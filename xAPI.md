@@ -389,8 +389,8 @@ below.
 	    <td>Headers for attachments to the statement</td>
 	</tr>
 </table>  
-Aside from (potential or required) assignments of properties during initial 
-processing ("id", "authority", "stored", "timestamp") statements are immutable. Note that the content of 
+Aside from (potential or required) assignments of properties during LRS 
+processing ("id", "authority", "stored", "timestamp", "version") statements are immutable. Note that the content of 
 activities that are referenced in statements is not considered part of the 
 statement itself. So while the statement is immutable, the activities referenced 
 by that statement are not. This means a deep serialization of a statement into 
