@@ -1313,7 +1313,7 @@ A reporting tool:
 * MAY consider stored time from different timezones that represent the same logical time to be equivalent.
 
 <a name="authority"/> 
-#### 4.1.09 Authority:
+#### 4.1.9 Authority:
 The authority property provides information about who or what has asserted that 
 this statement is true. Consequently, the asserting authority may be an 
 [Agent](#agent) (representing the authenticating user or some system or 
