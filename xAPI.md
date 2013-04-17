@@ -26,10 +26,11 @@
         [4.1.7. Timestamp](#timestamp)  
         [4.1.8. Stored](#stored)  
         [4.1.9. Authority](#authority)  
-        [4.1.10. Voided](#voided)  
-        [4.1.11. Attachments](#attachments)  
-        [4.1.12. Signed Statements](#signature)  
-        [4.1.13. Data Constraints](#dataconstraints)  
+        [4.1.10. Version](#version)  
+        [4.1.11. Voided](#voided)  
+        [4.1.12. Attachments](#attachments)  
+        [4.1.13. Signed Statements](#signature)  
+        [4.1.14. Data Constraints](#dataconstraints)  
     [4.2. Retrieval of Statements](#retstmts)  
 [5.0. Miscellaneous Types](#misctypes)  
     [5.1. Document](#miscdocument)  
@@ -1312,7 +1313,7 @@ A reporting tool:
 * MAY consider stored time from different timezones that represent the same logical time to be equivalent.
 
 <a name="authority"/> 
-#### 4.1.9 Authority:
+#### 4.1.09 Authority:
 The authority property provides information about who or what has asserted that 
 this statement is true. Consequently, the asserting authority may be an 
 [Agent](#agent) (representing the authenticating user or some system or 
@@ -1379,8 +1380,14 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 	]
 }
 ```
+
+<a name="version"/> 
+#### 4.1.10 Version
+
+
+
 <a name="voided"/>
-#### 4.1.10 Voided:
+#### 4.1.11 Voided:
 ###### Rationale
 
 The certainty that an LRS has an accurate and complete collection of data is guaranteed by the fact that statements 
@@ -1444,7 +1451,7 @@ See ["Statement References"](#stmtref) in section [4.1.4.3](#stmtasobj) for deta
 statements. 
 
 <a name="attachments"/>
-#### 4.1.11 Attachments
+#### 4.1.12 Attachments
 
 ###### Description: 
 A digital artefact providing evidence of a learning experience.
@@ -1622,7 +1629,7 @@ here is a simple attachment
 --abcABC0123'()+_,-./:=?--
 ```
 <a name="signature"/>
-#### 4.1.12 Signed Statements
+#### 4.1.13 Signed Statements
 
 ###### Description:
 A statement may include a <a href="https://en.wikipedia.org/wiki/Digital_signature">
@@ -1677,7 +1684,7 @@ See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example
 
 
 <a name="dataconstraints"/>
-#### 4.1.13 Data Constraints
+#### 4.1.14 Data Constraints
 All the properties used in statements are restricted to certain types, and those types
 constrain the behavior of systems processing statements. For clarity, certain key
 requirements are documented here, emphasizing where compliant systems have a responsibility
