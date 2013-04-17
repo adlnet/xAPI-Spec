@@ -788,7 +788,7 @@ Other properties defined below MAY be included.
 		<td>url</td>
 		<td>URL</td>
 		<td>A url which SHOULD resolve to human-readable information about the activity,
-		which MAY inclue a way to 'launch' the activity.
+		which MAY include a way to 'launch' the activity.
 		</td>
 	</tr>
 	<tr>
@@ -809,7 +809,7 @@ authority to do so.
 
 <a name="actmeta"/>
 ###### Activity Metadata
-* Activities with URL identifiers MAY may host metadata using the <a href="#actdef">
+* Activities with URL identifiers MAY host metadata using the <a href="#actdef">
 activity definition</a> JSON format which is used in statements, with a Content-Type of "application/json"
 * If the activity URI is a URL, LRS's SHOULD attempt to GET that URL, and include in HTTP
 headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
@@ -1830,8 +1830,8 @@ If metadata is provided, both name and description SHOULD be included.
 * For any of the identifier URIs above, if the URI is a URL that was coined for use with this
 specification, the owner of that URL SHOULD
 make this JSON metadata available at that URL when the URL is requested and a Content-Type
-of "applicaton/json" is requested.
-* If this metadata is provided as describe above, it is the canonical source of information
+of "application/json" is requested.
+* If this metadata is provided as described above, it is the canonical source of information
 about the identifier it describes
 * Other sources of information MAY be used to fill in missing details, such as translations, or
 take the place of this metadata entirely if it was not provided or can not be loaded. This MAY
