@@ -1383,7 +1383,19 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 
 <a name="version"/> 
 #### 4.1.10 Version
+Version information in statements helps systems that process data from an LRS get their bearings. Since
+the statement data model is guaranteed consistent through all 1.0.x versions, in order to support data
+flow among such LRSs the LRS is given some flexibility on statement versions that are accepted.
 
+###### LRS Requirements
+* statements returned by an LRS MUST have their version set to the string "1.0.0".
+* an LRS MUST accept all statements where their version starts with "1.0." if they otherwise validate.
+
+###### Client Requirements
+* clients SHOULD NOT set the statement version.
+* clients intending to communicate with any 1.0.x LRS
+    * MUST set statement versions to a version of the form 1.0.x
+    * SHOULD set statement versions to 1.0.0
 
 
 <a name="voided"/>
