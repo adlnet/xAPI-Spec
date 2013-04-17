@@ -352,40 +352,39 @@ can occur in any order, but are limited to one use each. Each property is discus
 below.  
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
-	<tr><td>id</td><td>UUID</td><td></td>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>id</td><td>UUID</td>
 	<td>UUID assigned by LRS if not set by the Learning Activity Provider.</td></tr>
-	<tr><td><a href="#actor">actor</a></td><td>Object</td><td></td>
+	<tr><td><a href="#actor">actor</a></td><td>Object</td>
 	<td>Who the statement is about, as an <a href="#agent">Agent</a> or 
 		<a href="#group">Group</a> object. Represents the "I" in "I Did This".</td></tr>
-	<tr><td><a href="#verb">verb</a></td><td>Object</td><td></td>
+	<tr><td><a href="#verb">verb</a></td><td>Object</td>
 	<td>Action of the Learner or Team object. Represents the "Did" in "I Did This".</td></tr>
-	<tr><td><a href="#object">object</a></td><td>Object</td><td></td>
+	<tr><td><a href="#object">object</a></td><td>Object</td>
 	<td>Activity, agent, or another statement that is the object of the statement. 
 	Represents the "This" in "I Did This". Note that objects which are provided as a value for this field should 
 	include a "objectType" field. If not specified, the object is assumed to be 
 	an activity.</td></tr>
-	<tr><td><a href="#result">result</a></td><td>Object</td><td></td>
+	<tr><td><a href="#result">result</a></td><td>Object</td>
 	<td>Result object, further details representing a measured outcome relevant to the specified verb.</td></tr>
-	<tr><td><a href="#context">context</a></td><td>Object</td><td></td>
+	<tr><td><a href="#context">context</a></td><td>Object</td>
 	<td>Context that gives the statement more meaning. Examples: a team the actor is 
 	working with, altitude at which a scenario was attempted in a flight simulator.</td></tr>
-	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td><td></td>
+	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
 	of when what this statement describes happened. If not provided, LRS 
 	should set this to the value of "stored" time.</td></tr>
-	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td><td></td>
+	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
 	of when this statement was recorded. Set by LRS.</td></tr>
-	<tr><td><a href="#authority">authority</a></td><td>Object</td><td></td>
+	<tr><td><a href="#authority">authority</a></td><td>Object</td>
 	<td>Agent who is asserting this statement is true. Verified by the LRS based on 
 	authentication, and set by LRS if left blank.</td></tr>
-	<tr><td><a href="#version">version</a></td><td>String</td><td>"1.0.0"</td>
+	<tr><td><a href="#version">version</a></td><td>String</td>
 	<td>xAPI version the statement conforms to. Set by LRS.</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
 		<td>Array of attachment objects</td>
-		<td>false</td>
 	    <td>Headers for attachments to the statement</td>
 	</tr>
 </table>  
