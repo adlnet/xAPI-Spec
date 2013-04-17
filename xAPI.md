@@ -718,12 +718,12 @@ which is interacted with. See <a href="#30-definitions">section 3.0 Definitions<
 	</tr>
 	<tr>
 		<td><a href="#acturi">id</a></td><td>URI</td>
-		<td>MAY be a URL, which points to the logical definition of the activity. 
+		<td>Required. MAY be a URL, which points to the logical definition of the activity. 
 		This MAY point to metadata or the URL for the activity</td>
 	</tr>
 	<tr>
 		<td><a href="#actdef">definition</a></td>
-		<td>Activity Definition Object</td>
+		<td>Optional Activity Definition Object</td>
 		<td>Metadata, <a href="#actdef">See below</a></td>
 	</tr>
 </table>
@@ -758,6 +758,10 @@ conflict with another system arise.
 
 <a name="actdef"/>
 ###### Activity Definition  
+
+Activity definitions SHOULD include populated name, description, and type properties.
+Other properties defined below MAY be included.
+
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
@@ -783,7 +787,7 @@ conflict with another system arise.
 	<tr>
 		<td>url</td>
 		<td>URL</td>
-		<td>An optional url which SHOULD resolve to a document human-readable information about the activity,
+		<td>A url which SHOULD resolve to human-readable information about the activity,
 		which MAY inclue a way to 'launch' the activity.
 		</td>
 	</tr>
@@ -1820,6 +1824,8 @@ For all other identifiers, metadata MAY be provided in the following JSON format
 		<td>description</td>
 	</tr>
 </table>
+
+If metadata is provided, both name and description SHOULD be included.
 
 * For any of the identifier URIs above, if the URI is a URL that was coined for use with this
 specification, the owner of that URL SHOULD
