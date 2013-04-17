@@ -58,7 +58,7 @@
 [Appendix B: Creating an "IE Mode" Request](#AppendixB)  
 [Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
 [Appendix D: Example statements](#AppendixD)  
-[Appendix E: Converting Statements to 1.0](#AppendixE)   
+[Appendix E: Converting Statements to 1.0.0](#AppendixE)   
 [Appendix F: Example Signed Statement](#AppendixF)
 
 <a name="revhistory"/>  
@@ -84,7 +84,7 @@ view.
 - Agent objects must now have exactly 1 uniquely identifying property, instead 
 of at least one.
 
-###### 0.95 to 1.0 (April 26, 2013): 
+###### 0.95 to 1.0.0 (April 26, 2013): 
 Various refinements and clarifications including:
 - Adding attachments
 - Activity metadata is now stored as JSON rather than XML
@@ -380,7 +380,7 @@ below.
 	<tr><td><a href="#authority">authority</a></td><td>Object</td><td></td>
 	<td>Agent who is asserting this statement is true. Verified by the LRS based on 
 	authentication, and set by LRS if left blank.</td></tr>
-	<tr><td><a href="#version">version</a></td><td>String</td><td>"1.0"</td>
+	<tr><td><a href="#version">version</a></td><td>String</td><td>"1.0.0"</td>
 	<td>xAPI version the statement conforms to. Set by LRS.</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
@@ -648,7 +648,9 @@ A system reading a statement:
 
 * MUST use the verb URI to infer meaning;
 * MUST NOT use the display property to infer any meaning from the statement; 
-* MUST use the display property only for display to a human.
+* MUST NOT use the display property for any purpose other than display to a human.
+For example, the display property MUST NOT be used for aggregation or categorization
+of statements.
 
 The table below lists all properties of the Verb object.
 
@@ -716,12 +718,12 @@ which is interacted with. See <a href="#30-definitions">section 3.0 Definitions<
 	</tr>
 	<tr>
 		<td><a href="#acturi">id</a></td><td>URI</td>
-		<td>MAY be a URL, which points to the logical definition of the activity. 
+		<td>Required. MAY be a URL, which points to the logical definition of the activity. 
 		This MAY point to metadata or the URL for the activity</td>
 	</tr>
 	<tr>
 		<td><a href="#actdef">definition</a></td>
-		<td>Activity Definition Object</td>
+		<td>Optional Activity Definition Object</td>
 		<td>Metadata, <a href="#actdef">See below</a></td>
 	</tr>
 </table>
@@ -756,6 +758,10 @@ conflict with another system arise.
 
 <a name="actdef"/>
 ###### Activity Definition  
+
+Activity definitions SHOULD include populated name, description, and type properties.
+Other properties defined below MAY be included.
+
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
@@ -781,7 +787,7 @@ conflict with another system arise.
 	<tr>
 		<td>url</td>
 		<td>URL</td>
-		<td>An optional url which SHOULD resolve to a document human-readable information about the activity,
+		<td>A url which SHOULD resolve to human-readable information about the activity,
 		which MAY inclue a way to 'launch' the activity.
 		</td>
 	</tr>
@@ -1225,7 +1231,7 @@ to the exam, and the category is the CMI-5 profile.
 For example: Anna studies a textbook for a biology exam. The statement's
 activity refers to the textbook, and the exam is a context activity of type "other".
 
-Single Activity objects are allowed as values so that 0.95 statements will be compatible with 1.0.
+Single Activity objects are allowed as values so that 0.95 statements will be compatible with 1.0.0.
 
 The values in this section are not for expressing all the relationships the statement object has.
 Instead, they are for expressing relationships appropriate for the specific statement
@@ -1249,7 +1255,7 @@ are part of "Test 1" which in turn belongs to the course "Algebra 1".
 The six questions are registered as part of the test by declaring
 "Test 1" as their parent. Also they are grouped with other statements
 about "Algebra 1" to fully mirror the hierarchy. This is particularly
-useful with the object of the statement is an agent, not an activity.
+useful when the object of the statement is an agent, not an activity.
 "Andrew mentored Ben with context Algebra I".
 
 ```
@@ -1318,7 +1324,7 @@ be used to assert authority.
 
 ###### LRS Requirements:
 * The LRS SHOULD overwrite the authority on all stored recieved statements, based on 
- the credentials used to send those statemens.
+ the credentials used to send those statements.
 * The LRS MAY leave the submitted authority unchanged but SHOULD do so only where a strong
  trust relationship has been established, and with extreme caution.
 * The LRS MUST ensure that all statements stored have an authority.
@@ -1539,7 +1545,7 @@ described above;
 received attachment part based on their hash;
 * MUST include attachments in the Transmission Format described above
 when requested by the client (see section [7.2 "Statement API"](#stmtapi));
-* MUST NOT pull statements from another LRS without requesting attacments;
+* MUST NOT pull statements from another LRS without requesting attachments;
 * MUST NOT push statements into another LRS without including attachments;
 * MAY reject (batches of) statements that are larger than the LRS is configured to allow;
 * SHOULD accept statements in the above format that don't declare any attachments.
@@ -1565,7 +1571,7 @@ Headers:
 
 ``` 
 Content-Type: multipart/mixed; boundary=abcABC0123'()+_,-./:=?
-X-Experience-API-Version:1.0
+X-Experience-API-Version:1.0.0
 ```
 Content:
 ```
@@ -1668,7 +1674,7 @@ a signature is valid simply because an LRS has accepted it. The steps to authent
 a signed statement will vary based on the degree of certainty required and are outside
 the scope of this specification.
 
-See <a href="#AppendixF">Appendix F: Example Signed Statement]</a> for an example.
+See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example.
 
 
 <a name="dataconstraints"/>
@@ -1819,6 +1825,8 @@ For all other identifiers, metadata MAY be provided in the following JSON format
 	</tr>
 </table>
 
+If metadata is provided, both name and description SHOULD be included.
+
 * For any of the identifier URIs above, if the URI is a URL that was coined for use with this
 specification, the owner of that URL SHOULD
 make this JSON metadata available at that URL when the URL is requested and a Content-Type
@@ -1858,29 +1866,34 @@ All strings must be encoded and interpreted as UTF-8.
 ###### Requirement
 
 Every request from a client and every response from the LRS must include an HTTP header with the name “X-Experience-API Version” and the version number as the value.
+Starting with 1.0.0, xAPI will be versioned according to <a href="http://semver.org/spec/v1.0.0.html">
+Semantic Versioning 1.0.0</a>
 
-Example:  ``X-Experience-API Version : 1.0``
+Example:  ``X-Experience-API Version : 1.0.0``
  
 ###### Rationale
 
 Future revisions of the spec may introduce changes such as properties added to statements.
 Systems retrieving statements may then receive responses that include statements of different versions. The version header allows for these version differences to be handled correctly, and to ascertain that no partial or mixed LRS version implementations exist.
+Using Semantic Versioning will allow clients and LRSs to reliably know whether they're
+compatible or not as the specification changes.
 
 ###### Details
 
 Requirements for the LRS:
 
 * MUST include the "X-Experience-API Version" header in every response;
-* MUST set this header to "1.0";
-* MUST reject requests with version header prior to "1.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header;
+* MUST set this header to ""1.0.0"";
+* MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header;
+* MUST reject requests with a version header of "1.1.0" or greater.
 * MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
 
 
 Requirements for the client:
 
-* SHOULD tolerate receiving responses with a version of "1.0" or later;
+* SHOULD tolerate receiving responses with a version of "1.0.0" or later;
 * SHOULD tolerate receiving data structures with additional properties;
-* SHOULD ignore any properties not defined in version 1.0 of the spec.
+* SHOULD ignore any properties not defined in version 1.0.0 of the spec.
 
 
 Converting statements to other versions:
@@ -2771,19 +2784,19 @@ with this syntax.
 See [Appendix B](#AppendixB) for an example function written in Javascript 
 which transforms a normal request into one using this alternate syntax.  
 
-It should also be noted that versions of Internet Explorer lower than 10 do not
-support Cross Domain Requests between http and https. This means that for IE9 and lower,
-if the LRS is on an https domain, the client sending the statement must also be on https. 
-If the LRS is on http, the client must be too. 
+It should also be noted that versions of Internet Explorer lower than 10 do not 
+support Cross Domain Requests between HTTP and HTTPS. This means that for IE9 and lower, 
+if the LRS is on an HTTPS domain, the client sending the statement must also be on HTTPS. 
+If the LRS is on HTTP, the client must be too.  
 
 There may be cases where there is a requirement for the client activity provider to support 
-IE8 and 9  where the client code is hosted on a different scheme (http or https) from 
+IE8 and 9  where the client code is hosted on a different scheme (HTTP or HTTPS) from 
 the LRS. In these cases, a simple solution would be to host an intermediary server side LRS on 
-the same scheme as the client code to route statements to the target LRS. An LRS MAY choose to provide 	
-both http and https endpoints to support this use case. Http is inherently less secure
-than https, and both LRS and client should consider the security risks before making the decision 
-to use this scheme. 
- 
+the same scheme as the client code to route statements to the target LRS. An LRS MAY choose to provide 
+both HTTP and HTTPS endpoints to support this use case. HTTP is inherently less secure 
+than HTTPS, and both LRS and client should consider the security risks before making the decision 
+to use this scheme.  
+
 <a name="validation"/> 
 ### 7.9 Validation:
 The function of the LRS within the xAPI is to store and retrieve statements. 
@@ -2798,7 +2811,8 @@ responsibility of the Activity Provider sending the statement.
 ### 7.10. HTTP HEAD
 
 ###### Description
-The LRS will respond to requests for HTTP header information.
+The LRS will respond to HEAD requests by returning the meta information only, using 
+the HTTP headers, and not the actual document.  
 
 ###### Rationale
 
@@ -2827,7 +2841,7 @@ the bookmarklet, the LRS should provide a token with limited privileges,
 ideally only enabling the storage of self-reported learning statements.  
 
 The UUID generation is only necessary since the PUT method is being used, if a 
-statement is POSTED without an ID the LRS will generate it.  
+statement is POSTed without an ID the LRS will generate it.  
 
 In order to allow cross-domain reporting of statements, a browser that supports 
 the "Access-Control-Allow-Origin" and "Access-Control-Allow-Methods" headers 
@@ -3324,10 +3338,10 @@ Typical simple completion with verb "attempted":
 ```  
 
 <a name="AppendixE"/>
-## Appendix E: Converting Statements to 1.0
+## Appendix E: Converting Statements to 1.0.0
 
 ######Rationale:
-This is a 1.0 specification, and as such implementers should not have to consider prior
+This is a 1.0.0 specification, and as such implementers should not have to consider prior
 versions of the specification. However, prior versions did see notable adoption. This data
 conversion is specified in order
 to preserve the data tracked using earlier versions, and make it available to new implementers
@@ -3337,7 +3351,7 @@ in a consistant manner.
 
 ######Conversion of statements created based on version 0.9
 
-A 1.0 system converting a statement created in 0.9 MUST follow the steps below:
+A 1.0.0 system converting a statement created in 0.9 MUST follow the steps below:
 
 * If the statement has been voided or uses verbs, activity types, or properties not included in the
  0.9 specification, do not convert it.
@@ -3356,7 +3370,7 @@ A 1.0 system converting a statement created in 0.9 MUST follow the steps below:
     * Remove all remaining properties.
 * Remove the "voided" property from the statement, if present. Remember, if the value of the
   voided property is true, then the statement MUST NOT be converted
-* Add "version": "1.0"
+* Add "version": "1.0.0"
 * If an authority was not previously set, set the authority to an agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
@@ -3365,12 +3379,12 @@ be updated if the statement is passed to another system.
 
 ######Conversion of statements created based on version 0.95
 
-A 1.0 system converting a statement created in 0.95 MUST follow the steps below:
+A 1.0.0 system converting a statement created in 0.95 MUST follow the steps below:
 
 * If the statement is voided, do not convert it.
 * Remove the "voided" property from the statement, if present. Remember, if the value
   of the voided property is true, then the statement MUST NOT be converted
-* Add "version": "1.0"
+* Add "version": "1.0.0"
 * If an authority was not previously set, set the authority to an agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
@@ -3443,10 +3457,10 @@ A 0.9 statement:
 }
 ```
 
-Converted to 1.0:
+Converted to 1.0.0:
 ```
 {
-    "version": "1.0",
+    "version": "1.0.0",
     "id": "d1eec41f-1e93-4ed6-acbf-5c4bd0c24269",
     "actor": {
         "objectType": "Agent",
@@ -3510,7 +3524,7 @@ An example signed statement, as described in: <a href="#signature">4.1.12. Signe
 The original statement serialization to be signed:
 ```
 {
-    "version": "1.0",
+    "version": "1.0.0",
     "id": "33cff416-e331-4c9d-969e-5373a1756120",
     "actor": {
         "mbox": "mailto:example@example.com",
@@ -3625,7 +3639,7 @@ ew0KICAgICJhbGciOiAiUlMyNTYiLA0KICAgICJ4NWMiOiBbDQogICAgICAgICJNSUlEQVRDQ0FtcWdB
 Signed Statement
 ```
 {
-    "version": "1.0",
+    "version": "1.0.0",
     "id": "33cff416-e331-4c9d-969e-5373a1756120",
     "actor": {
         "mbox": "mailto:example@example.com",
