@@ -26,10 +26,11 @@
         [4.1.7. Timestamp](#timestamp)  
         [4.1.8. Stored](#stored)  
         [4.1.9. Authority](#authority)  
-        [4.1.10. Voided](#voided)  
-        [4.1.11. Attachments](#attachments)  
-        [4.1.12. Signed Statements](#signature)  
-        [4.1.13. Data Constraints](#dataconstraints)  
+        [4.1.10. Version](#version)  
+        [4.1.11. Voided](#voided)  
+        [4.1.12. Attachments](#attachments)  
+        [4.1.13. Signed Statements](#signature)  
+        [4.1.14. Data Constraints](#dataconstraints)  
     [4.2. Retrieval of Statements](#retstmts)  
 [5.0. Miscellaneous Types](#misctypes)  
     [5.1. Document](#miscdocument)  
@@ -352,45 +353,44 @@ can occur in any order, but are limited to one use each. Each property is discus
 below.  
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
-	<tr><td>id</td><td>UUID</td><td></td>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>id</td><td>UUID</td>
 	<td>UUID assigned by LRS if not set by the Learning Activity Provider.</td></tr>
-	<tr><td><a href="#actor">actor</a></td><td>Object</td><td></td>
+	<tr><td><a href="#actor">actor</a></td><td>Object</td>
 	<td>Who the statement is about, as an <a href="#agent">Agent</a> or 
 		<a href="#group">Group</a> object. Represents the "I" in "I Did This".</td></tr>
-	<tr><td><a href="#verb">verb</a></td><td>Object</td><td></td>
+	<tr><td><a href="#verb">verb</a></td><td>Object</td>
 	<td>Action of the Learner or Team object. Represents the "Did" in "I Did This".</td></tr>
-	<tr><td><a href="#object">object</a></td><td>Object</td><td></td>
+	<tr><td><a href="#object">object</a></td><td>Object</td>
 	<td>Activity, agent, or another statement that is the object of the statement. 
 	Represents the "This" in "I Did This". Note that objects which are provided as a value for this field should 
 	include a "objectType" field. If not specified, the object is assumed to be 
 	an activity.</td></tr>
-	<tr><td><a href="#result">result</a></td><td>Object</td><td></td>
+	<tr><td><a href="#result">result</a></td><td>Object</td>
 	<td>Result object, further details representing a measured outcome relevant to the specified verb.</td></tr>
-	<tr><td><a href="#context">context</a></td><td>Object</td><td></td>
+	<tr><td><a href="#context">context</a></td><td>Object</td>
 	<td>Context that gives the statement more meaning. Examples: a team the actor is 
 	working with, altitude at which a scenario was attempted in a flight simulator.</td></tr>
-	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td><td></td>
+	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
 	of when what this statement describes happened. If not provided, LRS 
 	should set this to the value of "stored" time.</td></tr>
-	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td><td></td>
+	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
 	of when this statement was recorded. Set by LRS.</td></tr>
-	<tr><td><a href="#authority">authority</a></td><td>Object</td><td></td>
+	<tr><td><a href="#authority">authority</a></td><td>Object</td>
 	<td>Agent who is asserting this statement is true. Verified by the LRS based on 
 	authentication, and set by LRS if left blank.</td></tr>
-	<tr><td><a href="#version">version</a></td><td>String</td><td>"1.0.0"</td>
-	<td>xAPI version the statement conforms to. Set by LRS.</td></tr>
+	<tr><td><a href="#version">version</a></td><td>Version</td>
+	<td>xAPI version the statement conforms to, formatted according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
 		<td>Array of attachment objects</td>
-		<td>false</td>
 	    <td>Headers for attachments to the statement</td>
 	</tr>
 </table>  
-Aside from (potential or required) assignments of properties during initial 
-processing ("id", "authority", "stored", "timestamp") statements are immutable. Note that the content of 
+Aside from (potential or required) assignments of properties during LRS 
+processing ("id", "authority", "stored", "timestamp", "version") statements are immutable. Note that the content of 
 activities that are referenced in statements is not considered part of the 
 statement itself. So while the statement is immutable, the activities referenced 
 by that statement are not. This means a deep serialization of a statement into 
@@ -1380,8 +1380,30 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 	]
 }
 ```
+
+<a name="version"/> 
+#### 4.1.10 Version
+Version information in statements helps systems that process data from an LRS get their bearings. Since
+the statement data model is guaranteed consistent through all 1.0.x versions, in order to support data
+flow among such LRSs the LRS is given some flexibility on statement versions that are accepted.
+
+###### Requirements
+* version MUST be formatted as laid out for the API version header in [API Versioning](#apiversioning)
+
+###### LRS Requirements
+* an LRS MUST accept all statements where their version starts with "1.0." if they otherwise validate.
+* an LRS MUST reject all statements with a version specified that does not start with "1.0."
+* statements returned by an LRS MUST retain the version they are accepted with. If they
+lack a version, the version MUST be set to 1.0.0
+
+
+###### Client Requirements
+* clients SHOULD NOT set the statement version.
+* if clients set the statement version, they MUST set it to 1.0.0
+
+
 <a name="voided"/>
-#### 4.1.10 Voided:
+#### 4.1.11 Voided:
 ###### Rationale
 
 The certainty that an LRS has an accurate and complete collection of data is guaranteed by the fact that statements 
@@ -1445,7 +1467,7 @@ See ["Statement References"](#stmtref) in section [4.1.4.3](#stmtasobj) for deta
 statements. 
 
 <a name="attachments"/>
-#### 4.1.11 Attachments
+#### 4.1.12 Attachments
 
 ###### Description: 
 A digital artefact providing evidence of a learning experience.
@@ -1632,7 +1654,7 @@ here is a simple attachment
 --abcABC0123'()+_,-./:=?--
 ```
 <a name="signature"/>
-#### 4.1.12 Signed Statements
+#### 4.1.13 Signed Statements
 
 ###### Description:
 A statement may include a <a href="https://en.wikipedia.org/wiki/Digital_signature">
@@ -1687,7 +1709,7 @@ See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example
 
 
 <a name="dataconstraints"/>
-#### 4.1.13 Data Constraints
+#### 4.1.14 Data Constraints
 All the properties used in statements are restricted to certain types, and those types
 constrain the behavior of systems processing statements. For clarity, certain key
 requirements are documented here, emphasizing where compliant systems have a responsibility
@@ -1874,11 +1896,10 @@ All strings must be encoded and interpreted as UTF-8.
 
 ###### Requirement
 
-Every request from a client and every response from the LRS must include an HTTP header with the name “X-Experience-API Version” and the version number as the value.
-Starting with 1.0.0, xAPI will be versioned according to <a href="http://semver.org/spec/v1.0.0.html">
-Semantic Versioning 1.0.0</a>
+Every request from a client and every response from the LRS must include an HTTP header with the name “X-Experience-API-Version” and the version as the value.
+Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)
 
-Example:  ``X-Experience-API Version : 1.0.0``
+Example:  ``X-Experience-API-Version : 1.0.0``
  
 ###### Rationale
 
@@ -1891,7 +1912,7 @@ compatible or not as the specification changes.
 
 Requirements for the LRS:
 
-* MUST include the "X-Experience-API Version" header in every response;
+* MUST include the "X-Experience-API-Version" header in every response;
 * MUST set this header to ""1.0.0"";
 * MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header;
 * MUST reject requests with a version header of "1.1.0" or greater.
