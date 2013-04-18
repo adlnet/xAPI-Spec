@@ -2782,13 +2782,7 @@ support Cross Domain Requests between HTTP and HTTPS. This means that for IE9 an
 if the LRS is on an HTTPS domain, the client sending the statement must also be on HTTPS. 
 If the LRS is on HTTP, the client must be too.  
 
-There may be cases where there is a requirement for the client activity provider to support 
-IE8 and 9  where the client code is hosted on a different scheme (HTTP or HTTPS) from 
-the LRS. In these cases, a simple solution would be to host an intermediary server side LRS on 
-the same scheme as the client code to route statements to the target LRS. An LRS MAY choose to provide 
-both HTTP and HTTPS endpoints to support this use case. HTTP is inherently less secure 
-than HTTPS, and both LRS and client should consider the security risks before making the decision 
-to use this scheme.  
+There may be cases where there is a requirement for the client activity provider to support IE8 and 9 where the client code is hosted on a different scheme (HTTP or HTTPS) from the LRS. In these cases, proxy is needed to communicate to the LRS. Two simple solutions would be to set up a proxy pass through on the same scheme as the client code to the LRS or to host an intermediary server side LRS on the same scheme as the client code to route statements to the target LRS. An LRS MAY choose to provide both HTTP and HTTPS endpoints to support this use case. HTTP is inherently less secure than HTTPS, and both LRS and client should consider the security risks before making the decision to use this scheme.
 
 <a name="validation"/> 
 ### 7.9 Validation:
