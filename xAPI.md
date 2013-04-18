@@ -2323,7 +2323,8 @@ The LRS MUST reject with an HTTP 400 error any requests to this resource which:
 * contain statementId or voidedStatementId parameters, and also contain any other parameter besides "attachments" or "format".
 
 The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
-<a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>
+<a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601
+combined date and time</a>
 format, on all responses to
 statements requests, with a value of the timestamp for which all statements that have or
 will have a "stored" property before that time are known with reasonable certainty to
