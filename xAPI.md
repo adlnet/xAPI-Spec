@@ -1128,7 +1128,7 @@ Valid context types are: "parent", "grouping", "category", "other". <a href ="#c
 - SHOULD be used to track fixes of minor issues (like a spelling error), <br>
 - SHOULD NOT be used if there is a major change in learning objectives, pedagogy, or assets of an activity. (Use a new 
 activity ID instead).<br>
-- MUST NOT be used if the statement's object is a Person.
+- MUST NOT be used if the statement's object is an Agent or Group.
 
 
 </tr>
@@ -1136,7 +1136,7 @@ activity ID instead).<br>
 <td>platform</td>
 <td>String</td>
 <td>Platform used in the experience of this learning activity. <br>
-- MUST NOT be used if the statement's object is a Person.
+- MUST NOT be used if the statement's object is an Agent or Group.
 <br>Defined vocabulary, TBD. </td>
 
 </tr>
@@ -2003,7 +2003,7 @@ The means by which this registration is accomplished are not defined by OAuth or
 
 * Use endpoints below to complete the standard workflow.
 * If this form of authentication is used  to record statements and no  authority  is specified, the LRS should record 
-the  authority  as a group consisting of an Agent representing the registered application, and a Person representing 
+the  authority  as a group consisting of an Agent representing the registered application, and an Agent representing 
 the known user.
 
 ###### Application registered + user unknown
