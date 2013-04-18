@@ -1519,41 +1519,50 @@ placed at the end of such transmissions.
 by comparing the SHA-2 of the raw data to the SHA-2 declared in the header.
 
 
-###### Requirements for statement streams that include attachments
+###### Requirements for attachment statement batches
 
-A statement stream that includes attachments:
+A statement batch that includes attachments:
 
-* MUST be of type "multipart/mixed" rather than "application/json";
-	* The first part of the multipart document MUST contain the statements themselves, with type "applicaton/json";
-	* Each additional part contains the raw data for an attachment and forms a logical part of the statement. This 
-	capability will be available when issuing PUT or POST against the statement resource.
-* SHOULD only include one copy of an attachment when the same attachment is used in multiple statements that are sent 
-in one message;
-* MUST conform to the definition of multipart/mixed in RFC 1341;
-* SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json";
-* MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part;
+* MUST be of type "application/json" and include a fileUrl for every attachment or
+* MUST conform to the definition of multipart/mixed in RFC 1341 and:
+    * The first part of the multipart document MUST contain the statements themselves, with type "applicaton/json";
+    * Each additional part contains the raw data for an attachment and forms a logical part of the statement. This 
+capability will be available when issuing PUT or POST against the statement resource.
+    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple statements that are sent 
+in one batch;
+    * SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json";
+    * MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part;
 	* This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
 	attachment included in this part.
-* MUST include a Content-Transfer-Encoding field with a value of "binary" in each part's header after the first (statements) part;
+    * MUST include a Content-Transfer-Encoding field with a value of "binary" in each part's header after the first (statements) part;
 
 
 ###### Requirements for the LRS:
 
-* MUST accept statements via the statements resource PUT or POST that contain attachments in the Transmission Format 
-described above;
-* MUST reject statements having attachments that neither contain a fileUrl nor match a
-received attachment part based on their hash;
+* MUST NOT pull statements from another LRS without requesting attachments;
+* MUST NOT push statements into another LRS without including attachment data
+received, if any, for those attachments;
 * MUST include attachments in the Transmission Format described above
 when requested by the client (see section [7.2 "Statement API"](#stmtapi));
-* MUST NOT pull statements from another LRS without requesting attachments;
-* MUST NOT push statements into another LRS without including attachments;
 * MAY reject (batches of) statements that are larger than the LRS is configured to allow;
-* SHOULD accept statements in the above format that don't declare any attachments.
-* SHOULD assume a Content-Transfer-Encoding of binary for attachment parts
+* When receiving a PUT or POST with a document type of "application/json"
+    * MUST accept batches of statements which contain either no attachment objects, or
+only attachment objects with a populated fileUrl;
+* Otherwise:
+    * MUST accept batches of statements via the statements resource PUT or POST that contain
+    attachments in the Transmission Format described above;
+    * MUST reject batches of statements having attachments that neither contain a fileUrl nor match a
+received attachment part based on their hash;
+    * SHOULD assume a Content-Transfer-Encoding of binary for attachment parts
+
+Note: There is no requirement that statement batches using the mime/multipart format
+contain attachments.
 
 ###### Requirements for the client:
 * MAY send statements with attachments as described above;
 * MAY send multiple statements where some or all have attachments if using "POST".
+* MAY send batches of type "application/json" where every attachment
+object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format
 
 ###### Example:
 
