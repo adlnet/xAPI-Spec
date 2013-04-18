@@ -1388,13 +1388,13 @@ the statement data model is guaranteed consistent through all 1.0.x versions, in
 flow among such LRSs the LRS is given some flexibility on statement versions that are accepted.
 
 ###### Requirements
-* version must be formatted as laid out in [API Versioning](#apiversioning)
+* version must be formatted as laid out for the API version header in [API Versioning](#apiversioning)
 
 ###### LRS Requirements
 * an LRS MUST accept all statements where their version starts with "1.0." if they otherwise validate.
-* an LRS MUST reject all statements that do not start with "1.0."
+* an LRS MUST reject all statements with a version specified that does not start with "1.0."
 * statements returned by an LRS MUST retain the version number they are accepted with. If they
-lack a version number, the version number MUST be set to 1.0.0
+lack a version, the version MUST be set to 1.0.0
 
 
 ###### Client Requirements
