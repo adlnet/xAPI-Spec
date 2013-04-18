@@ -1546,12 +1546,12 @@ received, if any, for those attachments;
 when requested by the client (see section [7.2 "Statement API"](#stmtapi));
 * MAY reject (batches of) statements that are larger than the LRS is configured to allow;
 * When receiving a PUT or POST with a document type of "application/json"
-    * MUST accept statements normally  which contain either no attachment objects, or
+    * MUST accept batches of statements which contain either no attachment objects, or
 only attachment objects with a populated fileUrl;
 * Otherwise:
-    * MUST accept statements via the statements resource PUT or POST that contain
+    * MUST accept batches of statements via the statements resource PUT or POST that contain
     attachments in the Transmission Format described above;
-    * MUST reject statements having attachments that neither contain a fileUrl nor match a
+    * MUST reject batches of statements having attachments that neither contain a fileUrl nor match a
 received attachment part based on their hash;
     * SHOULD assume a Content-Transfer-Encoding of binary for attachment parts
 
