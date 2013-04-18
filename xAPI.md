@@ -381,8 +381,8 @@ below.
 	<tr><td><a href="#authority">authority</a></td><td>Object</td>
 	<td>Agent who is asserting this statement is true. Verified by the LRS based on 
 	authentication, and set by LRS if left blank.</td></tr>
-	<tr><td><a href="#version">version</a></td><td>String</td>
-	<td>xAPI version the statement conforms to. Set by LRS.</td></tr>
+	<tr><td><a href="#version">version</a></td><td>Version</td>
+	<td>xAPI version the statement conforms to, formatted according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
 		<td>Array of attachment objects</td>
@@ -1388,12 +1388,12 @@ the statement data model is guaranteed consistent through all 1.0.x versions, in
 flow among such LRSs the LRS is given some flexibility on statement versions that are accepted.
 
 ###### Requirements
-* version must be formatted as laid out for the API version header in [API Versioning](#apiversioning)
+* version MUST be formatted as laid out for the API version header in [API Versioning](#apiversioning)
 
 ###### LRS Requirements
 * an LRS MUST accept all statements where their version starts with "1.0." if they otherwise validate.
 * an LRS MUST reject all statements with a version specified that does not start with "1.0."
-* statements returned by an LRS MUST retain the version number they are accepted with. If they
+* statements returned by an LRS MUST retain the version they are accepted with. If they
 lack a version, the version MUST be set to 1.0.0
 
 
@@ -1887,11 +1887,10 @@ All strings must be encoded and interpreted as UTF-8.
 
 ###### Requirement
 
-Every request from a client and every response from the LRS must include an HTTP header with the name “X-Experience-API Version” and the version number as the value.
-Starting with 1.0.0, xAPI will be versioned according to <a href="http://semver.org/spec/v1.0.0.html">
-Semantic Versioning 1.0.0</a>
+Every request from a client and every response from the LRS must include an HTTP header with the name “X-Experience-API-Version” and the version as the value.
+Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)
 
-Example:  ``X-Experience-API Version : 1.0.0``
+Example:  ``X-Experience-API-Version : 1.0.0``
  
 ###### Rationale
 
@@ -1904,7 +1903,7 @@ compatible or not as the specification changes.
 
 Requirements for the LRS:
 
-* MUST include the "X-Experience-API Version" header in every response;
+* MUST include the "X-Experience-API-Version" header in every response;
 * MUST set this header to ""1.0.0"";
 * MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header;
 * MUST reject requests with a version header of "1.1.0" or greater.
