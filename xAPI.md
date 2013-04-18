@@ -788,7 +788,7 @@ Other properties defined below MAY be included.
 		<td>url</td>
 		<td>URL</td>
 		<td>A url which SHOULD resolve to human-readable information about the activity,
-		which MAY inclue a way to 'launch' the activity.
+		which MAY include a way to 'launch' the activity.
 		</td>
 	</tr>
 	<tr>
@@ -809,7 +809,7 @@ authority to do so.
 
 <a name="actmeta"/>
 ###### Activity Metadata
-* Activities with URL identifiers MAY may host metadata using the <a href="#actdef">
+* Activities with URL identifiers MAY host metadata using the <a href="#actdef">
 activity definition</a> JSON format which is used in statements, with a Content-Type of "application/json"
 * If the activity URI is a URL, LRS's SHOULD attempt to GET that URL, and include in HTTP
 headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
@@ -1128,7 +1128,7 @@ Valid context types are: "parent", "grouping", "category", "other". <a href ="#c
 - SHOULD be used to track fixes of minor issues (like a spelling error), <br>
 - SHOULD NOT be used if there is a major change in learning objectives, pedagogy, or assets of an activity. (Use a new 
 activity ID instead).<br>
-- MUST NOT be used if the statement's object is a Person.
+- MUST NOT be used if the statement's object is an Agent or Group.
 
 
 </tr>
@@ -1136,7 +1136,7 @@ activity ID instead).<br>
 <td>platform</td>
 <td>String</td>
 <td>Platform used in the experience of this learning activity. <br>
-- MUST NOT be used if the statement's object is a Person.
+- MUST NOT be used if the statement's object is an Agent or Group.
 <br>Defined vocabulary, TBD. </td>
 
 </tr>
@@ -1830,8 +1830,8 @@ If metadata is provided, both name and description SHOULD be included.
 * For any of the identifier URIs above, if the URI is a URL that was coined for use with this
 specification, the owner of that URL SHOULD
 make this JSON metadata available at that URL when the URL is requested and a Content-Type
-of "applicaton/json" is requested.
-* If this metadata is provided as describe above, it is the canonical source of information
+of "application/json" is requested.
+* If this metadata is provided as described above, it is the canonical source of information
 about the identifier it describes
 * Other sources of information MAY be used to fill in missing details, such as translations, or
 take the place of this metadata entirely if it was not provided or can not be loaded. This MAY
@@ -2003,7 +2003,7 @@ The means by which this registration is accomplished are not defined by OAuth or
 
 * Use endpoints below to complete the standard workflow.
 * If this form of authentication is used  to record statements and no  authority  is specified, the LRS should record 
-the  authority  as a group consisting of an Agent representing the registered application, and a Person representing 
+the  authority  as a group consisting of an Agent representing the registered application, and an Agent representing 
 the known user.
 
 ###### Application registered + user unknown
@@ -2335,7 +2335,10 @@ The LRS MUST reject with an HTTP 400 error any requests to this resource which:
 * contain both statementId and voidedStatementId parameters
 * contain statementId or voidedStatementId parameters, and also contain any other parameter besides "attachments" or "format".
 
-The LRS MUST include the header "X-Experience-API-Consistent-Through" on all responses to
+The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
+<a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601
+combined date and time</a>
+format, on all responses to
 statements requests, with a value of the timestamp for which all statements that have or
 will have a "stored" property before that time are known with reasonable certainty to
 be available for retrieval. This time SHOULD take into account any temporary condition,
