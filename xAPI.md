@@ -3272,7 +3272,7 @@ function getIEModeRequest(method, url, headers, data){
 <a name="AppendixD"/>   
 ## Appendix D: Example statements
 
-Example of a simple statement:  
+Example of a simple statement (line breaks are for display purposes only):  
 ```
 {
 	"id":"fd41c918-b88b-4b20-a0a5-a4c32391aaa0",
