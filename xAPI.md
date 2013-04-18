@@ -54,7 +54,7 @@
     [7.8. Cross Origin Requests](#cors)  
     [7.9. Validation](#validation)  
     [7.10. HTTP HEAD](#httphead)  
-[Appendix A: Bookmarklet](#AppendixA)  
+[Appendix A: Feedback](#AppendixA)  
 [Appendix B: Creating an "IE Mode" Request](#AppendixB)  
 [Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
 [Appendix D: Example statements](#AppendixD)  
@@ -2828,28 +2828,9 @@ identical HTTP GET request except:
     * The Content-Length header MAY be omitted, in order to avoid wasting LRS resources
 
 <a name="AppendixA"/> 
-## Appendix A: Bookmarklet
+## Appendix A: Feedback
 
-xAPI enables using an "I learned this" bookmarklet to self-report learning. 
-The following is an example of such a bookmarklet, and the statement that this 
-bookmarklet would send if used on the page: http://adlnet.gov/xapi.  
-
-The bookmarklet would be provided by the LRS to track to, for a specific user. 
-Therefore the LRS URL, authentication, and actor information is hard coded in 
-the bookmarklet. Note that since the authorization token must be included in 
-the bookmarklet, the LRS should provide a token with limited privileges, 
-ideally only enabling the storage of self-reported learning statements.  
-
-The UUID generation is only necessary since the PUT method is being used, if a 
-statement is POSTed without an ID the LRS will generate it.  
-
-In order to allow cross-domain reporting of statements, a browser that supports 
-the "Access-Control-Allow-Origin" and "Access-Control-Allow-Methods" headers 
-must be used, such as IE 8+, FF 3.5+, Safari 4+, Safari iOS Chrome, or Android 
-browser. Additionally the server must set the required headers.  
-
-In the example below, the following values in the first few lines should be replaced
-with your own values. All other values should be left as they are. 
+xAPI Feedback enables individual user tracking with base authentication. Examples could be an "I think this", “I learned this”, “I like this”, or “I don’t like this” statement that allows self-reporting. The following is an example of a feedback, and the statement afeedback would send if being used: http://adlnet.gov/xapi.  The feedback MAY be provided by the LRS to track a specific user for behavior analytics. Therefore the LRS URL, authentication, and actor information is hard coded into the feedback. Note: Since the authorization token must be included in the feedback, the LRS SHOULD provide a token with limited privileges. Ideally the token SHOULD enable the storage of self-reported learning statements only.  The UUID SHOULD be included as part of the feedback PUT statement. If a statement is POSTed without a UUID, the LRS MUST generate one. In order to allow cross-domain reporting of statements, a browser that supports the "Access-Control-Allow-Origin" and "Access-Control-Allow-Methods" headers MUST be used, such as IE 8+, FF 3.5+, Safari 4+, Safari iOS Chrome, or Android browser. Additionally the server must set the required headers.  In the example below, the following values in the first few lines would be replacedwith in context values. All other values should be left as they are. 
 
 <table>
 	<tr>
@@ -2866,7 +2847,7 @@ with your own values. All other values should be left as they are.
 	</tr>
 	<tr>
 		<td>learner@example.adlnet.gov</td>
-		<td>Email address of the learner using the bookmarklet.</td>
+		<td>Email address of the learner using the feedback.</td>
 	</tr>
 </table>
 
@@ -2917,7 +2898,7 @@ function _ruuid() {
 }
 ```
 
-###### Example Statement Using Bookmarklet  
+###### Example Statement Using Feedback  
 
 ###### Headers:  
 ```
