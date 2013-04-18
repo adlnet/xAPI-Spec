@@ -223,14 +223,7 @@ efforts, and learning in general.  Project Tin Can User Voice Site, Rustici Soft
 
 ### 2.3 Reading guidelines for the non-technically inclined.
 
-Since you’re reading this document, it’s probably safe to say that you’re interested in understanding 
-the Experience API (xAPI), informally called the "Tin Can API". The purpose of this document is to describe how the xAPI is 
-implemented in a large variety of systems. It’s a fairly technical document by nature and you may
-decide that you don’t understand much of it. Even so, there are useful things to learn by reading further. Not only
-because the tools that you work with are based on the specifications described below; the technical people that you
-talk to may assume that you have a basic level of knowledge. For this reason you’re advised to read the small
-sections labeled ‘description’ and ‘rationale’ while skipping the ‘details’ and ‘examples’. Needless to say, many
-other sources can be found that explain xAPI very well, but this document is the core of them all.
+The purpose of this document is to describe how the Experience API (xAPI), informally called the "Tin Can API", is implemented in a large variety of systems. This is a technical document by nature and you might not understand parts of it. Please be highly encouraged to read on. Since you’re reading this, it’s safe to assume that you’re interested in understanding the xAPI. The tools that you work with are based on the specifications described below; the working relationships you have with technical people can benefit from the knowledge that you will acquire by reading through this document. To obtain a good basic level of understanding it is recommended that you pay attention to, look for, and read the sections labeled ‘description’ and ‘rationale’, while the ‘details’ and ‘examples’ sections contain more technical jargon. Needless to say, many other sources can be found that explain xAPI, but this document is the core of them all.
 
 <a name="defintions"/> 
 ## 3.0 Definitions  
