@@ -1387,15 +1387,19 @@ Version information in statements helps systems that process data from an LRS ge
 the statement data model is guaranteed consistent through all 1.0.x versions, in order to support data
 flow among such LRSs the LRS is given some flexibility on statement versions that are accepted.
 
+###### Requirements
+* version must be formatted as laid out in [API Versioning](#apiversioning)
+
 ###### LRS Requirements
-* statements returned by an LRS MUST have their version set to the string "1.0.0".
 * an LRS MUST accept all statements where their version starts with "1.0." if they otherwise validate.
+* an LRS MUST reject all statements that do not start with "1.0."
+* statements returned by an LRS MUST retain the version number they are accepted with. If they
+lack a version number, the version number MUST be set to 1.0.0
+
 
 ###### Client Requirements
 * clients SHOULD NOT set the statement version.
-* clients intending to communicate with any 1.0.x LRS
-    * MUST set statement versions to a version of the form 1.0.x
-    * SHOULD set statement versions to 1.0.0
+* if clients set the statement version, they MUST set it to 1.0.0
 
 
 <a name="voided"/>
