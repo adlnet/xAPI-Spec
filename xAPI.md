@@ -2827,6 +2827,10 @@ be encoded and included as a form parameter called "content". The LRS will
 interpret this content as a UTF-8 string, storing binary data is not supported 
 with this syntax.  
 
+__Attachments__: Sending attachment data requires sending a
+multipart/mixed request, therefore sending attachment data is not supported
+with this syntax. See [4.1.12. Attachments](#attachments) 
+
 See [Appendix B](#AppendixB) for an example function written in Javascript 
 which transforms a normal request into one using this alternate syntax.  
 
