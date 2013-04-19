@@ -258,8 +258,11 @@ other sources can be found that explain xAPI very well, but this document is the
 * [Verb](#def-verb)
 
 <a name="def-activity" />
-__Activity__: : An activity can be a unit of instruction, experience, or performance that is to 
-be tracked used Statements in a meaningful combination with an Actor and a Verb. 
+__Activity__: A thing with which to be interacted. An Activity can be a unit of 
+instruction, experience, or performance that is to be tracked in meaningful combination with a Verb. 
+Interpretation of ‘Activity’ is broad, meaning that Activities can even be tangible objects. In the statement
+"Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the xAPI statement.
+Other examples include a book, an e-learning course, a hike or a meeting. 
 
 <a name="def-activity-provider" />
 __Activity Provider (AP)__: The software object that is communicating with 
