@@ -237,7 +237,7 @@ other sources can be found that explain xAPI very well, but this document is the
 ## 3.0 Definitions  
 
 * [Activity](#def-activity)
-* [Activity Provider](#def-activity-provider)
+* [Activity Provider (AP)](#def-activity-provider)
 * [Actor](#def-actor)
 * [Authentication](#def-authentication)
 * [Authorization](#def-authorization)
