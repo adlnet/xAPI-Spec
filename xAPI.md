@@ -54,7 +54,7 @@
     [7.8. Cross Origin Requests](#cors)  
     [7.9. Validation](#validation)  
     [7.10. HTTP HEAD](#httphead)  
-[Appendix A: Feedback](#AppendixA)  
+[Appendix A: Bookmarklet](#AppendixA)  
 [Appendix B: Creating an "IE Mode" Request](#AppendixB)  
 [Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
 [Appendix D: Example statements](#AppendixD)  
@@ -223,7 +223,18 @@ efforts, and learning in general.  Project Tin Can User Voice Site, Rustici Soft
 
 ### 2.3 Reading guidelines for the non-technically inclined.
 
-The purpose of this document is to describe how the Experience API (xAPI), informally called the "Tin Can API", is implemented in a large variety of systems. This is a technical document by nature and you might not understand parts of it. Please be highly encouraged to read on. Since you’re reading this, it’s safe to assume that you’re interested in understanding the xAPI. The tools that you work with are based on the specifications described below; the working relationships you have with technical people can benefit from the knowledge that you will acquire by reading through this document. To obtain a good basic level of understanding it is recommended that you pay attention to, look for, and read the sections labeled ‘description’ and ‘rationale’, while the ‘details’ and ‘examples’ sections contain more technical jargon. Needless to say, many other sources can be found that explain xAPI, but this document is the core of them all.
+The purpose of this document is to describe how the Experience API (xAPI), informally 
+called the "Tin Can API", is implemented in a large variety of systems. This is a 
+technical document by nature and you might not understand parts of it. Please be 
+highly encouraged to read on. Since you’re reading this, it’s safe to assume that 
+you’re interested in understanding the xAPI. The tools that you work with are based 
+on the specifications described below; the working relationships you have with technical 
+people can benefit from the knowledge that you will acquire by reading through this 
+document. To obtain a good basic level of understanding it is recommended that you 
+pay attention to, look for, and read the sections labeled ‘description’ and 
+‘rationale’, while the ‘details’ and ‘examples’ sections contain more technical jargon. 
+Needless to say, many other sources can be found that explain xAPI, but this document 
+is the core of them all.
 
 <a name="defintions"/> 
 ## 3.0 Definitions  
@@ -2782,7 +2793,14 @@ support Cross Domain Requests between HTTP and HTTPS. This means that for IE9 an
 if the LRS is on an HTTPS domain, the client sending the statement must also be on HTTPS. 
 If the LRS is on HTTP, the client must be too.  
 
-There may be cases where there is a requirement for the client activity provider to support IE8 and 9 where the client code is hosted on a different scheme (HTTP or HTTPS) from the LRS. In these cases, proxy is needed to communicate to the LRS. Two simple solutions would be to set up a proxy pass through on the same scheme as the client code to the LRS or to host an intermediary server side LRS on the same scheme as the client code to route statements to the target LRS. An LRS MAY choose to provide both HTTP and HTTPS endpoints to support this use case. HTTP is inherently less secure than HTTPS, and both LRS and client should consider the security risks before making the decision to use this scheme.
+There may be cases where there is a requirement for the client activity provider to support 
+IE8 and 9 where the client code is hosted on a different scheme (HTTP or HTTPS) from the LRS. 
+In these cases, proxy is needed to communicate to the LRS. Two simple solutions would be to 
+set up a proxy pass through on the same scheme as the client code to the LRS or to host an 
+intermediary server side LRS on the same scheme as the client code to route statements to 
+the target LRS. An LRS MAY choose to provide both HTTP and HTTPS endpoints to support this 
+use case. HTTP is inherently less secure than HTTPS, and both LRS and client should 
+consider the security risks before making the decision to use this scheme.
 
 <a name="validation"/> 
 ### 7.9 Validation:
@@ -2815,11 +2833,16 @@ identical HTTP GET request except:
     * The Content-Length header MAY be omitted, in order to avoid wasting LRS resources
 
 <a name="AppendixA"/> 
-## Appendix A: Feedback
+## Appendix A:Bookmarklet
 
-xAPI Feedback enables individual user tracking with base authentication. Examples could be an "I think this", “I learned this”, “I like this”, or “I don’t like this” statement that allows self-reporting. The following is an example of a feedback, and the statement afeedback would send if being used: http://adlnet.gov/xapi.  
-The feedback MAY be provided by the LRS to track a specific user for behavior analytics. Therefore the LRS URL, authentication, and actor information is hard coded into the feedback. Note: Since the authorization token must be included in the feedback, the LRS SHOULD provide a token with limited privileges. Ideally the token SHOULD enable the storage of self-reported learning statements only.  
-The UUID SHOULD be included as part of the feedback PUT statement. If a statement is POSTed without a UUID, the LRS MUST generate one.
+xAPI Bookmarklet enables individual user tracking with base authentication. Examples 
+could be an "I think this", “I learned this”, “I like this”, or “I don’t like this” 
+statement that allows self-reporting. The following is an example of a bookmarklet, and the statement abookmarklet would send if being used: http://adlnet.gov/xapi.  
+The bookmarklet MAY be provided by the LRS to track a specific user for behavior analytics. Therefore the LRS URL, authentication, and actor information is hard coded into
+the bookmarklet. Note: Since the authorization token must be included in the bookmarklet, 
+the LRS SHOULD provide a token with limited privileges. Ideally the token SHOULD enable the storage of self-reported learning statements only.  
+The UUID SHOULD be included as part of the bookmarklet PUT statement. If a statement 
+is POSTed without a UUID, the LRS MUST generate one.
 In order to allow cross-domain reporting of statements, a browser that supports the "Access-Control-Allow-Origin" and "Access-Control-Allow-Methods" headers MUST be used, such as IE 8+, FF 3.5+, Safari 4+, Safari iOS Chrome, or Android browser. Additionally the server must set the required headers.  
 In the example below, the following values in the first few lines would be replacedwith in context values. All other values should be left as they are. 
 
@@ -2838,7 +2861,7 @@ xAPI Feedback enables individual user tracking with base authentication. Example
 	</tr>
 	<tr>
 		<td>learner@example.adlnet.gov</td>
-		<td>Email address of the learner using the feedback.</td>
+		<td>Email address of the learner using the bookmarklet.</td>
 	</tr>
 </table>
 
@@ -2889,7 +2912,7 @@ function _ruuid() {
 }
 ```
 
-###### Example Statement Using Feedback  
+###### Example Statement Using Bookmarklet  
 
 ###### Headers:  
 ```
