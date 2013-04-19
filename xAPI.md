@@ -7,60 +7,59 @@
 >send all feedback and inquiries to helpdesk@adlnet.gov  
 
 ## Table of Contents
-[1.0. Revision History](#revhistory)  
-[2.0. Role of the Experience API](#roleofxapi)  
-  [2.1. ADL's Role in the Experience API](#adlrole)  
-    [2.2. Contributors](#contributors)  
-		[2.2.1. Working Group Participants](#wg)  
-		[2.2.2. Requirements Gathering Participants](#reqparticipants)  
-[3.0. Definitions](#defintions)  
-	[Tin Can API (TCAPI)](#tcapi)  
-[4.0. Statement](#statement)  
-    [4.1. Statement Properties](#stmtprops)  
-        [4.1.1. ID](#stmtid)  
-        [4.1.2. Actor](#actor)  
-        [4.1.3. Verb](#verb)  
-        [4.1.4. Object](#object)  
-        [4.1.5. Result](#result)  
-        [4.1.6. Context](#context)  
-        [4.1.7. Timestamp](#timestamp)  
-        [4.1.8. Stored](#stored)  
-        [4.1.9. Authority](#authority)  
-        [4.1.10. Version](#version)  
-        [4.1.11. Voided](#voided)  
-        [4.1.12. Attachments](#attachments)  
-        [4.1.13. Signed Statements](#signature)  
-        [4.1.14. Data Constraints](#dataconstraints)  
-    [4.2. Retrieval of Statements](#retstmts)  
-[5.0. Miscellaneous Types](#misctypes)  
-    [5.1. Document](#miscdocument)  
-    [5.2. Language Map](#misclangmap)  
-    [5.3. Extensions](#miscext)  
-    [5.4. Identifier Metadata](#miscmeta)  
-[6.0. Runtime Communication](#rtcom)  
-    [6.1. Encoding](#encoding)  
-    [6.2. API Versioning](#apiversioning)  
-    [6.3. Concurrency](#concurrency)  
-    [6.4. Security](#security)  
-		[6.4.1. Authentication Definitions](#authdefs)  
-		[6.4.2. OAuth Authorization Scope](#oauthscope)  
-[7.0. Data Transfer (REST)](#datatransfer)  
-    [7.1. Error Codes](#errorcodes)  
-    [7.2. Statement API](#stmtapi)  
-    [7.3. Document APIs](#docapis)  
-    [7.4. State API](#stateapi)  
-    [7.5. Activity Profile API](#actprofapi)  
-    [7.6. Agent Profile API](#agentprofapi)  
-    [7.7. About resource](#aboutresource)  
-    [7.8. Cross Origin Requests](#cors)  
-    [7.9. Validation](#validation)  
-    [7.10. HTTP HEAD](#httphead)  
-[Appendix A: Bookmarklet](#AppendixA)  
-[Appendix B: Creating an "IE Mode" Request](#AppendixB)  
-[Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
-[Appendix D: Example statements](#AppendixD)  
-[Appendix E: Converting Statements to 1.0.0](#AppendixE)   
-[Appendix F: Example Signed Statement](#AppendixF)
+*	1.0.	[Revision History](#revhistory)  
+*	2.0.	[Role of the Experience API](#roleofxapi)
+	*	2.1.	[ADL's Role in the Experience API](#adlrole)  
+ 	*	2.2.	[Contributors](#contributors)
+ 		*	2.2.1.	[Working Group Participants](#wg)  
+		*	2.2.2.	[Requirements Gathering Participants](#reqparticipants)  
+*	3.0.	[Definitions](#defintions)  
+*	4.0.	[Statement](#statement)  
+    *	4.1.	[Statement Properties](#stmtprops)  
+        *	4.1.1.	[ID](#stmtid)  
+        *	4.1.2.	[Actor](#actor)  
+        *	4.1.3.	[Verb](#verb)  
+        *	4.1.4.	[Object](#object)  
+        *	4.1.5.	[Result](#result)  
+        *	4.1.6.	[Context](#context)  
+        *	4.1.7.	[Timestamp](#timestamp)  
+        *	4.1.8.	[Stored](#stored)  
+        *	4.1.9.	[Authority](#authority)  
+        *	4.1.10.	[Version](#version)  
+        *	4.1.11.	[Voided](#voided)  
+        *	4.1.12.	[Attachments](#attachments)  
+        *	4.1.13.	[Signed Statements](#signature)  
+        *	4.1.14.	[Data Constraints](#dataconstraints)  
+    *	4.2.	[Retrieval of Statements](#retstmts)  
+*	5.0.	[Miscellaneous Types](#misctypes)  
+    *	5.1.	[Document](#miscdocument)  
+    *	5.2.	[Language Map](#misclangmap)  
+    *	5.3.	[Extensions](#miscext)  
+    *	5.4.	[Identifier Metadata](#miscmeta)  
+*	6.0.	[Runtime Communication](#rtcom)  
+    *	6.1.	[Encoding](#encoding)  
+    *	6.2.	[API Versioning](#apiversioning)  
+    *	6.3.	[Concurrency](#concurrency)  
+    *	6.4.	[Security](#security)  
+		*	6.4.1.	[Authentication Definitions](#authdefs)  
+		*	6.4.2.	[OAuth Authorization Scope](#oauthscope)  
+*	7.0.	[Data Transfer (REST)](#datatransfer)  
+    *	7.1.	[Error Codes](#errorcodes)  
+    *	7.2.	[Statement API](#stmtapi)  
+    *	7.3.	[Document APIs](#docapis)  
+    *	7.4.	[State API](#stateapi)  
+    *	7.5.	[Activity Profile API](#actprofapi)  
+    *	7.6.	[Agent Profile API](#agentprofapi)  
+    *	7.7.	[About resource](#aboutresource)  
+    *	7.8.	[Cross Origin Requests](#cors)  
+    *	7.9.	[Validation](#validation)  
+    *	7.10.	[HTTP HEAD](#httphead)  
+*	[Appendix A: Bookmarklet](#AppendixA)  
+*	[Appendix B: Creating an "IE Mode" Request](#AppendixB)  
+*	[Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
+*	[Appendix D: Example statements](#AppendixD)  
+*	[Appendix E: Converting Statements to 1.0.0](#AppendixE)   
+*	[Appendix F: Example Signed Statement](#AppendixF)
 
 <a name="revhistory"/>  
 ## 1.0 Revision History
@@ -218,20 +217,28 @@ OSD, Training Readiness & Strategy (TRS)
 </table> 
 <a name="reqparticipants"/> 
 #### 2.2.2 Requirements Gathering Participants  
-In collection of requirements for the Experience API, there were many people and 
-organizations that provided invaluable feedback to SCORM, distributed learning 
-efforts, and learning in general.  Project Tin Can User Voice Site, Rustici Software Blog, etc.  
+In collection of requirements for the Experience API, many people and 
+organizations provided invaluable feedback to the Sharable Content Object
+Reference Model (SCORM®), distributed learning efforts, and learning technology
+efforts in general.  While not an exhaustive listing, the white papers gathered 
+in 2008 by the Learning Education and Training Standards Interoperability (LETSI) 
+group, the Rustici Software _UserVoice_ website, one-on-one interviews and various
+blogs were important sources from which requirements were gathered for the 
+Experience API specification.
 
 ### 2.3 Reading guidelines for the non-technically inclined.
 
-Since you’re reading this document, it’s probably safe to say that you’re interested in understanding 
-the Experience API (xAPI), informally called the "Tin Can API". The purpose of this document is to describe how the xAPI is 
-implemented in a large variety of systems. It’s a fairly technical document by nature and you may
-decide that you don’t understand much of it. Even so, there are useful things to learn by reading further. Not only
-because the tools that you work with are based on the specifications described below; the technical people that you
-talk to may assume that you have a basic level of knowledge. For this reason you’re advised to read the small
-sections labeled ‘description’ and ‘rationale’ while skipping the ‘details’ and ‘examples’. Needless to say, many
-other sources can be found that explain xAPI very well, but this document is the core of them all.
+This is a definitive document which describes how the Experience API is to be implemented
+across a variety of systems. It is a technical document authored specifically for individuals 
+and organizations implementing this technology with the intent of such individuals 
+developing interoperable tools, systems and services that are independent of each other 
+and interoperable with each other. 
+
+Whenever possible, the language and formatting used in this document is intended to be 
+_considerate_ of non-technical readers because various tools, systems and services 
+are based on the specification set described below. For this reason, sections that provide a 
+_high-level overview_ of a given facet of the Experience API are labeled **description** or 
+**rationale**. Items in this document labeled as **details** or **examples** are more technical. 
 
 <a name="defintions"/> 
 ## 3.0 Definitions  
