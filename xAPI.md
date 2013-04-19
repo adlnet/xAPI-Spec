@@ -26,10 +26,11 @@
         [4.1.7. Timestamp](#timestamp)  
         [4.1.8. Stored](#stored)  
         [4.1.9. Authority](#authority)  
-        [4.1.10. Voided](#voided)  
-        [4.1.11. Attachments](#attachments)  
-        [4.1.12. Signed Statements](#signature)  
-        [4.1.13. Data Constraints](#dataconstraints)  
+        [4.1.10. Version](#version)  
+        [4.1.11. Voided](#voided)  
+        [4.1.12. Attachments](#attachments)  
+        [4.1.13. Signed Statements](#signature)  
+        [4.1.14. Data Constraints](#dataconstraints)  
     [4.2. Retrieval of Statements](#retstmts)  
 [5.0. Miscellaneous Types](#misctypes)  
     [5.1. Document](#miscdocument)  
@@ -58,7 +59,7 @@
 [Appendix B: Creating an "IE Mode" Request](#AppendixB)  
 [Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
 [Appendix D: Example statements](#AppendixD)  
-[Appendix E: Converting Statements to 1.0](#AppendixE)   
+[Appendix E: Converting Statements to 1.0.0](#AppendixE)   
 [Appendix F: Example Signed Statement](#AppendixF)
 
 <a name="revhistory"/>  
@@ -84,7 +85,7 @@ view.
 - Agent objects must now have exactly 1 uniquely identifying property, instead 
 of at least one.
 
-###### 0.95 to 1.0 (April 26, 2013): 
+###### 0.95 to 1.0.0 (April 26, 2013): 
 Various refinements and clarifications including:
 - Adding attachments
 - Activity metadata is now stored as JSON rather than XML
@@ -352,45 +353,44 @@ can occur in any order, but are limited to one use each. Each property is discus
 below.  
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
-	<tr><td>id</td><td>UUID</td><td></td>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>id</td><td>UUID</td>
 	<td>UUID assigned by LRS if not set by the Learning Activity Provider.</td></tr>
-	<tr><td><a href="#actor">actor</a></td><td>Object</td><td></td>
+	<tr><td><a href="#actor">actor</a></td><td>Object</td>
 	<td>Who the statement is about, as an <a href="#agent">Agent</a> or 
 		<a href="#group">Group</a> object. Represents the "I" in "I Did This".</td></tr>
-	<tr><td><a href="#verb">verb</a></td><td>Object</td><td></td>
+	<tr><td><a href="#verb">verb</a></td><td>Object</td>
 	<td>Action of the Learner or Team object. Represents the "Did" in "I Did This".</td></tr>
-	<tr><td><a href="#object">object</a></td><td>Object</td><td></td>
+	<tr><td><a href="#object">object</a></td><td>Object</td>
 	<td>Activity, agent, or another statement that is the object of the statement. 
 	Represents the "This" in "I Did This". Note that objects which are provided as a value for this field should 
 	include a "objectType" field. If not specified, the object is assumed to be 
 	an activity.</td></tr>
-	<tr><td><a href="#result">result</a></td><td>Object</td><td></td>
+	<tr><td><a href="#result">result</a></td><td>Object</td>
 	<td>Result object, further details representing a measured outcome relevant to the specified verb.</td></tr>
-	<tr><td><a href="#context">context</a></td><td>Object</td><td></td>
+	<tr><td><a href="#context">context</a></td><td>Object</td>
 	<td>Context that gives the statement more meaning. Examples: a team the actor is 
 	working with, altitude at which a scenario was attempted in a flight simulator.</td></tr>
-	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td><td></td>
+	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
 	of when what this statement describes happened. If not provided, LRS 
 	should set this to the value of "stored" time.</td></tr>
-	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td><td></td>
+	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
 	of when this statement was recorded. Set by LRS.</td></tr>
-	<tr><td><a href="#authority">authority</a></td><td>Object</td><td></td>
+	<tr><td><a href="#authority">authority</a></td><td>Object</td>
 	<td>Agent who is asserting this statement is true. Verified by the LRS based on 
 	authentication, and set by LRS if left blank.</td></tr>
-	<tr><td><a href="#version">version</a></td><td>String</td><td>"1.0"</td>
-	<td>xAPI version the statement conforms to. Set by LRS.</td></tr>
+	<tr><td><a href="#version">version</a></td><td>Version</td>
+	<td>xAPI version the statement conforms to, formatted according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
 		<td>Array of attachment objects</td>
-		<td>false</td>
 	    <td>Headers for attachments to the statement</td>
 	</tr>
 </table>  
-Aside from (potential or required) assignments of properties during initial 
-processing ("id", "authority", "stored", "timestamp") statements are immutable. Note that the content of 
+Aside from (potential or required) assignments of properties during LRS 
+processing ("id", "authority", "stored", "timestamp", "version") statements are immutable. Note that the content of 
 activities that are referenced in statements is not considered part of the 
 statement itself. So while the statement is immutable, the activities referenced 
 by that statement are not. This means a deep serialization of a statement into 
@@ -648,7 +648,9 @@ A system reading a statement:
 
 * MUST use the verb URI to infer meaning;
 * MUST NOT use the display property to infer any meaning from the statement; 
-* MUST use the display property only for display to a human.
+* MUST NOT use the display property for any purpose other than display to a human.
+For example, the display property MUST NOT be used for aggregation or categorization
+of statements.
 
 The table below lists all properties of the Verb object.
 
@@ -716,12 +718,12 @@ which is interacted with. See <a href="#30-definitions">section 3.0 Definitions<
 	</tr>
 	<tr>
 		<td><a href="#acturi">id</a></td><td>URI</td>
-		<td>MAY be a URL, which points to the logical definition of the activity. 
+		<td>Required. MAY be a URL, which points to the logical definition of the activity. 
 		This MAY point to metadata or the URL for the activity</td>
 	</tr>
 	<tr>
 		<td><a href="#actdef">definition</a></td>
-		<td>Activity Definition Object</td>
+		<td>Optional Activity Definition Object</td>
 		<td>Metadata, <a href="#actdef">See below</a></td>
 	</tr>
 </table>
@@ -756,6 +758,10 @@ conflict with another system arise.
 
 <a name="actdef"/>
 ###### Activity Definition  
+
+Activity definitions SHOULD include populated name, description, and type properties.
+Other properties defined below MAY be included.
+
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
@@ -781,8 +787,8 @@ conflict with another system arise.
 	<tr>
 		<td>url</td>
 		<td>URL</td>
-		<td>An optional url which SHOULD resolve to a document human-readable information about the activity,
-		which MAY inclue a way to 'launch' the activity.
+		<td>A url which SHOULD resolve to human-readable information about the activity,
+		which MAY include a way to 'launch' the activity.
 		</td>
 	</tr>
 	<tr>
@@ -803,7 +809,7 @@ authority to do so.
 
 <a name="actmeta"/>
 ###### Activity Metadata
-* Activities with URL identifiers MAY may host metadata using the <a href="#actdef">
+* Activities with URL identifiers MAY host metadata using the <a href="#actdef">
 activity definition</a> JSON format which is used in statements, with a Content-Type of "application/json"
 * If the activity URI is a URL, LRS's SHOULD attempt to GET that URL, and include in HTTP
 headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
@@ -1122,7 +1128,7 @@ Valid context types are: "parent", "grouping", "category", "other". <a href ="#c
 - SHOULD be used to track fixes of minor issues (like a spelling error), <br>
 - SHOULD NOT be used if there is a major change in learning objectives, pedagogy, or assets of an activity. (Use a new 
 activity ID instead).<br>
-- MUST NOT be used if the statement's object is a Person.
+- MUST NOT be used if the statement's object is an Agent or Group.
 
 
 </tr>
@@ -1130,7 +1136,7 @@ activity ID instead).<br>
 <td>platform</td>
 <td>String</td>
 <td>Platform used in the experience of this learning activity. <br>
-- MUST NOT be used if the statement's object is a Person.
+- MUST NOT be used if the statement's object is an Agent or Group.
 <br>Defined vocabulary, TBD. </td>
 
 </tr>
@@ -1225,7 +1231,7 @@ to the exam, and the category is the CMI-5 profile.
 For example: Anna studies a textbook for a biology exam. The statement's
 activity refers to the textbook, and the exam is a context activity of type "other".
 
-Single Activity objects are allowed as values so that 0.95 statements will be compatible with 1.0.
+Single Activity objects are allowed as values so that 0.95 statements will be compatible with 1.0.0.
 
 The values in this section are not for expressing all the relationships the statement object has.
 Instead, they are for expressing relationships appropriate for the specific statement
@@ -1249,7 +1255,7 @@ are part of "Test 1" which in turn belongs to the course "Algebra 1".
 The six questions are registered as part of the test by declaring
 "Test 1" as their parent. Also they are grouped with other statements
 about "Algebra 1" to fully mirror the hierarchy. This is particularly
-useful with the object of the statement is an agent, not an activity.
+useful when the object of the statement is an agent, not an activity.
 "Andrew mentored Ben with context Algebra I".
 
 ```
@@ -1318,7 +1324,7 @@ be used to assert authority.
 
 ###### LRS Requirements:
 * The LRS SHOULD overwrite the authority on all stored recieved statements, based on 
- the credentials used to send those statemens.
+ the credentials used to send those statements.
 * The LRS MAY leave the submitted authority unchanged but SHOULD do so only where a strong
  trust relationship has been established, and with extreme caution.
 * The LRS MUST ensure that all statements stored have an authority.
@@ -1374,8 +1380,30 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 	]
 }
 ```
+
+<a name="version"/> 
+#### 4.1.10 Version
+Version information in statements helps systems that process data from an LRS get their bearings. Since
+the statement data model is guaranteed consistent through all 1.0.x versions, in order to support data
+flow among such LRSs the LRS is given some flexibility on statement versions that are accepted.
+
+###### Requirements
+* version MUST be formatted as laid out for the API version header in [API Versioning](#apiversioning)
+
+###### LRS Requirements
+* an LRS MUST accept all statements where their version starts with "1.0." if they otherwise validate.
+* an LRS MUST reject all statements with a version specified that does not start with "1.0."
+* statements returned by an LRS MUST retain the version they are accepted with. If they
+lack a version, the version MUST be set to 1.0.0
+
+
+###### Client Requirements
+* clients SHOULD NOT set the statement version.
+* if clients set the statement version, they MUST set it to 1.0.0
+
+
 <a name="voided"/>
-#### 4.1.10 Voided:
+#### 4.1.11 Voided:
 ###### Rationale
 
 The certainty that an LRS has an accurate and complete collection of data is guaranteed by the fact that statements 
@@ -1439,7 +1467,7 @@ See ["Statement References"](#stmtref) in section [4.1.4.3](#stmtasobj) for deta
 statements. 
 
 <a name="attachments"/>
-#### 4.1.11 Attachments
+#### 4.1.12 Attachments
 
 ###### Description: 
 A digital artefact providing evidence of a learning experience.
@@ -1513,41 +1541,50 @@ placed at the end of such transmissions.
 by comparing the SHA-2 of the raw data to the SHA-2 declared in the header.
 
 
-###### Requirements for statement streams that include attachments
+###### Requirements for attachment statement batches
 
-A statement stream that includes attachments:
+A statement batch that includes attachments:
 
-* MUST be of type "multipart/mixed" rather than "application/json";
-	* The first part of the multipart document MUST contain the statements themselves, with type "applicaton/json";
-	* Each additional part contains the raw data for an attachment and forms a logical part of the statement. This 
-	capability will be available when issuing PUT or POST against the statement resource.
-* SHOULD only include one copy of an attachment when the same attachment is used in multiple statements that are sent 
-in one message;
-* MUST conform to the definition of multipart/mixed in RFC 1341;
-* SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json";
-* MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part;
+* MUST be of type "application/json" and include a fileUrl for every attachment or
+* MUST conform to the definition of multipart/mixed in RFC 1341 and:
+    * The first part of the multipart document MUST contain the statements themselves, with type "applicaton/json";
+    * Each additional part contains the raw data for an attachment and forms a logical part of the statement. This 
+capability will be available when issuing PUT or POST against the statement resource.
+    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple statements that are sent 
+in one batch;
+    * SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json";
+    * MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part;
 	* This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
 	attachment included in this part.
-* MUST include a Content-Transfer-Encoding field with a value of "binary" in each part's header after the first (statements) part;
+    * MUST include a Content-Transfer-Encoding field with a value of "binary" in each part's header after the first (statements) part;
 
 
 ###### Requirements for the LRS:
 
-* MUST accept statements via the statements resource PUT or POST that contain attachments in the Transmission Format 
-described above;
-* MUST reject statements having attachments that neither contain a fileUrl nor match a
-received attachment part based on their hash;
+* MUST NOT pull statements from another LRS without requesting attachments;
+* MUST NOT push statements into another LRS without including attachment data
+received, if any, for those attachments;
 * MUST include attachments in the Transmission Format described above
 when requested by the client (see section [7.2 "Statement API"](#stmtapi));
-* MUST NOT pull statements from another LRS without requesting attacments;
-* MUST NOT push statements into another LRS without including attachments;
 * MAY reject (batches of) statements that are larger than the LRS is configured to allow;
-* SHOULD accept statements in the above format that don't declare any attachments.
-* SHOULD assume a Content-Transfer-Encoding of binary for attachment parts
+* When receiving a PUT or POST with a document type of "application/json"
+    * MUST accept batches of statements which contain either no attachment objects, or
+only attachment objects with a populated fileUrl;
+* Otherwise:
+    * MUST accept batches of statements via the statements resource PUT or POST that contain
+    attachments in the Transmission Format described above;
+    * MUST reject batches of statements having attachments that neither contain a fileUrl nor match a
+received attachment part based on their hash;
+    * SHOULD assume a Content-Transfer-Encoding of binary for attachment parts
+
+Note: There is no requirement that statement batches using the mime/multipart format
+contain attachments.
 
 ###### Requirements for the client:
 * MAY send statements with attachments as described above;
 * MAY send multiple statements where some or all have attachments if using "POST".
+* MAY send batches of type "application/json" where every attachment
+object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format
 
 ###### Example:
 
@@ -1565,7 +1602,7 @@ Headers:
 
 ``` 
 Content-Type: multipart/mixed; boundary=abcABC0123'()+_,-./:=?
-X-Experience-API-Version:1.0
+X-Experience-API-Version:1.0.0
 ```
 Content:
 ```
@@ -1617,7 +1654,7 @@ here is a simple attachment
 --abcABC0123'()+_,-./:=?--
 ```
 <a name="signature"/>
-#### 4.1.12 Signed Statements
+#### 4.1.13 Signed Statements
 
 ###### Description:
 A statement may include a <a href="https://en.wikipedia.org/wiki/Digital_signature">
@@ -1668,11 +1705,11 @@ a signature is valid simply because an LRS has accepted it. The steps to authent
 a signed statement will vary based on the degree of certainty required and are outside
 the scope of this specification.
 
-See <a href="#AppendixF">Appendix F: Example Signed Statement]</a> for an example.
+See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example.
 
 
 <a name="dataconstraints"/>
-#### 4.1.13 Data Constraints
+#### 4.1.14 Data Constraints
 All the properties used in statements are restricted to certain types, and those types
 constrain the behavior of systems processing statements. For clarity, certain key
 requirements are documented here, emphasizing where compliant systems have a responsibility
@@ -1819,11 +1856,13 @@ For all other identifiers, metadata MAY be provided in the following JSON format
 	</tr>
 </table>
 
+If metadata is provided, both name and description SHOULD be included.
+
 * For any of the identifier URIs above, if the URI is a URL that was coined for use with this
 specification, the owner of that URL SHOULD
 make this JSON metadata available at that URL when the URL is requested and a Content-Type
-of "applicaton/json" is requested.
-* If this metadata is provided as describe above, it is the canonical source of information
+of "application/json" is requested.
+* If this metadata is provided as described above, it is the canonical source of information
 about the identifier it describes
 * Other sources of information MAY be used to fill in missing details, such as translations, or
 take the place of this metadata entirely if it was not provided or can not be loaded. This MAY
@@ -1857,37 +1896,41 @@ All strings must be encoded and interpreted as UTF-8.
 
 ###### Requirement
 
-Every request from a client and every response from the LRS must include an HTTP header with the name “X-Experience-API Version” and the version number as the value.
+Every request from a client and every response from the LRS must include an HTTP header with the name “X-Experience-API-Version” and the version as the value.
+Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)
 
-Example:  ``X-Experience-API Version : 1.0``
+Example:  ``X-Experience-API-Version : 1.0.0``
  
 ###### Rationale
 
 Future revisions of the spec may introduce changes such as properties added to statements.
 Systems retrieving statements may then receive responses that include statements of different versions. The version header allows for these version differences to be handled correctly, and to ascertain that no partial or mixed LRS version implementations exist.
+Using Semantic Versioning will allow clients and LRSs to reliably know whether they're
+compatible or not as the specification changes.
 
 ###### Details
 
 Requirements for the LRS:
 
-* MUST include the "X-Experience-API Version" header in every response;
-* MUST set this header to "1.0";
-* MUST reject requests with version header prior to "1.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header;
+* MUST include the "X-Experience-API-Version" header in every response;
+* MUST set this header to ""1.0.0"";
+* MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header;
+* MUST reject requests with a version header of "1.1.0" or greater.
 * MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
 
 
 Requirements for the client:
 
-* SHOULD tolerate receiving responses with a version of "1.0" or later;
+* SHOULD tolerate receiving responses with a version of "1.0.0" or later;
 * SHOULD tolerate receiving data structures with additional properties;
-* SHOULD ignore any properties not defined in version 1.0 of the spec.
+* SHOULD ignore any properties not defined in version 1.0.0 of the spec.
 
 
 Converting statements to other versions:
 
 * Systems MUST NOT convert statements of newer versions into a prior version format e.g. in order to handle version differences.
 * Systems MAY convert statements of older versions into a newer version only by following the methods described in
-<a href="#AppendixE">Appendix E: Converting Statements to 1.0</a>.
+<a href="#AppendixE">Appendix E: Converting Statements to 1.0.0</a>.
 
 <a name="concurrency"/> 
 ### 6.3 Concurrency:
@@ -1990,7 +2033,7 @@ The means by which this registration is accomplished are not defined by OAuth or
 
 * Use endpoints below to complete the standard workflow.
 * If this form of authentication is used  to record statements and no  authority  is specified, the LRS should record 
-the  authority  as a group consisting of an Agent representing the registered application, and a Person representing 
+the  authority  as a group consisting of an Agent representing the registered application, and an Agent representing 
 the known user.
 
 ###### Application registered + user unknown
@@ -2322,7 +2365,10 @@ The LRS MUST reject with an HTTP 400 error any requests to this resource which:
 * contain both statementId and voidedStatementId parameters
 * contain statementId or voidedStatementId parameters, and also contain any other parameter besides "attachments" or "format".
 
-The LRS MUST include the header "X-Experience-API-Consistent-Through" on all responses to
+The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
+<a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601
+combined date and time</a>
+format, on all responses to
 statements requests, with a value of the timestamp for which all statements that have or
 will have a "stored" property before that time are known with reasonable certainty to
 be available for retrieval. This time SHOULD take into account any temporary condition,
@@ -2738,7 +2784,7 @@ Returns: 200 OK - Single 'about' JSON document.
 </table>
 
 ###### LRS Requirements:
-* MUST return the JSON document describe above, with a version property of "1.0"
+* MUST return the JSON document described above, with a version property of "1.0.0"
 * SHOULD allow unauthenticated access to this resource
 * MUST NOT reject requests based on their version header as would otherwise be required
 by <a href="#apiversioning"/>6.2 API Versioning</a>.
@@ -2771,19 +2817,19 @@ with this syntax.
 See [Appendix B](#AppendixB) for an example function written in Javascript 
 which transforms a normal request into one using this alternate syntax.  
 
-It should also be noted that versions of Internet Explorer lower than 10 do not
-support Cross Domain Requests between http and https. This means that for IE9 and lower,
-if the LRS is on an https domain, the client sending the statement must also be on https. 
-If the LRS is on http, the client must be too. 
+It should also be noted that versions of Internet Explorer lower than 10 do not 
+support Cross Domain Requests between HTTP and HTTPS. This means that for IE9 and lower, 
+if the LRS is on an HTTPS domain, the client sending the statement must also be on HTTPS. 
+If the LRS is on HTTP, the client must be too.  
 
 There may be cases where there is a requirement for the client activity provider to support 
-IE8 and 9  where the client code is hosted on a different scheme (http or https) from 
+IE8 and 9  where the client code is hosted on a different scheme (HTTP or HTTPS) from 
 the LRS. In these cases, a simple solution would be to host an intermediary server side LRS on 
-the same scheme as the client code to route statements to the target LRS. An LRS MAY choose to provide 	
-both http and https endpoints to support this use case. Http is inherently less secure
-than https, and both LRS and client should consider the security risks before making the decision 
-to use this scheme. 
- 
+the same scheme as the client code to route statements to the target LRS. An LRS MAY choose to provide 
+both HTTP and HTTPS endpoints to support this use case. HTTP is inherently less secure 
+than HTTPS, and both LRS and client should consider the security risks before making the decision 
+to use this scheme.  
+
 <a name="validation"/> 
 ### 7.9 Validation:
 The function of the LRS within the xAPI is to store and retrieve statements. 
@@ -2798,7 +2844,8 @@ responsibility of the Activity Provider sending the statement.
 ### 7.10. HTTP HEAD
 
 ###### Description
-The LRS will respond to requests for HTTP header information.
+The LRS will respond to HEAD requests by returning the meta information only, using 
+the HTTP headers, and not the actual document.  
 
 ###### Rationale
 
@@ -2827,7 +2874,7 @@ the bookmarklet, the LRS should provide a token with limited privileges,
 ideally only enabling the storage of self-reported learning statements.  
 
 The UUID generation is only necessary since the PUT method is being used, if a 
-statement is POSTED without an ID the LRS will generate it.  
+statement is POSTed without an ID the LRS will generate it.  
 
 In order to allow cross-domain reporting of statements, a browser that supports 
 the "Access-Control-Allow-Origin" and "Access-Control-Allow-Methods" headers 
@@ -2857,7 +2904,7 @@ with your own values. All other values should be left as they are.
 </table>
 
 ```javascript
-var url = "http://localhost:8080/xAPI/Statements/?statementId="+_ruuid();
+var url = "http://localhost:8080/xAPI/statements?statementId="+_ruuid();
 var auth = "Basic dGVzdDpwYXNzd29yZA==";
 var statement = {
 	actor:{ 
@@ -2907,12 +2954,13 @@ function _ruuid() {
 
 ###### Headers:  
 ```
-{ 
+{
 	"content-type": "application/json; charset=UTF-8",
 	"authorization": "d515309a-044d-4af3-9559-c041e78eb446",
 	"referer": "http://adlnet.gov/xapi/",
 	"content-length": "###",
-	"origin": "http://adlnet.gov" }
+	"origin": "http://adlnet.gov"
+}
 ```
 
 ###### Method Path:  
@@ -3089,69 +3137,67 @@ function getIEModeRequest(method, url, headers, data){
 
 ###### matching  
 ```
-{
-	"definition":{
-		"description":{
-			"en-US":"Match these people to their kickball team:"
+"definition": {
+	"description": {
+		"en-US": "Match these people to their kickball team:"
+	},
+	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+	"interactionType": "matching",
+	"correctResponsesPattern": [
+		"ben[.]3[,]chris[.]2[,]troy[.]4[,]freddie[.]1"
+	],
+	"source": [
+		{
+			"id": "ben",
+			"description": {
+				"en-US": "Ben"
+			}
 		},
-		"type":"http://adlnet.gov/expapi/activities/cmi.interaction",
-		"interactionType":"matching",
-		"correctResponsesPattern":[
-			"ben[.]3[,]chris[.]2[,]troy[.]4[,]freddie[.]1"
-		],
-		"source":[
-			{
-				"id":"ben",
-				"description":{
-					"en-US":"Ben"
-				}
-			},
-			{
-				"id":"chris",
-				"description":{
-					"en-US":"Chris"
-				}
-			},
-			{
-				"id":"troy",
-				"description":{
-					"en-US":"Troy"
-				}
-			},
-			{
-				"id":"freddie",
-				"description":{
-					"en-US":"Freddie"
-				}
+		{
+			"id": "chris",
+			"description": {
+				"en-US": "Chris"
 			}
-		],
-		"target":[
-			{
-				"id":"1",
-				"description":{
-					"en-US":"Swift Kick in the Grass"
-				}
-			},
-			{
-				"id":"2",
-				"description":{
-					"en-US":"We got Runs"
-				}
-			},
-			{
-				"id":"3",
-				"description":{
-					"en-US":"Duck"
-				}
-			},
-			{
-				"id":"4",
-				"description":{
-					"en-US":"Van Delay Industries"
-				}
+		},
+		{
+			"id": "troy",
+			"description": {
+				"en-US": "Troy"
 			}
-		]
-	}
+		},
+		{
+			"id": "freddie",
+			"description": {
+				"en-US": "Freddie"
+			}
+		}
+	],
+	"target": [
+		{
+			"id": "1",
+			"description": {
+				"en-US": "Swift Kick in the Grass"
+			}
+		},
+		{
+			"id": "2",
+			"description": {
+				"en-US": "We got Runs"
+			}
+		},
+		{
+			"id": "3",
+			"description": {
+				"en-US": "Duck"
+			}
+		},
+		{
+			"id": "4",
+			"description": {
+				"en-US": "Van Delay Industries"
+			}
+		}
+	]
 }
 ```
 
@@ -3232,8 +3278,8 @@ function getIEModeRequest(method, url, headers, data){
 ```
 "definition": {
 	"description": {
-		"en-US": "How many jokes is Chris the butt of each day?
-	"},
+		"en-US": "How many jokes is Chris the butt of each day?"
+	},
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "numeric",
 	"correctResponsesPattern": [
@@ -3259,7 +3305,7 @@ function getIEModeRequest(method, url, headers, data){
 <a name="AppendixD"/>   
 ## Appendix D: Example statements
 
-Example of a simple statement:  
+Example of a simple statement (line breaks are for display purposes only):  
 ```
 {
 	"id":"fd41c918-b88b-4b20-a0a5-a4c32391aaa0",
@@ -3325,10 +3371,10 @@ Typical simple completion with verb "attempted":
 ```  
 
 <a name="AppendixE"/>
-## Appendix E: Converting Statements to 1.0
+## Appendix E: Converting Statements to 1.0.0
 
 ######Rationale:
-This is a 1.0 specification, and as such implementers should not have to consider prior
+This is a 1.0.0 specification, and as such implementers should not have to consider prior
 versions of the specification. However, prior versions did see notable adoption. This data
 conversion is specified in order
 to preserve the data tracked using earlier versions, and make it available to new implementers
@@ -3338,7 +3384,7 @@ in a consistant manner.
 
 ######Conversion of statements created based on version 0.9
 
-A 1.0 system converting a statement created in 0.9 MUST follow the steps below:
+A 1.0.0 system converting a statement created in 0.9 MUST follow the steps below:
 
 * If the statement has been voided or uses verbs, activity types, or properties not included in the
  0.9 specification, do not convert it.
@@ -3357,7 +3403,7 @@ A 1.0 system converting a statement created in 0.9 MUST follow the steps below:
     * Remove all remaining properties.
 * Remove the "voided" property from the statement, if present. Remember, if the value of the
   voided property is true, then the statement MUST NOT be converted
-* Add "version": "1.0"
+* Add "version": "1.0.0"
 * If an authority was not previously set, set the authority to an agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
@@ -3366,12 +3412,12 @@ be updated if the statement is passed to another system.
 
 ######Conversion of statements created based on version 0.95
 
-A 1.0 system converting a statement created in 0.95 MUST follow the steps below:
+A 1.0.0 system converting a statement created in 0.95 MUST follow the steps below:
 
 * If the statement is voided, do not convert it.
 * Remove the "voided" property from the statement, if present. Remember, if the value
   of the voided property is true, then the statement MUST NOT be converted
-* Add "version": "1.0"
+* Add "version": "1.0.0"
 * If an authority was not previously set, set the authority to an agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
@@ -3440,14 +3486,14 @@ A 0.9 statement:
         }
     },
     "timestamp": "2012-06-01T19:09:13.245Z",
-    "stored": "2012-06-29T15:41:39.165Z",
+    "stored": "2012-06-29T15:41:39.165Z"
 }
 ```
 
-Converted to 1.0:
+Converted to 1.0.0:
 ```
 {
-    "version": "1.0",
+    "version": "1.0.0",
     "id": "d1eec41f-1e93-4ed6-acbf-5c4bd0c24269",
     "actor": {
         "objectType": "Agent",
@@ -3511,7 +3557,7 @@ An example signed statement, as described in: <a href="#signature">4.1.12. Signe
 The original statement serialization to be signed:
 ```
 {
-    "version": "1.0",
+    "version": "1.0.0",
     "id": "33cff416-e331-4c9d-969e-5373a1756120",
     "actor": {
         "mbox": "mailto:example@example.com",
@@ -3535,8 +3581,8 @@ The original statement serialization to be signed:
                 "en-US": "Filing a tax return will require filling out either a 1040, 1040A or 1040EZ form"
             }
         }
-    }
-    "timestamp": "2013-04-01T12:00:00Z",
+    },
+    "timestamp": "2013-04-01T12:00:00Z"
 }
 ```
 
@@ -3620,13 +3666,13 @@ the signing certificate has been included.
 
 JWS signature
 ```
-ew0KICAgICJhbGciOiAiUlMyNTYiLA0KICAgICJ4NWMiOiBbDQogICAgICAgICJNSUlEQVRDQ0FtcWdBd0lCQWdJSkFNQjFjc051QTYra01BMEdDU3FHU0liM0RRRUJCUVVBTUhFeEN6QUpCZ05WQkFZVEFsVlRNUkl3RUFZRFZRUUlFd2xVWlc1dVpYTnpaV1V4R0RBV0JnTlZCQW9URDBWNFlXMXdiR1VnUTI5dGNHRnVlVEVRTUE0R0ExVUVBeE1IUlhoaGJYQnNaVEVpTUNBR0NTcUdTSWIzRFFFSkFSWVRaWGhoYlhCc1pVQmxlR0Z0Y0d4bExtTnZiVEFlRncweE16QTBNRFF4TlRJNE16QmFGdzB4TkRBME1EUXhOVEk0TXpCYU1JR1dNUXN3Q1FZRFZRUUdFd0pWVXpFU01CQUdBMVVFQ0JNSlZHVnVibVZ6YzJWbE1SRXdEd1lEVlFRSEV3aEdjbUZ1YTJ4cGJqRVlNQllHQTFVRUNoTVBSWGhoYlhCc1pTQkRiMjF3WVc1NU1SQXdEZ1lEVlFRTEV3ZEZlR0Z0Y0d4bE1SQXdEZ1lEVlFRREV3ZEZlR0Z0Y0d4bE1TSXdJQVlKS29aSWh2Y05BUWtCRmhObGVHRnRjR3hsUUdWNFlXMXdiR1V1WTI5dE1JR2ZNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0R05BRENCaVFLQmdRRGp4dlpYRjMwV0w0b0tqWllYZ1IwWnlhWCt1M3k2K0pxVHFpTmtGYS9WVG5ldDZMeTJPVDZabW1jSkVQbnEzVW5ld3BIb09RK0dmaGhUa1cxM2owNmo1aU5uNG9iY0NWV1RMOXlYTnZKSCtLbyt4dTRZbC95U1BScklQeVRqdEhkRzBNMlh6SWxtbUxxbStDQVMrS0NiSmVINHRmNTQza0lXQzVwQzVwM2NWUUlEQVFBQm8zc3dlVEFKQmdOVkhSTUVBakFBTUN3R0NXQ0dTQUdHK0VJQkRRUWZGaDFQY0dWdVUxTk1JRWRsYm1WeVlYUmxaQ0JEWlhKMGFXWnBZMkYwWlRBZEJnTlZIUTRFRmdRVVZzM3Y1YWZFZE9lb1llVmFqQVFFNHYwV1MxUXdId1lEVlIwakJCZ3dGb0FVeVZJYzN5dnJhNEVCejIwSTRCRjM5SUFpeEJrd0RRWUpLb1pJaHZjTkFRRUZCUUFEZ1lFQWdTL0ZGNUQwSG5qNDRydlQ2a2duM2tKQXZ2MmxqL2Z5anp0S0lyWVMzM2xqWEduNmdHeUE0cXRiWEEyM1ByTzR1Yy93WUNTRElDRHBQb2JoNjJ4VENkOXFPYktoZ3dXT2kwNVBTQkxxVXUzbXdmQWUxNUxKQkpCcVBWWjRLMGtwcGVQQlU4bTZhSVpvSDU3TC85dDRPb2FMOHlLcy9xaktGZUkxT0ZXWnh2QT0iLA0KICAgICAgICAiTUlJRE56Q0NBcUNnQXdJQkFnSUpBTUIxY3NOdUE2K2pNQTBHQ1NxR1NJYjNEUUVCQlFVQU1IRXhDekFKQmdOVkJBWVRBbFZUTVJJd0VBWURWUVFJRXdsVVpXNXVaWE56WldVeEdEQVdCZ05WQkFvVEQwVjRZVzF3YkdVZ1EyOXRjR0Z1ZVRFUU1BNEdBMVVFQXhNSFJYaGhiWEJzWlRFaU1DQUdDU3FHU0liM0RRRUpBUllUWlhoaGJYQnNaVUJsZUdGdGNHeGxMbU52YlRBZUZ3MHhNekEwTURReE5USTFOVE5hRncweU16QTBNREl4TlRJMU5UTmFNSEV4Q3pBSkJnTlZCQVlUQWxWVE1SSXdFQVlEVlFRSUV3bFVaVzV1WlhOelpXVXhHREFXQmdOVkJBb1REMFY0WVcxd2JHVWdRMjl0Y0dGdWVURVFNQTRHQTFVRUF4TUhSWGhoYlhCc1pURWlNQ0FHQ1NxR1NJYjNEUUVKQVJZVFpYaGhiWEJzWlVCbGVHRnRjR3hsTG1OdmJUQ0JuekFOQmdrcWhraUc5dzBCQVFFRkFBT0JqUUF3Z1lrQ2dZRUExc0JuQldQWjBmN1dKVUZUSnk1KzAxU2xTNVo2RERENlV5ZTl2SzlBeWNnVjVCMytXQzhIQzV1NWg5MU11akFDMUFSUFZVT3RzdlBSczQ1cUtORklnSUdSWEtQQXdaamF3RUkyc0NKUlNLVjQ3aTZCOGJEdjRXa3VHdlFhdmVaR0kwcWxtTjVSMUVpbTJnVUl0UmoxaGdjQzlyUWF2amxuRktEWTJybFhHdWtDQXdFQUFhT0IxakNCMHpBZEJnTlZIUTRFRmdRVXlWSWMzeXZyYTRFQnoyMEk0QkYzOUlBaXhCa3dnYU1HQTFVZEl3U0JtekNCbUlBVXlWSWMzeXZyYTRFQnoyMEk0QkYzOUlBaXhCbWhkYVJ6TUhFeEN6QUpCZ05WQkFZVEFsVlRNUkl3RUFZRFZRUUlFd2xVWlc1dVpYTnpaV1V4R0RBV0JnTlZCQW9URDBWNFlXMXdiR1VnUTI5dGNHRnVlVEVRTUE0R0ExVUVBeE1IUlhoaGJYQnNaVEVpTUNBR0NTcUdTSWIzRFFFSkFSWVRaWGhoYlhCc1pVQmxlR0Z0Y0d4bExtTnZiWUlKQU1CMWNzTnVBNitqTUF3R0ExVWRFd1FGTUFNQkFmOHdEUVlKS29aSWh2Y05BUUVGQlFBRGdZRUFEaHdUZWJHazczNXlLaG04RHFDeHZObkVaME54c1lFWU9qZ1JHMXlYVGxXNXBFNjkxZlNINUFaK1Q2ZnB3cFpjV1k1UVlrb042RG53ak94R2tTZlFDMy95R21jVURLQlB3aVo1TzJzOUMrZkUxa1VFbnJYMlhlYTRhZ1ZuZ016UjhEUTZvT2F1TFdxZWhEQitnMkVOV1JMb1ZnUyttYTUvWWNzMEdUeXJFQ1k9Ig0KICAgIF0NCn0.ew0KICAgICJ2ZXJzaW9uIjogIjEuMCIsDQogICAgImlkIjogIjMzY2ZmNDE2LWUzMzEtNGM5ZC05NjllLTUzNzNhMTc1NjEyMCIsDQogICAgImFjdG9yIjogew0KICAgICAgICAibWJveCI6ICJtYWlsdG86ZXhhbXBsZUBleGFtcGxlLmNvbSIsDQogICAgICAgICJuYW1lIjogIkV4YW1wbGUgTGVhcm5lciIsDQogICAgICAgICJvYmplY3RUeXBlIjogIkFnZW50Ig0KICAgIH0sDQogICAgInZlcmIiOiB7DQogICAgICAgICJpZCI6ICJodHRwOi8vYWRsbmV0Lmdvdi9leHBhcGkvdmVyYnMvZXhwZXJpZW5jZWQiLA0KICAgICAgICAiZGlzcGxheSI6IHsNCiAgICAgICAgICAgICJlbi1VUyI6ICJleHBlcmllbmNlZCINCiAgICAgICAgfQ0KICAgIH0sDQogICAgIm9iamVjdCI6IHsNCiAgICAgICAgImlkIjogImh0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9eGg0a0lpSDNTbTgiLA0KICAgICAgICAib2JqZWN0VHlwZSI6ICJBY3Rpdml0eSIsDQogICAgICAgICJkZWZpbml0aW9uIjogew0KICAgICAgICAgICAgIm5hbWUiOiB7DQogICAgICAgICAgICAgICAgImVuLVVTIjogIlRheCBUaXBzICYgSW5mb3JtYXRpb24gOiBIb3cgdG8gRmlsZSBhIFRheCBSZXR1cm4gIg0KICAgICAgICAgICAgfSwNCiAgICAgICAgICAgICJkZXNjcmlwdGlvbiI6IHsNCiAgICAgICAgICAgICAgICAiZW4tVVMiOiAiRmlsaW5nIGEgdGF4IHJldHVybiB3aWxsIHJlcXVpcmUgZmlsbGluZyBvdXQgZWl0aGVyIGEgMTA0MCwgMTA0MEEgb3IgMTA0MEVaIGZvcm0iDQogICAgICAgICAgICB9DQogICAgICAgIH0NCiAgICB9DQogICAgInRpbWVzdGFtcCI6ICIyMDEzLTA0LTAxVDEyOjAwOjAwWiINCn0.0Pup9CSy5mMh8zTJsqpB1mlRDVsQnclo30r5Y5Qi-mjMjoPeS3AVEzO6ow2Y8RWV8Z1eYGfMS19qXf2NEw5dbPkKROyiSpCEL9b4D0hDAyMPdeBMXNEYisWuvOYN5nwpT0qFCH0Ih2dcCRcp1BPkJPE6u6ZDIGI18OIVb4Li1Wk
+ew0KICAgICJhbGciOiAiUlMyNTYiLA0KICAgICJ4NWMiOiBbDQogICAgICAgICJNSUlEQVRDQ0FtcWdBd0lCQWdJSkFNQjFjc051QTYra01BMEdDU3FHU0liM0RRRUJCUVVBTUhFeEN6QUpCZ05WQkFZVEFsVlRNUkl3RUFZRFZRUUlFd2xVWlc1dVpYTnpaV1V4R0RBV0JnTlZCQW9URDBWNFlXMXdiR1VnUTI5dGNHRnVlVEVRTUE0R0ExVUVBeE1IUlhoaGJYQnNaVEVpTUNBR0NTcUdTSWIzRFFFSkFSWVRaWGhoYlhCc1pVQmxlR0Z0Y0d4bExtTnZiVEFlRncweE16QTBNRFF4TlRJNE16QmFGdzB4TkRBME1EUXhOVEk0TXpCYU1JR1dNUXN3Q1FZRFZRUUdFd0pWVXpFU01CQUdBMVVFQ0JNSlZHVnVibVZ6YzJWbE1SRXdEd1lEVlFRSEV3aEdjbUZ1YTJ4cGJqRVlNQllHQTFVRUNoTVBSWGhoYlhCc1pTQkRiMjF3WVc1NU1SQXdEZ1lEVlFRTEV3ZEZlR0Z0Y0d4bE1SQXdEZ1lEVlFRREV3ZEZlR0Z0Y0d4bE1TSXdJQVlKS29aSWh2Y05BUWtCRmhObGVHRnRjR3hsUUdWNFlXMXdiR1V1WTI5dE1JR2ZNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0R05BRENCaVFLQmdRRGp4dlpYRjMwV0w0b0tqWllYZ1IwWnlhWCt1M3k2K0pxVHFpTmtGYS9WVG5ldDZMeTJPVDZabW1jSkVQbnEzVW5ld3BIb09RK0dmaGhUa1cxM2owNmo1aU5uNG9iY0NWV1RMOXlYTnZKSCtLbyt4dTRZbC95U1BScklQeVRqdEhkRzBNMlh6SWxtbUxxbStDQVMrS0NiSmVINHRmNTQza0lXQzVwQzVwM2NWUUlEQVFBQm8zc3dlVEFKQmdOVkhSTUVBakFBTUN3R0NXQ0dTQUdHK0VJQkRRUWZGaDFQY0dWdVUxTk1JRWRsYm1WeVlYUmxaQ0JEWlhKMGFXWnBZMkYwWlRBZEJnTlZIUTRFRmdRVVZzM3Y1YWZFZE9lb1llVmFqQVFFNHYwV1MxUXdId1lEVlIwakJCZ3dGb0FVeVZJYzN5dnJhNEVCejIwSTRCRjM5SUFpeEJrd0RRWUpLb1pJaHZjTkFRRUZCUUFEZ1lFQWdTL0ZGNUQwSG5qNDRydlQ2a2duM2tKQXZ2MmxqL2Z5anp0S0lyWVMzM2xqWEduNmdHeUE0cXRiWEEyM1ByTzR1Yy93WUNTRElDRHBQb2JoNjJ4VENkOXFPYktoZ3dXT2kwNVBTQkxxVXUzbXdmQWUxNUxKQkpCcVBWWjRLMGtwcGVQQlU4bTZhSVpvSDU3TC85dDRPb2FMOHlLcy9xaktGZUkxT0ZXWnh2QT0iLA0KICAgICAgICAiTUlJRE56Q0NBcUNnQXdJQkFnSUpBTUIxY3NOdUE2K2pNQTBHQ1NxR1NJYjNEUUVCQlFVQU1IRXhDekFKQmdOVkJBWVRBbFZUTVJJd0VBWURWUVFJRXdsVVpXNXVaWE56WldVeEdEQVdCZ05WQkFvVEQwVjRZVzF3YkdVZ1EyOXRjR0Z1ZVRFUU1BNEdBMVVFQXhNSFJYaGhiWEJzWlRFaU1DQUdDU3FHU0liM0RRRUpBUllUWlhoaGJYQnNaVUJsZUdGdGNHeGxMbU52YlRBZUZ3MHhNekEwTURReE5USTFOVE5hRncweU16QTBNREl4TlRJMU5UTmFNSEV4Q3pBSkJnTlZCQVlUQWxWVE1SSXdFQVlEVlFRSUV3bFVaVzV1WlhOelpXVXhHREFXQmdOVkJBb1REMFY0WVcxd2JHVWdRMjl0Y0dGdWVURVFNQTRHQTFVRUF4TUhSWGhoYlhCc1pURWlNQ0FHQ1NxR1NJYjNEUUVKQVJZVFpYaGhiWEJzWlVCbGVHRnRjR3hsTG1OdmJUQ0JuekFOQmdrcWhraUc5dzBCQVFFRkFBT0JqUUF3Z1lrQ2dZRUExc0JuQldQWjBmN1dKVUZUSnk1KzAxU2xTNVo2RERENlV5ZTl2SzlBeWNnVjVCMytXQzhIQzV1NWg5MU11akFDMUFSUFZVT3RzdlBSczQ1cUtORklnSUdSWEtQQXdaamF3RUkyc0NKUlNLVjQ3aTZCOGJEdjRXa3VHdlFhdmVaR0kwcWxtTjVSMUVpbTJnVUl0UmoxaGdjQzlyUWF2amxuRktEWTJybFhHdWtDQXdFQUFhT0IxakNCMHpBZEJnTlZIUTRFRmdRVXlWSWMzeXZyYTRFQnoyMEk0QkYzOUlBaXhCa3dnYU1HQTFVZEl3U0JtekNCbUlBVXlWSWMzeXZyYTRFQnoyMEk0QkYzOUlBaXhCbWhkYVJ6TUhFeEN6QUpCZ05WQkFZVEFsVlRNUkl3RUFZRFZRUUlFd2xVWlc1dVpYTnpaV1V4R0RBV0JnTlZCQW9URDBWNFlXMXdiR1VnUTI5dGNHRnVlVEVRTUE0R0ExVUVBeE1IUlhoaGJYQnNaVEVpTUNBR0NTcUdTSWIzRFFFSkFSWVRaWGhoYlhCc1pVQmxlR0Z0Y0d4bExtTnZiWUlKQU1CMWNzTnVBNitqTUF3R0ExVWRFd1FGTUFNQkFmOHdEUVlKS29aSWh2Y05BUUVGQlFBRGdZRUFEaHdUZWJHazczNXlLaG04RHFDeHZObkVaME54c1lFWU9qZ1JHMXlYVGxXNXBFNjkxZlNINUFaK1Q2ZnB3cFpjV1k1UVlrb042RG53ak94R2tTZlFDMy95R21jVURLQlB3aVo1TzJzOUMrZkUxa1VFbnJYMlhlYTRhZ1ZuZ016UjhEUTZvT2F1TFdxZWhEQitnMkVOV1JMb1ZnUyttYTUvWWNzMEdUeXJFQ1k9Ig0KICAgIF0NCn0.ew0KICAgICJ2ZXJzaW9uIjogIjEuMCIsDQogICAgImlkIjogIjMzY2ZmNDE2LWUzMzEtNGM5ZC05NjllLTUzNzNhMTc1NjEyMCIsDQogICAgImFjdG9yIjogew0KICAgICAgICAibWJveCI6ICJtYWlsdG86ZXhhbXBsZUBleGFtcGxlLmNvbSIsDQogICAgICAgICJuYW1lIjogIkV4YW1wbGUgTGVhcm5lciIsDQogICAgICAgICJvYmplY3RUeXBlIjogIkFnZW50Ig0KICAgIH0sDQogICAgInZlcmIiOiB7DQogICAgICAgICJpZCI6ICJodHRwOi8vYWRsbmV0Lmdvdi9leHBhcGkvdmVyYnMvZXhwZXJpZW5jZWQiLA0KICAgICAgICAiZGlzcGxheSI6IHsNCiAgICAgICAgICAgICJlbi1VUyI6ICJleHBlcmllbmNlZCINCiAgICAgICAgfQ0KICAgIH0sDQogICAgIm9iamVjdCI6IHsNCiAgICAgICAgImlkIjogImh0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9eGg0a0lpSDNTbTgiLA0KICAgICAgICAib2JqZWN0VHlwZSI6ICJBY3Rpdml0eSIsDQogICAgICAgICJkZWZpbml0aW9uIjogew0KICAgICAgICAgICAgIm5hbWUiOiB7DQogICAgICAgICAgICAgICAgImVuLVVTIjogIlRheCBUaXBzICYgSW5mb3JtYXRpb24gOiBIb3cgdG8gRmlsZSBhIFRheCBSZXR1cm4gIg0KICAgICAgICAgICAgfSwNCiAgICAgICAgICAgICJkZXNjcmlwdGlvbiI6IHsNCiAgICAgICAgICAgICAgICAiZW4tVVMiOiAiRmlsaW5nIGEgdGF4IHJldHVybiB3aWxsIHJlcXVpcmUgZmlsbGluZyBvdXQgZWl0aGVyIGEgMTA0MCwgMTA0MEEgb3IgMTA0MEVaIGZvcm0iDQogICAgICAgICAgICB9DQogICAgICAgIH0NCiAgICB9LA0KICAgICJ0aW1lc3RhbXAiOiAiMjAxMy0wNC0wMVQxMjowMDowMFoiDQp9.gT42g4MGqXz2VpcY18-lUrLrG2-v9Y808TJOSRuda3XlcWXpHVekvdgINaHe2BzCWceoPAxgCQ87ItHBvkv37jvYPcB8H9x5eOoIgDrv4iojU_m7xkhSqEPxvbGF3HqqW1ElNPT1GChj-5b9OGeoXY-O4mbXtaNiViy0bi5Bp6A
 ```
 
 Signed Statement
 ```
 {
-    "version": "1.0",
+    "version": "1.0.0",
     "id": "33cff416-e331-4c9d-969e-5373a1756120",
     "actor": {
         "mbox": "mailto:example@example.com",
@@ -3650,7 +3696,7 @@ Signed Statement
                 "en-US": "Filing a tax return will require filling out either a 1040, 1040A or 1040EZ form"
             }
         }
-    }
+    },
     "timestamp": "2013-04-01T12:00:00Z",
     "attachments": [
         {
