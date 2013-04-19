@@ -237,30 +237,39 @@ other sources can be found that explain xAPI very well, but this document is the
 ## 3.0 Definitions  
 
 * [Activity](#def-activity)
+* [Activity Provider](#def-activity-provider)
+* [Actor](#def-actor)
 * [Authentication](#def-authentication)
 * [Authorization](#def-authorization)
 * [Community of Practice](#def-community-of-practice)
 * [Experience API (xAPI)](#def-experience-api)
 * [Immutable](#def-immutable)
-* [Inverse Functional Identifier](#def-inverse-functinal-identifier)
-* [Learning Activity Provider](#def-activity-provider)
+* [Internationalized Resource Idenfier (IRI)](#def-iri)
+* [Inverse Functional Identifier](#def-inverse-functional-identifier)
 * [Learning Management System (LMS)](#def-learning-management-system)
-* [Learning Record Store (LRS)](#def-learning-record-store)"
-* [MUST / SHOULD / MAY](<#def-must-should-may)
+* [Learning Record Store (LRS)](#def-learning-record-store)
+* [MUST / SHOULD / MAY](#def-must-should-may)
 * [Profile](#def-profile)
 * [Registration](#def-registration)
+* [Representational State Transfer (REST)](#def-rest)
 * [Service](#def-service)
-* [State](#def-state)
 * [Statement](#def-statement)
-* [Tin Can API (TCAPI)](#tcapi)
-* [URI](#def-uri)
+* [Tin Can API (TCAPI)](#def-tcapi)
+* [Verb](#def-verb)
 
 <a name="def-activity" />
-__Activity__: A thing with which to be interacted. An activity can be a unit of 
-instruction, experience, or performance that is to be tracked in meaningful combination with a verb. 
-Interpretation of ‘Activity’ is broad, meaning that activities can even be tangible objects. In the statement
-“Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the xAPI statement.
-Other examples include a book, an e-learning course, a hike or a meeting.
+__Activity__: : An activity can be a unit of instruction, experience, or performance that is to 
+be tracked used Statements in a meaningful combination with an Actor and a Verb. 
+
+<a name="def-activity-provider" />
+__Activity Provider (AP)__: The software object that is communicating with 
+the LRS to record information about a learning experience. May be similar to a SCORM 
+package in that it is possible to bundle learning assets with the software object that performs this 
+communication, but an Activity Provider may also be separate from the experience it is reporting about.
+
+<a name="def-actor" />
+__Actor__: An identity or persona of an individual or group tracked using Statements as doing an  
+action (Verb) within an Activity.
 
 <a name="def-authentication" />
 __Authentication__: The concept of verifying the identity of a user or system. Authentication 
@@ -278,30 +287,29 @@ purpose, which operates in a common modality.
 __Experience API (xAPI)__: The API defined in this document, the product of 
 "Project Tin Can". A simple, lightweight way for any permitted actor to store 
 and retrieve extensible learning records, learner and learning experience profiles, 
-regardless of the platform used.  
+regardless of platform.  
 
 <a name ="def-immutable" />
-__Immutable__:  Adjective used  describe things which cannot be changed. With 
+__Immutable__:  Adjective used to describe things which cannot be changed. With 
 some exceptions, statements in the xAPI are immutable. This ensures that when 
 statements are shared between LRSs, multiple copies of the statement remain
 the same.
 
-<a name="def-inverse-functinal-identifier" />
-__Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
- Used to identify Agents and Groups. See section 4.1.2
+<a name="def-iri" />
+__Internationalized Resource Idenfiers (IRI)__: A unique identifier which may be a URL.
+In the xAPI, all IRIs should be a full absolute IRI including a scheme. Relative IRIs 
+should not be used. URLs should be defined within a domain controlled by the person creating the URL.
 
-<a name="def-activity-provider" />
-__Learning Activity Provider (AP)__: The software object that is communicating with 
-the LRS to record information about a learning experience. May be similar to a SCORM 
-package in that it is possible to bundle learning assets with the software object that performs this 
-communication, but an Activity Provider may also be separate from the experience it is reporting about.
+<a name="def-inverse-functional-identifier" />
+__Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
+ Used to identify Agents and Groups.
 
 <a name="def-learning-management-system" />
-__Learning Management System (LMS)__: Provides the tracking functionality of an LRS, 
-but provides additional administrative and reporting functionality. In this document 
-the term will be used when talking about existing systems that implement learning 
-standards. The xAPI can work independently of an LMS, but is built with knowledge 
-of the suite of services an LMS typically provides.
+__Learning Management System (LMS)__: "A Learning Management System is a software package  
+used to administer one or more courses to one or more learners. An LMS is typically a web-based 
+system that allows learners to authenticate themselves, register for courses, complete courses and take  
+assessments” (LSAL, 2004 in Gallagher, 2007). In this document the term will be used in the context of 
+existing systems implementing learning standards.
 
 <a name="def-learning-record-store" />
 __Learning Record Store (LRS)__: A system that stores learning information. Prior to the xAPI 
@@ -310,36 +318,38 @@ LRS to be clear that a full LMS is not necessary to implement the xAPI. The xAPI
 is dependent on an LRS to function.
 
 <a name="def-must-should-may" />
-__MUST / SHOULD / MAY__: Three levels of obligation with regards to conformance to the xAPI specification. A system that fails to implement a MUST (or a MUST NOT) requirement is non-conformant. Failing to meet a SHOULD requirement is not a violation of conformity, but goes against best practices. MAY indicates an option, to be decided by the developer with no consequences for conformity.
+__MUST / SHOULD / MAY__: Three levels of obligation with regards to conformance to the xAPI 
+specification. A system that fails to implement a MUST (or a MUST NOT) requirement is non-conformant.
+Failing to meet a SHOULD requirement is not a violation of conformity, but goes against best practices. 
+MAY indicates an option, to be decided by the developer with no consequences for conformity.
 
 <a name="def-profile" />
 __Profile__: A construct where information about the learner or activity is kept, 
 typically in name/document pairs that have meaning to an instructional system component.
 
 <a name="def-registration" />
-__Registration__: When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration, 
-an instance of a learner experiencing a particular learning activity. See [section 4.1.6](#context).
+__Registration__: An instance of a learner experiencing a particular Activity.
+
+<a name="def-rest" />
+__Representational State Transfer (REST)__: An architecture for designing networked web Services.
+It relies on HTTP methods and uses current web best practices.
 
 <a name="def-service" />
 __Service__: A software component responsible for one or more aspects of the distributed 
 learning process. An LMS typically combines many services to design a complete learning 
 experience.
 
-<a name="def-state" />
-__State__: Similar to SCORM suspend data, State allows storage of arbitrary key/document 
-pairs. The LRS does not have to retain state once the learning experience is considered 
-"done" (the LRS has closed its "registration").
-
 <a name="def-statement" />
-__Statement__: A simple statement consisting of ```<Actor (learner)>``` ```<verb>``` ```<object>```, 
+__Statement__: A simple construct consisting of ```<Actor (learner)>``` ```<verb>``` ```<object>```, 
 with ```<result>```, in ```<context>``` to track an aspect of a learning experience. A set of 
 several statements may be used to track complete details about a learning experience.
 
-<a name="tcapi"/>
-__Tin Can API (TCAPI)__: The previous name of the API defined in this document, often used in informal references to teh xAPI.  
+<a name="def-tcapi"/>
+__Tin Can API (TCAPI)__: The previous name of the API defined in this document, often used in 
+informal references to the Experience API.  
 
-<a name="def-uri" />
-__URI__: Uniform Resource Identifier. A unique identifier which may be a URL. In the xAPI, all URIs should be a full absolute URI including a scheme. Relative URIs should not be used. URLs should be defined within a domain controlled by the person creating the URL. 
+<a name="def-verb" />
+__Verb__: Defines the action being done by the Actor within the Activity within a Statement. 
 
 <a name="statement"/> 
 ## 4.0 Statement  
