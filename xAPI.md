@@ -2790,12 +2790,13 @@ if the LRS is on an HTTPS domain, the client sending the statement must also be 
 If the LRS is on HTTP, the client must be too.  
 
 There may be cases where there is a requirement for the client activity provider to support 
-IE8 and 9  where the client code is hosted on a different scheme (HTTP or HTTPS) from 
-the LRS. In these cases, a simple solution would be to host an intermediary server side LRS on 
-the same scheme as the client code to route statements to the target LRS. An LRS MAY choose to provide 
-both HTTP and HTTPS endpoints to support this use case. HTTP is inherently less secure 
-than HTTPS, and both LRS and client should consider the security risks before making the decision 
-to use this scheme.  
+IE8 and IE9 where the client code is hosted on a different scheme (HTTP or HTTPS) from 
+the LRS. In these cases, proxy is needed to communicate to the LRS. Two simple solutions 
+might be to 1) set up a proxy pass through on the same scheme as the client code to the LRS 
+or 2) to host an intermediary server side LRS on the same scheme as the client code to route 
+statements to the target LRS.  An LRS MAY choose to provide both HTTP and HTTPS endpoints 
+to support this use case. HTTP is inherently less secure than HTTPS, and both LRS and 
+client should consider the security risks before making the decision to use this scheme. 
 
 <a name="validation"/> 
 ### 7.9 Validation:
@@ -2830,18 +2831,23 @@ identical HTTP GET request except:
 <a name="AppendixA"/> 
 ## Appendix A: Bookmarklet
 
-xAPI enables using an "I learned this" bookmarklet to self-report learning. 
+An xAPI Bookmarklet enables individual user tracking with base authentication. Examples 
+could be an "I think this", “I learned this”, “I like this”, or “I don’t like this” 
+statement that allows self-reporting.
 The following is an example of such a bookmarklet, and the statement that this 
-bookmarklet would send if used on the page: http://adlnet.gov/xapi.  
+bookmarklet would send if used on the page: http://adlnet.gov/xapi.
 
-The bookmarklet would be provided by the LRS to track to, for a specific user. 
-Therefore the LRS URL, authentication, and actor information is hard coded in 
+The bookmarklet MAY be provided by the LRS to track a specific user
+for behavior analytics.
+
+Therefore the LRS URL, authentication, and actor information is hard coded into 
 the bookmarklet. Note that since the authorization token must be included in 
 the bookmarklet, the LRS should provide a token with limited privileges, 
-ideally only enabling the storage of self-reported learning statements.  
+Ideally the token should enable the storage of self-reported learning 
+statements only. 
 
-The UUID generation is only necessary since the PUT method is being used, if a 
-statement is POSTed without an ID the LRS will generate it.  
+The UUID SHOULD be included as part of the bookmarklet PUT statement. If a statement 
+is POSTed without a UUID, the LRS MUST generate one.
 
 In order to allow cross-domain reporting of statements, a browser that supports 
 the "Access-Control-Allow-Origin" and "Access-Control-Allow-Methods" headers 
