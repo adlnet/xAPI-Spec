@@ -217,9 +217,14 @@ OSD, Training Readiness & Strategy (TRS)
 </table> 
 <a name="reqparticipants"/> 
 #### 2.2.2 Requirements Gathering Participants  
-In collection of requirements for the Experience API, there were many people and 
-organizations that provided invaluable feedback to SCORM, distributed learning 
-efforts, and learning in general.  Project Tin Can User Voice Site, Rustici Software Blog, etc.  
+In collection of requirements for the Experience API, many people and 
+organizations provided invaluable feedback to the Sharable Content Object
+Reference Model (SCORM®), distributed learning efforts, and learning technology
+efforts in general.  While not an exhaustive listing, the white papers gathered 
+in 2008 by the Learning Education and Training Standards Interoperability (LETSI) 
+group, the Rustici Software _UserVoice_ website, one-on-one interviews and various
+blogs were important sources from which requirements were gathered for the 
+Experience API specification.
 
 ### 2.3 Reading guidelines for the non-technically inclined.
 
