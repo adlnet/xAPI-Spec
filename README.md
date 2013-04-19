@@ -107,3 +107,14 @@ repository is remembered. To send your changes back the the master repository,
 click the "Pull Request" button at the top of your repository page. This will 
 direct you to a page that gives you the ability to submit a request to the 
 master repository to merge in the changes you committed.
+
+##Style Guide
+### Headings
+Hashes (#) should be used for all headings following the following format:
+
+# Experience API (1 hash)
+## 1 Statement (2 hashes)
+### 1.1 Top level property (3 hashes)
+#### 1.1.1 next level (4 hashes)
+##### 1.1.1.1 next level and any deeper levels (5 hashes)
+###### Rationale, details etc. (6 hashes)
