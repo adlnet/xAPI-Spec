@@ -2776,7 +2776,7 @@ allow other uses to emerge.
 Returns: 200 OK - Single 'about' JSON document.
 <table border="1">
 <tr><th>property</th><th>type</th><th>description</th></tr>
-<td>version</td><td>string</td><td>xApi version this LRS supports</td>
+<td>version</td><td>string[]</td><td>xApi version this LRS supports</td>
 </tr>
 <tr>
 <td>Extensions</td><td><a href="#miscext">Extensions object</a></td><td>A map of other properties as needed.</td>
@@ -2784,7 +2784,7 @@ Returns: 200 OK - Single 'about' JSON document.
 </table>
 
 ###### LRS Requirements:
-* MUST return the JSON document described above, with a version property of "1.0.0"
+* MUST return the JSON document described above, with a version property of ["1.0.0"]
 * SHOULD allow unauthenticated access to this resource
 * MUST NOT reject requests based on their version header as would otherwise be required
 by <a href="#apiversioning"/>6.2 API Versioning</a>.
