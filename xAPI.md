@@ -277,7 +277,7 @@ _high-level overview_ of a given facet of the Experience API are labeled **descr
 __Activity__: A thing with which to be interacted. An Activity can be a unit of 
 instruction, experience, or performance that is to be tracked in meaningful combination with a Verb. 
 Interpretation of 'Activity' is broad, meaning that Activities can even be tangible objects. In the statement
-"Anna tried a cake recipeâ": the recipe constitutes the Activity in terms of the xAPI statement.
+"Anna tried a cake recipe," the recipe constitutes the Activity in terms of the xAPI statement.
 Other examples include a book, an e-learning course, a hike or a meeting. 
 
 <a name="def-activity-provider" />
@@ -337,7 +337,7 @@ __Inverse Functional Identifier__: An identifier which is unique to a particular
 __Learning Management System (LMS)__: "A software package  
 used to administer one or more courses to one or more learners. An LMS is typically a web-based 
 system that allows learners to authenticate themselves, register for courses, complete courses and take  
-assessmentsâ" (LSAL, 2004 in Gallagher, 2007). In this document the term will be used in the context of 
+assessments" (LSAL, 2004 in Gallagher, 2007). In this document the term will be used in the context of 
 existing systems implementing learning standards.
 
 <a name="def-learning-record-store" />
@@ -1509,7 +1509,7 @@ cannot be logically changed or deleted. This immutability of statements is a key
 nature of Experience API.
 However, not all statements are perpetually valid once they have been issued. Mistakes or other factors could require 
 that a previously made statement is marked as invalid. This is called "voiding a statement" and the reserved verb 
-â€œhttp://adlnet.gov/expapi/voidedâ" is used for this purpose. 
+â€œhttp://adlnet.gov/expapi/voided" is used for this purpose. 
 
 ###### Requirements
 When issuing a statement that voids another, the object of that voiding statement...
@@ -1552,7 +1552,7 @@ This example statement voids a previous statement which it identifies with the s
 
 
 ###### Details
-Any statement that voids another cannot itself be voided. An activity provider that wants to â€œunvoidâ" a previously 
+Any statement that voids another cannot itself be voided. An activity provider that wants to "unvoid" a previously 
 voided statement...
 
 * SHOULD issue that statement again under a new ID
@@ -2014,7 +2014,7 @@ All strings must be encoded and interpreted as UTF-8.
 
 ###### Requirement
 
-Every request from a client and every response from the LRS must include an HTTP header with the name â€œX-Experience-API-Versionâ" and the version as the value.
+Every request from a client and every response from the LRS must include an HTTP header with the name â€œX-Experience-API-Version" and the version as the value.
 Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)
 
 Example:  ``X-Experience-API-Version : 1.0.0``
@@ -2091,7 +2091,7 @@ are unlikely. For other APIs that use PUT (Actor and Activity Profile), the
 headers are required. If a PUT request is received without either header for a 
 resource that already exists, the LRS must return HTTP status 409 "Conflict", 
 and return a plain text body explaining that the consumer must check the current 
-state of the resource and set the â€œIf-Matchâ" header with the current ETag to 
+state of the resource and set the "If-Match" header with the current ETag to 
 resolve the conflict. In this case, the LRS must make no modification to the resource.  
 
 <a name="security"/>
@@ -2170,9 +2170,9 @@ the  authority as the Agent representing the registered application.
 ##### Application not registered + known user 
 
 * Use a blank consumer secret;
-* Call â€œTemporary Credentialâ" request;
-* Specify â€œconsumer_ nameâ" and other usual parameters;
-User will then see â€œconsumer_ nameâ" plus a warning that the identity of the application requesting authorization 
+* Call "Temporary Credential" request;
+* Specify "consumer_name" and other usual parameters;
+User will then see "consumer_name" plus a warning that the identity of the application requesting authorization 
 cannot be verified.
 * the LRS MUST record an  authority that includes both that application and the authenticating user, as a group, 
 since OAuth specifies an application.
@@ -2213,7 +2213,7 @@ If no scope is specified, a requested scope of "statements/write" and
 of permissions that is being requested. An API client should request only the 
 minimal needed scopes, to increase the chances that the request will be granted.  
 
-LRSs are not required to support any of these scopes except â€œallâ". These are 
+LRSs are not required to support any of these scopes except "all." These are 
 recommendations for scopes which should enable an LRS and an application 
 communicating using the xAPI to negotiate a level of access which accomplishes 
 what the application needs while minimizing the potential for misuse. The 
@@ -2694,7 +2694,7 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - State Content
 Example endpoint: http://example.com/xAPI/activities/state
 
 Fetches IDs of all state data for this context (activity + agent \[ + 
-registration if specified\]). If â€œsinceâ" parameter is specified, this 
+registration if specified\]). If "since" parameter is specified, this 
 is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
 
@@ -3154,7 +3154,7 @@ Body:
 ```
 <a name="AppendixB"/>
 
-## Appendix B: Creating an â€œIE Modeâ" Request
+## Appendix B: Creating an "IE Mode" Request
 ```javascript
 function getIEModeRequest(method, url, headers, data){
 
@@ -3196,7 +3196,7 @@ function getIEModeRequest(method, url, headers, data){
 ``` 
 <a name="AppendixC"/>  
 
-## Appendix C: Example definitions for activities of type â€œcmi.interactionâ"
+## Appendix C: Example definitions for activities of type "cmi.interaction"
 
 ###### true-false  
 
