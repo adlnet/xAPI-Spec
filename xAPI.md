@@ -330,11 +330,11 @@ should not be used. URLs should be defined within a domain controlled by the per
 <a name="def-inverse-functional-identifier" />
 
 __Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
- Used to identify Agents and Groups.
+ Used to identify Agents and Groups. See [Section 4.1.2 Agent](#agent)
 
 <a name="def-learning-management-system" />
 
-__Learning Management System (LMS)__: "A Learning Management System is a software package  
+__Learning Management System (LMS)__: "A software package  
 used to administer one or more courses to one or more learners. An LMS is typically a web-based 
 system that allows learners to authenticate themselves, register for courses, complete courses and take  
 assessments” (LSAL, 2004 in Gallagher, 2007). In this document the term will be used in the context of 
@@ -361,7 +361,7 @@ typically in name/document pairs that have meaning to an instructional system co
 
 <a name="def-registration" />
 
-__Registration__: An instance of a learner experiencing a particular Activity.
+__Registration__: An instance of a learner experiencing a particular Activity. See [Section 4.1.6 Context](#context).
 
 <a name="def-rest" />
 
@@ -499,12 +499,12 @@ An Agent (an individual) is a persona or system that can be involved in an actio
 An agent...
 
 * MUST be identified by one (1) of the four types of inverse functional identifiers (see
-<a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>).
+<a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>);
 * MUST NOT include more than one (1) inverse functional identifier;
 * SHOULD NOT use inverse functional identifiers that are also used for any Groups;
-* is an important concept in relation to OAuth, see the section on OAuth for details.
+* is an important concept in relation to OAuth. See [Section 6.4.2. OAuth Authorization Scope](#oauthscope) for details.
 
-The table below lists the properties of Agent objects, other than the  inverse functional
+The table below lists the properties of Agent objects, other than the inverse functional
 identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>).
 
 <table border ="1">
@@ -531,7 +531,7 @@ An anonymous group...
 
 * MAY be used to describe a cluster of people where there is no ready identifier for this cluster, e.g. an ad hoc team;
 * MUST include a 'member' property listing constituent Agents;
-* MUST NOT contain Group objects in the 'member' property.
+* MUST NOT contain Group objects in the 'member' property;
 * MUST NOT include any inverse functional identifiers
 
 The table below lists all properties of an anonymous Group.
@@ -547,10 +547,10 @@ An identified group...
 
 * MUST include exactly one (1) inverse functional identifier;
 * MAY include a 'member' property listing constituent Agents;
-* MUST NOT contain Group objects in the 'member' property.
+* MUST NOT contain Group objects in the 'member' property;
 * SHOULD NOT use inverse functional identifiers that are also used for any Agents.
 
-The table below lists all properties of an identified Group, other than the  inverse functional
+The table below lists all properties of an identified Group, other than the inverse functional
 identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>).
 
 <table border ="1">
@@ -568,7 +568,7 @@ in a given anonymous or identified Group.
 
 
 <a name="inversefunctional">
-	
+
 ##### 4.1.2.3 Inverse Functional Identifier
 ###### Details: 
 An "inverse functional identifier" is a value of agents or identified
@@ -583,7 +583,7 @@ inverse functional identifiers loosely inspired on the widely accepted FOAF prin
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>
-The local part of the email address must be URI encoded.<br>Only emails that have only ever been and will ever be assigned to this Agent, 
+The local part of the email address must be URI encoded.<br>Only email addresses that have only ever been and will ever be assigned to this Agent, 
 but no others, should be used for this property and mbox_sha1sum.</td></tr>
 	<tr><td>mbox_sha1sum</td><td>string</td><td>The SHA1 hash of a mailto URI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
 	<tr><td>openID</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
@@ -606,7 +606,7 @@ system (social networking site).
 SHOULD use the openID property instead of account.
 * If the Learning Activity Provider is concerned about revealing personally identifiable
 information about an Agent or Group, it SHOULD use an opaque account name (for example an
-account number) to identify all statements about a person while maintaining anonimity.
+account number) to identify all statements about a person while maintaining anonymity.
 
 The table below lists all properties of Account objects.
 <table border ="1">
@@ -680,9 +680,7 @@ Learning Activity Providers...
 
 ###### NOTE: 
 In some future version, this specification might specify additional machine-readable information about 
-the verb be made available, but the choice to do so is postponed to monitor emerging practices 
-and pain points. 
- 
+the verb be made available, but the choice to do so is postponed to monitor emerging practices. 
 
 ##### 4.1.3.1 Verb Object: 
 
@@ -843,7 +841,7 @@ Other properties defined below MAY be included.
 	</tr>
 	<tr>
 		<a name="acttype"/>
-		
+
 		<td>type</td>
 		<td>URI</td>
 		<td>the type of activity. Note, URI fragments (sometimes called 
@@ -870,7 +868,7 @@ Other properties defined below MAY be included.
 		<td>A map of other properties as needed (see: <a href="#miscext">Extensions</a>)</td>
 	</tr>
 </table> 
- 
+
 An LRS should update its internal representation of an activity's definition 
 upon receiving a statement with a different definition of the activity from the 
 one stored, but only if it considers the Learning Activity Provider to have the 
@@ -882,12 +880,15 @@ authority to do so.
 
 * Activities with URL identifiers MAY host metadata using the <a href="#actdef">
 activity definition</a> JSON format which is used in statements, with a Content-Type of "application/json"
+
 * If the activity URI is a URL, LRS's SHOULD attempt to GET that URL, and include in HTTP
 headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
 first encounters the activity id.
+
 * If the LRS loads JSON which is a valid activity definition from a URL used as an activity id,
  the LRS SHOULD incorporate the loaded definition into its internal definition for that activity,
 while preserving names or definitions not included in the loaded definition.
+
 * If the LRS loads any document from which the LRS can parse an activity definition
 from a URL used as an activity id, then the LRS MAY consider this definition when determining
 its internal representation of that activity's definition.
@@ -911,6 +912,7 @@ be used, and a valid interactionType MUST be specified. If interactionType
 is specified, an LRS processing MAY validate the remaining properties as 
 specified in the table below, and return HTTP 400 "Bad Request" if the 
 remaining properties are not valid for the interaction type.  
+
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
@@ -937,6 +939,7 @@ remaining properties are not valid for the interaction type.
 ###### Interaction Components  
 
 Interaction components are defined as follows:  
+
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
@@ -975,7 +978,7 @@ Statements that specify an Agent or Group as an Object...
 
 - MUST specify an 'objectType' property. 
 
-See [Section 4.1.2](#actor) for details regarding Agents.  
+See [Section 4.1.2 Actor](#actor) for details regarding Agents.  
 
 <a name="stmtasobj"/>
 
@@ -1332,6 +1335,7 @@ program the course could be part of in the grouping value.
 }
 ```
 ###### Example II: 
+
 Consider the following hierarchical structure: "Questions 1 to 6"
 are part of "Test 1" which in turn belongs to the course "Algebra 1". 
 The six questions are registered as part of the test by declaring
@@ -1356,9 +1360,11 @@ useful when the object of the statement is an agent, not an activity.
 #### 4.1.7 Timestamp:
 
 ###### Definition
+
 The time at which a statement about an experience took place.
 
 ###### Requirements
+
 A timestamp:
 
 * MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
@@ -1372,6 +1378,7 @@ A reporting tool:
 * MAY consider timestamps from different timezones that represent the same logical time to be equivalent.
 
 ###### Details
+
 A timestamp in a statement related to learning that occurs outside of the system can differ from 
 [4.1.8. Stored](#stored) (the system time of the event). Namely, there can be delays between the occurrence of the 
 experience and the reception of the corresponding statement by the LRS. Another cause is when statements are propagated 
@@ -1381,6 +1388,7 @@ to other systems.
 <a name="stored"/> 
 
 #### 4.1.8 Stored:
+
 ###### Definition: 
 The time at which a statement is stored by the LRS.
 
@@ -1477,18 +1485,18 @@ the statement data model is guaranteed consistent through all 1.0.x versions, in
 flow among such LRSs the LRS is given some flexibility on statement versions that are accepted.
 
 ###### Requirements
-* version MUST be formatted as laid out for the API version header in [API Versioning](#apiversioning)
+* Version MUST be formatted as laid out for the API version header in [API Versioning](#apiversioning)
 
 ###### LRS Requirements
-* an LRS MUST accept all statements where their version starts with "1.0." if they otherwise validate.
-* an LRS MUST reject all statements with a version specified that does not start with "1.0."
-* statements returned by an LRS MUST retain the version they are accepted with. If they
-lack a version, the version MUST be set to 1.0.0
+* An LRS MUST accept all statements where their version starts with "1.0." if they otherwise validate;
+* An LRS MUST reject all statements with a version specified that does not start with "1.0;"
+* Statements returned by an LRS MUST retain the version they are accepted with. If they
+lack a version, the version MUST be set to 1.0.0.
 
 
 ###### Client Requirements
-* clients SHOULD NOT set the statement version.
-* if clients set the statement version, they MUST set it to 1.0.0
+* Clients SHOULD NOT set the statement version;
+* If clients set the statement version, they MUST set it to 1.0.0
 
 
 <a name="voided"/>
@@ -1506,8 +1514,8 @@ that a previously made statement is marked as invalid. This is called ‘voiding
 ###### Requirements
 When issuing a statement that voids another, the object of that voiding statement...
 
-* MUST have the “objectType” field set to “StatementRef”;
-* MUST specify the ID of the statement-to-be-voided by it’s “id” field.
+* MUST have the "objectType" field set to "StatementRef;"
+* MUST specify the ID of the statement-to-be-voided by its "id" field.
 
 
 Upon receiving a statement that voids another, the LRS...
@@ -1575,7 +1583,7 @@ The table below lists all properties of the Attachment object.
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<a name="attachmentUsage" />
-		
+
 		<td>usageType</td>
 		<td>URI</td>
 		<td>Identifies the usage of this attachment. For example: one expected use case
@@ -1673,7 +1681,7 @@ only attachment objects with a populated fileUrl;
     attachments in the Transmission Format described above;
     * MUST reject batches of statements having attachments that neither contain a fileUrl nor match a
 received attachment part based on their hash;
-    * SHOULD assume a Content-Transfer-Encoding of binary for attachment parts
+    * SHOULD assume a Content-Transfer-Encoding of binary for attachment parts.
 
 Note: There is no requirement that statement batches using the mime/multipart format
 contain attachments.
@@ -1682,7 +1690,7 @@ contain attachments.
 * MAY send statements with attachments as described above;
 * MAY send multiple statements where some or all have attachments if using "POST".
 * MAY send batches of type "application/json" where every attachment
-object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format
+object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
 
 ###### Example:
 
@@ -2030,7 +2038,7 @@ Requirements for the LRS:
 * MUST include the "X-Experience-API-Version" header in every response;
 * MUST set this header to ""1.0.0"";
 * MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header;
-* MUST reject requests with a version header of "1.1.0" or greater.
+* MUST reject requests with a version header of "1.1.0" or greater;
 * MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
 
 
@@ -2039,7 +2047,6 @@ Requirements for the client:
 * SHOULD tolerate receiving responses with a version of "1.0.0" or later;
 * SHOULD tolerate receiving data structures with additional properties;
 * SHOULD ignore any properties not defined in version 1.0.0 of the spec.
-
 
 Converting statements to other versions:
 
@@ -2301,10 +2308,10 @@ be used.
 ###### LRS Requirements
 
 The LRS MUST reject with ```HTTP 400 Bad Request``` status (see below) any request to any of
-these APIs using any parameters:
+these APIs using any parameters...
 
 * the LRS does not recognize (Note: LRSs may recognize and act on parameters not in 
-this specification).
+this specification);
 
 * that match parameters described in this specification in all but case.
 
@@ -2349,7 +2356,7 @@ document because it's size is larger than the maximum allowed by the LRS. The LR
 choose any limit and MAY vary this limit on any basis e.g. per authority, but
 MUST be configurable to accept statements of any size.
 
-* ```500 Internal Server Error``` - Indicated a general error condition, typically an 
+* ```500 Internal Server Error``` - Indicates a general error condition, typically an 
 unexpected exception in processing on the server.
 
 <a name="stmtapi"/> 
@@ -2478,7 +2485,7 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 			Activity objects contain Language Map objects for name and 
 			description. Only one language should be returned in each of 
 			these maps.<br/><br/>
-			
+
 			In order to provide these strings in the most relevant language, 
 			the LRS will apply the Accept-Language header as described in 
 			<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">
@@ -2507,12 +2514,11 @@ besides "attachments" or "format".
 
 The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
 <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601
-combined date and time</a> 
-format, on all responses to statements requests, with a value of the timestamp for which all 
-statements that have or will have a "stored" property before that time are known with reasonable 
-certainty to be available for retrieval. This time SHOULD take into account any temporary 
-condition, such as excessive load, which might cause a delay in statements becoming available for 
-retrieval.
+combined date and time</a> format, on all responses to statements requests, with a value of the 
+timestamp for which all statements that have or will have a "stored" property before that time 
+are known with reasonable certainty to be available for retrieval. This time SHOULD take into 
+account any temporary condition, such as excessive load, which might cause a delay in statements 
+becoming available for retrieval.
 
 ###### Note: 
 
@@ -2542,7 +2548,7 @@ being fetched.
 This section does not apply when retrieving statements with statementId or voidedStatementId.
 
 <a name="voidedStatements" />
-	
+
 ###### Voided Statements
 
 The LRS MUST not return any statement which has been voided, unless that statement has been
@@ -3024,10 +3030,9 @@ identical HTTP GET request except:
 ## Appendix A: Bookmarklet
 
 An xAPI Bookmarklet enables individual user tracking with base authentication. Examples 
-could be an "I think this", “I learned this”, “I like this”, or “I don’t like this” 
-statement that allows self-reporting.
-The following is an example of such a bookmarklet, and the statement that this 
-bookmarklet would send if used on the page: http://adlnet.gov/xapi.
+could be an "I think this," "I learned this�" "I like this�" or "I don't like this" statement 
+that allows self-reporting. The following is an example of such a bookmarklet, and the statement 
+that this bookmarklet would send if used on the page: http://adlnet.gov/xapi.
 
 The bookmarklet MAY be provided by the LRS to track a specific user
 for behavior analytics.
@@ -3190,7 +3195,7 @@ function getIEModeRequest(method, url, headers, data){
 }
 ``` 
 <a name="AppendixC"/>  
- 
+
 ## Appendix C: Example definitions for activities of type “cmi.interaction”
 
 ###### true-false  
