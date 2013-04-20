@@ -1756,6 +1756,8 @@ See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example
 
 <a name="dataconstraints"/>
 #### 4.1.14 Data Constraints
+
+#####Rationale:
 All the properties used in statements are restricted to certain types, and those types
 constrain the behavior of systems processing statements. For clarity, certain key
 requirements are documented here, emphasizing where compliant systems have a responsibility
