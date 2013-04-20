@@ -62,6 +62,7 @@
 *	[Appendix F: Example Signed Statement](#AppendixF)
 
 <a name="revhistory"/>  
+
 ## 1.0 Revision History
 ###### 0.8 (Project Tin Can API Deliverable) to 0.9 (March 31, 2012):  
   
@@ -94,6 +95,7 @@ Various refinements and clarifications including:
 - Signed statements
 
 <a name="roleofxapi"/>
+
 ## 2.0 Role of the Experience API  
 The Experience API is a service that allows for statements of experience
 to be delivered to and stored securely in a Learning Record Store (LRS). These statements
@@ -124,6 +126,7 @@ to support. While the implementation details of these services are not specified
 the Experience API is designed with this larger architectural vision in mind.
  
 <a name="adlrole"/>
+
 ### 2.1 ADL's Role in the Experience API  
 ADL has taken a role of steward and facilitator in the development of the 
 Experience API.  The Experience API is seen as one piece of the ADL Training 
@@ -134,8 +137,9 @@ and submitted by those involved in distributed learning which SCORM could not
 enable.  
  
 <a name="contributors"/> 
+
 ### 2.2 Contributors
-My thanks to everyone who contributed to the Experience API project. Many of 
+> _"My thanks to everyone who contributed to the Experience API project. Many of 
 you have called into the weekly meetings and helped to shape the specification 
 into something that is useful for the entire distributed learning community. 
 Many of you assisted in releasing code samples, products, and documentation to 
@@ -145,13 +149,14 @@ about your organization's use of SCORM and other learning best practices.
 Through the use-cases, shared experiences, and knowledge you have shared, ADL 
 and the community clearly identified the first step in creating the Training 
 and Learning Architecture--the Experience API.  You are truly the community 
-leaders on which we depend to make our training and education the very best.  
+leaders on which we depend to make our training and education the very best."_ 
 
 Kristy S. Murray, Ed.D.  
 Director, ADL Initiative  
 OSD, Training Readiness & Strategy (TRS)  
 
 <a name="wg"/>
+
 ### 2.2.1 Working Group Participants  
 <table>
 	<tr><th>Name:</th><th>Organization:</th></tr>
@@ -215,7 +220,9 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Tom Creighton</td><td>ADL</td></tr>
 	<tr><td>Walt Grata</td><td>ADL</td></tr>
 </table> 
+
 <a name="reqparticipants"/> 
+
 #### 2.2.2 Requirements Gathering Participants  
 In collection of requirements for the Experience API, many people and 
 organizations provided invaluable feedback to the Sharable Content Object
@@ -240,7 +247,8 @@ are based on the specification set described below. For this reason, sections th
 _high-level overview_ of a given facet of the Experience API are labeled **description** or 
 **rationale**. Items in this document labeled as **details** or **examples** are more technical. 
 
-<a name="defintions"/> 
+<a name="defintions"/>
+ 
 ## 3.0 Definitions  
 
 * [Activity](#def-activity)
@@ -265,6 +273,7 @@ _high-level overview_ of a given facet of the Experience API are labeled **descr
 * [Verb](#def-verb)
 
 <a name="def-activity" />
+
 __Activity__: A thing with which to be interacted. An Activity can be a unit of 
 instruction, experience, or performance that is to be tracked in meaningful combination with a Verb. 
 Interpretation of ‘Activity’ is broad, meaning that Activities can even be tangible objects. In the statement
@@ -272,49 +281,59 @@ Interpretation of ‘Activity’ is broad, meaning that Activities can even be t
 Other examples include a book, an e-learning course, a hike or a meeting. 
 
 <a name="def-activity-provider" />
+
 __Activity Provider (AP)__: The software object that is communicating with 
 the LRS to record information about a learning experience. May be similar to a SCORM 
 package in that it is possible to bundle learning assets with the software object that performs this 
 communication, but an Activity Provider may also be separate from the experience it is reporting about.
 
 <a name="def-actor" />
+
 __Actor__: An identity or persona of an individual or group tracked using Statements as doing an  
 action (Verb) within an Activity.
 
 <a name="def-authentication" />
+
 __Authentication__: The concept of verifying the identity of a user or system. Authentication 
 allows interactions between the two “trusted” parties.
 
 <a name="def-authorization" />
+
 __Authorization__: The affordance of permissions based on a user or system's role; 
 the process of making one user or system "trusted" by another.
 
 <a name="def-community-of-practice" />
+
 __Community of Practice__: A group, usually connected by a common cause, role or 
 purpose, which operates in a common modality.
 
 <a name="def-experience-api" />
+
 __Experience API (xAPI)__: The API defined in this document, the product of 
 "Project Tin Can". A simple, lightweight way for any permitted actor to store 
 and retrieve extensible learning records, learner and learning experience profiles, 
 regardless of platform.  
 
 <a name ="def-immutable" />
+
 __Immutable__:  Adjective used to describe things which cannot be changed. With 
 some exceptions, statements in the xAPI are immutable. This ensures that when 
 statements are shared between LRSs, multiple copies of the statement remain
 the same.
 
 <a name="def-iri" />
+
 __Internationalized Resource Idenfiers (IRI)__: A unique identifier which may be a URL.
 In the xAPI, all IRIs should be a full absolute IRI including a scheme. Relative IRIs 
 should not be used. URLs should be defined within a domain controlled by the person creating the URL.
 
 <a name="def-inverse-functional-identifier" />
+
 __Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
  Used to identify Agents and Groups.
 
 <a name="def-learning-management-system" />
+
 __Learning Management System (LMS)__: "A Learning Management System is a software package  
 used to administer one or more courses to one or more learners. An LMS is typically a web-based 
 system that allows learners to authenticate themselves, register for courses, complete courses and take  
@@ -322,51 +341,62 @@ assessments” (LSAL, 2004 in Gallagher, 2007). In this document the term will b
 existing systems implementing learning standards.
 
 <a name="def-learning-record-store" />
+
 __Learning Record Store (LRS)__: A system that stores learning information. Prior to the xAPI 
 most LRSs were Learning Management Systems (LMSs), however this document uses the term 
 LRS to be clear that a full LMS is not necessary to implement the xAPI. The xAPI 
 is dependent on an LRS to function.
 
 <a name="def-must-should-may" />
+
 __MUST / SHOULD / MAY__: Three levels of obligation with regards to conformance to the xAPI 
 specification. A system that fails to implement a MUST (or a MUST NOT) requirement is non-conformant.
 Failing to meet a SHOULD requirement is not a violation of conformity, but goes against best practices. 
 MAY indicates an option, to be decided by the developer with no consequences for conformity.
 
 <a name="def-profile" />
+
 __Profile__: A construct where information about the learner or activity is kept, 
 typically in name/document pairs that have meaning to an instructional system component.
 
 <a name="def-registration" />
+
 __Registration__: An instance of a learner experiencing a particular Activity.
 
 <a name="def-rest" />
+
 __Representational State Transfer (REST)__: An architecture for designing networked web Services.
 It relies on HTTP methods and uses current web best practices.
 
 <a name="def-service" />
+
 __Service__: A software component responsible for one or more aspects of the distributed 
 learning process. An LMS typically combines many services to design a complete learning 
 experience.
 
 <a name="def-statement" />
+
 __Statement__: A simple construct consisting of ```<Actor (learner)>``` ```<verb>``` ```<object>```, 
 with ```<result>```, in ```<context>``` to track an aspect of a learning experience. A set of 
 several statements may be used to track complete details about a learning experience.
 
 <a name="def-tcapi"/>
+
 __Tin Can API (TCAPI)__: The previous name of the API defined in this document, often used in 
 informal references to the Experience API.  
 
 <a name="def-verb" />
+
 __Verb__: Defines the action being done by the Actor within the Activity within a Statement. 
 
 <a name="statement"/> 
+
 ## 4.0 Statement  
 The statement is the core of the xAPI. All learning events are stored as statements.
 A statement is akin to a sentence of the form "I did this".
 
 <a name="stmtprops"/>
+
 ### 4.1 Statement Properties:  
 Actor, verb, and object are required, all other properties are optional. Properties 
 can occur in any order, but are limited to one use each. Each property is discussed 
@@ -439,6 +469,7 @@ An example of the simplest possible statement using all properties that MUST or 
 See [Appendix D: Example statements](#AppendixD) for more examples. 
 
 <a name="stmtid"/> 
+
 #### 4.1.1 ID:  
 
 ###### Description: 
@@ -451,12 +482,14 @@ for requirements, and the UUID must be in standard string form).
 * MUST be generated by the LRS if a statement is received without an ID.
 
 <a name="actor"/>
+
 #### 4.1.2 Actor:  
 
 ###### Description: 
 A mandatory Agent or Group object.
 
 <a name="agent"/>
+
 ##### 4.1.2.1 Agent
 ###### Description:
 An Agent (an individual) is a persona or system that can be involved in an action.
@@ -482,6 +515,7 @@ identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse functional Identi
 
 
 <a name="group"/>
+
 ##### 4.1.2.2 Group
 ###### Description:
 
@@ -534,6 +568,7 @@ in a given anonymous or identified Group.
 
 
 <a name="inversefunctional">
+	
 ##### 4.1.2.3 Inverse Functional Identifier
 ###### Details: 
 An "inverse functional identifier" is a value of agents or identified
@@ -557,6 +592,7 @@ but no others, should be used for this property and mbox_sha1sum.</td></tr>
 
 
 <a name="agentaccount"/>
+
 ###### Account object
 
 ###### Description: 
@@ -596,6 +632,7 @@ This example shows an agent identified by an opaque account:
 ``` 
 
 <a name="verb"/>
+
 #### 4.1.3 Verb:
 
 ###### Description
@@ -702,6 +739,7 @@ specification document, with the exception of the reserved verb <a href="#voided
 
 
 <a name="object"/>
+
 ####4.1.4 Object
 ###### Definition
 
@@ -725,6 +763,7 @@ Statements as objects are typically, but not exclusively, used in scenarios wher
 some existing activity is graded, reviewed or commented on.
 
 <a name="activity"/>
+
 ##### 4.1.4.1 When the "Object" is an Activity
 
 A statement may represent an Activity as the object of the statement. An activity is any thing 
@@ -747,7 +786,9 @@ which is interacted with. See <a href="#30-definitions">section 3.0 Definitions<
 		<td>Metadata, <a href="#actdef">See below</a></td>
 	</tr>
 </table>
+
 <a name="acturi"/>
+
 ###### Activity ID  
 An activity ID must always refer to a single unique activity. There may be 
 corrections to that activity's definition. Spelling fixes would be appropriate, 
@@ -777,6 +818,7 @@ that could be easily duplicated, as intent would be indeterminable should a
 conflict with another system arise.  
 
 <a name="actdef"/>
+
 ###### Activity Definition  
 
 Activity definitions SHOULD include populated name, description, and type properties.
@@ -796,6 +838,7 @@ Other properties defined below MAY be included.
 	</tr>
 	<tr>
 		<a name="acttype"/>
+		
 		<td>type</td>
 		<td>URI</td>
 		<td>the type of activity. Note, URI fragments (sometimes called 
@@ -821,14 +864,17 @@ Other properties defined below MAY be included.
 		<td>Extensions Object</td>
 		<td>A map of other properties as needed (see: <a href="#miscext">Extensions</a>)</td>
 	</tr>
-</table>  
+</table> 
+ 
 An LRS should update its internal representation of an activity's definition 
 upon receiving a statement with a different definition of the activity from the 
 one stored, but only if it considers the Learning Activity Provider to have the 
 authority to do so.  
 
 <a name="actmeta"/>
+
 ###### Activity Metadata
+
 * Activities with URL identifiers MAY host metadata using the <a href="#actdef">
 activity definition</a> JSON format which is used in statements, with a Content-Type of "application/json"
 * If the activity URI is a URL, LRS's SHOULD attempt to GET that URL, and include in HTTP
@@ -842,6 +888,7 @@ from a URL used as an activity id, then the LRS MAY consider this definition whe
 its internal representation of that activity's definition.
 
 <a name="interactionacts"/>
+
 ###### Interaction Activities  
 
 Traditional e-learning has included structures for interactions or assessments. 
@@ -916,6 +963,7 @@ an interaction activity with the given interactionType.
 See [Appendix C](#AppendixC) for examples of activity definitions for each of the cmi.interaction types.
 
 <a name="agentasobj"/>
+
 ##### 4.1.4.2 When the "Object" is an Agent or a Group
 
 Statements that specify an Agent or Group as an Object...
@@ -925,6 +973,7 @@ Statements that specify an Agent or Group as an Object...
 See [section 4.1.2](#actor) for details regarding Agents.  
 
 <a name="stmtasobj"/>
+
 ##### 4.1.4.3 When the "Object" is a Statement
 
 ###### Rationale
@@ -940,6 +989,7 @@ that experience can be tracked as a statement within a statement. These are call
 An example is given further below.
 
 <a name="stmtref"/>
+
 ###### Statement References
 
 A statement reference is a pointer to another pre-existing statement.
@@ -982,6 +1032,7 @@ comment could be issued on the original statement, using a new statement:
 ``` 
 
 <a name="substmt"/>
+
 ###### Sub-Statements
 
 A Sub-Statement is a new statement included as part of a parent statement.
@@ -1047,6 +1098,7 @@ Whilst the verb display MAY take the future tense, the verb id SHOULD remain pas
 Later, when 'I' actually visit 'Some Awesome Website', reporting tools can thereby match the verb ids. 
 
 <a name="result"/>
+
 #### 4.1.5 Result:
 ###### Description: 
 
@@ -1079,6 +1131,7 @@ The 'Result' field may also contain arbitrary measurements if needed by the Lear
 </table> 
 
 <a name="Score"/>
+
 ##### 4.1.5.1 Score property
 
 ###### Description
@@ -1103,6 +1156,7 @@ The Score property...
 profile instead.
 
 <a name="context"/>
+
 #### 4.1.6 Context
 
 ###### Description: 
@@ -1185,7 +1239,9 @@ altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a hr
 </tr>
 
 </table>
+
 <a name="Registration"/>
+
 ##### 4.1.6.1 Registration property
 
 ###### Description:
@@ -1201,6 +1257,7 @@ Experience API purposes, a registration may be applied more broadly; an LMS coul
 group of activities and track all related statements in one registration.
 
 <a name="contextActivities"/>
+
 ##### 4.1.6.2 contextActivities property
 
 ###### Description: 
@@ -1290,6 +1347,7 @@ useful when the object of the statement is an agent, not an activity.
 ```
 
 <a name="timestamp"/>
+
 #### 4.1.7 Timestamp:
 
 ###### Definition
@@ -1316,6 +1374,7 @@ to other systems.
 
 
 <a name="stored"/> 
+
 #### 4.1.8 Stored:
 ###### Definition: 
 The time at which a statement is stored by the LRS.
@@ -1333,6 +1392,7 @@ A reporting tool:
 * MAY consider stored time from different timezones that represent the same logical time to be equivalent.
 
 <a name="authority"/> 
+
 #### 4.1.9 Authority:
 The authority property provides information about who or what has asserted that 
 this statement is true. Consequently, the asserting authority may be an 
@@ -1402,6 +1462,7 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 ```
 
 <a name="version"/> 
+
 #### 4.1.10 Version
 Version information in statements helps systems that process data from an LRS get their bearings. Since
 the statement data model is guaranteed consistent through all 1.0.x versions, in order to support data
@@ -1423,6 +1484,7 @@ lack a version, the version MUST be set to 1.0.0
 
 
 <a name="voided"/>
+
 #### 4.1.11 Voided:
 ###### Rationale
 
@@ -1487,6 +1549,7 @@ See ["Statement References"](#stmtref) in section [4.1.4.3](#stmtasobj) for deta
 statements. 
 
 <a name="attachments"/>
+
 #### 4.1.12 Attachments
 
 ###### Description: 
@@ -1504,6 +1567,7 @@ The table below lists all properties of the Attachment object.
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<a name="attachmentUsage" />
+		
 		<td>usageType</td>
 		<td>URI</td>
 		<td>Identifies the usage of this attachment. For example: one expected use case
@@ -1674,6 +1738,7 @@ here is a simple attachment
 --abcABC0123'()+_,-./:=?--
 ```
 <a name="signature"/>
+
 #### 4.1.13 Signed Statements
 
 ###### Description:
@@ -1729,6 +1794,7 @@ See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example
 
 
 <a name="dataconstraints"/>
+
 #### 4.1.14 Data Constraints
 All the properties used in statements are restricted to certain types, and those types
 constrain the behavior of systems processing statements. For clarity, certain key
@@ -1769,6 +1835,7 @@ same types in statements. Note: string parameter values are not quoted as they a
 
 
 <a name="retstmts"/> 
+
 ### 4.2 Retrieval of Statements:
 A collection of statements can be retrieved by performing a query on the "statements" 
 endpoint, see section [7.2 "Statement API"](#stmtapi) for details.  
@@ -1796,8 +1863,11 @@ endpoint, see section [7.2 "Statement API"](#stmtapi) for details.
 </table>
 
 <a name="misctypes"/> 
+
 ## 5.0 Miscellaneous Types
+
 <a name="miscdocument"/> 
+
 ### 5.1 Document:
 The Experience API provides a facility for Activity Providers to save arbitrary data in 
 the form of documents, which may be related to an Activity, Agent, or combination of both.  
@@ -1812,6 +1882,7 @@ updated is HTTP header information, and contents is the HTTP document itself.
 
 
 <a name="misclangmap"/>
+
 ### 5.2 Language Map
 A language map is a dictionary where the key is a 
 [RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the value is a 
@@ -1820,6 +1891,7 @@ fully as possible based on the knowledge of the string in question in different
 languages.  
 
 <a name="miscext"/> 
+
 ### 5.3 Extensions
 Extensions are defined by a map. The keys of that map MUST be URLs, and the 
 values MAY be any JSON value or data structure. The meaning and structure of 
@@ -1850,6 +1922,7 @@ possible into the built in elements, in order to leverage interoperability among
 Experience API conformant tools.  
 
 <a name="miscmeta"/>
+
 ### 5.4 Identifier Metadata
 There are several types of URI identifiers used in this specification:
 * <a href="#verb">verb</a>
@@ -1898,6 +1971,7 @@ identifier already exists, the Learning Activity Provider:
 * MAY create and use their own verbs where a suitable identifier does not already exist.
 
 <a name="rtcom"/>
+
 ## 6.0 Runtime Communication
 
 Sections 6 and 7 detail the more technical side of the Experience API, dealing with 
@@ -1907,10 +1981,12 @@ this part of the specification. It therefore may not be necessary for content de
 to fully understand every detail of this part of the specification.
 
 <a name="encoding"/> 
+
 ### 6.1 Encoding:
 All strings must be encoded and interpreted as UTF-8.  
 
 <a name="apiversioning"/> 
+
 ### 6.2 API Versioning:
 
 
@@ -1953,6 +2029,7 @@ Converting statements to other versions:
 <a href="#AppendixE">Appendix E: Converting Statements to 1.0.0</a>.
 
 <a name="concurrency"/> 
+
 ### 6.3 Concurrency:
 In order to prevent "lost edits" due to API consumers PUT-ing changes based on 
 old data, xAPI will use HTTP 1.1 entity tags 
@@ -1992,6 +2069,7 @@ state of the resource and set the “If-Match” header with the current ETag to
 resolve the conflict. In this case, the LRS must make no modification to the resource.  
 
 <a name="security"/>
+
 ### 6.4 Security:
 
 ###### Requirement
@@ -2040,6 +2118,7 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 
 	
 <a name="authdefs"/>
+
 #### 6.4.1	
 ###### How to handle each scenario
 
@@ -2100,6 +2179,7 @@ Requirements for the LRS:
 
 
 <a name="oauthscope"/> 
+
 #### 6.4.2 OAuth Authorization Scope
 The LRS will accept a scope parameter as defined in 
 [OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3). 
@@ -2189,6 +2269,7 @@ parameters, not in the OAuth header.
 </table>
 
 <a name="datatransfer"/> 
+
 ## 7.0 Data Transfer (REST)
 This section describes The xAPI consists of 4 sub-APIs: statement, state, 
 learner, and activity profile. The four sub-APIs of the Experience API 
@@ -2208,6 +2289,7 @@ these APIs using any parameters:
 in all but case.
 
 <a name="errorcodes"/> 
+
 ### 7.1 Error Codes
 The list below offers some general guidance on HTTP error codes that could
 be returned from various methods in the API. An LRS MUST return the error
@@ -2242,6 +2324,7 @@ MUST be configurable to accept statements of any size.
 unexpected exception in processing on the server.
 
 <a name="stmtapi"/> 
+
 ### 7.2 Statement API:
 The basic communication mechanism of the Experience API.  
 
@@ -2401,6 +2484,7 @@ form fields if necessary. The LRS MUST differentiate a POST to add a statement
 or to list statements based on the parameters passed.  
 
 <a name="queryStatementRef" />
+
 ###### Note: 
 For filter parameters which are not time or sequence based (that is, other than
 since, until, or limit), statements which target another statement (by using a StatementRef
@@ -2420,6 +2504,7 @@ being fetched.
 This section does not apply when retrieving statements with statementId or voidedStatementId.
 
 <a name="voidedStatements">
+	
 ###### Voided statements
 The LRS MUST not return any statement which has been voided, unless that statement has been
 requested by voidedStatementId. The LRS MUST still return any statements targetting the voided statement
@@ -2431,6 +2516,7 @@ statementId of any voided statements by the target of the voiding statement. Rep
 tools wishing to retrieve voided statements SHOULD request these individually by voidedStatementId.
 
 <a name="docapis"/> 
+
 ### 7.3 Document APIs:
 The 3 Document APIs provide <a href="#miscdocument">document</a> storage for learning activity providers
 and agents. The details of each API are found in the following sections, and the information in this section 
@@ -2525,6 +2611,7 @@ If an AP needs to delete
 a property, it SHOULD use a PUT request to replace the whole document as described below. 
 
 <a name="stateapi"/> 
+
 ### 7.4 State API:
 Generally, this is a scratch area for activity providers that do not have their 
 own internal storage, or need to persist state across devices. When using the 
@@ -2605,6 +2692,7 @@ Returns: 204 No Content
 
 
 <a name="actprofapi"/> 
+
 ### 7.5 Activity Profile API:
 The Activity Profile API is much like the State API, allowing for arbitrary key 
 / document pairs to be saved which are related to an Activity. When using the 
@@ -2666,6 +2754,7 @@ Returns: 200 OK - List of IDs
 </table>
 
 <a name="agentprofapi"/> 
+
 ### 7.6 Agent Profile API:
 The Agent Profile API is much like the State API, allowing for arbitrary key / 
 document pairs to be saved which are related to an Agent. When using the 
@@ -2778,6 +2867,7 @@ Returns: 200 OK - List of IDs
 </table>  
 
 <a name="aboutresource"/> 
+
 ### 7.7. About resource:
 
 ###### GET about
@@ -2810,6 +2900,7 @@ Returns: 200 OK - Single 'about' JSON document.
 by <a href="#apiversioning"/>6.2 API Versioning</a>.
 
 <a name="cors"/>
+
 ### 7.8 Cross Origin Requests:
 One of the goals of the xAPI is to allow cross-domain tracking, and even though 
 xAPI seeks to enable tracking from applications other than browsers, browsers 
@@ -2856,6 +2947,7 @@ to support this use case. HTTP is inherently less secure than HTTPS, and both LR
 client should consider the security risks before making the decision to use this scheme. 
 
 <a name="validation"/> 
+
 ### 7.9 Validation:
 The function of the LRS within the xAPI is to store and retrieve statements. 
 As long as it has sufficient information to perform these tasks, it is 
@@ -2866,6 +2958,7 @@ valid meaning among verb definitions, activity types, and extensions is the
 responsibility of the Activity Provider sending the statement.  
 
 <a name="httphead"/>
+
 ### 7.10. HTTP HEAD
 
 ###### Description
@@ -2886,6 +2979,7 @@ identical HTTP GET request except:
     * The Content-Length header MAY be omitted, in order to avoid wasting LRS resources
 
 <a name="AppendixA"/> 
+
 ## Appendix A: Bookmarklet
 
 An xAPI Bookmarklet enables individual user tracking with base authentication. Examples 
@@ -3013,6 +3107,7 @@ Body:
 }
 ```
 <a name="AppendixB"/>
+
 ## Appendix B: Creating an “IE Mode” Request
 ```javascript
 function getIEModeRequest(method, url, headers, data){
@@ -3053,7 +3148,8 @@ function getIEModeRequest(method, url, headers, data){
 	};
 }
 ``` 
-<a name="AppendixC"/>   
+<a name="AppendixC"/>  
+ 
 ## Appendix C: Example definitions for activities of type “cmi.interaction”
 
 ###### true-false  
@@ -3332,7 +3428,8 @@ function getIEModeRequest(method, url, headers, data){
 }
 ```
 
-<a name="AppendixD"/>   
+<a name="AppendixD"/>  
+ 
 ## Appendix D: Example statements
 
 Example of a simple statement (line breaks are for display purposes only):  
@@ -3401,6 +3498,7 @@ Typical simple completion with verb "attempted":
 ```  
 
 <a name="AppendixE"/>
+
 ## Appendix E: Converting Statements to 1.0.0
 
 ######Rationale:
