@@ -536,7 +536,7 @@ in a given anonymous or identified Group.
 
 <a name="inversefunctional">
 ##### 4.1.2.3 Inverse Functional Identifier
-###### Details: 
+###### Description: 
 An "inverse functional identifier" is a value of agents or identified
 groups that is guaranteed to only ever refer to that agent or identified group.
 
@@ -546,6 +546,7 @@ individuals and/or groups. In an xAPI statement this is accomplished with a set 
 inverse functional identifiers loosely inspired on the widely accepted FOAF principle
 (see: <a href="http://xmlns.com/foaf/spec/#term_Agent"> Friend Of A Friend</a>).
 
+The table below lists all valid inverse functional identifiers.
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>
