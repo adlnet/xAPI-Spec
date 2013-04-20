@@ -1078,6 +1078,8 @@ An optional field that represents a measured outcome related to the statement in
 A result can be completion, success, score, etc. 
 The 'Result' field may also contain arbitrary measurements if needed by the Learning Activity Provider.
 
+The table below lists all properties of 'Result':
+
 <table border="1">
 <tr><th>property</th><th>type</th><th>description</th></tr>
 <td>score</td>
