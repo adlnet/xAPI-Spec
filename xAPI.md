@@ -199,6 +199,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Mike Rustici</td><td>Rustici Software</td></tr>
 	<tr><td>Nik Hruska</td><td>ADL</td></tr>
 	<tr><td>Patrick Kedziora</td><td>Kedzoh</td></tr>
+	<tr><td>Paul Esch</td><td></td></tr>
 	<tr><td>Paul Roberts</td><td>Questionmark</td></tr>
 	<tr><td>Rich Chetwynd</td><td>Litmos</td></tr>
 	<tr><td>Richard Fouchaux</td><td>Ontario Human Rights  Commission</td></tr>
@@ -535,7 +536,7 @@ in a given anonymous or identified Group.
 
 <a name="inversefunctional">
 ##### 4.1.2.3 Inverse Functional Identifier
-###### Details: 
+###### Description: 
 An "inverse functional identifier" is a value of agents or identified
 groups that is guaranteed to only ever refer to that agent or identified group.
 
@@ -545,6 +546,7 @@ individuals and/or groups. In an xAPI statement this is accomplished with a set 
 inverse functional identifiers loosely inspired on the widely accepted FOAF principle
 (see: <a href="http://xmlns.com/foaf/spec/#term_Agent"> Friend Of A Friend</a>).
 
+The table below lists all valid inverse functional identifiers.
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>
@@ -729,6 +731,8 @@ some existing activity is graded, reviewed or commented on.
 
 A statement may represent an Activity as the object of the statement. An activity is any thing 
 which is interacted with. See <a href="#30-definitions">section 3.0 Definitions</a>.
+
+The table below lists the properties of the Object when it is an Activity:
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
@@ -738,98 +742,109 @@ which is interacted with. See <a href="#30-definitions">section 3.0 Definitions<
 	</tr>
 	<tr>
 		<td><a href="#acturi">id</a></td><td>URI</td>
-		<td>Required. MAY be a URL, which points to the logical definition of the activity. 
+		<td>MAY be a URL, which points to the logical definition of the activity. 
 		This MAY point to metadata or the URL for the activity</td>
 	</tr>
 	<tr>
 		<td><a href="#actdef">definition</a></td>
-		<td>Optional Activity Definition Object</td>
+		<td>Activity Definition Object</td>
 		<td>Metadata, <a href="#actdef">See below</a></td>
 	</tr>
 </table>
 <a name="acturi"/>
-###### Activity ID  
-An activity ID must always refer to a single unique activity. There may be 
-corrections to that activity's definition. Spelling fixes would be appropriate, 
-for example, but changing correct responses would not.  
-
-The activity ID is unique, and any reference to it always refers to the same 
-activity. Activity Providers must ensure this is true and the LRS may not attempt 
-to treat multiple references to the same ID as references to different activities, 
-regardless of any information which indicates two authors or organizations may 
-have used the same activity ID.    
-
-When defining an activity ID, care must be taken to make sure it will not be 
-re-used. It should use a domain the creator controls or has been authorized to 
-use for this purpose, according to a scheme the domain owner has adopted to make 
-sure activity IDs within that domain remain unique.  
-
-Any state or statements stored against an activity ID must be compatible and 
-consistent with any other state or statements that are stored against the same 
-activity ID, even if those statements were stored in the context of a new 
-revision or platform.   
-
-###### NOTE: 
-The prohibition against an LRS treating references to the same activity 
-ID as two different activities, even if the LRS can positively determine that 
-was the intent, is crucial to prevent activity ID creators from creating IDs 
-that could be easily duplicated, as intent would be indeterminable should a 
-conflict with another system arise.  
 
 <a name="actdef"/>
 ###### Activity Definition  
 
-Activity definitions SHOULD include populated name, description, and type properties.
-Other properties defined below MAY be included.
+The table below lists the properties of the Activity Definition Object:
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Opt. / Req.</th><th>Description</th></tr>
 	<tr>
 		<td>name</td>
 		<td><a href="#misclangmap">Language Map</a></td>
+		<td></td>
 		<td>The human readable/visual name of the activity</td>
 	</tr>
 	<tr>
 		<td>description</td>
 		<td><a href="misclangmap">Language Map</a></td>
+		<td></td>
 		<td>A description of the activity</td>
 	</tr>
 	<tr>
 		<a name="acttype"/>
 		<td>type</td>
 		<td>URI</td>
-		<td>the type of activity. Note, URI fragments (sometimes called 
-			relative URLs) are not valid URIs. <a href="#verb-lists-and-repositories">As with verbs</a>, we recommend
-			that Learning Activity Providers look for and use established, 
-			widely adopted, activity types.
-		</td>
+		<td>Required</td>
+		<td>The type of activity.</td>
 	</tr>
 	<tr>
 		<td>url</td>
 		<td>URL</td>
-		<td>A url which SHOULD resolve to human-readable information about the activity,
+		<td>Optional</td>
+		<td>An optional url which SHOULD resolve to a document human-readable information about the activity,
 		which MAY include a way to 'launch' the activity.
 		</td>
 	</tr>
 	<tr>
 		<td>interactionType | correctResponsesPattern | choices | scale | 
 			source | target | steps</td>
-		<td colspan="2"><a href="#interactionacts">See "Interaction Activities"</a></td>
+		<td colspan="1"><a href="#interactionacts">See "Interaction Activities"</a></td>
+		<td>Required</td>
+		<td>Mutually exclusive</td>
 	</tr>
 	<tr>
 		<td>extensions</td>
 		<td>Extensions Object</td>
+		<td>Optional</td>
 		<td>A map of other properties as needed (see: <a href="#miscext">Extensions</a>)</td>
 	</tr>
-</table>  
-An LRS should update its internal representation of an activity's definition 
-upon receiving a statement with a different definition of the activity from the 
-one stored, but only if it considers the Learning Activity Provider to have the 
-authority to do so.  
+</table>
+
+
+######Note
+URI fragments (sometimes called relative URLs) are not valid URIs. As with verbs, we recommend that Learning Activity Providers look for and use established, widely adopted, activity types.
+
+###### Activity ID  
+#####Description 
+An identifier for a single unique activity.
+
+#####Rationale
+Activities may not share one and the same Activity ID. If it were possible to use the same ID for two different activities, the validity of statements about these Activities could be questioned. This means an LRS may never treat (references to) the same Activity ID as belonging to two different activities, even if it thinks this was intended. Namely when a conflict with another systems occurs, it’s not possible to determine that intention was on purpose. 
+
+#####Requirements
+
+-	Must be unique;
+-	Must always reference the same activity;
+-	MUST NOT be re-used for other activities;
+-	SHOULD use a domain that the creator is authorized to use for this purpose;
+-	SHOULD be created according to a scheme that makes sure all Activity IDs within that domain remain unique.
+
+#####Requirements for the LRS:
+
+-	MUST NOT treat references to the same ID as references to different activities;
+-	MUST ignore any information which indicates two authors or organizations may have used the same Activity ID;
+-	MAY accept small corrections to the Activity’s definition.
+
+#####Example
+
+It would be okay for an LRS to accept spelling fixes, but it may not accept changes to correct responses. In that case the LRS considers the changed Activity to be a completely separate, new Activity.
+
+
+#####Requirements for the Activity provider:
+
+-	MUST ensure that Activity IDs are not re-used across multiple activities;
+-	MUST only generate states or statements against a certain ID that are compatible and consistent with states or statements previously stored against the same ID;
+-	MUST NOT allow new versions (ie. revisions or other platforms) of the Activity to break this compatibility.
+If the LRS receives a statement with an activity definition that differs from the one stored, it:
+-	SHOULD decide whether it considers the Learning Activity Provider to have the authority to change the definition;
+-	SHOULD update the stored activity definition accordingly if that decision is positive.
+  
 
 <a name="actmeta"/>
 ###### Activity Metadata
-* Activities with URL identifiers MAY host metadata using the <a href="#actdef">
+* Activities with URL identifiers MAY may host metadata using the <a href="#actdef">
 activity definition</a> JSON format which is used in statements, with a Content-Type of "application/json"
 * If the activity URI is a URL, LRS's SHOULD attempt to GET that URL, and include in HTTP
 headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
@@ -843,7 +858,7 @@ its internal representation of that activity's definition.
 
 <a name="interactionacts"/>
 ###### Interaction Activities  
-
+#####Rationale
 Traditional e-learning has included structures for interactions or assessments. 
 As a way to allow these practices and structures to extend Experience API's 
 utility, this specification include built in definitions for interactions which 
@@ -853,12 +868,18 @@ are simple to use, and consequently limited. It is expected that communities of
 practice requiring richer interactions definitions will do so through the use 
 of extensions to an activity's type and definition.  
 
-When defining interaction activities, the activity type: 
-"http://adlnet.gov/expapi/activities/cmi.interaction" SHOULD 
-be used, and a valid interactionType MUST be specified. If interactionType 
-is specified, an LRS processing MAY validate the remaining properties as 
-specified in the table below, and return HTTP 400 "Bad Request" if the 
-remaining properties are not valid for the interaction type.  
+#####Requirements
+Interaction activities:
+
+-	SHOULD have the activity type http://adlnet.gov/expapi/activities/cmi.interaction";
+-	MUST have a valid interactionType
+
+The LRS consuming these types of interactions:
+
+-	MAY validate the remaining properties as specified in the table below,
+-	MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the interaction type.
+
+  
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
@@ -895,7 +916,7 @@ Interaction components are defined as follows:
 	<tr>
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
-		<td>a description of the interaction component 
+		<td>A description of the interaction component 
 			(for example, the text for a given choice in a multiple-choice interaction)</td>
 	</tr>
 </table>  
@@ -1057,6 +1078,8 @@ An optional field that represents a measured outcome related to the statement in
 A result can be completion, success, score, etc. 
 The 'Result' field may also contain arbitrary measurements if needed by the Learning Activity Provider.
 
+The table below lists all properties of 'Result':
+
 <table border="1">
 <tr><th>property</th><th>type</th><th>description</th></tr>
 <td>score</td>
@@ -1114,6 +1137,7 @@ The "context" field provides a place to add some contextual information to a sta
 as the instructor for an experience, if this experience happened as part of a team activity, or how an experience fits 
 into some broader activity.
 
+The talbe below lists all properties of 'Context':
 <table border="1">
 <tr><th>property</th><th>type</th><th>description</th></tr>
 <tr>
@@ -1403,6 +1427,8 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 
 <a name="version"/> 
 #### 4.1.10 Version
+
+######Rationale
 Version information in statements helps systems that process data from an LRS get their bearings. Since
 the statement data model is guaranteed consistent through all 1.0.x versions, in order to support data
 flow among such LRSs the LRS is given some flexibility on statement versions that are accepted.
@@ -1519,7 +1545,7 @@ The table below lists all properties of the Attachment object.
 	</tr>
 	<tr>
 		<td>description</td>
-		<td><a href="#misclangmap">Language Map</a></td>
+		<td>String</a></td>
 		<td>A description of the attachment</td>
 		<td>no</td>
 	</tr>
@@ -1730,6 +1756,8 @@ See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example
 
 <a name="dataconstraints"/>
 #### 4.1.14 Data Constraints
+
+#####Rationale:
 All the properties used in statements are restricted to certain types, and those types
 constrain the behavior of systems processing statements. For clarity, certain key
 requirements are documented here, emphasizing where compliant systems have a responsibility
