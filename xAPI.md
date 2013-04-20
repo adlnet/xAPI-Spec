@@ -7,59 +7,59 @@
 >send all feedback and inquiries to helpdesk@adlnet.gov  
 
 ## Table of Contents
-[1.0. Revision History](#revhistory)  
-[2.0. Role of the Experience API](#roleofxapi)  
-  [2.1. ADL's Role in the Experience API](#adlrole)  
-    [2.2. Contributors](#contributors)  
-		[2.2.1. Working Group Participants](#wg)  
-		[2.2.2. Requirements Gathering Participants](#reqparticipants)  
-[3.0. Definitions](#defintions)  
-	[Tin Can API (TCAPI)](#tcapi)  
-[4.0. Statement](#statement)  
-    [4.1. Statement Properties](#stmtprops)  
-        [4.1.1. ID](#stmtid)  
-        [4.1.2. Actor](#actor)  
-        [4.1.3. Verb](#verb)  
-        [4.1.4. Object](#object)  
-        [4.1.5. Result](#result)  
-        [4.1.6. Context](#context)  
-        [4.1.7. Timestamp](#timestamp)  
-        [4.1.8. Stored](#stored)  
-        [4.1.9. Authority](#authority)  
-        [4.1.10. Voided](#voided)  
-        [4.1.11. Attachments](#attachments)  
-        [4.1.12. Signed Statements](#signature)  
-        [4.1.13. Data Constraints](#dataconstraints)  
-    [4.2. Retrieval of Statements](#retstmts)  
-[5.0. Miscellaneous Types](#misctypes)  
-    [5.1. Document](#miscdocument)  
-    [5.2. Language Map](#misclangmap)  
-    [5.3. Extensions](#miscext)  
-    [5.4. Identifier Metadata](#miscmeta)  
-[6.0. Runtime Communication](#rtcom)  
-    [6.1. Encoding](#encoding)  
-    [6.2. API Versioning](#apiversioning)  
-    [6.3. Concurrency](#concurrency)  
-    [6.4. Security](#security)  
-		[6.4.1. Authentication Definitions](#authdefs)  
-		[6.4.2. OAuth Authorization Scope](#oauthscope)  
-[7.0. Data Transfer (REST)](#datatransfer)  
-    [7.1. Error Codes](#errorcodes)  
-    [7.2. Statement API](#stmtapi)  
-    [7.3. Document APIs](#docapis)  
-    [7.4. State API](#stateapi)  
-    [7.5. Activity Profile API](#actprofapi)  
-    [7.6. Agent Profile API](#agentprofapi)  
-    [7.7. About resource](#aboutresource)  
-    [7.8. Cross Origin Requests](#cors)  
-    [7.9. Validation](#validation)  
-    [7.10. HTTP HEAD](#httphead)  
-[Appendix A: Bookmarklet](#AppendixA)  
-[Appendix B: Creating an "IE Mode" Request](#AppendixB)  
-[Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
-[Appendix D: Example statements](#AppendixD)  
-[Appendix E: Converting Statements to 1.0.0](#AppendixE)   
-[Appendix F: Example Signed Statement](#AppendixF)
+*	1.0.	[Revision History](#revhistory)  
+*	2.0.	[Role of the Experience API](#roleofxapi)
+	*	2.1.	[ADL's Role in the Experience API](#adlrole)  
+ 	*	2.2.	[Contributors](#contributors)
+ 		*	2.2.1.	[Working Group Participants](#wg)  
+		*	2.2.2.	[Requirements Gathering Participants](#reqparticipants)  
+*	3.0.	[Definitions](#defintions)  
+*	4.0.	[Statement](#statement)  
+    *	4.1.	[Statement Properties](#stmtprops)  
+        *	4.1.1.	[ID](#stmtid)  
+        *	4.1.2.	[Actor](#actor)  
+        *	4.1.3.	[Verb](#verb)  
+        *	4.1.4.	[Object](#object)  
+        *	4.1.5.	[Result](#result)  
+        *	4.1.6.	[Context](#context)  
+        *	4.1.7.	[Timestamp](#timestamp)  
+        *	4.1.8.	[Stored](#stored)  
+        *	4.1.9.	[Authority](#authority)  
+        *	4.1.10.	[Version](#version)  
+        *	4.1.11.	[Voided](#voided)  
+        *	4.1.12.	[Attachments](#attachments)  
+        *	4.1.13.	[Signed Statements](#signature)  
+        *	4.1.14.	[Data Constraints](#dataconstraints)  
+    *	4.2.	[Retrieval of Statements](#retstmts)  
+*	5.0.	[Miscellaneous Types](#misctypes)  
+    *	5.1.	[Document](#miscdocument)  
+    *	5.2.	[Language Map](#misclangmap)  
+    *	5.3.	[Extensions](#miscext)  
+    *	5.4.	[Identifier Metadata](#miscmeta)  
+*	6.0.	[Runtime Communication](#rtcom)  
+    *	6.1.	[Encoding](#encoding)  
+    *	6.2.	[API Versioning](#apiversioning)  
+    *	6.3.	[Concurrency](#concurrency)  
+    *	6.4.	[Security](#security)  
+		*	6.4.1.	[Authentication Definitions](#authdefs)  
+		*	6.4.2.	[OAuth Authorization Scope](#oauthscope)  
+*	7.0.	[Data Transfer (REST)](#datatransfer)  
+    *	7.1.	[Error Codes](#errorcodes)  
+    *	7.2.	[Statement API](#stmtapi)  
+    *	7.3.	[Document APIs](#docapis)  
+    *	7.4.	[State API](#stateapi)  
+    *	7.5.	[Activity Profile API](#actprofapi)  
+    *	7.6.	[Agent Profile API](#agentprofapi)  
+    *	7.7.	[About resource](#aboutresource)  
+    *	7.8.	[Cross Origin Requests](#cors)  
+    *	7.9.	[Validation](#validation)  
+    *	7.10.	[HTTP HEAD](#httphead)  
+*	[Appendix A: Bookmarklet](#AppendixA)  
+*	[Appendix B: Creating an "IE Mode" Request](#AppendixB)  
+*	[Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
+*	[Appendix D: Example statements](#AppendixD)  
+*	[Appendix E: Converting Statements to 1.0.0](#AppendixE)   
+*	[Appendix F: Example Signed Statement](#AppendixF)
 
 <a name="revhistory"/>  
 ## 1.0 Revision History
@@ -217,49 +217,69 @@ OSD, Training Readiness & Strategy (TRS)
 </table> 
 <a name="reqparticipants"/> 
 #### 2.2.2 Requirements Gathering Participants  
-In collection of requirements for the Experience API, there were many people and 
-organizations that provided invaluable feedback to SCORM, distributed learning 
-efforts, and learning in general.  Project Tin Can User Voice Site, Rustici Software Blog, etc.  
+In collection of requirements for the Experience API, many people and 
+organizations provided invaluable feedback to the Sharable Content Object
+Reference Model (SCORM®), distributed learning efforts, and learning technology
+efforts in general.  While not an exhaustive listing, the white papers gathered 
+in 2008 by the Learning Education and Training Standards Interoperability (LETSI) 
+group, the Rustici Software _UserVoice_ website, one-on-one interviews and various
+blogs were important sources from which requirements were gathered for the 
+Experience API specification.
 
 ### 2.3 Reading guidelines for the non-technically inclined.
 
-Since you’re reading this document, it’s probably safe to say that you’re interested in understanding 
-the Experience API (xAPI), informally called the "Tin Can API". The purpose of this document is to describe how the xAPI is 
-implemented in a large variety of systems. It’s a fairly technical document by nature and you may
-decide that you don’t understand much of it. Even so, there are useful things to learn by reading further. Not only
-because the tools that you work with are based on the specifications described below; the technical people that you
-talk to may assume that you have a basic level of knowledge. For this reason you’re advised to read the small
-sections labeled ‘description’ and ‘rationale’ while skipping the ‘details’ and ‘examples’. Needless to say, many
-other sources can be found that explain xAPI very well, but this document is the core of them all.
+This is a definitive document which describes how the Experience API is to be implemented
+across a variety of systems. It is a technical document authored specifically for individuals 
+and organizations implementing this technology with the intent of such individuals 
+developing interoperable tools, systems and services that are independent of each other 
+and interoperable with each other. 
+
+Whenever possible, the language and formatting used in this document is intended to be 
+_considerate_ of non-technical readers because various tools, systems and services 
+are based on the specification set described below. For this reason, sections that provide a 
+_high-level overview_ of a given facet of the Experience API are labeled **description** or 
+**rationale**. Items in this document labeled as **details** or **examples** are more technical. 
 
 <a name="defintions"/> 
 ## 3.0 Definitions  
 
 * [Activity](#def-activity)
+* [Activity Provider (AP)](#def-activity-provider)
+* [Actor](#def-actor)
 * [Authentication](#def-authentication)
 * [Authorization](#def-authorization)
 * [Community of Practice](#def-community-of-practice)
 * [Experience API (xAPI)](#def-experience-api)
 * [Immutable](#def-immutable)
-* [Inverse Functional Identifier](#def-inverse-functinal-identifier)
-* [Learning Activity Provider](#def-activity-provider)
+* [Internationalized Resource Idenfier (IRI)](#def-iri)
+* [Inverse Functional Identifier](#def-inverse-functional-identifier)
 * [Learning Management System (LMS)](#def-learning-management-system)
-* [Learning Record Store (LRS)](#def-learning-record-store)"
-* [MUST / SHOULD / MAY](<#def-must-should-may)
+* [Learning Record Store (LRS)](#def-learning-record-store)
+* [MUST / SHOULD / MAY](#def-must-should-may)
 * [Profile](#def-profile)
 * [Registration](#def-registration)
+* [Representational State Transfer (REST)](#def-rest)
 * [Service](#def-service)
-* [State](#def-state)
 * [Statement](#def-statement)
-* [Tin Can API (TCAPI)](#tcapi)
-* [URI](#def-uri)
+* [Tin Can API (TCAPI)](#def-tcapi)
+* [Verb](#def-verb)
 
 <a name="def-activity" />
-__Activity__: A thing with which to be interacted. An activity can be a unit of 
-instruction, experience, or performance that is to be tracked in meaningful combination with a verb. 
-Interpretation of ‘Activity’ is broad, meaning that activities can even be tangible objects. In the statement
-“Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the xAPI statement.
-Other examples include a book, an e-learning course, a hike or a meeting.
+__Activity__: A thing with which to be interacted. An Activity can be a unit of 
+instruction, experience, or performance that is to be tracked in meaningful combination with a Verb. 
+Interpretation of ‘Activity’ is broad, meaning that Activities can even be tangible objects. In the statement
+"Anna tried a cake recipe”: the recipe constitutes the Activity in terms of the xAPI statement.
+Other examples include a book, an e-learning course, a hike or a meeting. 
+
+<a name="def-activity-provider" />
+__Activity Provider (AP)__: The software object that is communicating with 
+the LRS to record information about a learning experience. May be similar to a SCORM 
+package in that it is possible to bundle learning assets with the software object that performs this 
+communication, but an Activity Provider may also be separate from the experience it is reporting about.
+
+<a name="def-actor" />
+__Actor__: An identity or persona of an individual or group tracked using Statements as doing an  
+action (Verb) within an Activity.
 
 <a name="def-authentication" />
 __Authentication__: The concept of verifying the identity of a user or system. Authentication 
@@ -277,30 +297,29 @@ purpose, which operates in a common modality.
 __Experience API (xAPI)__: The API defined in this document, the product of 
 "Project Tin Can". A simple, lightweight way for any permitted actor to store 
 and retrieve extensible learning records, learner and learning experience profiles, 
-regardless of the platform used.  
+regardless of platform.  
 
 <a name ="def-immutable" />
-__Immutable__:  Adjective used  describe things which cannot be changed. With 
+__Immutable__:  Adjective used to describe things which cannot be changed. With 
 some exceptions, statements in the xAPI are immutable. This ensures that when 
 statements are shared between LRSs, multiple copies of the statement remain
 the same.
 
-<a name="def-inverse-functinal-identifier" />
-__Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
- Used to identify Agents and Groups. See section 4.1.2
+<a name="def-iri" />
+__Internationalized Resource Idenfiers (IRI)__: A unique identifier which may be a URL.
+In the xAPI, all IRIs should be a full absolute IRI including a scheme. Relative IRIs 
+should not be used. URLs should be defined within a domain controlled by the person creating the URL.
 
-<a name="def-activity-provider" />
-__Learning Activity Provider (AP)__: The software object that is communicating with 
-the LRS to record information about a learning experience. May be similar to a SCORM 
-package in that it is possible to bundle learning assets with the software object that performs this 
-communication, but an Activity Provider may also be separate from the experience it is reporting about.
+<a name="def-inverse-functional-identifier" />
+__Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
+ Used to identify Agents and Groups.
 
 <a name="def-learning-management-system" />
-__Learning Management System (LMS)__: Provides the tracking functionality of an LRS, 
-but provides additional administrative and reporting functionality. In this document 
-the term will be used when talking about existing systems that implement learning 
-standards. The xAPI can work independently of an LMS, but is built with knowledge 
-of the suite of services an LMS typically provides.
+__Learning Management System (LMS)__: "A Learning Management System is a software package  
+used to administer one or more courses to one or more learners. An LMS is typically a web-based 
+system that allows learners to authenticate themselves, register for courses, complete courses and take  
+assessments” (LSAL, 2004 in Gallagher, 2007). In this document the term will be used in the context of 
+existing systems implementing learning standards.
 
 <a name="def-learning-record-store" />
 __Learning Record Store (LRS)__: A system that stores learning information. Prior to the xAPI 
@@ -309,36 +328,38 @@ LRS to be clear that a full LMS is not necessary to implement the xAPI. The xAPI
 is dependent on an LRS to function.
 
 <a name="def-must-should-may" />
-__MUST / SHOULD / MAY__: Three levels of obligation with regards to conformance to the xAPI specification. A system that fails to implement a MUST (or a MUST NOT) requirement is non-conformant. Failing to meet a SHOULD requirement is not a violation of conformity, but goes against best practices. MAY indicates an option, to be decided by the developer with no consequences for conformity.
+__MUST / SHOULD / MAY__: Three levels of obligation with regards to conformance to the xAPI 
+specification. A system that fails to implement a MUST (or a MUST NOT) requirement is non-conformant.
+Failing to meet a SHOULD requirement is not a violation of conformity, but goes against best practices. 
+MAY indicates an option, to be decided by the developer with no consequences for conformity.
 
 <a name="def-profile" />
 __Profile__: A construct where information about the learner or activity is kept, 
 typically in name/document pairs that have meaning to an instructional system component.
 
 <a name="def-registration" />
-__Registration__: When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration, 
-an instance of a learner experiencing a particular learning activity. See [section 4.1.6](#context).
+__Registration__: An instance of a learner experiencing a particular Activity.
+
+<a name="def-rest" />
+__Representational State Transfer (REST)__: An architecture for designing networked web Services.
+It relies on HTTP methods and uses current web best practices.
 
 <a name="def-service" />
 __Service__: A software component responsible for one or more aspects of the distributed 
 learning process. An LMS typically combines many services to design a complete learning 
 experience.
 
-<a name="def-state" />
-__State__: Similar to SCORM suspend data, State allows storage of arbitrary key/document 
-pairs. The LRS does not have to retain state once the learning experience is considered 
-"done" (the LRS has closed its "registration").
-
 <a name="def-statement" />
-__Statement__: A simple statement consisting of ```<Actor (learner)>``` ```<verb>``` ```<object>```, 
+__Statement__: A simple construct consisting of ```<Actor (learner)>``` ```<verb>``` ```<object>```, 
 with ```<result>```, in ```<context>``` to track an aspect of a learning experience. A set of 
 several statements may be used to track complete details about a learning experience.
 
-<a name="tcapi"/>
-__Tin Can API (TCAPI)__: The previous name of the API defined in this document, often used in informal references to teh xAPI.  
+<a name="def-tcapi"/>
+__Tin Can API (TCAPI)__: The previous name of the API defined in this document, often used in 
+informal references to the Experience API.  
 
-<a name="def-uri" />
-__URI__: Uniform Resource Identifier. A unique identifier which may be a URL. In the xAPI, all URIs should be a full absolute URI including a scheme. Relative URIs should not be used. URLs should be defined within a domain controlled by the person creating the URL. 
+<a name="def-verb" />
+__Verb__: Defines the action being done by the Actor within the Activity within a Statement. 
 
 <a name="statement"/> 
 ## 4.0 Statement  
@@ -352,45 +373,44 @@ can occur in any order, but are limited to one use each. Each property is discus
 below.  
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
-	<tr><td>id</td><td>UUID</td><td></td>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>id</td><td>UUID</td>
 	<td>UUID assigned by LRS if not set by the Learning Activity Provider.</td></tr>
-	<tr><td><a href="#actor">actor</a></td><td>Object</td><td></td>
+	<tr><td><a href="#actor">actor</a></td><td>Object</td>
 	<td>Who the statement is about, as an <a href="#agent">Agent</a> or 
 		<a href="#group">Group</a> object. Represents the "I" in "I Did This".</td></tr>
-	<tr><td><a href="#verb">verb</a></td><td>Object</td><td></td>
+	<tr><td><a href="#verb">verb</a></td><td>Object</td>
 	<td>Action of the Learner or Team object. Represents the "Did" in "I Did This".</td></tr>
-	<tr><td><a href="#object">object</a></td><td>Object</td><td></td>
+	<tr><td><a href="#object">object</a></td><td>Object</td>
 	<td>Activity, agent, or another statement that is the object of the statement. 
 	Represents the "This" in "I Did This". Note that objects which are provided as a value for this field should 
 	include a "objectType" field. If not specified, the object is assumed to be 
 	an activity.</td></tr>
-	<tr><td><a href="#result">result</a></td><td>Object</td><td></td>
+	<tr><td><a href="#result">result</a></td><td>Object</td>
 	<td>Result object, further details representing a measured outcome relevant to the specified verb.</td></tr>
-	<tr><td><a href="#context">context</a></td><td>Object</td><td></td>
+	<tr><td><a href="#context">context</a></td><td>Object</td>
 	<td>Context that gives the statement more meaning. Examples: a team the actor is 
 	working with, altitude at which a scenario was attempted in a flight simulator.</td></tr>
-	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td><td></td>
+	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
 	of when what this statement describes happened. If not provided, LRS 
 	should set this to the value of "stored" time.</td></tr>
-	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td><td></td>
+	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
 	of when this statement was recorded. Set by LRS.</td></tr>
-	<tr><td><a href="#authority">authority</a></td><td>Object</td><td></td>
+	<tr><td><a href="#authority">authority</a></td><td>Object</td>
 	<td>Agent who is asserting this statement is true. Verified by the LRS based on 
 	authentication, and set by LRS if left blank.</td></tr>
-	<tr><td><a href="#version">version</a></td><td>String</td><td>"1.0.0"</td>
-	<td>xAPI version the statement conforms to. Set by LRS.</td></tr>
+	<tr><td><a href="#version">version</a></td><td>Version</td>
+	<td>xAPI version the statement conforms to, formatted according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
 		<td>Array of attachment objects</td>
-		<td>false</td>
 	    <td>Headers for attachments to the statement</td>
 	</tr>
 </table>  
-Aside from (potential or required) assignments of properties during initial 
-processing ("id", "authority", "stored", "timestamp") statements are immutable. Note that the content of 
+Aside from (potential or required) assignments of properties during LRS 
+processing ("id", "authority", "stored", "timestamp", "version") statements are immutable. Note that the content of 
 activities that are referenced in statements is not considered part of the 
 statement itself. So while the statement is immutable, the activities referenced 
 by that statement are not. This means a deep serialization of a statement into 
@@ -1399,8 +1419,30 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 	]
 }
 ```
+
+<a name="version"/> 
+#### 4.1.10 Version
+Version information in statements helps systems that process data from an LRS get their bearings. Since
+the statement data model is guaranteed consistent through all 1.0.x versions, in order to support data
+flow among such LRSs the LRS is given some flexibility on statement versions that are accepted.
+
+###### Requirements
+* version MUST be formatted as laid out for the API version header in [API Versioning](#apiversioning)
+
+###### LRS Requirements
+* an LRS MUST accept all statements where their version starts with "1.0." if they otherwise validate.
+* an LRS MUST reject all statements with a version specified that does not start with "1.0."
+* statements returned by an LRS MUST retain the version they are accepted with. If they
+lack a version, the version MUST be set to 1.0.0
+
+
+###### Client Requirements
+* clients SHOULD NOT set the statement version.
+* if clients set the statement version, they MUST set it to 1.0.0
+
+
 <a name="voided"/>
-#### 4.1.10 Voided:
+#### 4.1.11 Voided:
 ###### Rationale
 
 The certainty that an LRS has an accurate and complete collection of data is guaranteed by the fact that statements 
@@ -1464,7 +1506,7 @@ See ["Statement References"](#stmtref) in section [4.1.4.3](#stmtasobj) for deta
 statements. 
 
 <a name="attachments"/>
-#### 4.1.11 Attachments
+#### 4.1.12 Attachments
 
 ###### Description: 
 A digital artefact providing evidence of a learning experience.
@@ -1538,41 +1580,50 @@ placed at the end of such transmissions.
 by comparing the SHA-2 of the raw data to the SHA-2 declared in the header.
 
 
-###### Requirements for statement streams that include attachments
+###### Requirements for attachment statement batches
 
-A statement stream that includes attachments:
+A statement batch that includes attachments:
 
-* MUST be of type "multipart/mixed" rather than "application/json";
-	* The first part of the multipart document MUST contain the statements themselves, with type "applicaton/json";
-	* Each additional part contains the raw data for an attachment and forms a logical part of the statement. This 
-	capability will be available when issuing PUT or POST against the statement resource.
-* SHOULD only include one copy of an attachment when the same attachment is used in multiple statements that are sent 
-in one message;
-* MUST conform to the definition of multipart/mixed in RFC 1341;
-* SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json";
-* MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part;
+* MUST be of type "application/json" and include a fileUrl for every attachment or
+* MUST conform to the definition of multipart/mixed in RFC 1341 and:
+    * The first part of the multipart document MUST contain the statements themselves, with type "applicaton/json";
+    * Each additional part contains the raw data for an attachment and forms a logical part of the statement. This 
+capability will be available when issuing PUT or POST against the statement resource.
+    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple statements that are sent 
+in one batch;
+    * SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json";
+    * MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part;
 	* This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
 	attachment included in this part.
-* MUST include a Content-Transfer-Encoding field with a value of "binary" in each part's header after the first (statements) part;
+    * MUST include a Content-Transfer-Encoding field with a value of "binary" in each part's header after the first (statements) part;
 
 
 ###### Requirements for the LRS:
 
-* MUST accept statements via the statements resource PUT or POST that contain attachments in the Transmission Format 
-described above;
-* MUST reject statements having attachments that neither contain a fileUrl nor match a
-received attachment part based on their hash;
+* MUST NOT pull statements from another LRS without requesting attachments;
+* MUST NOT push statements into another LRS without including attachment data
+received, if any, for those attachments;
 * MUST include attachments in the Transmission Format described above
 when requested by the client (see section [7.2 "Statement API"](#stmtapi));
-* MUST NOT pull statements from another LRS without requesting attachments;
-* MUST NOT push statements into another LRS without including attachments;
 * MAY reject (batches of) statements that are larger than the LRS is configured to allow;
-* SHOULD accept statements in the above format that don't declare any attachments.
-* SHOULD assume a Content-Transfer-Encoding of binary for attachment parts
+* When receiving a PUT or POST with a document type of "application/json"
+    * MUST accept batches of statements which contain either no attachment objects, or
+only attachment objects with a populated fileUrl;
+* Otherwise:
+    * MUST accept batches of statements via the statements resource PUT or POST that contain
+    attachments in the Transmission Format described above;
+    * MUST reject batches of statements having attachments that neither contain a fileUrl nor match a
+received attachment part based on their hash;
+    * SHOULD assume a Content-Transfer-Encoding of binary for attachment parts
+
+Note: There is no requirement that statement batches using the mime/multipart format
+contain attachments.
 
 ###### Requirements for the client:
 * MAY send statements with attachments as described above;
 * MAY send multiple statements where some or all have attachments if using "POST".
+* MAY send batches of type "application/json" where every attachment
+object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format
 
 ###### Example:
 
@@ -1642,7 +1693,7 @@ here is a simple attachment
 --abcABC0123'()+_,-./:=?--
 ```
 <a name="signature"/>
-#### 4.1.12 Signed Statements
+#### 4.1.13 Signed Statements
 
 ###### Description:
 A statement may include a <a href="https://en.wikipedia.org/wiki/Digital_signature">
@@ -1697,7 +1748,7 @@ See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example
 
 
 <a name="dataconstraints"/>
-#### 4.1.13 Data Constraints
+#### 4.1.14 Data Constraints
 All the properties used in statements are restricted to certain types, and those types
 constrain the behavior of systems processing statements. For clarity, certain key
 requirements are documented here, emphasizing where compliant systems have a responsibility
@@ -1884,11 +1935,10 @@ All strings must be encoded and interpreted as UTF-8.
 
 ###### Requirement
 
-Every request from a client and every response from the LRS must include an HTTP header with the name “X-Experience-API Version” and the version number as the value.
-Starting with 1.0.0, xAPI will be versioned according to <a href="http://semver.org/spec/v1.0.0.html">
-Semantic Versioning 1.0.0</a>
+Every request from a client and every response from the LRS must include an HTTP header with the name “X-Experience-API-Version” and the version as the value.
+Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)
 
-Example:  ``X-Experience-API Version : 1.0.0``
+Example:  ``X-Experience-API-Version : 1.0.0``
  
 ###### Rationale
 
@@ -1901,7 +1951,7 @@ compatible or not as the specification changes.
 
 Requirements for the LRS:
 
-* MUST include the "X-Experience-API Version" header in every response;
+* MUST include the "X-Experience-API-Version" header in every response;
 * MUST set this header to ""1.0.0"";
 * MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header;
 * MUST reject requests with a version header of "1.1.0" or greater.
@@ -1919,7 +1969,7 @@ Converting statements to other versions:
 
 * Systems MUST NOT convert statements of newer versions into a prior version format e.g. in order to handle version differences.
 * Systems MAY convert statements of older versions into a newer version only by following the methods described in
-<a href="#AppendixE">Appendix E: Converting Statements to 1.0</a>.
+<a href="#AppendixE">Appendix E: Converting Statements to 1.0.0</a>.
 
 <a name="concurrency"/> 
 ### 6.3 Concurrency:
@@ -2773,7 +2823,7 @@ Returns: 200 OK - Single 'about' JSON document.
 </table>
 
 ###### LRS Requirements:
-* MUST return the JSON document describe above, with a version property of "1.0"
+* MUST return the JSON document described above, with a version property of "1.0.0"
 * SHOULD allow unauthenticated access to this resource
 * MUST NOT reject requests based on their version header as would otherwise be required
 by <a href="#apiversioning"/>6.2 API Versioning</a>.
@@ -2803,6 +2853,10 @@ be encoded and included as a form parameter called "content". The LRS will
 interpret this content as a UTF-8 string, storing binary data is not supported 
 with this syntax.  
 
+__Attachments__: Sending attachment data requires sending a
+multipart/mixed request, therefore sending attachment data is not supported
+with this syntax. See [4.1.12. Attachments](#attachments) 
+
 See [Appendix B](#AppendixB) for an example function written in Javascript 
 which transforms a normal request into one using this alternate syntax.  
 
@@ -2812,12 +2866,13 @@ if the LRS is on an HTTPS domain, the client sending the statement must also be 
 If the LRS is on HTTP, the client must be too.  
 
 There may be cases where there is a requirement for the client activity provider to support 
-IE8 and 9  where the client code is hosted on a different scheme (HTTP or HTTPS) from 
-the LRS. In these cases, a simple solution would be to host an intermediary server side LRS on 
-the same scheme as the client code to route statements to the target LRS. An LRS MAY choose to provide 
-both HTTP and HTTPS endpoints to support this use case. HTTP is inherently less secure 
-than HTTPS, and both LRS and client should consider the security risks before making the decision 
-to use this scheme.  
+IE8 and IE9 where the client code is hosted on a different scheme (HTTP or HTTPS) from 
+the LRS. In these cases, proxy is needed to communicate to the LRS. Two simple solutions 
+might be to 1) set up a proxy pass through on the same scheme as the client code to the LRS 
+or 2) to host an intermediary server side LRS on the same scheme as the client code to route 
+statements to the target LRS.  An LRS MAY choose to provide both HTTP and HTTPS endpoints 
+to support this use case. HTTP is inherently less secure than HTTPS, and both LRS and 
+client should consider the security risks before making the decision to use this scheme. 
 
 <a name="validation"/> 
 ### 7.9 Validation:
@@ -2852,18 +2907,23 @@ identical HTTP GET request except:
 <a name="AppendixA"/> 
 ## Appendix A: Bookmarklet
 
-xAPI enables using an "I learned this" bookmarklet to self-report learning. 
+An xAPI Bookmarklet enables individual user tracking with base authentication. Examples 
+could be an "I think this", “I learned this”, “I like this”, or “I don’t like this” 
+statement that allows self-reporting.
 The following is an example of such a bookmarklet, and the statement that this 
-bookmarklet would send if used on the page: http://adlnet.gov/xapi.  
+bookmarklet would send if used on the page: http://adlnet.gov/xapi.
 
-The bookmarklet would be provided by the LRS to track to, for a specific user. 
-Therefore the LRS URL, authentication, and actor information is hard coded in 
+The bookmarklet MAY be provided by the LRS to track a specific user
+for behavior analytics.
+
+Therefore the LRS URL, authentication, and actor information is hard coded into 
 the bookmarklet. Note that since the authorization token must be included in 
 the bookmarklet, the LRS should provide a token with limited privileges, 
-ideally only enabling the storage of self-reported learning statements.  
+Ideally the token should enable the storage of self-reported learning 
+statements only. 
 
-The UUID generation is only necessary since the PUT method is being used, if a 
-statement is POSTed without an ID the LRS will generate it.  
+The UUID SHOULD be included as part of the bookmarklet PUT statement. If a statement 
+is POSTed without a UUID, the LRS MUST generate one.
 
 In order to allow cross-domain reporting of statements, a browser that supports 
 the "Access-Control-Allow-Origin" and "Access-Control-Allow-Methods" headers 
@@ -3294,7 +3354,7 @@ function getIEModeRequest(method, url, headers, data){
 <a name="AppendixD"/>   
 ## Appendix D: Example statements
 
-Example of a simple statement:  
+Example of a simple statement (line breaks are for display purposes only):  
 ```
 {
 	"id":"fd41c918-b88b-4b20-a0a5-a4c32391aaa0",
