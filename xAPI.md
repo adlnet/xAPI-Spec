@@ -199,6 +199,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Mike Rustici</td><td>Rustici Software</td></tr>
 	<tr><td>Nik Hruska</td><td>ADL</td></tr>
 	<tr><td>Patrick Kedziora</td><td>Kedzoh</td></tr>
+	<tr><td>Paul Esch</td><td></td></tr>
 	<tr><td>Paul Roberts</td><td>Questionmark</td></tr>
 	<tr><td>Rich Chetwynd</td><td>Litmos</td></tr>
 	<tr><td>Richard Fouchaux</td><td>Ontario Human Rights  Commission</td></tr>
