@@ -1427,6 +1427,8 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 
 <a name="version"/> 
 #### 4.1.10 Version
+
+######Rationale
 Version information in statements helps systems that process data from an LRS get their bearings. Since
 the statement data model is guaranteed consistent through all 1.0.x versions, in order to support data
 flow among such LRSs the LRS is given some flexibility on statement versions that are accepted.
