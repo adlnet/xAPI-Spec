@@ -1137,6 +1137,7 @@ The "context" field provides a place to add some contextual information to a sta
 as the instructor for an experience, if this experience happened as part of a team activity, or how an experience fits 
 into some broader activity.
 
+The talbe below lists all properties of 'Context':
 <table border="1">
 <tr><th>property</th><th>type</th><th>description</th></tr>
 <tr>
