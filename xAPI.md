@@ -1545,7 +1545,7 @@ The table below lists all properties of the Attachment object.
 	</tr>
 	<tr>
 		<td>description</td>
-		<td><a href="#misclangmap">Language Map</a></td>
+		<td>String</a></td>
 		<td>A description of the attachment</td>
 		<td>no</td>
 	</tr>
