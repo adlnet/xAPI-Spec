@@ -2213,26 +2213,38 @@ Requirements for the LRS:
 <a name="oauthscope"/> 
 
 #### 6.4.2 OAuth Authorization Scope
-The LRS will accept a scope parameter as defined in 
-[OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3). 
-If no scope is specified, a requested scope of "statements/write" and 
-"statements/read/mine" will be assumed. The list of scopes determines the set 
-of permissions that is being requested. An API client should request only the 
-minimal needed scopes, to increase the chances that the request will be granted.  
 
-LRSs are not required to support any of these scopes except "all." These are 
-recommendations for scopes which should enable an LRS and an application 
-communicating using the xAPI to negotiate a level of access which accomplishes 
-what the application needs while minimizing the potential for misuse. The 
-limitations of each scope are in addition to any security limitations placed on 
-the user account associated with the request.  
+#####Description
+These are recommendations for scopes which should enable an LRS and an application
+communicating using the xAPI to negotiate a level of access which accomplishes what the
+application needs while minimizing the potential for misuse. The limitations of each scope
+are in addition to any security limitations placed on the user account associated with the
+request.
 
-For example, an instructor might grant "statements/read" to a reporting tool, 
-but the LRS would still limit that tool to statements that the instructor 
-could read if querying the LRS with their credentials directly (such as 
-statements relating to their students).  
 
-xAPI scope values:  
+#####Requirements
+The LRS...
+
+* MUST accept a scope parameter as defined in [OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3);
+* MUST assume a requested scope of "statements/write" and "statements/read/mine" if no
+scope is specified;
+* MUST support the scope of "all" as a minimum; 
+* MAY support other scopes.
+
+An xAPI client...
+
+* SHOULD request only the minimal needed scopes, to increase the chances that the request
+will be granted. 
+
+#####Example
+The list of scopes determines the set of permissions that is being requested. For example,
+an instructor might grant "statements/read" to a reporting tool, but the LRS would still
+limit that tool to statements that the instructor could read if querying the LRS with their
+credentials directly (such as statements relating to their students).
+
+##### Details
+
+The following table lists xAPI scope values:  
 <table>
 	<tr><th>Scope</th><th>Permission</th></tr>
 	<tr><td>statements/write</td><td>write any statement</td></tr>
