@@ -3030,7 +3030,7 @@ identical HTTP GET request except:
 ## Appendix A: Bookmarklet
 
 An xAPI Bookmarklet enables individual user tracking with base authentication. Examples 
-could be an "I think this," "I learned thisâ" "I like thisâ" or "I don't like this" statement 
+could be an "I think this," "I learned this," "I like this," or "I don't like this" statement 
 that allows self-reporting. The following is an example of such a bookmarklet, and the statement 
 that this bookmarklet would send if used on the page: http://adlnet.gov/xapi.
 
