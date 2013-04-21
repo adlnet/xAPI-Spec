@@ -1981,43 +1981,55 @@ Converting statements to other versions:
 <a href="#AppendixE">Appendix E: Converting Statements to 1.0.0</a>.
 
 <a name="concurrency"/> 
-### 6.3 Concurrency:
-In order to prevent "lost edits" due to API consumers PUT-ing changes based on 
-old data, xAPI will use HTTP 1.1 entity tags 
-([ETags](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19)) 
-to implement optimistic concurrency control in the portions of the API 
-where PUT may overwrite existing data. (State API, Actor and Activity 
-profile APIs). The requirements in the rest of this "Concurrency" section 
-only apply to those APIs.  
+### 6.3 Concurrency
 
-When responding to a GET request, the LRS will add an ETag HTTP header to the 
-response. The value of this header must be a hexidecimal string of the 
-SHA-1 digest of the contents, and must be enclosed in quotes.  
+####Description
+Concurrency control makes certain that an API consumer does not PUT changes based on old data into an LRS.
 
-The reason for specifying the LRS ETag format is to allow API consumers that 
-can't read the ETag header to calculate it themselves.  
+####Details
+xAPI will use HTTP 1.1 entity tags ([ETags](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19)) to implement optimistic concurrency control in the portions of the API where PUT may overwrite existing data, being:
 
-When responding to a PUT request, the LRS must handle the 
-[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) 
-header or [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) 
-header as described in RFC2616, HTTP 1.1, if the If-Match header contains an 
-ETag, or the If-None-Match header contains "*". In the first case, this is to 
-detect modifications made after the consumer last fetched the document, and in 
-the second case, this is to detect when there is a resource present that the 
-consumer is not aware of.  
+* State API
+* Agent and 
+* Activity profile API
 
-In either of the above cases, if the header precondition specified fails, 
-the LRS must return HTTP status 412 "Precondition Failed", and make no 
-modification to the resource.  
+The State API will permit PUT statements without concurrency headers, since state conflicts are unlikely. The requirements below only apply to Agent Profile API and Activity Profile API.
 
-xAPI consumers should use these headers to avoid concurrency problems. The State 
-API will permit PUT statements without concurrency headers, since state conflicts 
-are unlikely. For other APIs that use PUT (Actor and Activity Profile), the 
-headers are required. If a PUT request is received without either header for a 
-resource that already exists, the LRS must return HTTP status 409 "Conflict", 
-and return a plain text body explaining that the consumer must check the current 
-state of the resource and set the “If-Match” header with the current ETag to 
-resolve the conflict. In this case, the LRS must make no modification to the resource.  
+####Client requirements
+
+An xAPI client using either Agent Profile API or Activity Profile API…
+
+* MUST include the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header, OR…
+* MUST include the If-None-Match header.
+
+####LRS requirements
+
+The LRS that responds to a GET request…
+
+* MUST add an ETag HTTP header to the response;
+* MUST calculate the value of this header to be a hexidecimal string of the  SHA-1 digest of the contents;
+* MUST enclose the header in quotes.
+
+The reason for specifying the LRS ETag format is to allow API consumers that can't read the ETag header to calculate it themselves.
+
+The LRS that responds to a PUT request…
+
+* MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect modifications made after the consumer last fetched the document;
+* MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect when there is a resource present that the consumer is not aware of.
+
+If the header precondition in either of the above cases fails, the LRS…
+
+* MUST return HTTP status 412 "Precondition Failed";
+* MUST NOT make a modification to the resource. 
+
+If a PUT request is received without either header for a resource that already exists, the LRS…
+
+* MUST return HTTP status 409 "Conflict";
+* MUST return a plain text body explaining that the consumer should…
+	- check the current state of the resource, AND...
+	- set the “If-Match” header with the current ETag to resolve the conflict;
+* MUST NOT make a modification to the resource.
+
 
 <a name="security"/>
 ### 6.4 Security:
