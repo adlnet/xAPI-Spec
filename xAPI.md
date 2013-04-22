@@ -173,6 +173,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Bill McDonald</td><td>Boeing</td></tr>
 	<tr><td>Brian J. Miller</td><td>Rustici Software</td></tr>
 	<tr><td>Chad Udell</td><td>Float Mobile Learning</td></tr>
+	<tr><td>Chris Sawwa</td><td>Meridian Knowledge Solutions</td></tr>
 	<tr><td>Dan Allen</td><td>Litmos</td></tr>
 	<tr><td>Dan Kuemmel</td><td>Sentry Insurance</td></tr>
 	<tr><td>Dave Mozealous</td><td>Articulate</td></tr>
@@ -186,8 +187,10 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Jeff Place</td><td>Questionmark</td></tr>
 	<tr><td>Jennifer Cameron</td><td>Sencia Corporate Web Solutions</td></tr>
 	<tr><td>Jeremy Brockman</td><td> </td></tr>
+	<tr><td>Jhorlin De Armas</td><td>Riptide Software</td></tr>
 	<tr><td>Joe Gorup</td><td>CourseAvenue</td></tr>
 	<tr><td>John Kleeman</td><td>Questionmark</td></tr>
+	<tr><td>Jonathan Archibald</td><td>Brightwave</td></tr>
 	<tr><td>Jonathan Poltrack</td><td>ADL</td></tr>
 	<tr><td>Kris Miller</td><td>edcetra Training</td></tr>
 	<tr><td>Kris Rockwell</td><td>Hybrid Learning Systems</td></tr>
@@ -196,21 +199,24 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Luke Hickey</td><td>dominKnow</td></tr>
 	<tr><td>Marcus Birtwhistle</td><td>ADL</td></tr>
 	<tr><td>Mark Davis</td><td>Exambuilder</td></tr>
+	<tr><td>Matteo Scaramuccia</td><td> </td></tr>
 	<tr><td>Megan Bowe</td><td>Rustici Software</td></tr>
 	<tr><td>Melanie VanHorn</td><td>ADL</td></tr>
 	<tr><td>Michael Flores</td><td>Here Everything's Better</td></tr>
 	<tr><td>Michael Roberts</td><td>vTrainingRoom</td></tr>
 	<tr><td>Mike Palmer</td><td>OnPoint Digital</td></tr>
 	<tr><td>Mike Rustici</td><td>Rustici Software</td></tr>
-	<tr><td>Nik Hruska</td><td>ADL</td></tr>
+	<tr><td>Nick Washburn</td><td>Riptide Software</td></tr>
+	<tr><td>Nikolaus Hruska</td><td>ADL</td></tr>
 	<tr><td>Patrick Kedziora</td><td>Kedzoh</td></tr>
+	<tr><td>Paul Esch</td><td>Nine Set</td></tr>
 	<tr><td>Paul Roberts</td><td>Questionmark</td></tr>
 	<tr><td>Rich Chetwynd</td><td>Litmos</td></tr>
 	<tr><td>Richard Fouchaux</td><td>Ontario Human Rights  Commission</td></tr>
 	<tr><td>Richard Lenz</td><td>Organizational Strategies, Inc.</td></tr>
-	<tr><td>Rick Raymer</td><td>Serco</td></tr>
+	<tr><td>Rick Raymer</td><td></td></tr>
 	<tr><td>Rob Chadwick</td><td>ADL</td></tr>
-	<tr><td>Robert Lowe</td><td></td></tr>
+	<tr><td>Robert Lowe</td><td>NetDimensions</td></tr>
 	<tr><td>Russell Duhon</td><td>SaLTBOX</td></tr>
 	<tr><td>Stephen Trevorrow</td><td>Problem Solutions, LLC.</td></tr>
 	<tr><td>Steve Baumgartner</td><td></td></tr>
