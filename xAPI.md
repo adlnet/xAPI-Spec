@@ -684,23 +684,43 @@ The table below lists all properties of the Verb object.
 	</tr>
 </table>
 
-<td>id : "http://www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)"</td>
+```
+{
+	"verb" : { 
+		"id":"http://www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)", 
+		"display":{
+			"en-US":"ran",
+			"es" : "corrió" 
+		} 
+	}
+}
+``` 
 
-<td>display : { "en-US" : "ran"}<br/>
-			display : { "en-US" : "ran", "es" : "corrió" }</td>
+The verb in the example above is included for illustrative purposes only. This is not intended to imply that
+a verb with this meaning has been defined with this id. This applies to all example verbs given in this 
+specification document, with the exception of the reserved verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>. 
 			
+##### 4.1.3.1 Use in Language and Semantics of Verbs
+
 ###### Semantics
-The Verb URI identifies the particular semantics of a word, not the word itself. 
+The URI represented by the Verb id identifies the particular semantics of a word, not the word itself. 
 
 For example, the English word "fired" could mean different things depending on context, such as "fired a 
 weapon", "fired a kiln", or "fired an employee". In this case, a URI MUST identify one of these specific 
 meanings, not the word "fired". 
+
+The display property has some flexibility, especially in regards to specificity or tense.  For example,
+while Verbs are established in the past tense, certain systems may want to display certain 
+statements in other tenses.  Similarly, a series of statements relating to text, audio, and video all 
+may be tagged by an id corresponding to “experienced”, but the display property may use “read”, “listened to” and “watched”.
 
 ###### Language
 A verb in the Experience API is a URI, and denotes a specific meaning not tied to any particular language. 
 
 For example, a particular verb URI such as http://example.org/firearms#fire might denote the action of firing a gun, 
 or the verb URI http://example.com/فعل/خواندن might denote the action of reading a book. 
+
+##### 4.1.3.2 Use in Communities of Practice
 
 ###### A new verb
 The person who coins a new verb...
@@ -717,43 +737,6 @@ Learning Activity Providers...
 
 * SHOULD use the corresponding existing verb;
 * MAY create and use their own verbs where a suitable verb does not already exist.
-
-
-###### NOTE: 
-In some future version, this specification might specify additional machine-readable information about 
-the verb be made available, but the choice to do so is postponed to monitor emerging practices. 
-
-##### 4.1.3.1 Verb Object: 
-
-###### Description
-
-The verb object is the representation of a verb that is actually included in a statement. It consists of:
-
-* a reference the verb itself via a URI;
-* a display property which provides the human-readable meaning of the verb in one or more languages.
-
-
-###### Details
-The display property:
-
-* MUST be used to illustrate the meaning which is already determined by the verb URI;
-* MUST NOT be used to alter the meaning of a verb;
-* SHOULD be used by all statements.
-
-A system reading a statement:
-
-* MUST use the verb URI to infer meaning;
-* MUST NOT use the display property to infer any meaning from the statement; 
-* MUST NOT use the display property for any purpose other than display to a human.
-For example, the display property MUST NOT be used for aggregation or categorization
-of statements.
-
-
-
-The verb in the table above is included for illustrative purposes only. This is not intended to imply that
-a verb with this meaning has been defined with this id. This applies to all example verbs given in this 
-specification document, with the exception of the reserved verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>. 
-
 
 <a name="object"/>
 
