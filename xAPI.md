@@ -1493,7 +1493,7 @@ flow among such LRSs the LRS is given some flexibility on statement versions tha
 
 ###### LRS Requirements
 * An LRS MUST accept all statements where their version starts with "1.0." if they otherwise validate;
-* An LRS MUST reject all statements with a version specified that does not start with "1.0;"
+* An LRS MUST reject all statements with a version specified that does not start with "1.0.";
 * Statements returned by an LRS MUST retain the version they are accepted with. If they
 lack a version, the version MUST be set to 1.0.0.
 
