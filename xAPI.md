@@ -710,10 +710,9 @@ For example, the English word "fired" could mean different things depending on c
 weapon", "fired a kiln", or "fired an employee". In this case, a URI MUST identify one of these specific 
 meanings, not the word "fired". 
 
-The display property has some flexibility, especially in regards to specificity or tense.  For example,
-while Verbs are established in the past tense, certain systems may want to display certain 
-statements in other tenses.  Similarly, a series of statements relating to text, audio, and video all 
-may be tagged by an id corresponding to “experienced”, but the display property may use “read”, “listened to” and “watched”.
+The display property has some flexibility in tense. While the verb URIs are expected to remain in the 
+past tense, if conjugating verbs to another tense (using the same verb) within the Activity makes sense, 
+it is allowed.
 
 ###### Language
 A verb in the Experience API is a URI, and denotes a specific meaning not tied to any particular language. 
