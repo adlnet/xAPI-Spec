@@ -505,7 +505,7 @@ An Agent (an individual) is a persona or system.
 * An agent MUST be identified by one (1) of the four types of inverse functional identifiers (see
 <a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>);
 * An agent MUST NOT include more than one (1) inverse functional identifier;
-* An agent MUST NOT use inverse functional identifiers that are also used as a Group identifier;
+* An agent SHOULD NOT use inverse functional identifiers that are also used as a Group identifier;
 
 The table below lists the properties of Agent objects, other than the inverse functional
 identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a>).
@@ -548,7 +548,7 @@ An identified Group is used to uniquely identify a cluster of Agents.
 * An identified Group MUST include exactly one (1) inverse functional identifier;
 * An identified Group MAY include a 'member' property listing constituent Agents;
 * An identified Group MUST NOT contain Group objects in the 'member' property;
-* An identified Group MUST NOT use inverse functional identifiers that are also used as Agent identifiers.
+* An identified Group SHOULD NOT use inverse functional identifiers that are also used as Agent identifiers.
 
 The table below lists all properties of an identified Group, other than the inverse functional
 identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>).
