@@ -722,21 +722,23 @@ or the verb URI http://example.com/فعل/خواندن might denote the action o
 
 ##### 4.1.3.2 Use in Communities of Practice
 
-###### A new verb
-The person who coins a new verb...
+###### Establishing New Verbs
 
-* MUST own the URI, or...
-* MUST have permission from the owner to use it to denote an xAPI verb;
-* SHOULD make a human-readable description of the intended usage of the verb 
+Communities of practice will, at some point in time, need to establish new Verbs to meet the needs of their constituency.
+
+* Anyone Establishing a new Verb MUST own the URI, or MUST have permission from the owner to use it to denote an xAPI verb;
+* Anyone Establishing a new Verb SHOULD make a human-readable description of the intended usage of the verb 
 accessible at the URI.
 
-###### Verb lists and repositories
-ADL released a set of recommended verbs. Other lists have been published by other groups and organisations. 
-If the meaning of one of the verbs on these lists is intended, 
-Learning Activity Providers...
+###### Verb Lists and Repositories
 
-* SHOULD use the corresponding existing verb;
-* MAY create and use their own verbs where a suitable verb does not already exist.
+It is expected that xAPI generates profiles, lists, and repositories that become centered on Verb 
+vocabularies.  ADL is one such organization that is creating a companion document containing 
+Verbs for xAPI.  In fulfillment of the requirements above, a collection of IRIs of recommended verbs 
+exists.  There are times when Activity Providers may wish to use a different verb for the same meaning.
+
+* Activity Providers SHOULD use a corresponding existing verb whenever possible.
+* Activity Providers MAY create and use a Verb if no suitable Verb exists.
 
 <a name="object"/>
 
