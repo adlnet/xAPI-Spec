@@ -639,18 +639,56 @@ This example shows an agent identified by an opaque account:
 #### 4.1.3 Verb:
 
 ###### Description
-The verb defines the action between actor and activity. It asserts what is done by the actor in relation to 
-the activity. Verbs appear in statements as objects consisting of a URI and a set of display names.
+The verb defines the action between Actor and Activity. 
 
 ###### Rationale
 
-The verb in an xAPI statement describes the learning experience. The xAPI does not specify any particular 
-verbs. (With one exception, namely the reserved verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>). 
-Instead, it defines how to create verbs so that communities of practice can coin their own meaningful verbs 
-and make them available for use by anyone. A predefined list of verbs would be limited by definition and 
-they might not be able to effectively capture all possible future learning experiences.
+The verb in an xAPI statement describes the action performed during the learning experience. The 
+xAPI does not specify any particular verbs. (With one exception, namely the reserved 
+verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>). Instead, it defines how to create verbs so that 
+communities of practice can establish verbs meaningful to their members and make them available 
+for use by anyone. A predefined list of verbs would be limited by definition and might not be able to 
+effectively capture all possible future learning experiences. 
 
 ###### Details
+
+Verbs appear in statements as objects consisting of a URI and a set of display names 
+corresponding to multiple languages or dialects which provide human-readable meanings of the verb. 
+
+* The URI contained in the id SHOULD be human-readable and contain the verb meaning.
+* The display property MUST be used to illustrate the meaning which is already determined by the verb URI.
+* The display property MUST NOT be used to alter the meaning of a verb.
+* The display property SHOULD be used by all statements.
+* A system reading a statement MUST use the verb URI to infer meaning.
+* A system reading a statement MUST NOT use the display property to infer any meaning from the statement.
+* A system reading a statement MUST NOT use the display property for any purpose other than display to a human.
+
+The table below lists all properties of the Verb object.
+
+<table>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr>
+		<td>id</td>
+		<td>URI</td>
+		<td>Corresponds to a verb definition. Each verb definition 
+			corresponds to the meaning of a verb, not the word. The URI should 
+			be human-readable and contain the verb meaning.</td>
+	</tr>
+	<tr>
+		<td>display</td>
+		<td><a href="#misclangmap">Language Map</a></td>
+		<td>The human readable representation of the 
+			verb in one or more languages. This does not have any impact on the 
+			meaning of the statement, but serves to give a human-readable 
+			display of the meaning already determined by the chosen verb.</td>
+	</tr>
+</table>
+
+<td>id : "http://www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)"</td>
+
+<td>display : { "en-US" : "ran"}<br/>
+			display : { "en-US" : "ran", "es" : "corrió" }</td>
+			
 ###### Semantics
 The Verb URI identifies the particular semantics of a word, not the word itself. 
 
@@ -710,29 +748,7 @@ A system reading a statement:
 For example, the display property MUST NOT be used for aggregation or categorization
 of statements.
 
-The table below lists all properties of the Verb object.
 
-<table>
-	<tr><th>Property</th><th>Type</th><th>Description</th><th>Example</th></tr>
-	<tr>
-		<td>id</td>
-		<td>URI</td>
-		<td>Corresponds to a verb definition. Each verb definition 
-			corresponds to the meaning of a verb, not the word. The URI should 
-			be human-readable and contain the verb meaning.</td>
-		<td>id : "http://www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)"</td>
-	</tr>
-	<tr>
-		<td>display</td>
-		<td><a href="#misclangmap">Language Map</a></td>
-		<td>The human readable representation of the 
-			verb in one or more languages. This does not have any impact on the 
-			meaning of the statement, but serves to give a human-readable 
-			display of the meaning already determined by the chosen verb.</td>
-		<td>display : { "en-US" : "ran"}<br/>
-			display : { "en-US" : "ran", "es" : "corrió" }</td>
-	</tr>
-</table>
 
 The verb in the table above is included for illustrative purposes only. This is not intended to imply that
 a verb with this meaning has been defined with this id. This applies to all example verbs given in this 
