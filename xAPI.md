@@ -2924,7 +2924,7 @@ Returns: 200 OK - List of IDs
 Example endpoint: http://example.com/xAPI/about
 
 ###### Description
-Returns JSON object containing information about this LRS, including the xApi version
+Returns JSON object containing information about this LRS, including the xAPI version
 supported.
 
 ###### Rationale
@@ -2936,7 +2936,7 @@ allow other uses to emerge.
 Returns: 200 OK - Single 'about' JSON document.
 <table border="1">
 <tr><th>property</th><th>type</th><th>description</th></tr>
-<td>version</td><td>string</td><td>xApi version this LRS supports</td>
+<td>version</td><td>array of version strings</td><td>xAPI versions this LRS supports</td>
 </tr>
 <tr>
 <td>Extensions</td><td><a href="#miscext">Extensions object</a></td><td>A map of other properties as needed.</td>
@@ -2944,10 +2944,15 @@ Returns: 200 OK - Single 'about' JSON document.
 </table>
 
 ###### LRS Requirements:
-* MUST return the JSON document described above, with a version property of "1.0.0"
+* MUST return the JSON document described above, with a version property that includes the
+the latest minor and patch version the LRS conforms to, for each major version.
+    * For version 1.0.0 of this specification, this means that "1.0.0" MUST be included;
+    "0.9" and "0.95" MAY be included. (For the purposes of this requirement, "0.9" and "0.95"
+    are considered major versions.)
 * SHOULD allow unauthenticated access to this resource
 * MUST NOT reject requests based on their version header as would otherwise be required
 by <a href="#apiversioning"/>6.2 API Versioning</a>.
+
 
 <a name="cors"/>
 
