@@ -2784,10 +2784,15 @@ Returns: 200 OK - Single 'about' JSON document.
 </table>
 
 ###### LRS Requirements:
-* MUST return the JSON document described above, with a version property of ["1.0.0"]
+* MUST return the JSON document described above, with a version property that includes the
+the latest minor and patch version the LRS conforms to, for each major version.
+    * For version 1.0.0 of this specification, this means that "1.0.0" MUST be included;
+    "0.9" and "0.95" MAY be included. (For the purposes of this requirement, "0.9" and "0.95"
+    are considered major versions.)
 * SHOULD allow unauthenticated access to this resource
 * MUST NOT reject requests based on their version header as would otherwise be required
 by <a href="#apiversioning"/>6.2 API Versioning</a>.
+
 
 <a name="cors"/>
 ### 7.8 Cross Origin Requests:
