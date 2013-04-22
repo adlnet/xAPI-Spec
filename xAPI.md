@@ -639,88 +639,41 @@ This example shows an agent identified by an opaque account:
 #### 4.1.3 Verb:
 
 ###### Description
-The verb defines the action between actor and activity. It asserts what is done by the actor in relation to 
-the activity. Verbs appear in statements as objects consisting of a URI and a set of display names.
+The verb defines the action between Actor and Activity. 
 
 ###### Rationale
 
-The verb in an xAPI statement describes the learning experience. The xAPI does not specify any particular 
-verbs. (With one exception, namely the reserved verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>). 
-Instead, it defines how to create verbs so that communities of practice can coin their own meaningful verbs 
-and make them available for use by anyone. A predefined list of verbs would be limited by definition and 
-they might not be able to effectively capture all possible future learning experiences.
+The verb in an xAPI statement describes the action performed during the learning experience. The 
+xAPI does not specify any particular verbs. (With one exception, namely the reserved 
+verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>). Instead, it defines how to create verbs so that 
+communities of practice can establish verbs meaningful to their members and make them available 
+for use by anyone. A predefined list of verbs would be limited by definition and might not be able to 
+effectively capture all possible future learning experiences. 
 
 ###### Details
-###### Semantics
-The Verb URI identifies the particular semantics of a word, not the word itself. 
 
-For example, the English word "fired" could mean different things depending on context, such as "fired a 
-weapon", "fired a kiln", or "fired an employee". In this case, a URI MUST identify one of these specific 
-meanings, not the word "fired". 
+Verbs appear in statements as objects consisting of a URI and a set of display names 
+corresponding to multiple languages or dialects which provide human-readable meanings of the verb. 
 
-###### Language
-A verb in the Experience API is a URI, and denotes a specific meaning not tied to any particular language. 
-
-For example, a particular verb URI such as http://example.org/firearms#fire might denote the action of firing a gun, 
-or the verb URI http://example.com/فعل/خواندن might denote the action of reading a book. 
-
-###### A new verb
-The person who coins a new verb...
-
-* MUST own the URI, or...
-* MUST have permission from the owner to use it to denote an xAPI verb;
-* SHOULD make a human-readable description of the intended usage of the verb 
-accessible at the URI.
-
-###### Verb lists and repositories
-ADL released a set of recommended verbs. Other lists have been published by other groups and organisations. 
-If the meaning of one of the verbs on these lists is intended, 
-Learning Activity Providers...
-
-* SHOULD use the corresponding existing verb;
-* MAY create and use their own verbs where a suitable verb does not already exist.
-
-
-###### NOTE: 
-In some future version, this specification might specify additional machine-readable information about 
-the verb be made available, but the choice to do so is postponed to monitor emerging practices. 
-
-##### 4.1.3.1 Verb Object: 
-
-###### Description
-
-The verb object is the representation of a verb that is actually included in a statement. It consists of:
-
-* a reference the verb itself via a URI;
-* a display property which provides the human-readable meaning of the verb in one or more languages.
-
-
-###### Details
-The display property:
-
-* MUST be used to illustrate the meaning which is already determined by the verb URI;
-* MUST NOT be used to alter the meaning of a verb;
-* SHOULD be used by all statements.
-
-A system reading a statement:
-
-* MUST use the verb URI to infer meaning;
-* MUST NOT use the display property to infer any meaning from the statement; 
-* MUST NOT use the display property for any purpose other than display to a human.
-For example, the display property MUST NOT be used for aggregation or categorization
-of statements.
+* The URI contained in the id SHOULD be human-readable and contain the verb meaning.
+* The display property MUST be used to illustrate the meaning which is already determined by the verb URI.
+* The display property MUST NOT be used to alter the meaning of a verb.
+* The display property SHOULD be used by all statements.
+* A system reading a statement MUST use the verb URI to infer meaning.
+* A system reading a statement MUST NOT use the display property to infer any meaning from the statement.
+* A system reading a statement MUST NOT use the display property for any purpose other than display to a human.
+Using the display property for aggregation or categorization of statements is an example of violating this requirement. 
 
 The table below lists all properties of the Verb object.
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th><th>Example</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
 		<td>id</td>
 		<td>URI</td>
 		<td>Corresponds to a verb definition. Each verb definition 
 			corresponds to the meaning of a verb, not the word. The URI should 
 			be human-readable and contain the verb meaning.</td>
-		<td>id : "http://www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)"</td>
 	</tr>
 	<tr>
 		<td>display</td>
@@ -729,15 +682,63 @@ The table below lists all properties of the Verb object.
 			verb in one or more languages. This does not have any impact on the 
 			meaning of the statement, but serves to give a human-readable 
 			display of the meaning already determined by the chosen verb.</td>
-		<td>display : { "en-US" : "ran"}<br/>
-			display : { "en-US" : "ran", "es" : "corrió" }</td>
 	</tr>
 </table>
 
-The verb in the table above is included for illustrative purposes only. This is not intended to imply that
+```
+{
+	"verb" : { 
+		"id":"http://www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)", 
+		"display":{
+			"en-US":"ran",
+			"es" : "corrió" 
+		} 
+	}
+}
+``` 
+
+The verb in the example above is included for illustrative purposes only. This is not intended to imply that
 a verb with this meaning has been defined with this id. This applies to all example verbs given in this 
 specification document, with the exception of the reserved verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>. 
+			
+##### 4.1.3.1 Use in Language and Semantics of Verbs
 
+###### Semantics
+The URI represented by the Verb id identifies the particular semantics of a word, not the word itself. 
+
+For example, the English word "fired" could mean different things depending on context, such as "fired a 
+weapon", "fired a kiln", or "fired an employee". In this case, a URI MUST identify one of these specific 
+meanings, not the word "fired". 
+
+The display property has some flexibility in tense. While the verb URIs are expected to remain in the 
+past tense, if conjugating verbs to another tense (using the same verb) within the Activity makes sense, 
+it is allowed.
+
+###### Language
+A verb in the Experience API is a URI, and denotes a specific meaning not tied to any particular language. 
+
+For example, a particular verb URI such as http://example.org/firearms#fire might denote the action of firing a gun, 
+or the verb URI http://example.com/فعل/خواندن might denote the action of reading a book. 
+
+##### 4.1.3.2 Use in Communities of Practice
+
+###### Establishing New Verbs
+
+Communities of practice will, at some point in time, need to establish new Verbs to meet the needs of their constituency.
+
+* Anyone Establishing a new Verb MUST own the URI, or MUST have permission from the owner to use it to denote an xAPI verb;
+* Anyone Establishing a new Verb SHOULD make a human-readable description of the intended usage of the verb 
+accessible at the URI.
+
+###### Verb Lists and Repositories
+
+It is expected that xAPI generates profiles, lists, and repositories that become centered on Verb 
+vocabularies.  ADL is one such organization that is creating a companion document containing 
+Verbs for xAPI.  In fulfillment of the requirements above, a collection of IRIs of recommended verbs 
+exists.  There are times when Activity Providers may wish to use a different verb for the same meaning.
+
+* Activity Providers SHOULD use a corresponding existing verb whenever possible.
+* Activity Providers MAY create and use a Verb if no suitable Verb exists.
 
 <a name="object"/>
 
