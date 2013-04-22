@@ -1512,7 +1512,7 @@ cannot be logically changed or deleted. This immutability of statements is a key
 nature of Experience API.
 However, not all statements are perpetually valid once they have been issued. Mistakes or other factors could require 
 that a previously made statement is marked as invalid. This is called "voiding a statement" and the reserved verb 
-“http://adlnet.gov/expapi/voided" is used for this purpose. 
+“http://adlnet.gov/expapi/verbs/voided" is used for this purpose. 
 
 ###### Requirements
 When issuing a statement that voids another, the object of that voiding statement...
