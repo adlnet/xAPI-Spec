@@ -507,13 +507,14 @@ An Agent (an individual) is a persona or system.
 * An agent MUST NOT include more than one (1) inverse functional identifier;
 * An agent SHOULD NOT use inverse functional identifiers that are also used as a Group identifier;
 
-The table below lists the properties of Agent objects, other than the inverse functional
-identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a>).
+The table below lists the properties of Agent objects.
 
 <table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a statement's Object.</td></tr>
-	<tr><td>name</td><td>string</td><td>Full name of the Agent. This property is optional.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a statement's Object.</td><td>no</td></tr>
+	<tr><td>name</td><td>string</td><td>Full name of the Agent.</td><td>no</td></tr>
+	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
+	    <td>An inverse functional identifier unique to the Agent.</td><td>yes</td></tr>
 </table>
 
 
@@ -537,10 +538,12 @@ this cluster, e.g. an ad hoc team;
 The table below lists all properties of an anonymous Group.
 
 <table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>String</td><td>"Group". This property is required.</td></tr>
-	<tr><td>name</td><td>String</td><td>Name of the group. Optional.</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>yes</td></tr>
+	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>no</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td><td>yes</td></tr>
+	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
+	     <td>An inverse functional identifier unique to the Group.</td><td>yes</td></tr>
 </table>
 
 An identified Group is used to uniquely identify a cluster of Agents.
@@ -550,14 +553,15 @@ An identified Group is used to uniquely identify a cluster of Agents.
 * An identified Group MUST NOT contain Group objects in the 'member' property;
 * An identified Group SHOULD NOT use inverse functional identifiers that are also used as Agent identifiers.
 
-The table below lists all properties of an identified Group, other than the inverse functional
-identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>).
+The table below lists all properties of an identified Group.
 
 <table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>String</td><td>"Group". This property is required.</td></tr>
-	<tr><td>name</td><td>String</td><td>Name of the group. Optional.</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>yes</td></tr>
+	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>no</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td><td>yes</td></tr>
+	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
+	    <td>An inverse functional identifier unique to the Group.</td><td>yes</td></tr>	
 </table>
 
 * A system consuming Statements MUST consider each anonymous Group distinct even if it has an identical set of members;
