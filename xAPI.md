@@ -178,6 +178,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Dan Kuemmel</td><td>Sentry Insurance</td></tr>
 	<tr><td>Dave Mozealous</td><td>Articulate</td></tr>
 	<tr><td>David Ells</td><td>Rustici Software</td></tr>
+	<tr><td>David N. Johnson</td><td>Clear Learning Systems</td></tr>
 	<tr><td>Doug Hagy</td><td>Twin Lakes Consulting Corporation</td></tr>
 	<tr><td>Eric Johnson</td><td>Planning and Learning Technologies, Inc.</td></tr>
 	<tr><td>Fiona Leteney</td><td>Feenix e-learning</td></tr>
@@ -730,8 +731,8 @@ or the verb URI http://example.com/فعل/خواندن might denote the action o
 
 Communities of practice will, at some point in time, need to establish new Verbs to meet the needs of their constituency.
 
-* Anyone Establishing a new Verb MUST own the URI, or MUST have permission from the owner to use it to denote an xAPI verb;
-* Anyone Establishing a new Verb SHOULD make a human-readable description of the intended usage of the verb 
+* Anyone establishing a new Verb MUST own the URI, or MUST have permission from the owner to use it to denote an xAPI verb;
+* Anyone establishing a new Verb SHOULD make a human-readable description of the intended usage of the verb 
 accessible at the URI.
 
 ###### Verb Lists and Repositories
