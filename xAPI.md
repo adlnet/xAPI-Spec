@@ -543,8 +543,6 @@ The table below lists all properties of an anonymous Group.
 	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>yes</td></tr>
 	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>no</td></tr>
 	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td><td>yes</td></tr>
-	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
-	     <td>An inverse functional identifier unique to the Group.</td><td>yes</td></tr>
 </table>
 
 An identified Group is used to uniquely identify a cluster of Agents.
