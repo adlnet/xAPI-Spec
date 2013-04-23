@@ -26,11 +26,11 @@
         *	4.1.8.	[Stored](#stored)  
         *	4.1.9.	[Authority](#authority)  
         *	4.1.10.	[Version](#version)  
-        *	4.1.11.	[Voided](#voided)  
-        *	4.1.12.	[Attachments](#attachments)  
-        *	4.1.13.	[Signed Statements](#signature)  
-        *	4.1.14.	[Data Constraints](#dataconstraints)  
+        *	4.1.11.	[Attachments](#attachments)  
+        *	4.1.12.	[Data Constraints](#dataconstraints)  
     *	4.2.	[Retrieval of Statements](#retstmts)  
+	*	4.3.	[Voided](#voided)  
+	*	4.4.	[Signed Statements](#signature)  
 *	5.0.	[Miscellaneous Types](#misctypes)  
     *	5.1.	[Document](#miscdocument)  
     *	5.2.	[Language Map](#misclangmap)  
@@ -507,13 +507,14 @@ An Agent (an individual) is a persona or system.
 * An agent MUST NOT include more than one (1) inverse functional identifier;
 * An agent SHOULD NOT use inverse functional identifiers that are also used as a Group identifier;
 
-The table below lists the properties of Agent objects, other than the inverse functional
-identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a>).
+The table below lists the properties of Agent objects.
 
 <table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a statement's Object.</td></tr>
-	<tr><td>name</td><td>string</td><td>Full name of the Agent. This property is optional.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a statement's Object.</td><td>no</td></tr>
+	<tr><td>name</td><td>string</td><td>Full name of the Agent.</td><td>no</td></tr>
+	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
+	    <td>An inverse functional identifier unique to the Agent.</td><td>yes</td></tr>
 </table>
 
 
@@ -537,10 +538,12 @@ this cluster, e.g. an ad hoc team;
 The table below lists all properties of an anonymous Group.
 
 <table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>String</td><td>"Group". This property is required.</td></tr>
-	<tr><td>name</td><td>String</td><td>Name of the group. Optional.</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>yes</td></tr>
+	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>no</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td><td>yes</td></tr>
+	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
+	     <td>An inverse functional identifier unique to the Group.</td><td>yes</td></tr>
 </table>
 
 An identified Group is used to uniquely identify a cluster of Agents.
@@ -550,14 +553,15 @@ An identified Group is used to uniquely identify a cluster of Agents.
 * An identified Group MUST NOT contain Group objects in the 'member' property;
 * An identified Group SHOULD NOT use inverse functional identifiers that are also used as Agent identifiers.
 
-The table below lists all properties of an identified Group, other than the inverse functional
-identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>).
+The table below lists all properties of an identified Group.
 
 <table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>String</td><td>"Group". This property is required.</td></tr>
-	<tr><td>name</td><td>String</td><td>Name of the group. Optional.</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>yes</td></tr>
+	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>no</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td><td>yes</td></tr>
+	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
+	    <td>An inverse functional identifier unique to the Group.</td><td>yes</td></tr>	
 </table>
 
 * A system consuming Statements MUST consider each anonymous Group distinct even if it has an identical set of members;
@@ -1493,7 +1497,7 @@ flow among such LRSs the LRS is given some flexibility on statement versions tha
 
 ###### LRS Requirements
 * An LRS MUST accept all statements where their version starts with "1.0." if they otherwise validate;
-* An LRS MUST reject all statements with a version specified that does not start with "1.0;"
+* An LRS MUST reject all statements with a version specified that does not start with "1.0.";
 * Statements returned by an LRS MUST retain the version they are accepted with. If they
 lack a version, the version MUST be set to 1.0.0.
 
@@ -1505,72 +1509,7 @@ lack a version, the version MUST be set to 1.0.0.
 
 <a name="voided"/>
 
-#### 4.1.11 Voided:
-###### Rationale
-
-The certainty that an LRS has an accurate and complete collection of data is guaranteed by the fact that statements 
-cannot be logically changed or deleted. This immutability of statements is a key factor in enabling the distributed 
-nature of Experience API.
-However, not all statements are perpetually valid once they have been issued. Mistakes or other factors could require 
-that a previously made statement is marked as invalid. This is called "voiding a statement" and the reserved verb 
-“http://adlnet.gov/expapi/verbs/voided" is used for this purpose. 
-
-###### Requirements
-When issuing a statement that voids another, the object of that voiding statement...
-
-* MUST have the "objectType" field set to "StatementRef;"
-* MUST specify the ID of the statement-to-be-voided by its "id" field.
-
-
-Upon receiving a statement that voids another, the LRS...
-
-* MAY roll back any changes to activity or agent definitions which were introduced by the statement that was just voided;
-* SHOULD return a descriptive error if the target statement cannot be found;
-* MUST NOT report the voided statement when queried, but MUST report the voiding statement 
-(see <a href="#queryStatementRef">StatementRef</a> in 7.2 Statement API).
-
-
-###### Example
-```
-{
-	"actor" : {
-		"objectType": "Agent",
-		"name" : "Example Admin",
-		"mbox" : "mailto:admin@example.adlnet.gov"
-	},
-	"verb" : {
-		"id":"http://adlnet.gov/expapi/verbs/voided",
-		"display":{
-			"en-US":"voided"
-		}
-	},
-	"object" : {
-		"objectType":"StatementRef",
-		"id" : "e05aa883-acaf-40ad-bf54-02c8ce485fb0"
-	}
-}
-```  
-
-This example statement voids a previous statement which it identifies with the statement ID 
-"e05aa883-acaf-40ad-bf54-02c8ce485fb0".
-
-
-###### Details
-Any statement that voids another cannot itself be voided. An activity provider that wants to "unvoid" a previously 
-voided statement...
-
-* SHOULD issue that statement again under a new ID
-
-A reporting system...
-
-* SHOULD NOT show voided or voiding statements by default.
-
-See ["Statement References"](#stmtref) in [Section 4.1.4.3 When the "Object" is a Statement](#stmtasobj) for details about making references to other 
-statements. 
-
-<a name="attachments"/>
-
-#### 4.1.12 Attachments
+#### 4.1.11 Attachments
 
 ###### Description: 
 A digital artefact providing evidence of a learning experience.
@@ -1765,63 +1704,7 @@ here is a simple attachment
 ```
 <a name="signature"/>
 
-#### 4.1.13 Signed Statements
-
-###### Description:
-A statement may include a <a href="https://en.wikipedia.org/wiki/Digital_signature">
-digital signature</a> to provide strong and durable evidence of the authenticity and
-integrity of the statement.
-
-###### Rationale:
-Some statements will have regulatory or legal significance, or otherwise require strong
-and durable evidence of their authenticity and integrity. It may be necessary to verify
-these statements without trusting the system they were first recorded in, or perhaps
-without access to that system. Digital signatures will enable a third-party system
-to validate such statements.
-
-###### Details:
-
-Signed statements include a JSON web signature (JWS) as an attachment. This allows
-the original serialization of the statement to be included along with the signature.
-For interoperability, the "RSA + SHA" series of JWS algorithms have been selected, and
-for discoverability of the signer X.509 certificates SHOULD be used.
-
-###### Requirements for a signed statement:
-
-* MUST include a JSON web signature (JWS) as defined here:
-http://tools.ietf.org/html/draft-ietf-jose-json-web-signature, as an attachment with a usageType
-of "http://adlnet.gov/expapi/attachments/signature" and a contentType of "application/octet-stream".
-* The JWS signature MUST have a payload of a valid JSON serialization of the statement generated
-before the signature was added.
-* The JWS signature MUST use an algorithm of "RS256","RS384", or "RS512"
-* The JWS signature SHOULD have been created based on the private key associated with an
-X.509 certificate.
-* If X.509 was used to sign, the JWS header SHOULD include the "x5c" property containing
-the associated certificate chain.
-
-LRS requirements when receiving a signed statement:
-
-* The LRS MUST reject requests to store statements that contain malformed signatures,
-with HTTP 400 and SHOULD include a message describing the problem in the response.
-In order to verify signatures are well formed, the LRS MUST do the following:
-    * Decode the JWS signature, and load the signed serialization of the statement from the
-JWS signature payload.
-    * Validate that the "original" statement is logically equivalent to the received statement.
-    * If the JWS header includes an X.509 certificate, validate the signature against that
-    certificate as defined in JWS.
-
-__Note:__ The step of validating against the included X.509 certificate is intended as a
-way to catch mistakes in the signature, not as a security measure. Clients MUST NOT assume
-a signature is valid simply because an LRS has accepted it. The steps to authenticate
-a signed statement will vary based on the degree of certainty required and are outside
-the scope of this specification.
-
-See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example.
-
-
-<a name="dataconstraints"/>
-
-#### 4.1.14 Data Constraints
+#### 4.1.12 Data Constraints
 All the properties used in statements are restricted to certain types, and those types
 constrain the behavior of systems processing statements. For clarity, certain key
 requirements are documented here, emphasizing where compliant systems have a responsibility
@@ -1889,6 +1772,127 @@ endpoint, see Section [7.2 "Statement API"](#stmtapi) for details.
 </table>
 
 <a name="misctypes"/> 
+
+#### 4.3 Voided:
+###### Rationale
+
+The certainty that an LRS has an accurate and complete collection of data is guaranteed by the fact that statements 
+cannot be logically changed or deleted. This immutability of statements is a key factor in enabling the distributed 
+nature of Experience API.
+However, not all statements are perpetually valid once they have been issued. Mistakes or other factors could require 
+that a previously made statement is marked as invalid. This is called "voiding a statement" and the reserved verb 
+“http://adlnet.gov/expapi/verbs/voided" is used for this purpose. 
+
+###### Requirements
+When issuing a statement that voids another, the object of that voiding statement...
+
+* MUST have the "objectType" field set to "StatementRef;"
+* MUST specify the ID of the statement-to-be-voided by its "id" field.
+
+
+Upon receiving a statement that voids another, the LRS...
+
+* MAY roll back any changes to activity or agent definitions which were introduced by the statement that was just voided;
+* SHOULD return a descriptive error if the target statement cannot be found;
+* MUST NOT report the voided statement when queried, but MUST report the voiding statement 
+(see <a href="#queryStatementRef">StatementRef</a> in 7.2 Statement API).
+
+
+###### Example
+```
+{
+	"actor" : {
+		"objectType": "Agent",
+		"name" : "Example Admin",
+		"mbox" : "mailto:admin@example.adlnet.gov"
+	},
+	"verb" : {
+		"id":"http://adlnet.gov/expapi/verbs/voided",
+		"display":{
+			"en-US":"voided"
+		}
+	},
+	"object" : {
+		"objectType":"StatementRef",
+		"id" : "e05aa883-acaf-40ad-bf54-02c8ce485fb0"
+	}
+}
+```  
+
+This example statement voids a previous statement which it identifies with the statement ID 
+"e05aa883-acaf-40ad-bf54-02c8ce485fb0".
+
+
+###### Details
+Any statement that voids another cannot itself be voided. An activity provider that wants to "unvoid" a previously 
+voided statement...
+
+* SHOULD issue that statement again under a new ID
+
+A reporting system...
+
+* SHOULD NOT show voided or voiding statements by default.
+
+See ["Statement References"](#stmtref) in [Section 4.1.4.3 When the "Object" is a Statement](#stmtasobj) for details about making references to other 
+statements. 
+
+<a name="attachments"/>
+
+#### 4.4 Signed Statements
+
+###### Description:
+A statement may include a <a href="https://en.wikipedia.org/wiki/Digital_signature">
+digital signature</a> to provide strong and durable evidence of the authenticity and
+integrity of the statement.
+
+###### Rationale:
+Some statements will have regulatory or legal significance, or otherwise require strong
+and durable evidence of their authenticity and integrity. It may be necessary to verify
+these statements without trusting the system they were first recorded in, or perhaps
+without access to that system. Digital signatures will enable a third-party system
+to validate such statements.
+
+###### Details:
+
+Signed statements include a JSON web signature (JWS) as an attachment. This allows
+the original serialization of the statement to be included along with the signature.
+For interoperability, the "RSA + SHA" series of JWS algorithms have been selected, and
+for discoverability of the signer X.509 certificates SHOULD be used.
+
+###### Requirements for a signed statement:
+
+* MUST include a JSON web signature (JWS) as defined here:
+http://tools.ietf.org/html/draft-ietf-jose-json-web-signature, as an attachment with a usageType
+of "http://adlnet.gov/expapi/attachments/signature" and a contentType of "application/octet-stream".
+* The JWS signature MUST have a payload of a valid JSON serialization of the statement generated
+before the signature was added.
+* The JWS signature MUST use an algorithm of "RS256","RS384", or "RS512"
+* The JWS signature SHOULD have been created based on the private key associated with an
+X.509 certificate.
+* If X.509 was used to sign, the JWS header SHOULD include the "x5c" property containing
+the associated certificate chain.
+
+LRS requirements when receiving a signed statement:
+
+* The LRS MUST reject requests to store statements that contain malformed signatures,
+with HTTP 400 and SHOULD include a message describing the problem in the response.
+In order to verify signatures are well formed, the LRS MUST do the following:
+    * Decode the JWS signature, and load the signed serialization of the statement from the
+JWS signature payload.
+    * Validate that the "original" statement is logically equivalent to the received statement.
+    * If the JWS header includes an X.509 certificate, validate the signature against that
+    certificate as defined in JWS.
+
+__Note:__ The step of validating against the included X.509 certificate is intended as a
+way to catch mistakes in the signature, not as a security measure. Clients MUST NOT assume
+a signature is valid simply because an LRS has accepted it. The steps to authenticate
+a signed statement will vary based on the degree of certainty required and are outside
+the scope of this specification.
+
+See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example.
+
+
+<a name="dataconstraints"/>
 
 ## 5.0 Miscellaneous Types
 
@@ -2925,7 +2929,7 @@ Returns: 200 OK - List of IDs
 Example endpoint: http://example.com/xAPI/about
 
 ###### Description
-Returns JSON object containing information about this LRS, including the xApi version
+Returns JSON object containing information about this LRS, including the xAPI version
 supported.
 
 ###### Rationale
@@ -2937,7 +2941,7 @@ allow other uses to emerge.
 Returns: 200 OK - Single 'about' JSON document.
 <table border="1">
 <tr><th>property</th><th>type</th><th>description</th></tr>
-<td>version</td><td>string</td><td>xApi version this LRS supports</td>
+<td>version</td><td>array of version strings</td><td>xAPI versions this LRS supports</td>
 </tr>
 <tr>
 <td>Extensions</td><td><a href="#miscext">Extensions object</a></td><td>A map of other properties as needed.</td>
@@ -2945,10 +2949,15 @@ Returns: 200 OK - Single 'about' JSON document.
 </table>
 
 ###### LRS Requirements:
-* MUST return the JSON document described above, with a version property of "1.0.0"
+* MUST return the JSON document described above, with a version property that includes the
+the latest minor and patch version the LRS conforms to, for each major version.
+    * For version 1.0.0 of this specification, this means that "1.0.0" MUST be included;
+    "0.9" and "0.95" MAY be included. (For the purposes of this requirement, "0.9" and "0.95"
+    are considered major versions.)
 * SHOULD allow unauthenticated access to this resource
 * MUST NOT reject requests based on their version header as would otherwise be required
 by <a href="#apiversioning"/>6.2 API Versioning</a>.
+
 
 <a name="cors"/>
 
@@ -2978,7 +2987,7 @@ with this syntax.
 
 __Attachments__: Sending attachment data requires sending a
 multipart/mixed request, therefore sending attachment data is not supported
-with this syntax. See [4.1.12. Attachments](#attachments) 
+with this syntax. See [4.1.11. Attachments](#attachments) 
 
 See [Appendix B](#AppendixB) for an example function written in Javascript 
 which transforms a normal request into one using this alternate syntax.  
@@ -3730,7 +3739,7 @@ Converted to 1.0.0:
 
 <a name="AppendixF"/>
 ## Appendix F: Example Signed Statement
-An example signed statement, as described in: <a href="#signature">4.1.12. Signed Statements</a>.
+An example signed statement, as described in: <a href="#signature">4.4 Signed Statements</a>.
 
 The original statement serialization to be signed:
 ```
