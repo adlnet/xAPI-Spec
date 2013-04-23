@@ -439,7 +439,7 @@ below.
 	<td>Agent who is asserting this statement is true. Verified by the LRS based on 
 	authentication, and set by LRS if left blank.</td></tr>
 	<tr><td><a href="#version">version</a></td><td>Version</td>
-	<td>toThe statement’s associated xAPI version, formatted according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)</td></tr>
+	<td>The statement’s associated xAPI version, formatted according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
 		<td>Array of attachment objects</td>
@@ -543,8 +543,6 @@ The table below lists all properties of an anonymous Group.
 	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>yes</td></tr>
 	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>no</td></tr>
 	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td><td>yes</td></tr>
-	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
-	     <td>An inverse functional identifier unique to the Group.</td><td>yes</td></tr>
 </table>
 
 An identified Group is used to uniquely identify a cluster of Agents.
@@ -1471,7 +1469,7 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 
 ```
 "authority": {
-	"objectType" : "group",
+	"objectType" : "Group",
 	"member": [
 		{
 			"account": {
@@ -2064,44 +2062,66 @@ Converting statements to other versions:
 <a href="#AppendixE">Appendix E: Converting Statements to 1.0.0</a>.
 
 <a name="concurrency"/> 
+### 6.3 Concurrency
 
-### 6.3 Concurrency:
-In order to prevent "lost edits" due to API consumers PUT-ing changes based on 
-old data, xAPI will use HTTP 1.1 entity tags 
-([ETags](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19)) 
-to implement optimistic concurrency control in the portions of the API 
-where PUT may overwrite existing data. (State API, Actor and Activity 
-Profile APIs). The requirements in the rest of this "Concurrency" section 
-only apply to those APIs.  
+####Description
+Concurrency control makes certain that an API consumer does not PUT changes based on old
+data into an LRS.
 
-When responding to a GET request, the LRS will add an ETag HTTP header to the 
-response. The value of this header must be a hexidecimal string of the 
-SHA-1 digest of the contents, and must be enclosed in quotes.  
+####Details
+xAPI will use HTTP 1.1 entity tags ([ETags](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19))
+to implement optimistic concurrency control in the portions of the API where PUT may
+overwrite existing data, being:
 
-The reason for specifying the LRS ETag format is to allow API consumers that 
-can't read the ETag header to calculate it themselves.  
+* State API
+* Agent and 
+* Activity Profile API
 
-When responding to a PUT request, the LRS must handle the 
-[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) 
-header or [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) 
-header as described in RFC2616, HTTP 1.1, if the If-Match header contains an 
-ETag, or the If-None-Match header contains "*". In the first case, this is to 
-detect modifications made after the consumer last fetched the document, and in 
-the second case, this is to detect when there is a resource present that the 
-consumer is not aware of.  
+The State API will permit PUT statements without concurrency headers, since state conflicts
+are unlikely. The requirements below only apply to Agent Profile API and Activity Profile API.
 
-In either of the above cases, if the header precondition specified fails, 
-the LRS must return HTTP status 412 "Precondition Failed", and make no 
-modification to the resource.  
+####Client requirements
 
-xAPI consumers should use these headers to avoid concurrency problems. The State 
-API will permit PUT statements without concurrency headers, since state conflicts 
-are unlikely. For other APIs that use PUT (Actor and Activity Profile), the 
-headers are required. If a PUT request is received without either header for a 
-resource that already exists, the LRS must return HTTP status 409 "Conflict", 
-and return a plain text body explaining that the consumer must check the current 
-state of the resource and set the "If-Match" header with the current ETag to 
-resolve the conflict. In this case, the LRS must make no modification to the resource.  
+An xAPI client using either Agent Profile API or Activity Profile API…
+
+* MUST include the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)
+header, OR…
+* MUST include the If-None-Match header.
+
+####LRS requirements
+
+The LRS that responds to a GET request…
+
+* MUST add an ETag HTTP header to the response;
+* MUST calculate the value of this header to be a hexidecimal string of the  SHA-1 digest
+of the contents;
+* MUST enclose the header in quotes.
+
+The reason for specifying the LRS ETag format is to allow API consumers that can't read
+the ETag header to calculate it themselves.
+
+The LRS that responds to a PUT request…
+
+* MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)
+header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
+modifications made after the consumer last fetched the document;
+* MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26)
+header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect when there
+is a resource present that the consumer is not aware of.
+
+If the header precondition in either of the above cases fails, the LRS…
+
+* MUST return HTTP status 412 "Precondition Failed";
+* MUST NOT make a modification to the resource. 
+
+If a PUT request is received without either header for a resource that already exists, the LRS…
+
+* MUST return HTTP status 409 "Conflict";
+* MUST return a plain text body explaining that the consumer should…
+	- check the current state of the resource, AND...
+	- set the "If-Match" header with the current ETag to resolve the conflict;
+* MUST NOT make a modification to the resource.
+
 
 <a name="security"/>
 
@@ -2215,26 +2235,38 @@ Requirements for the LRS:
 <a name="oauthscope"/> 
 
 #### 6.4.2 OAuth Authorization Scope
-The LRS will accept a scope parameter as defined in 
-[OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3). 
-If no scope is specified, a requested scope of "statements/write" and 
-"statements/read/mine" will be assumed. The list of scopes determines the set 
-of permissions that is being requested. An API client should request only the 
-minimal needed scopes, to increase the chances that the request will be granted.  
 
-LRSs are not required to support any of these scopes except "all." These are 
-recommendations for scopes which should enable an LRS and an application 
-communicating using the xAPI to negotiate a level of access which accomplishes 
-what the application needs while minimizing the potential for misuse. The 
-limitations of each scope are in addition to any security limitations placed on 
-the user account associated with the request.  
+#####Description
+These are recommendations for scopes which should enable an LRS and an application
+communicating using the xAPI to negotiate a level of access which accomplishes what the
+application needs while minimizing the potential for misuse. The limitations of each scope
+are in addition to any security limitations placed on the user account associated with the
+request.
 
-For example, an instructor might grant "statements/read" to a reporting tool, 
-but the LRS would still limit that tool to statements that the instructor 
-could read if querying the LRS with their credentials directly (such as 
-statements relating to their students).  
 
-xAPI scope values:  
+#####Requirements
+The LRS...
+
+* MUST accept a scope parameter as defined in [OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3);
+* MUST assume a requested scope of "statements/write" and "statements/read/mine" if no
+scope is specified;
+* MUST support the scope of "all" as a minimum; 
+* MAY support other scopes.
+
+An xAPI client...
+
+* SHOULD request only the minimal needed scopes, to increase the chances that the request
+will be granted. 
+
+#####Example
+The list of scopes determines the set of permissions that is being requested. For example,
+an instructor might grant "statements/read" to a reporting tool, but the LRS would still
+limit that tool to statements that the instructor could read if querying the LRS with their
+credentials directly (such as statements relating to their students).
+
+##### Details
+
+The following table lists xAPI scope values:  
 <table>
 	<tr><th>Scope</th><th>Permission</th></tr>
 	<tr><td>statements/write</td><td>write any statement</td></tr>
