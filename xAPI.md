@@ -429,11 +429,11 @@ below.
 	<td>Context that gives the statement more meaning. Examples: a team the actor is 
 	working with, altitude at which a scenario was attempted in a flight simulator.</td></tr>
 	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td>
-	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Time_intervals">ISO 8601</a>) 
+	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
 	of when the events described within this statement occurred. If not provided, LRS 
 	should set this to the value of "stored" time.</td></tr>
 	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td>
-	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
+	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
 	of when this statement was recorded. Set by LRS.</td></tr>
 	<tr><td><a href="#authority">authority</a></td><td>Object</td>
 	<td>Agent who is asserting this statement is true. Verified by the LRS based on 
