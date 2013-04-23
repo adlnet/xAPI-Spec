@@ -748,37 +748,34 @@ exists.  There are times when Activity Providers may wish to use a different ver
 <a name="object"/>
 
 ####4.1.4 Object
-###### Definition
 
-The object of a statement is the Activity, Agent, or Statement that is the object 
-of the statement. It is the "this" part of the statement, cf. "I did this". 
+###### Description
 
-###### NOTE:
+The Object of a Statement can be an Activity, Agent/Group, or Statement. It is the "this" part of the 
+statement, i.e. "I did this". 
 
-Objects which are provided as a value for this field SHOULD include an "objectType" 
-field. If not specified, the object is assumed to be an Activity. Other valid values 
-are: <a href="#agentasobj">Agent</a>, <a href="#substmt">Statement</a> or <a href="#stmtref">StatementRef</a>.
-
-###### Rationale
-
-Objects in a statement may be either an Activity, an Agent or another statement. 
+Objects in a statement may be either an Activity, an Agent or another Statement. 
 Some examples:
 
-* The object is an Activity: "Jeff wrote an essay about hiking."
+* The Object is an Activity: "Jeff wrote an essay about hiking."
 
 * The Object is an Agent: "Nellie interviewed Jeff."
 
 * The Object is a Statement: "Nellie commented on 'Jeff wrote an essay about hiking.'"
 
-Statements as objects are typically, but not exclusively, used in scenarios where 
-some existing activity is graded, reviewed or commented on.
+###### Details
+
+Objects which are provided as a value for this field SHOULD include an "objectType" 
+field. If not specified, the objectType is assumed to be "Activity". Other valid values 
+are: <a href="#agentasobj">Agent</a>, <a href="#substmt">Statement</a> or <a href="#stmtref">StatementRef</a>.
+The properties of an Object change according to the objectType.
 
 <a name="activity"/>
 
-##### 4.1.4.1 When the "Object" is an Activity
+##### 4.1.4.1 When the ObjectType is Activity
 
-A statement may represent an Activity as the object of the statement. An activity is any thing 
-which is interacted with. See Section [3.0 Definitions](#30-definitions).
+A statement may represent an activity as the object of the statement. The following table lists the Object 
+properties in this case.
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -789,99 +786,107 @@ which is interacted with. See Section [3.0 Definitions](#30-definitions).
 	</tr>
 	<tr>
 		<td><a href="#acturi">id</a></td><td>URI</td>
-		<td>Required. MAY be a URL, which points to the logical definition of the activity. 
-		This MAY point to metadata or the URL for the activity</td>
+		<td>An identifier for a single unique activity. Required.</td>
 	</tr>
 	<tr>
 		<td><a href="#actdef">definition</a></td>
-		<td>Optional Activity Definition Object</td>
+		<td>Object</td>
 		<td>Metadata, <a href="#actdef">See below</a></td>
 	</tr>
 </table>
-
-<a name="acturi"/>
-
-###### Activity ID  
-An activity ID must always refer to a single unique activity. There may be 
-corrections to that activity's definition. Spelling fixes would be appropriate, 
-for example, but changing correct responses would not.  
-
-The activity ID is unique, and any reference to it always refers to the same 
-activity. Activity Providers must ensure this is true and the LRS may not attempt 
-to treat multiple references to the same ID as references to different activities, 
-regardless of any information which indicates two authors or organizations may 
-have used the same activity ID.    
-
-When defining an activity ID, care must be taken to make sure it will not be 
-re-used. It should use a domain the creator controls or has been authorized to 
-use for this purpose, according to a scheme the domain owner has adopted to make 
-sure activity IDs within that domain remain unique.  
-
-Any state or statements stored against an activity ID must be compatible and 
-consistent with any other state or statements that are stored against the same 
-activity ID, even if those statements were stored in the context of a new 
-revision or platform.   
-
-###### NOTE: 
-The prohibition against an LRS treating references to the same activity 
-ID as two different activities, even if the LRS can positively determine that 
-was the intent, is crucial to prevent activity ID creators from creating IDs 
-that could be easily duplicated, as intent would be indeterminable should a 
-conflict with another system arise.  
 
 <a name="actdef"/>
 
 ###### Activity Definition  
 
-Activity definitions SHOULD include populated name, description, and type properties.
-Other properties defined below MAY be included.
+The table below lists the properties of the Activity Definition Object:
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Opt. / Req.</th><th>Description</th></tr>
 	<tr>
 		<td>name</td>
 		<td><a href="#misclangmap">Language Map</a></td>
+		<td></td>
 		<td>The human readable/visual name of the activity</td>
 	</tr>
 	<tr>
 		<td>description</td>
 		<td><a href="misclangmap">Language Map</a></td>
+		<td></td>
 		<td>A description of the activity</td>
 	</tr>
 	<tr>
 		<a name="acttype"/>
-
 		<td>type</td>
 		<td>URI</td>
-		<td>the type of activity. Note, URI fragments (sometimes called 
-			relative URLs) are not valid URIs. <a href="#verb-lists-and-repositories">As with verbs</a>, we recommend
-			that Learning Activity Providers look for and use established, 
-			widely adopted, activity types.
-		</td>
+		<td>Required</td>
+		<td>The type of activity.</td>
 	</tr>
 	<tr>
 		<td>url</td>
 		<td>URL</td>
-		<td>A url which SHOULD resolve to human-readable information about the activity,
+		<td>Optional</td>
+		<td>An optional url which SHOULD resolve to a document human-readable information about the activity,
 		which MAY include a way to 'launch' the activity.
 		</td>
 	</tr>
 	<tr>
 		<td>interactionType | correctResponsesPattern | choices | scale | 
 			source | target | steps</td>
-		<td colspan="2"><a href="#interactionacts">See "Interaction Activities"</a></td>
+		<td colspan="1">Object</td>
+		<td>Required</td>
+		<td>Mutually exclusive. (See: <a href="#interactionacts">Interaction Activities</a>)</td>
 	</tr>
 	<tr>
 		<td>extensions</td>
-		<td>Extensions Object</td>
+		<td>Object</td>
+		<td>Optional</td>
 		<td>A map of other properties as needed (see: <a href="#miscext">Extensions</a>)</td>
 	</tr>
-</table> 
+</table>
 
-An LRS should update its internal representation of an activity's definition 
-upon receiving a statement with a different definition of the activity from the 
-one stored, but only if it considers the Learning Activity Provider to have the 
-authority to do so.  
+######Note
+
+URI fragments (sometimes called relative URLs) are not valid URIs. As with verbs, it is recommended that
+Activity Providers look for and use established, widely adopted, activity types.
+
+An LRS should update its internal representation of an activity's definition upon receiving a 
+statement with the same activity ID, but with a different definition of the Activity from the one stored, 
+but only if it considers the Activity Provider to have the authority to do so.  
+
+<a name="acturi"/>
+
+###### Activity ID  
+
+#####Requirements
+
+* An Activity id MUST be unique.
+* An Activity id MUST always reference the same activity.
+* An Activity id MAY point to metadata or the URL for the activity.
+* An Activity id SHOULD use a domain that the creator is authorized to use for this purpose.
+* An Activity id SHOULD be created according to a scheme that makes sure all Activity ids within 
+that domain remain unique.
+
+* An LRS MUST NOT treat references to the same ID as references to different activities.
+* An LRS MUST ignore any information which indicates two authors or organizations may have used the same Activity id.
+* An LRS MAY accept small corrections to the Activity’s definition. For example, it would be okay for an LRS
+to accept spelling fixes, but it may not accept changes to correct responses.
+
+* An Activity Provider MUST ensure that Activity ids are not re-used across multiple activities.
+* An Activity Provider MUST only generate states or statements against a certain Activity id that are compatible.
+and consistent with states or statements previously stored against the same ID.
+* An Activity Provider MUST NOT allow new versions (ie. revisions or other platforms) of the Activity 
+to break compatibility.
+
+* Upon receiving a Statement with an Activity definition that differs from the one stored, an LRS
+SHOULD decide whether it considers the Learning Activity Provider to have the authority to change the definitio and
+SHOULD update the stored activity definition accordingly if that decision is positive.
+	
+######Note
+If it were possible to use the same ID for two different activities, the validity of statements about 
+these Activities could be questioned. This means an LRS may never treat (references to) the same 
+Activity id as belonging to two different Activities, even if it thinks this was intended. Namely, 
+when a conflict with another systems occurs, it’s not possible to determine the intentions. 
 
 <a name="actmeta"/>
 
@@ -992,7 +997,8 @@ See [Section 4.1.2 Actor](#actor) for details regarding Agents.
 <a name="stmtasobj"/>
 
 ##### 4.1.4.3 When the "Object" is a Statement
-
+Statements as objects are typically, but not exclusively, used in scenarios where 
+some existing activity is graded, reviewed or commented on.
 ###### Rationale
 
 A statement that is the object in another statement can either be existing or 
