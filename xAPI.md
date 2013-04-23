@@ -1469,7 +1469,7 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 
 ```
 "authority": {
-	"objectType" : "group",
+	"objectType" : "Group",
 	"member": [
 		{
 			"account": {
