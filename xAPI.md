@@ -802,40 +802,36 @@ properties in this case.
 The table below lists the properties of the Activity Definition Object:
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Opt. / Req.</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Use</th><th>Description</th></tr>
 	<tr>
 		<td>name</td>
 		<td><a href="#misclangmap">Language Map</a></td>
-		<td></td>
+		<td>Recommended</td>
 		<td>The human readable/visual name of the activity</td>
 	</tr>
 	<tr>
 		<td>description</td>
 		<td><a href="misclangmap">Language Map</a></td>
-		<td></td>
+		<td>Recommended</td>
 		<td>A description of the activity</td>
 	</tr>
 	<tr>
 		<a name="acttype"/>
 		<td>type</td>
 		<td>URI</td>
-		<td>Required</td>
+		<td>Recommended</td>
 		<td>The type of activity.</td>
 	</tr>
 	<tr>
-		<td>url</td>
+		<td>moreInfo</td>
 		<td>URL</td>
 		<td>Optional</td>
-		<td>An optional URL which SHOULD resolve to a document human-readable information about the activity,
+		<td>SHOULD resolve to a document human-readable information about the activity,
 		which MAY include a way to 'launch' the activity.
 		</td>
 	</tr>
 	<tr>
-		<td>interactionType | correctResponsesPattern | choices | scale | 
-			source | target | steps</td>
-		<td colspan="1">Object</td>
-		<td>Required</td>
-		<td>Mutually exclusive. (See: <a href="#interactionacts">Interaction Activities</a>)</td>
+		<td colspan="4">Interaction properties, See: <a href="#interactionacts">Interaction Activities</a></td>
 	</tr>
 	<tr>
 		<td>extensions</td>
