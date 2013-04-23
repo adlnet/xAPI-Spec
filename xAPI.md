@@ -826,7 +826,7 @@ The table below lists the properties of the Activity Definition Object:
 		<td>url</td>
 		<td>URL</td>
 		<td>Optional</td>
-		<td>An optional url which SHOULD resolve to a document human-readable information about the activity,
+		<td>An optional URL which SHOULD resolve to a document human-readable information about the activity,
 		which MAY include a way to 'launch' the activity.
 		</td>
 	</tr>
@@ -866,18 +866,15 @@ but only if it considers the Activity Provider to have the authority to do so.
 * An Activity id SHOULD use a domain that the creator is authorized to use for this purpose.
 * An Activity id SHOULD be created according to a scheme that makes sure all Activity ids within 
 that domain remain unique.
-
 * An LRS MUST NOT treat references to the same ID as references to different activities.
 * An LRS MUST ignore any information which indicates two authors or organizations may have used the same Activity id.
 * An LRS MAY accept small corrections to the Activity’s definition. For example, it would be okay for an LRS
 to accept spelling fixes, but it may not accept changes to correct responses.
-
 * An Activity Provider MUST ensure that Activity ids are not re-used across multiple activities.
 * An Activity Provider MUST only generate states or statements against a certain Activity id that are compatible.
 and consistent with states or statements previously stored against the same ID.
 * An Activity Provider MUST NOT allow new versions (ie. revisions or other platforms) of the Activity 
 to break compatibility.
-
 * Upon receiving a Statement with an Activity definition that differs from the one stored, an LRS
 SHOULD decide whether it considers the Learning Activity Provider to have the authority to change the definitio and
 SHOULD update the stored activity definition accordingly if that decision is positive.
@@ -892,40 +889,47 @@ when a conflict with another systems occurs, it’s not possible to determine th
 
 ###### Activity Metadata
 
-* Activities with URL identifiers MAY host metadata using the <a href="#actdef">
+#####Requirements
+
+* An Activity with a URL identifier MAY host metadata using the <a href="#actdef">
 activity definition</a> JSON format which is used in statements, with a Content-Type of "application/json"
 
-* If the activity URI is a URL, LRS's SHOULD attempt to GET that URL, and include in HTTP
+* If an Activity URI is a URL, an LRS SHOULD attempt to GET that URL, and include in HTTP
 headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
-first encounters the activity id.
+first encounters the Activity id.
 
-* If the LRS loads JSON which is a valid activity definition from a URL used as an activity id,
- the LRS SHOULD incorporate the loaded definition into its internal definition for that activity,
+* Upon loading JSON which is a valid activity definition from a URL used as an Activity id,
+ an LRS SHOULD incorporate the loaded definition into its internal definition for that activity,
 while preserving names or definitions not included in the loaded definition.
 
-* If the LRS loads any document from which the LRS can parse an activity definition
-from a URL used as an activity id, then the LRS MAY consider this definition when determining
+* Upon loading any document from which the LRS can parse an activity definition
+from a URL used as an activity id, an LRS MAY consider this definition when determining
 its internal representation of that activity's definition.
 
 <a name="interactionacts"/>
 
 ###### Interaction Activities  
 
+#####Rationale
 Traditional e-learning has included structures for interactions or assessments. 
 As a way to allow these practices and structures to extend Experience API's 
-utility, this specification include built in definitions for interactions which 
-borrows from the CMI data model. These definitions are intended to provide a 
+utility, this specification includes built-in definitions for interactions, which 
+borrows from the SCORM 2004 4th Edition Data Model. These definitions are intended to provide a 
 simple and familiar utility for recording interaction data. These definitions 
 are simple to use, and consequently limited. It is expected that communities of 
 practice requiring richer interactions definitions will do so through the use 
 of extensions to an activity's type and definition.  
 
-When defining interaction activities, the activity type: 
-"http://adlnet.gov/expapi/activities/cmi.interaction" SHOULD 
-be used, and a valid interactionType MUST be specified. If interactionType 
-is specified, an LRS processing MAY validate the remaining properties as 
-specified in the table below, and return HTTP 400 "Bad Request" if the 
-remaining properties are not valid for the interaction type.  
+#####Requirements
+
+* Interaction activities SHOULD have the activity type http://adlnet.gov/expapi/activities/cmi.interaction".
+* Interaction activities MUST have a valid interactionType.
+* An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as specified in the table 
+below and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction activity.
+
+#####Implementation
+
+The table below lists the properties for Interaction activities.
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -933,14 +937,14 @@ remaining properties are not valid for the interaction type.
 		<td>interactionType</td>
 		<td>String</td>
 		<td>As in "cmi.interactions.n.type" as defined in the SCORM 2004 4th 
-			edition Runtime Environment.</td>
+			Edition Run-Time Environment.</td>
 	</tr>
 	<tr>
 		<td>correctResponsesPattern</td>
 		<td>An array of strings</td>
 		<td>Corresponds to 
 			"cmi.interactions.n.correct_responses.n.pattern" as defined in 
-			the SCORM 2004 4th edition Runtime Environment, where the final 
+			the SCORM 2004 4th Edition Run-Time Environment, where the final 
 			<em>n</em> is the index of the array.</td>
 	</tr>
 	<tr>
@@ -960,11 +964,11 @@ Interaction components are defined as follows:
 		<td>id</td>
 		<td>String</td>
 		<td>As in "cmi.interactions.n.id" as defined in the SCORM 2004 4th 
-			edition Runtime Environment</td> 
+			Edition Run-Time Environment</td> 
 	<tr>
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
-		<td>a description of the interaction component 
+		<td>A description of the interaction component 
 			(for example, the text for a given choice in a multiple-choice interaction)</td>
 	</tr>
 </table>  
@@ -972,7 +976,8 @@ Interaction components are defined as follows:
 <a name="interactionType"/>
 
 The following table shows the supported lists of CMI interaction components for 
-an interaction activity with the given interactionType.  
+an interaction activity with the given interactionType.
+
 <table>
 	<tr><th>interactionType</th><th>supported component list(s)</th><tr>
 	<tr><td>choice, sequencing</td><td>choices</td></tr>
@@ -988,41 +993,41 @@ See [Appendix C](#AppendixC) for examples of activity definitions for each of th
 
 ##### 4.1.4.2 When the "Object" is an Agent or a Group
 
-Statements that specify an Agent or Group as an Object...
+#####Requirements
 
-- MUST specify an 'objectType' property. 
+* Statements that specify an Agent or Group as an Object MUST specify an 'objectType' property. 
 
 See [Section 4.1.2 Actor](#actor) for details regarding Agents.  
 
 <a name="stmtasobj"/>
 
 ##### 4.1.4.3 When the "Object" is a Statement
-Statements as objects are typically, but not exclusively, used in scenarios where 
-some existing activity is graded, reviewed or commented on.
-###### Rationale
 
-A statement that is the object in another statement can either be existing or 
-new. For example, when grading or commented on an experience that is tracked as an independant event,
-the existing statement about that experience will be the object of the statement. Also, 
-in the special case of <a href="#voided">voiding</a>, the object is an already 
-existing statement. In these situations, a Statement Reference is used.
-
-When the object is an experience that would be misleading as an independent statement,
-that experience can be tracked as a statement within a statement. These are called Sub-Statements. 
-An example is given further below.
+#####Rationale
+There are two possibilities for using a Statement as an Object.  First, an Object can take on the form 
+of a statement that already exists by using a Statement Reference. A common use case for 
+Statement References is grading or commenting on an experience that could be tracked as an 
+independent event.  The special case of voiding a statement would also use a Statement Reference.
+Second, an Object can be brand new statement by using a Sub-Statement.  A common use case for 
+Sub-Statements would be any experience that would be misleading as its own statement. Each type is defined below.
 
 <a name="stmtref"/>
 
 ###### Statement References
 
-A statement reference is a pointer to another pre-existing statement.
+A Statement Reference is a pointer to another pre-existing Statement.
+
+#####Requirements
+
+* A Statement Reference MUST specify an "objectType" property with the value "StatementRef".
+* A Statement Reference MUST set the "id" property to the UUID of a Statement which is present on the system.
 
 The table below lists all properties of a Statement Reference object:
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>string</td><td>MUST be "StatementRef".</td></tr>
-	<tr><td>id</td><td>UUID</td><td>MUST be set to the UUID of a statement 
+	<tr><td>objectType</td><td>string</td><td>In this case, MUST be "StatementRef".</td></tr>
+	<tr><td>id</td><td>UUID</td><td>The UUID of a Statement 
 	which is present on the system.</td></tr>
 </table>
 
@@ -1061,19 +1066,16 @@ comment could be issued on the original statement, using a new statement:
 A Sub-Statement is a new statement included as part of a parent statement.
 
 ###### Requirements
-A Sub-Statement...
 
-* MUST specify an "objectType" property with the value "SubStatement";
-* MUST NOT have the "id", "stored", or "authority" properties;
-* MUST NOT contain a sub-statement of their own i.e. cannot be nested.
+* A Sub-Statement MUST specify an "objectType" property with the value "SubStatement".
+* A Sub-Statement MUST NOT have the "id", "stored", or "authority" properties.
+* A Sub-Statement MUST NOT contain a Sub-Statement of their own i.e. cannot be nested.
+* A Sub-Statement MUST be validated as a Statement in addition to other Sub-Statement requirements.
 
-Implementations MUST validate the sub-statement as they would other statements, 
-with the addition of these rules.
+###### Sub-Statements - Example
 
-###### Sub-statements - Example
-
-One interesting use of sub-statements is in creating statements of intention. 
-For example, using sub-statements we can create statements of the form 
+One interesting use of Sub-Statements is in creating Statements of intention. 
+For example, using Sub-Statements we can create Statements of the form 
 ```"<I> <planned> (<I> <did> <this>)"```  to indicate that we've planned to take some 
 action. The concrete example that follows logically states that 
 "I planned to visit 'Some Awesome Website'". 
@@ -1115,10 +1117,6 @@ action. The concrete example that follows logically states that
 	}
 }
 ```
-
-###### NOTE: 
-Whilst the verb display MAY take the future tense, the verb id SHOULD remain past tense.
-Later, when 'I' actually visit 'Some Awesome Website', reporting tools can thereby match the verb ids. 
 
 <a name="result"/>
 
