@@ -3129,11 +3129,11 @@ var statement = {
 	},
 	verb:"",
 	object:{
-		id:""
+		id:"",
+		definition:{}
 	}
 };
 var definition = statement.object.definition;
-
 
 statement.verb='http://adlnet.gov/expapi/verbs/experienced';
 statement.object.id = window.location.toString();
