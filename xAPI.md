@@ -1506,8 +1506,7 @@ lack a version, the version MUST be set to 1.0.0.
 * If clients set the statement version, they MUST set it to 1.0.0
 
 
-<a name="voided"/>
-
+<a name="attachments"/>
 #### 4.1.11 Attachments
 
 ###### Description: 
@@ -1701,8 +1700,8 @@ X-Experience-API-Hash:495395e777cd98da653df9615d09c0fd6bb2f8d4788394cd53c56a3bfd
 here is a simple attachment
 --abcABC0123'()+_,-./:=?--
 ```
-<a name="signature"/>
 
+<a name="dataconstraints"/>
 #### 4.1.12 Data Constraints
 All the properties used in statements are restricted to certain types, and those types
 constrain the behavior of systems processing statements. For clarity, certain key
@@ -1770,8 +1769,7 @@ endpoint, see Section [7.2 "Statement API"](#stmtapi) for details.
 	</tr>
 </table>
 
-<a name="misctypes"/> 
-
+<a name="voided"/>
 #### 4.3 Voided:
 ###### Rationale
 
@@ -1835,8 +1833,7 @@ A reporting system...
 See ["Statement References"](#stmtref) in [Section 4.1.4.3 When the "Object" is a Statement](#stmtasobj) for details about making references to other 
 statements. 
 
-<a name="attachments"/>
-
+<a name="signature"/>
 #### 4.4 Signed Statements
 
 ###### Description:
@@ -1891,8 +1888,7 @@ the scope of this specification.
 See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example.
 
 
-<a name="dataconstraints"/>
-
+<a name="misctypes"/>
 ## 5.0 Miscellaneous Types
 
 <a name="miscdocument"/> 
