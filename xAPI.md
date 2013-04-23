@@ -3123,21 +3123,25 @@ with your own values. All other values should be left as they are.
 var url = "http://localhost:8080/xAPI/statements?statementId="+_ruuid();
 var auth = "Basic dGVzdDpwYXNzd29yZA==";
 var statement = {
-	actor:{ 
-		"objectType": "Agent", 
+	"actor" : { 
+		"objectType" : "Agent", 
 		"mbox" : "mailto:learner@example.adlnet.gov"
 	},
-	verb:"",
-	object:{
-		id:""
+	"verb" : {
+		"id" : "",
+		"display" : {}
+	},
+	"object" : {
+		"id" : "",
+		"definition" : {}
 	}
 };
 var definition = statement.object.definition;
 
-
-statement.verb='http://adlnet.gov/expapi/verbs/experienced';
+statement.verb.id = 'http://adlnet.gov/expapi/verbs/experienced';
+statement.verb.display = { "en-US" : "experienced" };
 statement.object.id = window.location.toString();
-definition.type="http://adlnet.gov/expapi/activities/link";
+definition.type = "http://adlnet.gov/expapi/activities/link";
 
 var xhr = new XMLHttpRequest();
 xhr.open("PUT", url, true);
