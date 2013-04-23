@@ -751,23 +751,23 @@ exists.  There are times when Activity Providers may wish to use a different ver
 
 ###### Description
 
-The Object of a Statement can be an Activity, Agent/Group, or Statement. It is the "this" part of the 
+The Object of a Statement can be an Activity, Agent/Group, Sub-Statement, or Statement Reference. It is the "this" part of the 
 statement, i.e. "I did this". 
 
-Objects in a statement may be either an Activity, an Agent or another Statement. 
 Some examples:
 
 * The Object is an Activity: "Jeff wrote an essay about hiking."
 
 * The Object is an Agent: "Nellie interviewed Jeff."
 
-* The Object is a Statement: "Nellie commented on 'Jeff wrote an essay about hiking.'"
+* The Object is a Sub-Statement or Statement Reference (different implementations, but similar when human-read): 
+"Nellie commented on 'Jeff wrote an essay about hiking.'"
 
 ###### Details
 
 Objects which are provided as a value for this field SHOULD include an "objectType" 
 field. If not specified, the objectType is assumed to be "Activity". Other valid values 
-are: <a href="#agentasobj">Agent</a>, <a href="#substmt">Statement</a> or <a href="#stmtref">StatementRef</a>.
+are: <a href="#agentasobj">Agent</a>, <a href="#agentasobj">Group</a>, <a href="#substmt">Sub-Statement</a> or <a href="#stmtref">StatementRef</a>.
 The properties of an Object change according to the objectType.
 
 <a name="activity"/>
@@ -1068,7 +1068,7 @@ A Sub-Statement is a new statement included as part of a parent statement.
 ###### Requirements
 
 * A Sub-Statement MUST specify an "objectType" property with the value "SubStatement".
-* A Sub-Statement MUST NOT have the "id", "stored", or "authority" properties.
+* A Sub-Statement MUST NOT have the "id", "stored", "version" or "authority" properties.
 * A Sub-Statement MUST NOT contain a Sub-Statement of their own i.e. cannot be nested.
 * A Sub-Statement MUST be validated as a Statement in addition to other Sub-Statement requirements.
 
