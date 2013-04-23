@@ -3123,17 +3123,17 @@ with your own values. All other values should be left as they are.
 var url = "http://localhost:8080/xAPI/statements?statementId="+_ruuid();
 var auth = "Basic dGVzdDpwYXNzd29yZA==";
 var statement = {
-	actor:{ 
-		"objectType": "Agent", 
+	"actor" : { 
+		"objectType" : "Agent", 
 		"mbox" : "mailto:learner@example.adlnet.gov"
 	},
-	verb:{
-		id:"",
-		display:{}
+	"verb" : {
+		"id" : "",
+		"display" : {}
 	},
-	object:{
-		id:"",
-		definition:{}
+	"object" : {
+		"id" : "",
+		"definition" : {}
 	}
 };
 var definition = statement.object.definition;
