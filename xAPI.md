@@ -1138,7 +1138,7 @@ The 'Result' field may also contain arbitrary measurements if needed by the Lear
 <td>response</td><td>String</td><td>A response appropriately formatted for the given activity.</td>
 </tr>
 <tr>
-<td>duration</td><td>Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601%22%20%5Cl%20%22Durations">ISO 8601</a> with  a precision of 0.01 seconds</td><td>Period of time over which the statement occurred.</td>
+<td>duration</td><td>Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a> with  a precision of 0.01 seconds</td><td>Period of time over which the statement occurred.</td>
 </tr>
 <tr>
 <td>Extensions</td><td><a href="#miscext">Extensions object</a></td><td>A map of other properties as needed.</td>
