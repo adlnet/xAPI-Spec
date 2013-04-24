@@ -1355,7 +1355,7 @@ useful when the object of the statement is an agent, not an activity.
 
 #### 4.1.7 Timestamp:
 
-###### Definition
+###### Description
 
 The time at which a  Statement was generated.
 
@@ -1382,7 +1382,7 @@ inside a Sub-Statement.
 
 #### 4.1.8 Stored:
 
-###### Definition: 
+###### Description 
 The time at which a statement is stored by the LRS.
 
 The stored property is the literal time the Statement was stored.  Use [Timestamp](#timestamp) 
