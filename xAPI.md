@@ -789,7 +789,7 @@ properties in this case.
 	<tr>
 		<td><a href="#actdef">definition</a></td>
 		<td>Object</td>
-		<td>Metadata, <a href="#actdef">See below</a></td>
+		<td>Optional Metadata, <a href="#actdef">See below</a></td>
 	</tr>
 </table>
 
