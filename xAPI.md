@@ -1167,8 +1167,6 @@ The table below defines the Score Object.
 
 ###### Requirements
 
-
-
 * The Score Object SHOULD include 'scaled' if a logical percent based score is known.
 * The Score Object SHOULD NOT be used for scores relating to progress or completion.  Consider using an extension
 from an extension profile instead.
@@ -1178,20 +1176,23 @@ from an extension profile instead.
 #### 4.1.6 Context
 
 ###### Description: 
-An optional field that provides a place to add contextual information to a statement. All its field properties are 
-optional.
+An optional field that provides a place to add contextual information to a statement. All properties are optional.
 
 ###### Rationale: 
 The "context" field provides a place to add some contextual information to a statement. It can store information such 
 as the instructor for an experience, if this experience happened as part of a team activity, or how an experience fits 
 into some broader activity.
 
+###### Details:
+
+The following table contains the properties of the Context Object.
+
 <table border="1">
 <tr><th>property</th><th>type</th><th>description</th></tr>
 <tr>
 <td>registration</td>
 <td>UUID</td>
-<td>The registration that the statement is associated with. <a href ="#Registration">See 4.1.6.1</a></td>
+<td>The registration that the statement is associated with. 
 
 </tr>
 <tr>
@@ -1210,34 +1211,25 @@ into some broader activity.
 <td>contextActivities</td>
 <td>contextActivities object</td>
 <td>A map of the types of learning activity context that this statement is related to.
-Valid context types are: "parent", "grouping", "category", "other". <a href ="#contextActivities">See 4.1.6.2</a></td>
+Valid context types are: "parent", "grouping", "category" and "other". 
 
 </tr>
 <tr>
 <td>revision</td>
 <td>String</td>
-<td>Revision of the learning activity associated with this statement. Format is free.<br>
-- SHOULD be used to track fixes of minor issues (like a spelling error), <br>
-- SHOULD NOT be used if there is a major change in learning objectives, pedagogy, or assets of an activity. (Use a new 
-activity ID instead).<br>
-- MUST NOT be used if the statement's object is an Agent or Group.
-
-
+<td>Revision of the learning activity associated with this statement. Format is free.
 </tr>
 <tr>
 <td>platform</td>
 <td>String</td>
-<td>Platform used in the experience of this learning activity. <br>
-- MUST NOT be used if the statement's object is an Agent or Group.
-<br>Defined vocabulary, TBD. </td>
+<td>Platform used in the experience of this learning activity. </td>
 
 </tr>
 <tr>
 <td>language</td>
 <td>String (as defined in <a href="http://tools.ietf.org/html/rfc5646">RFC 5646</a>)</td>
 <td>Code representing the language in which the experience being recorded in this statement (mainly) occurred in, if 
-applicable and known.<br>
-- MUST NOT be used if not applicable or unknown.
+applicable and known.
 </td>
 
 </tr>
@@ -1245,60 +1237,53 @@ applicable and known.<br>
 <td>statement</td>
 <td>Statement by reference or by object</td>
 <td>Another statement (either existing or new), which should be considered as context for this statement. 
-<a href = "#stmtasobj">See Section 4.1.4.3</a> for details about including statements within other statements. </td>
+<a href = "#stmtasobj">See: When the "Object" is a Statement</a> for details about including statements 
+within other statements. </td>
 
 </tr>
 <tr>
 <td>extensions</td>
-<td>Extensions object</td>
+<td>Object</td>
 <td>A map of any other domain-specific context relevant to this statement. For example, in a flight simulator 
-altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a href="#miscext">See Section 5.3</a>)</td>
+altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a href="#miscext">See Extensions</a>)</td>
 
 </tr>
 
 </table>
 
+###### Requirements
+
+* The revision property SHOULD be used to track fixes of minor issues (like a spelling error).
+* The revision property SHOULD NOT be used if there is a major change in learning objectives, pedagogy, 
+or assets of an activity. (Use a new activity ID instead).
+* The revision property MUST NOT be used if the statement's object is an Agent or Group.
+* The platform property MUST NOT be used if the statement's object is an Agent or Group.
+* The language property MUST NOT be used if not applicable or unknown.
+
 <a name="Registration"/>
 
 ##### 4.1.6.1 Registration property
 
-###### Description:
+###### Description
 An instance of a learner undertaking a particular learning activity.
 
 ###### Details:
-When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration. For example all 
-the statements about one time a person took a test might have one registration. If the learner takes the test again, 
-the statements from this second occasion would have a different registration from the first occasion. 
-
-The LMS may also close the registration at some point when it considers the learning experience complete. For 
-Experience API purposes, a registration may be applied more broadly; an LMS could assign a group of students to a 
-group of activities and track all related statements in one registration.
+When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration. 
+The Experience API applies the concept of registration more broadly.  A registration could be 
+considered to be an attempt, a session, or could span multiple Activities. There is no expectation that 
+completing an activity ends a registration. Nor is a registration necessarily confined to a single Agent.
 
 <a name="contextActivities"/>
 
 ##### 4.1.6.2 contextActivities property
 
-###### Description: 
+###### Description
 A map of the types of learning activity context that this statement is related to.
 
-###### Rationale: 
+###### Rationale
 Many statements do not just involve one object activity that is the focus,
-but relate to other contextually relevant activities.
-"Context activities" allow for these related activities to be represented
-in a structured manner.
-
-###### Requirements
-* every key in the contextActivities object MUST be one of parent, grouping, category, or other.
-* every value in the contextActivities object MUST be either a single Activity object or an array of Activity objects.
-
-###### Requirements for the client
-* every value in the contextActivities object SHOULD be an array
-of Activity objects instead of a single Activity object.
-
-###### Requirements for the LRS
-* every value in the contextActivities object MUST be returned
-as an array, even if it arrived as a single Activity object (in which
-case it MUST be returned as an array of length one containing the same Activity).
+but relate to other contextually relevant activities. "Context activities" allow for 
+these related activities to be represented in a structured manner.
 
 ###### Details:
 There are four valid context types. All, any or none of these MAY be used in a given statement:
@@ -1328,6 +1313,7 @@ activity refers to the textbook, and the exam is a context activity of type "oth
 
 Single Activity objects are allowed as values so that 0.95 statements will be compatible with 1.0.0.
 
+###### Note 
 The values in this section are not for expressing all the relationships the statement object has.
 Instead, they are for expressing relationships appropriate for the specific statement
 (though the nature of the object will often be important in determining that).
@@ -1335,16 +1321,16 @@ For instance, it is appropriate in a statement about a test to include the cours
 the test is part of as parent, but not to include every possible degree
 program the course could be part of in the grouping value.
 
-###### Example I:
+###### Requirements
+* Every key in the contextActivities object MUST be one of parent, grouping, category, or other.
+* Every value in the contextActivities object MUST be either a single Activity object or an array of Activity objects.
+* The client SHOULD ensure that every value in the contextActivities object is an array of Activity objects 
+instead of a single Activity object.
+* The LRS MUST return every value in the contextActivities object as an array, even if it arrived
+as a single Activity object.
+* The LRS MUST return single Activity objects as an array of length one containing the same Activity.
 
-```
-{
-	"other" : [{
-	"id" : "http://example.adlnet.gov/xapi/example/test"
-	}]
-}
-```
-###### Example II: 
+###### Example
 
 Consider the following hierarchical structure: "Questions 1 to 6"
 are part of "Test 1" which in turn belongs to the course "Algebra 1". 
