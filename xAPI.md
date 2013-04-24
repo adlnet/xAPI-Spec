@@ -209,6 +209,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Mike Rustici</td><td>Rustici Software</td></tr>
 	<tr><td>Nick Washburn</td><td>Riptide Software</td></tr>
 	<tr><td>Nikolaus Hruska</td><td>ADL</td></tr>
+	<tr><td>Pankaj Agrawal</td><td>Next Software Solutions</td></tr>
 	<tr><td>Patrick Kedziora</td><td>Kedzoh</td></tr>
 	<tr><td>Paul Esch</td><td>Nine Set</td></tr>
 	<tr><td>Paul Roberts</td><td>Questionmark</td></tr>
