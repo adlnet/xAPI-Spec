@@ -1260,6 +1260,9 @@ or assets of an activity. (Use a new activity ID instead).
 * The platform property MUST NOT be used if the statement's object is an Agent or Group.
 * The language property MUST NOT be used if not applicable or unknown.
 
+__Note__: Revision has no behavioral implications within the scope of xAPI. It is simply stored,
+so that it is available for reporting tools.
+
 <a name="Registration"/>
 
 ##### 4.1.6.1 Registration property
