@@ -807,7 +807,6 @@ A statement may represent an activity as the object of the statement.
 
 ###### Requirements
 
-* Activity Providers SHOULD look for and use established, widely adopted activity types as URI fragments (sometimes called relative URLs) are not valid URIs.
 * An LRS SHOULD update its internal representation of an activity's definition upon receiving a 
 statement with the same activity ID, BUT with a different definition of the Activity from the one stored, 
 AND ONLY IF the LRS considers the Activity Provider has the authority to do so.
@@ -1786,10 +1785,10 @@ to act in certain ways.
 The following requirements reiterate especially important requirements already
 included elsewhere, to emphasize, clarify, and provide implementation guidance.
 
+* Activity Providers SHOULD look for and use established, widely adopted activity types as URI fragments (sometimes called relative URLs) are not valid URIs.
 * Values requiring IRIs MUST be sent with valid IRIs.
 	* Please use a library to construct them instead of string concatenation. Complete IRI validation is
 extremely difficult, so much of the burden for ensuring data portability is on the client.
-
 * For similar reasons, keys of language maps MUST be sent with valid RFC 5646 language tags.
 
 With regard to the LRS...
