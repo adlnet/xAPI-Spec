@@ -807,6 +807,7 @@ A statement may represent an activity as the object of the statement.
 
 ###### Requirements
 
+* Activity Providers SHOULD look for and use established, widely adopted activity types.
 * An LRS SHOULD update its internal representation of an activity's definition upon receiving a 
 statement with the same activity ID, BUT with a different definition of the Activity from the one stored, 
 AND ONLY IF the LRS considers the Activity Provider has the authority to do so.
@@ -1780,12 +1781,11 @@ constrain the behavior of systems processing statements. For clarity, certain ke
 requirements are documented here, emphasizing where compliant systems have a responsibility
 to act in certain ways.
 
-###### Requirements:
+###### Requirements
 
 The following requirements reiterate especially important requirements already
 included elsewhere, to emphasize, clarify, and provide implementation guidance.
 
-* Activity Providers SHOULD look for and use established, widely adopted activity types as URI fragments (sometimes called relative URLs) are not valid URIs.
 * Values requiring IRIs MUST be sent with valid IRIs.
 	* Please use a library to construct them instead of string concatenation. Complete IRI validation is
 extremely difficult, so much of the burden for ensuring data portability is on the client.
@@ -1813,6 +1813,10 @@ same types in statements. Note: string parameter values are not quoted as they a
 non-format-following rejection requirement.
 * MAY use best-effort validation for language map keys to satisfy the
 non-format-following rejection requirement.
+
+###### Details
+
+URI fragments (sometimes called relative URLs) are not valid URIs.
 
 <a name="retstmts"/> 
 
