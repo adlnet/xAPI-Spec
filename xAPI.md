@@ -1357,29 +1357,26 @@ useful when the object of the statement is an agent, not an activity.
 
 ###### Definition
 
-The time at which a statement about an experience took place.
-
-###### Requirements
-
-A timestamp:
-
-* MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
-* MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved) 
-* SHOULD include the timezone;
-* MAY be a moment in the future, to denote a deadline for planned learning, provided it is included inside a SubStatement;
-* SHOULD be the current or a past time when it is outside of a SubStatement.
-
-A reporting tool:
-
-* MAY consider timestamps from different timezones that represent the same logical time to be equivalent.
+The time at which a  Statement was generated.
 
 ###### Details
 
-A timestamp in a statement related to learning that occurs outside of the system can differ from 
-[4.1.8. Stored](#stored) (the system time of the event). Namely, there can be delays between the occurrence of the 
-experience and the reception of the corresponding statement by the LRS. Another cause is when statements are propagated 
-to other systems.
+A timestamp in a statement that occurs outside of the system can differ from 
+[Stored](#stored) (the system time of the event). Namely, there can be delays between the occurrence of the 
+experience and the reception of the corresponding statement by the LRS. Another cause is when statements 
+are propagated to other systems.
 
+###### Requirements
+
+* A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
+* A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
+* A timestampSHOULD include the timezone.
+* A timestamp MAY be a moment in the future, to denote a deadline for planned learning, provided it is included 
+inside a Sub-Statement.
+* A timestamp SHOULD be the current or a past time when it is outside of a Sub-Statement.
+* A client MAY consider timestamps from different timezones that represent the same logical time to be equivalent.
+
+###### Details
 
 <a name="stored"/> 
 
@@ -1388,17 +1385,17 @@ to other systems.
 ###### Definition: 
 The time at which a statement is stored by the LRS.
 
+The stored property is the literal time the Statement was stored.  Use [Timestamp](#timestamp) 
+to track a time at which the Statement was generated.
+
 ###### Requirements
-Stored time:
 
-* MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
-* MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved) 
-* SHOULD include the timezone;
-* SHOULD be the current or a past time
-
-A reporting tool:
-
-* MAY consider stored time from different timezones that represent the same logical time to be equivalent.
+* The stored property MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
+* The stored property MAY be truncated or rounded to a precision of at least 3 decimal digits
+for seconds (millisecond precision MUST be preserved). 
+* The stored property SHOULD include the timezone.
+* The stored property SHOULD be the current or a past time.
+* A client MAY consider stored time from different timezones that represent the same logical time to be equivalent.
 
 <a name="authority"/> 
 
