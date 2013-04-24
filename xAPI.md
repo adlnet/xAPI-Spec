@@ -953,7 +953,7 @@ JSON format used in statements with a Content-Type of "application/json"
 headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
 first encounters the Activity id.
 
-* Upon loading JSON that contains a valid activity definition from a URL, used as an Activity ID,
+* Upon loading JSON which is a valid activity definition from a URL used as an Activity id,
  an LRS SHOULD incorporate the loaded definition into its internal definition for that activity,
 while preserving names or definitions not included in the loaded definition.
 
