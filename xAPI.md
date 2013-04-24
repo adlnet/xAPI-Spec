@@ -789,7 +789,7 @@ properties in this case.
 	<tr>
 		<td><a href="#actdef">definition</a></td>
 		<td>Object</td>
-		<td>Metadata, <a href="#actdef">See below</a></td>
+		<td>Optional Metadata, <a href="#actdef">See below</a></td>
 	</tr>
 </table>
 
@@ -2498,7 +2498,7 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 		<td>Maximum number of statements to return. 0 indicates return the 
 			maximum the server will allow.</td>
 	</tr>
-	<tr><td>format</td><td>{"ids", "exact", "canonical"}</td><td>exact</td>
+	<tr><td>format</td><td>String: ("ids", "exact", or "canonical")</td><td>exact</td>
 		<td>If "ids", only include minimum information necessary in agent,
 			activity, and group objects to identify them. For anonymous groups this means
 			including the minimum information needed to identify each member.
