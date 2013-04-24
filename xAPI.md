@@ -1256,8 +1256,8 @@ altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a hr
 * The revision property SHOULD be used to track fixes of minor issues (like a spelling error).
 * The revision property SHOULD NOT be used if there is a major change in learning objectives, pedagogy, 
 or assets of an activity. (Use a new activity ID instead).
-* The revision property MUST NOT be used if the statement's object is a Person.
-* The platform property MUST NOT be used if the statement's object is a Person.
+* The revision property MUST NOT be used if the statement's object is an Agent or Group.
+* The platform property MUST NOT be used if the statement's object is an Agent or Group.
 * The language property MUST NOT be used if not applicable or unknown.
 
 <a name="Registration"/>
@@ -1271,7 +1271,7 @@ An instance of a learner undertaking a particular learning activity.
 When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration. 
 The Experience API applies the concept of registration more broadly.  A registration could be 
 considered to be an attempt, a session, or could span multiple Activities. There is no expectation that 
-completing an activity ends a registration. Nor is a registration confined to a single Agent.
+completing an activity ends a registration. Nor is a registration necessarily confined to a single Agent.
 
 <a name="contextActivities"/>
 
