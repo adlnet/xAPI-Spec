@@ -1415,7 +1415,6 @@ based on the credentials used to send those statements.
 * The LRS MAY leave the submitted authority unchanged but SHOULD do so only 
 where a strong trust relationship has been established, and with extreme caution.
 * The LRS MUST ensure that all statements stored have an authority.
-* The authority MUST be an Agent or Group.
 * Authority MUST be an Agent, except in 3-legged OAuth, where it MUST be a Group with two Agents. 
 The two Agents represent an application and user together.
 * The LRS MUST include the user as an Agent as the entire authority if a user connects 
