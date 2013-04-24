@@ -512,7 +512,7 @@ An Agent (an individual) is a persona or system.
 ###### Requirements
 
 * An agent MUST be identified by one (1) of the four types of inverse functional identifiers (see
-[4.1.2.3 Inverse functional Identifier](#inversefunction));
+[4.1.2.3 Inverse functional Identifier](#inversefunctional));
 
 * An agent MUST NOT include more than one (1) inverse functional identifier;
 
