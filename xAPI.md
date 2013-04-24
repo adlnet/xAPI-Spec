@@ -1397,7 +1397,7 @@ for seconds (millisecond precision MUST be preserved).
 
 <a name="authority"/> 
 
-#### 4.1.9 Authority:
+#### 4.1.9 Authority
 
 ###### Description
 
@@ -1416,8 +1416,8 @@ based on the credentials used to send those statements.
 where a strong trust relationship has been established, and with extreme caution.
 * The LRS MUST ensure that all statements stored have an authority.
 * The authority MUST be an Agent or Group.
-* If the authority is a Group, it MUST contain two Agents which represent an 
-application and user together (3-legged OAuth workflow).
+* Authority MUST be an Agent, except in 3-legged OAuth, where it MUST be a Group with two Agents. 
+The two Agents represent an application and user together.
 * The LRS MUST include the user as an Agent as the entire authority if a user connects 
 directly (using HTTP Basic Authentication) or is included as part of a Group. 
 * The LRS MAY identify the user with any of the legal identifying properties if 
