@@ -1355,106 +1355,112 @@ useful when the object of the statement is an agent, not an activity.
 
 #### 4.1.7 Timestamp:
 
-###### Definition
+###### Description
 
-The time at which a statement about an experience took place.
-
-###### Requirements
-
-A timestamp:
-
-* MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
-* MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved) 
-* SHOULD include the timezone;
-* MAY be a moment in the future, to denote a deadline for planned learning, provided it is included inside a SubStatement;
-* SHOULD be the current or a past time when it is outside of a SubStatement.
-
-A reporting tool:
-
-* MAY consider timestamps from different timezones that represent the same logical time to be equivalent.
+The time at which a  Statement was generated.
 
 ###### Details
 
-A timestamp in a statement related to learning that occurs outside of the system can differ from 
-[4.1.8. Stored](#stored) (the system time of the event). Namely, there can be delays between the occurrence of the 
-experience and the reception of the corresponding statement by the LRS. Another cause is when statements are propagated 
-to other systems.
+A timestamp in a statement that occurs outside of the system can differ from 
+[Stored](#stored) (the system time of the event). Namely, there can be delays between the occurrence of the 
+experience and the reception of the corresponding statement by the LRS. Another cause is when statements 
+are propagated to other systems.
 
+###### Requirements
+
+* A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
+* A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
+* A timestamp SHOULD include the timezone.
+* A timestamp MAY be a moment in the future, to denote a deadline for planned learning, provided it is included 
+inside a Sub-Statement.
+* A timestamp SHOULD be the current or a past time when it is outside of a Sub-Statement.
+* A client MAY consider timestamps from different timezones that represent the same logical time to be equivalent.
+
+###### Details
 
 <a name="stored"/> 
 
 #### 4.1.8 Stored:
 
-###### Definition: 
+###### Description 
 The time at which a statement is stored by the LRS.
 
+The stored property is the literal time the Statement was stored.  Use [Timestamp](#timestamp) 
+to track a time at which the Statement was generated.
+
 ###### Requirements
-Stored time:
 
-* MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations);
-* MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved) 
-* SHOULD include the timezone;
-* SHOULD be the current or a past time
-
-A reporting tool:
-
-* MAY consider stored time from different timezones that represent the same logical time to be equivalent.
+* The stored property MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
+* The stored property MAY be truncated or rounded to a precision of at least 3 decimal digits
+for seconds (millisecond precision MUST be preserved). 
+* The stored property SHOULD include the timezone.
+* The stored property SHOULD be the current or a past time.
+* A client MAY consider stored time from different timezones that represent the same logical time to be equivalent.
 
 <a name="authority"/> 
 
 #### 4.1.9 Authority:
-The authority property provides information about who or what has asserted that 
-this statement is true. Consequently, the asserting authority may be an 
-[Agent](#agent) (representing the authenticating user or some system or 
-application), or in the case of 3-legged OAuth workflows, a [Group](#group) 
-of two Agents representing an application and user together. 
-Unless used in the aforementioned 3-legged OAuth workflow, a Group MUST NOT 
-be used to assert authority.  
 
-###### LRS Requirements:
+###### Description
+
+The authority property provides information about whom or what has asserted that 
+this statement is true. 
+
+###### Details
+
+The asserting authority represents the authenticating user or some system or application.
+
+###### Requirements
 
 * The LRS SHOULD overwrite the authority on all stored received statements, 
 based on the credentials used to send those statements.
-
 * The LRS MAY leave the submitted authority unchanged but SHOULD do so only 
 where a strong trust relationship has been established, and with extreme caution.
-
 * The LRS MUST ensure that all statements stored have an authority.
+* The authority MUST be an Agent or Group.
+* If the authority is a Group, it MUST contain two Agents which represent an 
+application and user together (3-legged OAuth workflow).
+* The LRS MUST include the user as an Agent in the authority if a user connects 
+directly (using HTTP Basic Authentication) or is included as part of a Group. 
+* The LRS MAY identify the user with any of the legal identifying properties if 
+a user connects directly (using HTTP Basic Authentication) or is included as part of a Group. 
 
-If a statement is stored using a validated OAuth connection, and the LRS creates 
-or modifies the authority property of the statement, the authority MUST contain 
-an agent object that represents the OAuth consumer, either by itself, or as part 
-of a group in the case of 3-legged OAuth. This agent MUST be identified by account, 
-and MUST use the consumer key as the account name field. If the OAuth consumer is 
-a registered application, then the token request endpoint MUST be used as the 
-account homePage, otherwise the temporary credentials endpoint must be used as 
-the account homePage.  
+###### OAuth Workflow 
 
-Except as specified in the paragraph above, agent objects MUST NOT use any OAuth 
-endpoint as an account homePage.  
+###### Description
 
-The behavior of an LRS SHOULD NOT rely on Agents with an account using the 
-temporary credentials endpoint as the homePage and with matching account names 
-coming from the same source, as there is no way to verify that, since multiple 
-unregistered applications could choose the same consumer key. Each unregistered 
-consumer SHOULD pick a unique consumer key.  
+This is a workflow for use of OAuth.  2-legged and 3-legged OAuth are both supported.
 
-If a user connects directly (using HTTP Basic Authentication) 
-or is included as part of a 3-legged OAuth workflow, the LRS MUST include the user 
-as an Agent in the authority, and MAY identify the user with any of the legal 
-identifying properties.  
+###### Details
 
-###### OAuth Authorities  
+This workflow assumes a statement is stored using a validated OAuth connection and the LRS 
+creates or modifies the authority property of the statement.
 
-In a 3-legged OAuth workflow, authentication involves both an OAuth consumer 
-and a user of the OAuth service provider. For instance, requests made by an 
-authorized Twitter plugin on your Facebook account will include credentials 
-that are specific not only to Twitter as a client application, or you as a 
-user, but the unique combination of both.  
+In a 3-legged OAuth workflow, authentication involves both an OAuth consumer and a user of the 
+OAuth service provider. For instance, requests made by an authorized Twitter plug-in on their 
+Facebook account will include credentials that are specific not only to Twitter as a client application, 
+or them as a user, but the unique combination of both.
 
-To support this concept, an LRS preparing the authority of a statement received 
-via 3-legged OAuth MUST use a pairing of an application and a user. Below is a 
-concrete example which represents a pairing of an OAuth consumer and a user.  
+###### Requirements
+
+* The authority MUST contain an Agent object that represents the OAuth consumer, either by itself, or 
+as part of a group in the case of 3-legged OAuth.
+* The Agent representing the OAuth consumer MUST be identified by account.
+* The Agent representing the OAuth consumer MUST use the consumer key as the “account name” field.
+* If the Agent representing the OAuth consumer is a registered application, the token request endpoint 
+MUST be used as the account homePage.
+* If the Agent representing the OAuth consumer is not a registered application, the temporary  
+credentials endpoint MUST be used as the account homePage.
+* An LRS SHOULD NOT accept a temporary credentials endpoint in the event the account name is   
+from the same source as the unregistered application. (Multiple unregistered applications could 
+choose the same consumer key. As a result, there is no consistent way to verify this combination of 
+temporary credentials and the account name.)
+* An LRS SHOULD assign each unregistered consumer a unique consumer key.
+
+
+###### Example
+
+The pairing of an OAuth consumer and a user.
 
 ```
 "authority": {
