@@ -2516,9 +2516,13 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 			maximum the server will allow.</td>
 	</tr>
 	<tr><td>format</td><td>{"ids", "exact", "canonical"}</td><td>exact</td>
-		<td>If "ids", only include minimum information necessary in agent and 
-			activity objects to identify them, If "exact", return agent and
-			activity objects populated exactly as they were when the statement was received.<br/><br/>
+		<td>If "ids", only include minimum information necessary in agent,
+			activity, and group objects to identify them. For anonymous groups this means
+			including the minimum information needed to identify each member.
+
+			If "exact", return agent,
+			activity, and group objects populated exactly as they were when the statement
+			was received.<br/><br/>
 			
 			If "canonical", return activity objects populated with the canonical
 			definition of the activity objects as determined by the LRS, after
