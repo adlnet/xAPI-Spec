@@ -2461,7 +2461,7 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 			for details.
 		</td>
 	</tr>
-	<tr><td>verb</td><td>String</td><td> </td>
+	<tr><td>verb</td><td>Verb id (IRI)</td><td> </td>
 		<td>Filter, only return statements matching the specified verb id.</td>
 	</tr>
 	<tr><td>activity</td><td>Activity id (URI)</td><td> </td>
