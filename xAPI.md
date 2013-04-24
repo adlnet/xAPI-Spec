@@ -1658,12 +1658,13 @@ in one batch;
 With regard to the LRS...
 
 * MUST include attachments in the Transmission Format described above
+when requested by the client (see Section [7.2 "Statement API"](#stmtapi));
 
 * MUST NOT pull statements from another LRS without requesting attachments;
 
 * MUST NOT push statements into another LRS without including attachment data
 received, if any, for those attachments;
-when requested by the client (see Section [7.2 "Statement API"](#stmtapi));
+
 
 * MAY reject (batches of) statements that are larger than the LRS is configured to allow;
 
