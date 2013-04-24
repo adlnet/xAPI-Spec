@@ -1374,7 +1374,6 @@ are propagated to other systems.
 * A timestamp MAY be a moment in the future, to denote a deadline for planned learning, provided it is included 
 inside a Sub-Statement.
 * A timestamp SHOULD be the current or a past time when it is outside of a Sub-Statement.
-* A client MAY consider timestamps from different timezones that represent the same logical time to be equivalent.
 
 ###### Details
 
@@ -1394,8 +1393,7 @@ to track a time at which the Statement was generated.
 * The stored property MAY be truncated or rounded to a precision of at least 3 decimal digits
 for seconds (millisecond precision MUST be preserved). 
 * The stored property SHOULD include the timezone.
-* The stored property SHOULD be the current or a past time.
-* A client MAY consider stored time from different timezones that represent the same logical time to be equivalent.
+* The stored property SHOULD be the current or a past time
 
 <a name="authority"/> 
 
@@ -1420,12 +1418,12 @@ where a strong trust relationship has been established, and with extreme caution
 * The authority MUST be an Agent or Group.
 * If the authority is a Group, it MUST contain two Agents which represent an 
 application and user together (3-legged OAuth workflow).
-* The LRS MUST include the user as an Agent in the authority if a user connects 
+* The LRS MUST include the user as an Agent as the entire authority if a user connects 
 directly (using HTTP Basic Authentication) or is included as part of a Group. 
 * The LRS MAY identify the user with any of the legal identifying properties if 
-a user connects directly (using HTTP Basic Authentication) or is included as part of a Group. 
+a user connects directly (using HTTP Basic Authentication) or a part of 3-legged OAuth. 
 
-###### OAuth Workflow 
+###### OAuth Credentials as Authority 
 
 ###### Description
 
@@ -1454,8 +1452,8 @@ credentials endpoint MUST be used as the account homePage.
 * An LRS SHOULD NOT accept a temporary credentials endpoint in the event the account name is   
 from the same source as the unregistered application. (Multiple unregistered applications could 
 choose the same consumer key. As a result, there is no consistent way to verify this combination of 
-temporary credentials and the account name.)
-* An LRS SHOULD assign each unregistered consumer a unique consumer key.
+temporary credentials and the account name.)Therefore, each unregistered consumer is strongly advised 
+to use a unique consumer key.
 
 
 ###### Example
