@@ -700,7 +700,7 @@ corresponding to multiple languages or dialects which provide human-readable mea
 * A system reading a statement MUST NOT use the display property for any purpose other than display to a human.
 Using the display property for aggregation or categorization of statements is an example of violating this requirement. 
 
-* The URI contained in the id SHOULD be human-readable and contain the verb meaning.
+* The URI contained in the id SHOULD be human-readable and imply the verb meaning.
 
 * The display property SHOULD be used by all statements.
 
