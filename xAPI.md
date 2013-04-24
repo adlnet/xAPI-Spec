@@ -1260,6 +1260,9 @@ or assets of an activity. (Use a new activity ID instead).
 * The platform property MUST NOT be used if the statement's object is an Agent or Group.
 * The language property MUST NOT be used if not applicable or unknown.
 
+__Note__: The LRS is not required to perform any action based on revision. It is simply stored,
+so that it is avilable for reporting tools.
+
 <a name="Registration"/>
 
 ##### 4.1.6.1 Registration property
