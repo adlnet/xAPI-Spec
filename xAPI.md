@@ -1121,39 +1121,42 @@ An optional field that represents a measured outcome related to the statement in
 
 ###### Details
 
-A result can be completion, success, score, etc. 
-The 'Result' field may also contain arbitrary measurements if needed by the Learning Activity Provider.
+The following table contains the properties of the Results Object.
 
 <table border="1">
-<tr><th>property</th><th>type</th><th>description</th></tr>
+<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 <td>score</td>
-<td><a href ="#Score">Score object</a></td>
-<td>The score of the agent in relation to the success or quality of the experience. </a></td>
+<td>Object</td>
+<td>The score of the Agent in relation to the success or quality of the experience. <a href ="#Score">See: Score</a></a></td>
 </tr>
-<tr><td>success</td><td>Boolean</td><td>Was the learning activity successful?</td>
+<tr><td>success</td><td>Boolean</td><td>Indicates whether or not the attempt on the activity was successful.</td>
 </tr>
-<tr><td>completion</td><td>Boolean</td><td>Was the learning activity completed?</td>
+<tr><td>completion</td><td>Boolean</td><td>Indicates whether or not the activity was completed.</td>
 </tr>
 <tr>
 <td>response</td><td>String</td><td>A response appropriately formatted for the given activity.</td>
 </tr>
 <tr>
-<td>duration</td><td>Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a> with  a precision of 0.01 seconds</td><td>Period of time over which the statement occurred.</td>
+<td>duration</td><td>Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>
+with a precision of 0.01 seconds</td><td>Period of time over which the Statement occurred.</td>
 </tr>
 <tr>
-<td>Extensions</td><td><a href="#miscext">Extensions object</a></td><td>A map of other properties as needed.</td>
+<td>Extensions</td><td>Object</td><td>A map of other properties as needed.
+<a href="#miscext">See: Extensions</a></td>
 </tr>
 </table> 
 
 <a name="Score"/>
 
-##### 4.1.5.1 Score property
+##### 4.1.5.1 Score
 
 ###### Description
 An optional numeric field that represents the outcome of a graded activity achieved by an agent.
 
+###### Details
 
-The table below defines the score object. 
+The table below defines the Score Object. 
+
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>scaled</td><td>Decimal number between -1 and 1, inclusive</td><td>Cf. 'cmi.score.scaled' in SCORM 2004 4th Edition</td></tr>
@@ -1162,13 +1165,13 @@ The table below defines the score object.
 	<tr><td>max</td><td>Decimal number greater than min (if present)</td><td>Cf. 'cmi.score.max'</td></tr>
 </table>
 
-###### Details
+###### Requirements
 
-The Score property...
 
-- SHOULD include 'scaled' if a logical percent based score is known;
-- SHOULD NOT be used for scores relating to progress or completion. Consider using an extension from an extension 
-profile instead.
+
+* The Score Object SHOULD include 'scaled' if a logical percent based score is known.
+* The Score Object SHOULD NOT be used for scores relating to progress or completion.  Consider using an extension
+from an extension profile instead.
 
 <a name="context"/>
 
