@@ -1451,7 +1451,8 @@ credentials endpoint MUST be used as the account homePage.
 * An LRS MUST NOT trust the application portion of the authority in the event the account name is from 
 the same source as the unregistered application" (Multiple unregistered applications could choose the same consumer key. 
 As a result, there is no consistent way to verify this combination of temporary credentials and 
-the account name.) Therefore, each unregistered consumer is strongly advised to use a unique consumer key.
+the account name.) 
+* Each unregistered consumer SHOULD use a unique consumer key.
 
 
 ###### Example
