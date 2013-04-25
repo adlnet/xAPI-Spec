@@ -282,11 +282,9 @@ _high-level overview_ of a given facet of the Experience API are labeled **descr
 
 <a name="def-activity" />
 
-__Activity__: A thing with which to be interacted. An Activity can be a unit of 
-instruction, experience, or performance that is to be tracked in meaningful combination with a Verb. 
-Interpretation of 'Activity' is broad, meaning that Activities can even be tangible objects. In the statement
-"Anna tried a cake recipe," the recipe constitutes the Activity in terms of the xAPI statement.
-Other examples include a book, an e-learning course, a hike or a meeting. 
+__Activity__: Something with which an Actor interacted. It can be a unit of instruction, experience, 
+or performance that is to be tracked in meaningful combination with a Verb. Interpretation of 
+Activity is broad, meaning that Activities can even be tangible objects.
 
 <a name="def-activity-provider" />
 
@@ -309,6 +307,11 @@ allows interactions between the two "trusted" parties.
 
 __Authorization__: The affordance of permissions based on a user or system's role; 
 the process of making one user or system "trusted" by another.
+
+<a name="def-client" />
+
+__Client__: - Refers to any entity that may interact with an LRS. A client can be an 
+Activity Provider, reporting tool, an LMS, or another LRS.
 
 <a name="def-community-of-practice" />
 
