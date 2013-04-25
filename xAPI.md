@@ -766,7 +766,7 @@ Some examples:
 
 Objects which are provided as a value for this field SHOULD include an "objectType" 
 field. If not specified, the objectType is assumed to be "Activity". Other valid values 
-are: <a href="#agentasobj">Agent</a>, <a href="#agentasobj">Group</a>, <a href="#substmt">Sub-Statement</a> or <a href="#stmtref">StatementRef</a>.
+are: <a href="#agentasobj">Agent</a>, <a href="#agentasobj">Group</a>, <a href="#substmt">Sub-Statement</a> or [StatementRef](#stmtref)</a>.
 The properties of an Object change according to the objectType.
 
 <a name="activity"/>
@@ -1236,10 +1236,8 @@ applicable and known.
 </tr>
 <tr>
 <td>statement</td>
-<td>Statement by reference or by object</td>
-<td>Another statement (either existing or new), which should be considered as context for this statement. 
-<a href = "#stmtasobj">See: When the "Object" is a Statement</a> for details about including statements 
-within other statements. </td>
+<td>[Statement Reference](#stmtref)</td>
+<td>Another statement, which should be considered as context for this statement. </td>
 
 </tr>
 <tr>
@@ -1785,7 +1783,7 @@ Upon receiving a statement that voids another, the LRS...
 * MAY roll back any changes to activity or agent definitions which were introduced by the statement that was just voided;
 * SHOULD return a descriptive error if the target statement cannot be found;
 * MUST NOT report the voided statement when queried, but MUST report the voiding statement 
-(see <a href="#queryStatementRef">StatementRef</a> in 7.2 Statement API).
+(see [StatementRef](#queryStatementRef) in 7.2 Statement API).
 
 
 ###### Example
@@ -2584,6 +2582,11 @@ statements match and will be returned so long as they fall into the time or sequ
 being fetched.
 
 This section does not apply when retrieving statements with statementId or voidedStatementId.
+
+###### Note: 
+
+StatementRefs used in the statement field in context do not affect how
+statements are filtered.
 
 <a name="voidedStatements" />
 
