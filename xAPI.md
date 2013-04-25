@@ -568,7 +568,7 @@ The table below lists all properties of an identified Group.
 	    <td>An inverse functional identifier unique to the Group.</td><td>yes</td></tr>	
 </table>
 
-* A system consuming Statements MUST consider each anonymous Group distinct even if it has an identical set of members;
+* A system consuming Statements MUST consider each anonymous Group distinct even if it has an identical set of members.
 * A system consuming Statements MUST NOT assume that Agents in the 'member' property comprise an exact list of agents
 in a given anonymous or identified Group.
 
@@ -658,7 +658,7 @@ communities of practice can establish verbs meaningful to their members and make
 for use by anyone. A predefined list of verbs would be limited by definition and might not be able to 
 effectively capture all possible future learning experiences. 
 
-###### Details
+###### Requirements
 
 Verbs appear in statements as objects consisting of a URI and a set of display names 
 corresponding to multiple languages or dialects which provide human-readable meanings of the verb. 
@@ -671,6 +671,9 @@ corresponding to multiple languages or dialects which provide human-readable mea
 * A system reading a statement MUST NOT use the display property to infer any meaning from the statement.
 * A system reading a statement MUST NOT use the display property for any purpose other than display to a human.
 Using the display property for aggregation or categorization of statements is an example of violating this requirement. 
+
+
+###### Details
 
 The table below lists all properties of the Verb object.
 
@@ -692,6 +695,8 @@ The table below lists all properties of the Verb object.
 			display of the meaning already determined by the chosen verb.</td>
 	</tr>
 </table>
+
+###### Example
 
 ```
 {
@@ -800,7 +805,9 @@ properties in this case.
 
 <a name="actdef"/>
 
-###### Activity Definition  
+###### Activity Definition
+
+####### Details
 
 The table below lists the properties of the Activity Definition Object:
 
@@ -844,7 +851,7 @@ The table below lists the properties of the Activity Definition Object:
 	</tr>
 </table>
 
-######Note
+####### Note
 
 URI fragments (sometimes called relative URLs) are not valid URIs. As with verbs, it is recommended that
 Activity Providers look for and use established, widely adopted, activity types.
@@ -857,7 +864,7 @@ but only if it considers the Activity Provider to have the authority to do so.
 
 ###### Activity ID  
 
-#####Requirements
+####### Requirements
 
 * An Activity id MUST be unique.
 * An Activity id MUST always reference the same activity.
@@ -865,30 +872,31 @@ but only if it considers the Activity Provider to have the authority to do so.
 * An Activity id SHOULD use a domain that the creator is authorized to use for this purpose.
 * An Activity id SHOULD be created according to a scheme that makes sure all Activity ids within 
 that domain remain unique.
-* An LRS MUST NOT treat references to the same ID as references to different activities.
+* An LRS MUST NOT treat references to the same id as references to different activities.
 * An LRS MUST ignore any information which indicates two authors or organizations may have used the same Activity id.
 * An LRS MAY accept small corrections to the Activity’s definition. For example, it would be okay for an LRS
 to accept spelling fixes, but it may not accept changes to correct responses.
 * An Activity Provider MUST ensure that Activity ids are not re-used across multiple activities.
-* An Activity Provider MUST only generate states or statements against a certain Activity id that are compatible.
+* An Activity Provider MUST only generate states or statements against a certain Activity id that are compatible
 and consistent with states or statements previously stored against the same ID.
-* An Activity Provider MUST NOT allow new versions (ie. revisions or other platforms) of the Activity 
+* An Activity Provider MUST NOT allow new versions (i.e. revisions or other platforms) of the Activity 
 to break compatibility.
 * Upon receiving a Statement with an Activity definition that differs from the one stored, an LRS
 SHOULD decide whether it considers the Learning Activity Provider to have the authority to change the definition and
 SHOULD update the stored activity definition accordingly if that decision is positive.
 	
-######Note
-If it were possible to use the same ID for two different activities, the validity of statements about 
+####### Details
+
+If it were possible to use the same id for two different activities, the validity of statements about 
 these Activities could be questioned. This means an LRS may never treat (references to) the same 
 Activity id as belonging to two different Activities, even if it thinks this was intended. Namely, 
-when a conflict with another systems occurs, it’s not possible to determine the intentions. 
+when a conflict with another system occurs, it’s not possible to determine the intentions. 
 
 <a name="actmeta"/>
 
 ###### Activity Metadata
 
-#####Requirements
+####### Requirements
 
 * An Activity with a URL identifier MAY host metadata using the <a href="#actdef">
 activity definition</a> JSON format which is used in statements, with a Content-Type of "application/json"
@@ -902,14 +910,15 @@ first encounters the Activity id.
 while preserving names or definitions not included in the loaded definition.
 
 * Upon loading any document from which the LRS can parse an activity definition
-from a URL used as an activity id, an LRS MAY consider this definition when determining
+from a URL used as an Activity id, an LRS MAY consider this definition when determining
 its internal representation of that activity's definition.
 
 <a name="interactionacts"/>
 
 ###### Interaction Activities  
 
-#####Rationale
+####### Rationale
+
 Traditional e-learning has included structures for interactions or assessments. 
 As a way to allow these practices and structures to extend Experience API's 
 utility, this specification includes built-in definitions for interactions, which 
@@ -919,14 +928,14 @@ are simple to use, and consequently limited. It is expected that communities of
 practice requiring richer interactions definitions will do so through the use 
 of extensions to an activity's type and definition.  
 
-#####Requirements
+####### Requirements
 
 * Interaction activities SHOULD have the activity type http://adlnet.gov/expapi/activities/cmi.interaction".
 * Interaction activities MUST have a valid interactionType.
 * An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as specified in the table 
 below and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction activity.
 
-#####Implementation
+####### Details
 
 The table below lists the properties for Interaction activities.
 
@@ -955,6 +964,13 @@ The table below lists the properties for Interaction activities.
 
 ###### Interaction Components  
 
+####### Requirements
+
+* Within an array of interaction components, all id values must be distinct.
+* An interaction component's id value SHOULD not have whitespace.
+
+####### Details
+
 Interaction components are defined as follows:  
 
 <table>
@@ -971,11 +987,6 @@ Interaction components are defined as follows:
 			(for example, the text for a given choice in a multiple-choice interaction)</td>
 	</tr>
 </table>
-
-#####Requirements
-
-* Within an array of interaction components, all id values must be distinct.
-* An interaction component's id value SHOULD not have whitespace.
 
 <a name="interactionType"/>
 
@@ -997,7 +1008,7 @@ See [Appendix C](#AppendixC) for examples of activity definitions for each of th
 
 ##### 4.1.4.2 When the "Object" is an Agent or a Group
 
-#####Requirements
+###### Requirements
 
 * Statements that specify an Agent or Group as an Object MUST specify an 'objectType' property. 
 
@@ -1007,7 +1018,8 @@ See [Section 4.1.2 Actor](#actor) for details regarding Agents.
 
 ##### 4.1.4.3 When the "Object" is a Statement
 
-#####Rationale
+###### Rationale
+
 There are two possibilities for using a Statement as an Object.  First, an Object can take on the form 
 of a statement that already exists by using a Statement Reference. A common use case for 
 Statement References is grading or commenting on an experience that could be tracked as an 
@@ -1021,7 +1033,7 @@ Sub-Statements would be any experience that would be misleading as its own state
 
 A Statement Reference is a pointer to another pre-existing Statement.
 
-#####Requirements
+####### Requirements
 
 * A Statement Reference MUST specify an "objectType" property with the value "StatementRef".
 * A Statement Reference MUST set the "id" property to the UUID of a Statement which is present on the system.
@@ -1030,12 +1042,12 @@ The table below lists all properties of a Statement Reference object:
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>string</td><td>In this case, MUST be "StatementRef".</td></tr>
+	<tr><td>objectType</td><td>String</td><td>In this case, MUST be "StatementRef".</td></tr>
 	<tr><td>id</td><td>UUID</td><td>The UUID of a Statement 
 	which is present on the system.</td></tr>
 </table>
 
-###### Statement References - Example
+####### Example
 
 Assuming that some statement has already been stored with 
 the ID 8f87ccde-bb56-4c2e-ab83-44982ef22df0, the following example shows how a 
@@ -1069,14 +1081,14 @@ comment could be issued on the original statement, using a new statement:
 
 A Sub-Statement is a new statement included as part of a parent statement.
 
-###### Requirements
+####### Requirements
 
 * A Sub-Statement MUST specify an "objectType" property with the value "SubStatement".
 * A Sub-Statement MUST NOT have the "id", "stored", "version" or "authority" properties.
 * A Sub-Statement MUST NOT contain a Sub-Statement of their own i.e. cannot be nested.
 * A Sub-Statement MUST be validated as a Statement in addition to other Sub-Statement requirements.
 
-###### Sub-Statements - Example
+####### Example
 
 One interesting use of Sub-Statements is in creating Statements of intention. 
 For example, using Sub-Statements we can create Statements of the form 
@@ -1124,8 +1136,9 @@ action. The concrete example that follows logically states that
 
 <a name="result"/>
 
-#### 4.1.5 Result:
-###### Description: 
+#### 4.1.5 Result
+
+###### Description
 
 An optional field that represents a measured outcome related to the statement in which it is included.
 
