@@ -568,7 +568,7 @@ The table below lists all properties of an identified Group.
 	    <td>An inverse functional identifier unique to the Group.</td><td>yes</td></tr>	
 </table>
 
-* A system consuming Statements MUST consider each anonymous Group distinct even if it has an identical set of members;
+* A system consuming Statements MUST consider each anonymous Group distinct even if it has an identical set of members.
 * A system consuming Statements MUST NOT assume that Agents in the 'member' property comprise an exact list of agents
 in a given anonymous or identified Group.
 
@@ -658,7 +658,7 @@ communities of practice can establish verbs meaningful to their members and make
 for use by anyone. A predefined list of verbs would be limited by definition and might not be able to 
 effectively capture all possible future learning experiences. 
 
-###### Details
+###### Requirements
 
 Verbs appear in statements as objects consisting of a URI and a set of display names 
 corresponding to multiple languages or dialects which provide human-readable meanings of the verb. 
@@ -671,6 +671,9 @@ corresponding to multiple languages or dialects which provide human-readable mea
 * A system reading a statement MUST NOT use the display property to infer any meaning from the statement.
 * A system reading a statement MUST NOT use the display property for any purpose other than display to a human.
 Using the display property for aggregation or categorization of statements is an example of violating this requirement. 
+
+
+###### Details
 
 The table below lists all properties of the Verb object.
 
@@ -692,6 +695,8 @@ The table below lists all properties of the Verb object.
 			display of the meaning already determined by the chosen verb.</td>
 	</tr>
 </table>
+
+###### Example
 
 ```
 {
