@@ -2131,10 +2131,13 @@ The LRS MUST support authentication using at least one of the following methods:
 -	OAuth 1.0 (rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
 - HTTP Basic Authentication
 - Common Access Cards (implementation details to follow in a later version)
+- The LRS MUST handle making, or delegating, decisions on the validity of statements,
+ and determining what operations may be performed based on the credentials used.
 
 ###### Rationale
 
-The LRS is always responsible for making, or delegating, decisions on the validity of statements, and determining what operations may be performed based on the credentials used.
+In order to balance interoperability and the varying security requirements of different
+environments, several authentication options are defined.
 
 ###### Authentication scenarios
 
