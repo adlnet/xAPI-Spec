@@ -209,6 +209,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Mike Rustici</td><td>Rustici Software</td></tr>
 	<tr><td>Nick Washburn</td><td>Riptide Software</td></tr>
 	<tr><td>Nikolaus Hruska</td><td>ADL</td></tr>
+	<tr><td>Pankaj Agrawal</td><td>Next Software Solutions</td></tr>
 	<tr><td>Patrick Kedziora</td><td>Kedzoh</td></tr>
 	<tr><td>Paul Esch</td><td>Nine Set</td></tr>
 	<tr><td>Paul Roberts</td><td>Questionmark</td></tr>
@@ -439,7 +440,7 @@ below.
 	<td>Agent who is asserting this statement is true. Verified by the LRS based on 
 	authentication, and set by LRS if left blank.</td></tr>
 	<tr><td><a href="#version">version</a></td><td>Version</td>
-	<td>The statement’s associated xAPI version, formatted according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)</td></tr>
+	<td>The statement’s associated xAPI version, formatted according to <a href="http://semver.org/spec/v1.0.0.html">Semantic Versioning 1.0.0</a>.</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
 		<td>Array of attachment objects</td>
@@ -765,7 +766,7 @@ Some examples:
 
 Objects which are provided as a value for this field SHOULD include an "objectType" 
 field. If not specified, the objectType is assumed to be "Activity". Other valid values 
-are: <a href="#agentasobj">Agent</a>, <a href="#agentasobj">Group</a>, <a href="#substmt">Sub-Statement</a> or <a href="#stmtref">StatementRef</a>.
+are: <a href="#agentasobj">Agent</a>, <a href="#agentasobj">Group</a>, <a href="#substmt">Sub-Statement</a> or [StatementRef](#stmtref)</a>.
 The properties of an Object change according to the objectType.
 
 <a name="activity"/>
@@ -957,15 +958,20 @@ Interaction components are defined as follows:
 	<tr>
 		<td>id</td>
 		<td>String</td>
-		<td>As in "cmi.interactions.n.id" as defined in the SCORM 2004 4th 
-			Edition Run-Time Environment</td> 
+		<td>A value such as used in practice for "cmi.interactions.n.id" as
+            defined in the SCORM 2004 4th Edition Run-Time Environment</td> 
 	<tr>
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>A description of the interaction component 
 			(for example, the text for a given choice in a multiple-choice interaction)</td>
 	</tr>
-</table>  
+</table>
+
+#####Requirements
+
+* Within an array of interaction components, all id values must be distinct.
+* An interaction component's id value SHOULD not have whitespace.
 
 <a name="interactionType"/>
 
@@ -1235,10 +1241,8 @@ applicable and known.
 </tr>
 <tr>
 <td>statement</td>
-<td>Statement by reference or by object</td>
-<td>Another statement (either existing or new), which should be considered as context for this statement. 
-<a href = "#stmtasobj">See: When the "Object" is a Statement</a> for details about including statements 
-within other statements. </td>
+<td>[Statement Reference](#stmtref)</td>
+<td>Another statement, which should be considered as context for this statement. </td>
 
 </tr>
 <tr>
@@ -1259,6 +1263,9 @@ or assets of an activity. (Use a new activity ID instead).
 * The revision property MUST NOT be used if the statement's object is an Agent or Group.
 * The platform property MUST NOT be used if the statement's object is an Agent or Group.
 * The language property MUST NOT be used if not applicable or unknown.
+
+__Note__: Revision has no behavioral implications within the scope of xAPI. It is simply stored,
+so that it is available for reporting tools.
 
 <a name="Registration"/>
 
@@ -1563,34 +1570,29 @@ The table below lists all properties of the Attachment object.
 </table>
 
 ###### Procedure for the exchange of attachments
-Since these attachments may lead to very large statements, it should be possible for a client to filter out 
-attachments when retrieving statements, by following this procedure:
 
-1. A statement including an attachment is construed according to the Transmission Format 
-described below.
+1. A statement including an attachment is construed according to the Transmission Format described below.
 
-2. The statement is sent to the receiving system using a content-Type of "multipart/mixed". 
-The attachments are placed at the end of such transmissions.
+2. The statement is sent to the receiving system using a Content-Type of
+"multipart/mixed". The attachments are placed at the end of such transmissions.
 
-3. The receiving system decides whether to accept or reject the statement based on the \
-information in the first part.
+3. The receiving system decides whether to accept or reject the statement based on the information in the first part.
 
-4. If it accepts the attachment, it can match the raw data of an attachment with the 
-attachment header in a statement by comparing the SHA-2 of the raw data to the SHA-2 
-declared in the header.
+4. If it accepts the attachment, it can match the raw data of an attachment
+with the attachment header in a statement by comparing the SHA-2 of the raw
+data to the SHA-2 declared in the header. It MUST not do so any other way.
 
 
 ###### Requirements for attachment statement batches
 
-A statement batch that includes attachments:
+A statement batch, statement results, or single statement that includes attachments:
 
-* MUST be of type "application/json" and include a fileUrl for every attachment or
+* MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for statement results when the attachments filter is false or
 * MUST conform to the definition of multipart/mixed in RFC 1341 and:
     * The first part of the multipart document MUST contain the statements themselves, with type "applicaton/json";
     * Each additional part contains the raw data for an attachment and forms a logical part of the statement. This 
 capability will be available when issuing PUT or POST against the statement resource.
-    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple statements that are sent 
-in one batch;
+    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple statements that are sent together;
     * SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json";
     * MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part;
 	* This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
@@ -1784,7 +1786,7 @@ Upon receiving a statement that voids another, the LRS...
 * MAY roll back any changes to activity or agent definitions which were introduced by the statement that was just voided;
 * SHOULD return a descriptive error if the target statement cannot be found;
 * MUST NOT report the voided statement when queried, but MUST report the voiding statement 
-(see <a href="#queryStatementRef">StatementRef</a> in 7.2 Statement API).
+(see [StatementRef](#queryStatementRef) in 7.2 Statement API).
 
 
 ###### Example
@@ -2035,6 +2037,7 @@ Requirements for the LRS:
 
 * MUST include the "X-Experience-API-Version" header in every response;
 * MUST set this header to ""1.0.0"";
+* MUST accept requests with a version header of "1.0" as if the version header was "1.0.0";
 * MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header;
 * MUST reject requests with a version header of "1.1.0" or greater;
 * MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
@@ -2534,7 +2537,10 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 		</td>
 	</tr>
 	<tr><td>attachments</td><td>Boolean</td><td>False</td>
-		<td>If true LRS MUST use the multipart response format and include any attachments as described in <a href="#attachments">4.1.11. Attachments</a>, otherwise the LRS MUST NOT include attachments.</td>
+		<td>If true LRS MUST use the multipart response format and include all
+            attachments as described in <a href="#attachments">4.1.11.
+            Attachments</a>, otherwise the LRS MUST NOT include attachment raw data and MUST send the prescribed response with Content-Type
+            application/json.</td>
 	</tr>
 	<tr><td>ascending</td><td>Boolean</td><td>False</td>
 		<td>If true, return results in ascending order of stored time</td>
@@ -2582,6 +2588,11 @@ statements match and will be returned so long as they fall into the time or sequ
 being fetched.
 
 This section does not apply when retrieving statements with statementId or voidedStatementId.
+
+###### Note: 
+
+StatementRefs used in the statement field in context do not affect how
+statements are filtered.
 
 <a name="voidedStatements" />
 
@@ -3140,6 +3151,7 @@ definition.type = "http://adlnet.gov/expapi/activities/link";
 
 var xhr = new XMLHttpRequest();
 xhr.open("PUT", url, true);
+xhr.setRequestHeader("X-Experience-API-Version", "1.0");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Authorization", auth);
 xhr.onreadystatechange = function() {
@@ -3626,6 +3638,7 @@ A 1.0.0 system converting a statement created in 0.9 MUST follow the steps below
 * If an authority was not previously set, set the authority to an agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
+* if the statement field in context was set, remove it from the statement.
 * Preserve all other fields without modification, including "stored". Stored should still
 be updated if the statement is passed to another system.
 
@@ -3640,6 +3653,8 @@ A 1.0.0 system converting a statement created in 0.95 MUST follow the steps belo
 * If an authority was not previously set, set the authority to an agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
+* if the statement field in context was set to anything other than a
+StatementRef, remove it from the statement.
 * Preserve all other fields without modification, including "stored". Stored should still
 be updated if the statement is passed to another system.
 
