@@ -296,7 +296,7 @@ communication, but an Activity Provider may also be separate from the experience
 
 <a name="def-actor" />
 
-__Actor__: An identity or persona of an individual or group tracked using Statements as doing an  
+__Actor__: An identity or persona of an individual or group tracked using Statements as doing an 
 action (Verb) within an Activity.
 
 <a name="def-authentication" />
@@ -335,7 +335,7 @@ the same.
 
 <a name="def-iri" />
 
-__Internationalized Resource Idenfiers (IRI)__: A unique identifier which may be a URL.
+__Internationalized Resource Identifiers (IRI)__: A unique identifier which may be a URL.
 In the xAPI, all IRIs should be a full absolute IRI including a scheme. Relative IRIs 
 should not be used. URLs should be defined within a domain controlled by the person creating the URL.
 
@@ -346,16 +346,15 @@ __Inverse Functional Identifier__: An identifier which is unique to a particular
 
 <a name="def-learning-management-system" />
 
-__Learning Management System (LMS)__: "A software package  
-used to administer one or more courses to one or more learners. An LMS is typically a web-based 
+__Learning Management System (LMS)__: "A software package used to administer one or more courses to one or more learners. An LMS is typically a web-based 
 system that allows learners to authenticate themselves, register for courses, complete courses and take  
-assessments" (LSAL, 2004 in Gallagher, 2007). In this document the term will be used in the context of 
+assessments" (Learning Systems Architecture Lab definition). In this document the term will be used in the context of 
 existing systems implementing learning standards.
 
 <a name="def-learning-record-store" />
 
 __Learning Record Store (LRS)__: A system that stores learning information. Prior to the xAPI 
-most LRSs were Learning Management Systems (LMSs), however this document uses the term 
+most LRSs were Learning Management Systems (LMSs); however this document uses the term 
 LRS to be clear that a full LMS is not necessary to implement the xAPI. The xAPI 
 is dependent on an LRS to function.
 
@@ -388,7 +387,7 @@ experience.
 
 <a name="def-statement" />
 
-__Statement__: A simple construct consisting of ```<Actor (learner)>``` ```<verb>``` ```<object>```, 
+__Statement__: A simple construct consisting of ```<actor (learner)>``` ```<verb>``` ```<object>```, 
 with ```<result>```, in ```<context>``` to track an aspect of a learning experience. A set of 
 several statements may be used to track complete details about a learning experience.
 
