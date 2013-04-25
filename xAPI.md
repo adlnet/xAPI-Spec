@@ -1448,8 +1448,8 @@ as part of a group in the case of 3-legged OAuth.
 MUST be used as the account homePage.
 * If the Agent representing the OAuth consumer is not a registered application, the temporary  
 credentials endpoint MUST be used as the account homePage.
-* An LRS MUST NOT assume Agents in the event the account name is from the same source as the 
-unregistered application. (Multiple unregistered applications could choose the same consumer key. 
+* An LRS MUST NOT trust the application portion of the authority in the event the account name is from 
+the same source as the unregistered application" (Multiple unregistered applications could choose the same consumer key. 
 As a result, there is no consistent way to verify this combination of temporary credentials and 
 the account name.) Therefore, each unregistered consumer is strongly advised to use a unique consumer key.
 
