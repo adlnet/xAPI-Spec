@@ -805,7 +805,9 @@ properties in this case.
 
 <a name="actdef"/>
 
-###### Activity Definition  
+###### Activity Definition
+
+####### Details
 
 The table below lists the properties of the Activity Definition Object:
 
@@ -849,7 +851,7 @@ The table below lists the properties of the Activity Definition Object:
 	</tr>
 </table>
 
-######Note
+####### Note
 
 URI fragments (sometimes called relative URLs) are not valid URIs. As with verbs, it is recommended that
 Activity Providers look for and use established, widely adopted, activity types.
@@ -862,7 +864,7 @@ but only if it considers the Activity Provider to have the authority to do so.
 
 ###### Activity ID  
 
-#####Requirements
+####### Requirements
 
 * An Activity id MUST be unique.
 * An Activity id MUST always reference the same activity.
@@ -870,30 +872,31 @@ but only if it considers the Activity Provider to have the authority to do so.
 * An Activity id SHOULD use a domain that the creator is authorized to use for this purpose.
 * An Activity id SHOULD be created according to a scheme that makes sure all Activity ids within 
 that domain remain unique.
-* An LRS MUST NOT treat references to the same ID as references to different activities.
+* An LRS MUST NOT treat references to the same id as references to different activities.
 * An LRS MUST ignore any information which indicates two authors or organizations may have used the same Activity id.
 * An LRS MAY accept small corrections to the Activity’s definition. For example, it would be okay for an LRS
 to accept spelling fixes, but it may not accept changes to correct responses.
 * An Activity Provider MUST ensure that Activity ids are not re-used across multiple activities.
-* An Activity Provider MUST only generate states or statements against a certain Activity id that are compatible.
+* An Activity Provider MUST only generate states or statements against a certain Activity id that are compatible
 and consistent with states or statements previously stored against the same ID.
-* An Activity Provider MUST NOT allow new versions (ie. revisions or other platforms) of the Activity 
+* An Activity Provider MUST NOT allow new versions (i.e. revisions or other platforms) of the Activity 
 to break compatibility.
 * Upon receiving a Statement with an Activity definition that differs from the one stored, an LRS
 SHOULD decide whether it considers the Learning Activity Provider to have the authority to change the definition and
 SHOULD update the stored activity definition accordingly if that decision is positive.
 	
-######Note
-If it were possible to use the same ID for two different activities, the validity of statements about 
+####### Details
+
+If it were possible to use the same id for two different activities, the validity of statements about 
 these Activities could be questioned. This means an LRS may never treat (references to) the same 
 Activity id as belonging to two different Activities, even if it thinks this was intended. Namely, 
-when a conflict with another systems occurs, it’s not possible to determine the intentions. 
+when a conflict with another system occurs, it’s not possible to determine the intentions. 
 
 <a name="actmeta"/>
 
 ###### Activity Metadata
 
-#####Requirements
+####### Requirements
 
 * An Activity with a URL identifier MAY host metadata using the <a href="#actdef">
 activity definition</a> JSON format which is used in statements, with a Content-Type of "application/json"
@@ -907,7 +910,7 @@ first encounters the Activity id.
 while preserving names or definitions not included in the loaded definition.
 
 * Upon loading any document from which the LRS can parse an activity definition
-from a URL used as an activity id, an LRS MAY consider this definition when determining
+from a URL used as an Activity id, an LRS MAY consider this definition when determining
 its internal representation of that activity's definition.
 
 <a name="interactionacts"/>
