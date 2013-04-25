@@ -1784,6 +1784,8 @@ When issuing a statement that voids another, the object of that voiding statemen
 Upon receiving a statement that voids another, the LRS...
 
 * MAY roll back any changes to activity or agent definitions which were introduced by the statement that was just voided;
+* SHOULD reject the entire request which includes the voiding statement with HTTP 403
+'Forbidden' if the request is not from a source authorized to void statements.
 * SHOULD return a descriptive error if the target statement cannot be found;
 * MUST NOT report the voided statement when queried, but MUST report the voiding statement 
 (see [StatementRef](#queryStatementRef) in 7.2 Statement API).
