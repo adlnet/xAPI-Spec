@@ -1584,7 +1584,7 @@ data to the SHA-2 declared in the header. It MUST not do so any other way.
 
 A statement batch, statement results, or single statement that includes attachments:
 
-* MUST be of type "application/json" and include a fileUrl for every attachment or
+* MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for statement results when the attachments filter is false or
 * MUST conform to the definition of multipart/mixed in RFC 1341 and:
     * The first part of the multipart document MUST contain the statements themselves, with type "applicaton/json";
     * Each additional part contains the raw data for an attachment and forms a logical part of the statement. This 
@@ -2534,10 +2534,9 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 		</td>
 	</tr>
 	<tr><td>attachments</td><td>Boolean</td><td>False</td>
-		<td>If true LRS MUST use the multipart response format and include any
+		<td>If true LRS MUST use the multipart response format and include all
             attachments as described in <a href="#attachments">4.1.11.
-            Attachments</a>, otherwise the LRS MUST NOT include attachments
-            and MUST send the prescribed response with Content-Type
+            Attachments</a>, otherwise the LRS MUST NOT include attachment raw data and MUST send the prescribed response with Content-Type
             application/json.</td>
 	</tr>
 	<tr><td>ascending</td><td>Boolean</td><td>False</td>
