@@ -1567,34 +1567,29 @@ The table below lists all properties of the Attachment object.
 </table>
 
 ###### Procedure for the exchange of attachments
-Since these attachments may lead to very large statements, it should be possible for a client to filter out 
-attachments when retrieving statements, by following this procedure:
 
-1. A statement including an attachment is construed according to the Transmission Format 
-described below.
+1. A statement including an attachment is construed according to the Transmission Format described below.
 
-2. The statement is sent to the receiving system using a content-Type of "multipart/mixed". 
-The attachments are placed at the end of such transmissions.
+2. The statement is sent to the receiving system using a Content-Type of
+"multipart/mixed". The attachments are placed at the end of such transmissions.
 
-3. The receiving system decides whether to accept or reject the statement based on the \
-information in the first part.
+3. The receiving system decides whether to accept or reject the statement based on the information in the first part.
 
-4. If it accepts the attachment, it can match the raw data of an attachment with the 
-attachment header in a statement by comparing the SHA-2 of the raw data to the SHA-2 
-declared in the header.
+4. If it accepts the attachment, it can match the raw data of an attachment
+with the attachment header in a statement by comparing the SHA-2 of the raw
+data to the SHA-2 declared in the header. It MUST not do so any other way.
 
 
 ###### Requirements for attachment statement batches
 
-A statement batch that includes attachments:
+A statement batch, statement results, or single statement that includes attachments:
 
-* MUST be of type "application/json" and include a fileUrl for every attachment or
+* MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for statement results when the attachments filter is false or
 * MUST conform to the definition of multipart/mixed in RFC 1341 and:
     * The first part of the multipart document MUST contain the statements themselves, with type "applicaton/json";
     * Each additional part contains the raw data for an attachment and forms a logical part of the statement. This 
 capability will be available when issuing PUT or POST against the statement resource.
-    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple statements that are sent 
-in one batch;
+    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple statements that are sent together;
     * SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json";
     * MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part;
 	* This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
@@ -2539,7 +2534,10 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 		</td>
 	</tr>
 	<tr><td>attachments</td><td>Boolean</td><td>False</td>
-		<td>If true LRS MUST use the multipart response format and include any attachments as described in <a href="#attachments">4.1.11. Attachments</a>, otherwise the LRS MUST NOT include attachments.</td>
+		<td>If true LRS MUST use the multipart response format and include all
+            attachments as described in <a href="#attachments">4.1.11.
+            Attachments</a>, otherwise the LRS MUST NOT include attachment raw data and MUST send the prescribed response with Content-Type
+            application/json.</td>
 	</tr>
 	<tr><td>ascending</td><td>Boolean</td><td>False</td>
 		<td>If true, return results in ascending order of stored time</td>
