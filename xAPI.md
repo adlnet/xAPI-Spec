@@ -12,7 +12,8 @@
 	*	2.1.	[ADL's Role in the Experience API](#adlrole)  
  	*	2.2.	[Contributors](#contributors)
  		*	2.2.1.	[Working Group Participants](#wg)  
-		*	2.2.2.	[Requirements Gathering Participants](#reqparticipants)  
+		*	2.2.2.	[Requirements Gathering Participants](#reqparticipants) 
+	*	2.2.3	[Reading Guidelines for the Non-Technically Inclined](#readingguidelines)
 *	3.0.	[Definitions](#defintions)  
 *	4.0.	[Statement](#statement)  
     *	4.1.	[Statement Properties](#stmtprops)  
@@ -100,10 +101,9 @@ Various refinements and clarifications including:
 The Experience API is a service that allows for statements of experience
 to be delivered to and stored securely in a Learning Record Store (LRS). These statements
 of experience are typically learning experiences, but the API can address statements
-of any kind of experience. The Experience API is
-dependent on Learning Activity Providers to create and track these learning experiences;
-this specification provides a data model and associated components on how to
-accomplish these tasks.
+of any kind of experience. The Experience API is dependent on Learning Activity Providers to 
+create and track these learning experiences; this specification provides a data model and 
+associated components on how to accomplish these tasks.
 
 Specifically, the Experience API provides:  
 
@@ -121,19 +121,18 @@ the Learning Record Store and trusted sources.
 The Experience API is the first of many envisioned technologies that will enable
 a richer architecture of online learning and training. Authentication
 services, querying services, visualization services, and personal data services 
-are some examples of additional technologies for which the Experience API is designed
+are some examples of additional technologies which the Experience API is designed
 to support. While the implementation details of these services are not specified here,
 the Experience API is designed with this larger architectural vision in mind.
  
 <a name="adlrole"/>
 
 ### 2.1 ADL's Role in the Experience API  
-ADL has taken a role of steward and facilitator in the development of the 
-Experience API.  The Experience API is seen as one piece of the ADL Training 
-and Learning Architecture, which facilitates learning anytime and anywhere. 
-ADL views the Experience API as an evolved version of SCORM that can support 
-similar use cases, but can also support many of the use cases gathered by ADL 
-and submitted by those involved in distributed learning which SCORM could not 
+The Advanced Distributed Learning (ADL) Initiative has taken on the roles of steward and facilitator 
+in the development of the Experience API.  The Experience API is seen as one piece of the ADL Training 
+and Learning Architecture, which facilitates learning anytime and anywhere. ADL views the Experience API 
+as an evolved version of SCORM that can support similar use cases, but can also support many of the use 
+cases gathered by ADL and submitted by those involved in distributed learning that SCORM could not 
 enable.  
  
 <a name="contributors"/> 
@@ -241,7 +240,9 @@ group, the Rustici Software _UserVoice_ website, one-on-one interviews and vario
 blogs were important sources from which requirements were gathered for the 
 Experience API specification.
 
-### 2.3 Reading guidelines for the non-technically inclined.
+<a name="readingguidelines"/> 
+
+### 2.3 Reading Guidelines for the Non-Technically Inclined
 
 This is a definitive document which describes how the Experience API is to be implemented
 across a variety of systems. It is a technical document authored specifically for individuals 
