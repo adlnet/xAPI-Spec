@@ -178,6 +178,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Dan Kuemmel</td><td>Sentry Insurance</td></tr>
 	<tr><td>Dave Mozealous</td><td>Articulate</td></tr>
 	<tr><td>David Ells</td><td>Rustici Software</td></tr>
+	<tr><td>David N. Johnson</td><td>Clear Learning Systems</td></tr>
 	<tr><td>Doug Hagy</td><td>Twin Lakes Consulting Corporation</td></tr>
 	<tr><td>Eric Johnson</td><td>Planning and Learning Technologies, Inc.</td></tr>
 	<tr><td>Fiona Leteney</td><td>Feenix e-learning</td></tr>
@@ -208,6 +209,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Mike Rustici</td><td>Rustici Software</td></tr>
 	<tr><td>Nick Washburn</td><td>Riptide Software</td></tr>
 	<tr><td>Nikolaus Hruska</td><td>ADL</td></tr>
+	<tr><td>Pankaj Agrawal</td><td>Next Software Solutions</td></tr>
 	<tr><td>Patrick Kedziora</td><td>Kedzoh</td></tr>
 	<tr><td>Paul Esch</td><td>Nine Set</td></tr>
 	<tr><td>Paul Roberts</td><td>Questionmark</td></tr>
@@ -428,17 +430,17 @@ below.
 	<td>Context that gives the statement more meaning. Examples: a team the actor is 
 	working with, altitude at which a scenario was attempted in a flight simulator.</td></tr>
 	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td>
-	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Time_intervals">ISO 8601</a>) 
+	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
 	of when the events described within this statement occurred. If not provided, LRS 
 	should set this to the value of "stored" time.</td></tr>
 	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td>
-	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>) 
+	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
 	of when this statement was recorded. Set by LRS.</td></tr>
 	<tr><td><a href="#authority">authority</a></td><td>Object</td>
 	<td>Agent who is asserting this statement is true. Verified by the LRS based on 
 	authentication, and set by LRS if left blank.</td></tr>
 	<tr><td><a href="#version">version</a></td><td>Version</td>
-	<td>toThe statement’s associated xAPI version, formatted according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)</td></tr>
+	<td>The statement’s associated xAPI version, formatted according to <a href="http://semver.org/spec/v1.0.0.html">Semantic Versioning 1.0.0</a>.</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
 		<td>Array of attachment objects</td>
@@ -507,13 +509,14 @@ An Agent (an individual) is a persona or system.
 * An agent MUST NOT include more than one (1) inverse functional identifier;
 * An agent SHOULD NOT use inverse functional identifiers that are also used as a Group identifier;
 
-The table below lists the properties of Agent objects, other than the inverse functional
-identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a>).
+The table below lists the properties of Agent objects.
 
 <table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a statement's Object.</td></tr>
-	<tr><td>name</td><td>string</td><td>Full name of the Agent. This property is optional.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a statement's Object.</td><td>no</td></tr>
+	<tr><td>name</td><td>string</td><td>Full name of the Agent.</td><td>no</td></tr>
+	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
+	    <td>An inverse functional identifier unique to the Agent.</td><td>yes</td></tr>
 </table>
 
 
@@ -537,10 +540,10 @@ this cluster, e.g. an ad hoc team;
 The table below lists all properties of an anonymous Group.
 
 <table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>String</td><td>"Group". This property is required.</td></tr>
-	<tr><td>name</td><td>String</td><td>Name of the group. Optional.</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>yes</td></tr>
+	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>no</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td><td>yes</td></tr>
 </table>
 
 An identified Group is used to uniquely identify a cluster of Agents.
@@ -550,14 +553,15 @@ An identified Group is used to uniquely identify a cluster of Agents.
 * An identified Group MUST NOT contain Group objects in the 'member' property;
 * An identified Group SHOULD NOT use inverse functional identifiers that are also used as Agent identifiers.
 
-The table below lists all properties of an identified Group, other than the inverse functional
-identifiers (see <a href="#inversefunctional"> 4.1.2.3 Inverse functional Identifier</a>).
+The table below lists all properties of an identified Group.
 
 <table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>String</td><td>"Group". This property is required.</td></tr>
-	<tr><td>name</td><td>String</td><td>Name of the group. Optional.</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>yes</td></tr>
+	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>no</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td><td>yes</td></tr>
+	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
+	    <td>An inverse functional identifier unique to the Group.</td><td>yes</td></tr>	
 </table>
 
 * A system consuming Statements MUST consider each anonymous Group distinct even if it has an identical set of members;
@@ -726,8 +730,8 @@ or the verb URI http://example.com/فعل/خواندن might denote the action o
 
 Communities of practice will, at some point in time, need to establish new Verbs to meet the needs of their constituency.
 
-* Anyone Establishing a new Verb MUST own the URI, or MUST have permission from the owner to use it to denote an xAPI verb;
-* Anyone Establishing a new Verb SHOULD make a human-readable description of the intended usage of the verb 
+* Anyone establishing a new Verb MUST own the URI, or MUST have permission from the owner to use it to denote an xAPI verb;
+* Anyone establishing a new Verb SHOULD make a human-readable description of the intended usage of the verb 
 accessible at the URI.
 
 ###### Verb Lists and Repositories
@@ -743,37 +747,34 @@ exists.  There are times when Activity Providers may wish to use a different ver
 <a name="object"/>
 
 ####4.1.4 Object
-###### Definition
 
-The object of a statement is the Activity, Agent, or Statement that is the object 
-of the statement. It is the "this" part of the statement, cf. "I did this". 
+###### Description
 
-###### NOTE:
+The Object of a Statement can be an Activity, Agent/Group, Sub-Statement, or Statement Reference. It is the "this" part of the 
+statement, i.e. "I did this". 
 
-Objects which are provided as a value for this field SHOULD include an "objectType" 
-field. If not specified, the object is assumed to be an Activity. Other valid values 
-are: <a href="#agentasobj">Agent</a>, <a href="#substmt">Statement</a> or <a href="#stmtref">StatementRef</a>.
-
-###### Rationale
-
-Objects in a statement may be either an Activity, an Agent or another statement. 
 Some examples:
 
-* The object is an Activity: "Jeff wrote an essay about hiking."
+* The Object is an Activity: "Jeff wrote an essay about hiking."
 
 * The Object is an Agent: "Nellie interviewed Jeff."
 
-* The Object is a Statement: "Nellie commented on 'Jeff wrote an essay about hiking.'"
+* The Object is a Sub-Statement or Statement Reference (different implementations, but similar when human-read): 
+"Nellie commented on 'Jeff wrote an essay about hiking.'"
 
-Statements as objects are typically, but not exclusively, used in scenarios where 
-some existing activity is graded, reviewed or commented on.
+###### Details
+
+Objects which are provided as a value for this field SHOULD include an "objectType" 
+field. If not specified, the objectType is assumed to be "Activity". Other valid values 
+are: <a href="#agentasobj">Agent</a>, <a href="#agentasobj">Group</a>, <a href="#substmt">Sub-Statement</a> or <a href="#stmtref">StatementRef</a>.
+The properties of an Object change according to the objectType.
 
 <a name="activity"/>
 
-##### 4.1.4.1 When the "Object" is an Activity
+##### 4.1.4.1 When the ObjectType is Activity
 
-A statement may represent an Activity as the object of the statement. An activity is any thing 
-which is interacted with. See Section [3.0 Definitions](#30-definitions).
+A statement may represent an activity as the object of the statement. The following table lists the Object 
+properties in this case.
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -784,138 +785,146 @@ which is interacted with. See Section [3.0 Definitions](#30-definitions).
 	</tr>
 	<tr>
 		<td><a href="#acturi">id</a></td><td>URI</td>
-		<td>Required. MAY be a URL, which points to the logical definition of the activity. 
-		This MAY point to metadata or the URL for the activity</td>
+		<td>An identifier for a single unique activity. Required.</td>
 	</tr>
 	<tr>
 		<td><a href="#actdef">definition</a></td>
-		<td>Optional Activity Definition Object</td>
-		<td>Metadata, <a href="#actdef">See below</a></td>
+		<td>Object</td>
+		<td>Optional Metadata, <a href="#actdef">See below</a></td>
 	</tr>
 </table>
-
-<a name="acturi"/>
-
-###### Activity ID  
-An activity ID must always refer to a single unique activity. There may be 
-corrections to that activity's definition. Spelling fixes would be appropriate, 
-for example, but changing correct responses would not.  
-
-The activity ID is unique, and any reference to it always refers to the same 
-activity. Activity Providers must ensure this is true and the LRS may not attempt 
-to treat multiple references to the same ID as references to different activities, 
-regardless of any information which indicates two authors or organizations may 
-have used the same activity ID.    
-
-When defining an activity ID, care must be taken to make sure it will not be 
-re-used. It should use a domain the creator controls or has been authorized to 
-use for this purpose, according to a scheme the domain owner has adopted to make 
-sure activity IDs within that domain remain unique.  
-
-Any state or statements stored against an activity ID must be compatible and 
-consistent with any other state or statements that are stored against the same 
-activity ID, even if those statements were stored in the context of a new 
-revision or platform.   
-
-###### NOTE: 
-The prohibition against an LRS treating references to the same activity 
-ID as two different activities, even if the LRS can positively determine that 
-was the intent, is crucial to prevent activity ID creators from creating IDs 
-that could be easily duplicated, as intent would be indeterminable should a 
-conflict with another system arise.  
 
 <a name="actdef"/>
 
 ###### Activity Definition  
 
-Activity definitions SHOULD include populated name, description, and type properties.
-Other properties defined below MAY be included.
+The table below lists the properties of the Activity Definition Object:
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Use</th><th>Description</th></tr>
 	<tr>
 		<td>name</td>
 		<td><a href="#misclangmap">Language Map</a></td>
+		<td>Recommended</td>
 		<td>The human readable/visual name of the activity</td>
 	</tr>
 	<tr>
 		<td>description</td>
 		<td><a href="misclangmap">Language Map</a></td>
+		<td>Recommended</td>
 		<td>A description of the activity</td>
 	</tr>
 	<tr>
 		<a name="acttype"/>
-
 		<td>type</td>
 		<td>URI</td>
-		<td>the type of activity. Note, URI fragments (sometimes called 
-			relative URLs) are not valid URIs. <a href="#verb-lists-and-repositories">As with verbs</a>, we recommend
-			that Learning Activity Providers look for and use established, 
-			widely adopted, activity types.
-		</td>
+		<td>Recommended</td>
+		<td>The type of activity.</td>
 	</tr>
 	<tr>
-		<td>url</td>
+		<td>moreInfo</td>
 		<td>URL</td>
-		<td>A url which SHOULD resolve to human-readable information about the activity,
+		<td>Optional</td>
+		<td>SHOULD resolve to a document human-readable information about the activity,
 		which MAY include a way to 'launch' the activity.
 		</td>
 	</tr>
 	<tr>
-		<td>interactionType | correctResponsesPattern | choices | scale | 
-			source | target | steps</td>
-		<td colspan="2"><a href="#interactionacts">See "Interaction Activities"</a></td>
+		<td colspan="4">Interaction properties, See: <a href="#interactionacts">Interaction Activities</a></td>
 	</tr>
 	<tr>
 		<td>extensions</td>
-		<td>Extensions Object</td>
+		<td>Object</td>
+		<td>Optional</td>
 		<td>A map of other properties as needed (see: <a href="#miscext">Extensions</a>)</td>
 	</tr>
-</table> 
+</table>
 
-An LRS should update its internal representation of an activity's definition 
-upon receiving a statement with a different definition of the activity from the 
-one stored, but only if it considers the Learning Activity Provider to have the 
-authority to do so.  
+######Note
+
+URI fragments (sometimes called relative URLs) are not valid URIs. As with verbs, it is recommended that
+Activity Providers look for and use established, widely adopted, activity types.
+
+An LRS should update its internal representation of an activity's definition upon receiving a 
+statement with the same activity ID, but with a different definition of the Activity from the one stored, 
+but only if it considers the Activity Provider to have the authority to do so.  
+
+<a name="acturi"/>
+
+###### Activity ID  
+
+#####Requirements
+
+* An Activity id MUST be unique.
+* An Activity id MUST always reference the same activity.
+* An Activity id MAY point to metadata or the URL for the activity.
+* An Activity id SHOULD use a domain that the creator is authorized to use for this purpose.
+* An Activity id SHOULD be created according to a scheme that makes sure all Activity ids within 
+that domain remain unique.
+* An LRS MUST NOT treat references to the same ID as references to different activities.
+* An LRS MUST ignore any information which indicates two authors or organizations may have used the same Activity id.
+* An LRS MAY accept small corrections to the Activity’s definition. For example, it would be okay for an LRS
+to accept spelling fixes, but it may not accept changes to correct responses.
+* An Activity Provider MUST ensure that Activity ids are not re-used across multiple activities.
+* An Activity Provider MUST only generate states or statements against a certain Activity id that are compatible.
+and consistent with states or statements previously stored against the same ID.
+* An Activity Provider MUST NOT allow new versions (ie. revisions or other platforms) of the Activity 
+to break compatibility.
+* Upon receiving a Statement with an Activity definition that differs from the one stored, an LRS
+SHOULD decide whether it considers the Learning Activity Provider to have the authority to change the definition and
+SHOULD update the stored activity definition accordingly if that decision is positive.
+	
+######Note
+If it were possible to use the same ID for two different activities, the validity of statements about 
+these Activities could be questioned. This means an LRS may never treat (references to) the same 
+Activity id as belonging to two different Activities, even if it thinks this was intended. Namely, 
+when a conflict with another systems occurs, it’s not possible to determine the intentions. 
 
 <a name="actmeta"/>
 
 ###### Activity Metadata
 
-* Activities with URL identifiers MAY host metadata using the <a href="#actdef">
+#####Requirements
+
+* An Activity with a URL identifier MAY host metadata using the <a href="#actdef">
 activity definition</a> JSON format which is used in statements, with a Content-Type of "application/json"
 
-* If the activity URI is a URL, LRS's SHOULD attempt to GET that URL, and include in HTTP
+* If an Activity URI is a URL, an LRS SHOULD attempt to GET that URL, and include in HTTP
 headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
-first encounters the activity id.
+first encounters the Activity id.
 
-* If the LRS loads JSON which is a valid activity definition from a URL used as an activity id,
- the LRS SHOULD incorporate the loaded definition into its internal definition for that activity,
+* Upon loading JSON which is a valid activity definition from a URL used as an Activity id,
+ an LRS SHOULD incorporate the loaded definition into its internal definition for that activity,
 while preserving names or definitions not included in the loaded definition.
 
-* If the LRS loads any document from which the LRS can parse an activity definition
-from a URL used as an activity id, then the LRS MAY consider this definition when determining
+* Upon loading any document from which the LRS can parse an activity definition
+from a URL used as an activity id, an LRS MAY consider this definition when determining
 its internal representation of that activity's definition.
 
 <a name="interactionacts"/>
 
 ###### Interaction Activities  
 
+#####Rationale
 Traditional e-learning has included structures for interactions or assessments. 
 As a way to allow these practices and structures to extend Experience API's 
-utility, this specification include built in definitions for interactions which 
-borrows from the CMI data model. These definitions are intended to provide a 
+utility, this specification includes built-in definitions for interactions, which 
+borrows from the SCORM 2004 4th Edition Data Model. These definitions are intended to provide a 
 simple and familiar utility for recording interaction data. These definitions 
 are simple to use, and consequently limited. It is expected that communities of 
 practice requiring richer interactions definitions will do so through the use 
 of extensions to an activity's type and definition.  
 
-When defining interaction activities, the activity type: 
-"http://adlnet.gov/expapi/activities/cmi.interaction" SHOULD 
-be used, and a valid interactionType MUST be specified. If interactionType 
-is specified, an LRS processing MAY validate the remaining properties as 
-specified in the table below, and return HTTP 400 "Bad Request" if the 
-remaining properties are not valid for the interaction type.  
+#####Requirements
+
+* Interaction activities SHOULD have the activity type http://adlnet.gov/expapi/activities/cmi.interaction".
+* Interaction activities MUST have a valid interactionType.
+* An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as specified in the table 
+below and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction activity.
+
+#####Implementation
+
+The table below lists the properties for Interaction activities.
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -923,14 +932,14 @@ remaining properties are not valid for the interaction type.
 		<td>interactionType</td>
 		<td>String</td>
 		<td>As in "cmi.interactions.n.type" as defined in the SCORM 2004 4th 
-			edition Runtime Environment.</td>
+			Edition Run-Time Environment.</td>
 	</tr>
 	<tr>
 		<td>correctResponsesPattern</td>
 		<td>An array of strings</td>
 		<td>Corresponds to 
 			"cmi.interactions.n.correct_responses.n.pattern" as defined in 
-			the SCORM 2004 4th edition Runtime Environment, where the final 
+			the SCORM 2004 4th Edition Run-Time Environment, where the final 
 			<em>n</em> is the index of the array.</td>
 	</tr>
 	<tr>
@@ -950,11 +959,11 @@ Interaction components are defined as follows:
 		<td>id</td>
 		<td>String</td>
 		<td>As in "cmi.interactions.n.id" as defined in the SCORM 2004 4th 
-			edition Runtime Environment</td> 
+			Edition Run-Time Environment</td> 
 	<tr>
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
-		<td>a description of the interaction component 
+		<td>A description of the interaction component 
 			(for example, the text for a given choice in a multiple-choice interaction)</td>
 	</tr>
 </table>  
@@ -962,7 +971,8 @@ Interaction components are defined as follows:
 <a name="interactionType"/>
 
 The following table shows the supported lists of CMI interaction components for 
-an interaction activity with the given interactionType.  
+an interaction activity with the given interactionType.
+
 <table>
 	<tr><th>interactionType</th><th>supported component list(s)</th><tr>
 	<tr><td>choice, sequencing</td><td>choices</td></tr>
@@ -978,9 +988,9 @@ See [Appendix C](#AppendixC) for examples of activity definitions for each of th
 
 ##### 4.1.4.2 When the "Object" is an Agent or a Group
 
-Statements that specify an Agent or Group as an Object...
+#####Requirements
 
-- MUST specify an 'objectType' property. 
+* Statements that specify an Agent or Group as an Object MUST specify an 'objectType' property. 
 
 See [Section 4.1.2 Actor](#actor) for details regarding Agents.  
 
@@ -988,30 +998,31 @@ See [Section 4.1.2 Actor](#actor) for details regarding Agents.
 
 ##### 4.1.4.3 When the "Object" is a Statement
 
-###### Rationale
-
-A statement that is the object in another statement can either be existing or 
-new. For example, when grading or commented on an experience that is tracked as an independant event,
-the existing statement about that experience will be the object of the statement. Also, 
-in the special case of <a href="#voided">voiding</a>, the object is an already 
-existing statement. In these situations, a Statement Reference is used.
-
-When the object is an experience that would be misleading as an independent statement,
-that experience can be tracked as a statement within a statement. These are called Sub-Statements. 
-An example is given further below.
+#####Rationale
+There are two possibilities for using a Statement as an Object.  First, an Object can take on the form 
+of a statement that already exists by using a Statement Reference. A common use case for 
+Statement References is grading or commenting on an experience that could be tracked as an 
+independent event.  The special case of voiding a statement would also use a Statement Reference.
+Second, an Object can be brand new statement by using a Sub-Statement.  A common use case for 
+Sub-Statements would be any experience that would be misleading as its own statement. Each type is defined below.
 
 <a name="stmtref"/>
 
 ###### Statement References
 
-A statement reference is a pointer to another pre-existing statement.
+A Statement Reference is a pointer to another pre-existing Statement.
+
+#####Requirements
+
+* A Statement Reference MUST specify an "objectType" property with the value "StatementRef".
+* A Statement Reference MUST set the "id" property to the UUID of a Statement which is present on the system.
 
 The table below lists all properties of a Statement Reference object:
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>string</td><td>MUST be "StatementRef".</td></tr>
-	<tr><td>id</td><td>UUID</td><td>MUST be set to the UUID of a statement 
+	<tr><td>objectType</td><td>string</td><td>In this case, MUST be "StatementRef".</td></tr>
+	<tr><td>id</td><td>UUID</td><td>The UUID of a Statement 
 	which is present on the system.</td></tr>
 </table>
 
@@ -1050,19 +1061,16 @@ comment could be issued on the original statement, using a new statement:
 A Sub-Statement is a new statement included as part of a parent statement.
 
 ###### Requirements
-A Sub-Statement...
 
-* MUST specify an "objectType" property with the value "SubStatement";
-* MUST NOT have the "id", "stored", or "authority" properties;
-* MUST NOT contain a sub-statement of their own i.e. cannot be nested.
+* A Sub-Statement MUST specify an "objectType" property with the value "SubStatement".
+* A Sub-Statement MUST NOT have the "id", "stored", "version" or "authority" properties.
+* A Sub-Statement MUST NOT contain a Sub-Statement of their own i.e. cannot be nested.
+* A Sub-Statement MUST be validated as a Statement in addition to other Sub-Statement requirements.
 
-Implementations MUST validate the sub-statement as they would other statements, 
-with the addition of these rules.
+###### Sub-Statements - Example
 
-###### Sub-statements - Example
-
-One interesting use of sub-statements is in creating statements of intention. 
-For example, using sub-statements we can create statements of the form 
+One interesting use of Sub-Statements is in creating Statements of intention. 
+For example, using Sub-Statements we can create Statements of the form 
 ```"<I> <planned> (<I> <did> <this>)"```  to indicate that we've planned to take some 
 action. The concrete example that follows logically states that 
 "I planned to visit 'Some Awesome Website'". 
@@ -1105,10 +1113,6 @@ action. The concrete example that follows logically states that
 }
 ```
 
-###### NOTE: 
-Whilst the verb display MAY take the future tense, the verb id SHOULD remain past tense.
-Later, when 'I' actually visit 'Some Awesome Website', reporting tools can thereby match the verb ids. 
-
 <a name="result"/>
 
 #### 4.1.5 Result:
@@ -1118,39 +1122,42 @@ An optional field that represents a measured outcome related to the statement in
 
 ###### Details
 
-A result can be completion, success, score, etc. 
-The 'Result' field may also contain arbitrary measurements if needed by the Learning Activity Provider.
+The following table contains the properties of the Results Object.
 
 <table border="1">
-<tr><th>property</th><th>type</th><th>description</th></tr>
+<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 <td>score</td>
-<td><a href ="#Score">Score object</a></td>
-<td>The score of the agent in relation to the success or quality of the experience. </a></td>
+<td>Object</td>
+<td>The score of the Agent in relation to the success or quality of the experience. <a href ="#Score">See: Score</a></a></td>
 </tr>
-<tr><td>success</td><td>Boolean</td><td>Was the learning activity successful?</td>
+<tr><td>success</td><td>Boolean</td><td>Indicates whether or not the attempt on the activity was successful.</td>
 </tr>
-<tr><td>completion</td><td>Boolean</td><td>Was the learning activity completed?</td>
+<tr><td>completion</td><td>Boolean</td><td>Indicates whether or not the activity was completed.</td>
 </tr>
 <tr>
 <td>response</td><td>String</td><td>A response appropriately formatted for the given activity.</td>
 </tr>
 <tr>
-<td>duration</td><td>Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601%22%20%5Cl%20%22Durations">ISO 8601</a> with  a precision of 0.01 seconds</td><td>Period of time over which the statement occurred.</td>
+<td>duration</td><td>Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>
+with a precision of 0.01 seconds</td><td>Period of time over which the Statement occurred.</td>
 </tr>
 <tr>
-<td>Extensions</td><td><a href="#miscext">Extensions object</a></td><td>A map of other properties as needed.</td>
+<td>Extensions</td><td>Object</td><td>A map of other properties as needed.
+<a href="#miscext">See: Extensions</a></td>
 </tr>
 </table> 
 
 <a name="Score"/>
 
-##### 4.1.5.1 Score property
+##### 4.1.5.1 Score
 
 ###### Description
 An optional numeric field that represents the outcome of a graded activity achieved by an agent.
 
+###### Details
 
-The table below defines the score object. 
+The table below defines the Score Object. 
+
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>scaled</td><td>Decimal number between -1 and 1, inclusive</td><td>Cf. 'cmi.score.scaled' in SCORM 2004 4th Edition</td></tr>
@@ -1159,33 +1166,34 @@ The table below defines the score object.
 	<tr><td>max</td><td>Decimal number greater than min (if present)</td><td>Cf. 'cmi.score.max'</td></tr>
 </table>
 
-###### Details
+###### Requirements
 
-The Score property...
-
-- SHOULD include 'scaled' if a logical percent based score is known;
-- SHOULD NOT be used for scores relating to progress or completion. Consider using an extension from an extension 
-profile instead.
+* The Score Object SHOULD include 'scaled' if a logical percent based score is known.
+* The Score Object SHOULD NOT be used for scores relating to progress or completion.  Consider using an extension
+from an extension profile instead.
 
 <a name="context"/>
 
 #### 4.1.6 Context
 
 ###### Description: 
-An optional field that provides a place to add contextual information to a statement. All its field properties are 
-optional.
+An optional field that provides a place to add contextual information to a statement. All properties are optional.
 
 ###### Rationale: 
 The "context" field provides a place to add some contextual information to a statement. It can store information such 
 as the instructor for an experience, if this experience happened as part of a team activity, or how an experience fits 
 into some broader activity.
 
+###### Details:
+
+The following table contains the properties of the Context Object.
+
 <table border="1">
 <tr><th>property</th><th>type</th><th>description</th></tr>
 <tr>
 <td>registration</td>
 <td>UUID</td>
-<td>The registration that the statement is associated with. <a href ="#Registration">See 4.1.6.1</a></td>
+<td>The registration that the statement is associated with. 
 
 </tr>
 <tr>
@@ -1204,34 +1212,25 @@ into some broader activity.
 <td>contextActivities</td>
 <td>contextActivities object</td>
 <td>A map of the types of learning activity context that this statement is related to.
-Valid context types are: "parent", "grouping", "category", "other". <a href ="#contextActivities">See 4.1.6.2</a></td>
+Valid context types are: "parent", "grouping", "category" and "other". 
 
 </tr>
 <tr>
 <td>revision</td>
 <td>String</td>
-<td>Revision of the learning activity associated with this statement. Format is free.<br>
-- SHOULD be used to track fixes of minor issues (like a spelling error), <br>
-- SHOULD NOT be used if there is a major change in learning objectives, pedagogy, or assets of an activity. (Use a new 
-activity ID instead).<br>
-- MUST NOT be used if the statement's object is an Agent or Group.
-
-
+<td>Revision of the learning activity associated with this statement. Format is free.
 </tr>
 <tr>
 <td>platform</td>
 <td>String</td>
-<td>Platform used in the experience of this learning activity. <br>
-- MUST NOT be used if the statement's object is an Agent or Group.
-<br>Defined vocabulary, TBD. </td>
+<td>Platform used in the experience of this learning activity. </td>
 
 </tr>
 <tr>
 <td>language</td>
 <td>String (as defined in <a href="http://tools.ietf.org/html/rfc5646">RFC 5646</a>)</td>
 <td>Code representing the language in which the experience being recorded in this statement (mainly) occurred in, if 
-applicable and known.<br>
-- MUST NOT be used if not applicable or unknown.
+applicable and known.
 </td>
 
 </tr>
@@ -1239,60 +1238,56 @@ applicable and known.<br>
 <td>statement</td>
 <td>Statement by reference or by object</td>
 <td>Another statement (either existing or new), which should be considered as context for this statement. 
-<a href = "#stmtasobj">See Section 4.1.4.3</a> for details about including statements within other statements. </td>
+<a href = "#stmtasobj">See: When the "Object" is a Statement</a> for details about including statements 
+within other statements. </td>
 
 </tr>
 <tr>
 <td>extensions</td>
-<td>Extensions object</td>
+<td>Object</td>
 <td>A map of any other domain-specific context relevant to this statement. For example, in a flight simulator 
-altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a href="#miscext">See Section 5.3</a>)</td>
+altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a href="#miscext">See Extensions</a>)</td>
 
 </tr>
 
 </table>
 
+###### Requirements
+
+* The revision property SHOULD be used to track fixes of minor issues (like a spelling error).
+* The revision property SHOULD NOT be used if there is a major change in learning objectives, pedagogy, 
+or assets of an activity. (Use a new activity ID instead).
+* The revision property MUST NOT be used if the statement's object is an Agent or Group.
+* The platform property MUST NOT be used if the statement's object is an Agent or Group.
+* The language property MUST NOT be used if not applicable or unknown.
+
+__Note__: Revision has no behavioral implications within the scope of xAPI. It is simply stored,
+so that it is available for reporting tools.
+
 <a name="Registration"/>
 
 ##### 4.1.6.1 Registration property
 
-###### Description:
+###### Description
 An instance of a learner undertaking a particular learning activity.
 
 ###### Details:
-When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration. For example all 
-the statements about one time a person took a test might have one registration. If the learner takes the test again, 
-the statements from this second occasion would have a different registration from the first occasion. 
-
-The LMS may also close the registration at some point when it considers the learning experience complete. For 
-Experience API purposes, a registration may be applied more broadly; an LMS could assign a group of students to a 
-group of activities and track all related statements in one registration.
+When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration. 
+The Experience API applies the concept of registration more broadly.  A registration could be 
+considered to be an attempt, a session, or could span multiple Activities. There is no expectation that 
+completing an activity ends a registration. Nor is a registration necessarily confined to a single Agent.
 
 <a name="contextActivities"/>
 
 ##### 4.1.6.2 contextActivities property
 
-###### Description: 
+###### Description
 A map of the types of learning activity context that this statement is related to.
 
-###### Rationale: 
+###### Rationale
 Many statements do not just involve one object activity that is the focus,
-but relate to other contextually relevant activities.
-"Context activities" allow for these related activities to be represented
-in a structured manner.
-
-###### Requirements
-* every key in the contextActivities object MUST be one of parent, grouping, category, or other.
-* every value in the contextActivities object MUST be either a single Activity object or an array of Activity objects.
-
-###### Requirements for the client
-* every value in the contextActivities object SHOULD be an array
-of Activity objects instead of a single Activity object.
-
-###### Requirements for the LRS
-* every value in the contextActivities object MUST be returned
-as an array, even if it arrived as a single Activity object (in which
-case it MUST be returned as an array of length one containing the same Activity).
+but relate to other contextually relevant activities. "Context activities" allow for 
+these related activities to be represented in a structured manner.
 
 ###### Details:
 There are four valid context types. All, any or none of these MAY be used in a given statement:
@@ -1322,6 +1317,7 @@ activity refers to the textbook, and the exam is a context activity of type "oth
 
 Single Activity objects are allowed as values so that 0.95 statements will be compatible with 1.0.0.
 
+###### Note 
 The values in this section are not for expressing all the relationships the statement object has.
 Instead, they are for expressing relationships appropriate for the specific statement
 (though the nature of the object will often be important in determining that).
@@ -1329,16 +1325,16 @@ For instance, it is appropriate in a statement about a test to include the cours
 the test is part of as parent, but not to include every possible degree
 program the course could be part of in the grouping value.
 
-###### Example I:
+###### Requirements
+* Every key in the contextActivities object MUST be one of parent, grouping, category, or other.
+* Every value in the contextActivities object MUST be either a single Activity object or an array of Activity objects.
+* The client SHOULD ensure that every value in the contextActivities object is an array of Activity objects 
+instead of a single Activity object.
+* The LRS MUST return every value in the contextActivities object as an array, even if it arrived
+as a single Activity object.
+* The LRS MUST return single Activity objects as an array of length one containing the same Activity.
 
-```
-{
-	"other" : [{
-	"id" : "http://example.adlnet.gov/xapi/example/test"
-	}]
-}
-```
-###### Example II: 
+###### Example
 
 Consider the following hierarchical structure: "Questions 1 to 6"
 are part of "Test 1" which in turn belongs to the course "Algebra 1". 
@@ -1466,7 +1462,7 @@ concrete example which represents a pairing of an OAuth consumer and a user.
 
 ```
 "authority": {
-	"objectType" : "group",
+	"objectType" : "Group",
 	"member": [
 		{
 			"account": {
@@ -1493,7 +1489,7 @@ flow among such LRSs the LRS is given some flexibility on statement versions tha
 
 ###### LRS Requirements
 * An LRS MUST accept all statements where their version starts with "1.0." if they otherwise validate;
-* An LRS MUST reject all statements with a version specified that does not start with "1.0;"
+* An LRS MUST reject all statements with a version specified that does not start with "1.0.";
 * Statements returned by an LRS MUST retain the version they are accepted with. If they
 lack a version, the version MUST be set to 1.0.0.
 
@@ -1503,8 +1499,7 @@ lack a version, the version MUST be set to 1.0.0.
 * If clients set the statement version, they MUST set it to 1.0.0
 
 
-<a name="voided"/>
-
+<a name="attachments"/>
 #### 4.1.11 Attachments
 
 ###### Description: 
@@ -1698,8 +1693,8 @@ X-Experience-API-Hash:495395e777cd98da653df9615d09c0fd6bb2f8d4788394cd53c56a3bfd
 here is a simple attachment
 --abcABC0123'()+_,-./:=?--
 ```
-<a name="signature"/>
 
+<a name="dataconstraints"/>
 #### 4.1.12 Data Constraints
 All the properties used in statements are restricted to certain types, and those types
 constrain the behavior of systems processing statements. For clarity, certain key
@@ -1767,8 +1762,7 @@ endpoint, see Section [7.2 "Statement API"](#stmtapi) for details.
 	</tr>
 </table>
 
-<a name="misctypes"/> 
-
+<a name="voided"/>
 #### 4.3 Voided:
 ###### Rationale
 
@@ -1832,8 +1826,7 @@ A reporting system...
 See ["Statement References"](#stmtref) in [Section 4.1.4.3 When the "Object" is a Statement](#stmtasobj) for details about making references to other 
 statements. 
 
-<a name="attachments"/>
-
+<a name="signature"/>
 #### 4.4 Signed Statements
 
 ###### Description:
@@ -1876,6 +1869,9 @@ In order to verify signatures are well formed, the LRS MUST do the following:
     * Decode the JWS signature, and load the signed serialization of the statement from the
 JWS signature payload.
     * Validate that the "original" statement is logically equivalent to the received statement.
+    	* When making this equivilance check, differences which could have been caused by
+    	allowed or required LRS processing of "id", "authority", "stored", "timestamp", or
+    	"version" MUST be ignored.
     * If the JWS header includes an X.509 certificate, validate the signature against that
     certificate as defined in JWS.
 
@@ -1888,8 +1884,7 @@ the scope of this specification.
 See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example.
 
 
-<a name="dataconstraints"/>
-
+<a name="misctypes"/>
 ## 5.0 Miscellaneous Types
 
 <a name="miscdocument"/> 
@@ -2041,6 +2036,7 @@ Requirements for the LRS:
 
 * MUST include the "X-Experience-API-Version" header in every response;
 * MUST set this header to ""1.0.0"";
+* MUST accept requests with a version header of "1.0" as if the version header was "1.0.0";
 * MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header;
 * MUST reject requests with a version header of "1.1.0" or greater;
 * MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
@@ -2059,44 +2055,66 @@ Converting statements to other versions:
 <a href="#AppendixE">Appendix E: Converting Statements to 1.0.0</a>.
 
 <a name="concurrency"/> 
+### 6.3 Concurrency
 
-### 6.3 Concurrency:
-In order to prevent "lost edits" due to API consumers PUT-ing changes based on 
-old data, xAPI will use HTTP 1.1 entity tags 
-([ETags](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19)) 
-to implement optimistic concurrency control in the portions of the API 
-where PUT may overwrite existing data. (State API, Actor and Activity 
-Profile APIs). The requirements in the rest of this "Concurrency" section 
-only apply to those APIs.  
+####Description
+Concurrency control makes certain that an API consumer does not PUT changes based on old
+data into an LRS.
 
-When responding to a GET request, the LRS will add an ETag HTTP header to the 
-response. The value of this header must be a hexidecimal string of the 
-SHA-1 digest of the contents, and must be enclosed in quotes.  
+####Details
+xAPI will use HTTP 1.1 entity tags ([ETags](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19))
+to implement optimistic concurrency control in the portions of the API where PUT may
+overwrite existing data, being:
 
-The reason for specifying the LRS ETag format is to allow API consumers that 
-can't read the ETag header to calculate it themselves.  
+* State API
+* Agent and 
+* Activity Profile API
 
-When responding to a PUT request, the LRS must handle the 
-[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) 
-header or [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) 
-header as described in RFC2616, HTTP 1.1, if the If-Match header contains an 
-ETag, or the If-None-Match header contains "*". In the first case, this is to 
-detect modifications made after the consumer last fetched the document, and in 
-the second case, this is to detect when there is a resource present that the 
-consumer is not aware of.  
+The State API will permit PUT statements without concurrency headers, since state conflicts
+are unlikely. The requirements below only apply to Agent Profile API and Activity Profile API.
 
-In either of the above cases, if the header precondition specified fails, 
-the LRS must return HTTP status 412 "Precondition Failed", and make no 
-modification to the resource.  
+####Client requirements
 
-xAPI consumers should use these headers to avoid concurrency problems. The State 
-API will permit PUT statements without concurrency headers, since state conflicts 
-are unlikely. For other APIs that use PUT (Actor and Activity Profile), the 
-headers are required. If a PUT request is received without either header for a 
-resource that already exists, the LRS must return HTTP status 409 "Conflict", 
-and return a plain text body explaining that the consumer must check the current 
-state of the resource and set the "If-Match" header with the current ETag to 
-resolve the conflict. In this case, the LRS must make no modification to the resource.  
+An xAPI client using either Agent Profile API or Activity Profile API…
+
+* MUST include the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)
+header, OR…
+* MUST include the If-None-Match header.
+
+####LRS requirements
+
+The LRS that responds to a GET request…
+
+* MUST add an ETag HTTP header to the response;
+* MUST calculate the value of this header to be a hexidecimal string of the  SHA-1 digest
+of the contents;
+* MUST enclose the header in quotes.
+
+The reason for specifying the LRS ETag format is to allow API consumers that can't read
+the ETag header to calculate it themselves.
+
+The LRS that responds to a PUT request…
+
+* MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)
+header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
+modifications made after the consumer last fetched the document;
+* MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26)
+header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect when there
+is a resource present that the consumer is not aware of.
+
+If the header precondition in either of the above cases fails, the LRS…
+
+* MUST return HTTP status 412 "Precondition Failed";
+* MUST NOT make a modification to the resource. 
+
+If a PUT request is received without either header for a resource that already exists, the LRS…
+
+* MUST return HTTP status 409 "Conflict";
+* MUST return a plain text body explaining that the consumer should…
+	- check the current state of the resource, AND...
+	- set the "If-Match" header with the current ETag to resolve the conflict;
+* MUST NOT make a modification to the resource.
+
 
 <a name="security"/>
 
@@ -2210,26 +2228,38 @@ Requirements for the LRS:
 <a name="oauthscope"/> 
 
 #### 6.4.2 OAuth Authorization Scope
-The LRS will accept a scope parameter as defined in 
-[OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3). 
-If no scope is specified, a requested scope of "statements/write" and 
-"statements/read/mine" will be assumed. The list of scopes determines the set 
-of permissions that is being requested. An API client should request only the 
-minimal needed scopes, to increase the chances that the request will be granted.  
 
-LRSs are not required to support any of these scopes except "all." These are 
-recommendations for scopes which should enable an LRS and an application 
-communicating using the xAPI to negotiate a level of access which accomplishes 
-what the application needs while minimizing the potential for misuse. The 
-limitations of each scope are in addition to any security limitations placed on 
-the user account associated with the request.  
+#####Description
+These are recommendations for scopes which should enable an LRS and an application
+communicating using the xAPI to negotiate a level of access which accomplishes what the
+application needs while minimizing the potential for misuse. The limitations of each scope
+are in addition to any security limitations placed on the user account associated with the
+request.
 
-For example, an instructor might grant "statements/read" to a reporting tool, 
-but the LRS would still limit that tool to statements that the instructor 
-could read if querying the LRS with their credentials directly (such as 
-statements relating to their students).  
 
-xAPI scope values:  
+#####Requirements
+The LRS...
+
+* MUST accept a scope parameter as defined in [OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3);
+* MUST assume a requested scope of "statements/write" and "statements/read/mine" if no
+scope is specified;
+* MUST support the scope of "all" as a minimum; 
+* MAY support other scopes.
+
+An xAPI client...
+
+* SHOULD request only the minimal needed scopes, to increase the chances that the request
+will be granted. 
+
+#####Example
+The list of scopes determines the set of permissions that is being requested. For example,
+an instructor might grant "statements/read" to a reporting tool, but the LRS would still
+limit that tool to statements that the instructor could read if querying the LRS with their
+credentials directly (such as statements relating to their students).
+
+##### Details
+
+The following table lists xAPI scope values:  
 <table>
 	<tr><th>Scope</th><th>Permission</th></tr>
 	<tr><td>statements/write</td><td>write any statement</td></tr>
@@ -2436,7 +2466,7 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 			for details.
 		</td>
 	</tr>
-	<tr><td>verb</td><td>String</td><td> </td>
+	<tr><td>verb</td><td>Verb id (IRI)</td><td> </td>
 		<td>Filter, only return statements matching the specified verb id.</td>
 	</tr>
 	<tr><td>activity</td><td>Activity id (URI)</td><td> </td>
@@ -2476,10 +2506,14 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 		<td>Maximum number of statements to return. 0 indicates return the 
 			maximum the server will allow.</td>
 	</tr>
-	<tr><td>format</td><td>{"ids", "exact", "canonical"}</td><td>exact</td>
-		<td>If "ids", only include minimum information necessary in agent and 
-			activity objects to identify them, If "exact", return agent and
-			activity objects populated exactly as they were when the statement was received.<br/><br/>
+	<tr><td>format</td><td>String: ("ids", "exact", or "canonical")</td><td>exact</td>
+		<td>If "ids", only include minimum information necessary in agent,
+			activity, and group objects to identify them. For anonymous groups this means
+			including the minimum information needed to identify each member.
+
+			If "exact", return agent,
+			activity, and group objects populated exactly as they were when the statement
+			was received.<br/><br/>
 			
 			If "canonical", return activity objects populated with the canonical
 			definition of the activity objects as determined by the LRS, after
@@ -3086,24 +3120,29 @@ with your own values. All other values should be left as they are.
 var url = "http://localhost:8080/xAPI/statements?statementId="+_ruuid();
 var auth = "Basic dGVzdDpwYXNzd29yZA==";
 var statement = {
-	actor:{ 
-		"objectType": "Agent", 
+	"actor" : { 
+		"objectType" : "Agent", 
 		"mbox" : "mailto:learner@example.adlnet.gov"
 	},
-	verb:"",
-	object:{
-		id:""
+	"verb" : {
+		"id" : "",
+		"display" : {}
+	},
+	"object" : {
+		"id" : "",
+		"definition" : {}
 	}
 };
 var definition = statement.object.definition;
 
-
-statement.verb='http://adlnet.gov/expapi/verbs/experienced';
+statement.verb.id = 'http://adlnet.gov/expapi/verbs/experienced';
+statement.verb.display = { "en-US" : "experienced" };
 statement.object.id = window.location.toString();
-definition.type="http://adlnet.gov/expapi/activities/link";
+definition.type = "http://adlnet.gov/expapi/activities/link";
 
 var xhr = new XMLHttpRequest();
 xhr.open("PUT", url, true);
+xhr.setRequestHeader("X-Experience-API-Version", "1.0");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Authorization", auth);
 xhr.onreadystatechange = function() {
@@ -3737,7 +3776,9 @@ Converted to 1.0.0:
 ## Appendix F: Example Signed Statement
 An example signed statement, as described in: <a href="#signature">4.4 Signed Statements</a>.
 
-The original statement serialization to be signed:
+The original statement serialization to be signed. Newlines in this example are included
+via CR+LF (0x0D + 0x0A).
+
 ```
 {
     "version": "1.0.0",
@@ -3849,7 +3890,7 @@ the signing certificate has been included.
 
 JWS signature
 ```
-ew0KICAgICJhbGciOiAiUlMyNTYiLA0KICAgICJ4NWMiOiBbDQogICAgICAgICJNSUlEQVRDQ0FtcWdBd0lCQWdJSkFNQjFjc051QTYra01BMEdDU3FHU0liM0RRRUJCUVVBTUhFeEN6QUpCZ05WQkFZVEFsVlRNUkl3RUFZRFZRUUlFd2xVWlc1dVpYTnpaV1V4R0RBV0JnTlZCQW9URDBWNFlXMXdiR1VnUTI5dGNHRnVlVEVRTUE0R0ExVUVBeE1IUlhoaGJYQnNaVEVpTUNBR0NTcUdTSWIzRFFFSkFSWVRaWGhoYlhCc1pVQmxlR0Z0Y0d4bExtTnZiVEFlRncweE16QTBNRFF4TlRJNE16QmFGdzB4TkRBME1EUXhOVEk0TXpCYU1JR1dNUXN3Q1FZRFZRUUdFd0pWVXpFU01CQUdBMVVFQ0JNSlZHVnVibVZ6YzJWbE1SRXdEd1lEVlFRSEV3aEdjbUZ1YTJ4cGJqRVlNQllHQTFVRUNoTVBSWGhoYlhCc1pTQkRiMjF3WVc1NU1SQXdEZ1lEVlFRTEV3ZEZlR0Z0Y0d4bE1SQXdEZ1lEVlFRREV3ZEZlR0Z0Y0d4bE1TSXdJQVlKS29aSWh2Y05BUWtCRmhObGVHRnRjR3hsUUdWNFlXMXdiR1V1WTI5dE1JR2ZNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0R05BRENCaVFLQmdRRGp4dlpYRjMwV0w0b0tqWllYZ1IwWnlhWCt1M3k2K0pxVHFpTmtGYS9WVG5ldDZMeTJPVDZabW1jSkVQbnEzVW5ld3BIb09RK0dmaGhUa1cxM2owNmo1aU5uNG9iY0NWV1RMOXlYTnZKSCtLbyt4dTRZbC95U1BScklQeVRqdEhkRzBNMlh6SWxtbUxxbStDQVMrS0NiSmVINHRmNTQza0lXQzVwQzVwM2NWUUlEQVFBQm8zc3dlVEFKQmdOVkhSTUVBakFBTUN3R0NXQ0dTQUdHK0VJQkRRUWZGaDFQY0dWdVUxTk1JRWRsYm1WeVlYUmxaQ0JEWlhKMGFXWnBZMkYwWlRBZEJnTlZIUTRFRmdRVVZzM3Y1YWZFZE9lb1llVmFqQVFFNHYwV1MxUXdId1lEVlIwakJCZ3dGb0FVeVZJYzN5dnJhNEVCejIwSTRCRjM5SUFpeEJrd0RRWUpLb1pJaHZjTkFRRUZCUUFEZ1lFQWdTL0ZGNUQwSG5qNDRydlQ2a2duM2tKQXZ2MmxqL2Z5anp0S0lyWVMzM2xqWEduNmdHeUE0cXRiWEEyM1ByTzR1Yy93WUNTRElDRHBQb2JoNjJ4VENkOXFPYktoZ3dXT2kwNVBTQkxxVXUzbXdmQWUxNUxKQkpCcVBWWjRLMGtwcGVQQlU4bTZhSVpvSDU3TC85dDRPb2FMOHlLcy9xaktGZUkxT0ZXWnh2QT0iLA0KICAgICAgICAiTUlJRE56Q0NBcUNnQXdJQkFnSUpBTUIxY3NOdUE2K2pNQTBHQ1NxR1NJYjNEUUVCQlFVQU1IRXhDekFKQmdOVkJBWVRBbFZUTVJJd0VBWURWUVFJRXdsVVpXNXVaWE56WldVeEdEQVdCZ05WQkFvVEQwVjRZVzF3YkdVZ1EyOXRjR0Z1ZVRFUU1BNEdBMVVFQXhNSFJYaGhiWEJzWlRFaU1DQUdDU3FHU0liM0RRRUpBUllUWlhoaGJYQnNaVUJsZUdGdGNHeGxMbU52YlRBZUZ3MHhNekEwTURReE5USTFOVE5hRncweU16QTBNREl4TlRJMU5UTmFNSEV4Q3pBSkJnTlZCQVlUQWxWVE1SSXdFQVlEVlFRSUV3bFVaVzV1WlhOelpXVXhHREFXQmdOVkJBb1REMFY0WVcxd2JHVWdRMjl0Y0dGdWVURVFNQTRHQTFVRUF4TUhSWGhoYlhCc1pURWlNQ0FHQ1NxR1NJYjNEUUVKQVJZVFpYaGhiWEJzWlVCbGVHRnRjR3hsTG1OdmJUQ0JuekFOQmdrcWhraUc5dzBCQVFFRkFBT0JqUUF3Z1lrQ2dZRUExc0JuQldQWjBmN1dKVUZUSnk1KzAxU2xTNVo2RERENlV5ZTl2SzlBeWNnVjVCMytXQzhIQzV1NWg5MU11akFDMUFSUFZVT3RzdlBSczQ1cUtORklnSUdSWEtQQXdaamF3RUkyc0NKUlNLVjQ3aTZCOGJEdjRXa3VHdlFhdmVaR0kwcWxtTjVSMUVpbTJnVUl0UmoxaGdjQzlyUWF2amxuRktEWTJybFhHdWtDQXdFQUFhT0IxakNCMHpBZEJnTlZIUTRFRmdRVXlWSWMzeXZyYTRFQnoyMEk0QkYzOUlBaXhCa3dnYU1HQTFVZEl3U0JtekNCbUlBVXlWSWMzeXZyYTRFQnoyMEk0QkYzOUlBaXhCbWhkYVJ6TUhFeEN6QUpCZ05WQkFZVEFsVlRNUkl3RUFZRFZRUUlFd2xVWlc1dVpYTnpaV1V4R0RBV0JnTlZCQW9URDBWNFlXMXdiR1VnUTI5dGNHRnVlVEVRTUE0R0ExVUVBeE1IUlhoaGJYQnNaVEVpTUNBR0NTcUdTSWIzRFFFSkFSWVRaWGhoYlhCc1pVQmxlR0Z0Y0d4bExtTnZiWUlKQU1CMWNzTnVBNitqTUF3R0ExVWRFd1FGTUFNQkFmOHdEUVlKS29aSWh2Y05BUUVGQlFBRGdZRUFEaHdUZWJHazczNXlLaG04RHFDeHZObkVaME54c1lFWU9qZ1JHMXlYVGxXNXBFNjkxZlNINUFaK1Q2ZnB3cFpjV1k1UVlrb042RG53ak94R2tTZlFDMy95R21jVURLQlB3aVo1TzJzOUMrZkUxa1VFbnJYMlhlYTRhZ1ZuZ016UjhEUTZvT2F1TFdxZWhEQitnMkVOV1JMb1ZnUyttYTUvWWNzMEdUeXJFQ1k9Ig0KICAgIF0NCn0.ew0KICAgICJ2ZXJzaW9uIjogIjEuMCIsDQogICAgImlkIjogIjMzY2ZmNDE2LWUzMzEtNGM5ZC05NjllLTUzNzNhMTc1NjEyMCIsDQogICAgImFjdG9yIjogew0KICAgICAgICAibWJveCI6ICJtYWlsdG86ZXhhbXBsZUBleGFtcGxlLmNvbSIsDQogICAgICAgICJuYW1lIjogIkV4YW1wbGUgTGVhcm5lciIsDQogICAgICAgICJvYmplY3RUeXBlIjogIkFnZW50Ig0KICAgIH0sDQogICAgInZlcmIiOiB7DQogICAgICAgICJpZCI6ICJodHRwOi8vYWRsbmV0Lmdvdi9leHBhcGkvdmVyYnMvZXhwZXJpZW5jZWQiLA0KICAgICAgICAiZGlzcGxheSI6IHsNCiAgICAgICAgICAgICJlbi1VUyI6ICJleHBlcmllbmNlZCINCiAgICAgICAgfQ0KICAgIH0sDQogICAgIm9iamVjdCI6IHsNCiAgICAgICAgImlkIjogImh0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9eGg0a0lpSDNTbTgiLA0KICAgICAgICAib2JqZWN0VHlwZSI6ICJBY3Rpdml0eSIsDQogICAgICAgICJkZWZpbml0aW9uIjogew0KICAgICAgICAgICAgIm5hbWUiOiB7DQogICAgICAgICAgICAgICAgImVuLVVTIjogIlRheCBUaXBzICYgSW5mb3JtYXRpb24gOiBIb3cgdG8gRmlsZSBhIFRheCBSZXR1cm4gIg0KICAgICAgICAgICAgfSwNCiAgICAgICAgICAgICJkZXNjcmlwdGlvbiI6IHsNCiAgICAgICAgICAgICAgICAiZW4tVVMiOiAiRmlsaW5nIGEgdGF4IHJldHVybiB3aWxsIHJlcXVpcmUgZmlsbGluZyBvdXQgZWl0aGVyIGEgMTA0MCwgMTA0MEEgb3IgMTA0MEVaIGZvcm0iDQogICAgICAgICAgICB9DQogICAgICAgIH0NCiAgICB9LA0KICAgICJ0aW1lc3RhbXAiOiAiMjAxMy0wNC0wMVQxMjowMDowMFoiDQp9.gT42g4MGqXz2VpcY18-lUrLrG2-v9Y808TJOSRuda3XlcWXpHVekvdgINaHe2BzCWceoPAxgCQ87ItHBvkv37jvYPcB8H9x5eOoIgDrv4iojU_m7xkhSqEPxvbGF3HqqW1ElNPT1GChj-5b9OGeoXY-O4mbXtaNiViy0bi5Bp6A
+ew0KICAgICJhbGciOiAiUlMyNTYiLA0KICAgICJ4NWMiOiBbDQogICAgICAgICJNSUlEQVRDQ0FtcWdBd0lCQWdJSkFNQjFjc051QTYra01BMEdDU3FHU0liM0RRRUJCUVVBTUhFeEN6QUpCZ05WQkFZVEFsVlRNUkl3RUFZRFZRUUlFd2xVWlc1dVpYTnpaV1V4R0RBV0JnTlZCQW9URDBWNFlXMXdiR1VnUTI5dGNHRnVlVEVRTUE0R0ExVUVBeE1IUlhoaGJYQnNaVEVpTUNBR0NTcUdTSWIzRFFFSkFSWVRaWGhoYlhCc1pVQmxlR0Z0Y0d4bExtTnZiVEFlRncweE16QTBNRFF4TlRJNE16QmFGdzB4TkRBME1EUXhOVEk0TXpCYU1JR1dNUXN3Q1FZRFZRUUdFd0pWVXpFU01CQUdBMVVFQ0JNSlZHVnVibVZ6YzJWbE1SRXdEd1lEVlFRSEV3aEdjbUZ1YTJ4cGJqRVlNQllHQTFVRUNoTVBSWGhoYlhCc1pTQkRiMjF3WVc1NU1SQXdEZ1lEVlFRTEV3ZEZlR0Z0Y0d4bE1SQXdEZ1lEVlFRREV3ZEZlR0Z0Y0d4bE1TSXdJQVlKS29aSWh2Y05BUWtCRmhObGVHRnRjR3hsUUdWNFlXMXdiR1V1WTI5dE1JR2ZNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0R05BRENCaVFLQmdRRGp4dlpYRjMwV0w0b0tqWllYZ1IwWnlhWCt1M3k2K0pxVHFpTmtGYS9WVG5ldDZMeTJPVDZabW1jSkVQbnEzVW5ld3BIb09RK0dmaGhUa1cxM2owNmo1aU5uNG9iY0NWV1RMOXlYTnZKSCtLbyt4dTRZbC95U1BScklQeVRqdEhkRzBNMlh6SWxtbUxxbStDQVMrS0NiSmVINHRmNTQza0lXQzVwQzVwM2NWUUlEQVFBQm8zc3dlVEFKQmdOVkhSTUVBakFBTUN3R0NXQ0dTQUdHK0VJQkRRUWZGaDFQY0dWdVUxTk1JRWRsYm1WeVlYUmxaQ0JEWlhKMGFXWnBZMkYwWlRBZEJnTlZIUTRFRmdRVVZzM3Y1YWZFZE9lb1llVmFqQVFFNHYwV1MxUXdId1lEVlIwakJCZ3dGb0FVeVZJYzN5dnJhNEVCejIwSTRCRjM5SUFpeEJrd0RRWUpLb1pJaHZjTkFRRUZCUUFEZ1lFQWdTL0ZGNUQwSG5qNDRydlQ2a2duM2tKQXZ2MmxqL2Z5anp0S0lyWVMzM2xqWEduNmdHeUE0cXRiWEEyM1ByTzR1Yy93WUNTRElDRHBQb2JoNjJ4VENkOXFPYktoZ3dXT2kwNVBTQkxxVXUzbXdmQWUxNUxKQkpCcVBWWjRLMGtwcGVQQlU4bTZhSVpvSDU3TC85dDRPb2FMOHlLcy9xaktGZUkxT0ZXWnh2QT0iLA0KICAgICAgICAiTUlJRE56Q0NBcUNnQXdJQkFnSUpBTUIxY3NOdUE2K2pNQTBHQ1NxR1NJYjNEUUVCQlFVQU1IRXhDekFKQmdOVkJBWVRBbFZUTVJJd0VBWURWUVFJRXdsVVpXNXVaWE56WldVeEdEQVdCZ05WQkFvVEQwVjRZVzF3YkdVZ1EyOXRjR0Z1ZVRFUU1BNEdBMVVFQXhNSFJYaGhiWEJzWlRFaU1DQUdDU3FHU0liM0RRRUpBUllUWlhoaGJYQnNaVUJsZUdGdGNHeGxMbU52YlRBZUZ3MHhNekEwTURReE5USTFOVE5hRncweU16QTBNREl4TlRJMU5UTmFNSEV4Q3pBSkJnTlZCQVlUQWxWVE1SSXdFQVlEVlFRSUV3bFVaVzV1WlhOelpXVXhHREFXQmdOVkJBb1REMFY0WVcxd2JHVWdRMjl0Y0dGdWVURVFNQTRHQTFVRUF4TUhSWGhoYlhCc1pURWlNQ0FHQ1NxR1NJYjNEUUVKQVJZVFpYaGhiWEJzWlVCbGVHRnRjR3hsTG1OdmJUQ0JuekFOQmdrcWhraUc5dzBCQVFFRkFBT0JqUUF3Z1lrQ2dZRUExc0JuQldQWjBmN1dKVUZUSnk1KzAxU2xTNVo2RERENlV5ZTl2SzlBeWNnVjVCMytXQzhIQzV1NWg5MU11akFDMUFSUFZVT3RzdlBSczQ1cUtORklnSUdSWEtQQXdaamF3RUkyc0NKUlNLVjQ3aTZCOGJEdjRXa3VHdlFhdmVaR0kwcWxtTjVSMUVpbTJnVUl0UmoxaGdjQzlyUWF2amxuRktEWTJybFhHdWtDQXdFQUFhT0IxakNCMHpBZEJnTlZIUTRFRmdRVXlWSWMzeXZyYTRFQnoyMEk0QkYzOUlBaXhCa3dnYU1HQTFVZEl3U0JtekNCbUlBVXlWSWMzeXZyYTRFQnoyMEk0QkYzOUlBaXhCbWhkYVJ6TUhFeEN6QUpCZ05WQkFZVEFsVlRNUkl3RUFZRFZRUUlFd2xVWlc1dVpYTnpaV1V4R0RBV0JnTlZCQW9URDBWNFlXMXdiR1VnUTI5dGNHRnVlVEVRTUE0R0ExVUVBeE1IUlhoaGJYQnNaVEVpTUNBR0NTcUdTSWIzRFFFSkFSWVRaWGhoYlhCc1pVQmxlR0Z0Y0d4bExtTnZiWUlKQU1CMWNzTnVBNitqTUF3R0ExVWRFd1FGTUFNQkFmOHdEUVlKS29aSWh2Y05BUUVGQlFBRGdZRUFEaHdUZWJHazczNXlLaG04RHFDeHZObkVaME54c1lFWU9qZ1JHMXlYVGxXNXBFNjkxZlNINUFaK1Q2ZnB3cFpjV1k1UVlrb042RG53ak94R2tTZlFDMy95R21jVURLQlB3aVo1TzJzOUMrZkUxa1VFbnJYMlhlYTRhZ1ZuZ016UjhEUTZvT2F1TFdxZWhEQitnMkVOV1JMb1ZnUyttYTUvWWNzMEdUeXJFQ1k9Ig0KICAgIF0NCn0.ew0KICAgICJ2ZXJzaW9uIjogIjEuMC4wIiwNCiAgICAiaWQiOiAiMzNjZmY0MTYtZTMzMS00YzlkLTk2OWUtNTM3M2ExNzU2MTIwIiwNCiAgICAiYWN0b3IiOiB7DQogICAgICAgICJtYm94IjogIm1haWx0bzpleGFtcGxlQGV4YW1wbGUuY29tIiwNCiAgICAgICAgIm5hbWUiOiAiRXhhbXBsZSBMZWFybmVyIiwNCiAgICAgICAgIm9iamVjdFR5cGUiOiAiQWdlbnQiDQogICAgfSwNCiAgICAidmVyYiI6IHsNCiAgICAgICAgImlkIjogImh0dHA6Ly9hZGxuZXQuZ292L2V4cGFwaS92ZXJicy9leHBlcmllbmNlZCIsDQogICAgICAgICJkaXNwbGF5Ijogew0KICAgICAgICAgICAgImVuLVVTIjogImV4cGVyaWVuY2VkIg0KICAgICAgICB9DQogICAgfSwNCiAgICAib2JqZWN0Ijogew0KICAgICAgICAiaWQiOiAiaHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g_dj14aDRrSWlIM1NtOCIsDQogICAgICAgICJvYmplY3RUeXBlIjogIkFjdGl2aXR5IiwNCiAgICAgICAgImRlZmluaXRpb24iOiB7DQogICAgICAgICAgICAibmFtZSI6IHsNCiAgICAgICAgICAgICAgICAiZW4tVVMiOiAiVGF4IFRpcHMgJiBJbmZvcm1hdGlvbiA6IEhvdyB0byBGaWxlIGEgVGF4IFJldHVybiAiDQogICAgICAgICAgICB9LA0KICAgICAgICAgICAgImRlc2NyaXB0aW9uIjogew0KICAgICAgICAgICAgICAgICJlbi1VUyI6ICJGaWxpbmcgYSB0YXggcmV0dXJuIHdpbGwgcmVxdWlyZSBmaWxsaW5nIG91dCBlaXRoZXIgYSAxMDQwLCAxMDQwQSBvciAxMDQwRVogZm9ybSINCiAgICAgICAgICAgIH0NCiAgICAgICAgfQ0KICAgIH0sDQogICAgInRpbWVzdGFtcCI6ICIyMDEzLTA0LTAxVDEyOjAwOjAwWiINCn0.FWuwaPhwUbkk7h9sKW5zSvjsYNugvxJ-TrVaEgt_DCUT0bmKhQScRrjMB6P9O50uznPwT66oF1NnU_G0HVhRzS5voiXE-y7tT3z0M3-8A6YK009Bk_digVUul-HA4Fpd5IjoBBGe3yzaQ2ZvzarvRuipvNEQCI0onpfuZZJQ0d8
 ```
 
 Signed Statement
