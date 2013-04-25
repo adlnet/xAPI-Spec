@@ -3632,6 +3632,7 @@ A 1.0.0 system converting a statement created in 0.9 MUST follow the steps below
 * If an authority was not previously set, set the authority to an agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
+* if the statement field in context was set, remove it from the statement.
 * Preserve all other fields without modification, including "stored". Stored should still
 be updated if the statement is passed to another system.
 
@@ -3646,6 +3647,8 @@ A 1.0.0 system converting a statement created in 0.95 MUST follow the steps belo
 * If an authority was not previously set, set the authority to an agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
+* if the statement field in context was set to anything other than a
+StatementRef, remove it from the statement.
 * Preserve all other fields without modification, including "stored". Stored should still
 be updated if the statement is passed to another system.
 
