@@ -766,7 +766,7 @@ Some examples:
 
 Objects which are provided as a value for this field SHOULD include an "objectType" 
 field. If not specified, the objectType is assumed to be "Activity". Other valid values 
-are: <a href="#agentasobj">Agent</a>, <a href="#agentasobj">Group</a>, <a href="#substmt">Sub-Statement</a> or <a href="#stmtref">StatementRef</a>.
+are: <a href="#agentasobj">Agent</a>, <a href="#agentasobj">Group</a>, <a href="#substmt">Sub-Statement</a> or [StatementRef](#stmtref)</a>.
 The properties of an Object change according to the objectType.
 
 <a name="activity"/>
@@ -958,15 +958,20 @@ Interaction components are defined as follows:
 	<tr>
 		<td>id</td>
 		<td>String</td>
-		<td>As in "cmi.interactions.n.id" as defined in the SCORM 2004 4th 
-			Edition Run-Time Environment</td> 
+		<td>A value such as used in practice for "cmi.interactions.n.id" as
+            defined in the SCORM 2004 4th Edition Run-Time Environment</td> 
 	<tr>
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>A description of the interaction component 
 			(for example, the text for a given choice in a multiple-choice interaction)</td>
 	</tr>
-</table>  
+</table>
+
+#####Requirements
+
+* Within an array of interaction components, all id values must be distinct.
+* An interaction component's id value SHOULD not have whitespace.
 
 <a name="interactionType"/>
 
@@ -1236,10 +1241,8 @@ applicable and known.
 </tr>
 <tr>
 <td>statement</td>
-<td>Statement by reference or by object</td>
-<td>Another statement (either existing or new), which should be considered as context for this statement. 
-<a href = "#stmtasobj">See: When the "Object" is a Statement</a> for details about including statements 
-within other statements. </td>
+<td>[Statement Reference](#stmtref)</td>
+<td>Another statement, which should be considered as context for this statement. </td>
 
 </tr>
 <tr>
@@ -1780,7 +1783,7 @@ Upon receiving a statement that voids another, the LRS...
 * MAY roll back any changes to activity or agent definitions which were introduced by the statement that was just voided;
 * SHOULD return a descriptive error if the target statement cannot be found;
 * MUST NOT report the voided statement when queried, but MUST report the voiding statement 
-(see <a href="#queryStatementRef">StatementRef</a> in 7.2 Statement API).
+(see [StatementRef](#queryStatementRef) in 7.2 Statement API).
 
 
 ###### Example
@@ -2583,6 +2586,11 @@ statements match and will be returned so long as they fall into the time or sequ
 being fetched.
 
 This section does not apply when retrieving statements with statementId or voidedStatementId.
+
+###### Note: 
+
+StatementRefs used in the statement field in context do not affect how
+statements are filtered.
 
 <a name="voidedStatements" />
 
@@ -3628,6 +3636,7 @@ A 1.0.0 system converting a statement created in 0.9 MUST follow the steps below
 * If an authority was not previously set, set the authority to an agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
+* if the statement field in context was set, remove it from the statement.
 * Preserve all other fields without modification, including "stored". Stored should still
 be updated if the statement is passed to another system.
 
@@ -3642,6 +3651,8 @@ A 1.0.0 system converting a statement created in 0.95 MUST follow the steps belo
 * If an authority was not previously set, set the authority to an agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
+* if the statement field in context was set to anything other than a
+StatementRef, remove it from the statement.
 * Preserve all other fields without modification, including "stored". Stored should still
 be updated if the statement is passed to another system.
 
