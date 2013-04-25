@@ -917,7 +917,8 @@ its internal representation of that activity's definition.
 
 ###### Interaction Activities  
 
-#####Rationale
+####### Rationale
+
 Traditional e-learning has included structures for interactions or assessments. 
 As a way to allow these practices and structures to extend Experience API's 
 utility, this specification includes built-in definitions for interactions, which 
@@ -927,14 +928,14 @@ are simple to use, and consequently limited. It is expected that communities of
 practice requiring richer interactions definitions will do so through the use 
 of extensions to an activity's type and definition.  
 
-#####Requirements
+####### Requirements
 
 * Interaction activities SHOULD have the activity type http://adlnet.gov/expapi/activities/cmi.interaction".
 * Interaction activities MUST have a valid interactionType.
 * An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as specified in the table 
 below and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction activity.
 
-#####Implementation
+####### Details
 
 The table below lists the properties for Interaction activities.
 
@@ -963,6 +964,13 @@ The table below lists the properties for Interaction activities.
 
 ###### Interaction Components  
 
+####### Requirements
+
+* Within an array of interaction components, all id values must be distinct.
+* An interaction component's id value SHOULD not have whitespace.
+
+####### Details
+
 Interaction components are defined as follows:  
 
 <table>
@@ -979,11 +987,6 @@ Interaction components are defined as follows:
 			(for example, the text for a given choice in a multiple-choice interaction)</td>
 	</tr>
 </table>
-
-#####Requirements
-
-* Within an array of interaction components, all id values must be distinct.
-* An interaction component's id value SHOULD not have whitespace.
 
 <a name="interactionType"/>
 
@@ -1005,7 +1008,7 @@ See [Appendix C](#AppendixC) for examples of activity definitions for each of th
 
 ##### 4.1.4.2 When the "Object" is an Agent or a Group
 
-#####Requirements
+###### Requirements
 
 * Statements that specify an Agent or Group as an Object MUST specify an 'objectType' property. 
 
@@ -1015,7 +1018,8 @@ See [Section 4.1.2 Actor](#actor) for details regarding Agents.
 
 ##### 4.1.4.3 When the "Object" is a Statement
 
-#####Rationale
+###### Rationale
+
 There are two possibilities for using a Statement as an Object.  First, an Object can take on the form 
 of a statement that already exists by using a Statement Reference. A common use case for 
 Statement References is grading or commenting on an experience that could be tracked as an 
@@ -1029,7 +1033,7 @@ Sub-Statements would be any experience that would be misleading as its own state
 
 A Statement Reference is a pointer to another pre-existing Statement.
 
-#####Requirements
+####### Requirements
 
 * A Statement Reference MUST specify an "objectType" property with the value "StatementRef".
 * A Statement Reference MUST set the "id" property to the UUID of a Statement which is present on the system.
@@ -1038,12 +1042,12 @@ The table below lists all properties of a Statement Reference object:
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>string</td><td>In this case, MUST be "StatementRef".</td></tr>
+	<tr><td>objectType</td><td>String</td><td>In this case, MUST be "StatementRef".</td></tr>
 	<tr><td>id</td><td>UUID</td><td>The UUID of a Statement 
 	which is present on the system.</td></tr>
 </table>
 
-###### Statement References - Example
+####### Example
 
 Assuming that some statement has already been stored with 
 the ID 8f87ccde-bb56-4c2e-ab83-44982ef22df0, the following example shows how a 
@@ -1077,14 +1081,14 @@ comment could be issued on the original statement, using a new statement:
 
 A Sub-Statement is a new statement included as part of a parent statement.
 
-###### Requirements
+####### Requirements
 
 * A Sub-Statement MUST specify an "objectType" property with the value "SubStatement".
 * A Sub-Statement MUST NOT have the "id", "stored", "version" or "authority" properties.
 * A Sub-Statement MUST NOT contain a Sub-Statement of their own i.e. cannot be nested.
 * A Sub-Statement MUST be validated as a Statement in addition to other Sub-Statement requirements.
 
-###### Sub-Statements - Example
+####### Example
 
 One interesting use of Sub-Statements is in creating Statements of intention. 
 For example, using Sub-Statements we can create Statements of the form 
@@ -1132,8 +1136,9 @@ action. The concrete example that follows logically states that
 
 <a name="result"/>
 
-#### 4.1.5 Result:
-###### Description: 
+#### 4.1.5 Result
+
+###### Description
 
 An optional field that represents a measured outcome related to the statement in which it is included.
 
