@@ -958,15 +958,20 @@ Interaction components are defined as follows:
 	<tr>
 		<td>id</td>
 		<td>String</td>
-		<td>As in "cmi.interactions.n.id" as defined in the SCORM 2004 4th 
-			Edition Run-Time Environment</td> 
+		<td>A value such as used in practice for "cmi.interactions.n.id" as
+            defined in the SCORM 2004 4th Edition Run-Time Environment</td> 
 	<tr>
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>A description of the interaction component 
 			(for example, the text for a given choice in a multiple-choice interaction)</td>
 	</tr>
-</table>  
+</table>
+
+#####Requirements
+
+* Within an array of interaction components, all id values must be distinct.
+* An interaction component's id value SHOULD not have whitespace.
 
 <a name="interactionType"/>
 
