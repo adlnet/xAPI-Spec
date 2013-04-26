@@ -73,7 +73,7 @@ move those changes into the current specification and revision to 0.9.
 
 ###### 0.90 to 0.95 (August 31, 2012):  
 
-"Core" verbs and Activity types were removed from the specification. References 
+"Core" Verbs and Activity types were removed from the specification. References 
 to these verbs in results, context, interactions, and Activity Definitions were 
 also  removed. It was recommended that implementers prefer community defined 
 verbs to creating their own verbs.
@@ -409,7 +409,7 @@ A statement is akin to a sentence of the form "I did this".
 <a name="stmtprops"/>
 
 ### 4.1 Statement Properties:  
-Actor, verb, and object are required, all other properties are optional. Properties 
+Actor, Verb, and object are required, all other properties are optional. Properties 
 can occur in any order, but are limited to one use each. Each property is discussed 
 below.  
 
@@ -417,7 +417,7 @@ below.
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>id</td><td>UUID</td>
 	<td>UUID assigned by LRS if not set by the Learning Activity Provider.</td></tr>
-	<tr><td><a href="#actor">Actor</a></td><td>Object</td>
+	<tr><td><a href="#actor">actor</a></td><td>Object</td>
 	<td>Who the statement is about, as an <a href="#agent">Agent</a> or 
 		<a href="#group">Group</a> object. Represents the "I" in "I Did This".</td></tr>
 	<tr><td><a href="#verb">verb</a></td><td>Object</td>
@@ -428,7 +428,7 @@ below.
 	include an "objectType" field. If not specified, the object is assumed to be 
 	an Activity.</td></tr>
 	<tr><td><a href="#result">result</a></td><td>Object</td>
-	<td>Result object, further details representing a measured outcome relevant to the specified verb.</td></tr>
+	<td>Result object, further details representing a measured outcome relevant to the specified Verb.</td></tr>
 	<tr><td><a href="#context">context</a></td><td>Object</td>
 	<td>Context that gives the statement more meaning. Examples: a team the Actor is 
 	working with, altitude at which a scenario was attempted in a flight simulator.</td></tr>
@@ -647,27 +647,27 @@ This example shows an agent identified by an opaque account:
 #### 4.1.3 Verb:
 
 ###### Description
-The verb defines the action between Actor and Activity. 
+The Verb defines the action between Actor and Activity. 
 
 ###### Rationale
 
-The verb in an xAPI statement describes the action performed during the learning experience. The 
-xAPI does not specify any particular verbs. (With one exception, namely the reserved 
-verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>). Instead, it defines how to create verbs so that 
-communities of practice can establish verbs meaningful to their members and make them available 
-for use by anyone. A predefined list of verbs would be limited by definition and might not be able to 
+The Verb in an xAPI statement describes the action performed during the learning experience. The 
+xAPI does not specify any particular Verbs. (With one exception, namely the reserved 
+Verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>). Instead, it defines how to create Verbs so that 
+communities of practice can establish Verbs meaningful to their members and make them available 
+for use by anyone. A predefined list of Verbs would be limited by definition and might not be able to 
 effectively capture all possible future learning experiences. 
 
 ###### Requirements
 
 Verbs appear in statements as objects consisting of a URI and a set of display names 
-corresponding to multiple languages or dialects which provide human-readable meanings of the verb. 
+corresponding to multiple languages or dialects which provide human-readable meanings of the Verb. 
 
-* The URI contained in the id SHOULD be human-readable and contain the verb meaning.
-* The display property MUST be used to illustrate the meaning which is already determined by the verb URI.
-* The display property MUST NOT be used to alter the meaning of a verb.
+* The URI contained in the id SHOULD be human-readable and contain the Verb meaning.
+* The display property MUST be used to illustrate the meaning which is already determined by the Verb URI.
+* The display property MUST NOT be used to alter the meaning of a Verb.
 * The display property SHOULD be used by all statements.
-* A system reading a statement MUST use the verb URI to infer meaning.
+* A system reading a statement MUST use the Verb URI to infer meaning.
 * A system reading a statement MUST NOT use the display property to infer any meaning from the statement.
 * A system reading a statement MUST NOT use the display property for any purpose other than display to a human.
 Using the display property for aggregation or categorization of statements is an example of violating this requirement. 
@@ -682,17 +682,17 @@ The table below lists all properties of the Verb object.
 	<tr>
 		<td>id</td>
 		<td>URI</td>
-		<td>Corresponds to a verb definition. Each verb definition 
-			corresponds to the meaning of a verb, not the word. The URI should 
-			be human-readable and contain the verb meaning.</td>
+		<td>Corresponds to a Verb definition. Each Verb definition 
+			corresponds to the meaning of a Verb, not the word. The URI should 
+			be human-readable and contain the Verb meaning.</td>
 	</tr>
 	<tr>
 		<td>display</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>The human readable representation of the 
-			verb in one or more languages. This does not have any impact on the 
+			Verb in one or more languages. This does not have any impact on the 
 			meaning of the statement, but serves to give a human-readable 
-			display of the meaning already determined by the chosen verb.</td>
+			display of the meaning already determined by the chosen Verb.</td>
 	</tr>
 </table>
 
@@ -710,9 +710,9 @@ The table below lists all properties of the Verb object.
 }
 ``` 
 
-The verb in the example above is included for illustrative purposes only. This is not intended to imply that
-a verb with this meaning has been defined with this id. This applies to all example verbs given in this 
-specification document, with the exception of the reserved verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>. 
+The Verb in the example above is included for illustrative purposes only. This is not intended to imply that
+a Verb with this meaning has been defined with this id. This applies to all example verbs given in this 
+specification document, with the exception of the reserved Verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>. 
 			
 ##### 4.1.3.1 Use in Language and Semantics of Verbs
 
@@ -723,15 +723,15 @@ For example, the English word "fired" could mean different things depending on c
 weapon", "fired a kiln", or "fired an employee". In this case, a URI MUST identify one of these specific 
 meanings, not the word "fired". 
 
-The display property has some flexibility in tense. While the verb URIs are expected to remain in the 
-past tense, if conjugating verbs to another tense (using the same verb) within the Activity makes sense, 
+The display property has some flexibility in tense. While the Verb URIs are expected to remain in the 
+past tense, if conjugating verbs to another tense (using the same Verb) within the Activity makes sense, 
 it is allowed.
 
 ###### Language
-A verb in the Experience API is a URI, and denotes a specific meaning not tied to any particular language. 
+A Verb in the Experience API is a URI, and denotes a specific meaning not tied to any particular language. 
 
-For example, a particular verb URI such as http://example.org/firearms#fire might denote the action of firing a gun, 
-or the verb URI http://example.com/فعل/خواندن might denote the action of reading a book. 
+For example, a particular Verb URI such as http://example.org/firearms#fire might denote the action of firing a gun, 
+or the Verb URI http://example.com/فعل/خواندن might denote the action of reading a book. 
 
 ##### 4.1.3.2 Use in Communities of Practice
 
@@ -739,18 +739,18 @@ or the verb URI http://example.com/فعل/خواندن might denote the action o
 
 Communities of practice will, at some point in time, need to establish new Verbs to meet the needs of their constituency.
 
-* Anyone establishing a new Verb MUST own the URI, or MUST have permission from the owner to use it to denote an xAPI verb;
-* Anyone establishing a new Verb SHOULD make a human-readable description of the intended usage of the verb 
+* Anyone establishing a new Verb MUST own the URI, or MUST have permission from the owner to use it to denote an xAPI Verb;
+* Anyone establishing a new Verb SHOULD make a human-readable description of the intended usage of the Verb 
 accessible at the URI.
 
 ###### Verb Lists and Repositories
 
 It is expected that xAPI generates profiles, lists, and repositories that become centered on Verb 
 vocabularies.  ADL is one such organization that is creating a companion document containing 
-Verbs for xAPI.  In fulfillment of the requirements above, a collection of IRIs of recommended verbs 
-exists.  There are times when Activity Providers may wish to use a different verb for the same meaning.
+Verbs for xAPI.  In fulfillment of the requirements above, a collection of IRIs of recommended Verbs 
+exists.  There are times when Activity Providers may wish to use a different Verb for the same meaning.
 
-* Activity Providers SHOULD use a corresponding existing verb whenever possible.
+* Activity Providers SHOULD use a corresponding existing Verb whenever possible.
 * Activity Providers MAY create and use a Verb if no suitable Verb exists.
 
 <a name="object"/>
@@ -853,7 +853,7 @@ The table below lists the properties of the Activity Definition Object:
 
 ####### Note
 
-URI fragments (sometimes called relative URLs) are not valid URIs. As with verbs, it is recommended that
+URI fragments (sometimes called relative URLs) are not valid URIs. As with Verbs, it is recommended that
 Activity Providers look for and use established, widely adopted, Activity types.
 
 An LRS should update its internal representation of an Activity's definition upon receiving a 
@@ -1788,7 +1788,7 @@ The certainty that an LRS has an accurate and complete collection of data is gua
 cannot be logically changed or deleted. This immutability of statements is a key factor in enabling the distributed 
 nature of Experience API.
 However, not all statements are perpetually valid once they have been issued. Mistakes or other factors could require 
-that a previously made statement is marked as invalid. This is called "voiding a statement" and the reserved verb 
+that a previously made statement is marked as invalid. This is called "voiding a statement" and the reserved Verb 
 “http://adlnet.gov/expapi/verbs/voided" is used for this purpose. 
 
 ###### Requirements
@@ -1966,7 +1966,7 @@ Experience API conformant tools.
 
 ### 5.4 Identifier Metadata
 There are several types of URI identifiers used in this specification:
-* <a href="#verb">verb</a>
+* <a href="#verb">Verb</a>
 * <a href="#acturi">Activity id</a>
 * <a href="#acttype">Activity type</a>
 * <a href="#miscext">extension key</a>
@@ -2003,13 +2003,13 @@ take the place of this metadata entirely if it was not provided or can not be lo
 include metadata in other formats stored at the URL of an identifier, particularly if that
 identifier was not coined for use with this specification.
 
-<a href="#verb-lists-and-repositories">As with verbs</a>, we recommend 
+<a href="#verb-lists-and-repositories">As with Verbs</a>, we recommend 
 that Learning Activity Providers look for and use established, 
 widely adopted identifiers for all types of URI identifier other than Activity id. Where an
 identifier already exists, the Learning Activity Provider:
 
 * SHOULD use the corresponding existing identifier;
-* MAY create and use their own verbs where a suitable identifier does not already exist.
+* MAY create and use their own Verbs where a suitable identifier does not already exist.
 
 <a name="rtcom"/>
 
@@ -2492,7 +2492,7 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 	<tr><td>verb</td><td>Verb id (IRI)</td><td> </td>
 		<td>Filter, only return statements matching the specified verb id.</td>
 	</tr>
-	<tr><td>Activity</td><td>Activity id (URI)</td><td> </td>
+	<tr><td>activity</td><td>Activity id (URI)</td><td> </td>
 		<td>Filter, only return statements for which the object of the statement is an Activity with the specified id.
 		</td>
 	</tr>
@@ -3075,7 +3075,7 @@ As long as it has sufficient information to perform these tasks, it is
 expected that it does them. Validation of statements in the Experience API is 
 focused solely on syntax, not semantics. It SHOULD enforce rules regarding structure, 
 but SHOULD NOT enforce rules regarding meaning. Enforcing the rules that ensure 
-valid meaning among verb definitions, Activity types, and extensions is the 
+valid meaning among Verb definitions, Activity types, and extensions is the 
 responsibility of the Activity Provider sending the statement.  
 
 <a name="httphead"/>
@@ -3639,7 +3639,7 @@ in a consistant manner.
 
 A 1.0.0 system converting a statement created in 0.9 MUST follow the steps below:
 
-* If the statement has been voided or uses verbs, Activity types, or properties not included in the
+* If the statement has been voided or uses Verbs, Activity types, or properties not included in the
  0.9 specification, do not convert it.
 * Prefix "verb" with "http://adlnet.gov/expapi/verbs/".
 * Prefix any Activity ids which are not full absolute URIs with "tag:adlnet.gov,2013:expapi:0.9:activities:"
