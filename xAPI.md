@@ -1776,7 +1776,7 @@ A collection of Statements can be retrieved by performing a query on the "statem
 endpoint, see Section [7.2 "Statement API"](#stmtapi) for details. 
 
 ###### Details
-The following table shows queries on the Statement API.
+The following table shows the data structure for the results of queries on the Statement API.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>statements</td><td>Array of Statements</td>
