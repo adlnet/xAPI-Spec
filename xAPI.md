@@ -83,7 +83,7 @@ details and scope.
 - Changed from using a person-centric view of agents to a persona-centric 
 view.
 - Friend of a Friend (FOAF) agent merging requirement was removed.
-- Agent objects must now have exactly 1 uniquely identifying property, instead 
+- Agent Objects must now have exactly 1 uniquely identifying property, instead 
 of at least one.
 
 ###### 0.95 to 1.0.0 (April 26, 2013): 
@@ -107,11 +107,11 @@ associated components on how to accomplish these tasks.
 
 Specifically, the Experience API provides:  
 
-* The structure and definition of statement, state, learner, Activity and objects,
+* The structure and definition of statement, state, learner, Activity and Objects,
 which are the means by which experiences are conveyed by a Learning Activity Provider.
 
 * Data Transfer methods for the storage and retrieval (but not validation) of
-these objects to/from a Learning Record Store.  Note that the systems storing 
+these Objects to/from a Learning Record Store.  Note that the systems storing 
 or retrieving records need not be Learning Activity Providers. LRSs may 
 communicate with other LRSs, or reporting systems.
 
@@ -285,7 +285,7 @@ _high-level overview_ of a given facet of the Experience API are labeled **descr
 
 __Activity__: Something with which an Actor interacted. It can be a unit of instruction, experience, 
 or performance that is to be tracked in meaningful combination with a Verb. Interpretation of 
-Activity is broad, meaning that Activities can even be tangible objects.
+Activity is broad, meaning that Activities can even be tangible Objects.
 
 <a name="def-activity-provider" />
 
@@ -409,7 +409,7 @@ A statement is akin to a sentence of the form "I did this".
 <a name="stmtprops"/>
 
 ### 4.1 Statement Properties:  
-Actor, Verb, and object are required, all other properties are optional. Properties 
+Actor, Verb, and Object are required, all other properties are optional. Properties 
 can occur in any order, but are limited to one use each. Each property is discussed 
 below.  
 
@@ -419,16 +419,16 @@ below.
 	<td>UUID assigned by LRS if not set by the Learning Activity Provider.</td></tr>
 	<tr><td><a href="#actor">actor</a></td><td>Object</td>
 	<td>Who the statement is about, as an <a href="#agent">Agent</a> or 
-		<a href="#group">Group</a> object. Represents the "I" in "I Did This".</td></tr>
+		<a href="#group">Group</a> Object. Represents the "I" in "I Did This".</td></tr>
 	<tr><td><a href="#verb">verb</a></td><td>Object</td>
-	<td>Action of the Learner or Team object. Represents the "Did" in "I Did This".</td></tr>
+	<td>Action of the Learner or Team Object. Represents the "Did" in "I Did This".</td></tr>
 	<tr><td><a href="#object">object</a></td><td>Object</td>
-	<td>Activity, agent, or another statement that is the object of the statement. 
-	Represents the "This" in "I Did This". Note that objects which are provided as a value for this field should 
-	include an "objectType" field. If not specified, the object is assumed to be 
+	<td>Activity, agent, or another statement that is the Object of the statement. 
+	Represents the "This" in "I Did This". Note that Objects which are provided as a value for this field should 
+	include an "objectType" field. If not specified, the Object is assumed to be 
 	an Activity.</td></tr>
 	<tr><td><a href="#result">result</a></td><td>Object</td>
-	<td>Result object, further details representing a measured outcome relevant to the specified Verb.</td></tr>
+	<td>Result Object, further details representing a measured outcome relevant to the specified Verb.</td></tr>
 	<tr><td><a href="#context">context</a></td><td>Object</td>
 	<td>Context that gives the statement more meaning. Examples: a team the Actor is 
 	working with, altitude at which a scenario was attempted in a flight simulator.</td></tr>
@@ -446,7 +446,7 @@ below.
 	<td>The statement’s associated xAPI version, formatted according to <a href="http://semver.org/spec/v1.0.0.html">Semantic Versioning 1.0.0</a>.</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
-		<td>Array of attachment objects</td>
+		<td>Array of attachment Objects</td>
 	    <td>Headers for attachments to the statement</td>
 	</tr>
 </table>  
@@ -498,7 +498,7 @@ for requirements, and the UUID must be in standard string form).
 #### 4.1.2 Actor  
 
 ###### Description: 
-A mandatory Agent or Group object.
+A mandatory Agent or Group Object.
 
 <a name="agent"/>
 
@@ -513,7 +513,7 @@ An Agent (an individual) is a persona or system.
 * An agent MUST NOT include more than one (1) inverse functional identifier;
 * An agent SHOULD NOT use inverse functional identifiers that are also used as a Group identifier.
 
-The table below lists the properties of Agent objects.
+The table below lists the properties of Agent Objects.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -538,7 +538,7 @@ An anonymous Group is used describe a cluster of people where there is no ready 
 this cluster, e.g. an ad hoc team.
 
 * An anonymous Group MUST include a 'member' property listing constituent Agents.
-* An anonymous Group MUST NOT contain Group objects in the 'member' property.
+* An anonymous Group MUST NOT contain Group Objects in the 'member' property.
 * An anonymous Group MUST NOT include any inverse functional identifiers.
 
 The table below lists all properties of an anonymous Group.
@@ -547,14 +547,14 @@ The table below lists all properties of an anonymous Group.
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>yes</td></tr>
 	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>no</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td><td>yes</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td><td>The members of this Group.</td><td>yes</td></tr>
 </table>
 
 An identified Group is used to uniquely identify a cluster of Agents.
 
 * An identified Group MUST include exactly one (1) inverse functional identifier.
 * An identified Group MAY include a 'member' property listing constituent Agents.
-* An identified Group MUST NOT contain Group objects in the 'member' property.
+* An identified Group MUST NOT contain Group Objects in the 'member' property.
 * An identified Group SHOULD NOT use inverse functional identifiers that are also used as Agent identifiers.
 
 The table below lists all properties of an identified Group.
@@ -563,7 +563,7 @@ The table below lists all properties of an identified Group.
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>yes</td></tr>
 	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>no</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent objects</a></td><td>The members of this Group.</td><td>yes</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td><td>The members of this Group.</td><td>yes</td></tr>
 	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
 	    <td>An inverse functional identifier unique to the Group.</td><td>yes</td></tr>	
 </table>
@@ -618,7 +618,7 @@ SHOULD use the openID property instead of an account Object.
 information about an Agent or Group, it SHOULD use an opaque account name (for example an
 account number) to identify all statements about a person while maintaining anonymity.
 
-The table below lists all properties of Account objects.
+The table below lists all properties of Account Objects.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -660,7 +660,7 @@ effectively capture all possible future learning experiences.
 
 ###### Requirements
 
-Verbs appear in statements as objects consisting of a URI and a set of display names 
+Verbs appear in statements as Objects consisting of a URI and a set of display names 
 corresponding to multiple languages or dialects which provide human-readable meanings of the Verb. 
 
 * The URI contained in the id SHOULD be human-readable and contain the Verb meaning.
@@ -675,7 +675,7 @@ Using the display property for aggregation or categorization of statements is an
 
 ###### Details
 
-The table below lists all properties of the Verb object.
+The table below lists all properties of the Verb Object.
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -782,7 +782,7 @@ The properties of an Object change according to the objectType.
 
 ##### 4.1.4.1 When the ObjectType is Activity
 
-A statement may represent an Activity as the object of the statement. The following table lists the Object 
+A statement may represent an Activity as the Object of the statement. The following table lists the Object 
 properties in this case.
 
 <table>
@@ -1038,7 +1038,7 @@ A Statement Reference is a pointer to another pre-existing Statement.
 * A Statement Reference MUST specify an "objectType" property with the value "StatementRef".
 * A Statement Reference MUST set the "id" property to the UUID of a Statement which is present on the system.
 
-The table below lists all properties of a Statement Reference object:
+The table below lists all properties of a Statement Reference Object:
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -1232,7 +1232,7 @@ The following table contains the properties of the Context Object.
 </tr>
 <tr>
 <td>contextActivities</td>
-<td>contextActivities object</td>
+<td>contextActivities Object</td>
 <td>A map of the types of learning activity context that this statement is related to.
 Valid context types are: "parent", "grouping", "category" and "other". 
 
@@ -1277,8 +1277,8 @@ altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a hr
 * The revision property SHOULD be used to track fixes of minor issues (like a spelling error).
 * The revision property SHOULD NOT be used if there is a major change in learning objectives, pedagogy, 
 or assets of an Activity. (Use a new Activity ID instead).
-* The revision property MUST NOT be used if the statement's object is an Agent or Group.
-* The platform property MUST NOT be used if the statement's object is an Agent or Group.
+* The revision property MUST NOT be used if the statement's Object is an Agent or Group.
+* The platform property MUST NOT be used if the statement's Object is an Agent or Group.
 * The language property MUST NOT be used if not applicable or unknown.
 
 __Note__: Revision has no behavioral implications within the scope of xAPI. It is simply stored,
@@ -1305,7 +1305,7 @@ completing an Activity ends a registration. Nor is a registration necessarily co
 A map of the types of learning activity context that this statement is related to.
 
 ###### Rationale
-Many statements do not just involve one object Activity that is the focus,
+Many statements do not just involve one Object Activity that is the focus,
 but relate to other contextually relevant activities. "Context activities" allow for 
 these related activities to be represented in a structured manner.
 
@@ -1313,13 +1313,13 @@ these related activities to be represented in a structured manner.
 There are four valid context types. All, any or none of these MAY be used in a given statement:
 
 1. __Parent__ : an Activity with a direct relation to the Activity
-which is the object of the statement. In almost all cases there
+which is the Object of the statement. In almost all cases there
 is only one sensible parent or none, not multiple.
 For example: a statement about a quiz question would have the quiz
 as its parent Activity.
  
 2. __Grouping__ : an Activity with an indirect relation to the Activity
-which is the object of the statement.
+which is the Object of the statement.
 For example: a course that is part of a qualification. The course
 has several classes. The course relates to a class as the parent,
 the qualification relates to the class as the grouping.
@@ -1335,24 +1335,24 @@ to the exam, and the category is the CMI-5 profile.
 For example: Anna studies a textbook for a biology exam. The statement's
 Activity refers to the textbook, and the exam is a context Activity of type "other".
 
-Single Activity objects are allowed as values so that 0.95 statements will be compatible with 1.0.0.
+Single Activity Objects are allowed as values so that 0.95 statements will be compatible with 1.0.0.
 
 ###### Note 
-The values in this section are not for expressing all the relationships the statement object has.
+The values in this section are not for expressing all the relationships the statement Object has.
 Instead, they are for expressing relationships appropriate for the specific statement
-(though the nature of the object will often be important in determining that).
+(though the nature of the Object will often be important in determining that).
 For instance, it is appropriate in a statement about a test to include the course
 the test is part of as parent, but not to include every possible degree
 program the course could be part of in the grouping value.
 
 ###### Requirements
-* Every key in the contextActivities object MUST be one of parent, grouping, category, or other.
-* Every value in the contextActivities object MUST be either a single Activity object or an array of Activity objects.
-* The client SHOULD ensure that every value in the contextActivities object is an array of Activity objects 
-instead of a single Activity object.
-* The LRS MUST return every value in the contextActivities object as an array, even if it arrived
-as a single Activity object.
-* The LRS MUST return single Activity objects as an array of length one containing the same Activity.
+* Every key in the contextActivities Object MUST be one of parent, grouping, category, or other.
+* Every value in the contextActivities Object MUST be either a single Activity Object or an array of Activity Objects.
+* The client SHOULD ensure that every value in the contextActivities Object is an array of Activity Objects 
+instead of a single Activity Object.
+* The LRS MUST return every value in the contextActivities Object as an array, even if it arrived
+as a single Activity Object.
+* The LRS MUST return single Activity Objects as an array of length one containing the same Activity.
 
 ###### Example
 
@@ -1361,7 +1361,7 @@ are part of "Test 1" which in turn belongs to the course "Algebra 1".
 The six questions are registered as part of the test by declaring
 "Test 1" as their parent. Also they are grouped with other statements
 about "Algebra 1" to fully mirror the hierarchy. This is particularly
-useful when the object of the statement is an agent, not an Activity.
+useful when the Object of the statement is an agent, not an Activity.
 "Andrew mentored Ben with context Algebra I".
 
 ```
@@ -1464,7 +1464,7 @@ or them as a user, but the unique combination of both.
 
 ###### Requirements
 
-* The authority MUST contain an Agent object that represents the OAuth consumer, either by itself, or 
+* The authority MUST contain an Agent Object that represents the OAuth consumer, either by itself, or 
 as part of a group in the case of 3-legged OAuth.
 * The Agent representing the OAuth consumer MUST be identified by account.
 * The Agent representing the OAuth consumer MUST use the consumer key as the “account name” field.
@@ -1535,7 +1535,7 @@ certificate that was granted as a result of an experience. It is useful to have 
 in and retrieve them from an LRS. 
 
 ###### Details:
-The table below lists all properties of the Attachment object.
+The table below lists all properties of the Attachment Object.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -1626,8 +1626,8 @@ received, if any, for those attachments;
 when requested by the client (see Section [7.2 "Statement API"](#stmtapi));
 * MAY reject (batches of) statements that are larger than the LRS is configured to allow;
 * When receiving a PUT or POST with a document type of "application/json"
-    * MUST accept batches of statements which contain either no attachment objects, or
-only attachment objects with a populated fileUrl;
+    * MUST accept batches of statements which contain either no attachment Objects, or
+only attachment Objects with a populated fileUrl;
 * Otherwise:
     * MUST accept batches of statements via the statements resource PUT or POST that contain
     attachments in the Transmission Format described above;
@@ -1642,7 +1642,7 @@ contain attachments.
 * MAY send statements with attachments as described above;
 * MAY send multiple statements where some or all have attachments if using "POST".
 * MAY send batches of type "application/json" where every attachment
-object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
+Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
 
 ###### Example:
 
@@ -1763,7 +1763,7 @@ endpoint, see Section [7.2 "Statement API"](#stmtapi) for details.
 		<td>List of statements. If the list returned has been limited (due to pagination), 
 			and there are more results, they will be located at the "statements" property 
 			within the container located at the URL provided by the "more" element of 
-			this statement result object.
+			this statement result Object.
 		</td>
 	</tr>
 	<tr><td>more</td><td>URL</td>
@@ -1792,7 +1792,7 @@ that a previously made statement is marked as invalid. This is called "voiding a
 “http://adlnet.gov/expapi/verbs/voided" is used for this purpose. 
 
 ###### Requirements
-When issuing a statement that voids another, the object of that voiding statement...
+When issuing a statement that voids another, the Object of that voiding statement...
 
 * MUST have the "objectType" field set to "StatementRef;"
 * MUST specify the ID of the statement-to-be-voided by its "id" field.
@@ -1918,7 +1918,7 @@ the form of documents, which may be related to an Activity, Agent, or combinatio
 	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
 	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
-Note that in the REST binding, State is a document not an object. ID is stored in the URL, 
+Note that in the REST binding, State is a document not an Object. ID is stored in the URL, 
 updated is HTTP header information, and contents is the HTTP document itself.  
 
 
@@ -1958,7 +1958,7 @@ define an Activity within some custom application or community.
 ###### Note: 
 A statement should not be totally defined by its extensions, and be 
 meaningless otherwise. Experience API statements should be capturing experiences 
-among Actors and objects, and SHOULD always strive to map as much information as 
+among Actors and Objects, and SHOULD always strive to map as much information as 
 possible into the built in elements, in order to leverage interoperability among 
 Experience API conformant tools.  
 
@@ -2384,7 +2384,7 @@ response explaining the cause of the error.
 
 * ```400 Bad Request``` - Indicates
 an error condition caused by an invalid or missing argument. The term 
-"invalid arguments" includes malformed JSON or invalid object structures.
+"invalid arguments" includes malformed JSON or invalid Object structures.
 
 * ```401 Unauthorized``` - Indicates that authentication is required, or in the 
 case authentication has been posted in the request, that the given credentials 
@@ -2452,7 +2452,7 @@ Returns: ```200 OK```, statement ID(s) (UUID).
 An LRS MUST NOT make any modifications to its state based on a receiving a statement
 with a statementID that it already has a statement for. Whether it responds with
 ```409 Conflict``` or ```204 No Content```, it MUST NOT modify the statement or any other
-object.
+Object.
 
 If the LRS receives a statement with an ID it already has a statement for, it SHOULD
 verify the received statement matches the existing one and return ```409 Conflict``` if they
@@ -2467,11 +2467,11 @@ Example endpoint: ```http://example.com/xAPI/statements```
 This method may be called to fetch a single statement or multiple statements. If the
 statementId or voidedStatementId parameter is specified a single statement is returned.
 
-Otherwise returns: A [StatementResult](#retstmts) object,
+Otherwise returns: A [StatementResult](#retstmts) Object,
 a list of statements in reverse chronological order based on "stored" time, 
 subject to permissions and maximum list length. If additional results are 
 available, a URL to retrieve them will be included in the StatementResult 
-object.
+Object.
 
 Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 4.2](#retstmts) for details)
 
@@ -2480,12 +2480,12 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 	<tr><td>statementId</td><td>String</td><td> </td><td>ID of statement to fetch</td></tr>
 	<tr><td>voidedStatementId</td><td>String</td><td> </td><td>ID of voided statement to fetch. see <a href="#voidedStatements">Voided Statements</a></td></tr>
 	<tr><td>agent</td><td>Agent or identified Group Object (JSON)</td><td> </td>
-		<td>Filter, only return statements for which the specified agent or group is the Actor or object of the statement.
+		<td>Filter, only return statements for which the specified agent or group is the Actor or Object of the statement.
 			<ul><li> Agents or identified groups are equal when the same Inverse Functional Identifier is used in each
-			object compared and those Inverse Functional Identifiers have equal values.
+			Object compared and those Inverse Functional Identifiers have equal values.
 			</li><li>For the purposes of this filter, groups that have members which match the specified agent
 			based on their Inverse Functional Identifier as described above are considered a match</li></ul>
-			<br><br>See <a href="#actor">agent/group</a> object definition
+			<br><br>See <a href="#actor">agent/group</a> Object definition
 			for details.
 		</td>
 	</tr>
@@ -2493,7 +2493,7 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 		<td>Filter, only return statements matching the specified verb id.</td>
 	</tr>
 	<tr><td>activity</td><td>Activity id (URI)</td><td> </td>
-		<td>Filter, only return statements for which the object of the statement is an Activity with the specified id.
+		<td>Filter, only return statements for which the Object of the statement is an Activity with the specified id.
 		</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td> </td>
@@ -2505,7 +2505,7 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 		</td>
 	</tr>
 	<tr><td>related_activities</td><td>Boolean</td><td>False</td>
-		<td>Apply the Activity filter broadly. Include statements for which the object,
+		<td>Apply the Activity filter broadly. Include statements for which the Object,
 		any of the  context activities, or any of those properties in a contained SubStatement
 		match the Activity parameter, instead of that parameter's normal behavior. Matching
 		is defined in the same way it is for the 'Activity' parameter."
@@ -2513,7 +2513,7 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 	</tr>
 	<tr><td>related_agents</td><td>Boolean</td><td>False</td>
 		<td>Apply the agent filter broadly. Include statements for which 
-			the Actor, object, authority, instructor, team,
+			the Actor, Object, authority, instructor, team,
 			or any of these properties in a contained SubStatement match the agent parameter,
 			instead of that parameter's normal behavior. Matching is defined in the same way
 			it is for the 'agent' parameter.
@@ -2531,19 +2531,19 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 	</tr>
 	<tr><td>format</td><td>String: ("ids", "exact", or "canonical")</td><td>exact</td>
 		<td>If "ids", only include minimum information necessary in agent,
-			Activity, and group objects to identify them. For anonymous groups this means
+			Activity, and group Objects to identify them. For anonymous groups this means
 			including the minimum information needed to identify each member.
 
 			If "exact", return agent,
-			Activity, and group objects populated exactly as they were when the statement
+			Activity, and group Objects populated exactly as they were when the statement
 			was received.<br/><br/>
 			
-			If "canonical", return Activity objects populated with the canonical
-			definition of the Activity objects as determined by the LRS, after
+			If "canonical", return Activity Objects populated with the canonical
+			definition of the Activity Objects as determined by the LRS, after
 			applying the language filtering process defined below, and return the original
-			agent objects as in "exact" mode.
+			agent Objects as in "exact" mode.
 
-			Activity objects contain Language Map objects for name and 
+			Activity Objects contain Language Map Objects for name and 
 			description. Only one language should be returned in each of 
 			these maps.<br/><br/>
 
@@ -2596,7 +2596,7 @@ or to list statements based on the parameters passed.
 
 For filter parameters which are not time or sequence based (that is, other than
 since, until, or limit), statements which target another statement (by using a StatementRef
-as the object of the statement) will meet the filter condition if the targeted statement meets 
+as the Object of the statement) will meet the filter condition if the targeted statement meets 
 the condition. The time and sequence based parameters must still be applied to the statement 
 making the StatementRef in this manner. This rule applies recursively, so that "statement a" is a 
 match when a targets b which targets c and the filter conditions described above match for 
@@ -2684,12 +2684,12 @@ contains:
 When an LRS receives a POST request with content type application/json for an existing document also of
 content type application/json, it MUST merge the posted document with the existing document. 
 In this context merge is defined as:
-* de-serialize the objects represented by each document
-* for each property directly defined on the object being posted, set the corresponding
-property on the existing object equal to the value from the posted object.    
-* store any valid json serialization of the existing object as the document referenced in the request
+* de-serialize the Objects represented by each document
+* for each property directly defined on the Object being posted, set the corresponding
+property on the existing Object equal to the value from the posted Object.    
+* store any valid json serialization of the existing Object as the document referenced in the request
 
-Note that only top-level properties are merged, even if a top-level property is an object
+Note that only top-level properties are merged, even if a top-level property is an Object
 the entire contents of each original property are replaced with the entire contents of
 each new property.
 
@@ -2712,7 +2712,7 @@ the resulting document stored in the LRS is:
 ```
 If the original document exists, and the original document or the document being posted
 do not have a Content-Type:
-of "application/json", or if either document can not be parsed as JSON objects, the LRS MUST
+of "application/json", or if either document can not be parsed as JSON Objects, the LRS MUST
 respond with HTTP status code 400 "Bad Request", and MUST NOT update the target document
 as a result of the request. 
 
@@ -2823,7 +2823,7 @@ of an Activity from the LRS.
 ###### GET activities
 Example endpoint: http://example.com/xAPI/activities
 
-Loads the complete Activity object specified.  
+Loads the complete Activity Object specified.  
 
 Returns: 200 OK - Content  
 <table>
@@ -2879,17 +2879,17 @@ methods will act upon a single defined document identified by "profileId".
 Otherwise, GET will return the available IDs, and DELETE will delete all state 
 in the context given through the other parameters.  
 
-The Agent Profile API also includes a method to retrieve a special object with 
+The Agent Profile API also includes a method to retrieve a special Object with 
 combined information about an Agent derived from an outside service, such as a 
 directory service.  
 
 ###### GET agents
 Example endpoint: http://example.com/xAPI/agents
 
-Return a special, Person object for a specified agent. The Person object is 
-very similar to an Agent object, but instead of each attribute having a single 
+Return a special, Person Object for a specified agent. The Person Object is 
+very similar to an Agent Object, but instead of each attribute having a single 
 value, each attribute has an array value, and it is legal to include multiple 
-identifying properties. Note that the argument is still a normal Agent object 
+identifying properties. Note that the argument is still a normal Agent Object 
 with a single identifier and no arrays. Note that this is different from the 
 FOAF concept of person, person is being used here to indicate a person-centric 
 view of the LRS agent data, but agents just refer to one persona (a person in 
@@ -2899,13 +2899,13 @@ An LRS capable of returning multiple identifying properties for an Person SHOULD
 require the connecting credentials have increased, explicitly given permissions. 
 An LRS SHOULD reject insufficiently privileged requests with 403 "Forbidden". 
 If an LRS does not have any additional information about an Agent to return, the 
-LRS MUST still return a Person when queried, but that Person object will only 
+LRS MUST still return a Person when queried, but that Person Object will only 
 include the information associated with the requested Agent.  
 
 ###### Person properties
 
 All array properties must be populated with members with the 
-same definition as the similarly named property from Agent objects.  
+same definition as the similarly named property from Agent Objects.  
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -2929,7 +2929,7 @@ same definition as the similarly named property from Agent objects.
 	<tr>
 		<td>account*</td>
 		<td>Array of account objects.</td>
-		<td>List of accounts to match. Complete account objects (homePage and name) must be provided.</td>
+		<td>List of accounts to match. Complete account Objects (homePage and name) must be provided.</td>
 	</tr>
 </table> 
 
@@ -2990,7 +2990,7 @@ Returns: 200 OK - List of IDs
 Example endpoint: http://example.com/xAPI/about
 
 ###### Description
-Returns JSON object containing information about this LRS, including the xAPI version
+Returns JSON Object containing information about this LRS, including the xAPI version
 supported.
 
 ###### Rationale
@@ -3005,7 +3005,7 @@ Returns: 200 OK - Single 'about' JSON document.
 <td>version</td><td>array of version strings</td><td>xAPI versions this LRS supports</td>
 </tr>
 <tr>
-<td>Extensions</td><td><a href="#miscext">Extensions object</a></td><td>A map of other properties as needed.</td>
+<td>Extensions</td><td><a href="#miscext">Extensions Object</a></td><td>A map of other properties as needed.</td>
 </tr>
 </table>
 
