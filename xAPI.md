@@ -1847,26 +1847,26 @@ statements.
 <a name="signature"/>
 #### 4.4 Signed Statements
 
-###### Description:
+###### Description
 A statement may include a <a href="https://en.wikipedia.org/wiki/Digital_signature">
 digital signature</a> to provide strong and durable evidence of the authenticity and
 integrity of the statement.
 
-###### Rationale:
+###### Rationale
 Some statements will have regulatory or legal significance, or otherwise require strong
 and durable evidence of their authenticity and integrity. It may be necessary to verify
 these statements without trusting the system they were first recorded in, or perhaps
 without access to that system. Digital signatures will enable a third-party system
 to validate such statements.
 
-###### Details:
+###### Details
 
 Signed statements include a JSON web signature (JWS) as an attachment. This allows
 the original serialization of the statement to be included along with the signature.
 For interoperability, the "RSA + SHA" series of JWS algorithms have been selected, and
 for discoverability of the signer X.509 certificates SHOULD be used.
 
-###### Requirements for a signed statement:
+###### Requirements for a signed statement
 
 * MUST include a JSON web signature (JWS) as defined here:
 http://tools.ietf.org/html/draft-ietf-jose-json-web-signature, as an attachment with a usageType
@@ -1879,7 +1879,7 @@ X.509 certificate.
 * If X.509 was used to sign, the JWS header SHOULD include the "x5c" property containing
 the associated certificate chain.
 
-LRS requirements when receiving a signed statement:
+LRS requirements when receiving a signed statement
 
 * The LRS MUST reject requests to store statements that contain malformed signatures,
 with HTTP 400 and SHOULD include a message describing the problem in the response.
@@ -1893,7 +1893,7 @@ JWS signature payload.
     * If the JWS header includes an X.509 certificate, validate the signature against that
     certificate as defined in JWS.
 
-__Note:__ The step of validating against the included X.509 certificate is intended as a
+__Note__ The step of validating against the included X.509 certificate is intended as a
 way to catch mistakes in the signature, not as a security measure. Clients MUST NOT assume
 a signature is valid simply because an LRS has accepted it. The steps to authenticate
 a signed statement will vary based on the degree of certainty required and are outside
@@ -1907,7 +1907,7 @@ See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example
 
 <a name="miscdocument"/> 
 
-### 5.1 Document:
+### 5.1 Document
 The Experience API provides a facility for Activity Providers to save arbitrary data in 
 the form of documents, which may be related to an Activity, Agent, or combination of both.  
 <table>
@@ -1916,7 +1916,7 @@ the form of documents, which may be related to an Activity, Agent, or combinatio
 	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
 	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
-Note that in the REST binding, State is a document not an Object. ID is stored in the URL, 
+Note that in the REST binding, State is a document not an Object. The id is stored in the URL, 
 updated is HTTP header information, and contents is the HTTP document itself.  
 
 
@@ -1997,7 +1997,7 @@ of "application/json" is requested.
 * If this metadata is provided as described above, it is the canonical source of information
 about the identifier it describes
 * Other sources of information MAY be used to fill in missing details, such as translations, or
-take the place of this metadata entirely if it was not provided or can not be loaded. This MAY
+take the place of this metadata entirely if it was not provided or cannot be loaded. This MAY
 include metadata in other formats stored at the URL of an identifier, particularly if that
 identifier was not coined for use with this specification.
 
@@ -2021,12 +2021,14 @@ to fully understand every detail of this part of the specification.
 
 <a name="encoding"/> 
 
-### 6.1 Encoding:
-All strings must be encoded and interpreted as UTF-8.  
+### 6.1 Encoding
+
+###### Requirement
+* All strings MUST be encoded and interpreted as UTF-8. 
 
 <a name="apiversioning"/> 
 
-### 6.2 API Versioning:
+### 6.2 API Versioning
 
 
 ###### Requirement
@@ -2052,91 +2054,95 @@ compatible or not as the specification changes.
 
 Requirements for the LRS:
 
-* MUST include the "X-Experience-API-Version" header in every response;
-* MUST set this header to ""1.0.0"";
-* MUST accept requests with a version header of "1.0" as if the version header was "1.0.0";
-* MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header;
-* MUST reject requests with a version header of "1.1.0" or greater;
+* MUST include the "X-Experience-API-Version" header in every response.
+* MUST set this header to "1.0.0".
+* MUST accept requests with a version header of "1.0" as if the version header was "1.0.0".
+* MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header.
+* MUST reject requests with a version header of "1.1.0" or greater.
 * MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
 
 
 Requirements for the client:
 
-* SHOULD tolerate receiving responses with a version of "1.0.0" or later;
-* SHOULD tolerate receiving data structures with additional properties;
+* SHOULD tolerate receiving responses with a version of "1.0.0" or later.
+* SHOULD tolerate receiving data structures with additional properties.
 * SHOULD ignore any properties not defined in version 1.0.0 of the spec.
 
 Converting statements to other versions:
 
-* Systems MUST NOT convert statements of newer versions into a prior version format e.g. in order to handle version differences.
+* Systems MUST NOT convert statements of newer versions into a prior version format, e.g., in order to handle version differences.
 * Systems MAY convert statements of older versions into a newer version only by following the methods described in
 <a href="#AppendixE">Appendix E: Converting Statements to 1.0.0</a>.
 
 <a name="concurrency"/> 
 ### 6.3 Concurrency
 
-####Description
+##### Description
 Concurrency control makes certain that an API consumer does not PUT changes based on old
 data into an LRS.
 
-####Details
+##### Details
 xAPI will use HTTP 1.1 entity tags ([ETags](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19))
 to implement optimistic concurrency control in the portions of the API where PUT may
 overwrite existing data, being:
 
 * State API
-* Agent and 
+* Agent Profile API 
 * Activity Profile API
 
 The State API will permit PUT statements without concurrency headers, since state conflicts
 are unlikely. The requirements below only apply to Agent Profile API and Activity Profile API.
 
-####Client requirements
+##### Client requirements
 
 An xAPI client using either Agent Profile API or Activity Profile API…
 
 * MUST include the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)
-header, OR…
-* MUST include the If-None-Match header.
+header or MUST include the If-None-Match header.
 
-####LRS requirements
+##### LRS requirements
 
-The LRS that responds to a GET request…
+The LRS that responds to a GET request
 
-* MUST add an ETag HTTP header to the response;
+* MUST add an ETag HTTP header to the response.
 * MUST calculate the value of this header to be a hexidecimal string of the  SHA-1 digest
-of the contents;
+of the contents.
 * MUST enclose the header in quotes.
 
 The reason for specifying the LRS ETag format is to allow API consumers that can't read
 the ETag header to calculate it themselves.
 
-The LRS that responds to a PUT request…
+The LRS that responds to a PUT request
 
 * MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)
 header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
-modifications made after the consumer last fetched the document;
+modifications made after the consumer last fetched the document.
 * MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26)
 header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect when there
 is a resource present that the consumer is not aware of.
 
-If the header precondition in either of the above cases fails, the LRS…
+If the header precondition in either of the above cases fails, the LRS
 
-* MUST return HTTP status 412 "Precondition Failed";
+* MUST return HTTP status 412 "Precondition Failed".
 * MUST NOT make a modification to the resource. 
 
-If a PUT request is received without either header for a resource that already exists, the LRS…
+If a PUT request is received without either header for a resource that already exists, the LRS
 
-* MUST return HTTP status 409 "Conflict";
-* MUST return a plain text body explaining that the consumer should…
-	- check the current state of the resource, AND...
-	- set the "If-Match" header with the current ETag to resolve the conflict;
+* MUST return HTTP status 409 "Conflict".
+* MUST return a plain text body explaining that the consumer SHOULD
+	- check the current state of the resource.
+	- set the "If-Match" header with the current ETag to resolve the conflict.
 * MUST NOT make a modification to the resource.
 
 
 <a name="security"/>
 
-### 6.4 Security:
+### 6.4 Security
+
+###### Rationale
+
+In order to balance interoperability and the varying security requirements of different
+environments, several authentication options are defined.
 
 ###### Requirement
 
@@ -2147,10 +2153,7 @@ The LRS MUST support authentication using at least one of the following methods:
 - The LRS MUST handle making, or delegating, decisions on the validity of statements,
  and determining what operations may be performed based on the credentials used.
 
-###### Rationale
 
-In order to balance interoperability and the varying security requirements of different
-environments, several authentication options are defined.
 
 ###### Authentication scenarios
 
@@ -2191,9 +2194,9 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 #### 6.4.1 How To Handle Each Scenario
 
 ##### General
-* The LRS must record the application's name and a unique consumer key (identifier);
+* The LRS must record the application's name and a unique consumer key (identifier).
 * The LRS must provide a mechanism to complete this registration, or delegate to another system that provides such 
-a mechanism;
+a mechanism.
 The means by which this registration is accomplished are not defined by OAuth or the xAPI.
 
 ##### Application registered + known user
@@ -2233,15 +2236,15 @@ since OAuth specifies an application.
 distinguish an explicitly unauthenticated request from a  request that should be given a HTTP Basic Authentication 
 challenge.
 
-##### Details
+##### Requirement
 
 Requirements for the LRS:
 
-* MUST be able to be configured for complete support of the xAPI 
-	* With any of the above methods;
+* MUST be able to be configured for complete support of the xAPI:
+	* With any of the above methods.
 	* In any of the workflow scenarios above.
 * MAY (for security reasons): 
-	* Support a subset of the above methods;
+	* Support a subset of the above methods.
 	* Limit the known users or registered applications.
 * SHOULD at a minimum supply Oauth with "HMAC-SHA1" and "RSA-SHA1" signatures.
 
@@ -2259,7 +2262,7 @@ request.
 
 
 #####Requirements
-The LRS...
+The LRS:
 
 * MUST accept a scope parameter as defined in [OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3);
 * MUST assume a requested scope of "statements/write" and "statements/read/mine" if no
@@ -2267,7 +2270,7 @@ scope is specified;
 * MUST support the scope of "all" as a minimum; 
 * MAY support other scopes.
 
-An xAPI client...
+An xAPI client:
 
 * SHOULD request only the minimal needed scopes, to increase the chances that the request
 will be granted. 
@@ -2351,8 +2354,8 @@ parameters, not in the OAuth header.
 <a name="datatransfer"/> 
 
 ## 7.0 Data Transfer (REST)
-This section describes The xAPI consists of 4 sub-APIs: Statement, State, 
-Learner, and Activity Profile. These four sub-APIs of the Experience API 
+This section describes that the xAPI consists of 4 sub-APIs: Statement, State, 
+Agent, and Activity Profile. These four sub-APIs of the Experience API 
 are handled via RESTful HTTP methods. The Statement API can be used by itself 
 to track learning records.  
 
@@ -2363,10 +2366,10 @@ be used.
 ###### LRS Requirements
 
 The LRS MUST reject with ```HTTP 400 Bad Request``` status (see below) any request to any of
-these APIs using any parameters...
+these APIs using any parameters:
 
 * the LRS does not recognize (Note: LRSs may recognize and act on parameters not in 
-this specification);
+this specification).
 
 * that match parameters described in this specification in all but case.
 
@@ -2407,8 +2410,8 @@ a precondition posted with the request, in the case of State or Agent Profile or
 API calls. See Section [6.3 Concurrency](#concurrency) for more details.
 
 * ```413 Request Entity Too Large``` - Indicates that the LRS has rejected the statement or 
-document because it's size is larger than the maximum allowed by the LRS. The LRS is free to
-choose any limit and MAY vary this limit on any basis e.g. per authority, but
+document because its size is larger than the maximum allowed by the LRS. The LRS is free to
+choose any limit and MAY vary this limit on any basis, e.g., per authority, but
 MUST be configurable to accept statements of any size.
 
 * ```500 Internal Server Error``` - Indicates a general error condition, typically an 
