@@ -1770,11 +1770,13 @@ non-format-following rejection requirement.
 <a name="retstmts"/> 
 
 ### 4.2 Retrieval of Statements
+
 ###### Description
 A collection of Statements can be retrieved by performing a query on the "statements" 
 endpoint, see Section [7.2 "Statement API"](#stmtapi) for details. 
 
-###### Details 
+###### Details
+The following table shows queries on the Statement API.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>statements</td><td>Array of Statements</td>
@@ -1800,6 +1802,7 @@ endpoint, see Section [7.2 "Statement API"](#stmtapi) for details.
 
 <a name="voided"/>
 #### 4.3 Voided
+
 ###### Rationale
 
 The certainty that an LRS has an accurate and complete collection of data is guaranteed by the fact that Statements 
@@ -1808,31 +1811,28 @@ nature of Experience API.
 
 However, not all Statements are perpetually valid once they have been issued. Mistakes or other factors could require 
 that a previously made Statement is marked as invalid. This is called "voiding a Statement" and the reserved Verb 
-“http://adlnet.gov/expapi/verbs/voided" is used for this purpose. 
+“http://adlnet.gov/expapi/verbs/voided" is used for this purpose. Any Statement that voids another cannot 
+itself be voided.
 
 ###### Requirements
-When issuing a Statement that voids another, the Object of that voiding Statement...
 
-* MUST have the "objectType" field set to "StatementRef;"
-* MUST specify the id of the statement-to-be-voided by its "id" field.
-
-Upon receiving a Statement that voids another, the LRS...
-
-* MUST NOT report the voided Statement when queried, but MUST report the voiding Statement 
-(see [StatementRef](#queryStatementRef) in 7.2 Statement API).
-* SHOULD reject the entire request which includes the voiding Statement with HTTP 403
-'Forbidden' if the request is not from a source authorized to void Statements.
-* SHOULD return a descriptive error if the target Statement cannot be found;
-* MAY roll back any changes to Activity or Agent definitions which were introduced by the Statement that was just voided;
-
-Any Statement that voids another cannot itself be voided. An Activity Provider that wants to "unvoid" a previously 
-voided Statement...
-
-* SHOULD issue that Statement again under a new id
-
-A reporting system...
-
-* SHOULD NOT show voided or voiding Statements by default.
+* When issuing a Statement that voids another, the Object of that voiding Statement MUST have the "objectType" 
+field set to "StatementRef".
+* When issuing a Statement that voids another, the Object of that voiding Statement MUST specify the id 
+of the statement-to-be-voided by its "id" field.
+* Upon receiving a Statement that voids another, the LRS MUST NOT report the voided Statement when queried.
+* Upon receiving a Statement that voids another, the LRS MUST report the voiding Statement.
+* Upon querying, an LRS MUST NOT report any Statement that was voided by a stored voiding Statement, 
+but rather report the voiding Statement. (see [StatementRef](#queryStatementRef) in 7.2 Statement API).
+* Upon receiving a Statement that voids another, the LRS SHOULD reject the entire request which includes the 
+voiding Statement with HTTP 403 'Forbidden' if the request is not from a source authorized to void Statements.
+* Upon receiving a Statement that voids another, the LRS SHOULD return a descriptive error if the target 
+Statement cannot be found.
+* Upon receiving a Statement that voids another, the LRS MAY roll back any changes to Activity or Agent 
+definitions which were introduced by the Statement that was just voided;
+* An Activity Provider that wants to "unvoid" a previously voided Statement SHOULD issue that Statement 
+again under a new id
+* A reporting system SHOULD NOT show voided or voiding Statements by default.
 
 See ["Statement References"](#stmtref) in [Section 4.1.4.3 When the "Object" is a Statement](#stmtasobj) for details about making references to other 
 Statements.
@@ -1877,21 +1877,18 @@ these Statements without trusting the system they were first recorded in, or per
 without access to that system. Digital signatures will enable a third-party system
 to validate such Statements.
 
-###### Requirements for a Signed Statement
+###### Requirements
 
-* MUST include a JSON web signature (JWS) as defined here:
+* A Signed Statement MUST include a JSON web signature (JWS) as defined here:
 http://tools.ietf.org/html/draft-ietf-jose-json-web-signature, as an attachment with a usageType
 of "http://adlnet.gov/expapi/attachments/signature" and a contentType of "application/octet-stream".
 * The JWS signature MUST have a payload of a valid JSON serialization of the Statement generated
 before the signature was added.
-* The JWS signature MUST use an algorithm of "RS256","RS384", or "RS512"
+* The JWS signature MUST use an algorithm of "RS256","RS384", or "RS512".
 * The JWS signature SHOULD have been created based on the private key associated with an
 X.509 certificate.
 * If X.509 was used to sign, the JWS header SHOULD include the "x5c" property containing
 the associated certificate chain.
-
-###### Requirements for the LRS
-
 * The LRS MUST reject requests to store Statements that contain malformed signatures,
 with HTTP 400 and SHOULD include a message describing the problem in the response.
 In order to verify signatures are well formed, the LRS MUST do the following:
@@ -1903,12 +1900,7 @@ JWS signature payload.
     	"version" MUST be ignored.
     * If the JWS header includes an X.509 certificate, validate the signature against that
     certificate as defined in JWS.
-
-__Note__ The step of validating against the included X.509 certificate is intended as a
-way to catch mistakes in the signature, not as a security measure. Clients MUST NOT assume
-a signature is valid simply because an LRS has accepted it. The steps to authenticate
-a signed Statement will vary based on the degree of certainty required and are outside
-the scope of this specification.
+* Clients MUST NOT assume a signature is valid simply because an LRS has accepted it.
 
 ###### Details
 
@@ -1918,6 +1910,12 @@ For interoperability, the "RSA + SHA" series of JWS algorithms have been selecte
 for discoverability of the signer X.509 certificates SHOULD be used.
 
 See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example.
+
+###### Note: The step of validating against the included X.509 certificate is intended as a
+way to catch mistakes in the signature, not as a security measure. Clients MUST NOT assume
+a signature is valid simply because an LRS has accepted it. The steps to authenticate
+a signed Statement will vary based on the degree of certainty required and are outside
+the scope of this specification.
 
 
 <a name="misctypes"/>
