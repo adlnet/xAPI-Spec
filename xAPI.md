@@ -676,7 +676,7 @@ corresponding to multiple languages or dialects which provide human-readable mea
 * A system reading a Statement MUST NOT use the display property for any purpose other than display to a human.
 Using the display property for aggregation or categorization of Statements is an example of violating this requirement. 
 * The display property SHOULD be used by all Statements.
-* The URI contained in the id SHOULD be human-readable and contain the Verb meaning.
+* The URI contained in the id SHOULD be human-readable and imply the Verb meaning.
 
 
 ###### Details
@@ -1544,49 +1544,49 @@ communication with ATC, an essay, a video, etc. Another example of such an attac
 certificate that was granted as a result of an experience. It is useful to have a way to store these attachments 
 in and retrieve them from an LRS. 
 
-###### Requirements for attachment Statement batches
+###### Requirements for Attachment Statement Batches
 
 A Statement batch, Statement results, or single Statement that includes attachments:
 
 * MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for Statement results when the attachments filter is false or
 * MUST conform to the definition of multipart/mixed in RFC 1341 and:
-    * The first part of the multipart document MUST contain the Statements themselves, with type "applicaton/json";
+    * The first part of the multipart document MUST contain the Statements themselves, with type "applicaton/json".
     * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
 capability will be available when issuing PUT or POST against the Statement resource.
-	* MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part;
+	* MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part.
 	* This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
 	attachment included in this part.
-	* MUST include a Content-Transfer-Encoding field with a value of "binary" in each part's header after the first (statements) part;
-    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple Statements that are sent together;
-    * SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json";
+	* MUST include a Content-Transfer-Encoding field with a value of "binary" in each part's header after the first (statements) part.
+    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple Statements that are sent together.
+    * SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json".
 
 
 ###### Requirements for the LRS
 
-* MUST include attachments in the Transmission Format described above
-when requested by the Client (see Section [7.2 "Statement API"](#stmtapi));
-* MUST NOT pull Statements from another LRS without requesting attachments;
-* MUST NOT push Statements into another LRS without including attachment data
-received, if any, for those attachments;
-* When receiving a PUT or POST with a document type of "application/json"
-    * MUST accept batches of Statements which contain either no attachment Objects, or
-only attachment Objects with a populated fileUrl;
+* An LRS MUST include attachments in the Transmission Format described above
+when requested by the Client (see Section [7.2 "Statement API"](#stmtapi)).
+* An LRS MUST NOT pull Statements from another LRS without requesting attachments.
+* An LRS MUST NOT push Statements into another LRS without including attachment data
+received, if any, for those attachments.
+* When receiving a PUT or POST with a document type of "application/json", 
+    * An LRS MUST accept batches of Statements which contain either no attachment Objects, or
+only attachment Objects with a populated fileUrl.
 * Otherwise:
-    * MUST accept batches of Statements via the Statements resource PUT or POST that contain
-    attachments in the Transmission Format described above;
-    * MUST reject batches of Statements having attachments that neither contain a fileUrl nor match a
-received attachment part based on their hash;
-    * SHOULD assume a Content-Transfer-Encoding of binary for attachment parts.
-* MAY reject (batches of) Statements that are larger than the LRS is configured to allow;
+    * An LRS MUST accept batches of Statements via the Statements resource PUT or POST that contain
+    attachments in the Transmission Format described above.
+    * An LRS MUST reject batches of Statements having attachments that neither contain a fileUrl nor match a
+received attachment part based on their hash.
+    * An LRS SHOULD assume a Content-Transfer-Encoding of binary for attachment parts.
+* An LRS MAY reject (batches of) Statements that are larger than the LRS is configured to allow.
 
 __Note:__ There is no requirement that Statement batches using the mime/multipart format
 contain attachments.
 
 ###### Requirements for the Client
 
-* MAY send Statements with attachments as described above;
-* MAY send multiple Statements where some or all have attachments if using "POST".
-* MAY send batches of type "application/json" where every attachment
+* The Client MAY send Statements with attachments as described above.
+* The Client MAY send multiple Statements where some or all have attachments if using "POST".
+* The Client MAY send batches of type "application/json" where every attachment
 Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
 
 ###### Details
@@ -1725,6 +1725,9 @@ here is a simple attachment
 
 <a name="dataconstraints"/>
 #### 4.1.12 Data Constraints
+
+###### Details
+
 All the properties used in Statements are restricted to certain types, and those types
 constrain the behavior of systems processing Statements. For clarity, certain key
 requirements are documented here, emphasizing where compliant systems have a responsibility
@@ -1738,11 +1741,11 @@ included elsewhere, to emphasize, clarify, and provide implementation guidance.
 * Values requiring IRIs MUST be sent with valid IRIs. Please use a library to
 construct them instead of string concatenation. Complete IRI validation is
 extremely difficult, so much of the burden for ensuring data portability is on the Client.
-* For similar reasons, keys of language maps MUST be sent with valid RFC 5646 language tags.
+* Keys of language maps MUST be sent with valid RFC 5646 language tags,for similar reasons.
 
 ###### Requirements for the LRS
 
-* MUST reject Statements
+* The LRS MUST reject Statements
     * with any null values (except inside extensions).
     * with strings where numbers are required, even if those strings contain numbers.
     * with strings where booleans are required, even if those strings contain booleans.
@@ -1751,16 +1754,16 @@ extremely difficult, so much of the burden for ensuring data portability is on t
     * where the case of a key does not match the case specified in the standard.
     * where the case of a value restricted to enumerated values does not match
       an enumerated value given in the standard exactly.
-* MUST reject Statements containing URL, URI, or IRI values without a scheme.
-* MUST at least validate that the sequence of token lengths for language map keys
+* The LRS MUST reject Statements containing URL, URI, or IRI values without a scheme.
+* The LRS MUST at least validate that the sequence of token lengths for language map keys
 matches the [RFC 5646](http://tools.ietf.org/html/rfc5646) standard.
-* MUST process and store numbers with at least the precision of IEEE 754 32-bit
+* The LRS MUST process and store numbers with at least the precision of IEEE 754 32-bit
 floating point numbers.
-* MUST validate parameter values to the same standards required for values of the
+* The LRS MUST validate parameter values to the same standards required for values of the
 same types in Statements. __Note:__ string parameter values are not quoted as they are in JSON.
-* MAY use best-effort validation for URL, URI, and IRI formats to satisfy the
+* The LRS MAY use best-effort validation for URL, URI, and IRI formats to satisfy the
 non-format-following rejection requirement.
-* MAY use best-effort validation for language map keys to satisfy the
+* The LRS MAY use best-effort validation for language map keys to satisfy the
 non-format-following rejection requirement.
 
 
