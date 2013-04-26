@@ -311,7 +311,7 @@ the process of making one user or system "trusted" by another.
 
 <a name="def-client" />
 
-__Client__: - Refers to any entity that may interact with an LRS. A client can be an 
+__Client__: - Refers to any entity that may interact with an LRS. A Client can be an 
 Activity Provider, reporting tool, an LMS, or another LRS.
 
 <a name="def-community-of-practice" />
@@ -1335,7 +1335,7 @@ these related Activities to be represented in a structured manner.
 * The LRS MUST return every value in the contextActivities Object as an array, even if it arrived
 as a single Activity Object.
 * The LRS MUST return single Activity Objects as an array of length one containing the same Activity.
-* The client SHOULD ensure that every value in the contextActivities Object is an array of Activity Objects 
+* The Client SHOULD ensure that every value in the contextActivities Object is an array of Activity Objects 
 instead of a single Activity Object.
 
 ###### Details
@@ -1485,7 +1485,7 @@ creates or modifies the authority property of the Statement.
 
 In a 3-legged OAuth workflow, authentication involves both an OAuth consumer and a user of the 
 OAuth service provider. For instance, requests made by an authorized Twitter plug-in on their 
-Facebook account will include credentials that are specific not only to Twitter as a client application, 
+Facebook account will include credentials that are specific not only to Twitter as a Client application, 
 or them as a user, but the unique combination of both.
 
 ###### Example
@@ -1528,7 +1528,7 @@ lack a version, the version MUST be set to 1.0.0.
 
 
 ###### Client Requirements
-* If clients set the Statement version, they MUST set it to 1.0.0
+* If Clients set the Statement version, they MUST set it to 1.0.0
 * Clients SHOULD NOT set the Statement version;
 
 
@@ -1564,7 +1564,7 @@ capability will be available when issuing PUT or POST against the Statement reso
 ###### Requirements for the LRS
 
 * MUST include attachments in the Transmission Format described above
-when requested by the client (see Section [7.2 "Statement API"](#stmtapi));
+when requested by the Client (see Section [7.2 "Statement API"](#stmtapi));
 * MUST NOT pull Statements from another LRS without requesting attachments;
 * MUST NOT push Statements into another LRS without including attachment data
 received, if any, for those attachments;
@@ -1582,7 +1582,7 @@ received attachment part based on their hash;
 __Note:__ There is no requirement that Statement batches using the mime/multipart format
 contain attachments.
 
-###### Requirements for the client
+###### Requirements for the Client
 
 * MAY send Statements with attachments as described above;
 * MAY send multiple Statements where some or all have attachments if using "POST".
@@ -1737,7 +1737,7 @@ included elsewhere, to emphasize, clarify, and provide implementation guidance.
 
 * Values requiring IRIs MUST be sent with valid IRIs. Please use a library to
 construct them instead of string concatenation. Complete IRI validation is
-extremely difficult, so much of the burden for ensuring data portability is on the client.
+extremely difficult, so much of the burden for ensuring data portability is on the Client.
 * For similar reasons, keys of language maps MUST be sent with valid RFC 5646 language tags.
 
 ###### Requirements for the LRS
@@ -2053,12 +2053,12 @@ Systems retrieving Statements may then receive responses that include Statements
 versions. The version header allows for these version differences to be handled correctly, and 
 to ascertain that no partial or mixed LRS version implementations exist.
 
-Using Semantic Versioning will allow clients and LRSs to reliably know whether they're
+Using Semantic Versioning will allow Clients and LRSs to reliably know whether they're
 compatible or not as the specification changes.
 
 ###### Requirements
 
-Every request from a client and every response from the LRS must include an HTTP header with the name “X-Experience-API-Version" and the version as the value.
+Every request from a Client and every response from the LRS must include an HTTP header with the name “X-Experience-API-Version" and the version as the value.
 Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)
 
 Example:  ``X-Experience-API-Version : 1.0.0``
@@ -2073,7 +2073,7 @@ Example:  ``X-Experience-API-Version : 1.0.0``
 * MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
 
 
-####### Requirements for the client:
+####### Requirements for the Client:
 
 * SHOULD tolerate receiving responses with a version of "1.0.0" or later.
 * SHOULD tolerate receiving data structures with additional properties.
@@ -2106,7 +2106,7 @@ are unlikely. The requirements below only apply to Agent Profile API and Activit
 
 ##### Client requirements
 
-An xAPI client using either Agent Profile API or Activity Profile API…
+An xAPI Client using either Agent Profile API or Activity Profile API…
 
 * MUST include the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)
 header or MUST include the If-None-Match header.
@@ -2281,7 +2281,7 @@ scope is specified;
 * MUST support the scope of "all" as a minimum; 
 * MAY support other scopes.
 
-An xAPI client:
+An xAPI Client:
 
 * SHOULD request only the minimal needed scopes, to increase the chances that the request
 will be granted.
@@ -2405,7 +2405,7 @@ have been refused.
 
 * ```403 Forbidden``` - Indicates that the request is unauthorized for the given 
 credentials. Note this is different than refusing the credentials given. In 
-this case, the credentials have been validated, but the authenticated client 
+this case, the credentials have been validated, but the authenticated Client 
 is not allowed to perform the given action.
 
 * ```404 Not Found``` - Indicates the requested resource was not found. May be 
@@ -3007,7 +3007,7 @@ Returns JSON Object containing information about this LRS, including the xAPI ve
 supported.
 
 ###### Rationale
-Primarily this resource exists to allow clients that suport multiple xAPI versions to
+Primarily this resource exists to allow Clients that suport multiple xAPI versions to
 decide which version to use when communicating with the LRS. Extensions are included to
 allow other uses to emerge.
 
@@ -3068,17 +3068,17 @@ which transforms a normal request into one using this alternate syntax.
 
 It should also be noted that versions of Internet Explorer lower than 10 do not 
 support Cross Domain Requests between HTTP and HTTPS. This means that for IE9 and lower, 
-if the LRS is on an HTTPS domain, the client sending the Statement must also be on HTTPS. 
-If the LRS is on HTTP, the client must be too.  
+if the LRS is on an HTTPS domain, the Client sending the Statement must also be on HTTPS. 
+If the LRS is on HTTP, the Client must be too.  
 
-There may be cases where there is a requirement for the client Activity Provider to support 
-IE8 and IE9 where the client code is hosted on a different scheme (HTTP or HTTPS) from 
+There may be cases where there is a requirement for the Client Activity Provider to support 
+IE8 and IE9 where the Client code is hosted on a different scheme (HTTP or HTTPS) from 
 the LRS. In these cases, proxy is needed to communicate to the LRS. Two simple solutions 
-might be to 1) set up a proxy pass through on the same scheme as the client code to the LRS 
-or 2) to host an intermediary server side LRS on the same scheme as the client code to route 
+might be to 1) set up a proxy pass through on the same scheme as the Client code to the LRS 
+or 2) to host an intermediary server side LRS on the same scheme as the Client code to route 
 Statements to the target LRS.  An LRS MAY choose to provide both HTTP and HTTPS endpoints 
 to support this use case. HTTP is inherently less secure than HTTPS, and both LRS and 
-client should consider the security risks before making the decision to use this scheme. 
+Client should consider the security risks before making the decision to use this scheme. 
 
 <a name="validation"/> 
 
