@@ -1281,7 +1281,7 @@ or assets of an Activity. (Use a new Activity id instead).
 * The platform property MUST NOT be used if the Statement's Object is an Agent or Group.
 * The language property MUST NOT be used if not applicable or unknown.
 
-__Note__: Revision has no behavioral implications within the scope of xAPI. It is simply stored,
+__Note:__ Revision has no behavioral implications within the scope of xAPI. It is simply stored,
 so that it is available for reporting tools.
 
 <a name="Registration"/>
@@ -1633,7 +1633,7 @@ only attachment Objects with a populated fileUrl;
 received attachment part based on their hash;
     * SHOULD assume a Content-Transfer-Encoding of binary for attachment parts.
 
-__Note__: There is no requirement that Statement batches using the mime/multipart format
+__Note:__ There is no requirement that Statement batches using the mime/multipart format
 contain attachments.
 
 ###### Requirements for the client
@@ -1749,7 +1749,7 @@ matches the [RFC 5646](http://tools.ietf.org/html/rfc5646) standard.
 * MUST process and store numbers with at least the precision of IEEE 754 32-bit
 floating point numbers.
 * MUST validate parameter values to the same standards required for values of the
-same types in Statements. Note: string parameter values are not quoted as they are in JSON.
+same types in Statements. __Note:__ string parameter values are not quoted as they are in JSON.
 
 
 
@@ -1956,7 +1956,7 @@ experience, while those in the result should provide elements related to some
 outcome. For activities, they should provide additional information that helps 
 define an Activity within some custom application or community.  
 
-__Note__: A Statement should not be totally defined by its extensions, and be 
+__Note:__ A Statement should not be totally defined by its extensions, and be 
 meaningless otherwise. Experience API Statements should be capturing experiences 
 among Actors and Objects, and SHOULD always strive to map as much information as 
 possible into the built in elements, in order to leverage interoperability among 
@@ -2359,7 +2359,7 @@ Agent, and Activity Profile. These four sub-APIs of the Experience API
 are handled via RESTful HTTP methods. The Statement API can be used by itself 
 to track learning records.  
 
-__Note__: In all of the example endpoints given in the specification, "http://example.com/xAPI/"
+__Note:__ In all of the example endpoints given in the specification, "http://example.com/xAPI/"
 is the example URL of the LRS and everything after this represents the endpoint which MUST
 be used. 
 
@@ -2368,7 +2368,7 @@ be used.
 The LRS MUST reject with ```HTTP 400 Bad Request``` status (see below) any request to any of
 these APIs using any parameters:
 
-* the LRS does not recognize (Note: LRSs may recognize and act on parameters not in 
+* the LRS does not recognize (__Note:__ LRSs may recognize and act on parameters not in 
 this specification).
 
 * that match parameters described in this specification in all but case.
