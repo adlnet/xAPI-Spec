@@ -1820,10 +1820,6 @@ itself be voided.
 field set to "StatementRef".
 * When issuing a Statement that voids another, the Object of that voiding Statement MUST specify the id 
 of the statement-to-be-voided by its "id" field.
-* Upon receiving a Statement that voids another, the LRS MUST NOT report the voided Statement when queried.
-* Upon receiving a Statement that voids another, the LRS MUST report the voiding Statement.
-* Upon querying, an LRS MUST NOT report any Statement that was voided by a stored voiding Statement, 
-but rather report the voiding Statement. (see [StatementRef](#queryStatementRef) in 7.2 Statement API).
 * Upon receiving a Statement that voids another, the LRS SHOULD reject the entire request which includes the 
 voiding Statement with HTTP 403 'Forbidden' if the request is not from a source authorized to void Statements.
 * Upon receiving a Statement that voids another, the LRS SHOULD return a descriptive error if the target 
@@ -1834,8 +1830,9 @@ definitions which were introduced by the Statement that was just voided;
 again under a new id
 * A reporting system SHOULD NOT show voided or voiding Statements by default.
 
-See ["Statement References"](#stmtref) in [Section 4.1.4.3 When the "Object" is a Statement](#stmtasobj) for details about making references to other 
-Statements.
+###### Note: See ["Statement References"](#stmtref) in [Section 4.1.4.3 When the "Object" is a Statement](#stmtasobj) 
+for details about making references to other Statements.  To see how voided statements behave when queried, 
+See [StatementRef](#queryStatementRef) in 7.2 Statement API).
 
 ###### Example
 ```
@@ -1865,19 +1862,19 @@ This example Statement voids a previous Statement which it identifies with the S
 <a name="signature"/>
 #### 4.4 Signed Statements
 
-###### Description
+##### Description
 A Statement may include a <a href="https://en.wikipedia.org/wiki/Digital_signature">
 digital signature</a> to provide strong and durable evidence of the authenticity and
 integrity of the Statement.
 
-###### Rationale
+##### Rationale
 Some Statements will have regulatory or legal significance, or otherwise require strong
 and durable evidence of their authenticity and integrity. It may be necessary to verify
 these Statements without trusting the system they were first recorded in, or perhaps
 without access to that system. Digital signatures will enable a third-party system
 to validate such Statements.
 
-###### Requirements
+##### Requirements
 
 * A Signed Statement MUST include a JSON web signature (JWS) as defined here:
 http://tools.ietf.org/html/draft-ietf-jose-json-web-signature, as an attachment with a usageType
@@ -1902,7 +1899,7 @@ JWS signature payload.
     certificate as defined in JWS.
 * Clients MUST NOT assume a signature is valid simply because an LRS has accepted it.
 
-###### Details
+##### Details
 
 Signed Statements include a JSON web signature (JWS) as an attachment. This allows
 the original serialization of the Statement to be included along with the signature.
@@ -1911,7 +1908,7 @@ for discoverability of the signer X.509 certificates SHOULD be used.
 
 See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example.
 
-###### Note: The step of validating against the included X.509 certificate is intended as a
+##### Note: The step of validating against the included X.509 certificate is intended as a
 way to catch mistakes in the signature, not as a security measure. Clients MUST NOT assume
 a signature is valid simply because an LRS has accepted it. The steps to authenticate
 a signed Statement will vary based on the degree of certainty required and are outside
