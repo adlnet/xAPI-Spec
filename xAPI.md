@@ -57,7 +57,7 @@
     *	7.10.	[HTTP HEAD](#httphead)  
 *	[Appendix A: Bookmarklet](#AppendixA)  
 *	[Appendix B: Creating an "IE Mode" Request](#AppendixB)  
-*	[Appendix C: Example definitions for activities of type "cmi.interaction"](#AppendixC)  
+*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](#AppendixC)  
 *	[Appendix D: Example Statements](#AppendixD)  
 *	[Appendix E: Converting Statements to 1.0.0](#AppendixE)   
 *	[Appendix F: Example Signed Statement](#AppendixF)
@@ -452,10 +452,10 @@ below.
 </table>  
 Aside from (potential or required) assignments of properties during LRS 
 processing ("id", "authority", "stored", "timestamp", "version") Statements are immutable. Note that the content of 
-activities that are referenced in Statements is not considered part of the 
-Statement itself. So while the Statement is immutable, the activities referenced 
+Activities that are referenced in Statements is not considered part of the 
+Statement itself. So while the Statement is immutable, the Activities referenced 
 by that Statement are not. This means a deep serialization of a Statement into 
-JSON will change if the referenced activities change (see the
+JSON will change if the referenced Activities change (see the
 [Statement API's](#stmtapi) "format" parameter for details).  
 
  
@@ -872,11 +872,11 @@ but only if it considers the Activity Provider to have the authority to do so.
 * An Activity id SHOULD use a domain that the creator is authorized to use for this purpose.
 * An Activity id SHOULD be created according to a scheme that makes sure all Activity ids within 
 that domain remain unique.
-* An LRS MUST NOT treat references to the same id as references to different activities.
+* An LRS MUST NOT treat references to the same id as references to different Activities.
 * An LRS MUST ignore any information which indicates two authors or organizations may have used the same Activity id.
 * An LRS MAY accept small corrections to the Activity’s definition. For example, it would be okay for an LRS
 to accept spelling fixes, but it may not accept changes to correct responses.
-* An Activity Provider MUST ensure that Activity ids are not re-used across multiple activities.
+* An Activity Provider MUST ensure that Activity ids are not re-used across multiple Activities.
 * An Activity Provider MUST only generate states or Statements against a certain Activity id that are compatible
 and consistent with states or Statements previously stored against the same id.
 * An Activity Provider MUST NOT allow new versions (i.e. revisions or other platforms) of the Activity 
@@ -887,7 +887,7 @@ SHOULD update the stored Activity Definition accordingly if that decision is pos
 	
 ####### Details
 
-If it were possible to use the same id for two different activities, the validity of Statements about 
+If it were possible to use the same id for two different Activities, the validity of Statements about 
 these Activities could be questioned. This means an LRS may never treat (references to) the same 
 Activity id as belonging to two different Activities, even if it thinks this was intended. Namely, 
 when a conflict with another system occurs, it’s not possible to determine the intentions. 
@@ -930,14 +930,14 @@ of extensions to an Activity's type and definition.
 
 ####### Requirements
 
-* Interaction activities SHOULD have the Activity type http://adlnet.gov/expapi/activities/cmi.interaction".
-* Interaction activities MUST have a valid interactionType.
+* Interaction Activities SHOULD have the Activity type http://adlnet.gov/expapi/activities/cmi.interaction".
+* Interaction Activities MUST have a valid interactionType.
 * An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as specified in the table 
 below and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction Activity.
 
 ####### Details
 
-The table below lists the properties for Interaction activities.
+The table below lists the properties for Interaction Activities.
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -1306,8 +1306,8 @@ A map of the types of learning activity context that this Statement is related t
 
 ###### Rationale
 Many Statements do not just involve one Object Activity that is the focus,
-but relate to other contextually relevant activities. "Context activities" allow for 
-these related activities to be represented in a structured manner.
+but relate to other contextually relevant Activities. "Context Activities" allow for 
+these related Activities to be represented in a structured manner.
 
 ###### Details
 There are four valid context types. All, any or none of these MAY be used in a given Statement:
@@ -1953,7 +1953,7 @@ or it might be a convention used by an entire community of practice.
 Extensions should logically relate to the part of the Statement where they are 
 present. Extensions in Statement context should provide context to the core 
 experience, while those in the result should provide elements related to some 
-outcome. For activities, they should provide additional information that helps 
+outcome. For Activities, they should provide additional information that helps 
 define an Activity within some custom application or community.  
 
 __Note:__ A Statement should not be totally defined by its extensions, and be 
@@ -2290,23 +2290,23 @@ The following table lists xAPI scope values:
 	<tr><td>statements/read</td><td>read any Statement</td>
 	<tr>
 		<td>state</td>
-		<td>read/write state data, limited to activities and Actors 
+		<td>read/write state data, limited to Activities and Actors 
 			associated with the current token to the extent it is 
 			possible to determine this relationship.
 		</td>
 	</tr>
 	<tr>
 		<td>define</td>
-		<td>(re)Define activities and Actors. If storing a Statement 
+		<td>(re)Define Activities and Actors. If storing a Statement 
 			when this is not granted, ids will be saved and the LRS 
 			may save the original Statement for audit purposes, but 
 			should not update its internal representation of any 
-			Actors or activities.
+			Actors or Activities.
 		</td>
 	</tr>
 	<tr>
 		<td>profile</td>
-		<td>read/write profile data, limited to activities and Actors 
+		<td>read/write profile data, limited to Activities and Actors 
 			associated with the current token to the extent it is 
 			possible to determine this relationship.
 		</td>
@@ -2507,7 +2507,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	</tr>
 	<tr><td>related_activities</td><td>Boolean</td><td>False</td>
 		<td>Apply the Activity filter broadly. Include Statements for which the Object,
-		any of the  context activities, or any of those properties in a contained SubStatement
+		any of the  context Activities, or any of those properties in a contained SubStatement
 		match the Activity parameter, instead of that parameter's normal behavior. Matching
 		is defined in the same way it is for the 'Activity' parameter."
 		</td>
@@ -2641,7 +2641,7 @@ information in this section applies to all three APIs.
 
 ###### New Agents and Activities
 
-An Activity Provider MAY send documents to any of the document APIs for activities and Agents that
+An Activity Provider MAY send documents to any of the document APIs for Activities and Agents that
 the LRS does not have prior knowledge of. The LRS MUST NOT reject documents on the basis of not 
 having prior knowledge of the Activity and/or Agent. 
 
@@ -2830,7 +2830,7 @@ Returns: 200 OK - Content
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
-		<td>The id associated with the activities to load.</td>
+		<td>The id associated with the Activities to load.</td>
 	</td>
 </table>
 
@@ -3276,7 +3276,7 @@ function getIEModeRequest(method, url, headers, data){
 ``` 
 <a name="AppendixC"/>  
 
-## Appendix C: Example definitions for activities of type "cmi.interaction"
+## Appendix C: Example definitions for Activities of type "cmi.interaction"
 
 ###### true-false  
 
