@@ -1741,7 +1741,7 @@ included elsewhere, to emphasize, clarify, and provide implementation guidance.
 * Values requiring IRIs MUST be sent with valid IRIs. Please use a library to
 construct them instead of string concatenation. Complete IRI validation is
 extremely difficult, so much of the burden for ensuring data portability is on the Client.
-* Keys of language maps MUST be sent with valid RFC 5646 language tags,for similar reasons.
+* Keys of language maps MUST be sent with valid RFC 5646 language tags, for similar reasons.
 
 ###### Requirements for the LRS
 
