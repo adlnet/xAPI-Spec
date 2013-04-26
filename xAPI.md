@@ -1198,15 +1198,15 @@ from an extension profile instead.
 
 #### 4.1.6 Context
 
-###### Description: 
+###### Description 
 An optional field that provides a place to add contextual information to a statement. All properties are optional.
 
-###### Rationale: 
+###### Rationale 
 The "context" field provides a place to add some contextual information to a statement. It can store information such 
 as the instructor for an experience, if this experience happened as part of a team Activity, or how an experience fits 
 into some broader activity.
 
-###### Details:
+###### Details
 
 The following table contains the properties of the Context Object.
 
@@ -1286,12 +1286,12 @@ so that it is available for reporting tools.
 
 <a name="Registration"/>
 
-##### 4.1.6.1 Registration property
+##### 4.1.6.1 Registration Property
 
 ###### Description
 An instance of a learner undertaking a particular learning activity.
 
-###### Details:
+###### Details
 When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration. 
 The Experience API applies the concept of registration more broadly.  A registration could be 
 considered to be an attempt, a session, or could span multiple Activities. There is no expectation that 
@@ -1299,7 +1299,7 @@ completing an Activity ends a registration. Nor is a registration necessarily co
 
 <a name="contextActivities"/>
 
-##### 4.1.6.2 contextActivities property
+##### 4.1.6.2 ContextActivities Property
 
 ###### Description
 A map of the types of learning activity context that this statement is related to.
@@ -1309,29 +1309,29 @@ Many statements do not just involve one Object Activity that is the focus,
 but relate to other contextually relevant activities. "Context activities" allow for 
 these related activities to be represented in a structured manner.
 
-###### Details:
+###### Details
 There are four valid context types. All, any or none of these MAY be used in a given statement:
 
-1. __Parent__ : an Activity with a direct relation to the Activity
+1. __Parent__: an Activity with a direct relation to the Activity
 which is the Object of the statement. In almost all cases there
 is only one sensible parent or none, not multiple.
 For example: a statement about a quiz question would have the quiz
 as its parent Activity.
  
-2. __Grouping__ : an Activity with an indirect relation to the Activity
+2. __Grouping__: an Activity with an indirect relation to the Activity
 which is the Object of the statement.
 For example: a course that is part of a qualification. The course
 has several classes. The course relates to a class as the parent,
 the qualification relates to the class as the grouping.
 
-3. __Category__ : an Activity used to categorize the statement.
+3. __Category__: an Activity used to categorize the statement.
 "Tags" would be a synonym. Category SHOULD be used to indicate
 a "profile" of xAPI behaviors, as well as other categorizations.
 For example: Anna attempts a biology exam, and the statement is
 tracked using the CMI-5 profile. The statement's Activity refers
 to the exam, and the category is the CMI-5 profile.
 
-5. __Other__ : a context Activity that doesn't fit one of the other fields.
+5. __Other__: a context Activity that doesn't fit one of the other fields.
 For example: Anna studies a textbook for a biology exam. The statement's
 Activity refers to the textbook, and the exam is a context Activity of type "other".
 
@@ -1377,7 +1377,7 @@ useful when the Object of the statement is an agent, not an Activity.
 
 <a name="timestamp"/>
 
-#### 4.1.7 Timestamp:
+#### 4.1.7 Timestamp
 
 ###### Description
 
@@ -1399,11 +1399,9 @@ are propagated to other systems.
 inside a Sub-Statement.
 * A timestamp SHOULD be the current or a past time when it is outside of a Sub-Statement.
 
-###### Details
-
 <a name="stored"/> 
 
-#### 4.1.8 Stored:
+#### 4.1.8 Stored
 
 ###### Description 
 The time at which a statement is stored by the LRS.
@@ -1473,7 +1471,7 @@ MUST be used as the account homePage.
 * If the Agent representing the OAuth consumer is not a registered application, the temporary  
 credentials endpoint MUST be used as the account homePage.
 * An LRS MUST NOT trust the application portion of the authority in the event the account name is from 
-the same source as the unregistered application" (Multiple unregistered applications could choose the same consumer key. 
+the same source as the unregistered application. (Multiple unregistered applications could choose the same consumer key. 
 As a result, there is no consistent way to verify this combination of temporary credentials and 
 the account name.) 
 * Each unregistered consumer SHOULD use a unique consumer key.
@@ -1511,8 +1509,8 @@ flow among such LRSs the LRS is given some flexibility on statement versions tha
 * Version MUST be formatted as laid out for the API version header in [API Versioning](#apiversioning)
 
 ###### LRS Requirements
-* An LRS MUST accept all statements where their version starts with "1.0." if they otherwise validate;
-* An LRS MUST reject all statements with a version specified that does not start with "1.0.";
+* An LRS MUST accept all statements where their version starts with "1.0." if they otherwise validate.
+* An LRS MUST reject all statements with a version specified that does not start with "1.0.".
 * Statements returned by an LRS MUST retain the version they are accepted with. If they
 lack a version, the version MUST be set to 1.0.0.
 
@@ -1525,16 +1523,16 @@ lack a version, the version MUST be set to 1.0.0.
 <a name="attachments"/>
 #### 4.1.11 Attachments
 
-###### Description: 
+###### Description
 A digital artefact providing evidence of a learning experience.
 
-###### Rationale: 
+###### Rationale 
 In some cases an attachment may logically be an important part of a learning record. Think of a simulated 
 communication with ATC, an essay, a video, etc. Another example of such an attachment is (the image of) a 
 certificate that was granted as a result of an experience. It is useful to have a way to store these attachments 
 in and retrieve them from an LRS. 
 
-###### Details:
+###### Details
 The table below lists all properties of the Attachment Object.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -1617,7 +1615,7 @@ capability will be available when issuing PUT or POST against the statement reso
     * MUST include a Content-Transfer-Encoding field with a value of "binary" in each part's header after the first (statements) part;
 
 
-###### Requirements for the LRS:
+###### Requirements for the LRS
 
 * MUST NOT pull statements from another LRS without requesting attachments;
 * MUST NOT push statements into another LRS without including attachment data
@@ -1644,7 +1642,7 @@ contain attachments.
 * MAY send batches of type "application/json" where every attachment
 Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
 
-###### Example:
+###### Example
 
 Below is an example of a very simple statement with an attachment. Please note the following:
 
