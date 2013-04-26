@@ -322,7 +322,7 @@ purpose, which operates in a common modality.
 <a name="def-experience-api" />
 
 __Experience API (xAPI)__: The API defined in this document, the product of 
-"Project Tin Can". A simple, lightweight way for any permitted actor to store 
+"Project Tin Can". A simple, lightweight way for any permitted Actor to store 
 and retrieve extensible learning records, learner and learning experience profiles, 
 regardless of platform.  
 
@@ -417,7 +417,7 @@ below.
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>id</td><td>UUID</td>
 	<td>UUID assigned by LRS if not set by the Learning Activity Provider.</td></tr>
-	<tr><td><a href="#actor">actor</a></td><td>Object</td>
+	<tr><td><a href="#actor">Actor</a></td><td>Object</td>
 	<td>Who the statement is about, as an <a href="#agent">Agent</a> or 
 		<a href="#group">Group</a> object. Represents the "I" in "I Did This".</td></tr>
 	<tr><td><a href="#verb">verb</a></td><td>Object</td>
@@ -430,7 +430,7 @@ below.
 	<tr><td><a href="#result">result</a></td><td>Object</td>
 	<td>Result object, further details representing a measured outcome relevant to the specified verb.</td></tr>
 	<tr><td><a href="#context">context</a></td><td>Object</td>
-	<td>Context that gives the statement more meaning. Examples: a team the actor is 
+	<td>Context that gives the statement more meaning. Examples: a team the Actor is 
 	working with, altitude at which a scenario was attempted in a flight simulator.</td></tr>
 	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
@@ -1958,7 +1958,7 @@ define an activity within some custom application or community.
 ###### Note: 
 A statement should not be totally defined by its extensions, and be 
 meaningless otherwise. Experience API statements should be capturing experiences 
-among actors and objects, and SHOULD always strive to map as much information as 
+among Actors and objects, and SHOULD always strive to map as much information as 
 possible into the built in elements, in order to leverage interoperability among 
 Experience API conformant tools.  
 
@@ -2296,23 +2296,23 @@ The following table lists xAPI scope values:
 	<tr><td>statements/read</td><td>read any statement</td>
 	<tr>
 		<td>state</td>
-		<td>read/write state data, limited to activities and actors 
+		<td>read/write state data, limited to activities and Actors 
 			associated with the current token to the extent it is 
 			possible to determine this relationship.
 		</td>
 	</tr>
 	<tr>
 		<td>define</td>
-		<td>(re)Define activities and actors. If storing a statement 
+		<td>(re)Define activities and Actors. If storing a statement 
 			when this is not granted, IDs will be saved and the LRS 
 			may save the original statement for audit purposes, but 
 			should not update its internal representation of any 
-			actors or activities.
+			Actors or activities.
 		</td>
 	</tr>
 	<tr>
 		<td>profile</td>
-		<td>read/write profile data, limited to activities and actors 
+		<td>read/write profile data, limited to activities and Actors 
 			associated with the current token to the extent it is 
 			possible to determine this relationship.
 		</td>
@@ -2480,7 +2480,7 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 	<tr><td>statementId</td><td>String</td><td> </td><td>ID of statement to fetch</td></tr>
 	<tr><td>voidedStatementId</td><td>String</td><td> </td><td>ID of voided statement to fetch. see <a href="#voidedStatements">Voided Statements</a></td></tr>
 	<tr><td>agent</td><td>Agent or identified Group Object (JSON)</td><td> </td>
-		<td>Filter, only return statements for which the specified agent or group is the actor or object of the statement.
+		<td>Filter, only return statements for which the specified agent or group is the Actor or object of the statement.
 			<ul><li> Agents or identified groups are equal when the same Inverse Functional Identifier is used in each
 			object compared and those Inverse Functional Identifiers have equal values.
 			</li><li>For the purposes of this filter, groups that have members which match the specified agent
@@ -2499,8 +2499,8 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 	<tr><td>registration</td><td>UUID</td><td> </td>
 		<td>Filter, only return statements matching the specified registration 
 			ID. Note that although frequently a unique registration ID will be used 
-			for one actor assigned to one activity, this should not be assumed. 
-			If only statements for a certain actor or activity should be returned, 
+			for one Actor assigned to one activity, this should not be assumed. 
+			If only statements for a certain Actor or activity should be returned, 
 			those parameters should also be specified.
 		</td>
 	</tr>
@@ -2513,7 +2513,7 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 	</tr>
 	<tr><td>related_agents</td><td>Boolean</td><td>False</td>
 		<td>Apply the agent filter broadly. Include statements for which 
-			the actor, object, authority, instructor, team,
+			the Actor, object, authority, instructor, team,
 			or any of these properties in a contained SubStatement match the agent parameter,
 			instead of that parameter's normal behavior. Matching is defined in the same way
 			it is for the 'agent' parameter.
@@ -2605,7 +2605,7 @@ match when a targets b which targets c and the filter conditions described above
 For example, consider the statement "Ben passed explosives training", and a follow up
 statement: "Andrew confirmed \<StatementRef to original statement\>". The follow up
 statement will not mention "Ben" or "explosives training", but when fetching statements
-with an actor filter of "Ben" or an activity filter of "explosives training", both
+with an Actor filter of "Ben" or an activity filter of "explosives training", both
 statements match and will be returned so long as they fall into the time or sequence
 being fetched.
 
@@ -2774,7 +2774,7 @@ Returns: 200 OK, Array of IDs
 		<td>The activity ID associated with these states.</td>
 	</tr>
 	<tr><td>agent</td><td>(JSON/XML)</td><td>yes</td>
-		<td>The actor associated with these states.</td>
+		<td>The Actor associated with these states.</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td>no</td>
 		<td>The registration ID associated with these states.</td>
@@ -2797,7 +2797,7 @@ Returns: 204 No Content
 		<td>The activity ID associated with this state</td>
 	</tr>
 	<tr><td>agent</td><td>(JSON/XML)</td><td>yes</td>
-		<td>The actor associated with this state</td>
+		<td>The Actor associated with this state</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td>no</td>
 		<td>The registration ID associated with this state.</td>
@@ -3111,7 +3111,7 @@ that this bookmarklet would send if used on the page: http://adlnet.gov/xapi.
 The bookmarklet MAY be provided by the LRS to track a specific user
 for behavior analytics.
 
-Therefore the LRS URL, authentication, and actor information is hard coded into 
+Therefore the LRS URL, authentication, and Actor information is hard coded into 
 the bookmarklet. Note that since the authorization token must be included in 
 the bookmarklet, the LRS should provide a token with limited privileges, 
 Ideally the token should enable the storage of self-reported learning 
@@ -3580,7 +3580,7 @@ Example of a simple statement (line breaks are for display purposes only):
 			},
 			"description":{ 
 				"en-US":"A simple Experience API statement. Note that the LRS 
-				does not need to have any prior information about the actor (learner), the 
+				does not need to have any prior information about the Actor (learner), the 
 				verb, or the activity/object." 
 			}
 		}
@@ -3645,7 +3645,7 @@ A 1.0.0 system converting a statement created in 0.9 MUST follow the steps below
 * Prefix any activity ids which are not full absolute URIs with "tag:adlnet.gov,2013:expapi:0.9:activities:"
 * Prefix any extension keys which are not full absolute URIs with "tag:adlnet.gov,2013:expapi:0.9:extensions:"
 * Prefix activity types with "http://adlnet.gov/expapi/activities/"
-* for each agent (actor):
+* for each agent (Actor):
     * Search for inverse functional identifiers in this order: "mbox, mbox_sha1sum, openId,
     account". Keep the first populated inverse functional identifier found and discard the rest.
     * For the above inverse functional identifier, take the first element in the array and
