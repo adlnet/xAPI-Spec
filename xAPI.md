@@ -1811,17 +1811,21 @@ that a previously made Statement is marked as invalid. This is called "voiding a
 “http://adlnet.gov/expapi/verbs/voided" is used for this purpose. 
 
 ###### Requirements
-* When issuing a Statement that voids another, the Object of that voiding Statement MUST have the "objectType" field set to "StatementRef;"
-* When issuing a Statement that voids another, the Object of that voiding Statement MUST specify the id of the statement-to-be-voided by its "id" field;
-* Upon receiving a Statement that voids another, the LRS MUST NOT report the voided Statement when queried, but MUST report the voiding Statement 
-(see [StatementRef](#queryStatementRef) in 7.2 Statement API);
-* Upon receiving a Statement that voids another, the LRS SHOULD reject the entire request which includes the voiding Statement with HTTP 403
-'Forbidden' if the request is not from a source authorized to void Statements;
-* Upon receiving a Statement that voids another, the LRS SHOULD return a descriptive error if the target Statement cannot be found;
+* When issuing a Statement that voids another, the Object of that voiding Statement MUST have the "objectType" field 
+set to "StatementRef".
+* When issuing a Statement that voids another, the Object of that voiding Statement MUST specify the id of the 
+statement-to-be-voided by its "id" field
+* Upon receiving a Statement that voids another, the LRS MUST NOT report the voided Statement when queried, but MUST 
+report the voiding Statement (see [StatementRef](#queryStatementRef) in 7.2 Statement API).
+* Upon receiving a Statement that voids another, the LRS SHOULD reject the entire request which includes the voiding 
+Statement with HTTP 403 'Forbidden' if the request is not from a source authorized to void Statements.
+* Upon receiving a Statement that voids another, the LRS SHOULD return a descriptive error if the target Statement 
+cannot be found.
 * Any Statement that voids another cannot itself be voided. An Activity Provider that wants to "unvoid" a previously 
-voided Statement SHOULD issue that Statement again under a new id;
-* A reporting system SHOULD NOT show voided or voiding Statements by default;
-* Upon receiving a Statement that voids another, the LRS MAY roll back any changes to Activity or Agent definitions which were introduced by the Statement that was just voided.
+voided Statement SHOULD issue that Statement again under a new id.
+* A reporting system SHOULD NOT show voided or voiding Statements by default.
+* Upon receiving a Statement that voids another, the LRS MAY roll back any changes to Activity or Agent definitions 
+which were introduced by the Statement that was just voided.
 
 
 See ["Statement References"](#stmtref) in [Section 4.1.4.3 When the "Object" is a Statement](#stmtasobj) for details about making references to other 
