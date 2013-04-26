@@ -1767,9 +1767,11 @@ non-format-following rejection requirement.
 <a name="retstmts"/> 
 
 ### 4.2 Retrieval of Statements
+
 ###### Description
 A collection of Statements can be retrieved by performing a query on the "statements" 
-endpoint, see Section [7.2 "Statement API"](#stmtapi) for details. 
+endpoint, see Section [7.2 "Statement API"](#stmtapi) for details.
+
 
 ###### Details 
 <table>
@@ -1797,6 +1799,7 @@ endpoint, see Section [7.2 "Statement API"](#stmtapi) for details.
 
 <a name="voided"/>
 #### 4.3 Voided
+
 ###### Rationale
 
 The certainty that an LRS has an accurate and complete collection of data is guaranteed by the fact that Statements 
@@ -1808,28 +1811,18 @@ that a previously made Statement is marked as invalid. This is called "voiding a
 “http://adlnet.gov/expapi/verbs/voided" is used for this purpose. 
 
 ###### Requirements
-When issuing a Statement that voids another, the Object of that voiding Statement...
+* When issuing a Statement that voids another, the Object of that voiding Statement MUST have the "objectType" field set to "StatementRef;"
+* When issuing a Statement that voids another, the Object of that voiding Statement MUST specify the id of the statement-to-be-voided by its "id" field;
+* Upon receiving a Statement that voids another, the LRS MUST NOT report the voided Statement when queried, but MUST report the voiding Statement 
+(see [StatementRef](#queryStatementRef) in 7.2 Statement API);
+* Upon receiving a Statement that voids another, the LRS SHOULD reject the entire request which includes the voiding Statement with HTTP 403
+'Forbidden' if the request is not from a source authorized to void Statements;
+* Upon receiving a Statement that voids another, the LRS SHOULD return a descriptive error if the target Statement cannot be found;
+* Any Statement that voids another cannot itself be voided. An Activity Provider that wants to "unvoid" a previously 
+voided Statement SHOULD issue that Statement again under a new id;
+* A reporting system SHOULD NOT show voided or voiding Statements by default;
+* Upon receiving a Statement that voids another, the LRS MAY roll back any changes to Activity or Agent definitions which were introduced by the Statement that was just voided.
 
-* MUST have the "objectType" field set to "StatementRef;"
-* MUST specify the id of the statement-to-be-voided by its "id" field.
-
-Upon receiving a Statement that voids another, the LRS...
-
-* MUST NOT report the voided Statement when queried, but MUST report the voiding Statement 
-(see [StatementRef](#queryStatementRef) in 7.2 Statement API).
-* SHOULD reject the entire request which includes the voiding Statement with HTTP 403
-'Forbidden' if the request is not from a source authorized to void Statements.
-* SHOULD return a descriptive error if the target Statement cannot be found;
-* MAY roll back any changes to Activity or Agent definitions which were introduced by the Statement that was just voided;
-
-Any Statement that voids another cannot itself be voided. An Activity Provider that wants to "unvoid" a previously 
-voided Statement...
-
-* SHOULD issue that Statement again under a new id
-
-A reporting system...
-
-* SHOULD NOT show voided or voiding Statements by default.
 
 See ["Statement References"](#stmtref) in [Section 4.1.4.3 When the "Object" is a Statement](#stmtasobj) for details about making references to other 
 Statements.
@@ -1892,14 +1885,16 @@ the associated certificate chain.
 * The LRS MUST reject requests to store Statements that contain malformed signatures,
 with HTTP 400 and SHOULD include a message describing the problem in the response.
 In order to verify signatures are well formed, the LRS MUST do the following:
-    * Decode the JWS signature, and load the signed serialization of the Statement from the
+    * The LRS MUST decode the JWS signature, and load the signed serialization of the Statement from the
 JWS signature payload.
-    * Validate that the "original" Statement is logically equivalent to the received Statement.
+    * The LRS MUST validate that the "original" Statement is logically equivalent to the received Statement.
     	* When making this equivilance check, differences which could have been caused by
     	allowed or required LRS processing of "id", "authority", "stored", "timestamp", or
     	"version" MUST be ignored.
-    * If the JWS header includes an X.509 certificate, validate the signature against that
+    * If the JWS header includes an X.509 certificate, the LRS MUST validate the signature against that
     certificate as defined in JWS.
+	* The "RSA + SHA" series of JWS algorithms have been selected, and
+	for discoverability of the signer X.509 certificates SHOULD be used.
 
 __Note__ The step of validating against the included X.509 certificate is intended as a
 way to catch mistakes in the signature, not as a security measure. Clients MUST NOT assume
@@ -1912,7 +1907,7 @@ the scope of this specification.
 Signed Statements include a JSON web signature (JWS) as an attachment. This allows
 the original serialization of the Statement to be included along with the signature.
 For interoperability, the "RSA + SHA" series of JWS algorithms have been selected, and
-for discoverability of the signer X.509 certificates SHOULD be used.
+for discoverability of the signer X.509 certificates should be used.
 
 See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example.
 
@@ -1947,6 +1942,9 @@ languages.
 <a name="miscext"/> 
 
 ### 5.3 Extensions
+
+###### Description
+
 Extensions are defined by a map. The keys of that map MUST be URLs, and the 
 values MAY be any JSON value or data structure. The meaning and structure of 
 extension values under a URL key are defined by the person who coined the URL, 
@@ -1977,6 +1975,18 @@ Experience API conformant tools.
 <a name="miscmeta"/>
 
 ### 5.4 Identifier Metadata
+
+###### Requirements
+
+* Where an identifier already exists, the Activity Provider SHOULD use the corresponding existing identifier;
+* Where an identifier already exists, the Activity Provider MAY create and use their own Verbs where a suitable identifier does not already exist.
+* If metadata is provided, both name and description SHOULD be included.
+* If the URI is a URL that was coined for use with this specification, the owner of that URL SHOULD
+make this JSON metadata available at that URL when the URL is requested and a Content-Type
+of "application/json" is requested.
+
+###### Details
+
 There are several types of URI identifiers used in this specification:
 * <a href="#verb">Verb</a>
 * <a href="#acturi">Activity id</a>
@@ -2002,12 +2012,7 @@ For all other identifiers, metadata MAY be provided in the following JSON format
 	</tr>
 </table>
 
-If metadata is provided, both name and description SHOULD be included.
 
-* For any of the identifier URIs above, if the URI is a URL that was coined for use with this
-specification, the owner of that URL SHOULD
-make this JSON metadata available at that URL when the URL is requested and a Content-Type
-of "application/json" is requested.
 * If this metadata is provided as described above, it is the canonical source of information
 about the identifier it describes
 * Other sources of information MAY be used to fill in missing details, such as translations, or
@@ -2017,11 +2022,9 @@ identifier was not coined for use with this specification.
 
 <a href="#verb-lists-and-repositories">As with Verbs</a>, we recommend 
 that Activity Providers look for and use established, 
-widely adopted identifiers for all types of URI identifier other than Activity id. Where an
-identifier already exists, the Activity Provider:
+widely adopted identifiers for all types of URI identifier other than Activity id. 
 
-* SHOULD use the corresponding existing identifier;
-* MAY create and use their own Verbs where a suitable identifier does not already exist.
+
 
 <a name="rtcom"/>
 
@@ -2058,30 +2061,19 @@ compatible or not as the specification changes.
 
 ###### Requirements
 
-Every request from a Client and every response from the LRS must include an HTTP header with the name “X-Experience-API-Version" and the version as the value.
+* Every request from a Client and every response from the LRS MUST include an HTTP header with the name “X-Experience-API-Version" and the version as the value.
 Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)
-
-Example:  ``X-Experience-API-Version : 1.0.0``
-
-####### Requirements for the LRS:
-
-* MUST include the "X-Experience-API-Version" header in every response.
-* MUST set this header to "1.0.0".
-* MUST accept requests with a version header of "1.0" as if the version header was "1.0.0".
-* MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header.
-* MUST reject requests with a version header of "1.1.0" or greater.
-* MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
-
-
-####### Requirements for the Client:
-
-* SHOULD tolerate receiving responses with a version of "1.0.0" or later.
-* SHOULD tolerate receiving data structures with additional properties.
-* SHOULD ignore any properties not defined in version 1.0.0 of the spec.
-
-####### Converting Statements to other versions:
-
+	* Example:  ``X-Experience-API-Version : 1.0.0``
+* An LRS MUST include the "X-Experience-API-Version" header in every response.
+* An LRS MUST set this header to "1.0.0".
+* An LRS MUST accept requests with a version header of "1.0" as if the version header was "1.0.0".
+* An LRS MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header.
+* An LRS MUST reject requests with a version header of "1.1.0" or greater.
+* An LRS MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
 * Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
+* The Client SHOULD tolerate receiving responses with a version of "1.0.0" or later.
+* The Client SHOULD tolerate receiving data structures with additional properties.
+* The Client SHOULD ignore any properties not defined in version 1.0.0 of the spec.
 * Systems MAY convert Statements of older versions into a newer version only by following the methods described in
 <a href="#AppendixE">Appendix E: Converting Statements to 1.0.0</a>.
 
@@ -2092,7 +2084,6 @@ Example:  ``X-Experience-API-Version : 1.0.0``
 Concurrency control makes certain that an API consumer does not PUT changes based on old
 data into an LRS.
 
-##### Details
 xAPI will use HTTP 1.1 entity tags ([ETags](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19))
 to implement optimistic concurrency control in the portions of the API where PUT may
 overwrite existing data, being:
@@ -2104,46 +2095,32 @@ overwrite existing data, being:
 The State API will permit PUT Statements without concurrency headers, since state conflicts
 are unlikely. The requirements below only apply to Agent Profile API and Activity Profile API.
 
-##### Client requirements
-
-An xAPI Client using either Agent Profile API or Activity Profile API…
-
-* MUST include the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)
-header or MUST include the If-None-Match header.
-
-##### LRS requirements
-
-The LRS that responds to a GET request
-
-* MUST add an ETag HTTP header to the response.
-* MUST calculate the value of this header to be a hexidecimal string of the  SHA-1 digest
-of the contents.
-* MUST enclose the header in quotes.
+###### Rationale
 
 The reason for specifying the LRS ETag format is to allow API consumers that can't read
 the ETag header to calculate it themselves.
 
-The LRS that responds to a PUT request
+###### Requirements
 
-* MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)
+* An xAPI Client using either Agent Profile API or Activity Profile API MUST include the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)
+header or MUST include the If-None-Match header.
+* The LRS that responds to a GET request MUST add an ETag HTTP header to the response.
+* The LRS that responds to a GET request MUST calculate the value of this header to be a hexidecimal string of the  SHA-1 digest
+of the contents.
+* The LRS that responds to a GET request MUST enclose the header in quotes.
+* The LRS that responds to a PUT request MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)
 header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
 modifications made after the consumer last fetched the document.
-* MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26)
+* The LRS that responds to a PUT request MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26)
 header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect when there
 is a resource present that the consumer is not aware of.
-
-If the header precondition in either of the above cases fails, the LRS
-
-* MUST return HTTP status 412 "Precondition Failed".
-* MUST NOT make a modification to the resource. 
-
-If a PUT request is received without either header for a resource that already exists, the LRS
-
-* MUST return HTTP status 409 "Conflict".
-* MUST return a plain text body explaining that the consumer SHOULD
+* If the header precondition in either of the above cases fails, the LRS MUST return HTTP status 412 "Precondition Failed".
+* If a PUT request is received without either header for a resource that already exists, the LRS MUST return HTTP status 409 "Conflict".
+* If a PUT request is received without either header for a resource that already exists, the LRS MUST return a plain text body explaining that the consumer SHOULD
 	- check the current state of the resource.
 	- set the "If-Match" header with the current ETag to resolve the conflict.
-* MUST NOT make a modification to the resource.
+* If the header precondition in either of the above cases fails, the LRS MUST NOT make a modification to the resource. 
+* If a PUT request is received without either header for a resource that already exists, the LRS MUST NOT make a modification to the resource.
 
 
 <a name="security"/>
@@ -2155,18 +2132,20 @@ If a PUT request is received without either header for a resource that already e
 In order to balance interoperability and the varying security requirements of different
 environments, several authentication options are defined.
 
-###### Requirement
+###### Requirements
 
-The LRS MUST support authentication using at least one of the following methods:
--	OAuth 1.0 (rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
-- HTTP Basic Authentication
-- Common Access Cards (implementation details to follow in a later version)
-- The LRS MUST handle making, or delegating, decisions on the validity of Statements,
+* The LRS MUST support authentication using at least one of the following methods:
+	-	OAuth 1.0 (rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
+	- HTTP Basic Authentication
+	- Common Access Cards (implementation details to follow in a later version)
+	- The LRS MUST handle making, or delegating, decisions on the validity of Statements,
  and determining what operations may be performed based on the credentials used.
 
 
 
-###### Authentication scenarios
+###### Example
+
+_Authentication Scenarios_
 
 The below matrix describes the possible authentication scenarios.
 
