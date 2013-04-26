@@ -2759,7 +2759,7 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - State Content
 	<tr><td>activityId</td><td>String</td><td>yes</td>
 		<td>The Activity id associated with this state.</td>
 	</tr>
-	<tr><td>agent</td><td>(JSON/XML)</td><td>yes</td>
+	<tr><td>agent</td><td>JSON</td><td>yes</td>
 		<td>The Agent associated with this state.</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td>no</td>
@@ -2784,7 +2784,7 @@ Returns: 200 OK, Array of ids
 	<tr><td>activityId</td><td>String</td><td>yes</td>
 		<td>The Activity id associated with these states.</td>
 	</tr>
-	<tr><td>agent</td><td>(JSON/XML)</td><td>yes</td>
+	<tr><td>agent</td><td>JSON<</td><td>yes</td>
 		<td>The Actor associated with these states.</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td>no</td>
@@ -2807,7 +2807,7 @@ Returns: 204 No Content
 	<tr><td>activityId</td><td>String</td><td>yes</td>
 		<td>The Activity id associated with this state.</td>
 	</tr>
-	<tr><td>agent</td><td>(JSON/XML)</td><td>yes</td>
+	<tr><td>agent</td><td>JSON<</td><td>yes</td>
 		<td>The Actor associated with this state.</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td>no</td>
