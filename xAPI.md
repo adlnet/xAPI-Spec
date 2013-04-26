@@ -73,11 +73,11 @@ move those changes into the current specification and revision to 0.9.
 
 ###### 0.90 to 0.95 (August 31, 2012):  
 
-"Core" verbs and activity types were removed from the specification. References 
-to these verbs in results, context, interactions, and activity definitions were 
+"Core" verbs and Activity types were removed from the specification. References 
+to these verbs in results, context, interactions, and Activity Definitions were 
 also  removed. It was recommended that implementers prefer community defined 
 verbs to creating their own verbs.
-- Verbs, activity types, and extension keys are now URIs
+- Verbs, Activity types, and extension keys are now URIs
 - Restructured and added language around some of the other implementation 
 details and scope.
 - Changed from using a person-centric view of agents to a persona-centric 
@@ -107,7 +107,7 @@ associated components on how to accomplish these tasks.
 
 Specifically, the Experience API provides:  
 
-* The structure and definition of statement, state, learner, activity and objects,
+* The structure and definition of statement, state, learner, Activity and objects,
 which are the means by which experiences are conveyed by a Learning Activity Provider.
 
 * Data Transfer methods for the storage and retrieval (but not validation) of
@@ -426,7 +426,7 @@ below.
 	<td>Activity, agent, or another statement that is the object of the statement. 
 	Represents the "This" in "I Did This". Note that objects which are provided as a value for this field should 
 	include an "objectType" field. If not specified, the object is assumed to be 
-	an activity.</td></tr>
+	an Activity.</td></tr>
 	<tr><td><a href="#result">result</a></td><td>Object</td>
 	<td>Result object, further details representing a measured outcome relevant to the specified verb.</td></tr>
 	<tr><td><a href="#context">context</a></td><td>Object</td>
@@ -782,7 +782,7 @@ The properties of an Object change according to the objectType.
 
 ##### 4.1.4.1 When the ObjectType is Activity
 
-A statement may represent an activity as the object of the statement. The following table lists the Object 
+A statement may represent an Activity as the object of the statement. The following table lists the Object 
 properties in this case.
 
 <table>
@@ -794,7 +794,7 @@ properties in this case.
 	</tr>
 	<tr>
 		<td><a href="#acturi">id</a></td><td>URI</td>
-		<td>An identifier for a single unique activity. Required.</td>
+		<td>An identifier for a single unique Activity. Required.</td>
 	</tr>
 	<tr>
 		<td><a href="#actdef">definition</a></td>
@@ -817,27 +817,27 @@ The table below lists the properties of the Activity Definition Object:
 		<td>name</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>Recommended</td>
-		<td>The human readable/visual name of the activity</td>
+		<td>The human readable/visual name of the Activity</td>
 	</tr>
 	<tr>
 		<td>description</td>
 		<td><a href="misclangmap">Language Map</a></td>
 		<td>Recommended</td>
-		<td>A description of the activity</td>
+		<td>A description of the Activity</td>
 	</tr>
 	<tr>
 		<a name="acttype"/>
 		<td>type</td>
 		<td>URI</td>
 		<td>Recommended</td>
-		<td>The type of activity.</td>
+		<td>The type of Activity.</td>
 	</tr>
 	<tr>
 		<td>moreInfo</td>
 		<td>URL</td>
 		<td>Optional</td>
-		<td>SHOULD resolve to a document human-readable information about the activity,
-		which MAY include a way to 'launch' the activity.
+		<td>SHOULD resolve to a document human-readable information about the Activity,
+		which MAY include a way to 'launch' the Activity.
 		</td>
 	</tr>
 	<tr>
@@ -854,10 +854,10 @@ The table below lists the properties of the Activity Definition Object:
 ####### Note
 
 URI fragments (sometimes called relative URLs) are not valid URIs. As with verbs, it is recommended that
-Activity Providers look for and use established, widely adopted, activity types.
+Activity Providers look for and use established, widely adopted, Activity types.
 
-An LRS should update its internal representation of an activity's definition upon receiving a 
-statement with the same activity ID, but with a different definition of the Activity from the one stored, 
+An LRS should update its internal representation of an Activity's definition upon receiving a 
+statement with the same Activity ID, but with a different definition of the Activity from the one stored, 
 but only if it considers the Activity Provider to have the authority to do so.  
 
 <a name="acturi"/>
@@ -867,8 +867,8 @@ but only if it considers the Activity Provider to have the authority to do so.
 ####### Requirements
 
 * An Activity id MUST be unique.
-* An Activity id MUST always reference the same activity.
-* An Activity id MAY point to metadata or the URL for the activity.
+* An Activity id MUST always reference the same Activity.
+* An Activity id MAY point to metadata or the URL for the Activity.
 * An Activity id SHOULD use a domain that the creator is authorized to use for this purpose.
 * An Activity id SHOULD be created according to a scheme that makes sure all Activity ids within 
 that domain remain unique.
@@ -881,9 +881,9 @@ to accept spelling fixes, but it may not accept changes to correct responses.
 and consistent with states or statements previously stored against the same ID.
 * An Activity Provider MUST NOT allow new versions (i.e. revisions or other platforms) of the Activity 
 to break compatibility.
-* Upon receiving a Statement with an Activity definition that differs from the one stored, an LRS
+* Upon receiving a Statement with an Activity Definition that differs from the one stored, an LRS
 SHOULD decide whether it considers the Learning Activity Provider to have the authority to change the definition and
-SHOULD update the stored activity definition accordingly if that decision is positive.
+SHOULD update the stored Activity Definition accordingly if that decision is positive.
 	
 ####### Details
 
@@ -899,19 +899,19 @@ when a conflict with another system occurs, it’s not possible to determine the
 ####### Requirements
 
 * An Activity with a URL identifier MAY host metadata using the <a href="#actdef">
-activity definition</a> JSON format which is used in statements, with a Content-Type of "application/json"
+Activity Definition</a> JSON format which is used in statements, with a Content-Type of "application/json"
 
 * If an Activity URI is a URL, an LRS SHOULD attempt to GET that URL, and include in HTTP
 headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
 first encounters the Activity id.
 
-* Upon loading JSON which is a valid activity definition from a URL used as an Activity id,
- an LRS SHOULD incorporate the loaded definition into its internal definition for that activity,
+* Upon loading JSON which is a valid Activity Definition from a URL used as an Activity id,
+ an LRS SHOULD incorporate the loaded definition into its internal definition for that Activity,
 while preserving names or definitions not included in the loaded definition.
 
-* Upon loading any document from which the LRS can parse an activity definition
+* Upon loading any document from which the LRS can parse an Activity Definition
 from a URL used as an Activity id, an LRS MAY consider this definition when determining
-its internal representation of that activity's definition.
+its internal representation of that Activity's definition.
 
 <a name="interactionacts"/>
 
@@ -926,14 +926,14 @@ borrows from the SCORM 2004 4th Edition Data Model. These definitions are intend
 simple and familiar utility for recording interaction data. These definitions 
 are simple to use, and consequently limited. It is expected that communities of 
 practice requiring richer interactions definitions will do so through the use 
-of extensions to an activity's type and definition.  
+of extensions to an Activity's type and definition.  
 
 ####### Requirements
 
-* Interaction activities SHOULD have the activity type http://adlnet.gov/expapi/activities/cmi.interaction".
+* Interaction activities SHOULD have the Activity type http://adlnet.gov/expapi/activities/cmi.interaction".
 * Interaction activities MUST have a valid interactionType.
 * An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as specified in the table 
-below and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction activity.
+below and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction Activity.
 
 ####### Details
 
@@ -991,7 +991,7 @@ Interaction components are defined as follows:
 <a name="interactionType"/>
 
 The following table shows the supported lists of CMI interaction components for 
-an interaction activity with the given interactionType.
+an interaction Activity with the given interactionType.
 
 <table>
 	<tr><th>interactionType</th><th>supported component list(s)</th><tr>
@@ -1002,7 +1002,7 @@ an interaction activity with the given interactionType.
 	<tr><td>true-false, fill-in, numeric, other</td><td>[No component lists defined]</td></tr>
 </table>
 
-See [Appendix C](#AppendixC) for examples of activity definitions for each of the cmi.interaction types.
+See [Appendix C](#AppendixC) for examples of Activity Definitions for each of the cmi.interaction types.
 
 <a name="agentasobj"/>
 
@@ -1152,12 +1152,12 @@ The following table contains the properties of the Results Object.
 <td>Object</td>
 <td>The score of the Agent in relation to the success or quality of the experience. <a href ="#Score">See: Score</a></a></td>
 </tr>
-<tr><td>success</td><td>Boolean</td><td>Indicates whether or not the attempt on the activity was successful.</td>
+<tr><td>success</td><td>Boolean</td><td>Indicates whether or not the attempt on the Activity was successful.</td>
 </tr>
-<tr><td>completion</td><td>Boolean</td><td>Indicates whether or not the activity was completed.</td>
+<tr><td>completion</td><td>Boolean</td><td>Indicates whether or not the Activity was completed.</td>
 </tr>
 <tr>
-<td>response</td><td>String</td><td>A response appropriately formatted for the given activity.</td>
+<td>response</td><td>String</td><td>A response appropriately formatted for the given Activity.</td>
 </tr>
 <tr>
 <td>duration</td><td>Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>
@@ -1174,7 +1174,7 @@ with a precision of 0.01 seconds</td><td>Period of time over which the Statement
 ##### 4.1.5.1 Score
 
 ###### Description
-An optional numeric field that represents the outcome of a graded activity achieved by an agent.
+An optional numeric field that represents the outcome of a graded Activity achieved by an agent.
 
 ###### Details
 
@@ -1203,7 +1203,7 @@ An optional field that provides a place to add contextual information to a state
 
 ###### Rationale: 
 The "context" field provides a place to add some contextual information to a statement. It can store information such 
-as the instructor for an experience, if this experience happened as part of a team activity, or how an experience fits 
+as the instructor for an experience, if this experience happened as part of a team Activity, or how an experience fits 
 into some broader activity.
 
 ###### Details:
@@ -1276,7 +1276,7 @@ altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a hr
 
 * The revision property SHOULD be used to track fixes of minor issues (like a spelling error).
 * The revision property SHOULD NOT be used if there is a major change in learning objectives, pedagogy, 
-or assets of an activity. (Use a new activity ID instead).
+or assets of an Activity. (Use a new Activity ID instead).
 * The revision property MUST NOT be used if the statement's object is an Agent or Group.
 * The platform property MUST NOT be used if the statement's object is an Agent or Group.
 * The language property MUST NOT be used if not applicable or unknown.
@@ -1295,7 +1295,7 @@ An instance of a learner undertaking a particular learning activity.
 When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration. 
 The Experience API applies the concept of registration more broadly.  A registration could be 
 considered to be an attempt, a session, or could span multiple Activities. There is no expectation that 
-completing an activity ends a registration. Nor is a registration necessarily confined to a single Agent.
+completing an Activity ends a registration. Nor is a registration necessarily confined to a single Agent.
 
 <a name="contextActivities"/>
 
@@ -1305,35 +1305,35 @@ completing an activity ends a registration. Nor is a registration necessarily co
 A map of the types of learning activity context that this statement is related to.
 
 ###### Rationale
-Many statements do not just involve one object activity that is the focus,
+Many statements do not just involve one object Activity that is the focus,
 but relate to other contextually relevant activities. "Context activities" allow for 
 these related activities to be represented in a structured manner.
 
 ###### Details:
 There are four valid context types. All, any or none of these MAY be used in a given statement:
 
-1. __Parent__ : an activity with a direct relation to the activity
+1. __Parent__ : an Activity with a direct relation to the Activity
 which is the object of the statement. In almost all cases there
 is only one sensible parent or none, not multiple.
 For example: a statement about a quiz question would have the quiz
-as its parent activity.
+as its parent Activity.
  
-2. __Grouping__ : an activity with an indirect relation to the activity
+2. __Grouping__ : an Activity with an indirect relation to the Activity
 which is the object of the statement.
 For example: a course that is part of a qualification. The course
 has several classes. The course relates to a class as the parent,
 the qualification relates to the class as the grouping.
 
-3. __Category__ : an activity used to categorize the statement.
+3. __Category__ : an Activity used to categorize the statement.
 "Tags" would be a synonym. Category SHOULD be used to indicate
 a "profile" of xAPI behaviors, as well as other categorizations.
 For example: Anna attempts a biology exam, and the statement is
-tracked using the CMI-5 profile. The statement's activity refers
+tracked using the CMI-5 profile. The statement's Activity refers
 to the exam, and the category is the CMI-5 profile.
 
-5. __Other__ : a context activity that doesn't fit one of the other fields.
+5. __Other__ : a context Activity that doesn't fit one of the other fields.
 For example: Anna studies a textbook for a biology exam. The statement's
-activity refers to the textbook, and the exam is a context activity of type "other".
+Activity refers to the textbook, and the exam is a context Activity of type "other".
 
 Single Activity objects are allowed as values so that 0.95 statements will be compatible with 1.0.0.
 
@@ -1361,7 +1361,7 @@ are part of "Test 1" which in turn belongs to the course "Algebra 1".
 The six questions are registered as part of the test by declaring
 "Test 1" as their parent. Also they are grouped with other statements
 about "Algebra 1" to fully mirror the hierarchy. This is particularly
-useful when the object of the statement is an agent, not an activity.
+useful when the object of the statement is an agent, not an Activity.
 "Andrew mentored Ben with context Algebra I".
 
 ```
@@ -1800,7 +1800,7 @@ When issuing a statement that voids another, the object of that voiding statemen
 
 Upon receiving a statement that voids another, the LRS...
 
-* MAY roll back any changes to activity or agent definitions which were introduced by the statement that was just voided;
+* MAY roll back any changes to Activity or agent definitions which were introduced by the statement that was just voided;
 * SHOULD reject the entire request which includes the voiding statement with HTTP 403
 'Forbidden' if the request is not from a source authorized to void statements.
 * SHOULD return a descriptive error if the target statement cannot be found;
@@ -1834,7 +1834,7 @@ This example statement voids a previous statement which it identifies with the s
 
 
 ###### Details
-Any statement that voids another cannot itself be voided. An activity provider that wants to "unvoid" a previously 
+Any statement that voids another cannot itself be voided. An Activity Provider that wants to "unvoid" a previously 
 voided statement...
 
 * SHOULD issue that statement again under a new ID
@@ -1943,7 +1943,7 @@ the extension supported by the URL accessible at the URL. A learning record stor
 MUST NOT reject an Experience API statement based on the values of the extensions 
 map.  
 
-Extensions are available as part of activity definitions, as part of statement 
+Extensions are available as part of Activity Definitions, as part of statement 
 context, or as part of some statement result. In each case, they're intended to 
 provide a natural way to extend those elements for some specialized use. The 
 contents of these extensions might be something valuable to just one application, 
@@ -1953,7 +1953,7 @@ Extensions should logically relate to the part of the statement where they are
 present. Extensions in statement context should provide context to the core 
 experience, while those in the result should provide elements related to some 
 outcome. For activities, they should provide additional information that helps 
-define an activity within some custom application or community.  
+define an Activity within some custom application or community.  
 
 ###### Note: 
 A statement should not be totally defined by its extensions, and be 
@@ -1967,12 +1967,12 @@ Experience API conformant tools.
 ### 5.4 Identifier Metadata
 There are several types of URI identifiers used in this specification:
 * <a href="#verb">verb</a>
-* <a href="#acturi">activity id</a>
-* <a href="#acttype">activity type</a>
+* <a href="#acturi">Activity id</a>
+* <a href="#acttype">Activity type</a>
 * <a href="#miscext">extension key</a>
 * <a href="#attachmentUsage">attachment usage type</a>
 
-For activity ids, see <a href="#actdef">activity definition</a>.
+For Activity ids, see <a href="#actdef">Activity Definition</a>.
 
 For all other identifiers, metadata MAY be provided in the following JSON format:
 
@@ -2005,7 +2005,7 @@ identifier was not coined for use with this specification.
 
 <a href="#verb-lists-and-repositories">As with verbs</a>, we recommend 
 that Learning Activity Providers look for and use established, 
-widely adopted identifiers for all types of URI identifier other than activity id. Where an
+widely adopted identifiers for all types of URI identifier other than Activity id. Where an
 identifier already exists, the Learning Activity Provider:
 
 * SHOULD use the corresponding existing identifier;
@@ -2492,23 +2492,23 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 	<tr><td>verb</td><td>Verb id (IRI)</td><td> </td>
 		<td>Filter, only return statements matching the specified verb id.</td>
 	</tr>
-	<tr><td>activity</td><td>Activity id (URI)</td><td> </td>
-		<td>Filter, only return statements for which the object of the statement is an activity with the specified id.
+	<tr><td>Activity</td><td>Activity id (URI)</td><td> </td>
+		<td>Filter, only return statements for which the object of the statement is an Activity with the specified id.
 		</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td> </td>
 		<td>Filter, only return statements matching the specified registration 
 			ID. Note that although frequently a unique registration ID will be used 
-			for one Actor assigned to one activity, this should not be assumed. 
-			If only statements for a certain Actor or activity should be returned, 
+			for one Actor assigned to one Activity, this should not be assumed. 
+			If only statements for a certain Actor or Activity should be returned, 
 			those parameters should also be specified.
 		</td>
 	</tr>
 	<tr><td>related_activities</td><td>Boolean</td><td>False</td>
-		<td>Apply the activity filter broadly. Include statements for which the object,
+		<td>Apply the Activity filter broadly. Include statements for which the object,
 		any of the  context activities, or any of those properties in a contained SubStatement
-		match the activity parameter, instead of that parameter's normal behavior. Matching
-		is defined in the same way it is for the 'activity' parameter."
+		match the Activity parameter, instead of that parameter's normal behavior. Matching
+		is defined in the same way it is for the 'Activity' parameter."
 		</td>
 	</tr>
 	<tr><td>related_agents</td><td>Boolean</td><td>False</td>
@@ -2531,15 +2531,15 @@ Returns: ```200 OK```, statement or [Statement Result](#retstmts) (See [Section 
 	</tr>
 	<tr><td>format</td><td>String: ("ids", "exact", or "canonical")</td><td>exact</td>
 		<td>If "ids", only include minimum information necessary in agent,
-			activity, and group objects to identify them. For anonymous groups this means
+			Activity, and group objects to identify them. For anonymous groups this means
 			including the minimum information needed to identify each member.
 
 			If "exact", return agent,
-			activity, and group objects populated exactly as they were when the statement
+			Activity, and group objects populated exactly as they were when the statement
 			was received.<br/><br/>
 			
-			If "canonical", return activity objects populated with the canonical
-			definition of the activity objects as determined by the LRS, after
+			If "canonical", return Activity objects populated with the canonical
+			definition of the Activity objects as determined by the LRS, after
 			applying the language filtering process defined below, and return the original
 			agent objects as in "exact" mode.
 
@@ -2605,7 +2605,7 @@ match when a targets b which targets c and the filter conditions described above
 For example, consider the statement "Ben passed explosives training", and a follow up
 statement: "Andrew confirmed \<StatementRef to original statement\>". The follow up
 statement will not mention "Ben" or "explosives training", but when fetching statements
-with an Actor filter of "Ben" or an activity filter of "explosives training", both
+with an Actor filter of "Ben" or an Activity filter of "explosives training", both
 statements match and will be returned so long as they fall into the time or sequence
 being fetched.
 
@@ -2642,7 +2642,7 @@ information in this section applies to all three APIs.
 
 An Activity Provider MAY send documents to any of the document APIs for activities and agents that
 the LRS does not have prior knowledge of. The LRS MUST NOT reject documents on the basis of not 
-having prior knowledge of the activity and/or agent. 
+having prior knowledge of the Activity and/or agent. 
 
 ###### POST to store application/json arrays of variables
 <table>
@@ -2728,7 +2728,7 @@ a property, it SHOULD use a PUT request to replace the whole document as describ
 <a name="stateapi"/> 
 
 ### 7.4 State API:
-Generally, this is a scratch area for activity providers that do not have their 
+Generally, this is a scratch area for Activity Providers that do not have their 
 own internal storage, or need to persist state across devices. When using the 
 State API, be aware of how the stateId parameter affects the semantics of the 
 call. If it is included, the GET and DELETE methods will act upon a single 
@@ -2740,13 +2740,13 @@ other parameters.
 Example endpoint: http://example.com/xAPI/activities/state
 
 Stores, fetches, or deletes the document specified by the given stateId that 
-exists in the context of the specified activity, agent, and registration (if specified).  
+exists in the context of the specified Activity, agent, and registration (if specified).  
 
 Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - State Content  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
-		<td>The activity ID associated with this state</td>
+		<td>The Activity ID associated with this state</td>
 	</tr>
 	<tr><td>agent</td><td>(JSON/XML)</td><td>yes</td>
 		<td>The agent associated with this state</td>
@@ -2762,7 +2762,7 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - State Content
 ###### GET activities/state
 Example endpoint: http://example.com/xAPI/activities/state
 
-Fetches IDs of all state data for this context (activity + agent \[ + 
+Fetches IDs of all state data for this context (Activity + agent \[ + 
 registration if specified\]). If "since" parameter is specified, this 
 is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
@@ -2771,7 +2771,7 @@ Returns: 200 OK, Array of IDs
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
-		<td>The activity ID associated with these states.</td>
+		<td>The Activity ID associated with these states.</td>
 	</tr>
 	<tr><td>agent</td><td>(JSON/XML)</td><td>yes</td>
 		<td>The Actor associated with these states.</td>
@@ -2787,14 +2787,14 @@ Returns: 200 OK, Array of IDs
 ###### DELETE activities/state
 Example endpoint: http://example.com/xAPI/activities/state
 
-Deletes all state data for this context (activity + agent \[+ registration if 
+Deletes all state data for this context (Activity + agent \[+ registration if 
 specified\]).  
 
 Returns: 204 No Content  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
-		<td>The activity ID associated with this state</td>
+		<td>The Activity ID associated with this state</td>
 	</tr>
 	<tr><td>agent</td><td>(JSON/XML)</td><td>yes</td>
 		<td>The Actor associated with this state</td>
@@ -2818,12 +2818,12 @@ GET will return the available IDs, and DELETE will delete all state in the
 context given through the other parameters.  
 
 The Activity Profile API also includes a method to retrieve a full description 
-of an activity from the LRS.  
+of an Activity from the LRS.  
 
 ###### GET activities
 Example endpoint: http://example.com/xAPI/activities
 
-Loads the complete activity object specified.  
+Loads the complete Activity object specified.  
 
 Returns: 200 OK - Content  
 <table>
@@ -2837,13 +2837,13 @@ Returns: 200 OK - Content
 Example endpoint: http://example.com/xAPI/activities/profile
 
 Saves/retrieves/deletes the specified profile document in the context of the 
-specified activity.  
+specified Activity.  
 
 Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
-		<td>The activity ID associated with this profile.</td>
+		<td>The Activity ID associated with this profile.</td>
 	</tr>
 	<tr><td>profileId</td><td>String</td><td>yes</td>
 		<td>The profile ID associated with this profile.</td>
@@ -2853,7 +2853,7 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content
 ###### GET activities/profile
 Example endpoint: http://example.com/xAPI/activities/profile
 
-Loads IDs of all profile entries for an activity. If "since" parameter is 
+Loads IDs of all profile entries for an Activity. If "since" parameter is 
 specified, this is limited to entries that have been stored or updated since 
 the specified timestamp (exclusive).  
 
@@ -2861,7 +2861,7 @@ Returns: 200 OK - List of IDs
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th><tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
-		<td>The activity ID associated with these profiles.</td>
+		<td>The Activity ID associated with these profiles.</td>
 	</tr>
 	<tr><td>since</td><td>Timestamp</td><td>no</td>
 		<td>Only IDs of profiles stored since the specified timestamp (exclusive) are returned.</td>
@@ -3058,7 +3058,7 @@ support Cross Domain Requests between HTTP and HTTPS. This means that for IE9 an
 if the LRS is on an HTTPS domain, the client sending the statement must also be on HTTPS. 
 If the LRS is on HTTP, the client must be too.  
 
-There may be cases where there is a requirement for the client activity provider to support 
+There may be cases where there is a requirement for the client Activity Provider to support 
 IE8 and IE9 where the client code is hosted on a different scheme (HTTP or HTTPS) from 
 the LRS. In these cases, proxy is needed to communicate to the LRS. Two simple solutions 
 might be to 1) set up a proxy pass through on the same scheme as the client code to the LRS 
@@ -3075,7 +3075,7 @@ As long as it has sufficient information to perform these tasks, it is
 expected that it does them. Validation of statements in the Experience API is 
 focused solely on syntax, not semantics. It SHOULD enforce rules regarding structure, 
 but SHOULD NOT enforce rules regarding meaning. Enforcing the rules that ensure 
-valid meaning among verb definitions, activity types, and extensions is the 
+valid meaning among verb definitions, Activity types, and extensions is the 
 responsibility of the Activity Provider sending the statement.  
 
 <a name="httphead"/>
@@ -3089,7 +3089,7 @@ the HTTP headers, and not the actual document.
 ###### Rationale
 
 Clients accessing the LRS may need to check if a particular statement exists, or determine
-the modification date of documents such as state or activity or agent profile. Particularly
+the modification date of documents such as state or Activity or agent profile. Particularly
 for large documents it's more efficient not to get the entire document just to check its
 modification date.
 
@@ -3581,7 +3581,7 @@ Example of a simple statement (line breaks are for display purposes only):
 			"description":{ 
 				"en-US":"A simple Experience API statement. Note that the LRS 
 				does not need to have any prior information about the Actor (learner), the 
-				verb, or the activity/object." 
+				verb, or the Activity/object." 
 			}
 		}
 	}
@@ -3639,12 +3639,12 @@ in a consistant manner.
 
 A 1.0.0 system converting a statement created in 0.9 MUST follow the steps below:
 
-* If the statement has been voided or uses verbs, activity types, or properties not included in the
+* If the statement has been voided or uses verbs, Activity types, or properties not included in the
  0.9 specification, do not convert it.
 * Prefix "verb" with "http://adlnet.gov/expapi/verbs/".
-* Prefix any activity ids which are not full absolute URIs with "tag:adlnet.gov,2013:expapi:0.9:activities:"
+* Prefix any Activity ids which are not full absolute URIs with "tag:adlnet.gov,2013:expapi:0.9:activities:"
 * Prefix any extension keys which are not full absolute URIs with "tag:adlnet.gov,2013:expapi:0.9:extensions:"
-* Prefix activity types with "http://adlnet.gov/expapi/activities/"
+* Prefix Activity types with "http://adlnet.gov/expapi/activities/"
 * for each agent (Actor):
     * Search for inverse functional identifiers in this order: "mbox, mbox_sha1sum, openId,
     account". Keep the first populated inverse functional identifier found and discard the rest.
