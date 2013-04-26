@@ -3006,12 +3006,12 @@ Returns: 200 OK - Single 'about' JSON document.
 <td>version</td><td>array of version strings</td><td>xAPI versions this LRS supports</td>
 </tr>
 <tr>
-<td>Extensions</td><td><a href="#miscext">Extensions Object</a></td><td>A map of other properties as needed.</td>
+<td>Extensions</td><td><a href="#miscext">Object</a></td><td>A map of other properties as needed.</td>
 </tr>
 </table>
 
 ###### LRS Requirements
-* MUST return the JSON document described above, with a version property that includes the
+* MUST return the JSON document described above, with a version property that includes
 the latest minor and patch version the LRS conforms to, for each major version.
     * For version 1.0.0 of this specification, this means that "1.0.0" MUST be included;
     "0.9" and "0.95" MAY be included. (For the purposes of this requirement, "0.9" and "0.95"
@@ -3044,14 +3044,14 @@ header must instead be included as a form parameter with the same name.
 
 __Content__: If the xAPI call involved sending content, that content must now 
 be encoded and included as a form parameter called "content". The LRS will 
-interpret this content as a UTF-8 string, storing binary data is not supported 
+interpret this content as a UTF-8 string. Storing binary data is not supported 
 with this syntax.  
 
 __Attachments__: Sending attachment data requires sending a
 multipart/mixed request, therefore sending attachment data is not supported
 with this syntax. See [4.1.11. Attachments](#attachments) 
 
-See [Appendix B](#AppendixB) for an example function written in Javascript 
+See [Appendix B](#AppendixB) for an example function written in JavaScript 
 which transforms a normal request into one using this alternate syntax.  
 
 It should also be noted that versions of Internet Explorer lower than 10 do not 
@@ -3097,8 +3097,8 @@ modification date.
 ###### LRS Requirements
 * The LRS MUST respond to any HTTP HEAD request as it would have responded to an otherwise
 identical HTTP GET request except:
-    * The message-body MUST be omitted
-    * The Content-Length header MAY be omitted, in order to avoid wasting LRS resources
+    * The message-body MUST be omitted.
+    * The Content-Length header MAY be omitted, in order to avoid wasting LRS resources.
 
 <a name="AppendixA"/> 
 
@@ -3656,7 +3656,7 @@ A 1.0.0 system converting a Statement created in 0.9 MUST follow the steps below
     array, discard the remaining elements.
     * Remove all remaining properties.
 * Remove the "voided" property from the Statement, if present. Remember, if the value of the
-  voided property is true, then the Statement MUST NOT be converted
+  voided property is true, then the Statement MUST NOT be converted.
 * Add "version": "1.0.0"
 * If an authority was not previously set, set the authority to an agent identified by
 an account with a homePage set to the home page corresponding to the
@@ -3671,7 +3671,7 @@ A 1.0.0 system converting a Statement created in 0.95 MUST follow the steps belo
 
 * If the Statement is voided, do not convert it.
 * Remove the "voided" property from the Statement, if present. Remember, if the value
-  of the voided property is true, then the Statement MUST NOT be converted
+  of the voided property is true, then the Statement MUST NOT be converted.
 * Add "version": "1.0.0"
 * If an authority was not previously set, set the authority to an agent identified by
 an account with a homePage set to the home page corresponding to the
@@ -3811,7 +3811,7 @@ Converted to 1.0.0:
 ## Appendix F: Example Signed Statement
 An example signed Statement, as described in: <a href="#signature">4.4 Signed Statements</a>.
 
-The original Statement serialization to be signed. Newlines in this example are included
+The original Statement serialization to be signed. New lines in this example are included
 via CR+LF (0x0D + 0x0A).
 
 ```
@@ -3845,7 +3845,7 @@ via CR+LF (0x0D + 0x0A).
 }
 ```
 
-Example private key for X.590 certificate that will be used for signing:
+Example private key for X.509 certificate that will be used for signing:
 ```
 -----BEGIN RSA PRIVATE KEY-----
 MIICXAIBAAKBgQDjxvZXF30WL4oKjZYXgR0ZyaX+u3y6+JqTqiNkFa/VTnet6Ly2
