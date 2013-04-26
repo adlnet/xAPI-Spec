@@ -80,9 +80,9 @@ verbs to creating their own verbs.
 - Verbs, Activity types, and extension keys are now URIs
 - Restructured and added language around some of the other implementation 
 details and scope.
-- Changed from using a person-centric view of agents to a persona-centric 
+- Changed from using a person-centric view of Agents to a persona-centric 
 view.
-- Friend of a Friend (FOAF) agent merging requirement was removed.
+- Friend of a Friend (FOAF) Agent merging requirement was removed.
 - Agent Objects must now have exactly 1 uniquely identifying property, instead 
 of at least one.
 
@@ -508,10 +508,10 @@ An Agent (an individual) is a persona or system.
 
 ###### Details
 
-* An agent MUST be identified by one (1) of the four types of inverse functional identifiers (see
+* An Agent MUST be identified by one (1) of the four types of inverse functional identifiers (see
 <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a>);
-* An agent MUST NOT include more than one (1) inverse functional identifier;
-* An agent SHOULD NOT use inverse functional identifiers that are also used as a Group identifier.
+* An Agent MUST NOT include more than one (1) inverse functional identifier;
+* An Agent SHOULD NOT use inverse functional identifiers that are also used as a Group identifier.
 
 The table below lists the properties of Agent Objects.
 
@@ -569,7 +569,7 @@ The table below lists all properties of an identified Group.
 </table>
 
 * A system consuming Statements MUST consider each anonymous Group distinct even if it has an identical set of members.
-* A system consuming Statements MUST NOT assume that Agents in the 'member' property comprise an exact list of agents
+* A system consuming Statements MUST NOT assume that Agents in the 'member' property comprise an exact list of Agents
 in a given anonymous or identified Group.
 
 
@@ -630,7 +630,7 @@ The table below lists all properties of Account Objects.
 
 ###### Example
 
-This example shows an agent identified by an opaque account:
+This example shows an Agent identified by an opaque account:
 
 ```
 {
@@ -1174,7 +1174,7 @@ with a precision of 0.01 seconds</td><td>Period of time over which the Statement
 ##### 4.1.5.1 Score
 
 ###### Description
-An optional numeric field that represents the outcome of a graded Activity achieved by an agent.
+An optional numeric field that represents the outcome of a graded Activity achieved by an Agent.
 
 ###### Details
 
@@ -1361,7 +1361,7 @@ are part of "Test 1" which in turn belongs to the course "Algebra 1".
 The six questions are registered as part of the test by declaring
 "Test 1" as their parent. Also they are grouped with other Statements
 about "Algebra 1" to fully mirror the hierarchy. This is particularly
-useful when the Object of the Statement is an agent, not an Activity.
+useful when the Object of the Statement is an Agent, not an Activity.
 "Andrew mentored Ben with context Algebra I".
 
 ```
@@ -1801,7 +1801,7 @@ When issuing a Statement that voids another, the Object of that voiding Statemen
 
 Upon receiving a Statement that voids another, the LRS...
 
-* MAY roll back any changes to Activity or agent definitions which were introduced by the Statement that was just voided;
+* MAY roll back any changes to Activity or Agent definitions which were introduced by the Statement that was just voided;
 * SHOULD reject the entire request which includes the voiding Statement with HTTP 403
 'Forbidden' if the request is not from a source authorized to void Statements.
 * SHOULD return a descriptive error if the target Statement cannot be found;
@@ -2481,10 +2481,10 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	<tr><td>statementId</td><td>String</td><td> </td><td>ID of Statement to fetch</td></tr>
 	<tr><td>voidedStatementId</td><td>String</td><td> </td><td>ID of voided Statement to fetch. see <a href="#voidedStatements">Voided Statements</a></td></tr>
 	<tr><td>agent</td><td>Agent or identified Group Object (JSON)</td><td> </td>
-		<td>Filter, only return Statements for which the specified agent or group is the Actor or Object of the Statement.
+		<td>Filter, only return Statements for which the specified Agent or group is the Actor or Object of the Statement.
 			<ul><li> Agents or identified groups are equal when the same Inverse Functional Identifier is used in each
 			Object compared and those Inverse Functional Identifiers have equal values.
-			</li><li>For the purposes of this filter, groups that have members which match the specified agent
+			</li><li>For the purposes of this filter, groups that have members which match the specified Agent
 			based on their Inverse Functional Identifier as described above are considered a match</li></ul>
 			<br><br>See <a href="#actor">agent/group</a> Object definition
 			for details.
@@ -2513,9 +2513,9 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 		</td>
 	</tr>
 	<tr><td>related_agents</td><td>Boolean</td><td>False</td>
-		<td>Apply the agent filter broadly. Include Statements for which 
+		<td>Apply the Agent filter broadly. Include Statements for which 
 			the Actor, Object, authority, instructor, team,
-			or any of these properties in a contained SubStatement match the agent parameter,
+			or any of these properties in a contained SubStatement match the Agent parameter,
 			instead of that parameter's normal behavior. Matching is defined in the same way
 			it is for the 'agent' parameter.
 		</td>
@@ -2531,18 +2531,18 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 			maximum the server will allow.</td>
 	</tr>
 	<tr><td>format</td><td>String: ("ids", "exact", or "canonical")</td><td>exact</td>
-		<td>If "ids", only include minimum information necessary in agent,
+		<td>If "ids", only include minimum information necessary in Agent,
 			Activity, and group Objects to identify them. For anonymous groups this means
 			including the minimum information needed to identify each member.
 
-			If "exact", return agent,
+			If "exact", return Agent,
 			Activity, and group Objects populated exactly as they were when the Statement
 			was received.<br/><br/>
 			
 			If "canonical", return Activity Objects populated with the canonical
 			definition of the Activity Objects as determined by the LRS, after
 			applying the language filtering process defined below, and return the original
-			agent Objects as in "exact" mode.
+			Agent Objects as in "exact" mode.
 
 			Activity Objects contain Language Map Objects for name and 
 			description. Only one language should be returned in each of 
@@ -2636,14 +2636,14 @@ voidedStatementId.
 ### 7.3 Document APIs
 
 The three Document APIs provide [document](#miscdocument) storage for learning activity 
-providers and agents. The details of each API are found in the following sections, and the 
+providers and Agents. The details of each API are found in the following sections, and the 
 information in this section applies to all three APIs.
 
 ###### New Agents and Activities
 
-An Activity Provider MAY send documents to any of the document APIs for activities and agents that
+An Activity Provider MAY send documents to any of the document APIs for activities and Agents that
 the LRS does not have prior knowledge of. The LRS MUST NOT reject documents on the basis of not 
-having prior knowledge of the Activity and/or agent. 
+having prior knowledge of the Activity and/or Agent. 
 
 ###### POST to store application/json arrays of variables
 <table>
@@ -2741,7 +2741,7 @@ other parameters.
 Example endpoint: http://example.com/xAPI/activities/state
 
 Stores, fetches, or deletes the document specified by the given stateId that 
-exists in the context of the specified Activity, agent, and registration (if specified).  
+exists in the context of the specified Activity, Agent, and registration (if specified).  
 
 Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - State Content  
 <table>
@@ -2750,7 +2750,7 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - State Content
 		<td>The Activity id associated with this state.</td>
 	</tr>
 	<tr><td>agent</td><td>(JSON/XML)</td><td>yes</td>
-		<td>The agent associated with this state.</td>
+		<td>The Agent associated with this state.</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td>no</td>
 		<td>The registration id associated with this state.</td>
@@ -2763,7 +2763,7 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - State Content
 ###### GET activities/state
 Example endpoint: http://example.com/xAPI/activities/state
 
-Fetches ids of all state data for this context (Activity + agent \[ + 
+Fetches ids of all state data for this context (Activity + Agent \[ + 
 registration if specified\]). If "since" parameter is specified, this 
 is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
@@ -2788,7 +2788,7 @@ Returns: 200 OK, Array of ids
 ###### DELETE activities/state
 Example endpoint: http://example.com/xAPI/activities/state
 
-Deletes all state data for this context (Activity + agent \[+ registration if 
+Deletes all state data for this context (Activity + Agent \[+ registration if 
 specified\]).  
 
 Returns: 204 No Content  
@@ -2887,13 +2887,13 @@ directory service.
 ###### GET agents
 Example endpoint: http://example.com/xAPI/agents
 
-Return a special, Person Object for a specified agent. The Person Object is 
+Return a special, Person Object for a specified Agent. The Person Object is 
 very similar to an Agent Object, but instead of each attribute having a single 
 value, each attribute has an array value, and it is legal to include multiple 
 identifying properties. Note that the argument is still a normal Agent Object 
 with a single identifier and no arrays. Note that this is different from the 
 FOAF concept of person, person is being used here to indicate a person-centric 
-view of the LRS agent data, but agents just refer to one persona (a person in 
+view of the LRS Agent data, but Agents just refer to one persona (a person in 
 one context).  
 
 An LRS capable of returning multiple identifying properties for a Person Object SHOULD 
@@ -2925,7 +2925,7 @@ same definition as the similarly named property from Agent Objects.
 	<tr>
 		<td>openid*</td>
 		<td>Array of strings.</td>
-		<td>List of openids that uniquely identify the agents to retrieve.</td>
+		<td>List of openids that uniquely identify the Agents to retrieve.</td>
 	</tr>
 	<tr>
 		<td>account*</td>
@@ -2941,7 +2941,7 @@ Returns: ```200 OK - Expanded Agent Object```
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>agent</td><td>Object (JSON)</td><td>yes</td>
-		<td>The agent representation to use in fetching expanded agent information.</td>
+		<td>The Agent representation to use in fetching expanded Agent information.</td>
 	</tr>
 </table>  
 
@@ -2950,7 +2950,7 @@ Returns: ```200 OK - Expanded Agent Object```
 Example endpoint: http://example.com/xAPI/agents/profile
 
 Saves/retrieves/deletes the specified profile document in the context of the 
-specified agent.  
+specified Agent.  
 
 Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content  
 
@@ -2967,7 +2967,7 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content
 ###### GET agents/profile
 Example endpoint: http://example.com/xAPI/agents/profile
 
-Loads ids of all profile entries for an agent. If "since" parameter is specified, 
+Loads ids of all profile entries for an Agent. If "since" parameter is specified, 
 this is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
 
@@ -2975,7 +2975,7 @@ Returns: 200 OK - List of ids
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>agent</td><td>Object (JSON)</td><td>yes</td>
-		<td>The agent associated with this profile.</td>
+		<td>The Agent associated with this profile.</td>
 	</tr>
 	<tr><td>since</td><td>Timestamp</td><td>no</td>
 		<td>Only ids of profiles stored since the specified timestamp 
@@ -3090,7 +3090,7 @@ the HTTP headers, and not the actual document.
 ###### Rationale
 
 Clients accessing the LRS may need to check if a particular Statement exists, or determine
-the modification date of documents such as state or Activity or agent profile. Particularly
+the modification date of documents such as state or Activity or Agent profile. Particularly
 for large documents it's more efficient not to get the entire document just to check its
 modification date.
 
@@ -3646,7 +3646,7 @@ A 1.0.0 system converting a Statement created in 0.9 MUST follow the steps below
 * Prefix any Activity ids which are not full absolute URIs with "tag:adlnet.gov,2013:expapi:0.9:activities:"
 * Prefix any extension keys which are not full absolute URIs with "tag:adlnet.gov,2013:expapi:0.9:extensions:"
 * Prefix Activity types with "http://adlnet.gov/expapi/activities/"
-* for each agent (Actor):
+* for each Agent (Actor):
     * Search for inverse functional identifiers in this order: "mbox, mbox_sha1sum, openId,
     account". Keep the first populated inverse functional identifier found and discard the rest.
     * For the above inverse functional identifier, take the first element in the array and
@@ -3658,7 +3658,7 @@ A 1.0.0 system converting a Statement created in 0.9 MUST follow the steps below
 * Remove the "voided" property from the Statement, if present. Remember, if the value of the
   voided property is true, then the Statement MUST NOT be converted.
 * Add "version": "1.0.0"
-* If an authority was not previously set, set the authority to an agent identified by
+* If an authority was not previously set, set the authority to an Agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
 * if the Statement field in context was set, remove it from the Statement.
@@ -3673,7 +3673,7 @@ A 1.0.0 system converting a Statement created in 0.95 MUST follow the steps belo
 * Remove the "voided" property from the Statement, if present. Remember, if the value
   of the voided property is true, then the Statement MUST NOT be converted.
 * Add "version": "1.0.0"
-* If an authority was not previously set, set the authority to an agent identified by
+* If an authority was not previously set, set the authority to an Agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
 * if the Statement field in context was set to anything other than a
