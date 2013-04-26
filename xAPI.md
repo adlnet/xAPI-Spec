@@ -2419,7 +2419,7 @@ unexpected exception in processing on the server.
 
 <a name="stmtapi"/> 
 
-### 7.2 Statement API:
+### 7.2 Statement API
 The basic communication mechanism of the Experience API.  
 
 ###### PUT statements
@@ -2633,7 +2633,7 @@ voidedStatementId.
 
 <a name="docapis" />
 
-### 7.3 Document APIs:
+### 7.3 Document APIs
 
 The three Document APIs provide [document](#miscdocument) storage for learning activity 
 providers and agents. The details of each API are found in the following sections, and the 
@@ -2728,7 +2728,7 @@ a property, it SHOULD use a PUT request to replace the whole document as describ
 
 <a name="stateapi"/> 
 
-### 7.4 State API:
+### 7.4 State API
 Generally, this is a scratch area for Activity Providers that do not have their 
 own internal storage, or need to persist state across devices. When using the 
 State API, be aware of how the stateId parameter affects the semantics of the 
@@ -2747,13 +2747,13 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - State Content
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
-		<td>The Activity ID associated with this state</td>
+		<td>The Activity id associated with this state.</td>
 	</tr>
 	<tr><td>agent</td><td>(JSON/XML)</td><td>yes</td>
-		<td>The agent associated with this state</td>
+		<td>The agent associated with this state.</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td>no</td>
-		<td>The registration ID associated with this state.</td>
+		<td>The registration id associated with this state.</td>
 	</tr>
 	<tr><td>stateId</td><td>String</td><td>yes</td>
 		<td>The id for this state, within the given context.</td>
@@ -2763,22 +2763,22 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - State Content
 ###### GET activities/state
 Example endpoint: http://example.com/xAPI/activities/state
 
-Fetches IDs of all state data for this context (Activity + agent \[ + 
+Fetches ids of all state data for this context (Activity + agent \[ + 
 registration if specified\]). If "since" parameter is specified, this 
 is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
 
-Returns: 200 OK, Array of IDs  
+Returns: 200 OK, Array of ids  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
-		<td>The Activity ID associated with these states.</td>
+		<td>The Activity id associated with these states.</td>
 	</tr>
 	<tr><td>agent</td><td>(JSON/XML)</td><td>yes</td>
 		<td>The Actor associated with these states.</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td>no</td>
-		<td>The registration ID associated with these states.</td>
+		<td>The registration id associated with these states.</td>
 	</tr>
 	<tr><td>since</td><td>Timestamp</td><td>no</td>
 		<td>Only IDs of states stored since the specified timestamp (exclusive) are returned.</td>
@@ -2795,13 +2795,13 @@ Returns: 204 No Content
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
-		<td>The Activity ID associated with this state</td>
+		<td>The Activity id associated with this state.</td>
 	</tr>
 	<tr><td>agent</td><td>(JSON/XML)</td><td>yes</td>
-		<td>The Actor associated with this state</td>
+		<td>The Actor associated with this state.</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td>no</td>
-		<td>The registration ID associated with this state.</td>
+		<td>The registration id associated with this state.</td>
 	</tr>
 </table>
 
@@ -2830,7 +2830,7 @@ Returns: 200 OK - Content
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
-		<td>The ID associated with the activities to load.</td>
+		<td>The id associated with the activities to load.</td>
 	</td>
 </table>
 
@@ -2844,28 +2844,28 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
-		<td>The Activity ID associated with this profile.</td>
+		<td>The Activity id associated with this profile.</td>
 	</tr>
 	<tr><td>profileId</td><td>String</td><td>yes</td>
-		<td>The profile ID associated with this profile.</td>
+		<td>The profile id associated with this profile.</td>
 	</tr>
 </table>
 
 ###### GET activities/profile
 Example endpoint: http://example.com/xAPI/activities/profile
 
-Loads IDs of all profile entries for an Activity. If "since" parameter is 
+Loads ids of all profile entries for an Activity. If "since" parameter is 
 specified, this is limited to entries that have been stored or updated since 
 the specified timestamp (exclusive).  
 
-Returns: 200 OK - List of IDs  
+Returns: 200 OK - List of ids  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th><tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
-		<td>The Activity ID associated with these profiles.</td>
+		<td>The Activity id associated with these profiles.</td>
 	</tr>
 	<tr><td>since</td><td>Timestamp</td><td>no</td>
-		<td>Only IDs of profiles stored since the specified timestamp (exclusive) are returned.</td>
+		<td>Only ids of profiles stored since the specified timestamp (exclusive) are returned.</td>
 	</tr>
 </table>
 
@@ -2877,7 +2877,7 @@ document pairs to be saved which are related to an Agent. When using the
 Agent Profile API for manipulating documents, be aware of how the profileId parameter 
 affects the semantics of the call. If it is included, the GET and DELETE 
 methods will act upon a single defined document identified by "profileId". 
-Otherwise, GET will return the available IDs, and DELETE will delete all state 
+Otherwise, GET will return the available ids, and DELETE will delete all state 
 in the context given through the other parameters.  
 
 The Agent Profile API also includes a method to retrieve a special Object with 
@@ -2896,7 +2896,7 @@ FOAF concept of person, person is being used here to indicate a person-centric
 view of the LRS agent data, but agents just refer to one persona (a person in 
 one context).  
 
-An LRS capable of returning multiple identifying properties for an Person SHOULD 
+An LRS capable of returning multiple identifying properties for a Person Object SHOULD 
 require the connecting credentials have increased, explicitly given permissions. 
 An LRS SHOULD reject insufficiently privileged requests with 403 "Forbidden". 
 If an LRS does not have any additional information about an Agent to return, the 
@@ -2913,14 +2913,14 @@ same definition as the similarly named property from Agent Objects.
 	<tr><td>objectType</td><td>String</td><td>"Person". Required.</td></tr>
 	<tr><td>name</td><td>Array of strings.</td><td> Optional. List of names of Agents to retrieve.</td></tr>
 	<tr>
-		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox">mbox*</a></td>
+		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox">mbox</a></td>
 		<td>Array of URIs in the form "mailto:email address".</td>
 		<td>List of e-mail addresses of Agents to retrieve.</td>
 	</tr>
 	<tr>
-		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox_sha1sum">mbox_sha1sum*</a></td>
+		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox_sha1sum">mbox_sha1sum</a></td>
 		<td>Array of strings.</td>
-		<td>List of the SHA1 hashes of mailto URIs (such as go in an mbox property)</td>
+		<td>List of the SHA1 hashes of mailto URIs (such as go in an mbox property).</td>
 	</tr>
 	<tr>
 		<td>openid*</td>
@@ -2960,18 +2960,18 @@ Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content
 		<td>The agent associated with this profile.</td>
 	</tr>
 	<tr><td>profileId</td><td>String</td><td>yes</td>
-		<td>The profile ID associated with this profile.</td>
+		<td>The profile id associated with this profile.</td>
 	</tr>
 </table>  
 
 ###### GET agents/profile
 Example endpoint: http://example.com/xAPI/agents/profile
 
-Loads IDs of all profile entries for an agent. If "since" parameter is specified, 
+Loads ids of all profile entries for an agent. If "since" parameter is specified, 
 this is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
 
-Returns: 200 OK - List of IDs  
+Returns: 200 OK - List of ids  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>agent</td><td>Object (JSON)</td><td>yes</td>
