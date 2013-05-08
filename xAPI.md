@@ -1181,7 +1181,7 @@ The following table contains the properties of the Results Object.
 with a precision of 0.01 seconds</td><td>Period of time over which the Statement occurred.</td>
 </tr>
 <tr>
-<td>Extensions</td><td>Object</td><td>A map of other properties as needed.
+<td>extensions</td><td>Object</td><td>A map of other properties as needed.
 <a href="#miscext">See: Extensions</a></td>
 </tr>
 </table> 
