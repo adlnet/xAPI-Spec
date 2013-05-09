@@ -573,7 +573,7 @@ The table below lists all properties of an Identified Group.
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>yes</td></tr>
 	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>no</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td><td>The members of this Group.</td><td>yes</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td><td>The members of this Group.</td><td>no</td></tr>
 	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
 	    <td>An Inverse Functional Identifier unique to the Group.</td><td>yes</td></tr>	
 </table>
@@ -628,7 +628,7 @@ The table below lists all properties of Account Objects.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>homepage</td><td>URL</td><td>The canonical home page for the system the account is on. This is based on FOAF's accountServiceHomePage.</td></tr>
+	<tr><td>homePage</td><td>URL</td><td>The canonical home page for the system the account is on. This is based on FOAF's accountServiceHomePage.</td></tr>
 	<tr><td>name</td><td>String</td><td>The unique id or name used to log in to this account. This is based 
 			on FOAF's accountName.</td></tr>
 </table>
@@ -1055,15 +1055,15 @@ A Statement Reference is a pointer to another pre-existing Statement.
 ###### Requirements
 
 * A Statement Reference MUST specify an "objectType" property with the value "StatementRef".
-* A Statement Reference MUST set the "id" property to the UUID of a Statement which is present on the system.
+* A Statement Reference MUST set the "id" property to the UUID of a Statement.
 
 The table below lists all properties of a Statement Reference Object:
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td>objectType</td><td>String</td><td>In this case, MUST be "StatementRef".</td></tr>
-	<tr><td>id</td><td>UUID</td><td>The UUID of a Statement 
-	which is present on the system.</td></tr>
+	<tr><td>id</td><td>UUID</td><td>The UUID of a Statement. 
+	</td></tr>
 </table>
 
 ###### Example
