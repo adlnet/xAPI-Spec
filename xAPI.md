@@ -598,10 +598,10 @@ The table below lists all possible Inverse Functional Identifier properties.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>
-The local part of the email address must be URI encoded.<br>Only email addresses that have only ever been and will ever be assigned to this Agent, 
+	<tr><td>mbox</td><td>mailto IRI</td><td>The required format is "mailto:email address". <br>
+	Only email addresses that have only ever been and will ever be assigned to this Agent, 
 but no others, should be used for this property and mbox_sha1sum.</td></tr>
-	<tr><td>mbox_sha1sum</td><td>String</td><td>The SHA1 hash of a mailto URI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
+	<tr><td>mbox_sha1sum</td><td>String</td><td>The SHA1 hash of a mailto IRI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
 	<tr><td>openID</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
 	<tr><td>account</td><td><a href="#agentaccount">Object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
 </table>
@@ -1750,7 +1750,7 @@ extremely difficult, so much of the burden for ensuring data portability is on t
     * with strings where numbers are required, even if those strings contain numbers.
     * with strings where booleans are required, even if those strings contain booleans.
     * with any non-format-following key or value, including the empty string, where a.
-      string with a particular format (such as mailto URI, UUID, or IRI) is required.
+      string with a particular format (such as mailto IRI, UUID, or IRI) is required.
     * where the case of a key does not match the case specified in the standard.
     * where the case of a value restricted to enumerated values does not match
       an enumerated value given in the standard exactly.
@@ -2930,7 +2930,7 @@ same definition as the similarly named property from Agent Objects.
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox_sha1sum">mbox_sha1sum</a></td>
 		<td>Array of strings.</td>
-		<td>List of the SHA1 hashes of mailto URIs (such as go in an mbox property).</td>
+		<td>List of the SHA1 hashes of mailto IRIs (such as go in an mbox property).</td>
 	</tr>
 	<tr>
 		<td>openid*</td>
