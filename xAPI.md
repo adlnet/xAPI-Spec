@@ -628,7 +628,7 @@ The table below lists all properties of Account Objects.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>homePage</td><td>URL</td><td>The canonical home page for the system the account is on. This is based on FOAF's accountServiceHomePage.</td></tr>
+	<tr><td>homePage</td><td>IRL</td><td>The canonical home page for the system the account is on. This is based on FOAF's accountServiceHomePage.</td></tr>
 	<tr><td>name</td><td>String</td><td>The unique id or name used to log in to this account. This is based 
 			on FOAF's accountName.</td></tr>
 </table>
