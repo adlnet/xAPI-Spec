@@ -335,9 +335,9 @@ the same.
 
 <a name="def-iri" />
 
-__Internationalized Resource Identifiers (IRI)__: A unique identifier which may be a URL.
+__Internationalized Resource Identifiers (IRI)__: A unique identifier which may be an IRL.
 In the xAPI, all IRIs should be a full absolute IRI including a scheme. Relative IRIs 
-should not be used. URLs should be defined within a domain controlled by the person creating the URL.
+should not be used. IRLs should be defined within a domain controlled by the person creating the IRL.
 
 <a name="def-inverse-functional-identifier" />
 
@@ -598,10 +598,10 @@ The table below lists all possible Inverse Functional Identifier properties.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>mbox</td><td>mailto URI</td><td>The required format is "mailto:email address". <br>
-The local part of the email address must be URI encoded.<br>Only email addresses that have only ever been and will ever be assigned to this Agent, 
+	<tr><td>mbox</td><td>mailto IRI</td><td>The required format is "mailto:email address". <br>
+	Only email addresses that have only ever been and will ever be assigned to this Agent, 
 but no others, should be used for this property and mbox_sha1sum.</td></tr>
-	<tr><td>mbox_sha1sum</td><td>String</td><td>The SHA1 hash of a mailto URI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
+	<tr><td>mbox_sha1sum</td><td>String</td><td>The SHA1 hash of a mailto IRI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
 	<tr><td>openID</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
 	<tr><td>account</td><td><a href="#agentaccount">Object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
 </table>
@@ -666,17 +666,17 @@ effectively capture all possible future learning experiences.
 
 ###### Requirements
 
-Verbs appear in Statements as Objects consisting of a URI and a set of display names 
+Verbs appear in Statements as Objects consisting of an IRI and a set of display names 
 corresponding to multiple languages or dialects which provide human-readable meanings of the Verb. 
 
-* The display property MUST be used to illustrate the meaning which is already determined by the Verb URI.
-* A system reading a Statement MUST use the Verb URI to infer meaning.
+* The display property MUST be used to illustrate the meaning which is already determined by the Verb IRI.
+* A system reading a Statement MUST use the Verb IRI to infer meaning.
 * The display property MUST NOT be used to alter the meaning of a Verb.
 * A system reading a Statement MUST NOT use the display property to infer any meaning from the Statement.
 * A system reading a Statement MUST NOT use the display property for any purpose other than display to a human.
 Using the display property for aggregation or categorization of Statements is an example of violating this requirement. 
 * The display property SHOULD be used by all Statements.
-* The URI contained in the id SHOULD be human-readable and imply the Verb meaning.
+* The IRI contained in the id SHOULD be human-readable and imply the Verb meaning.
 
 
 ###### Details
@@ -687,9 +687,9 @@ The table below lists all properties of the Verb Object.
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr>
 		<td>id</td>
-		<td>URI</td>
+		<td>IRI</td>
 		<td>Corresponds to a Verb definition. Each Verb definition 
-			corresponds to the meaning of a Verb, not the word. The URI should 
+			corresponds to the meaning of a Verb, not the word. The IRI should 
 			be human-readable and contain the Verb meaning.</td>
 	</tr>
 	<tr>
@@ -725,30 +725,30 @@ specification document, with the exception of the reserved Verb <a href="#voided
 ###### Details
 _Semantics_
 
-The URI represented by the Verb id identifies the particular semantics of a word, not the word itself. 
+The IRI represented by the Verb id identifies the particular semantics of a word, not the word itself. 
 
 For example, the English word "fired" could mean different things depending on context, such as "fired a 
-weapon", "fired a kiln", or "fired an employee". In this case, a URI MUST identify one of these specific 
+weapon", "fired a kiln", or "fired an employee". In this case, an IRI MUST identify one of these specific 
 meanings, not the word "fired". 
 
-The display property has some flexibility in tense. While the Verb URIs are expected to remain in the 
+The display property has some flexibility in tense. While the Verb IRIs are expected to remain in the 
 past tense, if conjugating verbs to another tense (using the same Verb) within the Activity makes sense, 
 it is allowed.
 
 _Language_
 
-A Verb in the Experience API is a URI, and denotes a specific meaning not tied to any particular language. 
+A Verb in the Experience API is an IRI, and denotes a specific meaning not tied to any particular language. 
 
-For example, a particular Verb URI such as http://example.org/firearms#fire might denote the action of firing a gun, 
-or the Verb URI http://example.com/فعل/خواندن might denote the action of reading a book. 
+For example, a particular Verb IRI such as http://example.org/firearms#fire might denote the action of firing a gun, 
+or the Verb IRI http://example.com/فعل/خواندن might denote the action of reading a book. 
 
 ##### 4.1.3.2 Use in Communities of Practice
 
 ###### Requirements for Communities of Practice
 
-* Anyone establishing a new Verb MUST own the URI, or MUST have permission from the owner to use it to denote an xAPI Verb;
+* Anyone establishing a new Verb MUST own the IRI, or MUST have permission from the owner to use it to denote an xAPI Verb;
 * Anyone establishing a new Verb SHOULD make a human-readable description of the intended usage of the Verb 
-accessible at the URI.
+accessible at the IRI.
 
 ###### Requirements for Activity Providers
 
@@ -806,7 +806,7 @@ properties in this case.
 		<td>MUST be "Activity" when present. Optional in all cases.</td>
 	</tr>
 	<tr>
-		<td><a href="#acturi">id</a></td><td>URI</td>
+		<td><a href="#acturi">id</a></td><td>IRI</td>
 		<td>An identifier for a single unique Activity. Required.</td>
 	</tr>
 	<tr>
@@ -841,13 +841,13 @@ The table below lists the properties of the Activity Definition Object:
 	<tr>
 		<a name="acttype"/>
 		<td>type</td>
-		<td>URI</td>
+		<td>IRI</td>
 		<td>Recommended</td>
 		<td>The type of Activity.</td>
 	</tr>
 	<tr>
 		<td>moreInfo</td>
-		<td>URL</td>
+		<td>IRL</td>
 		<td>Optional</td>
 		<td>SHOULD resolve to a document human-readable information about the Activity,
 		which MAY include a way to 'launch' the Activity.
@@ -864,7 +864,7 @@ The table below lists the properties of the Activity Definition Object:
 	</tr>
 </table>
 
-__Note:__ URI fragments (sometimes called relative URLs) are not valid URIs. As with Verbs, it is recommended that
+__Note:__ IRI fragments (sometimes called relative IRLs) are not valid IRIs. As with Verbs, it is recommended that
 Activity Providers look for and use established, widely adopted, Activity types.
 
 An LRS should update its internal representation of an Activity's definition upon receiving a 
@@ -882,7 +882,7 @@ but only if it considers the Activity Provider to have the authority to do so.
 * An Activity id SHOULD use a domain that the creator is authorized to use for this purpose.
 * An Activity id SHOULD be created according to a scheme that makes sure all Activity ids within 
 that domain remain unique.
-* An Activity id MAY point to metadata or the URL for the Activity.
+* An Activity id MAY point to metadata or the IRL for the Activity.
 
 
 ###### Requirements for the LRS
@@ -916,19 +916,19 @@ when a conflict with another system occurs, it’s not possible to determine the
 
 ###### Requirements
 
-* If an Activity URI is a URL, an LRS SHOULD attempt to GET that URL, and include in HTTP
+* If an Activity IRI is an IRL, an LRS SHOULD attempt to GET that IRL, and include in HTTP
 headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
 first encounters the Activity id.
 
-* Upon loading JSON which is a valid Activity Definition from a URL used as an Activity id,
+* Upon loading JSON which is a valid Activity Definition from an IRL used as an Activity id,
  an LRS SHOULD incorporate the loaded definition into its internal definition for that Activity,
 while preserving names or definitions not included in the loaded definition.
 
-* An Activity with a URL identifier MAY host metadata using the <a href="#actdef">
+* An Activity with an IRL identifier MAY host metadata using the <a href="#actdef">
 Activity Definition</a> JSON format which is used in Statements, with a Content-Type of "application/json"
 
 * Upon loading any document from which the LRS can parse an Activity Definition
-from a URL used as an Activity id, an LRS MAY consider this definition when determining
+from an IRL used as an Activity id, an LRS MAY consider this definition when determining
 its internal representation of that Activity's definition.
 
 <a name="interactionacts"/>
@@ -1597,9 +1597,9 @@ The table below lists all properties of the Attachment Object.
 		<a name="attachmentUsage" />
 
 		<td>usageType</td>
-		<td>URI</td>
+		<td>IRI</td>
 		<td>Identifies the usage of this attachment. For example: one expected use case
-		for attachments is to include a "completion certificate". A type URI corresponding
+		for attachments is to include a "completion certificate". A type IRI corresponding
 		to this usage should be coined, and used with completion certificate attachments.</td>
 		<td>yes</td>
 	</tr>
@@ -1635,8 +1635,8 @@ The table below lists all properties of the Attachment Object.
 	</tr>
 	<tr>
 		<td>fileUrl</td>
-		<td>URL</td>
-		<td>A URL at which the attachment data may be retrieved, or from which it used to be retrievable. </td>
+		<td>IRL</td>
+		<td>an IRL at which the attachment data may be retrieved, or from which it used to be retrievable. </td>
 		<td>no</td>
 	</tr>
 </table>
@@ -1750,18 +1750,18 @@ extremely difficult, so much of the burden for ensuring data portability is on t
     * with strings where numbers are required, even if those strings contain numbers.
     * with strings where booleans are required, even if those strings contain booleans.
     * with any non-format-following key or value, including the empty string, where a.
-      string with a particular format (such as mailto URI, UUID, or IRI) is required.
+      string with a particular format (such as mailto IRI, UUID, or IRI) is required.
     * where the case of a key does not match the case specified in the standard.
     * where the case of a value restricted to enumerated values does not match
       an enumerated value given in the standard exactly.
-* The LRS MUST reject Statements containing URL, URI, or IRI values without a scheme.
+* The LRS MUST reject Statements containing IRL, IRI, or IRI values without a scheme.
 * The LRS MUST at least validate that the sequence of token lengths for language map keys
 matches the [RFC 5646](http://tools.ietf.org/html/rfc5646) standard.
 * The LRS MUST process and store numbers with at least the precision of IEEE 754 32-bit
 floating point numbers.
 * The LRS MUST validate parameter values to the same standards required for values of the
 same types in Statements. __Note:__ string parameter values are not quoted as they are in JSON.
-* The LRS MAY use best-effort validation for URL, URI, and IRI formats to satisfy the
+* The LRS MAY use best-effort validation for IRL, IRI, and IRI formats to satisfy the
 non-format-following rejection requirement.
 * The LRS MAY use best-effort validation for language map keys to satisfy the
 non-format-following rejection requirement.
@@ -1782,20 +1782,20 @@ The following table shows the data structure for the results of queries on the S
 	<tr><td>statements</td><td>Array of Statements</td>
 		<td>List of Statements. If the list returned has been limited (due to pagination), 
 			and there are more results, they will be located at the "statements" property 
-			within the container located at the URL provided by the "more" element of 
+			within the container located at the IRL provided by the "more" element of 
 			this Statement result Object.
 		</td>
 	</tr>
-	<tr><td>more</td><td>URL</td>
-		<td>Relative URL that may be used to fetch more results, including the full path 
+	<tr><td>more</td><td>IRL</td>
+		<td>Relative IRL that may be used to fetch more results, including the full path 
 			and optionally a query string but excluding scheme, host, and port. 
 			Empty string if there are no more results to fetch.<br/><br/>
 
-			This URL must be usable for at least 24 hours after it is returned by the LRS. 
-			In order to avoid the need to store these URLs and associated query data, an 
-			LRS may include all necessary information within the URL to continue the 
-			query, but should avoid generating extremely long URLs. The consumer should 
-			not attempt to interpret any meaning from the URL returned.
+			This IRL must be usable for at least 24 hours after it is returned by the LRS. 
+			In order to avoid the need to store these IRLs and associated query data, an 
+			LRS may include all necessary information within the IRL to continue the 
+			query, but should avoid generating extremely long IRLs. The consumer should 
+			not attempt to interpret any meaning from the IRL returned.
 		</td>
 	</tr>
 </table>
@@ -1929,7 +1929,7 @@ the form of documents, which may be related to an Activity, Agent, or combinatio
 	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
 	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
-Note that in the REST binding, State is a document not an Object. The id is stored in the URL, 
+Note that in the REST binding, State is a document not an Object. The id is stored in the IRL, 
 updated is HTTP header information, and contents is the HTTP document itself.  
 
 
@@ -1945,12 +1945,12 @@ languages.
 <a name="miscext"/> 
 
 ### 5.3 Extensions
-Extensions are defined by a map. The keys of that map MUST be URLs, and the 
+Extensions are defined by a map. The keys of that map MUST be IRLs, and the 
 values MAY be any JSON value or data structure. The meaning and structure of 
-extension values under a URL key are defined by the person who coined the URL, 
-who SHOULD be the owner of the URL, or have permission from the owner. The owner 
-of the URL SHOULD make a human-readable description of the intended meaning of 
-the extension supported by the URL accessible at the URL. A learning record store 
+extension values under an IRL key are defined by the person who coined the IRL, 
+who SHOULD be the owner of the IRL, or have permission from the owner. The owner 
+of the IRL SHOULD make a human-readable description of the intended meaning of 
+the extension supported by the IRL accessible at the IRL. A learning record store 
 MUST NOT reject an Experience API Statement based on the values of the extensions 
 map.  
 
@@ -1975,7 +1975,7 @@ Experience API conformant tools.
 <a name="miscmeta"/>
 
 ### 5.4 Identifier Metadata
-There are several types of URI identifiers used in this specification:
+There are several types of IRI identifiers used in this specification:
 * <a href="#verb">Verb</a>
 * <a href="#acturi">Activity id</a>
 * <a href="#acttype">Activity type</a>
@@ -2002,20 +2002,20 @@ For all other identifiers, metadata MAY be provided in the following JSON format
 
 If metadata is provided, both name and description SHOULD be included.
 
-* For any of the identifier URIs above, if the URI is a URL that was coined for use with this
-specification, the owner of that URL SHOULD
-make this JSON metadata available at that URL when the URL is requested and a Content-Type
+* For any of the identifier IRIs above, if the IRI is an IRL that was coined for use with this
+specification, the owner of that IRL SHOULD
+make this JSON metadata available at that IRL when the IRL is requested and a Content-Type
 of "application/json" is requested.
 * If this metadata is provided as described above, it is the canonical source of information
 about the identifier it describes
 * Other sources of information MAY be used to fill in missing details, such as translations, or
 take the place of this metadata entirely if it was not provided or cannot be loaded. This MAY
-include metadata in other formats stored at the URL of an identifier, particularly if that
+include metadata in other formats stored at the IRL of an identifier, particularly if that
 identifier was not coined for use with this specification.
 
 <a href="#verb-lists-and-repositories">As with Verbs</a>, we recommend 
 that Activity Providers look for and use established, 
-widely adopted identifiers for all types of URI identifier other than Activity id. Where an
+widely adopted identifiers for all types of IRI identifier other than Activity id. Where an
 identifier already exists, the Activity Provider:
 
 * SHOULD use the corresponding existing identifier;
@@ -2370,7 +2370,7 @@ are handled via RESTful HTTP methods. The Statement API can be used by itself
 to track learning records.  
 
 __Note:__ In all of the example endpoints given in the specification, "http://example.com/xAPI/"
-is the example URL of the LRS and everything after this represents the endpoint which MUST
+is the example IRL of the LRS and everything after this represents the endpoint which MUST
 be used. 
 
 ###### LRS Requirements
@@ -2481,7 +2481,7 @@ statementId or voidedStatementId parameter is specified a single Statement is re
 Otherwise returns: A [StatementResult](#retstmts) Object,
 a list of Statements in reverse chronological order based on "stored" time, 
 subject to permissions and maximum list length. If additional results are 
-available, a URL to retrieve them will be included in the StatementResult 
+available, an IRL to retrieve them will be included in the StatementResult 
 Object.
 
 Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 4.2](#retstmts) for details)
@@ -2503,7 +2503,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	<tr><td>verb</td><td>Verb id (IRI)</td><td> </td>
 		<td>Filter, only return Statements matching the specified verb id.</td>
 	</tr>
-	<tr><td>activity</td><td>Activity id (URI)</td><td> </td>
+	<tr><td>activity</td><td>Activity id (IRI)</td><td> </td>
 		<td>Filter, only return Statements for which the Object of the Statement is an Activity with the specified id.
 		</td>
 	</tr>
@@ -2924,13 +2924,13 @@ same definition as the similarly named property from Agent Objects.
 	<tr><td>name</td><td>Array of strings.</td><td> Optional. List of names of Agents to retrieve.</td></tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox">mbox</a></td>
-		<td>Array of URIs in the form "mailto:email address".</td>
+		<td>Array of IRIs in the form "mailto:email address".</td>
 		<td>List of e-mail addresses of Agents to retrieve.</td>
 	</tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox_sha1sum">mbox_sha1sum</a></td>
 		<td>Array of strings.</td>
-		<td>List of the SHA1 hashes of mailto URIs (such as go in an mbox property).</td>
+		<td>List of the SHA1 hashes of mailto IRIs (such as go in an mbox property).</td>
 	</tr>
 	<tr>
 		<td>openid*</td>
@@ -3122,7 +3122,7 @@ that this bookmarklet would send if used on the page: http://adlnet.gov/xapi.
 The bookmarklet MAY be provided by the LRS to track a specific user
 for behavior analytics.
 
-Therefore the LRS URL, authentication, and Actor information is hard coded into 
+Therefore the LRS IRL, authentication, and Actor information is hard coded into 
 the bookmarklet. Note that since the authorization token must be included in 
 the bookmarklet, the LRS should provide a token with limited privileges, 
 Ideally the token should enable the storage of self-reported learning 
@@ -3653,8 +3653,8 @@ A 1.0.0 system converting a Statement created in 0.9 MUST follow the steps below
 * If the Statement has been voided or uses Verbs, Activity types, or properties not included in the
  0.9 specification, do not convert it.
 * Prefix "verb" with "http://adlnet.gov/expapi/verbs/".
-* Prefix any Activity ids which are not full absolute URIs with "tag:adlnet.gov,2013:expapi:0.9:activities:"
-* Prefix any extension keys which are not full absolute URIs with "tag:adlnet.gov,2013:expapi:0.9:extensions:"
+* Prefix any Activity ids which are not full absolute IRIs with "tag:adlnet.gov,2013:expapi:0.9:activities:"
+* Prefix any extension keys which are not full absolute IRIs with "tag:adlnet.gov,2013:expapi:0.9:extensions:"
 * Prefix Activity types with "http://adlnet.gov/expapi/activities/"
 * for each Agent (Actor):
     * Search for Inverse Functional Identifiers in this order: "mbox, mbox_sha1sum, openId,
