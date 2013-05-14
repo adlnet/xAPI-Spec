@@ -1186,12 +1186,6 @@ with a precision of 0.01 seconds</td><td>Period of time over which the Statement
 ###### Description
 An optional numeric field that represents the outcome of a graded Activity achieved by an Agent.
 
-###### Requirements
-
-* The Score Object SHOULD include 'scaled' if a logical percent based score is known.
-* The Score Object SHOULD NOT be used for scores relating to progress or completion.  Consider using an extension
-from an extension profile instead.
-
 ###### Details
 
 The table below defines the Score Object. 
@@ -1203,6 +1197,14 @@ The table below defines the Score Object.
 	<tr><td>min</td><td>Decimal number less than max (if present)</td><td>Cf. 'cmi.score.min'</td></tr>
 	<tr><td>max</td><td>Decimal number greater than min (if present)</td><td>Cf. 'cmi.score.max'</td></tr>
 </table>
+
+###### Requirements
+
+* The Score Object SHOULD include 'scaled' if a logical percent based score is known.
+* The Score Object SHOULD NOT be used for scores relating to progress or completion.  Consider using an extension
+from an extension profile instead.
+
+
 
 
 
@@ -1217,15 +1219,6 @@ An optional field that provides a place to add contextual information to a State
 The "context" field provides a place to add some contextual information to a Statement. It can store information such 
 as the instructor for an experience, if this experience happened as part of a team Activity, or how an experience fits 
 into some broader activity.
-
-###### Requirements
-
-* The _revision_ property MUST NOT be used if the Statement's Object is an Agent or Group.
-* The _platform_ property MUST NOT be used if the Statement's Object is an Agent or Group.
-* The _language_ property MUST NOT be used if not applicable or unknown.
-* The _revision_ property SHOULD be used to track fixes of minor issues (like a spelling error).
-* The _revision_ property SHOULD NOT be used if there is a major change in learning objectives, pedagogy, 
-or assets of an Activity. (Use a new Activity id instead).
 
 ###### Details
 
@@ -1293,6 +1286,14 @@ altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a hr
 
 </table>
 
+###### Requirements
+
+* The _revision_ property MUST NOT be used if the Statement's Object is an Agent or Group.
+* The _platform_ property MUST NOT be used if the Statement's Object is an Agent or Group.
+* The _language_ property MUST NOT be used if not applicable or unknown.
+* The _revision_ property SHOULD be used to track fixes of minor issues (like a spelling error).
+* The _revision_ property SHOULD NOT be used if there is a major change in learning objectives, pedagogy, 
+or assets of an Activity. (Use a new Activity id instead).
 
 __Note:__ Revision has no behavioral implications within the scope of xAPI. It is simply stored,
 so that it is available for reporting tools.
@@ -1321,15 +1322,6 @@ A map of the types of learning activity context that this Statement is related t
 Many Statements do not just involve one Object Activity that is the focus,
 but relate to other contextually relevant Activities. "Context Activities" allow for 
 these related Activities to be represented in a structured manner.
-
-###### Requirements
-* Every key in the contextActivities Object MUST be one of parent, grouping, category, or other.
-* Every value in the contextActivities Object MUST be either a single Activity Object or an array of Activity Objects.
-* The LRS MUST return every value in the contextActivities Object as an array, even if it arrived
-as a single Activity Object.
-* The LRS MUST return single Activity Objects as an array of length one containing the same Activity.
-* The Client SHOULD ensure that every value in the contextActivities Object is an array of Activity Objects 
-instead of a single Activity Object.
 
 ###### Details
 There are four valid context types. All, any or none of these MAY be used in a given Statement:
@@ -1366,6 +1358,15 @@ For instance, it is appropriate in a Statement about a test to include the cours
 the test is part of as parent, but not to include every possible degree
 program the course could be part of in the grouping value.
 
+###### Requirements
+* Every key in the contextActivities Object MUST be one of parent, grouping, category, or other.
+* Every value in the contextActivities Object MUST be either a single Activity Object or an array of Activity Objects.
+* The LRS MUST return every value in the contextActivities Object as an array, even if it arrived
+as a single Activity Object.
+* The LRS MUST return single Activity Objects as an array of length one containing the same Activity.
+* The Client SHOULD ensure that every value in the contextActivities Object is an array of Activity Objects 
+instead of a single Activity Object.
+
 ###### Example
 
 Consider the following hierarchical structure: "Questions 1 to 6"
@@ -1394,6 +1395,12 @@ useful when the Object of the Statement is an Agent, not an Activity.
 ###### Description
 The time at which a  Statement was generated.
 
+###### Details
+A timestamp in a Statement that occurs outside of the system can differ from 
+[Stored](#stored) (the system time of the event). Namely, there can be delays between the occurrence of the 
+experience and the reception of the corresponding Statement by the LRS. Another cause is when Statements 
+are propagated to other systems.
+
 ###### Requirements
 * A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
 * A timestamp SHOULD include the timezone.
@@ -1402,11 +1409,7 @@ The time at which a  Statement was generated.
 * A timestamp MAY be a moment in the future, to denote a deadline for planned learning, provided it is included 
 inside a Sub-Statement.
 
-###### Details
-A timestamp in a Statement that occurs outside of the system can differ from 
-[Stored](#stored) (the system time of the event). Namely, there can be delays between the occurrence of the 
-experience and the reception of the corresponding Statement by the LRS. Another cause is when Statements 
-are propagated to other systems.
+
 
 
 <a name="stored"/> 
