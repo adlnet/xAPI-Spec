@@ -409,9 +409,9 @@ A Statement is akin to a sentence of the form "I did this".
 <a name="stmtprops"/>
 
 ### 4.1 Statement Properties  
-Actor, Verb, and Object are required, all other properties are optional. Properties 
-can occur in any order, but are limited to one use each. Each property is discussed 
-below.  
+
+###### Details
+The details of each property of a statement are described in the table below.  
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -450,6 +450,7 @@ below.
 	    <td>Headers for attachments to the Statement</td>
 	</tr>
 </table>  
+
 Aside from (potential or required) assignments of properties during LRS 
 processing ("id", "authority", "stored", "timestamp", "version") Statements are immutable. Note that the content of 
 Activities that are referenced in Statements is not considered part of the 
@@ -458,7 +459,14 @@ by that Statement are not. This means a deep serialization of a Statement into
 JSON will change if the referenced Activities change (see the
 [Statement API's](#stmtapi) "format" parameter for details).  
 
- 
+###### Requirements 
+
+* A Statement MUST use each property no more than one time.
+* A Statement MUST use “actor”, “verb”, and “object”.
+* A Statement MAY use its properties in any order.
+
+###### Example
+
 An example of the simplest possible Statement using all properties that MUST or SHOULD be used:  
 ```
 {
