@@ -540,25 +540,6 @@ The table below lists the properties of Agent Objects.
 A Group represents a collection of Agents and can be used in most of the same situations an Agent 
 can be used.  There are two types of Groups, anonymous and identified.
 
-###### Requirements
-
-* A system consuming Statements MUST consider each Anonymous Group distinct even if it has an identical set of members.
-* A system consuming Statements MUST NOT assume that Agents in the 'member' property comprise an exact list of Agents
-in a given anonymous or Identified Group.
-
-###### Requirements for Anonymous Groups
-
-* An Anonymous Group MUST include a 'member' property listing constituent Agents.
-* An Anonymous Group MUST NOT contain Group Objects in the 'member' property.
-* An Anonymous Group MUST NOT include any Inverse Functional Identifiers.
-
-###### Requirements for Identified Groups
-
-* An Identified Group MUST include exactly one (1) Inverse Functional Identifier.
-* An Identified Group MUST NOT contain Group Objects in the 'member' property.
-* An Identified Group SHOULD NOT use Inverse Functional Identifiers that are also used as Agent identifiers.
-* An Identified Group MAY include a 'member' property listing constituent Agents.
-
 ###### Details
 
 An Anonymous Group is used describe a cluster of people where there is no ready identifier for 
@@ -585,6 +566,25 @@ The table below lists all properties of an Identified Group.
 	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
 	    <td>An Inverse Functional Identifier unique to the Group.</td><td>yes</td></tr>	
 </table>
+
+###### Requirements
+
+* A system consuming Statements MUST consider each Anonymous Group distinct even if it has an identical set of members.
+* A system consuming Statements MUST NOT assume that Agents in the 'member' property comprise an exact list of Agents
+in a given anonymous or Identified Group.
+
+###### Requirements for Anonymous Groups
+
+* An Anonymous Group MUST include a 'member' property listing constituent Agents.
+* An Anonymous Group MUST NOT contain Group Objects in the 'member' property.
+* An Anonymous Group MUST NOT include any Inverse Functional Identifiers.
+
+###### Requirements for Identified Groups
+
+* An Identified Group MUST include exactly one (1) Inverse Functional Identifier.
+* An Identified Group MUST NOT contain Group Objects in the 'member' property.
+* An Identified Group SHOULD NOT use Inverse Functional Identifiers that are also used as Agent identifiers.
+* An Identified Group MAY include a 'member' property listing constituent Agents.
 
 
 <a name="inversefunctional">
@@ -672,23 +672,10 @@ communities of practice can establish Verbs meaningful to their members and make
 for use by anyone. A predefined list of Verbs would be limited by definition and might not be able to 
 effectively capture all possible future learning experiences. 
 
-###### Requirements
+###### Details
 
 Verbs appear in Statements as Objects consisting of an IRI and a set of display names 
 corresponding to multiple languages or dialects which provide human-readable meanings of the Verb. 
-
-* The display property MUST be used to illustrate the meaning which is already determined by the Verb IRI.
-* A system reading a Statement MUST use the Verb IRI to infer meaning.
-* The display property MUST NOT be used to alter the meaning of a Verb.
-* A system reading a Statement MUST NOT use the display property to infer any meaning from the Statement.
-* A system reading a Statement MUST NOT use the display property for any purpose other than display to a human.
-Using the display property for aggregation or categorization of Statements is an example of violating this requirement. 
-* The display property SHOULD be used by all Statements.
-* The IRI contained in the id SHOULD be human-readable and imply the Verb meaning.
-
-
-###### Details
-
 The table below lists all properties of the Verb Object.
 
 <table>
@@ -709,6 +696,17 @@ The table below lists all properties of the Verb Object.
 			display of the meaning already determined by the chosen Verb.</td>
 	</tr>
 </table>
+
+###### Requirements
+
+* The display property MUST be used to illustrate the meaning which is already determined by the Verb IRI.
+* A system reading a Statement MUST use the Verb IRI to infer meaning.
+* The display property MUST NOT be used to alter the meaning of a Verb.
+* A system reading a Statement MUST NOT use the display property to infer any meaning from the Statement.
+* A system reading a Statement MUST NOT use the display property for any purpose other than display to a human.
+Using the display property for aggregation or categorization of Statements is an example of violating this requirement. 
+* The display property SHOULD be used by all Statements.
+* The IRI contained in the id SHOULD be human-readable and imply the Verb meaning.
 
 ###### Example
 
@@ -752,6 +750,15 @@ or the Verb IRI http://example.com/فعل/خواندن might denote the action o
 
 ##### 4.1.3.2 Use in Communities of Practice
 
+###### Description
+
+Communities of practice will, at some point in time, need to establish new Verbs to meet the needs of their constituency.
+
+Therefore, it is expected that xAPI generates profiles, lists, and repositories that become centered on Verb 
+vocabularies.  ADL is one such organization that is creating a companion document containing 
+Verbs for xAPI.  In fulfillment of the requirements above, a collection of IRIs of recommended Verbs 
+exists.  There are times when Activity Providers may wish to use a different Verb for the same meaning.
+
 ###### Requirements for Communities of Practice
 
 * Anyone establishing a new Verb MUST own the IRI, or MUST have permission from the owner to use it to denote an xAPI Verb;
@@ -762,15 +769,6 @@ accessible at the IRI.
 
 * Activity Providers SHOULD use a corresponding existing Verb whenever possible.
 * Activity Providers MAY create and use a Verb if no suitable Verb exists.
-
-###### Details
-
-Communities of practice will, at some point in time, need to establish new Verbs to meet the needs of their constituency.
-
-Therefore, it is expected that xAPI generates profiles, lists, and repositories that become centered on Verb 
-vocabularies.  ADL is one such organization that is creating a companion document containing 
-Verbs for xAPI.  In fulfillment of the requirements above, a collection of IRIs of recommended Verbs 
-exists.  There are times when Activity Providers may wish to use a different Verb for the same meaning.
 
 
 
