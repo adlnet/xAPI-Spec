@@ -1438,6 +1438,9 @@ for seconds (millisecond precision MUST be preserved).
 The authority property provides information about whom or what has asserted that 
 this Statement is true. 
 
+###### Details
+The asserting authority represents the authenticating user or some system or application.
+
 ###### Requirements
 * Authority MUST be an Agent, except in 3-legged OAuth, where it MUST be a Group with two Agents. 
 The two Agents represent an application and user together.
@@ -1451,13 +1454,20 @@ where a strong trust relationship has been established, and with extreme caution
 * The LRS MAY identify the user with any of the legal identifying properties if 
 a user connects directly (using HTTP Basic Authentication) or a part of 3-legged OAuth. 
 
-###### Details
-The asserting authority represents the authenticating user or some system or application.
 
 ##### OAuth Credentials as Authority 
 
 ###### Description
 This is a workflow for use of OAuth.  2-legged and 3-legged OAuth are both supported.
+
+###### Details
+This workflow assumes a Statement is stored using a validated OAuth connection and the LRS 
+creates or modifies the authority property of the Statement.
+
+In a 3-legged OAuth workflow, authentication involves both an OAuth consumer and a user of the 
+OAuth service provider. For instance, requests made by an authorized Twitter plug-in on their 
+Facebook account will include credentials that are specific not only to Twitter as a Client application, 
+or them as a user, but the unique combination of both.
 
 ###### Requirements
 * The authority MUST contain an Agent Object that represents the OAuth consumer, either by itself, or 
@@ -1473,16 +1483,6 @@ the same source as the unregistered application. (Multiple unregistered applicat
 As a result, there is no consistent way to verify this combination of temporary credentials and 
 the account name.) 
 * Each unregistered consumer SHOULD use a unique consumer key.
-
-
-###### Details
-This workflow assumes a Statement is stored using a validated OAuth connection and the LRS 
-creates or modifies the authority property of the Statement.
-
-In a 3-legged OAuth workflow, authentication involves both an OAuth consumer and a user of the 
-OAuth service provider. For instance, requests made by an authorized Twitter plug-in on their 
-Facebook account will include credentials that are specific not only to Twitter as a Client application, 
-or them as a user, but the unique combination of both.
 
 ###### Example
 
@@ -1539,51 +1539,6 @@ In some cases an attachment may logically be an important part of a learning rec
 communication with ATC, an essay, a video, etc. Another example of such an attachment is (the image of) a 
 certificate that was granted as a result of an experience. It is useful to have a way to store these attachments 
 in and retrieve them from an LRS. 
-
-###### Requirements for Attachment Statement Batches
-
-A Statement batch, Statement results, or single Statement that includes attachments:
-
-* MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for Statement results when the attachments filter is false or
-* MUST conform to the definition of multipart/mixed in RFC 1341 and:
-    * The first part of the multipart document MUST contain the Statements themselves, with type "applicaton/json".
-    * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
-capability will be available when issuing PUT or POST against the Statement resource.
-	* MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part.
-	* This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
-	attachment included in this part.
-	* MUST include a Content-Transfer-Encoding field with a value of "binary" in each part's header after the first (statements) part.
-    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple Statements that are sent together.
-    * SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json".
-
-
-###### Requirements for the LRS
-
-* An LRS MUST include attachments in the Transmission Format described above
-when requested by the Client (see Section [7.2 "Statement API"](#stmtapi)).
-* An LRS MUST NOT pull Statements from another LRS without requesting attachments.
-* An LRS MUST NOT push Statements into another LRS without including attachment data
-received, if any, for those attachments.
-* When receiving a PUT or POST with a document type of "application/json", 
-    * An LRS MUST accept batches of Statements which contain either no attachment Objects, or
-only attachment Objects with a populated fileUrl.
-* Otherwise:
-    * An LRS MUST accept batches of Statements via the Statements resource PUT or POST that contain
-    attachments in the Transmission Format described above.
-    * An LRS MUST reject batches of Statements having attachments that neither contain a fileUrl nor match a
-received attachment part based on their hash.
-    * An LRS SHOULD assume a Content-Transfer-Encoding of binary for attachment parts.
-* An LRS MAY reject (batches of) Statements that are larger than the LRS is configured to allow.
-
-__Note:__ There is no requirement that Statement batches using the mime/multipart format
-contain attachments.
-
-###### Requirements for the Client
-
-* The Client MAY send Statements with attachments as described above.
-* The Client MAY send multiple Statements where some or all have attachments if using "POST".
-* The Client MAY send batches of type "application/json" where every attachment
-Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
 
 ###### Details
 The table below lists all properties of the Attachment Object.
@@ -1649,6 +1604,53 @@ _Procedure for the exchange of attachments_
 4. If it accepts the attachment, it can match the raw data of an attachment
 with the attachment header in a Statement by comparing the SHA-2 of the raw
 data to the SHA-2 declared in the header. It MUST not do so any other way.
+
+###### Requirements for Attachment Statement Batches
+
+A Statement batch, Statement results, or single Statement that includes attachments MUST satisfy one of the 
+following criterion:
+
+* It MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for Statement 
+results when the attachments filter is false.
+* It MUST conform to the definition of multipart/mixed in RFC 1341 and:
+    * The first part of the multipart document MUST contain the Statements themselves, with type "application/json".
+    * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
+capability will be available when issuing PUT or POST against the Statement resource.
+	* MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part.
+	* This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
+	attachment included in this part.
+	* MUST include a Content-Transfer-Encoding field with a value of "binary" in each part's header after the first (statements) part.
+    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple Statements that are sent together.
+    * SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json".
+
+
+###### Requirements for the LRS
+
+* An LRS MUST include attachments in the Transmission Format described above
+when requested by the Client (see Section [7.2 "Statement API"](#stmtapi)).
+* An LRS MUST NOT pull Statements from another LRS without requesting attachments.
+* An LRS MUST NOT push Statements into another LRS without including attachment data
+received, if any, for those attachments.
+* When receiving a PUT or POST with a document type of "application/json", 
+    * An LRS MUST accept batches of Statements which contain either no attachment Objects, or
+only attachment Objects with a populated fileUrl.
+* Otherwise:
+    * An LRS MUST accept batches of Statements via the Statements resource PUT or POST that contain
+    attachments in the Transmission Format described above.
+    * An LRS MUST reject batches of Statements having attachments that neither contain a fileUrl nor match a
+received attachment part based on their hash.
+    * An LRS SHOULD assume a Content-Transfer-Encoding of binary for attachment parts.
+* An LRS MAY reject (batches of) Statements that are larger than the LRS is configured to allow.
+
+__Note:__ There is no requirement that Statement batches using the mime/multipart format
+contain attachments.
+
+###### Requirements for the Client
+
+* The Client MAY send Statements with attachments as described above.
+* The Client MAY send multiple Statements where some or all have attachments if using "POST".
+* The Client MAY send batches of type "application/json" where every attachment
+Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
 
 
 ###### Example
