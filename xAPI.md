@@ -617,7 +617,7 @@ but no others, should be used for this property and mbox_sha1sum.</td></tr>
 
 <a name="agentaccount"/>
 
-###### Account Object
+##### Account Object
 
 ###### Description 
 
@@ -801,6 +801,8 @@ The properties of an Object change according to the objectType.
 
 ##### 4.1.4.1 When the ObjectType is Activity
 
+###### Details
+
 A Statement may represent an Activity as the Object of the Statement. The following table lists the Object 
 properties in this case.
 
@@ -822,11 +824,10 @@ properties in this case.
 	</tr>
 </table>
 
-<a name="actdef"/>
-
-##### Activity Definition
-
-###### Details
+If it were possible to use the same id for two different Activities, the validity of Statements about 
+these Activities could be questioned. This means an LRS may never treat (references to) the same 
+Activity id as belonging to two different Activities, even if it thinks this was intended. Namely, 
+when a conflict with another system occurs, it’s not possible to determine the intentions. 
 
 The table below lists the properties of the Activity Definition Object:
 
@@ -873,13 +874,6 @@ The table below lists the properties of the Activity Definition Object:
 __Note:__ IRI fragments (sometimes called relative IRLs) are not valid IRIs. As with Verbs, it is recommended that
 Activity Providers look for and use established, widely adopted, Activity types.
 
-An LRS should update its internal representation of an Activity's definition upon receiving a 
-Statement with the same Activity id, but with a different definition of the Activity from the one stored, 
-but only if it considers the Activity Provider to have the authority to do so.  
-
-<a name="acturi"/>
-
-##### Activity id  
 
 ###### Requirements for Activity Ids
 
@@ -889,7 +883,6 @@ but only if it considers the Activity Provider to have the authority to do so.
 * An Activity id SHOULD be created according to a scheme that makes sure all Activity ids within 
 that domain remain unique.
 * An Activity id MAY point to metadata or the IRL for the Activity.
-
 
 ###### Requirements for the LRS
 
@@ -901,26 +894,16 @@ SHOULD update the stored Activity Definition accordingly if that decision is pos
 * An LRS MAY accept small corrections to the Activity’s definition. For example, it would be okay for an LRS
 to accept spelling fixes, but it may not accept changes to correct responses.
 
+
 ###### Requirements for the Activity Provider
 
 * An Activity Provider MUST ensure that Activity ids are not re-used across multiple Activities.
 * An Activity Provider MUST only generate states or Statements against a certain Activity id that are compatible
 and consistent with states or Statements previously stored against the same id.
 * An Activity Provider MUST NOT allow new versions (i.e. revisions or other platforms) of the Activity 
-to break compatibility.
-	
-###### Details
+to break compatibility.	
 
-If it were possible to use the same id for two different Activities, the validity of Statements about 
-these Activities could be questioned. This means an LRS may never treat (references to) the same 
-Activity id as belonging to two different Activities, even if it thinks this was intended. Namely, 
-when a conflict with another system occurs, it’s not possible to determine the intentions. 
-
-<a name="actmeta"/>
-
-##### Activity Metadata
-
-###### Requirements
+###### Requirements for Metadata
 
 * If an Activity IRI is an IRL, an LRS SHOULD attempt to GET that IRL, and include in HTTP
 headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
@@ -950,14 +933,7 @@ borrows from the SCORM 2004 4th Edition Data Model. These definitions are intend
 simple and familiar utility for recording interaction data. These definitions 
 are simple to use, and consequently limited. It is expected that communities of 
 practice requiring richer interactions definitions will do so through the use 
-of extensions to an Activity's type and definition.  
-
-###### Requirements
-
-* Interaction Activities MUST have a valid interactionType.
-* Interaction Activities SHOULD have the Activity type http://adlnet.gov/expapi/activities/cmi.interaction".
-* An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as specified in the table 
-below and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction Activity.
+of extensions to an Activity's type and definition. 
 
 ###### Details
 
@@ -986,12 +962,15 @@ The table below lists the properties for Interaction Activities.
 	</tr>
 </table>  
 
-##### Interaction Components  
-
 ###### Requirements
 
-* Within an array of interaction components, all id values MUST be distinct.
-* An interaction component's id value SHOULD not have whitespace.
+* Interaction Activities MUST have a valid interactionType.
+* Interaction Activities SHOULD have the Activity type http://adlnet.gov/expapi/activities/cmi.interaction".
+* An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as specified in the table 
+below and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction Activity.
+
+
+##### Interaction Components  
 
 ###### Details
 
@@ -1025,6 +1004,13 @@ an interaction Activity with the given interactionType.
 	<tr><td>performance</td><td>steps</td></tr>
 	<tr><td>true-false, fill-in, numeric, other</td><td>[No component lists defined]</td></tr>
 </table>
+
+###### Requirements
+
+* Within an array of interaction components, all id values MUST be distinct.
+* An interaction component's id value SHOULD NOT have whitespace.
+
+###### Example
 
 See [Appendix C](#AppendixC) for examples of Activity Definitions for each of the cmi.interaction types.
 
@@ -1104,6 +1090,7 @@ comment could be issued on the original Statement, using a new Statement:
 
 ##### Sub-Statements
 
+###### Description
 A Sub-Statement is a new Statement included as part of a parent Statement.
 
 ###### Requirements
