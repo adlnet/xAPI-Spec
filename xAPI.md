@@ -1639,7 +1639,7 @@ of Statements which contain no attachment Objects.
 * When receiving a PUT or POST with a document type of "application/json”, an LRS MUST accept batches 
 of Statements which contain only attachment Objects with a populated fileUrl.
 * When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST accept batches of 
-Statements via the Statements resource PUT or POST that contain attachments in the Transmission Format described above.
+Statements that contain attachments in the Transmission Format described above.
 * When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST reject batches of 
 Statements having attachments that neither contain a fileUrl nor match a received attachment part based on their hash.
 * When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS SHOULD assume a 
