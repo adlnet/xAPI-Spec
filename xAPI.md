@@ -756,10 +756,11 @@ or the Verb IRI http://example.com/فعل/خواندن might denote the action o
 
 Communities of practice will, at some point in time, need to establish new Verbs to meet the needs of their constituency.
 
-Therefore, it is expected that xAPI generates profiles, lists, and repositories that become centered on Verb 
-vocabularies.  ADL is one such organization that is creating a companion document containing 
-Verbs for xAPI.  In fulfillment of the requirements above, a collection of IRIs of recommended Verbs 
-exists.  There are times when Activity Providers may wish to use a different Verb for the same meaning.
+Therefore, it is expected that xAPI Communities of Practice generate profiles, lists, and repositories that become 
+centered on Verb vocabularies.  ADL is creating a companion document containing Verbs for xAPI to serve the ADL Community.
+
+In fulfillment of the requirements above, a collection of IRIs of recommended Verbs exists.  There are times when 
+Activity Providers may wish to use a different Verb for the same meaning.
 
 ###### Requirements for Communities of Practice
 
