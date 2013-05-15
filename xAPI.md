@@ -403,6 +403,8 @@ __Verb__: Defines the action being done by the Actor within the Activity within 
 <a name="statement"/> 
 
 ## 4.0 Statement  
+
+###### Description 
 The Statement is the core of the xAPI. All learning events are stored as Statements.
 A Statement is akin to a sentence of the form "I did this".
 
