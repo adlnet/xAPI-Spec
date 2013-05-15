@@ -1631,16 +1631,18 @@ when requested by the Client (see Section [7.2 "Statement API"](#stmtapi)).
 * An LRS MUST NOT pull Statements from another LRS without requesting attachments.
 * An LRS MUST NOT push Statements into another LRS without including attachment data
 received, if any, for those attachments.
-* When receiving a PUT or POST with a document type of "application/json", 
-    * An LRS MUST accept batches of Statements which contain either no attachment Objects, or
-only attachment Objects with a populated fileUrl.
-* Otherwise:
-    * An LRS MUST accept batches of Statements via the Statements resource PUT or POST that contain
-    attachments in the Transmission Format described above.
-    * An LRS MUST reject batches of Statements having attachments that neither contain a fileUrl nor match a
-received attachment part based on their hash.
-    * An LRS SHOULD assume a Content-Transfer-Encoding of binary for attachment parts.
+* When receiving a PUT or POST with a document type of "application/json”, an An LRS MUST accept batches 
+of Statements which contain no attachment Objects.
+* When receiving a PUT or POST with a document type of "application/json”, an An LRS MUST accept batches 
+of Statements which contain only attachment Objects with a populated fileUrl.
+* When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST accept batches of 
+Statements via the Statements resource PUT or POST that contain attachments in the Transmission Format described above.
+* When receiving a PUT or POST with a document type of "multipart/mixed”, An LRS MUST reject batches of 
+Statements having attachments that neither contain a fileUrl nor match a received attachment part based on their hash.
+* When receiving a PUT or POST with a document type of "multipart/mixed”, An LRS SHOULD assume a 
+Content-Transfer-Encoding of binary for attachment parts.
 * An LRS MAY reject (batches of) Statements that are larger than the LRS is configured to allow.
+
 
 __Note:__ There is no requirement that Statement batches using the mime/multipart format
 contain attachments.
@@ -1733,13 +1735,13 @@ to act in certain ways.
 
 ###### Requirements for the Client
 
-The following requirements reiterate especially important requirements already
-included elsewhere, to emphasize, clarify, and provide implementation guidance.
+The following requirements reiterate especially important requirements already 
+included elsewhere, to emphasize, clarify, and provide implementation guidance.  
+Complete IRI validation is extremely difficult, so much of the burden for ensuring data portability is on the Client.
 
-* Values requiring IRIs MUST be sent with valid IRIs. Please use a library to
-construct them instead of string concatenation. Complete IRI validation is
-extremely difficult, so much of the burden for ensuring data portability is on the Client.
+* Values requiring IRIs MUST be sent with valid IRIs. 
 * Keys of language maps MUST be sent with valid RFC 5646 language tags, for similar reasons.
+* A library SHOULD be used to construct IRIs, as opposed to string concatenation. 
 
 ###### Requirements for the LRS
 
