@@ -1611,7 +1611,7 @@ data to the SHA-2 declared in the header. It MUST not do so any other way.
 ###### Requirements for Attachment Statement Batches
 
 A Statement batch, Statement results, or single Statement that includes attachments MUST satisfy one of the 
-following criterion:
+following criteria:
 
 * It MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for Statement 
 results when the attachments filter is false.
