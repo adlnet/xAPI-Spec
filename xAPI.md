@@ -3352,7 +3352,8 @@ Typical simple completion with verb "attempted":
 	}
 }
 ```  
-A long example statement showcasing most of the properties available:  
+A long example statement showcasing most of the properties available. This example shows
+a statement returned by an LRS including the authority and stored propeties set by the LRS:  
 ```
 {
     "id": "6690e6c9-3ef0-4ed3-8b37-7f3964730bee",
