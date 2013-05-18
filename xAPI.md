@@ -3449,7 +3449,10 @@ A long example statement showcasing most of the properties available:
         }, 
         "platform" : "Example virtual meeting software",
         "language" : "tlh",
-        "statement" : "6690e6c9-3ef0-4ed3-8b37-7f3964730bee"
+        "statement" : {
+        	"objectType":"StatementRef",
+        	"id" :"6690e6c9-3ef0-4ed3-8b37-7f3964730bee"
+        }
         
     },
     "timestamp": "2013-05-18T05:32:34.804Z",
