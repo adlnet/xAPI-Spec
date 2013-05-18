@@ -57,8 +57,8 @@
     *	7.10.	[HTTP HEAD](#httphead)  
 *	[Appendix A: Bookmarklet](#AppendixA)  
 *	[Appendix B: Creating an "IE Mode" Request](#AppendixB)  
-*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](#AppendixC)  
-*	[Appendix D: Example Statements](#AppendixD)  
+*	[Appendix C: Example Statements](#AppendixC)  
+*	[Appendix D: Example definitions for Activities of type "cmi.interaction"](#AppendixD)  
 *	[Appendix E: Converting Statements to 1.0.0](#AppendixE)   
 *	[Appendix F: Example Signed Statement](#AppendixF)
 
@@ -3285,8 +3285,77 @@ function getIEModeRequest(method, url, headers, data){
 }
 ``` 
 <a name="AppendixC"/>  
+ 
+## Appendix C: Example statements
 
-## Appendix C: Example definitions for Activities of type "cmi.interaction"
+Example of a simple statement (line breaks are for display purposes only):  
+```
+{
+	"id":"fd41c918-b88b-4b20-a0a5-a4c32391aaa0",
+	"actor":{
+		"objectType": "Agent",
+		"name":"Project Tin Can API",
+		"mbox":"mailto:user@example.com"
+	},
+	"verb":{
+		"id":"http://adlnet.gov/expapi/verbs/created",
+		"display":{ 
+			"en-US":"created" 
+		}
+	},
+	"object":{
+		"id":"http://example.adlnet.gov/xapi/example/simplestatement",
+		"definition":{
+			"name":{ 
+				"en-US":"simple statement" 
+			},
+			"description":{ 
+				"en-US":"A simple Experience API statement. Note that the LRS 
+				does not need to have any prior information about the Actor (learner), the 
+				verb, or the Activity/object." 
+			}
+		}
+	}
+}
+```   
+Typical simple completion with verb "attempted":  
+```
+{
+	"actor":{
+        "objectType": "Agent",
+		"name":"Example Learner",
+		"mbox":"mailto:example.learner@adlnet.gov"
+	},
+	"verb":{
+		"id":"http://adlnet.gov/expapi/verbs/attempted",
+		"display":{
+			"en-US":"attempted"
+		}
+	},
+	"object":{
+		"id":"http://example.adlnet.gov/xapi/example/simpleCBT",
+		"definition":{
+			"name":{
+				"en-US":"simple CBT course"
+			},
+			"description":{
+				"en-US":"A fictitious example CBT course."
+			}
+		}
+	},
+	"result":{
+		"score":{
+			"scaled":0.95
+		},
+		"success":true,
+		"completion":true
+	}
+}
+```  
+
+<a name="AppendixD"/>  
+
+## Appendix D: Example definitions for Activities of type "cmi.interaction"
 
 ###### true-false  
 
@@ -3563,75 +3632,6 @@ function getIEModeRequest(method, url, headers, data){
 	]
 }
 ```
-
-<a name="AppendixD"/>  
- 
-## Appendix D: Example statements
-
-Example of a simple statement (line breaks are for display purposes only):  
-```
-{
-	"id":"fd41c918-b88b-4b20-a0a5-a4c32391aaa0",
-	"actor":{
-		"objectType": "Agent",
-		"name":"Project Tin Can API",
-		"mbox":"mailto:user@example.com"
-	},
-	"verb":{
-		"id":"http://adlnet.gov/expapi/verbs/created",
-		"display":{ 
-			"en-US":"created" 
-		}
-	},
-	"object":{
-		"id":"http://example.adlnet.gov/xapi/example/simplestatement",
-		"definition":{
-			"name":{ 
-				"en-US":"simple statement" 
-			},
-			"description":{ 
-				"en-US":"A simple Experience API statement. Note that the LRS 
-				does not need to have any prior information about the Actor (learner), the 
-				verb, or the Activity/object." 
-			}
-		}
-	}
-}
-```   
-Typical simple completion with verb "attempted":  
-```
-{
-	"actor":{
-        "objectType": "Agent",
-		"name":"Example Learner",
-		"mbox":"mailto:example.learner@adlnet.gov"
-	},
-	"verb":{
-		"id":"http://adlnet.gov/expapi/verbs/attempted",
-		"display":{
-			"en-US":"attempted"
-		}
-	},
-	"object":{
-		"id":"http://example.adlnet.gov/xapi/example/simpleCBT",
-		"definition":{
-			"name":{
-				"en-US":"simple CBT course"
-			},
-			"description":{
-				"en-US":"A fictitious example CBT course."
-			}
-		}
-	},
-	"result":{
-		"score":{
-			"scaled":0.95
-		},
-		"success":true,
-		"completion":true
-	}
-}
-```  
 
 <a name="AppendixE"/>
 
