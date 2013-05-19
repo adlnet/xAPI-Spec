@@ -1248,7 +1248,7 @@ The following table contains the properties of the Context Object.
 </tr>
 <tr>
 <td>instructor</td>
-<td>Agent (may be a group)</td>
+<td>Agent (may be a Group)</td>
 <td>Instructor that the Statement relates to, if not included as the Actor of the Statement.</td>
 
 </tr>
