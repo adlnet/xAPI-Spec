@@ -2631,7 +2631,7 @@ Statements are filtered.
 ###### Voided Statements
 
 The LRS MUST not return any Statement which has been voided, unless that Statement has been
-requested by voidedStatementId. The LRS MUST still return any Statements targetting the voided 
+requested by voidedStatementId. The LRS MUST still return any Statements targeting the voided 
 Statement when retrieving Statements using explicit or implicit time or sequence based retrieval,
 unless they themselves have been voided, as described in
 [the section on filter conditions for StatementRefs](#queryStatementRef). This includes the
