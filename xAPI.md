@@ -1830,7 +1830,7 @@ definitions which were introduced by the Statement that was just voided;
 again under a new id
 * A reporting system SHOULD NOT show voided or voiding Statements by default.
 
-###### Note: See ["Statement References"](#stmtref) in [Section 4.1.4.3 When the "Object" is a Statement](#stmtasobj) 
+__Note:__ See ["Statement References"](#stmtref) in [Section 4.1.4.3 When the "Object" is a Statement](#stmtasobj) 
 for details about making references to other Statements.  To see how voided statements behave when queried, 
 See [StatementRef](#queryStatementRef) in 7.2 Statement API).
 
@@ -1908,7 +1908,7 @@ for discoverability of the signer X.509 certificates SHOULD be used.
 
 See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example.
 
-##### Note: The step of validating against the included X.509 certificate is intended as a
+__Note:__ The step of validating against the included X.509 certificate is intended as a
 way to catch mistakes in the signature, not as a security measure. Clients MUST NOT assume
 a signature is valid simply because an LRS has accepted it. The steps to authenticate
 a signed Statement will vary based on the degree of certainty required and are outside
