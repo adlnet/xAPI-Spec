@@ -483,7 +483,7 @@ An example of the simplest possible Statement using all properties that MUST or 
 	}
 }
 ```  
-See [Appendix D: Example Statements](#AppendixD) for more examples. 
+See [Appendix C: Example Statements](#AppendixC) for more examples. 
 
 <a name="stmtid"/> 
 
@@ -1026,7 +1026,7 @@ an interaction Activity with the given interactionType.
 	<tr><td>true-false, fill-in, numeric, other</td><td>[No component lists defined]</td></tr>
 </table>
 
-See [Appendix C](#AppendixC) for examples of Activity Definitions for each of the cmi.interaction types.
+See [Appendix E](#AppendixE) for examples of Activity Definitions for each of the cmi.interaction types.
 
 <a name="agentasobj"/>
 
@@ -1912,7 +1912,7 @@ the original serialization of the Statement to be included along with the signat
 For interoperability, the "RSA + SHA" series of JWS algorithms have been selected, and
 for discoverability of the signer X.509 certificates SHOULD be used.
 
-See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example.
+See <a href="#AppendixG">Appendix G: Example Signed Statement</a> for an example.
 
 ##### Note: The step of validating against the included X.509 certificate is intended as a
 way to catch mistakes in the signature, not as a security measure. Clients MUST NOT assume
@@ -2087,7 +2087,7 @@ Example:  ``X-Experience-API-Version : 1.0.0``
 
 * Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
 * Systems MAY convert Statements of older versions into a newer version only by following the methods described in
-<a href="#AppendixE">Appendix E: Converting Statements to 1.0.0</a>.
+<a href="#AppendixF">Appendix F: Converting Statements to 1.0.0</a>.
 
 <a name="concurrency"/> 
 ### 6.3 Concurrency
