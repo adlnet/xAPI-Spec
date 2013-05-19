@@ -2504,7 +2504,8 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 		<td>Filter, only return Statements matching the specified verb id.</td>
 	</tr>
 	<tr><td>activity</td><td>Activity id (IRI)</td><td> </td>
-		<td>Filter, only return Statements for which the Object of the Statement is an Activity with the specified id.
+		<td>Filter, only return Statements for which the Object of the Statement is an Activity with the 
+		specified id.
 		</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td> </td>
@@ -2524,7 +2525,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	</tr>
 	<tr><td>related_agents</td><td>Boolean</td><td>False</td>
 		<td>Apply the Agent filter broadly. Include Statements for which 
-			the Actor, Object, authority, instructor, team,
+			the Actor, Object, Authority, Instructor, Team,
 			or any of these properties in a contained SubStatement match the Agent parameter,
 			instead of that parameter's normal behavior. Matching is defined in the same way
 			it is for the 'agent' parameter.
@@ -2542,11 +2543,11 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	</tr>
 	<tr><td>format</td><td>String: ("ids", "exact", or "canonical")</td><td>exact</td>
 		<td>If "ids", only include minimum information necessary in Agent,
-			Activity, and group Objects to identify them. For anonymous groups this means
+			Activity, and Group Objects to identify them. For anonymous groups this means
 			including the minimum information needed to identify each member.
 
 			If "exact", return Agent,
-			Activity, and group Objects populated exactly as they were when the Statement
+			Activity, and Group Objects populated exactly as they were when the Statement
 			was received.<br/><br/>
 			
 			If "canonical", return Activity Objects populated with the canonical
