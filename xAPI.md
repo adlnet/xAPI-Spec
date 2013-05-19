@@ -2061,7 +2061,7 @@ Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.
 
 Example:  ``X-Experience-API-Version : 1.0.0``
 
-####### Requirements for the LRS:
+###### Requirements for the LRS:
 
 * MUST include the "X-Experience-API-Version" header in every response.
 * MUST set this header to "1.0.0".
@@ -2071,13 +2071,13 @@ Example:  ``X-Experience-API-Version : 1.0.0``
 * MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
 
 
-####### Requirements for the Client:
+###### Requirements for the Client:
 
 * SHOULD tolerate receiving responses with a version of "1.0.0" or later.
 * SHOULD tolerate receiving data structures with additional properties.
 * SHOULD ignore any properties not defined in version 1.0.0 of the spec.
 
-####### Converting Statements to other versions:
+###### Converting Statements to other versions:
 
 * Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
 * Systems MAY convert Statements of older versions into a newer version only by following the methods described in
