@@ -2378,7 +2378,7 @@ be used.
 The LRS MUST reject with ```HTTP 400 Bad Request``` status (see below) any request to any of
 these APIs using any parameters:
 
-* the LRS does not recognize (__Note:__ LRSs may recognize and act on parameters not in 
+* the LRS does not recognize ( __Note:__ LRSs may recognize and act on parameters not in 
 this specification).
 
 * that match parameters described in this specification in all but case.
@@ -2595,9 +2595,7 @@ are known with reasonable certainty to be available for retrieval. This time SHO
 account any temporary condition, such as excessive load, which might cause a delay in Statements 
 becoming available for retrieval.
 
-###### Note
-
-Due to query string limits, this method MAY be called using POST and
+__Note:__ Due to query string limits, this method MAY be called using POST and
 form fields if necessary. The LRS MUST differentiate a POST to add a Statement
 or to list Statements based on the parameters passed.  
 
