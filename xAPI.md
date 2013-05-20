@@ -1275,7 +1275,7 @@ applicable and known.
 </tr>
 <tr>
 <td>statement</td>
-<td>[Statement Reference](#stmtref)</td>
+<td><a href="#stmtref">Statement Reference</a></td>
 <td>Another Statement, which should be considered as context for this Statement. </td>
 
 </tr>
