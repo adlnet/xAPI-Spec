@@ -403,15 +403,17 @@ __Verb__: Defines the action being done by the Actor within the Activity within 
 <a name="statement"/> 
 
 ## 4.0 Statement  
+
+###### Description 
 The Statement is the core of the xAPI. All learning events are stored as Statements.
 A Statement is akin to a sentence of the form "I did this".
 
 <a name="stmtprops"/>
 
 ### 4.1 Statement Properties  
-Actor, Verb, and Object are required, all other properties are optional. Properties 
-can occur in any order, but are limited to one use each. Each property is discussed 
-below.  
+
+###### Details
+The details of each property of a statement are described in the table below.  
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -450,6 +452,7 @@ below.
 	    <td>Headers for attachments to the Statement</td>
 	</tr>
 </table>  
+
 Aside from (potential or required) assignments of properties during LRS 
 processing ("id", "authority", "stored", "timestamp", "version") Statements are immutable. Note that the content of 
 Activities that are referenced in Statements is not considered part of the 
@@ -458,7 +461,14 @@ by that Statement are not. This means a deep serialization of a Statement into
 JSON will change if the referenced Activities change (see the
 [Statement API's](#stmtapi) "format" parameter for details).  
 
- 
+###### Requirements 
+
+* A Statement MUST use each property no more than one time.
+* A Statement MUST use “actor”, “verb”, and “object”.
+* A Statement MAY use its properties in any order.
+
+###### Example
+
 An example of the simplest possible Statement using all properties that MUST or SHOULD be used:  
 ```
 {
@@ -532,25 +542,6 @@ The table below lists the properties of Agent Objects.
 A Group represents a collection of Agents and can be used in most of the same situations an Agent 
 can be used.  There are two types of Groups, anonymous and identified.
 
-###### Requirements
-
-* A system consuming Statements MUST consider each Anonymous Group distinct even if it has an identical set of members.
-* A system consuming Statements MUST NOT assume that Agents in the 'member' property comprise an exact list of Agents
-in a given anonymous or Identified Group.
-
-###### Requirements for Anonymous Groups
-
-* An Anonymous Group MUST include a 'member' property listing constituent Agents.
-* An Anonymous Group MUST NOT contain Group Objects in the 'member' property.
-* An Anonymous Group MUST NOT include any Inverse Functional Identifiers.
-
-###### Requirements for Identified Groups
-
-* An Identified Group MUST include exactly one (1) Inverse Functional Identifier.
-* An Identified Group MUST NOT contain Group Objects in the 'member' property.
-* An Identified Group SHOULD NOT use Inverse Functional Identifiers that are also used as Agent identifiers.
-* An Identified Group MAY include a 'member' property listing constituent Agents.
-
 ###### Details
 
 An Anonymous Group is used describe a cluster of people where there is no ready identifier for 
@@ -577,6 +568,25 @@ The table below lists all properties of an Identified Group.
 	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
 	    <td>An Inverse Functional Identifier unique to the Group.</td><td>yes</td></tr>	
 </table>
+
+###### Requirements
+
+* A system consuming Statements MUST consider each Anonymous Group distinct even if it has an identical set of members.
+* A system consuming Statements MUST NOT assume that Agents in the 'member' property comprise an exact list of Agents
+in a given anonymous or Identified Group.
+
+###### Requirements for Anonymous Groups
+
+* An Anonymous Group MUST include a 'member' property listing constituent Agents.
+* An Anonymous Group MUST NOT contain Group Objects in the 'member' property.
+* An Anonymous Group MUST NOT include any Inverse Functional Identifiers.
+
+###### Requirements for Identified Groups
+
+* An Identified Group MUST include exactly one (1) Inverse Functional Identifier.
+* An Identified Group MUST NOT contain Group Objects in the 'member' property.
+* An Identified Group SHOULD NOT use Inverse Functional Identifiers that are also used as Agent identifiers.
+* An Identified Group MAY include a 'member' property listing constituent Agents.
 
 
 <a name="inversefunctional">
@@ -609,7 +619,7 @@ but no others, should be used for this property and mbox_sha1sum.</td></tr>
 
 <a name="agentaccount"/>
 
-###### Account Object
+##### Account Object
 
 ###### Description 
 
@@ -664,23 +674,10 @@ communities of practice can establish Verbs meaningful to their members and make
 for use by anyone. A predefined list of Verbs would be limited by definition and might not be able to 
 effectively capture all possible future learning experiences. 
 
-###### Requirements
+###### Details
 
 Verbs appear in Statements as Objects consisting of an IRI and a set of display names 
 corresponding to multiple languages or dialects which provide human-readable meanings of the Verb. 
-
-* The display property MUST be used to illustrate the meaning which is already determined by the Verb IRI.
-* A system reading a Statement MUST use the Verb IRI to infer meaning.
-* The display property MUST NOT be used to alter the meaning of a Verb.
-* A system reading a Statement MUST NOT use the display property to infer any meaning from the Statement.
-* A system reading a Statement MUST NOT use the display property for any purpose other than display to a human.
-Using the display property for aggregation or categorization of Statements is an example of violating this requirement. 
-* The display property SHOULD be used by all Statements.
-* The IRI contained in the id SHOULD be human-readable and imply the Verb meaning.
-
-
-###### Details
-
 The table below lists all properties of the Verb Object.
 
 <table>
@@ -701,6 +698,17 @@ The table below lists all properties of the Verb Object.
 			display of the meaning already determined by the chosen Verb.</td>
 	</tr>
 </table>
+
+###### Requirements
+
+* The display property MUST be used to illustrate the meaning which is already determined by the Verb IRI.
+* A system reading a Statement MUST use the Verb IRI to infer meaning.
+* The display property MUST NOT be used to alter the meaning of a Verb.
+* A system reading a Statement MUST NOT use the display property to infer any meaning from the Statement.
+* A system reading a Statement MUST NOT use the display property for any purpose other than display to a human.
+Using the display property for aggregation or categorization of Statements is an example of violating this requirement. 
+* The display property SHOULD be used by all Statements.
+* The IRI contained in the id SHOULD be human-readable and imply the Verb meaning.
 
 ###### Example
 
@@ -744,6 +752,16 @@ or the Verb IRI http://example.com/فعل/خواندن might denote the action o
 
 ##### 4.1.3.2 Use in Communities of Practice
 
+###### Description
+
+Communities of practice will, at some point in time, need to establish new Verbs to meet the needs of their constituency.
+
+Therefore, it is expected that xAPI communities of practice generate profiles, lists, and repositories that become 
+centered on Verb vocabularies.  ADL is creating a companion document containing Verbs for xAPI to serve the ADL Community.
+
+In fulfillment of the requirements above, a collection of IRIs of recommended Verbs exists.  There are times when 
+Activity Providers may wish to use a different Verb for the same meaning.
+
 ###### Requirements for Communities of Practice
 
 * Anyone establishing a new Verb MUST own the IRI, or MUST have permission from the owner to use it to denote an xAPI Verb;
@@ -754,15 +772,6 @@ accessible at the IRI.
 
 * Activity Providers SHOULD use a corresponding existing Verb whenever possible.
 * Activity Providers MAY create and use a Verb if no suitable Verb exists.
-
-###### Details
-
-Communities of practice will, at some point in time, need to establish new Verbs to meet the needs of their constituency.
-
-Therefore, it is expected that xAPI generates profiles, lists, and repositories that become centered on Verb 
-vocabularies.  ADL is one such organization that is creating a companion document containing 
-Verbs for xAPI.  In fulfillment of the requirements above, a collection of IRIs of recommended Verbs 
-exists.  There are times when Activity Providers may wish to use a different Verb for the same meaning.
 
 
 
@@ -795,6 +804,8 @@ The properties of an Object change according to the objectType.
 
 ##### 4.1.4.1 When the ObjectType is Activity
 
+###### Details
+
 A Statement may represent an Activity as the Object of the Statement. The following table lists the Object 
 properties in this case.
 
@@ -816,11 +827,10 @@ properties in this case.
 	</tr>
 </table>
 
-<a name="actdef"/>
-
-##### Activity Definition
-
-###### Details
+If it were possible to use the same id for two different Activities, the validity of Statements about 
+these Activities could be questioned. This means an LRS may never treat (references to) the same 
+Activity id as belonging to two different Activities, even if it thinks this was intended. Namely, 
+when a conflict with another system occurs, it’s not possible to determine the intentions. 
 
 The table below lists the properties of the Activity Definition Object:
 
@@ -867,13 +877,6 @@ The table below lists the properties of the Activity Definition Object:
 __Note:__ IRI fragments (sometimes called relative IRLs) are not valid IRIs. As with Verbs, it is recommended that
 Activity Providers look for and use established, widely adopted, Activity types.
 
-An LRS should update its internal representation of an Activity's definition upon receiving a 
-Statement with the same Activity id, but with a different definition of the Activity from the one stored, 
-but only if it considers the Activity Provider to have the authority to do so.  
-
-<a name="acturi"/>
-
-##### Activity id  
 
 ###### Requirements for Activity Ids
 
@@ -883,7 +886,6 @@ but only if it considers the Activity Provider to have the authority to do so.
 * An Activity id SHOULD be created according to a scheme that makes sure all Activity ids within 
 that domain remain unique.
 * An Activity id MAY point to metadata or the IRL for the Activity.
-
 
 ###### Requirements for the LRS
 
@@ -895,26 +897,16 @@ SHOULD update the stored Activity Definition accordingly if that decision is pos
 * An LRS MAY accept small corrections to the Activity’s definition. For example, it would be okay for an LRS
 to accept spelling fixes, but it may not accept changes to correct responses.
 
+
 ###### Requirements for the Activity Provider
 
 * An Activity Provider MUST ensure that Activity ids are not re-used across multiple Activities.
 * An Activity Provider MUST only generate states or Statements against a certain Activity id that are compatible
 and consistent with states or Statements previously stored against the same id.
 * An Activity Provider MUST NOT allow new versions (i.e. revisions or other platforms) of the Activity 
-to break compatibility.
-	
-###### Details
+to break compatibility.	
 
-If it were possible to use the same id for two different Activities, the validity of Statements about 
-these Activities could be questioned. This means an LRS may never treat (references to) the same 
-Activity id as belonging to two different Activities, even if it thinks this was intended. Namely, 
-when a conflict with another system occurs, it’s not possible to determine the intentions. 
-
-<a name="actmeta"/>
-
-##### Activity Metadata
-
-###### Requirements
+###### Requirements for Metadata
 
 * If an Activity IRI is an IRL, an LRS SHOULD attempt to GET that IRL, and include in HTTP
 headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
@@ -944,14 +936,7 @@ borrows from the SCORM 2004 4th Edition Data Model. These definitions are intend
 simple and familiar utility for recording interaction data. These definitions 
 are simple to use, and consequently limited. It is expected that communities of 
 practice requiring richer interactions definitions will do so through the use 
-of extensions to an Activity's type and definition.  
-
-###### Requirements
-
-* Interaction Activities MUST have a valid interactionType.
-* Interaction Activities SHOULD have the Activity type http://adlnet.gov/expapi/activities/cmi.interaction".
-* An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as specified in the table 
-below and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction Activity.
+of extensions to an Activity's type and definition. 
 
 ###### Details
 
@@ -980,12 +965,15 @@ The table below lists the properties for Interaction Activities.
 	</tr>
 </table>  
 
-##### Interaction Components  
-
 ###### Requirements
 
-* Within an array of interaction components, all id values MUST be distinct.
-* An interaction component's id value SHOULD not have whitespace.
+* Interaction Activities MUST have a valid interactionType.
+* Interaction Activities SHOULD have the Activity type http://adlnet.gov/expapi/activities/cmi.interaction".
+* An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as specified in the table 
+below and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction Activity.
+
+
+##### Interaction Components  
 
 ###### Details
 
@@ -1019,6 +1007,13 @@ an interaction Activity with the given interactionType.
 	<tr><td>performance</td><td>steps</td></tr>
 	<tr><td>true-false, fill-in, numeric, other</td><td>[No component lists defined]</td></tr>
 </table>
+
+###### Requirements
+
+* Within an array of interaction components, all id values MUST be distinct.
+* An interaction component's id value SHOULD NOT have whitespace.
+
+###### Example
 
 See [Appendix C](#AppendixC) for examples of Activity Definitions for each of the cmi.interaction types.
 
@@ -1098,6 +1093,7 @@ comment could be issued on the original Statement, using a new Statement:
 
 ##### Sub-Statements
 
+###### Description
 A Sub-Statement is a new Statement included as part of a parent Statement.
 
 ###### Requirements
@@ -1193,12 +1189,6 @@ with a precision of 0.01 seconds</td><td>Period of time over which the Statement
 ###### Description
 An optional numeric field that represents the outcome of a graded Activity achieved by an Agent.
 
-###### Requirements
-
-* The Score Object SHOULD include 'scaled' if a logical percent based score is known.
-* The Score Object SHOULD NOT be used for scores relating to progress or completion.  Consider using an extension
-from an extension profile instead.
-
 ###### Details
 
 The table below defines the Score Object. 
@@ -1210,6 +1200,14 @@ The table below defines the Score Object.
 	<tr><td>min</td><td>Decimal number less than max (if present)</td><td>Cf. 'cmi.score.min'</td></tr>
 	<tr><td>max</td><td>Decimal number greater than min (if present)</td><td>Cf. 'cmi.score.max'</td></tr>
 </table>
+
+###### Requirements
+
+* The Score Object SHOULD include 'scaled' if a logical percent based score is known.
+* The Score Object SHOULD NOT be used for scores relating to progress or completion.  Consider using an extension
+from an extension profile instead.
+
+
 
 
 
@@ -1224,15 +1222,6 @@ An optional field that provides a place to add contextual information to a State
 The "context" field provides a place to add some contextual information to a Statement. It can store information such 
 as the instructor for an experience, if this experience happened as part of a team Activity, or how an experience fits 
 into some broader activity.
-
-###### Requirements
-
-* The _revision_ property MUST NOT be used if the Statement's Object is an Agent or Group.
-* The _platform_ property MUST NOT be used if the Statement's Object is an Agent or Group.
-* The _language_ property MUST NOT be used if not applicable or unknown.
-* The _revision_ property SHOULD be used to track fixes of minor issues (like a spelling error).
-* The _revision_ property SHOULD NOT be used if there is a major change in learning objectives, pedagogy, 
-or assets of an Activity. (Use a new Activity id instead).
 
 ###### Details
 
@@ -1300,6 +1289,14 @@ altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a hr
 
 </table>
 
+###### Requirements
+
+* The _revision_ property MUST NOT be used if the Statement's Object is an Agent or Group.
+* The _platform_ property MUST NOT be used if the Statement's Object is an Agent or Group.
+* The _language_ property MUST NOT be used if not applicable or unknown.
+* The _revision_ property SHOULD be used to track fixes of minor issues (like a spelling error).
+* The _revision_ property SHOULD NOT be used if there is a major change in learning objectives, pedagogy, 
+or assets of an Activity. (Use a new Activity id instead).
 
 __Note:__ Revision has no behavioral implications within the scope of xAPI. It is simply stored,
 so that it is available for reporting tools.
@@ -1328,15 +1325,6 @@ A map of the types of learning activity context that this Statement is related t
 Many Statements do not just involve one Object Activity that is the focus,
 but relate to other contextually relevant Activities. "Context Activities" allow for 
 these related Activities to be represented in a structured manner.
-
-###### Requirements
-* Every key in the contextActivities Object MUST be one of parent, grouping, category, or other.
-* Every value in the contextActivities Object MUST be either a single Activity Object or an array of Activity Objects.
-* The LRS MUST return every value in the contextActivities Object as an array, even if it arrived
-as a single Activity Object.
-* The LRS MUST return single Activity Objects as an array of length one containing the same Activity.
-* The Client SHOULD ensure that every value in the contextActivities Object is an array of Activity Objects 
-instead of a single Activity Object.
 
 ###### Details
 There are four valid context types. All, any or none of these MAY be used in a given Statement:
@@ -1373,6 +1361,15 @@ For instance, it is appropriate in a Statement about a test to include the cours
 the test is part of as parent, but not to include every possible degree
 program the course could be part of in the grouping value.
 
+###### Requirements
+* Every key in the contextActivities Object MUST be one of parent, grouping, category, or other.
+* Every value in the contextActivities Object MUST be either a single Activity Object or an array of Activity Objects.
+* The LRS MUST return every value in the contextActivities Object as an array, even if it arrived
+as a single Activity Object.
+* The LRS MUST return single Activity Objects as an array of length one containing the same Activity.
+* The Client SHOULD ensure that every value in the contextActivities Object is an array of Activity Objects 
+instead of a single Activity Object.
+
 ###### Example
 
 Consider the following hierarchical structure: "Questions 1 to 6"
@@ -1401,6 +1398,12 @@ useful when the Object of the Statement is an Agent, not an Activity.
 ###### Description
 The time at which a  Statement was generated.
 
+###### Details
+A timestamp in a Statement that occurs outside of the system can differ from 
+[Stored](#stored) (the system time of the event). Namely, there can be delays between the occurrence of the 
+experience and the reception of the corresponding Statement by the LRS. Another cause is when Statements 
+are propagated to other systems.
+
 ###### Requirements
 * A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
 * A timestamp SHOULD include the timezone.
@@ -1409,11 +1412,7 @@ The time at which a  Statement was generated.
 * A timestamp MAY be a moment in the future, to denote a deadline for planned learning, provided it is included 
 inside a Sub-Statement.
 
-###### Details
-A timestamp in a Statement that occurs outside of the system can differ from 
-[Stored](#stored) (the system time of the event). Namely, there can be delays between the occurrence of the 
-experience and the reception of the corresponding Statement by the LRS. Another cause is when Statements 
-are propagated to other systems.
+
 
 
 <a name="stored"/> 
@@ -1442,6 +1441,9 @@ for seconds (millisecond precision MUST be preserved).
 The authority property provides information about whom or what has asserted that 
 this Statement is true. 
 
+###### Details
+The asserting authority represents the authenticating user or some system or application.
+
 ###### Requirements
 * Authority MUST be an Agent, except in 3-legged OAuth, where it MUST be a Group with two Agents. 
 The two Agents represent an application and user together.
@@ -1455,13 +1457,20 @@ where a strong trust relationship has been established, and with extreme caution
 * The LRS MAY identify the user with any of the legal identifying properties if 
 a user connects directly (using HTTP Basic Authentication) or a part of 3-legged OAuth. 
 
-###### Details
-The asserting authority represents the authenticating user or some system or application.
 
 ##### OAuth Credentials as Authority 
 
 ###### Description
 This is a workflow for use of OAuth.  2-legged and 3-legged OAuth are both supported.
+
+###### Details
+This workflow assumes a Statement is stored using a validated OAuth connection and the LRS 
+creates or modifies the authority property of the Statement.
+
+In a 3-legged OAuth workflow, authentication involves both an OAuth consumer and a user of the 
+OAuth service provider. For instance, requests made by an authorized Twitter plug-in on their 
+Facebook account will include credentials that are specific not only to Twitter as a Client application, 
+or them as a user, but the unique combination of both.
 
 ###### Requirements
 * The authority MUST contain an Agent Object that represents the OAuth consumer, either by itself, or 
@@ -1477,16 +1486,6 @@ the same source as the unregistered application. (Multiple unregistered applicat
 As a result, there is no consistent way to verify this combination of temporary credentials and 
 the account name.) 
 * Each unregistered consumer SHOULD use a unique consumer key.
-
-
-###### Details
-This workflow assumes a Statement is stored using a validated OAuth connection and the LRS 
-creates or modifies the authority property of the Statement.
-
-In a 3-legged OAuth workflow, authentication involves both an OAuth consumer and a user of the 
-OAuth service provider. For instance, requests made by an authorized Twitter plug-in on their 
-Facebook account will include credentials that are specific not only to Twitter as a Client application, 
-or them as a user, but the unique combination of both.
 
 ###### Example
 
@@ -1543,51 +1542,6 @@ In some cases an attachment may logically be an important part of a learning rec
 communication with ATC, an essay, a video, etc. Another example of such an attachment is (the image of) a 
 certificate that was granted as a result of an experience. It is useful to have a way to store these attachments 
 in and retrieve them from an LRS. 
-
-###### Requirements for Attachment Statement Batches
-
-A Statement batch, Statement results, or single Statement that includes attachments:
-
-* MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for Statement results when the attachments filter is false or
-* MUST conform to the definition of multipart/mixed in RFC 1341 and:
-    * The first part of the multipart document MUST contain the Statements themselves, with type "applicaton/json".
-    * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
-capability will be available when issuing PUT or POST against the Statement resource.
-	* MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part.
-	* This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
-	attachment included in this part.
-	* MUST include a Content-Transfer-Encoding field with a value of "binary" in each part's header after the first (statements) part.
-    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple Statements that are sent together.
-    * SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json".
-
-
-###### Requirements for the LRS
-
-* An LRS MUST include attachments in the Transmission Format described above
-when requested by the Client (see Section [7.2 "Statement API"](#stmtapi)).
-* An LRS MUST NOT pull Statements from another LRS without requesting attachments.
-* An LRS MUST NOT push Statements into another LRS without including attachment data
-received, if any, for those attachments.
-* When receiving a PUT or POST with a document type of "application/json", 
-    * An LRS MUST accept batches of Statements which contain either no attachment Objects, or
-only attachment Objects with a populated fileUrl.
-* Otherwise:
-    * An LRS MUST accept batches of Statements via the Statements resource PUT or POST that contain
-    attachments in the Transmission Format described above.
-    * An LRS MUST reject batches of Statements having attachments that neither contain a fileUrl nor match a
-received attachment part based on their hash.
-    * An LRS SHOULD assume a Content-Transfer-Encoding of binary for attachment parts.
-* An LRS MAY reject (batches of) Statements that are larger than the LRS is configured to allow.
-
-__Note:__ There is no requirement that Statement batches using the mime/multipart format
-contain attachments.
-
-###### Requirements for the Client
-
-* The Client MAY send Statements with attachments as described above.
-* The Client MAY send multiple Statements where some or all have attachments if using "POST".
-* The Client MAY send batches of type "application/json" where every attachment
-Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
 
 ###### Details
 The table below lists all properties of the Attachment Object.
@@ -1653,6 +1607,55 @@ _Procedure for the exchange of attachments_
 4. If it accepts the attachment, it can match the raw data of an attachment
 with the attachment header in a Statement by comparing the SHA-2 of the raw
 data to the SHA-2 declared in the header. It MUST not do so any other way.
+
+###### Requirements for Attachment Statement Batches
+
+A Statement batch, Statement results, or single Statement that includes attachments MUST satisfy one of the 
+following criteria:
+
+* It MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for Statement 
+results when the attachments filter is false.
+* It MUST conform to the definition of multipart/mixed in RFC 1341 and:
+    * The first part of the multipart document MUST contain the Statements themselves, with type "application/json".
+    * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
+capability will be available when issuing PUT or POST against the Statement resource.
+	* MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part.
+	* This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
+	attachment included in this part.
+	* MUST include a Content-Transfer-Encoding field with a value of "binary" in each part's header after the first (statements) part.
+    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple Statements that are sent together.
+    * SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json".
+
+
+###### Requirements for the LRS
+
+* An LRS MUST include attachments in the Transmission Format described above
+when requested by the Client (see Section [7.2 "Statement API"](#stmtapi)).
+* An LRS MUST NOT pull Statements from another LRS without requesting attachments.
+* An LRS MUST NOT push Statements into another LRS without including attachment data
+received, if any, for those attachments.
+* When receiving a PUT or POST with a document type of "application/json”, an LRS MUST accept batches 
+of Statements which contain no attachment Objects.
+* When receiving a PUT or POST with a document type of "application/json”, an LRS MUST accept batches 
+of Statements which contain only attachment Objects with a populated fileUrl.
+* When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST accept batches of 
+Statements that contain attachments in the Transmission Format described above.
+* When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST reject batches of 
+Statements having attachments that neither contain a fileUrl nor match a received attachment part based on their hash.
+* When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS SHOULD assume a 
+Content-Transfer-Encoding of binary for attachment parts.
+* An LRS MAY reject (batches of) Statements that are larger than the LRS is configured to allow.
+
+
+__Note:__ There is no requirement that Statement batches using the mime/multipart format
+contain attachments.
+
+###### Requirements for the Client
+
+* The Client MAY send Statements with attachments as described above.
+* The Client MAY send multiple Statements where some or all have attachments if using "POST".
+* The Client MAY send batches of type "application/json" where every attachment
+Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
 
 
 ###### Example
@@ -1735,13 +1738,13 @@ to act in certain ways.
 
 ###### Requirements for the Client
 
-The following requirements reiterate especially important requirements already
-included elsewhere, to emphasize, clarify, and provide implementation guidance.
+The following requirements reiterate especially important requirements already 
+included elsewhere, to emphasize, clarify, and provide implementation guidance.  
+Complete IRI validation is extremely difficult, so much of the burden for ensuring data portability is on the Client.
 
-* Values requiring IRIs MUST be sent with valid IRIs. Please use a library to
-construct them instead of string concatenation. Complete IRI validation is
-extremely difficult, so much of the burden for ensuring data portability is on the Client.
+* Values requiring IRIs MUST be sent with valid IRIs. 
 * Keys of language maps MUST be sent with valid RFC 5646 language tags, for similar reasons.
+* A library SHOULD be used to construct IRIs, as opposed to string concatenation. 
 
 ###### Requirements for the LRS
 
