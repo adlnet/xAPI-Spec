@@ -1237,7 +1237,7 @@ The following table contains the properties of the Context Object.
 </tr>
 <tr>
 <td>instructor</td>
-<td>Agent (may be a group)</td>
+<td>Agent (may be a Group)</td>
 <td>Instructor that the Statement relates to, if not included as the Actor of the Statement.</td>
 
 </tr>
@@ -1275,7 +1275,7 @@ applicable and known.
 </tr>
 <tr>
 <td>statement</td>
-<td>[Statement Reference](#stmtref)</td>
+<td><a href="#stmtref">Statement Reference</a></td>
 <td>Another Statement, which should be considered as context for this Statement. </td>
 
 </tr>
@@ -1833,7 +1833,7 @@ definitions which were introduced by the Statement that was just voided;
 again under a new id
 * A reporting system SHOULD NOT show voided or voiding Statements by default.
 
-###### Note: See ["Statement References"](#stmtref) in [Section 4.1.4.3 When the "Object" is a Statement](#stmtasobj) 
+__Note:__ See ["Statement References"](#stmtref) in [Section 4.1.4.3 When the "Object" is a Statement](#stmtasobj) 
 for details about making references to other Statements.  To see how voided statements behave when queried, 
 See [StatementRef](#queryStatementRef) in 7.2 Statement API).
 
@@ -1911,7 +1911,7 @@ for discoverability of the signer X.509 certificates SHOULD be used.
 
 See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example.
 
-##### Note: The step of validating against the included X.509 certificate is intended as a
+__Note:__ The step of validating against the included X.509 certificate is intended as a
 way to catch mistakes in the signature, not as a security measure. Clients MUST NOT assume
 a signature is valid simply because an LRS has accepted it. The steps to authenticate
 a signed Statement will vary based on the degree of certainty required and are outside
@@ -2064,7 +2064,7 @@ Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.
 
 Example:  ``X-Experience-API-Version : 1.0.0``
 
-####### Requirements for the LRS:
+###### Requirements for the LRS:
 
 * MUST include the "X-Experience-API-Version" header in every response.
 * MUST set this header to "1.0.0".
@@ -2074,13 +2074,13 @@ Example:  ``X-Experience-API-Version : 1.0.0``
 * MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
 
 
-####### Requirements for the Client:
+###### Requirements for the Client:
 
 * SHOULD tolerate receiving responses with a version of "1.0.0" or later.
 * SHOULD tolerate receiving data structures with additional properties.
 * SHOULD ignore any properties not defined in version 1.0.0 of the spec.
 
-####### Converting Statements to other versions:
+###### Converting Statements to other versions:
 
 * Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
 * Systems MAY convert Statements of older versions into a newer version only by following the methods described in
@@ -2381,7 +2381,7 @@ be used.
 The LRS MUST reject with ```HTTP 400 Bad Request``` status (see below) any request to any of
 these APIs using any parameters:
 
-* the LRS does not recognize (__Note:__ LRSs may recognize and act on parameters not in 
+* the LRS does not recognize ( __Note:__ LRSs may recognize and act on parameters not in 
 this specification).
 
 * that match parameters described in this specification in all but case.
@@ -2507,7 +2507,8 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 		<td>Filter, only return Statements matching the specified verb id.</td>
 	</tr>
 	<tr><td>activity</td><td>Activity id (IRI)</td><td> </td>
-		<td>Filter, only return Statements for which the Object of the Statement is an Activity with the specified id.
+		<td>Filter, only return Statements for which the Object of the Statement is an Activity with the 
+		specified id.
 		</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td> </td>
@@ -2527,7 +2528,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	</tr>
 	<tr><td>related_agents</td><td>Boolean</td><td>False</td>
 		<td>Apply the Agent filter broadly. Include Statements for which 
-			the Actor, Object, authority, instructor, team,
+			the Actor, Object, Authority, Instructor, Team,
 			or any of these properties in a contained SubStatement match the Agent parameter,
 			instead of that parameter's normal behavior. Matching is defined in the same way
 			it is for the 'agent' parameter.
@@ -2545,11 +2546,11 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	</tr>
 	<tr><td>format</td><td>String: ("ids", "exact", or "canonical")</td><td>exact</td>
 		<td>If "ids", only include minimum information necessary in Agent,
-			Activity, and group Objects to identify them. For anonymous groups this means
+			Activity, and Group Objects to identify them. For anonymous groups this means
 			including the minimum information needed to identify each member.
 
 			If "exact", return Agent,
-			Activity, and group Objects populated exactly as they were when the Statement
+			Activity, and Group Objects populated exactly as they were when the Statement
 			was received.<br/><br/>
 			
 			If "canonical", return Activity Objects populated with the canonical
@@ -2598,9 +2599,7 @@ are known with reasonable certainty to be available for retrieval. This time SHO
 account any temporary condition, such as excessive load, which might cause a delay in Statements 
 becoming available for retrieval.
 
-###### Note
-
-Due to query string limits, this method MAY be called using POST and
+__Note:__ Due to query string limits, this method MAY be called using POST and
 form fields if necessary. The LRS MUST differentiate a POST to add a Statement
 or to list Statements based on the parameters passed.  
 
@@ -2635,7 +2634,7 @@ Statements are filtered.
 ###### Voided Statements
 
 The LRS MUST not return any Statement which has been voided, unless that Statement has been
-requested by voidedStatementId. The LRS MUST still return any Statements targetting the voided 
+requested by voidedStatementId. The LRS MUST still return any Statements targeting the voided 
 Statement when retrieving Statements using explicit or implicit time or sequence based retrieval,
 unless they themselves have been voided, as described in
 [the section on filter conditions for StatementRefs](#queryStatementRef). This includes the
