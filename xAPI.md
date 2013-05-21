@@ -878,7 +878,7 @@ __Note:__ IRI fragments (sometimes called relative IRLs) are not valid IRIs. As 
 Activity Providers look for and use established, widely adopted, Activity types.
 
 
-###### Requirements for Activity Ids
+###### Activity Id Requirements
 
 * An Activity id MUST be unique.
 * An Activity id MUST always reference the same Activity.
@@ -887,7 +887,7 @@ Activity Providers look for and use established, widely adopted, Activity types.
 that domain remain unique.
 * An Activity id MAY point to metadata or the IRL for the Activity.
 
-###### Requirements for the LRS
+###### LRS Requirements
 
 * An LRS MUST ignore any information which indicates two authors or organizations may have used the same Activity id.
 * An LRS MUST NOT treat references to the same id as references to different Activities.
@@ -898,7 +898,7 @@ SHOULD update the stored Activity Definition accordingly if that decision is pos
 to accept spelling fixes, but it may not accept changes to correct responses.
 
 
-###### Requirements for the Activity Provider
+###### Activity Provider Requirements
 
 * An Activity Provider MUST ensure that Activity ids are not re-used across multiple Activities.
 * An Activity Provider MUST only generate states or Statements against a certain Activity id that are compatible
@@ -906,7 +906,7 @@ and consistent with states or Statements previously stored against the same id.
 * An Activity Provider MUST NOT allow new versions (i.e. revisions or other platforms) of the Activity 
 to break compatibility.	
 
-###### Requirements for Metadata
+###### Metadata Requirements
 
 * If an Activity IRI is an IRL, an LRS SHOULD attempt to GET that IRL, and include in HTTP
 headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
@@ -1627,7 +1627,7 @@ capability will be available when issuing PUT or POST against the Statement reso
     * SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json".
 
 
-###### Requirements for the LRS
+###### LRS Requirements
 
 * An LRS MUST include attachments in the Transmission Format described above
 when requested by the Client (see Section [7.2 "Statement API"](#stmtapi)).
@@ -1650,7 +1650,7 @@ Content-Transfer-Encoding of binary for attachment parts.
 __Note:__ There is no requirement that Statement batches using the mime/multipart format
 contain attachments.
 
-###### Requirements for the Client
+###### Client Requirements
 
 * The Client MAY send Statements with attachments as described above.
 * The Client MAY send multiple Statements where some or all have attachments if using "POST".
@@ -1736,7 +1736,7 @@ constrain the behavior of systems processing Statements. For clarity, certain ke
 requirements are documented here, emphasizing where compliant systems have a responsibility
 to act in certain ways.
 
-###### Requirements for the Client
+###### Client Requirements
 
 The following requirements reiterate especially important requirements already 
 included elsewhere, to emphasize, clarify, and provide implementation guidance.  
@@ -1746,7 +1746,7 @@ Complete IRI validation is extremely difficult, so much of the burden for ensuri
 * Keys of language maps MUST be sent with valid RFC 5646 language tags, for similar reasons.
 * A library SHOULD be used to construct IRIs, as opposed to string concatenation. 
 
-###### Requirements for the LRS
+###### LRS Requirements
 
 * The LRS MUST reject Statements
     * with any null values (except inside extensions).
@@ -2064,7 +2064,7 @@ Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.
 
 Example:  ``X-Experience-API-Version : 1.0.0``
 
-###### Requirements for the LRS:
+###### LRS Requirements
 
 * MUST include the "X-Experience-API-Version" header in every response.
 * MUST set this header to "1.0.0".
@@ -2074,7 +2074,7 @@ Example:  ``X-Experience-API-Version : 1.0.0``
 * MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
 
 
-###### Requirements for the Client:
+###### Client Requirements
 
 * SHOULD tolerate receiving responses with a version of "1.0.0" or later.
 * SHOULD tolerate receiving data structures with additional properties.
