@@ -1803,6 +1803,14 @@ The following table shows the data structure for the results of queries on the S
 	</tr>
 </table>
 
+###### Requirements
+
+* The IRL retrieved from the more property MUST be usable for at least 24 hours after it is returned by the LRS. 
+* An LRS MAY include all necessary information within the more property IRL to continue the query to avoid the 
+need to store IRLs and associated query data.
+* An LRS SHOULD NOT generate extremely long IRLs within the more property.
+* The consumer SHOULD NOT attempt to interpret any meaning from the IRL returned from the more property.
+
 <a name="voided"/>
 #### 4.3 Voided
 
@@ -1877,6 +1885,13 @@ these Statements without trusting the system they were first recorded in, or per
 without access to that system. Digital signatures will enable a third-party system
 to validate such Statements.
 
+##### Details
+
+Signed Statements include a JSON web signature (JWS) as an attachment. This allows
+the original serialization of the Statement to be included along with the signature.
+For interoperability, the "RSA + SHA" series of JWS algorithms have been selected, and
+for discoverability of the signer X.509 certificates SHOULD be used.
+
 ##### Requirements
 
 * A Signed Statement MUST include a JSON web signature (JWS) as defined here:
@@ -1889,11 +1904,11 @@ before the signature was added.
 X.509 certificate.
 * If X.509 was used to sign, the JWS header SHOULD include the "x5c" property containing
 the associated certificate chain.
-* The LRS MUST reject requests to store Statements that contain malformed signatures,
-with HTTP 400 and SHOULD include a message describing the problem in the response.
+* The LRS MUST reject requests to store Statements that contain malformed signatures, with HTTP 400
+* The LRS SHOULD include a message in the response of a rejected statement
 In order to verify signatures are well formed, the LRS MUST do the following:
     * Decode the JWS signature, and load the signed serialization of the Statement from the
-JWS signature payload.
+      JWS signature payload.
     * Validate that the "original" Statement is logically equivalent to the received Statement.
     	* When making this equivilance check, differences which could have been caused by
     	allowed or required LRS processing of "id", "authority", "stored", "timestamp", or
@@ -1902,20 +1917,15 @@ JWS signature payload.
     certificate as defined in JWS.
 * Clients MUST NOT assume a signature is valid simply because an LRS has accepted it.
 
-##### Details
-
-Signed Statements include a JSON web signature (JWS) as an attachment. This allows
-the original serialization of the Statement to be included along with the signature.
-For interoperability, the "RSA + SHA" series of JWS algorithms have been selected, and
-for discoverability of the signer X.509 certificates SHOULD be used.
-
-See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example.
-
 __Note:__ The step of validating against the included X.509 certificate is intended as a
-way to catch mistakes in the signature, not as a security measure. Clients MUST NOT assume
-a signature is valid simply because an LRS has accepted it. The steps to authenticate
+way to catch mistakes in the signature, not as a security measure. The steps to authenticate
 a signed Statement will vary based on the degree of certainty required and are outside
 the scope of this specification.
+
+
+##### Example
+See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example.
+
 
 
 <a name="misctypes"/>
