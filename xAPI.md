@@ -57,10 +57,11 @@
     *	7.10.	[HTTP HEAD](#httphead)  
 *	[Appendix A: Bookmarklet](#AppendixA)  
 *	[Appendix B: Creating an "IE Mode" Request](#AppendixB)  
-*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](#AppendixC)  
-*	[Appendix D: Example Statements](#AppendixD)  
-*	[Appendix E: Converting Statements to 1.0.0](#AppendixE)   
-*	[Appendix F: Example Signed Statement](#AppendixF)
+*	[Appendix C: Example Statements](#AppendixC)  
+*	[Appendix D: Example statement objects of different types](#AppendixD)  
+*	[Appendix E: Example definitions for Activities of type "cmi.interaction"](#AppendixE)  
+*	[Appendix F: Converting Statements to 1.0.0](#AppendixF)   
+*	[Appendix G: Example Signed Statement](#AppendixG)
 
 <a name="revhistory"/>  
 
