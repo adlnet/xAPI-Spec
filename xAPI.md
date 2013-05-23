@@ -3583,9 +3583,9 @@ This example shows a Sub-Statement object whose object is a Statement Reference.
     }
 ```
 
-<a name="AppendixC"/>  
+<a name="AppendixE"/>  
 
-## Appendix C: Example definitions for Activities of type "cmi.interaction"
+## Appendix E: Example definitions for Activities of type "cmi.interaction"
 
 ###### true-false  
 
@@ -3863,9 +3863,9 @@ This example shows a Sub-Statement object whose object is a Statement Reference.
 }
 ```
 
-<a name="AppendixE"/>
+<a name="AppendixF"/>
 
-## Appendix E: Converting Statements to 1.0.0
+## Appendix F: Converting Statements to 1.0.0
 
 ######Rationale
 This is a 1.0.0 specification, and as such implementers should not have to consider prior
@@ -4047,8 +4047,8 @@ Converted to 1.0.0:
 }
 ```
 
-<a name="AppendixF"/>
-## Appendix F: Example Signed Statement
+<a name="AppendixG"/>
+## Appendix G: Example Signed Statement
 An example signed Statement, as described in: <a href="#signature">4.4 Signed Statements</a>.
 
 The original Statement serialization to be signed. New lines in this example are included
