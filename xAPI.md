@@ -96,6 +96,11 @@ Various refinements and clarifications including:
 - Changes to querying the Statement API
 - Signed Statements
 
+###### 1.0.0 to 1.0.1
+Clarifcations and additional examples including:
+- Fixed various typos
+- Added additional examples in the appendices
+
 <a name="roleofxapi"/>
 
 ## 2.0 Role of the Experience API  
