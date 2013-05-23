@@ -3505,10 +3505,93 @@ a statement returned by an LRS including the authority and stored propeties set 
     }
 }
 ```  
+<a name="AppendixD"/>  
 
-<a name="AppendixC"/>  
+## Appendix D: Example statement objects of different types
 
-## Appendix C: Example definitions for Activities of type "cmi.interaction"
+The object of a statement can be an activity, agent, group or statement. 
+This appendix provides one example of each. 
+
+###### Activity
+```
+{
+    "id": "http://www.example.co.uk/exampleactivity",
+    "definition": {
+        "name": {
+            "en-GB": "example activity",
+            "en-US": "example activity"
+        },
+        "description": {
+            "en-GB": "An example of an activity",
+            "en-US": "An example of an activity"
+        },
+        "type": "http://www.example.co.uk/types/exampleactivitytype"
+    },
+    "objectType": "Activity"
+}
+```
+
+###### Agent
+```
+{
+    "name": "Andrew Downes",
+    "mbox": "mailto:andrew@example.co.uk",
+    "objectType": "Agent"
+}
+```
+
+###### Group
+This example shows an identified group with members. 
+```
+{
+    "name": "Example Group",
+    "account" : {
+    	"homePage" : "http://example.com/homePage",
+    	"name" : "GroupAccount"
+    },
+    "objectType": "Group"
+    "member": [
+            {
+                "name": "Andrew Downes",
+                "mbox": "mailto:andrew@example.com",
+                "objectType": "Agent"
+            },
+            {
+                "name": "Aaron Silvers",
+                "openid": "aaron.openid.example.org",
+                "objectType": "Agent"
+            }
+        ],
+}
+```
+
+
+###### Statement
+This example shows a Sub-Statement object whose object is a Statement Reference.
+
+```
+{
+        "objectType": "SubStatement",
+        "actor" : {
+            "objectType": "Agent", 
+            "mbox":"mailto:agent@example.com" 
+        },
+        "verb" : { 
+            "id":"http://example.com/confirmed", 
+            "display":{
+                "en":"confirmed"
+            } 
+        },
+        "object": {
+            "objectType":"StatementRef",
+    		"id" :"9e13cefd-53d3-4eac-b5ed-2cf6693903bb"
+        }
+    }
+```
+
+<a name="AppendixE"/>  
+
+## Appendix E: Example definitions for Activities of type "cmi.interaction"
 
 ###### true-false  
 
@@ -3786,9 +3869,9 @@ a statement returned by an LRS including the authority and stored propeties set 
 }
 ```
 
-<a name="AppendixE"/>
+<a name="AppendixF"/>
 
-## Appendix E: Converting Statements to 1.0.0
+## Appendix F: Converting Statements to 1.0.0
 
 ######Rationale
 This is a 1.0.0 specification, and as such implementers should not have to consider prior
@@ -3970,8 +4053,8 @@ Converted to 1.0.0:
 }
 ```
 
-<a name="AppendixF"/>
-## Appendix F: Example Signed Statement
+<a name="AppendixG"/>
+## Appendix G: Example Signed Statement
 An example signed Statement, as described in: <a href="#signature">4.4 Signed Statements</a>.
 
 The original Statement serialization to be signed. New lines in this example are included
