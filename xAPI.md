@@ -57,10 +57,11 @@
     *	7.10.	[HTTP HEAD](#httphead)  
 *	[Appendix A: Bookmarklet](#AppendixA)  
 *	[Appendix B: Creating an "IE Mode" Request](#AppendixB)  
-*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](#AppendixC)  
-*	[Appendix D: Example Statements](#AppendixD)  
-*	[Appendix E: Converting Statements to 1.0.0](#AppendixE)   
-*	[Appendix F: Example Signed Statement](#AppendixF)
+*	[Appendix C: Example Statements](#AppendixC)  
+*	[Appendix D: Example statement objects of different types](#AppendixD)  
+*	[Appendix E: Example definitions for Activities of type "cmi.interaction"](#AppendixE)  
+*	[Appendix F: Converting Statements to 1.0.0](#AppendixF)   
+*	[Appendix G: Example Signed Statement](#AppendixG)
 
 <a name="revhistory"/>  
 
@@ -94,6 +95,11 @@ Various refinements and clarifications including:
 - Clarification and naming of the Document APIs
 - Changes to querying the Statement API
 - Signed Statements
+
+###### 1.0.0 to 1.0.1
+Clarifcations and additional examples including:
+- Fixed various typos
+- Added additional examples in the appendices
 
 <a name="roleofxapi"/>
 
@@ -487,7 +493,7 @@ An example of the simplest possible Statement using all properties that MUST or 
 	}
 }
 ```  
-See [Appendix D: Example Statements](#AppendixD) for more examples. 
+See [Appendix C: Example Statements](#AppendixC) for more examples. 
 
 <a name="stmtid"/> 
 
@@ -1015,7 +1021,7 @@ an interaction Activity with the given interactionType.
 
 ###### Example
 
-See [Appendix C](#AppendixC) for examples of Activity Definitions for each of the cmi.interaction types.
+See [Appendix E](#AppendixE) for examples of Activity Definitions for each of the cmi.interaction types.
 
 <a name="agentasobj"/>
 
@@ -1924,7 +1930,7 @@ the scope of this specification.
 
 
 ##### Example
-See <a href="#AppendixF">Appendix F: Example Signed Statement</a> for an example.
+See <a href="#AppendixG">Appendix G: Example Signed Statement</a> for an example.
 
 
 
@@ -2094,7 +2100,7 @@ Example:  ``X-Experience-API-Version : 1.0.0``
 
 * Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
 * Systems MAY convert Statements of older versions into a newer version only by following the methods described in
-<a href="#AppendixE">Appendix E: Converting Statements to 1.0.0</a>.
+<a href="#AppendixF">Appendix F: Converting Statements to 1.0.0</a>.
 
 <a name="concurrency"/> 
 ### 6.3 Concurrency
@@ -3297,8 +3303,295 @@ function getIEModeRequest(method, url, headers, data){
 }
 ``` 
 <a name="AppendixC"/>  
+ 
+## Appendix C: Example statements
 
-## Appendix C: Example definitions for Activities of type "cmi.interaction"
+Example of a simple statement (line breaks are for display purposes only):  
+```
+{
+	"id":"fd41c918-b88b-4b20-a0a5-a4c32391aaa0",
+	"actor":{
+		"objectType": "Agent",
+		"name":"Project Tin Can API",
+		"mbox":"mailto:user@example.com"
+	},
+	"verb":{
+		"id":"http://adlnet.gov/expapi/verbs/created",
+		"display":{ 
+			"en-US":"created" 
+		}
+	},
+	"object":{
+		"id":"http://example.adlnet.gov/xapi/example/simplestatement",
+		"definition":{
+			"name":{ 
+				"en-US":"simple statement" 
+			},
+			"description":{ 
+				"en-US":"A simple Experience API statement. Note that the LRS 
+				does not need to have any prior information about the Actor (learner), the 
+				verb, or the Activity/object." 
+			}
+		}
+	}
+}
+```   
+Typical simple completion with verb "attempted":  
+```
+{
+	"actor":{
+        "objectType": "Agent",
+		"name":"Example Learner",
+		"mbox":"mailto:example.learner@adlnet.gov"
+	},
+	"verb":{
+		"id":"http://adlnet.gov/expapi/verbs/attempted",
+		"display":{
+			"en-US":"attempted"
+		}
+	},
+	"object":{
+		"id":"http://example.adlnet.gov/xapi/example/simpleCBT",
+		"definition":{
+			"name":{
+				"en-US":"simple CBT course"
+			},
+			"description":{
+				"en-US":"A fictitious example CBT course."
+			}
+		}
+	},
+	"result":{
+		"score":{
+			"scaled":0.95
+		},
+		"success":true,
+		"completion":true
+	}
+}
+```  
+A long example statement showcasing most of the properties available. This example shows
+a statement returned by an LRS including the authority and stored propeties set by the LRS:  
+```
+{
+    "id": "6690e6c9-3ef0-4ed3-8b37-7f3964730bee",
+    "actor": {
+        "name": "Team PB",
+        "mbox": "mailto:teampb@example.com",
+        "member": [
+            {
+                "name": "Andrew Downes",
+                "account": {
+                    "homePage": "http://www.example.com",
+                    "name": "13936749"
+                },
+                "objectType": "Agent"
+            },
+            {
+                "name": "Toby Nichols",
+                "openid": "http://toby.openid.example.org/",
+                "objectType": "Agent"
+            },
+            {
+                "name": "Ena Hills",
+                "mbox_sha1sum": "esydnag7fhxkquopagrr4aiputa=",
+                "objectType": "Agent"
+            }
+        ],
+        "objectType": "Group"
+    },
+    "verb": {
+        "id": "http://adlnet.gov/expapi/verbs/attended",
+        "display": {
+            "en-GB": "attended",
+            "en-US": "attended"
+        }
+    },
+    "result": {
+        "extensions": {
+            "http://example.com/profiles/meetings/resultextensions/minuteslocation": "X:\\meetings\\minutes\\examplemeeting.one"
+        },
+        "success": true,
+        "completion": true,
+        "response": "We agreed on some example actions.",
+        "duration": "PT1H0M0S"
+    },
+    "context": {
+        "registration": "ec531277-b57b-4c15-8d91-d292c5b2b8f7",
+        "contextActivities": {
+            "parent": [
+                {
+                    "id": "http://www.example.com/meetings/series/267",
+                    "objectType": "Activity"
+                }
+            ],
+            "category": [
+                {
+                    "id": "http://www.example.com/meetings/categories/teammeeting",
+                    "objectType": "Activity",
+                    "definition": {
+			            "name": {
+			                "en": "team meeting"
+			            },
+			            "description": {
+			                "en": "A category of meeting used for regular team meetings."
+			            },
+			            "type": "http://example.com/expapi/activities/meetingcategory"
+			        }
+                }
+            ],
+            "other": [
+                {
+                    "id": "http://www.example.com/meetings/occurances/34257",
+                    "objectType": "Activity"
+                },
+                {
+                    "id": "http://www.example.com/meetings/occurances/3425567",
+                    "objectType": "Activity"
+                }
+            ]
+        },
+        "instructor" :
+        {
+        	"name": "Andrew Downes",
+            "account": {
+                "homePage": "http://www.example.com",
+                "name": "13936749"
+            },
+            "objectType": "Agent"
+        },
+        "team":
+        {
+        	"name": "Team PB",
+        	"mbox": "mailto:teampb@example.com",
+        	"objectType": "Group"
+        }, 
+        "platform" : "Example virtual meeting software",
+        "language" : "tlh",
+        "statement" : {
+        	"objectType":"StatementRef",
+        	"id" :"6690e6c9-3ef0-4ed3-8b37-7f3964730bee"
+        }
+        
+    },
+    "timestamp": "2013-05-18T05:32:34.804Z",
+    "stored": "2013-05-18T05:32:34.804Z",
+    "authority": {
+        "account": {
+            "homePage": "http://cloud.scorm.com/",
+            "name": "anonymous"
+        },
+        "objectType": "Agent"
+    },
+    "version": "1.0.0",
+    "object": {
+        "id": "http://www.example.com/meetings/occurances/34534",
+        "definition": {
+            "extensions": {
+                "http://example.com/profiles/meetings/activitydefinitionextensions/room": {"name": "Kilby", "id" : "http://example.com/rooms/342"}
+            },
+            "name": {
+                "en-GB": "example meeting",
+                "en-US": "example meeting"
+            },
+            "description": {
+                "en-GB": "An example meeting that happened on a specific occasion with certain people present.",
+                "en-US": "An example meeting that happened on a specific occasion with certain people present."
+            },
+            "type": "http://adlnet.gov/expapi/activities/meeting",
+            "moreInfo": "http://virtualmeeting.example.com/345256"
+        },
+        "objectType": "Activity"
+    }
+}
+```  
+<a name="AppendixD"/>  
+
+## Appendix D: Example statement objects of different types
+
+The object of a statement can be an activity, agent, group or statement. 
+This appendix provides one example of each. 
+
+###### Activity
+```
+{
+    "id": "http://www.example.co.uk/exampleactivity",
+    "definition": {
+        "name": {
+            "en-GB": "example activity",
+            "en-US": "example activity"
+        },
+        "description": {
+            "en-GB": "An example of an activity",
+            "en-US": "An example of an activity"
+        },
+        "type": "http://www.example.co.uk/types/exampleactivitytype"
+    },
+    "objectType": "Activity"
+}
+```
+
+###### Agent
+```
+{
+    "name": "Andrew Downes",
+    "mbox": "mailto:andrew@example.co.uk",
+    "objectType": "Agent"
+}
+```
+
+###### Group
+This example shows an identified group with members. 
+```
+{
+    "name": "Example Group",
+    "account" : {
+    	"homePage" : "http://example.com/homePage",
+    	"name" : "GroupAccount"
+    },
+    "objectType": "Group"
+    "member": [
+            {
+                "name": "Andrew Downes",
+                "mbox": "mailto:andrew@example.com",
+                "objectType": "Agent"
+            },
+            {
+                "name": "Aaron Silvers",
+                "openid": "aaron.openid.example.org",
+                "objectType": "Agent"
+            }
+        ],
+}
+```
+
+
+###### Statement
+This example shows a Sub-Statement object whose object is a Statement Reference.
+
+```
+{
+        "objectType": "SubStatement",
+        "actor" : {
+            "objectType": "Agent", 
+            "mbox":"mailto:agent@example.com" 
+        },
+        "verb" : { 
+            "id":"http://example.com/confirmed", 
+            "display":{
+                "en":"confirmed"
+            } 
+        },
+        "object": {
+            "objectType":"StatementRef",
+    		"id" :"9e13cefd-53d3-4eac-b5ed-2cf6693903bb"
+        }
+    }
+```
+
+<a name="AppendixE"/>  
+
+## Appendix E: Example definitions for Activities of type "cmi.interaction"
 
 ###### true-false  
 
@@ -3576,78 +3869,9 @@ function getIEModeRequest(method, url, headers, data){
 }
 ```
 
-<a name="AppendixD"/>  
- 
-## Appendix D: Example statements
+<a name="AppendixF"/>
 
-Example of a simple statement (line breaks are for display purposes only):  
-```
-{
-	"id":"fd41c918-b88b-4b20-a0a5-a4c32391aaa0",
-	"actor":{
-		"objectType": "Agent",
-		"name":"Project Tin Can API",
-		"mbox":"mailto:user@example.com"
-	},
-	"verb":{
-		"id":"http://adlnet.gov/expapi/verbs/created",
-		"display":{ 
-			"en-US":"created" 
-		}
-	},
-	"object":{
-		"id":"http://example.adlnet.gov/xapi/example/simplestatement",
-		"definition":{
-			"name":{ 
-				"en-US":"simple statement" 
-			},
-			"description":{ 
-				"en-US":"A simple Experience API statement. Note that the LRS 
-				does not need to have any prior information about the Actor (learner), the 
-				verb, or the Activity/object." 
-			}
-		}
-	}
-}
-```   
-Typical simple completion with verb "attempted":  
-```
-{
-	"actor":{
-        "objectType": "Agent",
-		"name":"Example Learner",
-		"mbox":"mailto:example.learner@adlnet.gov"
-	},
-	"verb":{
-		"id":"http://adlnet.gov/expapi/verbs/attempted",
-		"display":{
-			"en-US":"attempted"
-		}
-	},
-	"object":{
-		"id":"http://example.adlnet.gov/xapi/example/simpleCBT",
-		"definition":{
-			"name":{
-				"en-US":"simple CBT course"
-			},
-			"description":{
-				"en-US":"A fictitious example CBT course."
-			}
-		}
-	},
-	"result":{
-		"score":{
-			"scaled":0.95
-		},
-		"success":true,
-		"completion":true
-	}
-}
-```  
-
-<a name="AppendixE"/>
-
-## Appendix E: Converting Statements to 1.0.0
+## Appendix F: Converting Statements to 1.0.0
 
 ######Rationale
 This is a 1.0.0 specification, and as such implementers should not have to consider prior
@@ -3829,8 +4053,8 @@ Converted to 1.0.0:
 }
 ```
 
-<a name="AppendixF"/>
-## Appendix F: Example Signed Statement
+<a name="AppendixG"/>
+## Appendix G: Example Signed Statement
 An example signed Statement, as described in: <a href="#signature">4.4 Signed Statements</a>.
 
 The original Statement serialization to be signed. New lines in this example are included
