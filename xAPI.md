@@ -4210,7 +4210,7 @@ Signed Statement
             "description": { "en-US": "A test signature" },
             "contentType": "application/octet-stream",
             "length": 4235,
-            "sha2": "dc9589e454ff375dd5dfd6f556d2583e231e8cafe55ef40102ddd988b79f86f0"
+            "sha2": "672fa5fa658017f1b72d65036f13379c6ab05d4ab3b6664908d8acf0b6a0c634"
         }
     ]
 }
