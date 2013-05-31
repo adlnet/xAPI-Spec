@@ -3549,7 +3549,7 @@ This example shows an identified group with members.
     	"homePage" : "http://example.com/homePage",
     	"name" : "GroupAccount"
     },
-    "objectType": "Group"
+    "objectType": "Group",
     "member": [
             {
                 "name": "Andrew Downes",
