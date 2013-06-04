@@ -3136,7 +3136,7 @@ identical HTTP GET request except:
 The following is a prototype of a Bookmarklet configured using the Experience API.
 
 ###### Details
-An xAPI Bookmarklet enables individual user tracking with base authentication. Examples could be 
+An xAPI Bookmarklet enables individual user tracking with basic authentication. Examples could be 
 an "I think this," "I learned this," "I like this," or "I don't like this" Statement that allows self-reporting. 
 The following code is an implementation of such a bookmarklet, and the Statement that this bookmarklet 
 would send if used on the page: http://adlnet.gov/xapi.
