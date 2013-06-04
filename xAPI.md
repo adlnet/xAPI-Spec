@@ -3132,30 +3132,32 @@ identical HTTP GET request except:
 
 ## Appendix A: Bookmarklet
 
-An xAPI Bookmarklet enables individual user tracking with base authentication. Examples 
-could be an "I think this," "I learned this," "I like this," or "I don't like this" Statement 
-that allows self-reporting. The following is an example of such a bookmarklet, and the Statement 
-that this bookmarklet would send if used on the page: http://adlnet.gov/xapi.
+###### Description
+The following is a prototype of a Bookmarklet configured using the Experience API.
 
-The bookmarklet MAY be provided by the LRS to track a specific user
-for behavior analytics.
+###### Details
+An xAPI Bookmarklet enables individual user tracking with basic authentication. Examples could be 
+an "I think this," "I learned this," "I like this," or "I don't like this" Statement that allows self-reporting. 
+The following code is an implementation of such a bookmarklet, and the Statement that this bookmarklet 
+would send if used on the page: http://adlnet.gov/xapi.
 
-Therefore the LRS IRL, authentication, and Actor information is hard coded into 
-the bookmarklet. Note that since the authorization token must be included in 
-the bookmarklet, the LRS should provide a token with limited privileges, 
-Ideally the token should enable the storage of self-reported learning 
-Statements only. 
+The bookmarklet could also be provided by the LRS to track a specific user for behavior analytics.
 
-The UUID SHOULD be included as part of the bookmarklet PUT Statement. If a Statement 
-is POSTed without a UUID, the LRS MUST generate one.
+###### Usage
+The LRS IRL (variable "url" in the example below), authentication, and Actor information is 
+hard coded into the bookmarklet.
 
-In order to allow cross-domain reporting of Statements, a browser that supports 
-the "Access-Control-Allow-Origin" and "Access-Control-Allow-Methods" headers 
-must be used, such as IE 8+, FF 3.5+, Safari 4+, Safari iOS Chrome, or Android 
-browser. Additionally the server must set the required headers.  
+__Note:__ Since the authorization token must be included in the bookmarklet, it is recommended the LRS 
+provide a token with limited privileges. Enabling the storage of self-reported learning Statements is sufficient
+permission to get full use from this prototype.
 
-In the example below, the following values in the first few lines should be replaced
-with your own values. All other values should be left as they are. 
+In order to allow cross-domain reporting of Statements, a browser that supports the "Access-Control-Allow-Origin" 
+and "Access-Control-Allow-Methods" headers is necessary, such as IE 8+, FF 3.5+, Safari 4+, Safari iOS Chrome, or 
+Android browser. The server needs to set required headers based on the browser.
+
+In the example below, the following values in the first few lines can be replaced with your own values. All other 
+values should be left as they are. Be sure to include a UUID as a part of the bookmarket PUT statement, because 
+if one is not provided, the LRS will generate one.
 
 <table>
 	<tr>
@@ -3164,7 +3166,7 @@ with your own values. All other values should be left as they are.
 	</tr>
 	<tr>
 		<td>http://localhost:8080/xAPI/</td>
-		<td>Endpoint of the LRS to send the Statements to.</td>
+		<td>Endpoint of the LRS(where the Statements will be sent).</td>
 	</tr>
 	<tr>
 		<td>dGVzdDpwYXNzd29yZA==</td>
