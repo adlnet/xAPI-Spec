@@ -1964,14 +1964,14 @@ languages.
 <a name="miscext"/> 
 
 ### 5.3 Extensions
-Extensions are defined by a map. The keys of that map MUST be IRLs, and the 
+Extensions are defined by a map. The keys of that map MUST be IRIs, and the 
 values MAY be any JSON value or data structure. The meaning and structure of 
-extension values under an IRL key are defined by the person who coined the IRL, 
-who SHOULD be the owner of the IRL, or have permission from the owner. The owner 
-of the IRL SHOULD make a human-readable description of the intended meaning of 
-the extension supported by the IRL accessible at the IRL. A learning record store 
-MUST NOT reject an Experience API Statement based on the values of the extensions 
-map.  
+extension values under an IRI key are defined by the person who coined the IRI, 
+who SHOULD be the owner of the IRI, or have permission from the owner. If the
+extension key is an IRL, the owner of the IRL SHOULD make a human-readable description
+of the intended meaning of the extension supported by the IRL accessible at the IRL.
+A learning record store  MUST NOT reject an Experience API Statement based on the
+values of the extensions map.
 
 Extensions are available as part of Activity Definitions, as part of Statement 
 context, or as part of some Statement result. In each case, they're intended to 
@@ -3551,7 +3551,7 @@ This example shows an identified group with members.
     	"homePage" : "http://example.com/homePage",
     	"name" : "GroupAccount"
     },
-    "objectType": "Group"
+    "objectType": "Group",
     "member": [
             {
                 "name": "Andrew Downes",
