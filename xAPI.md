@@ -2006,6 +2006,12 @@ can make sense of it.
 <a name="miscmeta"/>
 
 ### 5.4 Identifier Metadata
+
+##### Description
+Additional information can be provided within a Statement about an identifier. This allows 
+etadata about the IRI to be expressed without the necessity of resolving it.
+
+##### Details
 There are several types of IRI identifiers used in this specification:
 * <a href="#verb">Verb</a>
 * <a href="#acturi">Activity id</a>
@@ -2013,9 +2019,9 @@ There are several types of IRI identifiers used in this specification:
 * <a href="#miscext">extension key</a>
 * <a href="#attachmentUsage">attachment usage type</a>
 
-For Activity ids, see <a href="#actdef">Activity Definition</a>.
+For supplying metadata about Activity ids, see <a href="#activity"> the Activity Definition Object</a>.
 
-For all other identifiers, metadata MAY be provided in the following JSON format:
+For supplying metadata about all other identifiers, see the format below:
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -2031,7 +2037,10 @@ For all other identifiers, metadata MAY be provided in the following JSON format
 	</tr>
 </table>
 
-If metadata is provided, both name and description SHOULD be included.
+##### Requirements
+* Metadata MAY be provided with an identifier.
+* If metadata is provided, both name and description SHOULD be included.
+
 
 * For any of the identifier IRIs above, if the IRI is an IRL that was coined for use with this
 specification, the owner of that IRL SHOULD
