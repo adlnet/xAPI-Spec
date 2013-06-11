@@ -1892,7 +1892,6 @@ without access to that system. Digital signatures will enable a third-party syst
 to validate such Statements.
 
 ##### Details
-
 Signed Statements include a JSON web signature (JWS) as an attachment. This allows
 the original serialization of the Statement to be included along with the signature.
 For interoperability, the "RSA + SHA" series of JWS algorithms have been selected, and
@@ -1940,21 +1939,31 @@ See <a href="#AppendixG">Appendix G: Example Signed Statement</a> for an example
 <a name="miscdocument"/> 
 
 ### 5.1 Document
+
+##### Description
 The Experience API provides a facility for Activity Providers to save arbitrary data in 
 the form of documents, which may be related to an Activity, Agent, or combination of both.  
+
+##### Details
+Note that the following table shows generic properties, not a JSON Object as many other tables 
+in this specification do. The id is stored in the IRL, "updated" is HTTP header information, and 
+"contents" is the HTTP document itself (as opposed to an Object).
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>id</td><td>String</td><td>Set by AP, unique within state scope (learner, activity).</td></tr>
+	<tr><td>id</td><td>String</td><td>Set by AP, unique within unique within the scope of the agent or activity.</td></tr>
 	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
 	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
-Note that in the REST binding, State is a document not an Object. The id is stored in the IRL, 
-updated is HTTP header information, and contents is the HTTP document itself.  
 
+##### Requirements
+
+* A document id MUST be unique within the scope of the agent or activity.
 
 <a name="misclangmap"/>
 
 ### 5.2 Language Map
+
+##### Description
 A language map is a dictionary where the key is a 
 [RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the value is a 
 string in the language specified in the tag. This map should be populated as 
@@ -1964,32 +1973,35 @@ languages.
 <a name="miscext"/> 
 
 ### 5.3 Extensions
-Extensions are defined by a map. The keys of that map MUST be IRIs, and the 
-values MAY be any JSON value or data structure. The meaning and structure of 
-extension values under an IRI key are defined by the person who coined the IRI, 
-who SHOULD be the owner of the IRI, or have permission from the owner. If the
-extension key is an IRL, the owner of the IRL SHOULD make a human-readable description
+
+##### Description
+Extensions are available as part of Activity Definitions, as part of Statement context, 
+or as part of some Statement result. In each case, they're intended to provide a natural 
+way to extend those elements for some specialized use. The contents of these extensions might 
+be something valuable to just one application, or it might be a convention used by an entire 
+community of practice.
+
+##### Details
+Extensions are defined by a map and logically relate to the part of the Statement where they are 
+present. Extensions in Statement context provide context to the core experience, while those 
+in the result provide elements related to some outcome. For Activities, extensions provide 
+additional information that helps define an Activity within some custom application or community.
+The meaning and structure of extension values under an IRI key are defined by the person who 
+controls the IRI.
+
+##### Requirements
+
+* The keys of an extensions map MUST be IRIs.
+* An LRS MUST NOT reject a Statement based on the values of the extensions map.
+* Statements SHOULD always strive to map as much information as possible into the built-in 
+elements in order to leverage interoperability among Experience API conformant tools.
+* All extension IRIs SHOULD have controllers.
+* The controller of an IRL extension key SHOULD make a human-readable description.
 of the intended meaning of the extension supported by the IRL accessible at the IRL.
-A learning record store  MUST NOT reject an Experience API Statement based on the
-values of the extensions map.
+* The values of an extensions MAY be any JSON value or data structure.
 
-Extensions are available as part of Activity Definitions, as part of Statement 
-context, or as part of some Statement result. In each case, they're intended to 
-provide a natural way to extend those elements for some specialized use. The 
-contents of these extensions might be something valuable to just one application, 
-or it might be a convention used by an entire community of practice.  
-
-Extensions should logically relate to the part of the Statement where they are 
-present. Extensions in Statement context should provide context to the core 
-experience, while those in the result should provide elements related to some 
-outcome. For Activities, they should provide additional information that helps 
-define an Activity within some custom application or community.  
-
-__Note:__ A Statement should not be totally defined by its extensions, and be 
-meaningless otherwise. Experience API Statements should be capturing experiences 
-among Actors and Objects, and SHOULD always strive to map as much information as 
-possible into the built in elements, in order to leverage interoperability among 
-Experience API conformant tools.  
+__Note:__ A Statement defined entirely by its extensions becomes meaningless as no other system 
+can make sense of it.  
 
 <a name="miscmeta"/>
 
