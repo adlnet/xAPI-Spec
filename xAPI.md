@@ -2037,29 +2037,25 @@ For supplying metadata about all other identifiers, see the format below:
 	</tr>
 </table>
 
+If this metadata is provided as described above, it is the canonical source of information about the 
+identifier it describes.  <a href="#verb-lists-and-repositories">As with Verbs</a>, we recommend that 
+Activity Providers look for and use established, widely adopted identifiers for all types of IRI 
+identifiers other than Activity id.
+
 ##### Requirements
+
 * Metadata MAY be provided with an identifier.
 * If metadata is provided, both name and description SHOULD be included.
-
-
-* For any of the identifier IRIs above, if the IRI is an IRL that was coined for use with this
-specification, the owner of that IRL SHOULD
-make this JSON metadata available at that IRL when the IRL is requested and a Content-Type
-of "application/json" is requested.
-* If this metadata is provided as described above, it is the canonical source of information
-about the identifier it describes
+* For any of the identifier IRIs above, if the IRI is an IRL created for use with this
+specification, the controller of that IRL SHOULD make this JSON metadata available at that 
+IRL when the IRL is requested and a Content-Type of "application/json" is requested.
+* Where an identifier already exists, the Activity Provider SHOULD use the corresponding existing identifier.
+* The Activity Provider MAY create and use their own Verbs where a suitable identifier does not already exist.
 * Other sources of information MAY be used to fill in missing details, such as translations, or
 take the place of this metadata entirely if it was not provided or cannot be loaded. This MAY
 include metadata in other formats stored at the IRL of an identifier, particularly if that
 identifier was not coined for use with this specification.
 
-<a href="#verb-lists-and-repositories">As with Verbs</a>, we recommend 
-that Activity Providers look for and use established, 
-widely adopted identifiers for all types of IRI identifier other than Activity id. Where an
-identifier already exists, the Activity Provider:
-
-* SHOULD use the corresponding existing identifier;
-* MAY create and use their own Verbs where a suitable identifier does not already exist.
 
 <a name="rtcom"/>
 
