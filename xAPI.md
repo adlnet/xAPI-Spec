@@ -1950,14 +1950,15 @@ in this specification do. The id is stored in the IRL, "updated" is HTTP header 
 "contents" is the HTTP document itself (as opposed to an Object).
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>id</td><td>String</td><td>Set by AP, unique within unique within the scope of the agent or activity.</td></tr>
+	<tr><td>id</td><td>String</td><td>Set by AP, unique within the scope of the agent or activity.</td></tr>
 	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
 	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
 
 ##### Requirements
 
-* A document id MUST be unique within the scope of the agent or activity.
+* A document key in relation to an agent, activity, or agent-activity(-registration) combination MUST NOT collide
+with the use of the key with another agent, activity, or agent-activity(-registration) combination.
 
 <a name="misclangmap"/>
 
@@ -1976,29 +1977,28 @@ languages.
 
 ##### Description
 Extensions are available as part of Activity Definitions, as part of Statement context, 
-or as part of some Statement result. In each case, they're intended to provide a natural 
+or as part of a Statement result. In each case, they're intended to provide a natural 
 way to extend those elements for some specialized use. The contents of these extensions might 
 be something valuable to just one application, or it might be a convention used by an entire 
 community of practice.
 
 ##### Details
 Extensions are defined by a map and logically relate to the part of the Statement where they are 
-present. Extensions in Statement context provide context to the core experience, while those 
-in the result provide elements related to some outcome. For Activities, extensions provide 
-additional information that helps define an Activity within some custom application or community.
-The meaning and structure of extension values under an IRI key are defined by the person who 
-controls the IRI.
+present. The values of an extensions can be any JSON value or data structure. Extensions in Statement 
+context provide context to the core experience, while those in the result provide elements related to 
+some outcome. For Activities, extensions provide additional information that helps define an Activity 
+within some custom application or community. The meaning and structure of extension values under an 
+IRI key are defined by the person who controls the IRI.
 
 ##### Requirements
 
 * The keys of an extensions map MUST be IRIs.
 * An LRS MUST NOT reject a Statement based on the values of the extensions map.
-* Statements SHOULD always strive to map as much information as possible into the built-in 
+* Clients SHOULD always strive to map as much information as possible into the built-in 
 elements in order to leverage interoperability among Experience API conformant tools.
 * All extension IRIs SHOULD have controllers.
 * The controller of an IRL extension key SHOULD make a human-readable description.
 of the intended meaning of the extension supported by the IRL accessible at the IRL.
-* The values of an extensions MAY be any JSON value or data structure.
 
 __Note:__ A Statement defined entirely by its extensions becomes meaningless as no other system 
 can make sense of it.  
@@ -2009,7 +2009,7 @@ can make sense of it.
 
 ##### Description
 Additional information can be provided within a Statement about an identifier. This allows 
-etadata about the IRI to be expressed without the necessity of resolving it.
+metadata about the IRI to be expressed without the necessity of resolving it.
 
 ##### Details
 There are several types of IRI identifiers used in this specification:
