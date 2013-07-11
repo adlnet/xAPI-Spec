@@ -1547,7 +1547,7 @@ A digital artifact providing evidence of a learning experience.
 In some cases an attachment may logically be an important part of a learning record. Think of a simulated 
 communication with ATC, an essay, a video, etc. Another example of such an attachment is (the image of) a 
 certificate that was granted as a result of an experience. It is useful to have a way to store these attachments 
-in and retrieve them from an LRS. 
+in and retrieve them from an LRS. In the case of wanting to include an attachment(s) for a Sub-Statement, we strongly recommend including the attachment(s) in the Statement attachment field and including the payloads as you would normally for a Statement.
 
 ###### Details
 The table below lists all properties of the Attachment Object.
