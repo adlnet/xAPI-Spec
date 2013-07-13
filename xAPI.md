@@ -3236,7 +3236,7 @@ function _ruuid() {
 ```
 {
 	"X-Experience-API-Version": "1.0",
-	"Content-Type": "application/json; charset=UTF-8",
+	"Content-Type": "application/json",
 	"Authorization": "Basic dGVzdDpwYXNzd29yZA==",
 	"Referer": "http://adlnet.gov/xapi/",
 	"Content-Length": "###",
