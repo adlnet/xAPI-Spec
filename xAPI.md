@@ -3253,9 +3253,14 @@ Body:
 		"objectType": "Agent",
 		"mbox": "mailto:learner@example.adlnet.gov"
 	},
-	"verb": "http://adlnet.gov/expapi/verbs/experienced",
+	"verb" : {
+		"id": "http://adlnet.gov/expapi/verbs/experienced",
+		"display": {
+			"en-US": "experienced"
+		}
+	},
 	"object": {
-		"id": "http://adlnet.gov/xapi/ ",
+		"id": "http://adlnet.gov/xapi/",
 		"definition": {
 			"type": "http://adlnet.gov/expapi/activities/link"
 		}
