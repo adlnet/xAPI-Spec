@@ -3235,11 +3235,12 @@ function _ruuid() {
 ###### Headers  
 ```
 {
-	"content-type": "application/json; charset=UTF-8",
-	"authorization": "d515309a-044d-4af3-9559-c041e78eb446",
-	"referer": "http://adlnet.gov/xapi/",
-	"content-length": "###",
-	"origin": "http://adlnet.gov"
+	"X-Experience-API-Version": "1.0",
+	"Content-Type": "application/json; charset=UTF-8",
+	"Authorization": "Basic dGVzdDpwYXNzd29yZA==",
+	"Referer": "http://adlnet.gov/xapi/",
+	"Content-Length": "###",
+	"Origin": "http://adlnet.gov"
 }
 ```
 
