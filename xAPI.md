@@ -113,7 +113,7 @@ associated components on how to accomplish these tasks.
 
 Specifically, the Experience API provides:  
 
-* The structure and definition of Statement, State, learner, Activity and Objects,
+* The structure and definition of Statement, State, Learner, Activity and Objects,
 which are the means by which experiences are conveyed by a Activity Provider.
 
 * Data Transfer methods for the storage and retrieval (but not validation) of
