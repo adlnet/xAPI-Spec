@@ -1957,8 +1957,9 @@ in this specification do. The id is stored in the IRL, "updated" is HTTP header 
 
 ##### Requirements
 
-* A document key in relation to an agent, activity, or agent-activity(-registration) combination MUST NOT collide
-with the use of the key with another agent, activity, or agent-activity(-registration) combination.
+* An LRS stored document key consisting of a combination of agent, activity, or agent-activity(-registration)
+MUST NOT collide with any other key with another stored agent, activity, or agent-activity(-registration) 
+combination.
 
 <a name="misclangmap"/>
 
