@@ -1583,7 +1583,7 @@ The table below lists all properties of the Attachment Object.
 	</tr>
 	<tr>
 		<td>length</td>
-		<td>integer</td>
+		<td>Integer</td>
 		<td>The length of the attachment data in octets</td>
 		<td>yes</td>
 	</tr>
