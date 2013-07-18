@@ -274,7 +274,7 @@ _high-level overview_ of a given facet of the Experience API are labeled **descr
 * [Community of Practice](#def-community-of-practice)
 * [Experience API (xAPI)](#def-experience-api)
 * [Immutable](#def-immutable)
-* [Internationalized Resource Idenfier (IRI)](#def-iri)
+* [Internationalized Resource Identifier (IRI)](#def-iri)
 * [Inverse Functional Identifier](#def-inverse-functional-identifier)
 * [Learning Management System (LMS)](#def-learning-management-system)
 * [Learning Record Store (LRS)](#def-learning-record-store)
@@ -597,7 +597,7 @@ in a given anonymous or Identified Group.
 
 <a name="inversefunctional">
 
-##### 4.1.2.3 Inverse Functional Identifier
+##### 4.1.2.3 Inverse Functional Idenfier
 ###### Description 
 An "Inverse Functional Identifier" is a value of an Agent or Identified
 Group that is guaranteed to only ever refer to that Agent or Identified Group.
