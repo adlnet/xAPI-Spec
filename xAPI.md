@@ -3204,7 +3204,7 @@ definition.type = "http://adlnet.gov/expapi/activities/link";
 
 var xhr = new XMLHttpRequest();
 xhr.open("PUT", url, true);
-xhr.setRequestHeader("X-Experience-API-Version", "1.0");
+xhr.setRequestHeader("X-Experience-API-Version", "1.0.0");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Authorization", auth);
 xhr.onreadystatechange = function() {
@@ -3235,7 +3235,7 @@ function _ruuid() {
 ###### Headers  
 ```
 {
-	"X-Experience-API-Version": "1.0",
+	"X-Experience-API-Version": "1.0.0",
 	"Content-Type": "application/json",
 	"Authorization": "Basic dGVzdDpwYXNzd29yZA==",
 	"Referer": "http://adlnet.gov/xapi/",
