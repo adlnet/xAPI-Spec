@@ -14,7 +14,7 @@
  		*	2.2.1.	[Working Group Participants](#wg)  
 		*	2.2.2.	[Requirements Gathering Participants](#reqparticipants) 
 	*	2.2.3	[Reading Guidelines for the Non-Technically Inclined](#readingguidelines)
-*	3.0.	[Definitions](#defintions)  
+*	3.0.	[Definitions](#definitions)  
 *	4.0.	[Statement](#statement)  
     *	4.1.	[Statement Properties](#stmtprops)  
         *	4.1.1.	[ID](#stmtid)  
@@ -97,7 +97,7 @@ Various refinements and clarifications including:
 - Signed Statements
 
 ###### 1.0.0 to 1.0.1
-Clarifcations and additional examples including:
+Clarifications and additional examples including:
 - Fixed various typos
 - Added additional examples in the appendices
 
@@ -262,7 +262,7 @@ are based on the specification set described below. For this reason, sections th
 _high-level overview_ of a given facet of the Experience API are labeled **description** or 
 **rationale**. Items in this document labeled as **requirements**, **details** or **examples** are more technical. 
 
-<a name="defintions"/>
+<a name="definitions"/>
  
 ## 3.0 Definitions  
 
@@ -906,7 +906,7 @@ to accept spelling fixes, but it may not accept changes to correct responses.
 
 ###### Activity Provider Requirements
 
-* An Activity Provider MUST ensure that Activity ids are not re-used across multiple Activities.
+* An Activity Provider MUST ensure that Activity ids are not reused across multiple Activities.
 * An Activity Provider MUST only generate states or Statements against a certain Activity id that are compatible
 and consistent with states or Statements previously stored against the same id.
 * An Activity Provider MUST NOT allow new versions (i.e. revisions or other platforms) of the Activity 
@@ -3880,7 +3880,7 @@ This is a 1.0.0 specification, and as such implementers should not have to consi
 versions of the specification. However, prior versions did see notable adoption. This data
 conversion is specified in order
 to preserve the data tracked using earlier versions, and make it available to new implementers
-in a consistant manner.
+in a consistent manner.
 
 ######Details
 
