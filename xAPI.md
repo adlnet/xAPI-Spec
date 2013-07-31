@@ -1583,14 +1583,14 @@ The table below lists all properties of the Attachment Object.
 	</tr>
 	<tr>
 		<td>length</td>
-		<td>integer</td>
+		<td>Integer</td>
 		<td>The length of the attachment data in octets</td>
 		<td>yes</td>
 	</tr>
 	<tr>
 		<td>sha2</td>
-		<td>base64</td>
-		<td>The SHA-2 hash of the attachment data. A minimum key size of 256 bits is recommended.</td>
+		<td>String</td>
+		<td>The SHA-2 (SHA-256, SHA-384, SHA-512) hash of the attachment data. SHA-224 SHOULD not be used: a minimum key size of 256 bits is recommended.</td>
 		<td>yes</td>
 	</tr>
 	<tr>
