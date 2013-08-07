@@ -3204,7 +3204,7 @@ definition.type = "http://adlnet.gov/expapi/activities/link";
 
 var xhr = new XMLHttpRequest();
 xhr.open("PUT", url, true);
-xhr.setRequestHeader("X-Experience-API-Version", "1.0");
+xhr.setRequestHeader("X-Experience-API-Version", "1.0.0");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Authorization", auth);
 xhr.onreadystatechange = function() {
@@ -3235,11 +3235,12 @@ function _ruuid() {
 ###### Headers  
 ```
 {
-	"content-type": "application/json; charset=UTF-8",
-	"authorization": "d515309a-044d-4af3-9559-c041e78eb446",
-	"referer": "http://adlnet.gov/xapi/",
-	"content-length": "###",
-	"origin": "http://adlnet.gov"
+	"X-Experience-API-Version": "1.0.0",
+	"Content-Type": "application/json",
+	"Authorization": "Basic dGVzdDpwYXNzd29yZA==",
+	"Referer": "http://adlnet.gov/xapi/",
+	"Content-Length": "###",
+	"Origin": "http://adlnet.gov"
 }
 ```
 
@@ -3253,9 +3254,14 @@ Body:
 		"objectType": "Agent",
 		"mbox": "mailto:learner@example.adlnet.gov"
 	},
-	"verb": "http://adlnet.gov/expapi/verbs/experienced",
+	"verb" : {
+		"id": "http://adlnet.gov/expapi/verbs/experienced",
+		"display": {
+			"en-US": "experienced"
+		}
+	},
 	"object": {
-		"id": "http://adlnet.gov/xapi/ ",
+		"id": "http://adlnet.gov/xapi/",
 		"definition": {
 			"type": "http://adlnet.gov/expapi/activities/link"
 		}
