@@ -1892,7 +1892,6 @@ without access to that system. Digital signatures will enable a third-party syst
 to validate such Statements.
 
 ##### Details
-
 Signed Statements include a JSON web signature (JWS) as an attachment. This allows
 the original serialization of the Statement to be included along with the signature.
 For interoperability, the "RSA + SHA" series of JWS algorithms have been selected, and
@@ -1940,21 +1939,27 @@ See <a href="#AppendixG">Appendix G: Example Signed Statement</a> for an example
 <a name="miscdocument"/> 
 
 ### 5.1 Document
+
+##### Description
 The Experience API provides a facility for Activity Providers to save arbitrary data in 
 the form of documents, which may be related to an Activity, Agent, or combination of both.  
+
+##### Details
+Note that the following table shows generic properties, not a JSON Object as many other tables 
+in this specification do. The id is stored in the IRL, "updated" is HTTP header information, and 
+"contents" is the HTTP document itself (as opposed to an Object).
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>id</td><td>String</td><td>Set by AP, unique within state scope (learner, activity).</td></tr>
+	<tr><td>id</td><td>String</td><td>Set by AP, unique within the scope of the agent or activity.</td></tr>
 	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
 	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
-Note that in the REST binding, State is a document not an Object. The id is stored in the IRL, 
-updated is HTTP header information, and contents is the HTTP document itself.  
-
 
 <a name="misclangmap"/>
 
 ### 5.2 Language Map
+
+##### Description
 A language map is a dictionary where the key is a 
 [RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the value is a 
 string in the language specified in the tag. This map should be populated as 
@@ -1964,36 +1969,44 @@ languages.
 <a name="miscext"/> 
 
 ### 5.3 Extensions
-Extensions are defined by a map. The keys of that map MUST be IRIs, and the 
-values MAY be any JSON value or data structure. The meaning and structure of 
-extension values under an IRI key are defined by the person who coined the IRI, 
-who SHOULD be the owner of the IRI, or have permission from the owner. If the
-extension key is an IRL, the owner of the IRL SHOULD make a human-readable description
+
+##### Description
+Extensions are available as part of Activity Definitions, as part of Statement context, 
+or as part of a Statement result. In each case, they're intended to provide a natural 
+way to extend those elements for some specialized use. The contents of these extensions might 
+be something valuable to just one application, or it might be a convention used by an entire 
+community of practice.
+
+##### Details
+Extensions are defined by a map and logically relate to the part of the Statement where they are 
+present. The values of an extensions can be any JSON value or data structure. Extensions in Statement 
+context provide context to the core experience, while those in the result provide elements related to 
+some outcome. For Activities, extensions provide additional information that helps define an Activity 
+within some custom application or community. The meaning and structure of extension values under an 
+IRI key are defined by the person who controls the IRI.
+
+##### Requirements
+
+* The keys of an extensions map MUST be IRIs.
+* An LRS MUST NOT reject a Statement based on the values of the extensions map.
+* Clients SHOULD always strive to map as much information as possible into the built-in 
+elements in order to leverage interoperability among Experience API conformant tools.
+* All extension IRIs SHOULD have controllers.
+* The controller of an IRL extension key SHOULD make a human-readable description.
 of the intended meaning of the extension supported by the IRL accessible at the IRL.
-A learning record store  MUST NOT reject an Experience API Statement based on the
-values of the extensions map.
 
-Extensions are available as part of Activity Definitions, as part of Statement 
-context, or as part of some Statement result. In each case, they're intended to 
-provide a natural way to extend those elements for some specialized use. The 
-contents of these extensions might be something valuable to just one application, 
-or it might be a convention used by an entire community of practice.  
-
-Extensions should logically relate to the part of the Statement where they are 
-present. Extensions in Statement context should provide context to the core 
-experience, while those in the result should provide elements related to some 
-outcome. For Activities, they should provide additional information that helps 
-define an Activity within some custom application or community.  
-
-__Note:__ A Statement should not be totally defined by its extensions, and be 
-meaningless otherwise. Experience API Statements should be capturing experiences 
-among Actors and Objects, and SHOULD always strive to map as much information as 
-possible into the built in elements, in order to leverage interoperability among 
-Experience API conformant tools.  
+__Note:__ A Statement defined entirely by its extensions becomes meaningless as no other system 
+can make sense of it.  
 
 <a name="miscmeta"/>
 
 ### 5.4 Identifier Metadata
+
+##### Description
+Additional information can be provided within a Statement about an identifier. This allows 
+metadata about the IRI to be expressed without the necessity of resolving it.
+
+##### Details
 There are several types of IRI identifiers used in this specification:
 * <a href="#verb">Verb</a>
 * <a href="#acturi">Activity id</a>
@@ -2001,9 +2014,9 @@ There are several types of IRI identifiers used in this specification:
 * <a href="#miscext">extension key</a>
 * <a href="#attachmentUsage">attachment usage type</a>
 
-For Activity ids, see <a href="#actdef">Activity Definition</a>.
+For supplying metadata about Activity ids, see <a href="#activity"> the Activity Definition Object</a>.
 
-For all other identifiers, metadata MAY be provided in the following JSON format:
+For supplying metadata about all other identifiers, see the format below:
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -2019,26 +2032,25 @@ For all other identifiers, metadata MAY be provided in the following JSON format
 	</tr>
 </table>
 
-If metadata is provided, both name and description SHOULD be included.
+If this metadata is provided as described above, it is the canonical source of information about the 
+identifier it describes.  <a href="#verb-lists-and-repositories">As with Verbs</a>, we recommend that 
+Activity Providers look for and use established, widely adopted identifiers for all types of IRI 
+identifiers other than Activity id.
 
-* For any of the identifier IRIs above, if the IRI is an IRL that was coined for use with this
-specification, the owner of that IRL SHOULD
-make this JSON metadata available at that IRL when the IRL is requested and a Content-Type
-of "application/json" is requested.
-* If this metadata is provided as described above, it is the canonical source of information
-about the identifier it describes
+##### Requirements
+
+* Metadata MAY be provided with an identifier.
+* If metadata is provided, both name and description SHOULD be included.
+* For any of the identifier IRIs above, if the IRI is an IRL created for use with this
+specification, the controller of that IRL SHOULD make this JSON metadata available at that 
+IRL when the IRL is requested and a Content-Type of "application/json" is requested.
+* Where an identifier already exists, the Activity Provider SHOULD use the corresponding existing identifier.
+* The Activity Provider MAY create and use their own Verbs where a suitable identifier does not already exist.
 * Other sources of information MAY be used to fill in missing details, such as translations, or
 take the place of this metadata entirely if it was not provided or cannot be loaded. This MAY
 include metadata in other formats stored at the IRL of an identifier, particularly if that
 identifier was not coined for use with this specification.
 
-<a href="#verb-lists-and-repositories">As with Verbs</a>, we recommend 
-that Activity Providers look for and use established, 
-widely adopted identifiers for all types of IRI identifier other than Activity id. Where an
-identifier already exists, the Activity Provider:
-
-* SHOULD use the corresponding existing identifier;
-* MAY create and use their own Verbs where a suitable identifier does not already exist.
 
 <a name="rtcom"/>
 
