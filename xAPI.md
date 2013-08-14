@@ -1955,12 +1955,6 @@ in this specification do. The id is stored in the IRL, "updated" is HTTP header 
 	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
 
-##### Requirements
-
-* An LRS stored document key consisting of a combination of agent, activity, or agent-activity(-registration)
-MUST NOT collide with any other key with another stored agent, activity, or agent-activity(-registration) 
-combination.
-
 <a name="misclangmap"/>
 
 ### 5.2 Language Map
