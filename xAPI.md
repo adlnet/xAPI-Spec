@@ -754,7 +754,7 @@ _Language_
 A Verb in the Experience API is an IRI, and denotes a specific meaning not tied to any particular language. 
 
 For example, a particular Verb IRI such as http://example.org/firearms#fire might denote the action of firing a gun, 
-or the Verb IRI http://example.com/???/?????? might denote the action of reading a book. 
+or the Verb IRI http://example.com/فعل/خواندن might denote the action of reading a book. 
 
 ##### 4.1.3.2 Use in Communities of Practice
 
