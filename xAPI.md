@@ -2815,7 +2815,7 @@ Returns: 200 OK, Array of ids
 		<td>The Activity id associated with these states.</td>
 	</tr>
 	<tr><td>agent</td><td>JSON<</td><td>yes</td>
-		<td>The Actor associated with these states.</td>
+		<td>The Agent associated with these states.</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td>no</td>
 		<td>The registration id associated with these states.</td>
@@ -2838,7 +2838,7 @@ Returns: 204 No Content
 		<td>The Activity id associated with this state.</td>
 	</tr>
 	<tr><td>agent</td><td>JSON<</td><td>yes</td>
-		<td>The Actor associated with this state.</td>
+		<td>The Agent associated with this state.</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td>no</td>
 		<td>The registration id associated with this state.</td>
