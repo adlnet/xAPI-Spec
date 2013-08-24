@@ -164,7 +164,7 @@ OSD, Training Readiness & Strategy (TRS)
 
 ### 2.2.1 Working Group Participants  
 <table>
-	<tr><th>_Name_</th><th>_Organization_</th></tr>
+	<tr><th>Name</th><th>Organization</th></tr>
 	<tr><td>Aaron Silvers</td><td>ADL</td></tr>
 	<tr><td>Al Bejcek</td><td>NetDimensions</td></tr>
 	<tr><td>Ali Shahrazad</td><td>SaLTBOX</td></tr>
