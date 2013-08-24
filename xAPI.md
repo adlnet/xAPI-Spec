@@ -2471,8 +2471,8 @@ Stores Statement with the given id.
 Returns: ```204 No Content```  
 
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
-	<tr><td>statementId</td><td>String</td><td> </td><td>Id of Statement to record</td></tr>
+	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Required</th><th>Description</th></tr>
+	<tr><td>statementId</td><td>String</td><td> </td><td>Required</td><td>Id of Statement to record</td></tr>
 </table>
 
 ###### POST Statements
