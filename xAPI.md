@@ -2444,7 +2444,7 @@ or the method to retrieve a single Statement.
 
 * ```409 Conflict``` - Indicates an error condition due to a conflict with the 
 current state of a resource, in the case of State API, Agent Profile or Activity Profile API
-calls, or in the Statement PUT call. See Section [6.3 Concurrency](#concurrency) for more details.
+calls, or in the Statement PUT or POST calls. See Section [6.3 Concurrency](#concurrency) for more details.
 
 * ```412 Precondition Failed``` - Indicates an error condition due to a failure of 
 a precondition posted with the request, in the case of State or Agent Profile or Activity Profile 
