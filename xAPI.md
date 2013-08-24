@@ -1749,7 +1749,7 @@ included elsewhere, to emphasize, clarify, and provide implementation guidance.
 Complete IRI validation is extremely difficult, so much of the burden for ensuring data portability is on the Client.
 
 * Values requiring IRIs MUST be sent with valid IRIs. 
-* Keys of language maps MUST be sent with valid RFC 5646 language tags, for similar reasons.
+* Keys of language maps MUST be sent with valid [RFC 5646](http://tools.ietf.org/html/rfc5646) language tags, for similar reasons.
 * A library SHOULD be used to construct IRIs, as opposed to string concatenation. 
 
 ###### LRS Requirements
@@ -1758,7 +1758,7 @@ Complete IRI validation is extremely difficult, so much of the burden for ensuri
     * with any null values (except inside extensions).
     * with strings where numbers are required, even if those strings contain numbers.
     * with strings where booleans are required, even if those strings contain booleans.
-    * with any non-format-following key or value, including the empty string, where a.
+    * with any non-format-following key or value, including the empty string, where a
       string with a particular format (such as mailto IRI, UUID, or IRI) is required.
     * where the case of a key does not match the case specified in the standard.
     * where the case of a value restricted to enumerated values does not match
