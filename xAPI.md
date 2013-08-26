@@ -618,7 +618,7 @@ The table below lists all possible Inverse Functional Identifier properties.
 	Only email addresses that have only ever been and will ever be assigned to this Agent, 
 but no others, should be used for this property and mbox_sha1sum.</td></tr>
 	<tr><td>mbox_sha1sum</td><td>String</td><td>The SHA1 hash of a mailto IRI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
-	<tr><td>openID</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
+	<tr><td>openid</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
 	<tr><td>account</td><td><a href="#agentaccount">Object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
 </table>
 
@@ -635,7 +635,7 @@ system (social networking site).
 ###### Details
 
 * If the system that provides the account Object uses OpenID, the Activity Provider
-SHOULD use the openID property instead of an account Object.
+SHOULD use the openid property instead of an account Object.
 * If the Activity Provider is concerned about revealing personally identifiable
 information about an Agent or Group, it SHOULD use an opaque account name (for example an
 account number) to identify all Statements about a person while maintaining anonymity.
@@ -3913,7 +3913,7 @@ A 1.0.0 system converting a Statement created in 0.9 MUST follow the steps below
 * Prefix any extension keys which are not full absolute IRIs with "tag:adlnet.gov,2013:expapi:0.9:extensions:"
 * Prefix Activity types with "http://adlnet.gov/expapi/activities/"
 * for each Agent (Actor):
-    * Search for Inverse Functional Identifiers in this order: "mbox, mbox_sha1sum, openId,
+    * Search for Inverse Functional Identifiers in this order: "mbox, mbox_sha1sum, openid,
     account". Keep the first populated Inverse Functional Identifier found and discard the rest.
     * For the above Inverse Functional Identifier, take the first element in the array and
     use that as the value of that Inverse Functional Identifier property, discarding any
