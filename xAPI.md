@@ -164,7 +164,7 @@ OSD, Training Readiness & Strategy (TRS)
 
 ### 2.2.1 Working Group Participants  
 <table>
-	<tr><th>_Name_</th><th>_Organization_</th></tr>
+	<tr><th>Name</th><th>Organization</th></tr>
 	<tr><td>Aaron Silvers</td><td>ADL</td></tr>
 	<tr><td>Al Bejcek</td><td>NetDimensions</td></tr>
 	<tr><td>Ali Shahrazad</td><td>SaLTBOX</td></tr>
@@ -1621,7 +1621,7 @@ following criteria:
 
 * It MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for Statement 
 results when the attachments filter is false.
-* It MUST conform to the definition of multipart/mixed in RFC 1341 and:
+* It MUST conform to the definition of multipart/mixed in [RFC 1341](http://www.w3.org/Protocols/rfc1341/7_2_Multipart.html) and:
     * The first part of the multipart document MUST contain the Statements themselves, with type "application/json".
     * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
 capability will be available when issuing PUT or POST against the Statement resource.
@@ -1749,7 +1749,7 @@ included elsewhere, to emphasize, clarify, and provide implementation guidance.
 Complete IRI validation is extremely difficult, so much of the burden for ensuring data portability is on the Client.
 
 * Values requiring IRIs MUST be sent with valid IRIs. 
-* Keys of language maps MUST be sent with valid RFC 5646 language tags, for similar reasons.
+* Keys of language maps MUST be sent with valid [RFC 5646](http://tools.ietf.org/html/rfc5646) language tags, for similar reasons.
 * A library SHOULD be used to construct IRIs, as opposed to string concatenation. 
 
 ###### LRS Requirements
@@ -1758,7 +1758,7 @@ Complete IRI validation is extremely difficult, so much of the burden for ensuri
     * with any null values (except inside extensions).
     * with strings where numbers are required, even if those strings contain numbers.
     * with strings where booleans are required, even if those strings contain booleans.
-    * with any non-format-following key or value, including the empty string, where a.
+    * with any non-format-following key or value, including the empty string, where a
       string with a particular format (such as mailto IRI, UUID, or IRI) is required.
     * where the case of a key does not match the case specified in the standard.
     * where the case of a value restricted to enumerated values does not match
