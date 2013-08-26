@@ -2444,7 +2444,7 @@ or the method to retrieve a single Statement.
 
 * ```409 Conflict``` - Indicates an error condition due to a conflict with the 
 current state of a resource, in the case of State API, Agent Profile or Activity Profile API
-calls, or in the Statement PUT call. See Section [6.3 Concurrency](#concurrency) for more details.
+calls, or in the Statement PUT or POST calls. See Section [6.3 Concurrency](#concurrency) for more details.
 
 * ```412 Precondition Failed``` - Indicates an error condition due to a failure of 
 a precondition posted with the request, in the case of State or Agent Profile or Activity Profile 
@@ -2761,7 +2761,7 @@ If the original document does not exist, the LRS MUST treat the request the same
 would a PUT request and store the document being posted.
 
 If the merge is successful, the LRS MUST respond with HTTP 
-status code 204 "No Content".
+status code ```204 No Content```.
 
 If an AP needs to delete
 a property, it SHOULD use a PUT request to replace the whole document as described below. 
@@ -2783,7 +2783,8 @@ Example endpoint: http://example.com/xAPI/activities/state
 Stores, fetches, or deletes the document specified by the given stateId that 
 exists in the context of the specified Activity, Agent, and registration (if specified).  
 
-Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - State Content  
+Returns (PUT | POST | DELETE): ```204 No Content```  
+Returns (GET): ```200 OK```, State Content  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
@@ -2808,7 +2809,7 @@ registration if specified\]). If "since" parameter is specified, this
 is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
 
-Returns: 200 OK, Array of ids  
+Returns: ```200 OK```, Array of ids  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
@@ -2831,7 +2832,7 @@ Example endpoint: http://example.com/xAPI/activities/state
 Deletes all state data for this context (Activity + Agent \[+ registration if 
 specified\]).  
 
-Returns: 204 No Content  
+Returns: ```204 No Content```  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
@@ -2866,7 +2867,7 @@ Example endpoint: http://example.com/xAPI/activities
 
 Loads the complete Activity Object specified.  
 
-Returns: 200 OK - Content  
+Returns: ```200 OK```, Content 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
@@ -2880,7 +2881,8 @@ Example endpoint: http://example.com/xAPI/activities/profile
 Saves/retrieves/deletes the specified profile document in the context of the 
 specified Activity.  
 
-Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content  
+Returns (PUT | POST | DELETE): ```204 No Content```  
+Returns (GET): ```200 OK```, Profile Content  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
@@ -2898,7 +2900,7 @@ Loads ids of all profile entries for an Activity. If "since" parameter is
 specified, this is limited to entries that have been stored or updated since 
 the specified timestamp (exclusive).  
 
-Returns: 200 OK - List of ids  
+Returns: ```200 OK```, List of ids  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th><tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
@@ -2976,7 +2978,7 @@ same definition as the similarly named property from Agent Objects.
 
 See also: [Section 4.1.2.1 Agent](#agent).
 
-Returns: ```200 OK - Expanded Agent Object```
+Returns: ```200 OK```, Expanded Agent Object
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
@@ -2992,7 +2994,8 @@ Example endpoint: http://example.com/xAPI/agents/profile
 Saves/retrieves/deletes the specified profile document in the context of the 
 specified Agent.  
 
-Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content  
+Returns (PUT | POST | DELETE): ```204 No Content```  
+Returns (GET): ```200 OK```, Profile Content  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
@@ -3011,7 +3014,7 @@ Loads ids of all profile entries for an Agent. If "since" parameter is specified
 this is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
 
-Returns: 200 OK - List of ids  
+Returns: ```200 OK```, List of ids  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>agent</td><td>Object (JSON)</td><td>yes</td>
@@ -3040,7 +3043,7 @@ decide which version to use when communicating with the LRS. Extensions are incl
 allow other uses to emerge.
 
 ###### Details
-Returns: 200 OK - Single 'about' JSON document.
+Returns: ```200 OK```, Single 'about' JSON document.
 <table border="1">
 <tr><th>property</th><th>type</th><th>description</th></tr>
 <td>version</td><td>array of version strings</td><td>xAPI versions this LRS supports</td>
