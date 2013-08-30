@@ -1410,12 +1410,14 @@ A timestamp in a Statement can differ from
 experience and the reception of the corresponding Statement by the LRS. 
 
 Where the experience occurs over a peroid of time, the timestamp can be assumed to represent the time of
-the start of the experience. This is the case whether or not a duration is specified as part of the statement's result.
+the end of the experience. This is the case whether or not a duration is specified as part of the statement's result. 
+Statements are past tense in nature, and therefore issued once the experience has happened. The start of the experience 
+can be reported in a separate statement if required, using an appropriate verb to denote starting. 
 
 ###### Requirements
 * A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
 * A timestamp SHOULD include the timezone.
-* A timestamp SHOULD represent the start point of the experience if the experience happened over a peroid of time. 
+* A timestamp SHOULD represent the end point of the experience if the experience happened over a peroid of time. 
 * A timestamp SHOULD be the current or a past time when it is outside of a Sub-Statement.
 * A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
 * A timestamp MAY be a moment in the future, to denote a deadline for planned learning, provided it is included 
