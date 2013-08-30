@@ -2418,11 +2418,12 @@ this specification).
 
 ### 7.1 Error Codes
 
+##### Description
+
 The list below offers some general guidance on HTTP error codes that could
-be returned from various methods in the API. An LRS MUST return the error
-code most appropriate to the error condition based on the list below, and
-SHOULD return a message in the
-response explaining the cause of the error.  
+be returned from various methods in the API. 
+
+##### Details 
 
 * ```400 Bad Request``` - Indicates
 an error condition caused by an invalid or missing argument. The term 
@@ -2457,6 +2458,12 @@ MUST be configurable to accept Statements of any size.
 
 * ```500 Internal Server Error``` - Indicates a general error condition, typically an 
 unexpected exception in processing on the server.
+
+##### Requirements
+
+* An LRS MUST return the error code most appropriate to the error condition from the list above.
+
+* An LRS SHOULD return a message in the response explaining the cause of the error.
 
 <a name="stmtapi"/> 
 
