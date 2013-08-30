@@ -1402,7 +1402,7 @@ useful when the Object of the Statement is an Agent, not an Activity.
 #### 4.1.7 Timestamp
 
 ###### Description
-The time at which the experience occured.
+The time at which the experience occurred.
 
 ###### Details
 A timestamp in a Statement can differ from 
