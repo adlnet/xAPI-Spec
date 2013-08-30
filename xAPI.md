@@ -1432,7 +1432,7 @@ inside a Sub-Statement.
 The time at which a Statement is stored by the LRS.
 
 The stored property is the literal time the Statement was stored.  Use [Timestamp](#timestamp) 
-to record a time at which the experience described in the Statement occured.
+to record a time at which the experience described in the Statement occurred.
 
 ###### Requirements
 
