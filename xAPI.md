@@ -46,7 +46,11 @@
 		*	6.4.2.	[OAuth Authorization Scope](#oauthscope)  
 *	7.0.	[Data Transfer (REST)](#datatransfer)  
     *	7.1.	[Error Codes](#errorcodes)  
-    *	7.2.	[Statement API](#stmtapi)  
+    *	7.2.	[Statement API](#stmtapi)
+    	*	7.2.1 [PUT Statements](#stmtapiput)
+    	*	7.2.2 [POST Statements](#stmtapipost)
+    	*	7.2.3 [GET Statements](#stmtapiget)
+    	*	7.2.4 [Voided Statements](#voidedStatements)	  
     *	7.3.	[Document APIs](#docapis)  
     *	7.4.	[State API](#stateapi)  
     *	7.5.	[Activity Profile API](#actprofapi)  
@@ -2461,9 +2465,18 @@ unexpected exception in processing on the server.
 <a name="stmtapi"/> 
 
 ### 7.2 Statement API
+
+###### Description
+
 The basic communication mechanism of the Experience API.  
 
-###### PUT Statements
+
+<a name="#stmtapiput"/>
+
+####7.2.1 PUT Statements
+
+###### Details
+
 Example endpoint: ```http://example.com/xAPI/statements```
 
 Stores Statement with the given id.
@@ -2475,7 +2488,24 @@ Returns: ```204 No Content```
 	<tr><td>statementId</td><td>String</td><td> </td><td>Required</td><td>Id of Statement to record</td></tr>
 </table>
 
-###### POST Statements
+###### Requirements
+
+* An LRS MUST NOT make any modifications to its state based on a receiving a Statement
+with a statementID that it already has a Statement for. Whether it responds with
+```409 Conflict``` or ```204 No Content```, it MUST NOT modify the Statement or any other
+Object.
+
+* If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
+verify the received Statement matches the existing one and return ```409 Conflict``` if they
+do not match.
+
+* The LRS MAY respond before Statements that have been stored are available for retrieval.
+
+<a name="#stmtapipost"/>
+
+####7.2.2 POST Statements
+
+###### Details
 
 Example endpoint: ```http://example.com/xAPI/statements```
 
@@ -2489,20 +2519,28 @@ that provide a lot of data to the LRS.
 
 Returns: ```200 OK```, Statement id(s) (UUID).  
 
-###### Common requirements for PUT and POST
+###### Requirements
 
-An LRS MUST NOT make any modifications to its state based on a receiving a Statement
+* An LRS MUST NOT make any modifications to its state based on a receiving a Statement
 with a statementID that it already has a Statement for. Whether it responds with
 ```409 Conflict``` or ```204 No Content```, it MUST NOT modify the Statement or any other
 Object.
 
-If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
+* If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
 verify the received Statement matches the existing one and return ```409 Conflict``` if they
 do not match.
 
-The LRS MAY respond before Statements that have been stored are available for retrieval.
+* The LRS MAY respond before Statements that have been stored are available for retrieval.
 
-###### GET Statements
+* GET Statements MAY be called using POST and form fields if necessary as query strings have limits. 
+
+* The LRS MUST differentiate a POST to add a Statement or to list Statements based on the parameters passed.
+
+<a name="#stmtapiget"/>
+
+####7.2.3 GET Statements
+
+###### Details
 
 Example endpoint: ```http://example.com/xAPI/statements```
 
@@ -2573,63 +2611,49 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 			maximum the server will allow.</td>
 	</tr>
 	<tr><td>format</td><td>String: ("ids", "exact", or "canonical")</td><td>exact</td>
-		<td>If "ids", only include minimum information necessary in Agent,
-			Activity, and Group Objects to identify them. For anonymous groups this means
-			including the minimum information needed to identify each member.
+		<td>If "ids", only include minimum information necessary in Agent, Activity, 
+			and Group Objects to identify them. For anonymous groups this means including 
+			the minimum information needed to identify each member. 
 
-			If "exact", return Agent,
-			Activity, and Group Objects populated exactly as they were when the Statement
-			was received.<br/><br/>
+			If "exact", return Agent, Activity, and Group Objects populated exactly as they were 
+			when the Statement was received. An LRS requesting Statements for the purpose of 
+			importing them would use a format of "exact".<br/><br/>
 			
 			If "canonical", return Activity Objects populated with the canonical
 			definition of the Activity Objects as determined by the LRS, after
 			applying the language filtering process defined below, and return the original
-			Agent Objects as in "exact" mode.
+			Agent Objects as in "exact" mode.<br/><br/>
 
-			Activity Objects contain Language Map Objects for name and 
-			description. Only one language should be returned in each of 
-			these maps.<br/><br/>
+			<b>Cannonical Language Process:</b> Activity Objects contain Language Map Objects for name and 
+			description. Only one language should be returned in each of these maps.<br/><br/>
 
-			In order to provide these strings in the most relevant language, 
-			the LRS will apply the Accept-Language header as described in 
-			<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">
-			RFC 2616</a> (HTTP 1.1), except that this logic will 
-			be applied to each language map individually to select which 
-			language entry to include, rather than to the resource (list of 
-			Statements) as a whole.
-
-			An LRS requesting Statements for the purpose of importing them SHOULD use a format of "exact".
+			In the event of format being “canonical”, only one language should be returned in each of these maps.In order to choose the most relevant language, the LRS will apply the Accept-Language header as described in <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a> (HTTP 1.1), except that this logic will be applied to each language map individually to select which 
+			language entry to include, rather than to the resource (list of Statements) as a whole.
 		</td>
 	</tr>
 	<tr><td>attachments</td><td>Boolean</td><td>False</td>
-		<td>If true LRS MUST use the multipart response format and include all
-            attachments as described in <a href="#attachments">4.1.11.
-            Attachments</a>, otherwise the LRS MUST NOT include attachment raw data and MUST send the prescribed response with Content-Type
-            application/json.</td>
+		<td>If true, the LRS uses the multipart response format and includes all attachments as described previously.  If false, the LRS sends the prescribed response with Content-Type application/json and cannot use attachments.</td>
 	</tr>
 	<tr><td>ascending</td><td>Boolean</td><td>False</td>
 		<td>If true, return results in ascending order of stored time</td>
 	</tr>
 </table>
 
-The LRS MUST reject with an ```HTTP 400``` error any requests to this resource which:
+###### Requirements
 
-* contain both statementId and voidedStatementId parameters
+* The LRS MUST reject with an ```HTTP 400``` error any requests to this resource which contain both 
+statementId and voidedStatementId parameters
 
-* contain statementId or voidedStatementId parameters, and also contain any other parameter 
-besides "attachments" or "format".
 
-The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
+* The LRS MUST reject with an ```HTTP 400``` error any requests to this resource which contain statementId or voidedStatementId parameters, and also contain any other parameter besides "attachments" or "format".
+
+* The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
 <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601
 combined date and time</a> format, on all responses to Statements requests, with a value of the 
 timestamp for which all Statements that have or will have a "stored" property before that time 
 are known with reasonable certainty to be available for retrieval. This time SHOULD take into 
 account any temporary condition, such as excessive load, which might cause a delay in Statements 
 becoming available for retrieval.
-
-__Note:__ Due to query string limits, this method MAY be called using POST and
-form fields if necessary. The LRS MUST differentiate a POST to add a Statement
-or to list Statements based on the parameters passed.  
 
 <a name="queryStatementRef" />
 
@@ -2652,23 +2676,26 @@ being fetched.
 
 This section does not apply when retrieving Statements with statementId or voidedStatementId.
 
-###### Note 
-
-StatementRefs used in the statement field in context do not affect how
+__Note:__StatementRefs used in the statement field in context do not affect how
 Statements are filtered.
 
 <a name="voidedStatements" />
 
-###### Voided Statements
+####7.2.4 Voided Statements
 
-The LRS MUST not return any Statement which has been voided, unless that Statement has been
-requested by voidedStatementId. The LRS MUST still return any Statements targeting the voided 
+###### Requirements
+
+* The LRS MUST not return any Statement which has been voided, unless that Statement has been
+requested by voidedStatementId. 
+
+* The LRS MUST still return any Statements targeting the voided 
 Statement when retrieving Statements using explicit or implicit time or sequence based retrieval,
 unless they themselves have been voided, as described in
 [the section on filter conditions for StatementRefs](#queryStatementRef). This includes the
 voiding Statement, which cannot be voided. Reporting tools can identify the presence and
-statementId of any voided Statements by the target of the voiding Statement. Reporting 
-tools wishing to retrieve voided Statements SHOULD request these individually by 
+statementId of any voided Statements by the target of the voiding Statement. 
+
+*Reporting tools wishing to retrieve voided Statements SHOULD request these individually by 
 voidedStatementId.
 
 <a name="docapis" />
