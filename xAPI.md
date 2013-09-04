@@ -2679,13 +2679,8 @@ The three Document APIs provide [document](#miscdocument) storage for learning a
 providers and Agents. The details of each API are found in the following sections, and the 
 information in this section applies to all three APIs.
 
-###### New Agents and Activities
+###### Details
 
-An Activity Provider MAY send documents to any of the document APIs for Activities and Agents that
-the LRS does not have prior knowledge of. The LRS MUST NOT reject documents on the basis of not 
-having prior knowledge of the Activity and/or Agent. 
-
-###### POST to store application/json arrays of variables
 <table>
 	<tr>
 		<th>API</th>
@@ -2713,8 +2708,16 @@ having prior knowledge of the Activity and/or Agent.
 	</tr>
 </table>
 
-APs MAY use Documents of content type "application/json" to store sets of variables. For example a document 
-contains:
+###### Requirements
+
+* An Activity Provider MAY send documents to any of the document APIs for Activities and Agents that the LRS does not have prior knowledge of. 
+
+* The LRS MUST NOT reject documents on the basis of not having prior knowledge of the Activity and/or Agent.
+
+
+###### JSON Procedure with Requirements
+
+Activity Providers MAY use Documents of content type "application/json" to store sets of variables. The following process walks through that process and the process requirements.  For example, a document contains: 
 
 ```
 {
@@ -2753,8 +2756,8 @@ the resulting document stored in the LRS is:
 ```
 If the original document exists, and the original document or the document being posted
 do not have a Content-Type:
-of "application/json", or if either document can not be parsed as JSON Objects, the LRS MUST
-respond with HTTP status code 400 "Bad Request", and MUST NOT update the target document
+of "application/json", or if either document cannot be parsed as JSON Objects, the LRS MUST
+respond with HTTP status code ```400 Bad Request```, and MUST NOT update the target document
 as a result of the request. 
 
 If the original document does not exist, the LRS MUST treat the request the same as it 
