@@ -2391,7 +2391,7 @@ parameters, not in the OAuth header.
 ##### Example
 The list of scopes determines the set of permissions that is being requested. 
 For example,an instructor might grant "statements/read" to a reporting tool, 
-but the LRS would stilllimit that tool to Statements that the instructor could 
+but the LRS would still limit that tool to Statements that the instructor could 
 read if querying the LRS with theircredentials directly (such as Statements 
 relating to their students).
 
