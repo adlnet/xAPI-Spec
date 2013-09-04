@@ -2532,9 +2532,11 @@ do not match.
 
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 
-* GET Statements MAY be called using POST and form fields if necessary as query strings have limits. 
+* GET Statements MAY be called using POST and form fields if necessary as query strings 
+have limits. 
 
-* The LRS MUST differentiate a POST to add a Statement or to list Statements based on the parameters passed.
+* The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
+parameters passed.
 
 <a name="#stmtapiget"/>
 
@@ -2615,24 +2617,30 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 			and Group Objects to identify them. For anonymous groups this means including 
 			the minimum information needed to identify each member. 
 
-			If "exact", return Agent, Activity, and Group Objects populated exactly as they were 
-			when the Statement was received. An LRS requesting Statements for the purpose of 
-			importing them would use a format of "exact".<br/><br/>
+			If "exact", return Agent, Activity, and Group Objects populated exactly as they 
+			were when the Statement was received. An LRS requesting Statements for the purpose 
+			of importing them would use a format of "exact".<br/><br/>
 			
 			If "canonical", return Activity Objects populated with the canonical
 			definition of the Activity Objects as determined by the LRS, after
 			applying the language filtering process defined below, and return the original
 			Agent Objects as in "exact" mode.<br/><br/>
 
-			<b>Cannonical Language Process:</b> Activity Objects contain Language Map Objects for name and 
-			description. Only one language should be returned in each of these maps.<br/><br/>
+			<b>Cannonical Language Process:</b> Activity Objects contain Language Map Objects 
+			for name and description. Only one language should be returned in each of these maps.<br/><br/>
 
-			In the event of format being “canonical”, only one language should be returned in each of these maps.In order to choose the most relevant language, the LRS will apply the Accept-Language header as described in <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a> (HTTP 1.1), except that this logic will be applied to each language map individually to select which 
+			In the event of format being “canonical”, only one language should be returned in 
+			each of these maps.In order to choose the most relevant language, the LRS will 
+			apply the Accept-Language header as described in 
+			<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a> (HTTP 1.1), 
+			except that this logic will be applied to each language map individually to select which 
 			language entry to include, rather than to the resource (list of Statements) as a whole.
 		</td>
 	</tr>
 	<tr><td>attachments</td><td>Boolean</td><td>False</td>
-		<td>If true, the LRS uses the multipart response format and includes all attachments as described previously.  If false, the LRS sends the prescribed response with Content-Type application/json and cannot use attachments.</td>
+		<td>If true, the LRS uses the multipart response format and includes all attachments as 
+		described previously.  If false, the LRS sends the prescribed response with Content-Type 
+		application/json and cannot use attachments.</td>
 	</tr>
 	<tr><td>ascending</td><td>Boolean</td><td>False</td>
 		<td>If true, return results in ascending order of stored time</td>
@@ -2641,11 +2649,13 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 
 ###### Requirements
 
-* The LRS MUST reject with an ```HTTP 400``` error any requests to this resource which contain both 
-statementId and voidedStatementId parameters
+* The LRS MUST reject with an ```HTTP 400``` error any requests to this resource 
+which contain both statementId and voidedStatementId parameters
 
 
-* The LRS MUST reject with an ```HTTP 400``` error any requests to this resource which contain statementId or voidedStatementId parameters, and also contain any other parameter besides "attachments" or "format".
+* The LRS MUST reject with an ```HTTP 400``` error any requests to this resource 
+which contain statementId or voidedStatementId parameters, and also contain any 
+other parameter besides "attachments" or "format".
 
 * The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
 <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601
