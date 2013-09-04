@@ -2395,24 +2395,19 @@ limit that tool to Statements that the instructor could read if querying the LRS
 credentials directly (such as Statements relating to their students).
 
 ## 7.0 Data Transfer (REST)
-This section describes that the xAPI consists of 4 sub-APIs: Statement, State, 
-Agent, and Activity Profile. These four sub-APIs of the Experience API 
-are handled via RESTful HTTP methods. The Statement API can be used by itself 
-to track learning records.  
+
+###### Description
+
+This section describes that the xAPI consists of 4 sub-APIs: Statement, State, Agent, and Activity Profile. These four sub-APIs of the Experience API are handled via RESTful HTTP methods. The Statement API can be used by itself to track learning records. 
 
 __Note:__ In all of the example endpoints given in the specification, "http://example.com/xAPI/"
-is the example IRL of the LRS and everything after this represents the endpoint which MUST
-be used. 
+is the example base IRL of the LRS. All other IRL syntax after this represents the particular endpoint used.
 
-###### LRS Requirements
+###### Requirements
 
-The LRS MUST reject with ```HTTP 400 Bad Request``` status (see below) any request to any of
-these APIs using any parameters:
+* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any of these APIs that use any parameters which the LRS does not recognize ( __Note:__ LRSs may recognize and act on parameters not in this specification).
 
-* the LRS does not recognize ( __Note:__ LRSs may recognize and act on parameters not in 
-this specification).
-
-* that match parameters described in this specification in all but case.
+* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any of these APIs that use any parameters matching parameters described in this specification in all but case.
 
 <a name="errorcodes" /> 
 
