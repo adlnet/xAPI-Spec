@@ -2710,14 +2710,18 @@ information in this section applies to all three APIs.
 
 ###### Requirements
 
-* An Activity Provider MAY send documents to any of the document APIs for Activities and Agents that the LRS does not have prior knowledge of. 
+* An Activity Provider MAY send documents to any of the document APIs for Activities and 
+Agents that the LRS does not have prior knowledge of. 
 
-* The LRS MUST NOT reject documents on the basis of not having prior knowledge of the Activity and/or Agent.
+* The LRS MUST NOT reject documents on the basis of not having prior knowledge of the 
+Activity and/or Agent.
 
 
 ###### JSON Procedure with Requirements
 
-Activity Providers MAY use Documents of content type "application/json" to store sets of variables. The following process walks through that process and the process requirements.  For example, a document contains: 
+Activity Providers MAY use Documents of content type "application/json" to store sets of 
+variables. The following process walks through that process and the process requirements.  
+For example, a document contains: 
 
 ```
 {
