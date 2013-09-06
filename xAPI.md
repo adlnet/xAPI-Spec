@@ -1193,7 +1193,7 @@ with a precision of 0.01 seconds</td><td>Period of time over which the Statement
 ##### 4.1.5.1 Score
 
 ###### Description
-An optional numeric field that represents the outcome of a graded Activity achieved by an Agent.
+An optional field that represents the outcome of a graded Activity achieved by an Agent.
 
 ###### Details
 
