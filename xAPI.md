@@ -164,7 +164,7 @@ OSD, Training Readiness & Strategy (TRS)
 
 ### 2.2.1 Working Group Participants  
 <table>
-	<tr><th>_Name_</th><th>_Organization_</th></tr>
+	<tr><th>Name</th><th>Organization</th></tr>
 	<tr><td>Aaron Silvers</td><td>ADL</td></tr>
 	<tr><td>Al Bejcek</td><td>NetDimensions</td></tr>
 	<tr><td>Ali Shahrazad</td><td>SaLTBOX</td></tr>
@@ -618,7 +618,7 @@ The table below lists all possible Inverse Functional Identifier properties.
 	Only email addresses that have only ever been and will ever be assigned to this Agent, 
 but no others, should be used for this property and mbox_sha1sum.</td></tr>
 	<tr><td>mbox_sha1sum</td><td>String</td><td>The SHA1 hash of a mailto IRI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
-	<tr><td>openID</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
+	<tr><td>openid</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
 	<tr><td>account</td><td><a href="#agentaccount">Object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
 </table>
 
@@ -635,7 +635,7 @@ system (social networking site).
 ###### Details
 
 * If the system that provides the account Object uses OpenID, the Activity Provider
-SHOULD use the openID property instead of an account Object.
+SHOULD use the openid property instead of an account Object.
 * If the Activity Provider is concerned about revealing personally identifiable
 information about an Agent or Group, it SHOULD use an opaque account name (for example an
 account number) to identify all Statements about a person while maintaining anonymity.
@@ -1621,7 +1621,7 @@ following criteria:
 
 * It MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for Statement 
 results when the attachments filter is false.
-* It MUST conform to the definition of multipart/mixed in RFC 1341 and:
+* It MUST conform to the definition of multipart/mixed in [RFC 1341](http://www.w3.org/Protocols/rfc1341/7_2_Multipart.html) and:
     * The first part of the multipart document MUST contain the Statements themselves, with type "application/json".
     * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
 capability will be available when issuing PUT or POST against the Statement resource.
@@ -1749,7 +1749,7 @@ included elsewhere, to emphasize, clarify, and provide implementation guidance.
 Complete IRI validation is extremely difficult, so much of the burden for ensuring data portability is on the Client.
 
 * Values requiring IRIs MUST be sent with valid IRIs. 
-* Keys of language maps MUST be sent with valid RFC 5646 language tags, for similar reasons.
+* Keys of language maps MUST be sent with valid [RFC 5646](http://tools.ietf.org/html/rfc5646) language tags, for similar reasons.
 * A library SHOULD be used to construct IRIs, as opposed to string concatenation. 
 
 ###### LRS Requirements
@@ -1758,7 +1758,7 @@ Complete IRI validation is extremely difficult, so much of the burden for ensuri
     * with any null values (except inside extensions).
     * with strings where numbers are required, even if those strings contain numbers.
     * with strings where booleans are required, even if those strings contain booleans.
-    * with any non-format-following key or value, including the empty string, where a.
+    * with any non-format-following key or value, including the empty string, where a
       string with a particular format (such as mailto IRI, UUID, or IRI) is required.
     * where the case of a key does not match the case specified in the standard.
     * where the case of a value restricted to enumerated values does not match
@@ -2444,7 +2444,7 @@ or the method to retrieve a single Statement.
 
 * ```409 Conflict``` - Indicates an error condition due to a conflict with the 
 current state of a resource, in the case of State API, Agent Profile or Activity Profile API
-calls, or in the Statement PUT call. See Section [6.3 Concurrency](#concurrency) for more details.
+calls, or in the Statement PUT or POST calls. See Section [6.3 Concurrency](#concurrency) for more details.
 
 * ```412 Precondition Failed``` - Indicates an error condition due to a failure of 
 a precondition posted with the request, in the case of State or Agent Profile or Activity Profile 
@@ -2471,8 +2471,8 @@ Stores Statement with the given id.
 Returns: ```204 No Content```  
 
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
-	<tr><td>statementId</td><td>String</td><td> </td><td>Id of Statement to record</td></tr>
+	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Required</th><th>Description</th></tr>
+	<tr><td>statementId</td><td>String</td><td> </td><td>Required</td><td>Id of Statement to record</td></tr>
 </table>
 
 ###### POST Statements
@@ -2761,7 +2761,7 @@ If the original document does not exist, the LRS MUST treat the request the same
 would a PUT request and store the document being posted.
 
 If the merge is successful, the LRS MUST respond with HTTP 
-status code 204 "No Content".
+status code ```204 No Content```.
 
 If an AP needs to delete
 a property, it SHOULD use a PUT request to replace the whole document as described below. 
@@ -2783,7 +2783,8 @@ Example endpoint: http://example.com/xAPI/activities/state
 Stores, fetches, or deletes the document specified by the given stateId that 
 exists in the context of the specified Activity, Agent, and registration (if specified).  
 
-Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - State Content  
+Returns (PUT | POST | DELETE): ```204 No Content```  
+Returns (GET): ```200 OK```, State Content  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
@@ -2808,14 +2809,14 @@ registration if specified\]). If "since" parameter is specified, this
 is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
 
-Returns: 200 OK, Array of ids  
+Returns: ```200 OK```, Array of ids  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
 		<td>The Activity id associated with these states.</td>
 	</tr>
 	<tr><td>agent</td><td>JSON<</td><td>yes</td>
-		<td>The Actor associated with these states.</td>
+		<td>The Agent associated with these states.</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td>no</td>
 		<td>The registration id associated with these states.</td>
@@ -2831,14 +2832,14 @@ Example endpoint: http://example.com/xAPI/activities/state
 Deletes all state data for this context (Activity + Agent \[+ registration if 
 specified\]).  
 
-Returns: 204 No Content  
+Returns: ```204 No Content```  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
 		<td>The Activity id associated with this state.</td>
 	</tr>
 	<tr><td>agent</td><td>JSON<</td><td>yes</td>
-		<td>The Actor associated with this state.</td>
+		<td>The Agent associated with this state.</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td>no</td>
 		<td>The registration id associated with this state.</td>
@@ -2866,7 +2867,7 @@ Example endpoint: http://example.com/xAPI/activities
 
 Loads the complete Activity Object specified.  
 
-Returns: 200 OK - Content  
+Returns: ```200 OK```, Content 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
@@ -2880,7 +2881,8 @@ Example endpoint: http://example.com/xAPI/activities/profile
 Saves/retrieves/deletes the specified profile document in the context of the 
 specified Activity.  
 
-Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content  
+Returns (PUT | POST | DELETE): ```204 No Content```  
+Returns (GET): ```200 OK```, Profile Content  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
@@ -2898,7 +2900,7 @@ Loads ids of all profile entries for an Activity. If "since" parameter is
 specified, this is limited to entries that have been stored or updated since 
 the specified timestamp (exclusive).  
 
-Returns: 200 OK - List of ids  
+Returns: ```200 OK```, List of ids  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th><tr>
 	<tr><td>activityId</td><td>String</td><td>yes</td>
@@ -2976,7 +2978,7 @@ same definition as the similarly named property from Agent Objects.
 
 See also: [Section 4.1.2.1 Agent](#agent).
 
-Returns: ```200 OK - Expanded Agent Object```
+Returns: ```200 OK```, Expanded Agent Object
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
@@ -2992,7 +2994,8 @@ Example endpoint: http://example.com/xAPI/agents/profile
 Saves/retrieves/deletes the specified profile document in the context of the 
 specified Agent.  
 
-Returns: (PUT | POST | DELETE) 204 No Content, (GET) 200 OK - Profile Content  
+Returns (PUT | POST | DELETE): ```204 No Content```  
+Returns (GET): ```200 OK```, Profile Content  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
@@ -3011,7 +3014,7 @@ Loads ids of all profile entries for an Agent. If "since" parameter is specified
 this is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
 
-Returns: 200 OK - List of ids  
+Returns: ```200 OK```, List of ids  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>agent</td><td>Object (JSON)</td><td>yes</td>
@@ -3040,7 +3043,7 @@ decide which version to use when communicating with the LRS. Extensions are incl
 allow other uses to emerge.
 
 ###### Details
-Returns: 200 OK - Single 'about' JSON document.
+Returns: ```200 OK```, Single 'about' JSON document.
 <table border="1">
 <tr><th>property</th><th>type</th><th>description</th></tr>
 <td>version</td><td>array of version strings</td><td>xAPI versions this LRS supports</td>
@@ -3913,7 +3916,7 @@ A 1.0.0 system converting a Statement created in 0.9 MUST follow the steps below
 * Prefix any extension keys which are not full absolute IRIs with "tag:adlnet.gov,2013:expapi:0.9:extensions:"
 * Prefix Activity types with "http://adlnet.gov/expapi/activities/"
 * for each Agent (Actor):
-    * Search for Inverse Functional Identifiers in this order: "mbox, mbox_sha1sum, openId,
+    * Search for Inverse Functional Identifiers in this order: "mbox, mbox_sha1sum, openid,
     account". Keep the first populated Inverse Functional Identifier found and discard the rest.
     * For the above Inverse Functional Identifier, take the first element in the array and
     use that as the value of that Inverse Functional Identifier property, discarding any
