@@ -422,41 +422,51 @@ A Statement is akin to a sentence of the form "I did this".
 The details of each property of a statement are described in the table below.  
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr><td>id</td><td>UUID</td>
-	<td>UUID assigned by LRS if not set by the Activity Provider.</td></tr>
+	<td>UUID assigned by LRS if not set by the Activity Provider.</td>
+	<td>Recommended</td></tr>
 	<tr><td><a href="#actor">actor</a></td><td>Object</td>
 	<td>Who the Statement is about, as an <a href="#agent">Agent</a> or 
-		<a href="#group">Group</a> Object. Represents the "I" in "I Did This".</td></tr>
+		<a href="#group">Group</a> Object. Represents the "I" in "I Did This".</td>
+	<td>Required</td></tr>
 	<tr><td><a href="#verb">verb</a></td><td>Object</td>
-	<td>Action of the Learner or Team Object. Represents the "Did" in "I Did This".</td></tr>
+	<td>Action of the Learner or Team Object. Represents the "Did" in "I Did This".</td>
+	<td>Required</td></tr>
 	<tr><td><a href="#object">object</a></td><td>Object</td>
 	<td>Activity, Agent, or another Statement that is the Object of the Statement. 
 	Represents the "This" in "I Did This". Note that Objects which are provided as a value for this field should 
 	include an "objectType" field. If not specified, the Object is assumed to be 
-	an Activity.</td></tr>
+	an Activity.</td>
+	<td>Required</td></tr>
 	<tr><td><a href="#result">result</a></td><td>Object</td>
-	<td>Result Object, further details representing a measured outcome relevant to the specified Verb.</td></tr>
+	<td>Result Object, further details representing a measured outcome relevant to the specified Verb.</td>
+	<td>Optional</td></tr>
 	<tr><td><a href="#context">context</a></td><td>Object</td>
 	<td>Context that gives the Statement more meaning. Examples: a team the Actor is 
-	working with, altitude at which a scenario was attempted in a flight simulator.</td></tr>
+	working with, altitude at which a scenario was attempted in a flight simulator.</td>
+	<td>Optional</td></tr>
 	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
 	of when the events described within this Statement occurred. If not provided, LRS 
-	should set this to the value of "stored" time.</td></tr>
+	should set this to the value of "stored" time.</td>
+	<td>Optional</td></tr>
 	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
-	of when this Statement was recorded. Set by LRS.</td></tr>
+	of when this Statement was recorded. Set by LRS.</td>
+	<td>Set by LRS</td></tr>
 	<tr><td><a href="#authority">authority</a></td><td>Object</td>
 	<td>Agent who is asserting this Statement is true. Verified by the LRS based on 
-	authentication, and set by LRS if left blank.</td></tr>
+	authentication, and set by LRS if left blank.</td>
+	<td>Optional</td></tr>
 	<tr><td><a href="#version">version</a></td><td>Version</td>
-	<td>The Statement’s associated xAPI version, formatted according to <a href="http://semver.org/spec/v1.0.0.html">Semantic Versioning 1.0.0</a>.</td></tr>
+	<td>The Statement’s associated xAPI version, formatted according to <a href="http://semver.org/spec/v1.0.0.html">Semantic Versioning 1.0.0</a>.</td>
+	<td>Required</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
 		<td>Array of attachment Objects</td>
 	    <td>Headers for attachments to the Statement</td>
-	</tr>
+	<td>Optional</td></tr>
 </table>  
 
 Aside from (potential or required) assignments of properties during LRS 
