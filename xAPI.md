@@ -2914,19 +2914,25 @@ Returns: ```200 OK```, List of ids
 <a name="agentprofapi"/> 
 
 ### 7.6 Agent Profile API
+
+###### Description
+
 The Agent Profile API is much like the State API, allowing for arbitrary key / 
-document pairs to be saved which are related to an Agent. When using the 
-Agent Profile API for manipulating documents, be aware of how the profileId parameter 
-affects the semantics of the call. If it is included, the GET and DELETE 
-methods will act upon a single defined document identified by "profileId". 
-Otherwise, GET will return the available ids, and DELETE will delete all state 
-in the context given through the other parameters.  
+document pairs to be saved which are related to an Agent. 
+
+###### Details
+
+The semantics of the call are driven by the stateId parameter.If it is included, 
+the GET method will act upon a single defined document identified by "profileId". 
+Otherwise, GET will return the available ids.  
 
 The Agent Profile API also includes a method to retrieve a special Object with 
 combined information about an Agent derived from an outside service, such as a 
 directory service.  
 
-###### GET agents
+###### Combined Information GET 
+
+###### Details
 Example endpoint: http://example.com/xAPI/agents
 
 Return a special, Person Object for a specified Agent. The Person Object is 
@@ -2938,17 +2944,18 @@ FOAF concept of person, person is being used here to indicate a person-centric
 view of the LRS Agent data, but Agents just refer to one persona (a person in 
 one context).  
 
-An LRS capable of returning multiple identifying properties for a Person Object SHOULD 
-require the connecting credentials have increased, explicitly given permissions. 
-An LRS SHOULD reject insufficiently privileged requests with 403 "Forbidden". 
-If an LRS does not have any additional information about an Agent to return, the 
-LRS MUST still return a Person when queried, but that Person Object will only 
+###### Requirements
+* An LRS capable of returning multiple identifying properties for a Person 
+Object SHOULD require the connecting credentials have increased, explicitly 
+given permissions. 
+* An LRS SHOULD reject insufficiently privileged requests with 403 "Forbidden".
+* If an LRS does not have any additional information about an Agent to return, 
+the LRS MUST still return a Person when queried, but that Person Object will only 
 include the information associated with the requested Agent.  
 
-###### Person properties
+###### Person Properties
 
-All array properties must be populated with members with the 
-same definition as the similarly named property from Agent Objects.  
+###### Details
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
@@ -2987,7 +2994,12 @@ Returns: ```200 OK```, Expanded Agent Object
 	</tr>
 </table>  
 
-###### PUT | POST | GET | DELETE agents/profile
+###### Requirements
+
+All array properties must be populated with members with the 
+same definition as the similarly named property from Agent Objects.  
+
+###### Single Agent or Profile PUT | POST | GET | DELETE 
 
 Example endpoint: http://example.com/xAPI/agents/profile
 
@@ -3007,7 +3019,7 @@ Returns (GET): ```200 OK```, Profile Content
 	</tr>
 </table>  
 
-###### GET agents/profile
+###### Multiple Agent or Profile GET 
 Example endpoint: http://example.com/xAPI/agents/profile
 
 Loads ids of all profile entries for an Agent. If "since" parameter is specified, 
