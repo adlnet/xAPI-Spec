@@ -289,9 +289,11 @@ _high-level overview_ of a given facet of the Experience API are labeled **descr
 
 <a name="def-activity" />
 
-__Activity__: Something with which an Actor interacted. It can be a unit of instruction, experience, 
-or performance that is to be tracked in meaningful combination with a Verb. Interpretation of 
-Activity is broad, meaning that Activities can even be tangible Objects.
+__Activity__: An activity is a type of Object making up the “this” in I did “this”, 
+but has other specific criteria.  It is something with which an Actor interacted. 
+It can be a unit of instruction, experience, or performance that is to be tracked in 
+meaningful combination with a Verb. Interpretation of Activity is broad, meaning that 
+Activities can even be tangible objects such as a chair (real or virtual).
 
 <a name="def-activity-provider" />
 
