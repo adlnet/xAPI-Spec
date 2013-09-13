@@ -3116,13 +3116,20 @@ Client should consider the security risks before making the decision to use this
 <a name="validation"/> 
 
 ### 7.9 Validation
+
+###### Description
+
 The function of the LRS within the xAPI is to store and retrieve Statements. 
 As long as it has sufficient information to perform these tasks, it is 
 expected that it does them. Validation of Statements in the Experience API is 
-focused solely on syntax, not semantics. It SHOULD enforce rules regarding structure, 
-but SHOULD NOT enforce rules regarding meaning. Enforcing the rules that ensure 
+focused solely on syntax, not semantics. Enforcing the rules that ensure 
 valid meaning among Verb definitions, Activity types, and extensions is the 
-responsibility of the Activity Provider sending the Statement.  
+responsibility of the Activity Provider sending the Statement. 
+
+###### Requirements
+
+* The LRS SHOULD enforce rules regarding structure. 
+* The LRS SHOULD NOT enforce rules regarding meaning.  
 
 <a name="httphead"/>
 
