@@ -3099,7 +3099,7 @@ __Attachments__: Sending attachment data requires sending a
 multipart/mixed request, therefore sending attachment data is not supported
 with this syntax. See [4.1.11. Attachments](#attachments) 
 
-* The LRS must support the syntax above.
+* The LRS MUST support the syntax above.
 
 See [Appendix B](#AppendixB) for an example function written in JavaScript 
 which transforms a normal request into one using this alternate syntax.  
@@ -3114,9 +3114,7 @@ IE8 and IE9 where the Client code is hosted on a different scheme (HTTP or HTTPS
 the LRS. In these cases, proxy is needed to communicate to the LRS. Two simple solutions 
 might be to 1) set up a proxy pass through on the same scheme as the Client code to the LRS 
 or 2) to host an intermediary server side LRS on the same scheme as the Client code to route 
-Statements to the target LRS.  An LRS MAY choose to provide both HTTP and HTTPS endpoints 
-to support this use case. HTTP is inherently less secure than HTTPS, and both LRS and 
-Client should consider the security risks before making the decision to use this scheme. 
+Statements to the target LRS.   
 
 * The LRS MAY choose to provide both HTTP and HTTPS endpoints to support this use case. 
 * The LRS and the Client should SHOULD consider the security risks before making the 
