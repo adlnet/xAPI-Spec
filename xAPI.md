@@ -3113,6 +3113,9 @@ required by <a href="#apiversioning"/>6.2 API Versioning</a>.
 <a name="cors"/>
 
 ### 7.8 Cross Origin Requests
+
+###### Description
+
 One of the goals of the xAPI is to allow cross-domain tracking, and even though 
 xAPI seeks to enable tracking from applications other than browsers, browsers 
 still need to be supported. Internet Explorer 8 and 9 do not implement Cross 
@@ -3120,9 +3123,11 @@ Origin Resource Sharing, but rather use their own Cross Domain Request API,
 which cannot use all of the xAPI as described above due to only supporting "GET" 
 and "POST", and not allowing HTTP headers to be set.  
 
+###### Details/Requirements
+
 The following describes alternate syntax for consumers to use only when unable 
 to use the usual syntax for specific calls due to the restrictions mentioned 
-above. All LRSs must support this syntax.  
+above.   
 
 __Method__: All xAPI requests issued must be POST. The intended xAPI method 
 must be included as the only query string parameter on the request. 
@@ -3140,6 +3145,8 @@ __Attachments__: Sending attachment data requires sending a
 multipart/mixed request, therefore sending attachment data is not supported
 with this syntax. See [4.1.11. Attachments](#attachments) 
 
+* The LRS MUST support the syntax above.
+
 See [Appendix B](#AppendixB) for an example function written in JavaScript 
 which transforms a normal request into one using this alternate syntax.  
 
@@ -3153,9 +3160,11 @@ IE8 and IE9 where the Client code is hosted on a different scheme (HTTP or HTTPS
 the LRS. In these cases, proxy is needed to communicate to the LRS. Two simple solutions 
 might be to 1) set up a proxy pass through on the same scheme as the Client code to the LRS 
 or 2) to host an intermediary server side LRS on the same scheme as the Client code to route 
-Statements to the target LRS.  An LRS MAY choose to provide both HTTP and HTTPS endpoints 
-to support this use case. HTTP is inherently less secure than HTTPS, and both LRS and 
-Client should consider the security risks before making the decision to use this scheme. 
+Statements to the target LRS.   
+
+* The LRS MAY choose to provide both HTTP and HTTPS endpoints to support this use case. 
+* The LRS and the Client should SHOULD consider the security risks before making the 
+decision to use this scheme.
 
 <a name="validation"/> 
 
