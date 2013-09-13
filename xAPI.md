@@ -3030,21 +3030,25 @@ Returns: ```200 OK```, List of ids
 
 <a name="aboutresource"/> 
 
-### 7.7. About resource
-
-###### GET about
-Example endpoint: http://example.com/xAPI/about
+### 7.7. About Resource
 
 ###### Description
+
 Returns JSON Object containing information about this LRS, including the xAPI version
 supported.
 
 ###### Rationale
-Primarily this resource exists to allow Clients that suport multiple xAPI versions to
+
+Primarily this resource exists to allow Clients that support multiple xAPI versions to
 decide which version to use when communicating with the LRS. Extensions are included to
 allow other uses to emerge.
 
 ###### Details
+
+###### Information GET
+
+Example endpoint: http://example.com/xAPI/about
+
 Returns: ```200 OK```, Single 'about' JSON document.
 <table border="1">
 <tr><th>property</th><th>type</th><th>description</th></tr>
@@ -3055,15 +3059,16 @@ Returns: ```200 OK```, Single 'about' JSON document.
 </tr>
 </table>
 
-###### LRS Requirements
-* MUST return the JSON document described above, with a version property that includes
+###### Requirements
+
+* An LRS MUST return the JSON document described above, with a version property that includes
 the latest minor and patch version the LRS conforms to, for each major version.
     * For version 1.0.0 of this specification, this means that "1.0.0" MUST be included;
     "0.9" and "0.95" MAY be included. (For the purposes of this requirement, "0.9" and "0.95"
     are considered major versions.)
-* SHOULD allow unauthenticated access to this resource
-* MUST NOT reject requests based on their version header as would otherwise be required
-by <a href="#apiversioning"/>6.2 API Versioning</a>.
+* An LRS SHOULD allow unauthenticated access to this resource
+* An LRS MUST NOT reject requests based on their version header as would otherwise be 
+required by <a href="#apiversioning"/>6.2 API Versioning</a>.
 
 
 <a name="cors"/>
