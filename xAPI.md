@@ -3037,7 +3037,7 @@ supported.
 
 ###### Rationale
 
-Primarily this resource xists to allow Clients that suport multiple xAPI versions to
+Primarily this resource exists to allow Clients that support multiple xAPI versions to
 decide which version to use when communicating with the LRS. Extensions are included to
 allow other uses to emerge.
 
@@ -3053,7 +3053,7 @@ Returns: ```200 OK```, Single 'about' JSON document.
 <td>version</td><td>array of version strings</td><td>xAPI versions this LRS supports</td>
 </tr>
 <tr>
-<td>Extensions</td><td><a href="#miscext">Object</a></td><td>A map of other properties as neeeded.</td>
+<td>Extensions</td><td><a href="#miscext">Object</a></td><td>A map of other properties as needed.</td>
 </tr>
 </table>
 
