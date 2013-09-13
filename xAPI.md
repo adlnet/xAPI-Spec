@@ -2771,15 +2771,20 @@ a property, it SHOULD use a PUT request to replace the whole document as describ
 <a name="stateapi"/> 
 
 ### 7.4 State API
-Generally, this is a scratch area for Activity Providers that do not have their 
-own internal storage, or need to persist state across devices. When using the 
-State API, be aware of how the stateId parameter affects the semantics of the 
-call. If it is included, the GET and DELETE methods will act upon a single 
-defined state document identified by "stateId". Otherwise, GET will return the 
-available ids, and DELETE will delete all state in the context given through the 
-other parameters.  
 
-###### PUT | POST | GET | DELETE activities/state
+##### Description
+
+Generally, this is a scratch area for Activity Providers that do not have their 
+own internal storage, or need to persist state across devices. 
+
+##### Details
+
+The semantics of the call are drivern by the stateId parameter. If it is included, 
+the GET and DELETE methods will act upon a single defined state document 
+identified by "stateId". Otherwise, GET will return the available ids, and DELETE 
+will delete all state in the context given through the other parameters.  
+
+###### Single Document (PUT | POST | GET | DELETE)
 Example endpoint: http://example.com/xAPI/activities/state
 
 Stores, fetches, or deletes the document specified by the given stateId that 
@@ -2803,7 +2808,7 @@ Returns (GET): ```200 OK```, State Content
 	</tr>
 </table>
 
-###### GET activities/state
+###### Multiple Document GET
 Example endpoint: http://example.com/xAPI/activities/state
 
 Fetches ids of all state data for this context (Activity + Agent \[ + 
@@ -2828,7 +2833,7 @@ Returns: ```200 OK```, Array of ids
 	</tr>
 </table>
 
-###### DELETE activities/state
+###### Multiple Document DELETE
 Example endpoint: http://example.com/xAPI/activities/state
 
 Deletes all state data for this context (Activity + Agent \[+ registration if 
