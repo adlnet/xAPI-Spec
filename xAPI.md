@@ -2630,7 +2630,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 			for name and description. Only one language should be returned in each of these maps.<br/><br/>
 
 			In the event of format being “canonical”, only one language should be returned in 
-			each of these maps.In order to choose the most relevant language, the LRS will 
+			each of these maps. In order to choose the most relevant language, the LRS will 
 			apply the Accept-Language header as described in 
 			<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a> (HTTP 1.1), 
 			except that this logic will be applied to each language map individually to select which 
@@ -2652,7 +2652,6 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 * The LRS MUST reject with an ```HTTP 400``` error any requests to this resource 
 which contain both statementId and voidedStatementId parameters
 
-
 * The LRS MUST reject with an ```HTTP 400``` error any requests to this resource 
 which contain statementId or voidedStatementId parameters, and also contain any 
 other parameter besides "attachments" or "format".
@@ -2664,6 +2663,12 @@ timestamp for which all Statements that have or will have a "stored" property be
 are known with reasonable certainty to be available for retrieval. This time SHOULD take into 
 account any temporary condition, such as excessive load, which might cause a delay in Statements 
 becoming available for retrieval.
+
+* If the attachment property of a GET statement is used and is set to "true", the LRS MUST use the 
+multipart response format and include all attachments as described in <a href="#attachments">4.1.11.
+
+* If the attachment property of a GET statement is used and is set to "false", the LRS MUST NOT
+include attachment raw data and MUST report application/json.
 
 <a name="queryStatementRef" />
 
