@@ -2853,18 +2853,22 @@ Returns: ```204 No Content```
 <a name="actprofapi"/> 
 
 ### 7.5 Activity Profile API
+
+###### Description
+
 The Activity Profile API is much like the State API, allowing for arbitrary key 
-/ document pairs to be saved which are related to an Activity. When using the 
-Activity Profile API for manipulating documents, be aware of how the profileId parameter
- affects the semantics of the call. If it is included, the GET and DELETE methods 
-will act upon a single defined document identified by "profileId". Otherwise, 
-GET will return the available ids, and DELETE will delete all state in the 
-context given through the other parameters.  
+/ document pairs to be saved which are related to an Activity. 
+
+###### Details
+
+The semantics of the call are driven by the stateId parameter.If it is included, 
+the GET method will act upon a single defined document identified by "profileId". 
+Otherwise, GET will return the available ids.
 
 The Activity Profile API also includes a method to retrieve a full description 
 of an Activity from the LRS.  
 
-###### GET activities
+###### Full Activity Object GET
 Example endpoint: http://example.com/xAPI/activities
 
 Loads the complete Activity Object specified.  
@@ -2877,7 +2881,7 @@ Returns: ```200 OK```, Content
 	</td>
 </table>
 
-###### PUT | POST | GET | DELETE activities/profile
+###### Single Document PUT | POST | GET | DELETE
 Example endpoint: http://example.com/xAPI/activities/profile
 
 Saves/retrieves/deletes the specified profile document in the context of the 
@@ -2895,7 +2899,7 @@ Returns (GET): ```200 OK```, Profile Content
 	</tr>
 </table>
 
-###### GET activities/profile
+###### Multiple Document GET
 Example endpoint: http://example.com/xAPI/activities/profile
 
 Loads ids of all profile entries for an Activity. If "since" parameter is 
