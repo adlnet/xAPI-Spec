@@ -37,7 +37,7 @@
     *	5.2.	[Language Map](#misclangmap)  
     *	5.3.	[Extensions](#miscext)  
     *	5.4.	[Identifier Metadata](#miscmeta)  
-*	6.0.	[Runtime Communication](#rtcom)  
+*	6.0.	[Run-time Communication](#rtcom)  
     *	6.1.	[Encoding](#encoding)  
     *	6.2.	[API Versioning](#apiversioning)  
     *	6.3.	[Concurrency](#concurrency)  
@@ -2054,7 +2054,7 @@ identifier was not coined for use with this specification.
 
 <a name="rtcom"/>
 
-## 6.0 Runtime Communication
+## 6.0 Run-time Communication
 
 Sections 6 and 7 detail the more technical side of the Experience API, dealing with 
 how Statements are transferred between Activity Provider and LRS. A number of libraries 
@@ -2082,33 +2082,35 @@ Systems retrieving Statements may then receive responses that include Statements
 versions. The version header allows for these version differences to be handled correctly, and 
 to ascertain that no partial or mixed LRS version implementations exist.
 
-Using Semantic Versioning will allow Clients and LRSs to reliably know whether they're
-compatible or not as the specification changes.
+Using Semantic Versioning will allow Clients and LRSs to reliably know compatibility as the specification changes.
 
-###### Requirements
+###### Details
 
-Every request from a Client and every response from the LRS must include an HTTP header with the name “X-Experience-API-Version" and the version as the value.
 Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)
 
-Example:  ``X-Experience-API-Version : 1.0.0``
+###### Header Requirements
+
+* Every request from a Client and every response from the LRS MUST include an HTTP header with the name 
+“X-Experience-API-Version" and the version as the value. For example, ``X-Experience-API-Version : 1.0.0``
 
 ###### LRS Requirements
 
-* MUST include the "X-Experience-API-Version" header in every response.
-* MUST set this header to "1.0.0".
-* MUST accept requests with a version header of "1.0" as if the version header was "1.0.0".
-* MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header.
-* MUST reject requests with a version header of "1.1.0" or greater.
-* MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
-
+* The LRS MUST include the "X-Experience-API-Version" header in every response.
+* The LRS MUST set this header to "1.0.0".
+* The LRS MUST accept requests with a version header of "1.0" as if the version header was "1.0.0".
+* The LRS MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a 
+fully conformant implementation of the prior version specified in the header.
+* The LRS MUST reject requests with a version header of "1.1.0" or greater.
+* The LRS MUST make these rejects by responding with an HTTP 400 error including a short description 
+of the problem.
 
 ###### Client Requirements
 
-* SHOULD tolerate receiving responses with a version of "1.0.0" or later.
-* SHOULD tolerate receiving data structures with additional properties.
-* SHOULD ignore any properties not defined in version 1.0.0 of the spec.
+* The Client SHOULD tolerate receiving responses with a version of "1.0.0" or later.
+* The Client SHOULD tolerate receiving data structures with additional properties.
+* The Client SHOULD ignore any properties not defined in version 1.0.0 of the spec.
 
-###### Converting Statements to other versions:
+###### Conversion Requirement
 
 * Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
 * Systems MAY convert Statements of older versions into a newer version only by following the methods described in
@@ -2133,40 +2135,32 @@ overwrite existing data, being:
 The State API will permit PUT Statements without concurrency headers, since state conflicts
 are unlikely. The requirements below only apply to Agent Profile API and Activity Profile API.
 
-##### Client requirements
 
-An xAPI Client using either Agent Profile API or Activity Profile API…
 
-* MUST include the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)
-header or MUST include the If-None-Match header.
+##### Client Requirements
 
-##### LRS requirements
+* A Client using either Agent Profile API or Activity Profile API MUST include the 
+[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the If-None-Match header.
 
-The LRS that responds to a GET request
+##### LRS Requirements
 
-* MUST add an ETag HTTP header to the response.
-* MUST calculate the value of this header to be a hexidecimal string of the  SHA-1 digest
-of the contents.
-* MUST enclose the header in quotes.
-
-The reason for specifying the LRS ETag format is to allow API consumers that can't read
-the ETag header to calculate it themselves.
-
-The LRS that responds to a PUT request
-
-* MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)
-header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
+* An LRS responding to a GET request MUST add an ETag HTTP header to the response. (The reason for 
+specifying the LRS ETag format is to allow API consumers that can't read the ETag header to calculate 
+it themselves.)
+* An LRS responding to a GET request MUST calculate the value of this header to be a hexidecimal string 
+of the SHA-1 digest of the contents.
+* An LRS responding to a GET request MUST enclose the header in quotes.  
+* An LRS responding to a PUT request MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
 modifications made after the consumer last fetched the document.
-* MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26)
-header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect when there
-is a resource present that the consumer is not aware of.
+* An LRS responding to a PUT request MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
+when there is a resource present that the consumer is not aware of.
 
-If the header precondition in either of the above cases fails, the LRS
+If the header precondition in either of the PUT request cases above fails, the LRS:
 
 * MUST return HTTP status 412 "Precondition Failed".
 * MUST NOT make a modification to the resource. 
 
-If a PUT request is received without either header for a resource that already exists, the LRS
+If a PUT request is received without either header for a resource that already exists, the LRS:
 
 * MUST return HTTP status 409 "Conflict".
 * MUST return a plain text body explaining that the consumer SHOULD
