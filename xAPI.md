@@ -2184,18 +2184,7 @@ If a PUT request is received without either header for a resource that already e
 In order to balance interoperability and the varying security requirements of different
 environments, several authentication options are defined.
 
-###### Requirement
-
-The LRS MUST support authentication using at least one of the following methods:
--	OAuth 1.0 (rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
-- HTTP Basic Authentication
-- Common Access Cards (implementation details to follow in a later version)
-- The LRS MUST handle making, or delegating, decisions on the validity of Statements,
- and determining what operations may be performed based on the credentials used.
-
-
-
-###### Authentication scenarios
+###### Details
 
 The below matrix describes the possible authentication scenarios.
 
@@ -2228,32 +2217,47 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 
 </table> 
 
+###### Requirements
+
+The LRS MUST support authentication using at least one of the following methods:
+-	OAuth 1.0 (rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
+- HTTP Basic Authentication
+- Common Access Cards (implementation details to follow in a later version)
+- The LRS MUST handle making, or delegating, decisions on the validity of Statements,
+ and determining what operations may be performed based on the credentials used.
 	
 <a name="authdefs"/>
 
-#### 6.4.1 How To Handle Each Scenario
+#### 6.4.1 Process of Each Scenario
 
-##### General
-* The LRS must record the application's name and a unique consumer key (identifier).
-* The LRS must provide a mechanism to complete this registration, or delegate to another system that provides such 
-a mechanism.
-The means by which this registration is accomplished are not defined by OAuth or the xAPI.
+##### Requirements
 
-##### Application registered + known user
+* The LRS MUST record the application's name and a unique consumer key (identifier).
+* The LRS MUST provide a mechanism to complete this registration, or delegate to another system that provides 
+such a mechanism.
+* The LRS MUST be able to be configured for complete support of the xAPI:
+	* With any of the above methods.
+	* In any of the workflow scenarios above.
+* The LRS MAY (for security reasons): 
+	* Support a subset of the above methods.
+	* Limit the known users or registered applications.
+* The LRS SHOULD at a minimum supply Oauth with "HMAC-SHA1" and "RSA-SHA1" signatures.
 
-* Use endpoints below to complete the standard workflow.
-* If this form of authentication is used  to record Statements and no  authority  is specified, the LRS should record 
-the  authority  as a group consisting of an Agent representing the registered application, and an Agent representing 
-the known user.
+###### Application registered + known user Process and Requirements
 
-##### Application registered + user unknown
+* Use endpoints in section [6.4.2 OAuth Authorization Scope](#oauthscope) to complete the standard OAuth workflow 
+(details not in this specification).
+* If this form of authentication is used  to record Statements and no authority is specified, the LRS should 
+record the authority as a group consisting of an Agent representing the registered application, and an Agent 
+representing the known user.
 
-* LRS will honor requests that are signed using OAuth with the registered application's credentials and with an empty 
-token and token secret.
-* If this form of authentication is used  to record Statements and no  authority  is specified, the LRS should record 
-the  authority as the Agent representing the registered application.
+###### Application registered + user unknown Process and Requirements
 
-##### Application not registered + known user 
+* The LRS honors requests that are signed using OAuth with the registered application's credentials and with an empty token and token secret.
+* If this form of authentication is used  to record Statements and no authority is specified, the LRS should 
+record the authority as the Agent representing the registered application.
+
+###### Application not registered + known user Process and Requirements
 
 * Use a blank consumer secret;
 * Call "Temporary Credential" request;
@@ -2263,31 +2267,18 @@ cannot be verified.
 * the LRS MUST record an  authority that includes both that application and the authenticating user, as a group, 
 since OAuth specifies an application.
 
-##### No application + known user 
+###### No application + known user Process and Requirements
 
 * Use username/password combination that corresponds to an LRS login.
 * Authority to be recorded as the Agent identified by the login, **unless…**
 	* other Authority is specified **and…**
 	* LRS trusts the known user to specify this Authority.
 
-##### No authorization
+###### No authorization Process and Requirements
 
 * Requests should include headers for HTTP Basic Authentication based on a blank username and password, in order to 
 distinguish an explicitly unauthenticated request from a  request that should be given a HTTP Basic Authentication 
 challenge.
-
-##### Requirements
-
-The LRS:
-
-* MUST be able to be configured for complete support of the xAPI:
-	* With any of the above methods.
-	* In any of the workflow scenarios above.
-* MAY (for security reasons): 
-	* Support a subset of the above methods.
-	* Limit the known users or registered applications.
-* SHOULD at a minimum supply Oauth with "HMAC-SHA1" and "RSA-SHA1" signatures.
-
 
 <a name="oauthscope"/> 
 
@@ -2299,21 +2290,6 @@ communicating using the xAPI to negotiate a level of access which accomplishes w
 application needs while minimizing the potential for misuse. The limitations of each scope
 are in addition to any security limitations placed on the user account associated with the
 request.
-
-
-##### Requirements
-The LRS:
-
-* MUST accept a scope parameter as defined in [OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3);
-* MUST assume a requested scope of "statements/write" and "statements/read/mine" if no
-scope is specified;
-* MUST support the scope of "all" as a minimum; 
-* MAY support other scopes.
-
-An xAPI Client:
-
-* SHOULD request only the minimal needed scopes, to increase the chances that the request
-will be granted.
 
 ##### Details
 
@@ -2385,14 +2361,23 @@ parameters, not in the OAuth header.
 	</tr>
 </table>
 
-<a name="datatransfer"/> 
-
-
 ##### Example
 The list of scopes determines the set of permissions that is being requested. For example,
 an instructor might grant "statements/read" to a reporting tool, but the LRS would still
 limit that tool to Statements that the instructor could read if querying the LRS with their
 credentials directly (such as Statements relating to their students).
+
+##### Requirements
+
+* The LRS MUST accept a scope parameter as defined in [OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3).
+* The LRS MUST assume a requested scope of "statements/write" and "statements/read/mine" if no 
+scope is specified.
+* The LRS MUST support the scope of "all" as a minimum.
+* The LRS MAY support other scopes.
+* The Client SHOULD request only the minimal needed scopes, to increase the chances that the request
+will be granted.
+
+<a name="datatransfer"/> 
 
 ## 7.0 Data Transfer (REST)
 This section describes that the xAPI consists of 4 sub-APIs: Statement, State, 
