@@ -461,7 +461,7 @@ The details of each property of a statement are described in the table below.
 	<td>Optional</td></tr>
 	<tr><td><a href="#version">version</a></td><td>Version</td>
 	<td>The Statement’s associated xAPI version, formatted according to <a href="http://semver.org/spec/v1.0.0.html">Semantic Versioning 1.0.0</a>.</td>
-	<td>Required</td></tr>
+	<td>Not Recommended</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
 		<td>Array of attachment Objects</td>
