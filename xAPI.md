@@ -2416,6 +2416,12 @@ syntax after this represents the particular endpoint used.
 
 ###### Requirements
 
+* The LRS MUST reject any statement if conditions corresponding to those
+described in the [Error Codes](#errorcodes) section occur.
+
+* The LRS MUST reject a batch of statements if any statement within that 
+batch is rejected.
+
 * The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
 of these APIs that use any parameters which the LRS does not recognize ( __Note:__ 
 LRSs may recognize and act on parameters not in this specification).
