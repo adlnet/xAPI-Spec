@@ -351,6 +351,12 @@ __Internationalized Resource Identifiers (IRI)__: A unique identifier which may 
 In the xAPI, all IRIs should be a full absolute IRI including a scheme. Relative IRIs 
 should not be used. IRLs should be defined within a domain controlled by the person creating the IRL.
 
+<a name="def-irl" />
+
+__Internet Resource Locator (IRL)__: Originally described in RFC 1736, but taken in the context of 
+this document to be an IRI that is expected to resolve in the same way a URL is an instance of a 
+URI that resolves.
+
 <a name="def-inverse-functional-identifier" />
 
 __Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
