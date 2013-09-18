@@ -1411,7 +1411,7 @@ experience and the reception of the corresponding Statement by the LRS.
 
 Where the experience occurs over a period of time, the timestamp can represent the start, end or any point of time 
 during the experience. It is expected that communities of practice will define an appropriate point to record the 
-timestamp for difference experiences. For example when recording the experience of eating at a restaurant, it might 
+timestamp for different experiences. For example when recording the experience of eating at a restaurant, it might 
 be most appropriate to record the timestamp of the start of the experience; when recording the experience of 
 completing a qualification, it might be most appropriate to record the timestamp of the end of the experience.
 These examples are for illustrative purposes only and are not meant to be prescriptive.
