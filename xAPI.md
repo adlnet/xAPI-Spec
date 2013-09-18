@@ -1303,11 +1303,11 @@ altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a hr
 
 ###### Requirements
 
-* The _revision_ property MUST NOT be used if the Statement's Object is an Agent or Group.
-* The _platform_ property MUST NOT be used if the Statement's Object is an Agent or Group.
-* The _language_ property MUST NOT be used if not applicable or unknown.
-* The _revision_ property SHOULD be used to track fixes of minor issues (like a spelling error).
-* The _revision_ property SHOULD NOT be used if there is a major change in learning objectives, pedagogy, 
+* The revision property MUST only be used if the Statement's Object is an Activity.
+* The platform property MUST only be used if the Statement's Object is an Activity.
+* The language property MUST NOT be used if not applicable or unknown.
+* The revision property SHOULD be used to track fixes of minor issues (like a spelling error).
+* The revision property SHOULD NOT be used if there is a major change in learning objectives, pedagogy, 
 or assets of an Activity. (Use a new Activity id instead).
 
 __Note:__ Revision has no behavioral implications within the scope of xAPI. It is simply stored,
