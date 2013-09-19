@@ -2512,7 +2512,7 @@ Returns: ```204 No Content```
 
 ###### Requirements
 
-* An LRS MUST NOT make any modifications to its state based on a receiving a Statement
+* An LRS MUST NOT make any modifications to its state based on receiving a Statement
 with a statementID that it already has a Statement for. Whether it responds with
 ```409 Conflict``` or ```204 No Content```, it MUST NOT modify the Statement or any other
 Object.
