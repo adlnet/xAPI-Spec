@@ -1408,18 +1408,27 @@ useful when the Object of the Statement is an Agent, not an Activity.
 #### 4.1.7 Timestamp
 
 ###### Description
-The time at which a  Statement was generated.
+The time at which the experience occurred.
 
 ###### Details
-A timestamp in a Statement that occurs outside of the system can differ from 
-[Stored](#stored) (the system time of the event). Namely, there can be delays between the occurrence of the 
-experience and the reception of the corresponding Statement by the LRS. Another cause is when Statements 
-are propagated to other systems.
+A timestamp in a Statement can differ from 
+[Stored](#stored) (the time at which the statement is stored). Namely, there can be delays between the occurrence of the 
+experience and the reception of the corresponding Statement by the LRS. 
+
+Where the experience occurs over a period of time, the timestamp can represent the start, end or any point of time 
+during the experience. It is expected that communities of practice will define an appropriate point to record the 
+timestamp for different experiences. For example when recording the experience of eating at a restaurant, it might 
+be most appropriate to record the timestamp of the start of the experience; when recording the experience of 
+completing a qualification, it might be most appropriate to record the timestamp of the end of the experience.
+These examples are for illustrative purposes only and are not meant to be prescriptive.
+
+
 
 ###### Requirements
 * A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
 * A timestamp SHOULD include the timezone.
 * A timestamp SHOULD be the current or a past time when it is outside of a Sub-Statement.
+* A timestamp MAY represent any point of time during the experience happened over a period of time. 
 * A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
 * A timestamp MAY be a moment in the future, to denote a deadline for planned learning, provided it is included 
 inside a Sub-Statement.
@@ -1435,7 +1444,7 @@ inside a Sub-Statement.
 The time at which a Statement is stored by the LRS.
 
 The stored property is the literal time the Statement was stored.  Use [Timestamp](#timestamp) 
-to track a time at which the Statement was generated.
+to record a time at which the experience described in the Statement occurred.
 
 ###### Requirements
 
