@@ -2301,7 +2301,7 @@ The LRS:
 * MAY (for security reasons): 
 	* Support a subset of the above methods.
 	* Limit the known users or registered applications.
-* SHOULD at a minimum supply Oauth with "HMAC-SHA1" and "RSA-SHA1" signatures.
+* SHOULD at a minimum supply OAuth with "HMAC-SHA1" and "RSA-SHA1" signatures.
 
 
 <a name="oauthscope"/> 
