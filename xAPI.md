@@ -293,11 +293,12 @@ _high-level overview_ of a given facet of the Experience API are labeled **descr
 
 <a name="def-activity" />
 
-__Activity__: An activity is a type of Object making up the “this” in I did “this”, 
-but has other specific criteria.  It is something with which an Actor interacted. 
-It can be a unit of instruction, experience, or performance that is to be tracked in 
-meaningful combination with a Verb. Interpretation of Activity is broad, meaning that 
-Activities can even be tangible objects such as a chair (real or virtual).
+__Activity__: An Activity is a type of Object making up the “this” in I did “this”; it is something 
+with which an Actor interacted. It can be a unit of instruction, experience, or performance that is 
+to be tracked in meaningful combination with a Verb. Interpretation of Activity is broad, meaning that 
+Activities can even be tangible objects such as a chair (real or virtual). In the statement "Anna 
+tried a cake recipe", the recipe constitutes the Activity in terms of the xAPI statement. Other 
+examples of activities include a book, an e-learning course, a hike or a meeting.
 
 <a name="def-activity-provider" />
 
