@@ -2433,6 +2433,9 @@ LRSs may recognize and act on parameters not in this specification).
 of these APIs that use any parameters matching parameters described in this 
 specification in all but case.
 
+* The LRS MUST reject a batch of statements if any statement within that 
+batch is rejected.
+
 <a name="errorcodes" /> 
 
 ### 7.1 Error Codes
