@@ -4403,7 +4403,7 @@ attachment message format.
 		<td>Agent Object Storage/Retrieval</td>
 	</tr>
 	<tr>
-		<td>/xAPI/activities/about</td>
+		<td>/xAPI/about</td>
 		<td>LRS Information</td>
 	</tr>
 	<tr>
