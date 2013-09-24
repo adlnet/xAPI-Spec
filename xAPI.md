@@ -4371,43 +4371,43 @@ attachment message format.
 		<th>Function</th>
 	</tr>
 	<tr>
-		<td>/xAPI/OAuth/initiate</td>
+		<td>/OAuth/initiate</td>
 		<td>Temporary Credential Request</td>
 	</tr>
 	<tr>
-		<td>/xAPI/OAuth/authorize</td>
+		<td>/OAuth/authorize</td>
 		<td>Resource Owner Authorization</td>
 	</tr>
 	<tr>
-		<td>/xAPI/OAuth/token</td>
+		<td>/OAuth/token</td>
 		<td>Token Request</td>
 	</tr>
 	<tr>
-		<td>/xAPI/statements</td>
+		<td>/statements</td>
 		<td>Statement Storage/Retrieval</td>
 	</tr>
 	<tr>
-		<td>/xAPI/activities</td>
+		<td>/activities</td>
 		<td>Activity Object Storage/Retrieval</td>
 	</tr>
 	<tr>
-		<td>/xAPI/activities/state</td>
+		<td>/activities/state</td>
 		<td>State API</td>
 	</tr>
 	<tr>
-		<td>/xAPI/activities/profile</td>
+		<td>/activities/profile</td>
 		<td>Activity Profile API</td>
 	</tr>
 	<tr>
-		<td>/xAPI/agents</td>
+		<td>/agents</td>
 		<td>Agent Object Storage/Retrieval</td>
 	</tr>
 	<tr>
-		<td>/xAPI/about</td>
+		<td>/about</td>
 		<td>LRS Information</td>
 	</tr>
 	<tr>
-		<td>/xAPI/agents/profile</td>
+		<td>/agents/profile</td>
 		<td>Agent Profile API</td>
 	</tr>
 
