@@ -66,6 +66,7 @@
 *	[Appendix E: Example definitions for Activities of type "cmi.interaction"](#AppendixE)  
 *	[Appendix F: Converting Statements to 1.0.0](#AppendixF)   
 *	[Appendix G: Example Signed Statement](#AppendixG)
+*	[Appendix H: Table of All Endpoints](#AppendixH)
 
 <a name="revhistory"/>  
 
@@ -4358,3 +4359,56 @@ Signed Statement
 
 __Note:__ Attached signature not shown, see <a href="#attachments"> attachments</a> for
 attachment message format.
+
+
+<a name="AppendixH"/>
+
+## Appendix H: Table of All Endpoints
+
+<table>
+	<tr>
+		<th>Endpoint (Base IRI of the LRS Precedes Each Endpoint)</th>
+		<th>Function</th>
+	</tr>
+	<tr>
+		<td>/xAPI/OAuth/initiate</td>
+		<td>Temporary Credential Request</td>
+	</tr>
+	<tr>
+		<td>/xAPI/OAuth/authorize</td>
+		<td>Resource Owner Authorization</td>
+	</tr>
+	<tr>
+		<td>/xAPI/OAuth/token</td>
+		<td>Token Request</td>
+	</tr>
+	<tr>
+		<td>/xAPI/statements</td>
+		<td>Statement Storage/Retrieval</td>
+	</tr>
+	<tr>
+		<td>/xAPI/activities</td>
+		<td>Activity Object Storage/Retrieval</td>
+	</tr>
+	<tr>
+		<td>/xAPI/activities/state</td>
+		<td>State API</td>
+	</tr>
+	<tr>
+		<td>/xAPI/activities/profile</td>
+		<td>Activity Profile API</td>
+	</tr>
+	<tr>
+		<td>/xAPI/activities/agents</td>
+		<td>Agent Object Storage/Retrieval</td>
+	</tr>
+	<tr>
+		<td>/xAPI/activities/about</td>
+		<td>LRS Information</td>
+	</tr>
+	<tr>
+		<td>/xAPI/activities/agents/profile</td>
+		<td>Agent Profile API</td>
+	</tr>
+
+</table>
