@@ -4399,7 +4399,7 @@ attachment message format.
 		<td>Activity Profile API</td>
 	</tr>
 	<tr>
-		<td>/xAPI/activities/agents</td>
+		<td>/xAPI/agents</td>
 		<td>Agent Object Storage/Retrieval</td>
 	</tr>
 	<tr>
@@ -4407,7 +4407,7 @@ attachment message format.
 		<td>LRS Information</td>
 	</tr>
 	<tr>
-		<td>/xAPI/activities/agents/profile</td>
+		<td>/xAPI/agents/profile</td>
 		<td>Agent Profile API</td>
 	</tr>
 
