@@ -857,7 +857,7 @@ The table below lists the properties of the Activity Definition Object:
 	</tr>
 	<tr>
 		<td>description</td>
-		<td><a href="misclangmap">Language Map</a></td>
+		<td><a href="#misclangmap">Language Map</a></td>
 		<td>Recommended</td>
 		<td>A description of the Activity</td>
 	</tr>
