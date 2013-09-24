@@ -2130,7 +2130,7 @@ overwrite existing data, being:
 * Agent Profile API 
 * Activity Profile API
 
-The State API will permit PUT Statements without concurrency headers, since state conflicts
+The State API will permit PUT requests without concurrency headers, since state conflicts
 are unlikely. The requirements below only apply to Agent Profile API and Activity Profile API.
 
 
