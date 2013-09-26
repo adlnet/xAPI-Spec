@@ -66,6 +66,7 @@
 *	[Appendix E: Example definitions for Activities of type "cmi.interaction"](#AppendixE)  
 *	[Appendix F: Converting Statements to 1.0.0](#AppendixF)   
 *	[Appendix G: Example Signed Statement](#AppendixG)
+*	[Appendix H: Table of All Endpoints](#AppendixH)
 
 <a name="revhistory"/>  
 
@@ -4352,3 +4353,58 @@ Signed Statement
 
 __Note:__ Attached signature not shown, see <a href="#attachments"> attachments</a> for
 attachment message format.
+
+
+<a name="AppendixH"/>
+
+## Appendix H: Table of All Endpoints
+
+<table>
+	<tr>
+		<th>Endpoint (Base IRI of the LRS Precedes Each Endpoint)</th>
+		<th>Function</th>
+	</tr>
+
+	<tr>
+		<td>OAuth/token</td>
+		<td>Token Request</td>
+	</tr>
+	<tr>
+		<td>statements</td>
+		<td>Statement Storage/Retrieval</td>
+	</tr>
+	<tr>
+		<td>agents</td>
+		<td>Agent Object Storage/Retrieval</td>
+	</tr>
+	<tr>
+		<td>agents/profile</td>
+		<td>Agent Profile API</td>
+	</tr>
+	<tr>
+		<td>activities</td>
+		<td>Activity Object Storage/Retrieval</td>
+	</tr>
+	<tr>
+		<td>activities/profile</td>
+		<td>Activity Profile API</td>
+	</tr>
+	<tr>
+		<td>activities/state</td>
+		<td>State API</td>
+	</tr>
+	<tr>
+		<td>about</td>
+		<td>LRS Information</td>
+	</tr>
+	<tr>
+		<td>OAuth/initiate</td>
+		<td>Temporary Credential Request</td>
+	</tr>
+	<tr>
+		<td>OAuth/authorize</td>
+		<td>Resource Owner Authorization</td>
+	</tr>
+
+</table>
+>
