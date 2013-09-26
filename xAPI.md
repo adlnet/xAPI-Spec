@@ -37,7 +37,7 @@
     *	5.2.	[Language Map](#misclangmap)  
     *	5.3.	[Extensions](#miscext)  
     *	5.4.	[Identifier Metadata](#miscmeta)  
-*	6.0.	[Runtime Communication](#rtcom)  
+*	6.0.	[Run-time Communication](#rtcom)  
     *	6.1.	[Encoding](#encoding)  
     *	6.2.	[API Versioning](#apiversioning)  
     *	6.3.	[Concurrency](#concurrency)  
@@ -66,6 +66,7 @@
 *	[Appendix E: Example definitions for Activities of type "cmi.interaction"](#AppendixE)  
 *	[Appendix F: Converting Statements to 1.0.0](#AppendixF)   
 *	[Appendix G: Example Signed Statement](#AppendixG)
+*	[Appendix H: Table of All Endpoints](#AppendixH)
 
 <a name="revhistory"/>  
 
@@ -346,15 +347,22 @@ some exceptions, Statements in the xAPI are immutable. This ensures that when
 Statements are shared between LRSs, multiple copies of the Statement remain
 the same.
 
-<a name="def-iri" />
+<a name="def-irl" />
 
-__Internationalized Resource Identifiers (IRI)__: A unique identifier which may be an IRL.
-In the xAPI, all IRIs should be a full absolute IRI including a scheme. Relative IRIs 
-should not be used. IRLs should be defined within a domain controlled by the person creating the IRL.
+__Internationalized Resource Locator (IRL)__:  In the context of this document, 
+an IRL is an IRI that when translated into a URI (per the IRI to URI rules), is a URL. 
+Some communities of practice simply use URL even if they use IRIs, which isn't as 
+technically correct within xAPI.
+
+<a name="def-irl" />
+
+__Internet Resource Locator (IRL)__: Originally described in RFC 1736, but taken in the context of 
+this document to be an IRI that is expected to resolve in the same way a URL is an instance of a 
+URI that resolves.
 
 <a name="def-inverse-functional-identifier" />
 
-__Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
+__Inverse Functional Identifier (IRI)__: An identifier which is unique to a particular persona or group.
  Used to identify Agents and Groups.
 
 <a name="def-learning-management-system" />
@@ -429,41 +437,51 @@ A Statement is akin to a sentence of the form "I did this".
 The details of each property of a statement are described in the table below.  
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr><td>id</td><td>UUID</td>
-	<td>UUID assigned by LRS if not set by the Activity Provider.</td></tr>
+	<td>UUID assigned by LRS if not set by the Activity Provider.</td>
+	<td>Recommended</td></tr>
 	<tr><td><a href="#actor">actor</a></td><td>Object</td>
 	<td>Who the Statement is about, as an <a href="#agent">Agent</a> or 
-		<a href="#group">Group</a> Object. Represents the "I" in "I Did This".</td></tr>
+		<a href="#group">Group</a> Object. Represents the "I" in "I Did This".</td>
+	<td>Required</td></tr>
 	<tr><td><a href="#verb">verb</a></td><td>Object</td>
-	<td>Action of the Learner or Team Object. Represents the "Did" in "I Did This".</td></tr>
+	<td>Action of the Learner or Team Object. Represents the "Did" in "I Did This".</td>
+	<td>Required</td></tr>
 	<tr><td><a href="#object">object</a></td><td>Object</td>
 	<td>Activity, Agent, or another Statement that is the Object of the Statement. 
 	Represents the "This" in "I Did This". Note that Objects which are provided as a value for this field should 
 	include an "objectType" field. If not specified, the Object is assumed to be 
-	an Activity.</td></tr>
+	an Activity.</td>
+	<td>Required</td></tr>
 	<tr><td><a href="#result">result</a></td><td>Object</td>
-	<td>Result Object, further details representing a measured outcome relevant to the specified Verb.</td></tr>
+	<td>Result Object, further details representing a measured outcome relevant to the specified Verb.</td>
+	<td>Optional</td></tr>
 	<tr><td><a href="#context">context</a></td><td>Object</td>
 	<td>Context that gives the Statement more meaning. Examples: a team the Actor is 
-	working with, altitude at which a scenario was attempted in a flight simulator.</td></tr>
+	working with, altitude at which a scenario was attempted in a flight simulator.</td>
+	<td>Optional</td></tr>
 	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
 	of when the events described within this Statement occurred. If not provided, LRS 
-	should set this to the value of "stored" time.</td></tr>
+	should set this to the value of "stored" time.</td>
+	<td>Optional</td></tr>
 	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
-	of when this Statement was recorded. Set by LRS.</td></tr>
+	of when this Statement was recorded. Set by LRS.</td>
+	<td>Set by LRS</td></tr>
 	<tr><td><a href="#authority">authority</a></td><td>Object</td>
 	<td>Agent who is asserting this Statement is true. Verified by the LRS based on 
-	authentication, and set by LRS if left blank.</td></tr>
+	authentication, and set by LRS if left blank.</td>
+	<td>Optional</td></tr>
 	<tr><td><a href="#version">version</a></td><td>Version</td>
-	<td>The Statement’s associated xAPI version, formatted according to <a href="http://semver.org/spec/v1.0.0.html">Semantic Versioning 1.0.0</a>.</td></tr>
+	<td>The Statement’s associated xAPI version, formatted according to <a href="http://semver.org/spec/v1.0.0.html">Semantic Versioning 1.0.0</a>.</td>
+	<td>Not Recommended</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
 		<td>Array of attachment Objects</td>
 	    <td>Headers for attachments to the Statement</td>
-	</tr>
+	<td>Optional</td></tr>
 </table>  
 
 Aside from (potential or required) assignments of properties during LRS 
@@ -810,7 +828,7 @@ Some examples:
 
 Objects which are provided as a value for this field SHOULD include an "objectType" 
 field. If not specified, the objectType is assumed to be "Activity". Other valid values 
-are: <a href="#agentasobj">Agent</a>, <a href="#agentasobj">Group</a>, <a href="#substmt">Sub-Statement</a> or [StatementRef](#stmtref)</a>.
+are: <a href="#agentasobj">Agent</a>, <a href="#agentasobj">Group</a>, <a href="#substmt">SubStatement</a> or [StatementRef](#stmtref)</a>.
 The properties of an Object change according to the objectType.
 
 <a name="activity"/>
@@ -857,7 +875,7 @@ The table below lists the properties of the Activity Definition Object:
 	</tr>
 	<tr>
 		<td>description</td>
-		<td><a href="misclangmap">Language Map</a></td>
+		<td><a href="#misclangmap">Language Map</a></td>
 		<td>Recommended</td>
 		<td>A description of the Activity</td>
 	</tr>
@@ -2070,7 +2088,7 @@ identifier was not coined for use with this specification.
 
 <a name="rtcom"/>
 
-## 6.0 Runtime Communication
+## 6.0 Run-time Communication
 
 Sections 6 and 7 detail the more technical side of the Experience API, dealing with 
 how Statements are transferred between Activity Provider and LRS. A number of libraries 
@@ -2098,33 +2116,33 @@ Systems retrieving Statements may then receive responses that include Statements
 versions. The version header allows for these version differences to be handled correctly, and 
 to ascertain that no partial or mixed LRS version implementations exist.
 
-Using Semantic Versioning will allow Clients and LRSs to reliably know whether they're
-compatible or not as the specification changes.
+Using Semantic Versioning will allow Clients and LRSs to reliably know compatibility as the specification changes.
 
-###### Requirements
+###### Details
 
-Every request from a Client and every response from the LRS must include an HTTP header with the name “X-Experience-API-Version" and the version as the value.
-Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html)
-
-Example:  ``X-Experience-API-Version : 1.0.0``
+Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html).  Every request from a Client and every response from the LRS includes an HTTP header with the name 
+“X-Experience-API-Version" and the version as the value. For example, ``X-Experience-API-Version : 1.0.1``
 
 ###### LRS Requirements
 
-* MUST include the "X-Experience-API-Version" header in every response.
-* MUST set this header to "1.0.0".
-* MUST accept requests with a version header of "1.0" as if the version header was "1.0.0".
-* MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a fully conformant implementation of the prior version specified in the header.
-* MUST reject requests with a version header of "1.1.0" or greater.
-* MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
-
+* The LRS MUST include the "X-Experience-API-Version" header in every response.
+* The LRS MUST set this header to "1.0.1".
+* The LRS MUST accept requests with a version header of "1.0" as if the version header was "1.0.0".
+* The LRS MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a 
+fully conformant implementation of the prior version specified in the header.
+* The LRS MUST reject requests with a version header of "1.1.0" or greater.
+* The LRS MUST make these rejects by responding with an HTTP 400 error including a short description 
+of the problem.
 
 ###### Client Requirements
 
-* SHOULD tolerate receiving responses with a version of "1.0.0" or later.
-* SHOULD tolerate receiving data structures with additional properties.
-* SHOULD ignore any properties not defined in version 1.0.0 of the spec.
+* The Client MUST include the "X-Experience-API-Version" header in every request.
+* The Client MUST set this header to "1.0.1".
+* The Client SHOULD tolerate receiving responses with a version of "1.0.0" or later.
+* The Client SHOULD tolerate receiving data structures with additional properties.
+* The Client SHOULD ignore any properties not defined in version 1.0.0 of the spec.
 
-###### Converting Statements to other versions:
+###### Conversion Requirement
 
 * Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
 * Systems MAY convert Statements of older versions into a newer version only by following the methods described in
@@ -2146,43 +2164,35 @@ overwrite existing data, being:
 * Agent Profile API 
 * Activity Profile API
 
-The State API will permit PUT Statements without concurrency headers, since state conflicts
+The State API will permit PUT requests without concurrency headers, since state conflicts
 are unlikely. The requirements below only apply to Agent Profile API and Activity Profile API.
 
-##### Client requirements
 
-An xAPI Client using either Agent Profile API or Activity Profile API…
 
-* MUST include the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)
-header or MUST include the If-None-Match header.
+##### Client Requirements
 
-##### LRS requirements
+* A Client using either Agent Profile API or Activity Profile API MUST include the 
+[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the If-None-Match header.
 
-The LRS that responds to a GET request
+##### LRS Requirements
 
-* MUST add an ETag HTTP header to the response.
-* MUST calculate the value of this header to be a hexidecimal string of the  SHA-1 digest
-of the contents.
-* MUST enclose the header in quotes.
-
-The reason for specifying the LRS ETag format is to allow API consumers that can't read
-the ETag header to calculate it themselves.
-
-The LRS that responds to a PUT request
-
-* MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)
-header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
+* An LRS responding to a GET request MUST add an ETag HTTP header to the response. (The reason for 
+specifying the LRS ETag format is to allow API consumers that can't read the ETag header to calculate 
+it themselves.)
+* An LRS responding to a GET request MUST calculate the value of this header to be a hexidecimal string 
+of the SHA-1 digest of the contents.
+* An LRS responding to a GET request MUST enclose the header in quotes.  
+* An LRS responding to a PUT request MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
 modifications made after the consumer last fetched the document.
-* MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26)
-header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect when there
-is a resource present that the consumer is not aware of.
+* An LRS responding to a PUT request MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
+when there is a resource present that the consumer is not aware of.
 
-If the header precondition in either of the above cases fails, the LRS
+If the header precondition in either of the PUT request cases above fails, the LRS:
 
 * MUST return HTTP status 412 "Precondition Failed".
 * MUST NOT make a modification to the resource. 
 
-If a PUT request is received without either header for a resource that already exists, the LRS
+If a PUT request is received without either header for a resource that already exists, the LRS:
 
 * MUST return HTTP status 409 "Conflict".
 * MUST return a plain text body explaining that the consumer SHOULD
@@ -2200,18 +2210,7 @@ If a PUT request is received without either header for a resource that already e
 In order to balance interoperability and the varying security requirements of different
 environments, several authentication options are defined.
 
-###### Requirement
-
-The LRS MUST support authentication using at least one of the following methods:
--	OAuth 1.0 (rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
-- HTTP Basic Authentication
-- Common Access Cards (implementation details to follow in a later version)
-- The LRS MUST handle making, or delegating, decisions on the validity of Statements,
- and determining what operations may be performed based on the credentials used.
-
-
-
-###### Authentication scenarios
+###### Details
 
 The below matrix describes the possible authentication scenarios.
 
@@ -2244,32 +2243,47 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 
 </table> 
 
+###### Requirements
+
+The LRS MUST support authentication using at least one of the following methods:
+-	OAuth 1.0 (rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
+- HTTP Basic Authentication
+- Common Access Cards (implementation details to follow in a later version)
+- The LRS MUST handle making, or delegating, decisions on the validity of Statements,
+ and determining what operations may be performed based on the credentials used.
 	
 <a name="authdefs"/>
 
-#### 6.4.1 How To Handle Each Scenario
+#### 6.4.1 Process of Each Scenario
 
-##### General
-* The LRS must record the application's name and a unique consumer key (identifier).
-* The LRS must provide a mechanism to complete this registration, or delegate to another system that provides such 
-a mechanism.
-The means by which this registration is accomplished are not defined by OAuth or the xAPI.
+##### Requirements
 
-##### Application registered + known user
+* The LRS MUST record the application's name and a unique consumer key (identifier).
+* The LRS MUST provide a mechanism to complete this registration, or delegate to another system that provides 
+such a mechanism.
+* The LRS MUST be able to be configured for complete support of the xAPI:
+	* With any of the methods below.
+	* In any of the workflow scenarios below.
+* The LRS MAY (for security reasons): 
+	* Support a subset of the methods below.
+	* Limit the known users or registered applications.
+* The LRS SHOULD at a minimum supply Oauth with "HMAC-SHA1" and "RSA-SHA1" signatures.
 
-* Use endpoints below to complete the standard workflow.
-* If this form of authentication is used  to record Statements and no  authority  is specified, the LRS should record 
-the  authority  as a group consisting of an Agent representing the registered application, and an Agent representing 
-the known user.
+###### Application registered + known user Process and Requirements
 
-##### Application registered + user unknown
+* Use endpoints in section [6.4.2 OAuth Authorization Scope](#oauthscope) to complete the standard OAuth workflow 
+(details not in this specification).
+* If this form of authentication is used  to record Statements and no authority is specified, the LRS should 
+record the authority as a group consisting of an Agent representing the registered application, and an Agent 
+representing the known user.
 
-* LRS will honor requests that are signed using OAuth with the registered application's credentials and with an empty 
-token and token secret.
-* If this form of authentication is used  to record Statements and no  authority  is specified, the LRS should record 
-the  authority as the Agent representing the registered application.
+###### Application registered + user unknown Process and Requirements
 
-##### Application not registered + known user 
+* The LRS honors requests that are signed using OAuth with the registered application's credentials and with an empty token and token secret.
+* If this form of authentication is used  to record Statements and no authority is specified, the LRS should 
+record the authority as the Agent representing the registered application.
+
+###### Application not registered + known user Process and Requirements
 
 * Use a blank consumer secret;
 * Call "Temporary Credential" request;
@@ -2279,31 +2293,18 @@ cannot be verified.
 * the LRS MUST record an  authority that includes both that application and the authenticating user, as a group, 
 since OAuth specifies an application.
 
-##### No application + known user 
+###### No application + known user Process and Requirements
 
 * Use username/password combination that corresponds to an LRS login.
 * Authority to be recorded as the Agent identified by the login, **unless…**
 	* other Authority is specified **and…**
 	* LRS trusts the known user to specify this Authority.
 
-##### No authorization
+###### No authorization Process and Requirements
 
 * Requests should include headers for HTTP Basic Authentication based on a blank username and password, in order to 
 distinguish an explicitly unauthenticated request from a  request that should be given a HTTP Basic Authentication 
 challenge.
-
-##### Requirements
-
-The LRS:
-
-* MUST be able to be configured for complete support of the xAPI:
-	* With any of the above methods.
-	* In any of the workflow scenarios above.
-* MAY (for security reasons): 
-	* Support a subset of the above methods.
-	* Limit the known users or registered applications.
-* SHOULD at a minimum supply OAuth with "HMAC-SHA1" and "RSA-SHA1" signatures.
-
 
 <a name="oauthscope"/> 
 
@@ -2315,21 +2316,6 @@ communicating using the xAPI to negotiate a level of access which accomplishes w
 application needs while minimizing the potential for misuse. The limitations of each scope
 are in addition to any security limitations placed on the user account associated with the
 request.
-
-
-##### Requirements
-The LRS:
-
-* MUST accept a scope parameter as defined in [OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3);
-* MUST assume a requested scope of "statements/write" and "statements/read/mine" if no
-scope is specified;
-* MUST support the scope of "all" as a minimum; 
-* MAY support other scopes.
-
-An xAPI Client:
-
-* SHOULD request only the minimal needed scopes, to increase the chances that the request
-will be granted.
 
 ##### Details
 
@@ -2401,15 +2387,24 @@ parameters, not in the OAuth header.
 	</tr>
 </table>
 
-<a name="datatransfer"/> 
-
-
 ##### Example
 The list of scopes determines the set of permissions that is being requested. 
 For example,an instructor might grant "statements/read" to a reporting tool, 
 but the LRS would still limit that tool to Statements that the instructor could 
 read if querying the LRS with their credentials directly (such as Statements 
 relating to their students).
+
+##### Requirements
+
+* The LRS MUST accept a scope parameter as defined in [OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3).
+* The LRS MUST assume a requested scope of "statements/write" and "statements/read/mine" if no 
+scope is specified.
+* The LRS MUST support the scope of "all" as a minimum.
+* The LRS MAY support other scopes.
+* The Client SHOULD request only the minimal needed scopes, to increase the chances that the request
+will be granted.
+
+<a name="datatransfer"/> 
 
 ## 7.0 Data Transfer (REST)
 
@@ -4358,3 +4353,58 @@ Signed Statement
 
 __Note:__ Attached signature not shown, see <a href="#attachments"> attachments</a> for
 attachment message format.
+
+
+<a name="AppendixH"/>
+
+## Appendix H: Table of All Endpoints
+
+<table>
+	<tr>
+		<th>Endpoint (Base IRI of the LRS Precedes Each Endpoint)</th>
+		<th>Function</th>
+	</tr>
+
+	<tr>
+		<td>OAuth/token</td>
+		<td>Token Request</td>
+	</tr>
+	<tr>
+		<td>statements</td>
+		<td>Statement Storage/Retrieval</td>
+	</tr>
+	<tr>
+		<td>agents</td>
+		<td>Agent Object Storage/Retrieval</td>
+	</tr>
+	<tr>
+		<td>agents/profile</td>
+		<td>Agent Profile API</td>
+	</tr>
+	<tr>
+		<td>activities</td>
+		<td>Activity Object Storage/Retrieval</td>
+	</tr>
+	<tr>
+		<td>activities/profile</td>
+		<td>Activity Profile API</td>
+	</tr>
+	<tr>
+		<td>activities/state</td>
+		<td>State API</td>
+	</tr>
+	<tr>
+		<td>about</td>
+		<td>LRS Information</td>
+	</tr>
+	<tr>
+		<td>OAuth/initiate</td>
+		<td>Temporary Credential Request</td>
+	</tr>
+	<tr>
+		<td>OAuth/authorize</td>
+		<td>Resource Owner Authorization</td>
+	</tr>
+
+</table>
+>
