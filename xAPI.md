@@ -346,15 +346,16 @@ some exceptions, Statements in the xAPI are immutable. This ensures that when
 Statements are shared between LRSs, multiple copies of the Statement remain
 the same.
 
-<a name="def-iri" />
+<a name="def-irl" />
 
-__Internationalized Resource Identifiers (IRI)__: A unique identifier which may be an IRL.
-In the xAPI, all IRIs should be a full absolute IRI including a scheme. Relative IRIs 
-should not be used. IRLs should be defined within a domain controlled by the person creating the IRL.
+__Internationalized Resource Locator (IRL)__:  In the context of this document, 
+an IRL is an IRI that when translated into a URI (per the IRI to URI rules), is a URL. 
+Some communities of practice simply use URL even if they use IRIs, which isn't as 
+technically correct within xAPI.
 
 <a name="def-inverse-functional-identifier" />
 
-__Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
+__Inverse Functional Identifier (IRI)__: An identifier which is unique to a particular persona or group.
  Used to identify Agents and Groups.
 
 <a name="def-learning-management-system" />
