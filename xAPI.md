@@ -279,8 +279,8 @@ _high-level overview_ of a given facet of the Experience API are labeled **descr
 * [Community of Practice](#def-community-of-practice)
 * [Experience API (xAPI)](#def-experience-api)
 * [Immutable](#def-immutable)
-* [Internationalized Resource Identifier (IRI)](#def-iri)
-* [Inverse Functional Identifier](#def-inverse-functional-identifier)
+* [Internationalized Resource Locator (IRL)](#def-irl)
+* [Inverse Functional Identifier (IRI)](#def-inverse-functional-identifier)
 * [Learning Management System (LMS)](#def-learning-management-system)
 * [Learning Record Store (LRS)](#def-learning-record-store)
 * [MUST / SHOULD / MAY](#def-must-should-may)
@@ -353,12 +353,6 @@ __Internationalized Resource Locator (IRL)__:  In the context of this document,
 an IRL is an IRI that when translated into a URI (per the IRI to URI rules), is a URL. 
 Some communities of practice simply use URL even if they use IRIs, which isn't as 
 technically correct within xAPI.
-
-<a name="def-irl" />
-
-__Internet Resource Locator (IRL)__: Originally described in RFC 1736, but taken in the context of 
-this document to be an IRI that is expected to resolve in the same way a URL is an instance of a 
-URI that resolves.
 
 <a name="def-inverse-functional-identifier" />
 
