@@ -4370,14 +4370,7 @@ attachment message format.
 		<th>Endpoint (Base IRI of the LRS Precedes Each Endpoint)</th>
 		<th>Function</th>
 	</tr>
-	<tr>
-		<td>OAuth/initiate</td>
-		<td>Temporary Credential Request</td>
-	</tr>
-	<tr>
-		<td>OAuth/authorize</td>
-		<td>Resource Owner Authorization</td>
-	</tr>
+
 	<tr>
 		<td>OAuth/token</td>
 		<td>Token Request</td>
@@ -4387,28 +4380,36 @@ attachment message format.
 		<td>Statement Storage/Retrieval</td>
 	</tr>
 	<tr>
-		<td>activities</td>
-		<td>Activity Object Storage/Retrieval</td>
+		<td>agents</td>
+		<td>Agent Object Storage/Retrieval</td>
 	</tr>
 	<tr>
-		<td>activities/state</td>
-		<td>State API</td>
+		<td>agents/profile</td>
+		<td>Agent Profile API</td>
+	</tr>
+	<tr>
+		<td>activities</td>
+		<td>Activity Object Storage/Retrieval</td>
 	</tr>
 	<tr>
 		<td>activities/profile</td>
 		<td>Activity Profile API</td>
 	</tr>
 	<tr>
-		<td>agents</td>
-		<td>Agent Object Storage/Retrieval</td>
+		<td>activities/state</td>
+		<td>State API</td>
 	</tr>
 	<tr>
 		<td>about</td>
 		<td>LRS Information</td>
 	</tr>
 	<tr>
-		<td>agents/profile</td>
-		<td>Agent Profile API</td>
+		<td>OAuth/initiate</td>
+		<td>Temporary Credential Request</td>
+	</tr>
+	<tr>
+		<td>OAuth/authorize</td>
+		<td>Resource Owner Authorization</td>
 	</tr>
 
 </table>
