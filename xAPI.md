@@ -4364,11 +4364,6 @@ attachment message format.
 		<th>Endpoint (Base IRI of the LRS Precedes Each Endpoint)</th>
 		<th>Function</th>
 	</tr>
-
-	<tr>
-		<td>OAuth/token</td>
-		<td>Token Request</td>
-	</tr>
 	<tr>
 		<td>statements</td>
 		<td>Statement Storage/Retrieval</td>
@@ -4405,6 +4400,9 @@ attachment message format.
 		<td>OAuth/authorize</td>
 		<td>Resource Owner Authorization</td>
 	</tr>
-
+	<tr>
+		<td>OAuth/token</td>
+		<td>Token Request</td>
+	</tr>
 </table>
 >
