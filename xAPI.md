@@ -112,7 +112,7 @@ Various refinements and clarifications including:
 - Changes to querying the Statement API
 - Signed Statements
 
-###### 1.0.0 to 1.0.1
+###### 1.0.0 to 1.0.1 (October 1, 2013)
 Clarifications and additional examples including:
 - Fixed various typos
 - Added additional examples in the appendices
