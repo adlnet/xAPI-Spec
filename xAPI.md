@@ -1,6 +1,17 @@
 # Experience API
 ## Advanced Distributed Learning (ADL) Co-Laboratories
 
+>"Copyright 2013 Advanced Distributed Learning (ADL) Initiative, U.S. Department of Defense
+
+>Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except 
+>in compliance with the License. You may obtain a copy of the License at
+>http://www.apache.org/licenses/LICENSE-2.0
+
+>Unless required by applicable law or agreed to in writing, software distributed under the License 
+>is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express 
+>or implied. See the License for the specific language governing permissions and limitations under 
+>the License."
+
 >This document was authored by members of the Experience API Working Group (see 
 >list on pp. 7-8) in support of the Office of the Deputy Assistant Secretary of 
 >Defense (Readiness) Advanced Distributed Learning (ADL) Initiative. Please 
@@ -42,7 +53,7 @@
     *	6.2.	[API Versioning](#apiversioning)  
     *	6.3.	[Concurrency](#concurrency)  
     *	6.4.	[Security](#security)  
-		*	6.4.1.	[Authentication Definitions](#authdefs)  
+		*	6.4.1.	[Process for Each Scenario](#authdefs)  
 		*	6.4.2.	[OAuth Authorization Scope](#oauthscope)  
 *	7.0.	[Data Transfer (REST)](#datatransfer)  
     *	7.1.	[Error Codes](#errorcodes)  
@@ -101,7 +112,7 @@ Various refinements and clarifications including:
 - Changes to querying the Statement API
 - Signed Statements
 
-###### 1.0.0 to 1.0.1
+###### 1.0.0 to 1.0.1 (October 1, 2013)
 Clarifications and additional examples including:
 - Fixed various typos
 - Added additional examples in the appendices
@@ -119,7 +130,7 @@ associated components on how to accomplish these tasks.
 Specifically, the Experience API provides:  
 
 * The structure and definition of Statement, State, Learner, Activity and Objects,
-which are the means by which experiences are conveyed by a Activity Provider.
+which are the means by which experiences are conveyed by an Activity Provider.
 
 * Data Transfer methods for the storage and retrieval (but not validation) of
 these Objects to/from a Learning Record Store.  Note that the systems storing 
@@ -279,8 +290,9 @@ _high-level overview_ of a given facet of the Experience API are labeled **descr
 * [Community of Practice](#def-community-of-practice)
 * [Experience API (xAPI)](#def-experience-api)
 * [Immutable](#def-immutable)
+* [Internationalized Resource Identifier (IRI)](#def-iri)
 * [Internationalized Resource Locator (IRL)](#def-irl)
-* [Inverse Functional Identifier (IRI)](#def-inverse-functional-identifier)
+* [Inverse Functional Identifier](#def-inverse-functional-identifier)
 * [Learning Management System (LMS)](#def-learning-management-system)
 * [Learning Record Store (LRS)](#def-learning-record-store)
 * [MUST / SHOULD / MAY](#def-must-should-may)
@@ -347,6 +359,13 @@ some exceptions, Statements in the xAPI are immutable. This ensures that when
 Statements are shared between LRSs, multiple copies of the Statement remain
 the same.
 
+<a name="def-iri" />
+
+__Internationalized Resource Identifier  (IRI)__:  A unique identifier which may be an IRL. 
+In the xAPI, all IRIs should be a full absolute IRIs including a scheme. Relative IRIs 
+should not be used. IRLs should be defined within a domain controlled by the person 
+creating the IRL.
+
 <a name="def-irl" />
 
 __Internationalized Resource Locator (IRL)__:  In the context of this document, 
@@ -356,7 +375,7 @@ technically correct within xAPI.
 
 <a name="def-inverse-functional-identifier" />
 
-__Inverse Functional Identifier (IRI)__: An identifier which is unique to a particular persona or group.
+__Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
  Used to identify Agents and Groups.
 
 <a name="def-learning-management-system" />
@@ -616,7 +635,7 @@ in a given anonymous or Identified Group.
 
 <a name="inversefunctional">
 
-##### 4.1.2.3 Inverse Functional Idenfier
+##### 4.1.2.3 Inverse Functional Identifier
 ###### Description 
 An "Inverse Functional Identifier" is a value of an Agent or Identified
 Group that is guaranteed to only ever refer to that Agent or Identified Group.
@@ -644,7 +663,7 @@ but no others, should be used for this property and mbox_sha1sum.</td></tr>
 
 <a name="agentaccount"/>
 
-##### Account Object
+##### 4.1.2.4 Account Object
 
 ###### Description 
 
@@ -784,7 +803,7 @@ Communities of practice will, at some point in time, need to establish new Verbs
 Therefore, it is expected that xAPI communities of practice generate profiles, lists, and repositories that become 
 centered on Verb vocabularies.  ADL is creating a companion document containing Verbs for xAPI to serve the ADL Community.
 
-In fulfillment of the requirements above, a collection of IRIs of recommended Verbs exists.  There are times when 
+In fulfillment of the requirements below, a collection of IRIs of recommended Verbs exists.  There are times when 
 Activity Providers may wish to use a different Verb for the same meaning.
 
 ###### Requirements for Communities of Practice
@@ -1062,7 +1081,7 @@ There are two possibilities for using a Statement as an Object.  First, an Objec
 of a Statement that already exists by using a Statement Reference. A common use case for 
 Statement References is grading or commenting on an experience that could be tracked as an 
 independent event.  The special case of voiding a Statement would also use a Statement Reference.
-Second, an Object can be brand new Statement by using a Sub-Statement.  A common use case for 
+Second, an Object can be a brand new Statement by using a Sub-Statement.  A common use case for 
 Sub-Statements would be any experience that would be misleading as its own Statement. Each type is defined below.
 
 <a name="stmtref"/>
@@ -1126,7 +1145,7 @@ A Sub-Statement is a new Statement included as part of a parent Statement.
 * A Sub-Statement MUST specify an "objectType" property with the value "SubStatement".
 * A Sub-Statement MUST be validated as a Statement in addition to other Sub-Statement requirements.
 * A Sub-Statement MUST NOT have the "id", "stored", "version" or "authority" properties.
-* A Sub-Statement MUST NOT contain a Sub-Statement of their own i.e. cannot be nested.
+* A Sub-Statement MUST NOT contain a Sub-Statement of their own, i.e., cannot be nested.
 
 ###### Example
 
@@ -1253,7 +1272,7 @@ into some broader activity.
 The following table contains the properties of the Context Object.
 
 <table border="1">
-<tr><th>property</th><th>type</th><th>description</th></tr>
+<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 <tr>
 <td>registration</td>
 <td>UUID</td>
@@ -1439,7 +1458,7 @@ These examples are for illustrative purposes only and are not meant to be prescr
 
 ###### Requirements
 * A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
-* A timestamp SHOULD include the timezone.
+* A timestamp SHOULD include the time zone.
 * A timestamp SHOULD be the current or a past time when it is outside of a Sub-Statement.
 * A timestamp MAY represent any point of time during the experience happened over a period of time. 
 * A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
@@ -1462,7 +1481,7 @@ to record a time at which the experience described in the Statement occurred.
 ###### Requirements
 
 * The stored property MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
-* The stored property SHOULD include the timezone.
+* The stored property SHOULD include the time zone.
 * The stored property SHOULD be the current or a past time
 * The stored property MAY be truncated or rounded to a precision of at least 3 decimal digits
 for seconds (millisecond precision MUST be preserved). 
@@ -1612,7 +1631,7 @@ The table below lists all properties of the Attachment Object.
 	<tr>
 		<td>length</td>
 		<td>Integer</td>
-		<td>The length of the attachment data in octets</td>
+		<td>The length of the attachment data in octets.</td>
 		<td>yes</td>
 	</tr>
 	<tr>
@@ -1624,7 +1643,7 @@ The table below lists all properties of the Attachment Object.
 	<tr>
 		<td>fileUrl</td>
 		<td>IRL</td>
-		<td>an IRL at which the attachment data may be retrieved, or from which it used to be retrievable. </td>
+		<td>An IRL at which the attachment data may be retrieved, or from which it used to be retrievable. </td>
 		<td>no</td>
 	</tr>
 </table>
@@ -1653,7 +1672,7 @@ results when the attachments filter is false.
     * The first part of the multipart document MUST contain the Statements themselves, with type "application/json".
     * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
 capability will be available when issuing PUT or POST against the Statement resource.
-	* MUST include a X-Experience-API-Hash field in each part's header after the first (statements) part.
+	* MUST include an X-Experience-API-Hash field in each part's header after the first (Statements) part.
 	* This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
 	attachment included in this part.
 	* MUST include a Content-Transfer-Encoding field with a value of "binary" in each part's header after the first (statements) part.
@@ -1880,6 +1899,10 @@ for details about making references to other Statements.  To see how voided stat
 See [StatementRef](#queryStatementRef) in 7.2 Statement API).
 
 ###### Example
+
+This example Statement voids a previous Statement which it identifies with the Statement id 
+"e05aa883-acaf-40ad-bf54-02c8ce485fb0".
+
 ```
 {
 	"actor" : {
@@ -1899,9 +1922,6 @@ See [StatementRef](#queryStatementRef) in 7.2 Statement API).
 	}
 }
 ```  
-
-This example Statement voids a previous Statement which it identifies with the Statement id 
-"e05aa883-acaf-40ad-bf54-02c8ce485fb0".
 
 
 <a name="signature"/>
@@ -1937,13 +1957,13 @@ before the signature was added.
 X.509 certificate.
 * If X.509 was used to sign, the JWS header SHOULD include the "x5c" property containing
 the associated certificate chain.
-* The LRS MUST reject requests to store Statements that contain malformed signatures, with HTTP 400
+* The LRS MUST reject requests to store Statements that contain malformed signatures, with HTTP 400.
 * The LRS SHOULD include a message in the response of a rejected statement
 In order to verify signatures are well formed, the LRS MUST do the following:
     * Decode the JWS signature, and load the signed serialization of the Statement from the
       JWS signature payload.
     * Validate that the "original" Statement is logically equivalent to the received Statement.
-    	* When making this equivilance check, differences which could have been caused by
+    	* When making this equivalence check, differences which could have been caused by
     	allowed or required LRS processing of "id", "authority", "stored", "timestamp", or
     	"version" MUST be ignored.
     * If the JWS header includes an X.509 certificate, validate the signature against that
@@ -1989,7 +2009,7 @@ in this specification do. The id is stored in the IRL, "updated" is HTTP header 
 
 ##### Description
 A language map is a dictionary where the key is a 
-[RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the value is a 
+[RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the value is an 
 string in the language specified in the tag. This map should be populated as 
 fully as possible based on the knowledge of the string in question in different 
 languages.  
@@ -2007,7 +2027,7 @@ community of practice.
 
 ##### Details
 Extensions are defined by a map and logically relate to the part of the Statement where they are 
-present. The values of an extensions can be any JSON value or data structure. Extensions in Statement 
+present. The values of an extension can be any JSON value or data structure. Extensions in Statement 
 context provide context to the core experience, while those in the result provide elements related to 
 some outcome. For Activities, extensions provide additional information that helps define an Activity 
 within some custom application or community. The meaning and structure of extension values under an 
@@ -2020,7 +2040,7 @@ IRI key are defined by the person who controls the IRI.
 * Clients SHOULD always strive to map as much information as possible into the built-in 
 elements in order to leverage interoperability among Experience API conformant tools.
 * All extension IRIs SHOULD have controllers.
-* The controller of an IRL extension key SHOULD make a human-readable description.
+* The controller of an IRL extension key SHOULD make a human-readable description
 of the intended meaning of the extension supported by the IRL accessible at the IRL.
 
 __Note:__ A Statement defined entirely by its extensions becomes meaningless as no other system 
@@ -2136,7 +2156,7 @@ of the problem.
 * The Client SHOULD tolerate receiving data structures with additional properties.
 * The Client SHOULD ignore any properties not defined in version 1.0.0 of the spec.
 
-###### Conversion Requirement
+###### Conversion Requirements
 
 * Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
 * Systems MAY convert Statements of older versions into a newer version only by following the methods described in
@@ -2166,7 +2186,8 @@ are unlikely. The requirements below only apply to Agent Profile API and Activit
 ##### Client Requirements
 
 * A Client using either Agent Profile API or Activity Profile API MUST include the 
-[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the If-None-Match header.
+[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the 
+[If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header.
 
 ##### LRS Requirements
 
@@ -2208,7 +2229,9 @@ environments, several authentication options are defined.
 
 The below matrix describes the possible authentication scenarios.
 
-A **registered application** is an application that will authenticate to the LRS as an OAuth  consumer that has been registered with the LRS.
+A **registered application** is an application that will authenticate to the LRS as an OAuth 
+consumer that has been registered with the LRS.
+
 A **known user** is a user account on the LRS, or on a system which the LRS trusts to define users.
 
 
@@ -2240,7 +2263,7 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 ###### Requirements
 
 The LRS MUST support authentication using at least one of the following methods:
--	OAuth 1.0 (rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
+- OAuth 1.0 (RFC 5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
 - HTTP Basic Authentication
 - Common Access Cards (implementation details to follow in a later version)
 - The LRS MUST handle making, or delegating, decisions on the validity of Statements,
@@ -2261,7 +2284,7 @@ such a mechanism.
 * The LRS MAY (for security reasons): 
 	* Support a subset of the methods below.
 	* Limit the known users or registered applications.
-* The LRS SHOULD at a minimum supply Oauth with "HMAC-SHA1" and "RSA-SHA1" signatures.
+* The LRS SHOULD at a minimum supply OAuth with "HMAC-SHA1" and "RSA-SHA1" signatures.
 
 ###### Application registered + known user Process and Requirements
 
@@ -2279,12 +2302,11 @@ record the authority as the Agent representing the registered application.
 
 ###### Application not registered + known user Process and Requirements
 
-* Use a blank consumer secret;
-* Call "Temporary Credential" request;
-* Specify "consumer_name" and other usual parameters;
-User will then see "consumer_name" plus a warning that the identity of the application requesting authorization 
-cannot be verified.
-* the LRS MUST record an  authority that includes both that application and the authenticating user, as a group, 
+* Use a blank consumer secret.
+* Call "Temporary Credential" request.
+* Specify "consumer_name" and other usual parameters; User will then see "consumer_name" plus a warning 
+that the identity of the application requesting authorization cannot be verified.
+* The LRS MUST record an  authority that includes both that application and the authenticating user, as a group, 
 since OAuth specifies an application.
 
 ###### No application + known user Process and Requirements
@@ -2604,7 +2626,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	</tr>
 	<tr><td>related_activities</td><td>Boolean</td><td>False</td>
 		<td>Apply the Activity filter broadly. Include Statements for which the Object,
-		any of the  context Activities, or any of those properties in a contained SubStatement
+		any of the  context Activities, or any of those properties in a contained Sub-Statement
 		match the Activity parameter, instead of that parameter's normal behavior. Matching
 		is defined in the same way it is for the 'Activity' parameter."
 		</td>
@@ -2612,7 +2634,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	<tr><td>related_agents</td><td>Boolean</td><td>False</td>
 		<td>Apply the Agent filter broadly. Include Statements for which 
 			the Actor, Object, Authority, Instructor, Team,
-			or any of these properties in a contained SubStatement match the Agent parameter,
+			or any of these properties in a contained Sub-Statement match the Agent parameter,
 			instead of that parameter's normal behavior. Matching is defined in the same way
 			it is for the 'agent' parameter.
 		</td>
@@ -2641,7 +2663,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 			applying the language filtering process defined below, and return the original
 			Agent Objects as in "exact" mode.<br/><br/>
 
-			<b>Cannonical Language Process:</b> Activity Objects contain Language Map Objects 
+			<b>Canonical Language Process:</b> Activity Objects contain Language Map Objects 
 			for name and description. Only one language should be returned in each of these maps.<br/><br/>
 
 			In the event of format being “canonical”, only one language should be returned in 
@@ -2680,7 +2702,7 @@ account any temporary condition, such as excessive load, which might cause a del
 becoming available for retrieval.
 
 * If the attachment property of a GET statement is used and is set to "true", the LRS MUST use the 
-multipart response format and include all attachments as described in <a href="#attachments">4.1.11.
+multipart response format and include all attachments as described in <a href="#attachments">4.1.11</a>.
 
 * If the attachment property of a GET statement is used and is set to "false", the LRS MUST NOT
 include attachment raw data and MUST report application/json.
@@ -2698,7 +2720,7 @@ match when a targets b which targets c and the filter conditions described above
 "Statement c".
 
 For example, consider the Statement "Ben passed explosives training", and a follow up
-Statement: "Andrew confirmed \<StatementRef to original Statement\>". The follow up
+Statement: "Andrew confirmed <StatementRef to original Statement\>". The follow up
 Statement will not mention "Ben" or "explosives training", but when fetching Statements
 with an Actor filter of "Ben" or an Activity filter of "explosives training", both
 Statements match and will be returned so long as they fall into the time or sequence
@@ -2794,8 +2816,8 @@ In this context merge is defined as:
 property on the existing Object equal to the value from the posted Object.    
 * store any valid json serialization of the existing Object as the document referenced in the request
 
-Note that only top-level properties are merged, even if a top-level property is an Object
-the entire contents of each original property are replaced with the entire contents of
+Note that only top-level properties are merged, even if a top-level property is an Object.
+The entire contents of each original property are replaced with the entire contents of
 each new property.
 
 For example, this document is POSTed with the same id as the existing 
@@ -2841,7 +2863,7 @@ own internal storage, or need to persist state across devices.
 
 ##### Details
 
-The semantics of the call are drivern by the stateId parameter. If it is included, 
+The semantics of the call are driven by the stateId parameter. If it is included, 
 the GET and DELETE methods will act upon a single defined state document 
 identified by "stateId". Otherwise, GET will return the available ids, and DELETE 
 will delete all state in the context given through the other parameters.  
@@ -2884,7 +2906,7 @@ Returns: ```200 OK```, Array of ids
 	<tr><td>activityId</td><td>String</td><td>yes</td>
 		<td>The Activity id associated with these states.</td>
 	</tr>
-	<tr><td>agent</td><td>JSON<</td><td>yes</td>
+	<tr><td>agent</td><td>JSON</td><td>yes</td>
 		<td>The Agent associated with these states.</td>
 	</tr>
 	<tr><td>registration</td><td>UUID</td><td>no</td>
@@ -2928,7 +2950,7 @@ The Activity Profile API is much like the State API, allowing for arbitrary key
 
 ###### Details
 
-The semantics of the call are driven by the stateId parameter.If it is included, 
+The semantics of the call are driven by the stateId parameter. If it is included, 
 the GET method will act upon a single defined document identified by "profileId". 
 Otherwise, GET will return the available ids.
 
@@ -2995,7 +3017,7 @@ document pairs to be saved which are related to an Agent.
 
 ###### Details
 
-The semantics of the call are driven by the stateId parameter.If it is included, 
+The semantics of the call are driven by the stateId parameter. If it is included, 
 the GET method will act upon a single defined document identified by "profileId". 
 Otherwise, GET will return the available ids.  
 
@@ -3085,7 +3107,7 @@ Returns (GET): ```200 OK```, Profile Content
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
 	<tr><td>agent</td><td>Object (JSON)</td><td>yes</td>
-		<td>The agent associated with this profile.</td>
+		<td>The Agent associated with this profile.</td>
 	</tr>
 	<tr><td>profileId</td><td>String</td><td>yes</td>
 		<td>The profile id associated with this profile.</td>
@@ -3107,7 +3129,7 @@ Returns: ```200 OK```, List of ids
 	</tr>
 	<tr><td>since</td><td>Timestamp</td><td>no</td>
 		<td>Only ids of profiles stored since the specified timestamp 
-			(exclusive) are returned</td>
+			(exclusive) are returned.</td>
 	</tr>
 </table>  
 
@@ -3203,11 +3225,11 @@ There may be cases where there is a requirement for the Client Activity Provider
 IE8 and IE9 where the Client code is hosted on a different scheme (HTTP or HTTPS) from 
 the LRS. In these cases, proxy is needed to communicate to the LRS. Two simple solutions 
 might be to 1) set up a proxy pass through on the same scheme as the Client code to the LRS 
-or 2) to host an intermediary server side LRS on the same scheme as the Client code to route 
+or 2) to host an intermediary server-side LRS on the same scheme as the Client code to route 
 Statements to the target LRS.   
 
 * The LRS MAY choose to provide both HTTP and HTTPS endpoints to support this use case. 
-* The LRS and the Client should SHOULD consider the security risks before making the 
+* The LRS and the Client SHOULD consider the security risks before making the 
 decision to use this scheme.
 
 <a name="validation"/> 
@@ -3277,7 +3299,7 @@ and "Access-Control-Allow-Methods" headers is necessary, such as IE 8+, FF 3.5+,
 Android browser. The server needs to set required headers based on the browser.
 
 In the example below, the following values in the first few lines can be replaced with your own values. All other 
-values should be left as they are. Be sure to include a UUID as a part of the bookmarket PUT statement, because 
+values should be left as they are. Be sure to include a UUID as a part of the bookmarklet PUT statement, because 
 if one is not provided, the LRS will generate one.
 
 <table>
@@ -3500,7 +3522,7 @@ Typical simple completion with verb "attempted":
 }
 ```  
 A long example statement showcasing most of the properties available. This example shows
-a statement returned by an LRS including the authority and stored propeties set by the LRS:  
+a statement returned by an LRS including the authority and stored properties set by the LRS:  
 ```
 {
     "id": "6690e6c9-3ef0-4ed3-8b37-7f3964730bee",
@@ -4051,7 +4073,7 @@ A 1.0.0 system converting a Statement created in 0.95 MUST follow the steps belo
 * If an authority was not previously set, set the authority to an Agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
-* if the Statement field in context was set to anything other than a
+* If the Statement field in context was set to anything other than a
 StatementRef, remove it from the Statement.
 * Preserve all other fields without modification, including "stored". Stored should still
 be updated if the Statement is passed to another system.
