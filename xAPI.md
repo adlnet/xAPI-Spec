@@ -571,10 +571,13 @@ The table below lists the properties of Agent Objects.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a Statement's Object.</td><td>no</td></tr>
-	<tr><td>name</td><td>String</td><td>Full name of the Agent.</td><td>no</td></tr>
+	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a Statement's Object.</td>
+	<td>Optional</td></tr>
+	<tr><td>name</td><td>String</td><td>Full name of the Agent.</td>
+	<td>Optional</td></tr>
 	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
-	    <td>An Inverse Functional Identifier unique to the Agent.</td><td>yes</td></tr>
+	    <td>An Inverse Functional Identifier unique to the Agent.</td>
+	    <td>Required</td></tr>
 </table>
 
 
@@ -595,9 +598,10 @@ The table below lists all properties of an Anonymous Group.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>yes</td></tr>
-	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>no</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td><td>The members of this Group.</td><td>yes</td></tr>
+	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>Required</td></tr>
+	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>Optional</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td><td>The members of this Group.</td>
+	<td>Required</td></tr>
 </table>
 
 An Identified Group is used to uniquely identify a cluster of Agents.
@@ -606,11 +610,12 @@ The table below lists all properties of an Identified Group.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>yes</td></tr>
-	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>no</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td><td>The members of this Group.</td><td>no</td></tr>
+	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>Required</td></tr>
+	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>Optional</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td><td>The members of this Group.</td>
+	<td>Optional</td></tr>
 	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
-	    <td>An Inverse Functional Identifier unique to the Group.</td><td>yes</td></tr>	
+	    <td>An Inverse Functional Identifier unique to the Group.</td><td>Required</td></tr>	
 </table>
 
 ###### Requirements
@@ -681,10 +686,11 @@ account number) to identify all Statements about a person while maintaining anon
 The table below lists all properties of Account Objects.
 
 <table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>homePage</td><td>IRL</td><td>The canonical home page for the system the account is on. This is based on FOAF's accountServiceHomePage.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr><td>homePage</td><td>IRL</td><td>The canonical home page for the system the account is on. This is based on FOAF's accountServiceHomePage.</td>
+	<td>Required</td></tr>
 	<tr><td>name</td><td>String</td><td>The unique id or name used to log in to this account. This is based 
-			on FOAF's accountName.</td></tr>
+			on FOAF's accountName.</td><td>Required</td></tr>
 </table>
 
 
@@ -725,13 +731,14 @@ corresponding to multiple languages or dialects which provide human-readable mea
 The table below lists all properties of the Verb Object.
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>id</td>
 		<td>IRI</td>
 		<td>Corresponds to a Verb definition. Each Verb definition 
 			corresponds to the meaning of a Verb, not the word. The IRI should 
 			be human-readable and contain the Verb meaning.</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>display</td>
@@ -740,6 +747,7 @@ The table below lists all properties of the Verb Object.
 			Verb in one or more languages. This does not have any impact on the 
 			meaning of the Statement, but serves to give a human-readable 
 			display of the meaning already determined by the chosen Verb.</td>
+		<td>Recommended</td>
 	</tr>
 </table>
 
