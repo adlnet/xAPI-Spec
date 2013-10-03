@@ -2798,8 +2798,10 @@ Activity and/or Agent.
 
 ###### JSON Procedure with Requirements
 
-Activity Providers MAY use Documents of content type "application/json" to store sets of 
-variables. The following process walks through that process and the process requirements.  
+If an Activity Provider stores variables as JSON Objects in a document with 
+content type application/json, they can manipulate them as sets of variables using POST.
+
+The following process walks through that process and the process requirements.  
 For example, a document contains: 
 
 ```
@@ -2841,7 +2843,7 @@ If the original document exists, and the original document or the document being
 do not have a Content-Type:
 of "application/json", or if either document cannot be parsed as JSON Objects, the LRS MUST
 respond with HTTP status code ```400 Bad Request```, and MUST NOT update the target document
-as a result of the request. 
+as a result of the request.
 
 If the original document does not exist, the LRS MUST treat the request the same as it 
 would a PUT request and store the document being posted.
