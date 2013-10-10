@@ -854,20 +854,23 @@ A Statement may represent an Activity as the Object of the Statement. The follow
 properties in this case.
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>objectType</td>
 		<td>String</td>
-		<td>MUST be "Activity" when present. Optional in all cases.</td>
+		<td>MUST be "Activity" when present</td>
+		<td>Optional in all cases</td>
 	</tr>
 	<tr>
 		<td><a href="#acturi">id</a></td><td>IRI</td>
-		<td>An identifier for a single unique Activity. Required.</td>
+		<td>An identifier for a single unique Activity</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td><a href="#actdef">definition</a></td>
 		<td>Object</td>
-		<td>Optional Metadata, <a href="#actdef">See below</a></td>
+		<td>Metadata, <a href="#actdef">See below</a></td>
+		<td>Optional</td>
 	</tr>
 </table>
 
@@ -876,36 +879,38 @@ these Activities could be questioned. This means an LRS may never treat (referen
 Activity id as belonging to two different Activities, even if it thinks this was intended. Namely, 
 when a conflict with another system occurs, it’s not possible to determine the intentions. 
 
+
+###### <a id="actdef">Activity Definition</a>
 The table below lists the properties of the Activity Definition Object:
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Use</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>name</td>
 		<td><a href="#misclangmap">Language Map</a></td>
-		<td>Recommended</td>
 		<td>The human readable/visual name of the Activity</td>
+		<td>Recommended</td>
 	</tr>
 	<tr>
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
-		<td>Recommended</td>
 		<td>A description of the Activity</td>
+		<td>Recommended</td>
 	</tr>
 	<tr>
 		<a name="acttype"/>
 		<td>type</td>
 		<td>IRI</td>
-		<td>Recommended</td>
 		<td>The type of Activity.</td>
+		<td>Recommended</td>
 	</tr>
 	<tr>
 		<td>moreInfo</td>
 		<td>IRL</td>
-		<td>Optional</td>
 		<td>SHOULD resolve to a document human-readable information about the Activity,
 		which MAY include a way to 'launch' the Activity.
 		</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td colspan="4">Interaction properties, See: <a href="#interactionacts">Interaction Activities</a></td>
@@ -913,16 +918,16 @@ The table below lists the properties of the Activity Definition Object:
 	<tr>
 		<td>extensions</td>
 		<td>Object</td>
-		<td>Optional</td>
 		<td>A map of other properties as needed (see: <a href="#miscext">Extensions</a>)</td>
+		<td>Optional</td>
 	</tr>
 </table>
 
-__Note:__ IRI fragments (sometimes called relative IRLs) are not valid IRIs. As with Verbs, it is recommended that
+__Note on Activity types:__ IRI fragments (sometimes called relative IRLs) are not valid IRIs. As with Verbs, it is recommended that
 Activity Providers look for and use established, widely adopted, Activity types.
 
 
-###### Activity Id Requirements
+###### <a id="acturi">Activity Id Requirements</a>
 
 * An Activity id MUST be unique.
 * An Activity id MUST always reference the same Activity.
@@ -987,12 +992,13 @@ of extensions to an Activity's type and definition.
 The table below lists the properties for Interaction Activities.
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>interactionType</td>
 		<td>String</td>
 		<td>As in "cmi.interactions.n.type" as defined in the SCORM 2004 4th 
 			Edition Run-Time Environment.</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>correctResponsesPattern</td>
@@ -1001,11 +1007,13 @@ The table below lists the properties for Interaction Activities.
 			"cmi.interactions.n.correct_responses.n.pattern" as defined in 
 			the SCORM 2004 4th Edition Run-Time Environment, where the final 
 			<em>n</em> is the index of the array.</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>choices | scale | source | target | steps</td>
 		<td>Array of interaction components</td>
 		<td>Specific to the given interactionType (<a href="#interactionType">see below</a>).</td>
+		<td>Optional</td>
 	</tr>
 </table>  
 
@@ -1029,12 +1037,14 @@ Interaction components are defined as follows:
 		<td>id</td>
 		<td>String</td>
 		<td>A value such as used in practice for "cmi.interactions.n.id" as
-            defined in the SCORM 2004 4th Edition Run-Time Environment</td> 
+            defined in the SCORM 2004 4th Edition Run-Time Environment</td>
+            	<td>Required</td>
 	<tr>
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>A description of the interaction component 
 			(for example, the text for a given choice in a multiple-choice interaction)</td>
+		<td>Required</td>
 	</tr>
 </table>
 
@@ -1099,10 +1109,10 @@ A Statement Reference is a pointer to another pre-existing Statement.
 The table below lists all properties of a Statement Reference Object:
 
 <table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>String</td><td>In this case, MUST be "StatementRef".</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr><td>objectType</td><td>String</td><td>In this case, MUST be "StatementRef".</td><td>Required</td></tr>
 	<tr><td>id</td><td>UUID</td><td>The UUID of a Statement. 
-	</td></tr>
+	</td><td>Required</td></tr>
 </table>
 
 ###### Example
@@ -1204,25 +1214,44 @@ An optional field that represents a measured outcome related to the Statement in
 The following table contains the properties of the Results Object.
 
 <table border="1">
-<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-<td>score</td>
-<td>Object</td>
-<td>The score of the Agent in relation to the success or quality of the experience. <a href ="#Score">See: Score</a></a></td>
-</tr>
-<tr><td>success</td><td>Boolean</td><td>Indicates whether or not the attempt on the Activity was successful.</td>
-</tr>
-<tr><td>completion</td><td>Boolean</td><td>Indicates whether or not the Activity was completed.</td>
+<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<td>score</td>
+	<td>Object</td>
+	<td>The score of the Agent in relation to the success or quality of the experience. 
+	<a href ="#Score">See: Score</a></td>
+	<td>Optional</td>
 </tr>
 <tr>
-<td>response</td><td>String</td><td>A response appropriately formatted for the given Activity.</td>
+	<td>success</td>
+	<td>Boolean</td>
+	<td>Indicates whether or not the attempt on the Activity was successful.</td>
+	<td>Optional</td>
 </tr>
 <tr>
-<td>duration</td><td>Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>
-with a precision of 0.01 seconds</td><td>Period of time over which the Statement occurred.</td>
+	<td>completion</td>
+	<td>Boolean</td>
+	<td>Indicates whether or not the Activity was completed.</td>
+	<td>Optional</td>
 </tr>
 <tr>
-<td>extensions</td><td>Object</td><td>A map of other properties as needed.
-<a href="#miscext">See: Extensions</a></td>
+	<td>response</td>
+	<td>String</td>
+	<td>A response appropriately formatted for the given Activity.</td>
+	<td>Optional</td>
+</tr>
+<tr>
+	<td>duration</td>
+	<td>Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>
+	with a precision of 0.01 seconds</td>
+	<td>Period of time over which the Statement occurred.</td>
+	<td>Optional</td>
+</tr>
+<tr>
+	<td>extensions</td>
+	<td>Object</td>
+	<td>A map of other properties as needed.
+	<a href="#miscext">See: Extensions</a></td>
+	<td>Optional</td>
 </tr>
 </table> 
 
@@ -1238,11 +1267,31 @@ An optional field that represents the outcome of a graded Activity achieved by a
 The table below defines the Score Object. 
 
 <table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>scaled</td><td>Decimal number between -1 and 1, inclusive</td><td>Cf. 'cmi.score.scaled' in SCORM 2004 4th Edition</td></tr>
-	<tr><td>raw</td><td>Decimal number between min and max (if present, otherwise unrestricted), inclusive</td><td>Cf. 'cmi.score.raw'</td></tr>
-	<tr><td>min</td><td>Decimal number less than max (if present)</td><td>Cf. 'cmi.score.min'</td></tr>
-	<tr><td>max</td><td>Decimal number greater than min (if present)</td><td>Cf. 'cmi.score.max'</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>scaled</td>
+		<td>Decimal number between -1 and 1, inclusive</td>
+		<td>Cf. 'cmi.score.scaled' in SCORM 2004 4th Edition</td>
+		<td>Recommended</td>
+	</tr>
+	<tr>
+		<td>raw</td>
+		<td>Decimal number between min and max (if present, otherwise unrestricted), inclusive</td>
+		<td>Cf. 'cmi.score.raw'</td>
+		<td>Optional</td>
+	</tr>
+	<tr>
+		<td>min</td>
+		<td>Decimal number less than max (if present)</td>
+		<td>Cf. 'cmi.score.min'</td>
+		<td>Optional</td>
+	</tr>
+	<tr>
+		<td>max</td>
+		<td>Decimal number greater than min (if present)</td>
+		<td>Cf. 'cmi.score.max'</td>
+		<td>Optional</td>
+	</tr>
 </table>
 
 ###### Requirements
@@ -1250,9 +1299,6 @@ The table below defines the Score Object.
 * The Score Object SHOULD include 'scaled' if a logical percent based score is known.
 * The Score Object SHOULD NOT be used for scores relating to progress or completion.  Consider using an extension
 from an extension profile instead.
-
-
-
 
 
 <a name="context"/>
