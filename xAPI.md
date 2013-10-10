@@ -571,7 +571,7 @@ The table below lists the properties of Agent Objects.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a Statement's Object.</td>
+	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a Statement's object.</td>
 	<td>Optional</td></tr>
 	<tr><td>name</td><td>String</td><td>Full name of the Agent.</td>
 	<td>Optional</td></tr>
