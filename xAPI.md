@@ -1032,7 +1032,7 @@ below and MAY return HTTP 400 "Bad Request" if the remaining properties are not 
 Interaction components are defined as follows:  
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>id</td>
 		<td>String</td>
