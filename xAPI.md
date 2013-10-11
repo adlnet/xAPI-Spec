@@ -3389,7 +3389,7 @@ function _ruuid() {
 
 ###### Method Path  
 ```
-PUT : /xAPI/Statements/?statementId=ed1d064a-eba6-45ea-a3f6-34cdf6e1dfd9
+PUT : /xAPI/statements?statementId=ed1d064a-eba6-45ea-a3f6-34cdf6e1dfd9
 
 Body:
 {
