@@ -153,7 +153,7 @@ the Experience API is designed with this larger architectural vision in mind.
 The Advanced Distributed Learning (ADL) Initiative has taken on the roles of steward and facilitator 
 in the development of the Experience API.  The Experience API is seen as one piece of the ADL Training 
 and Learning Architecture, which facilitates learning anytime and anywhere. ADL views the Experience API 
-as an evolved version of SCORM that can support similar use cases, but can also support many of the use 
+as an evolved version of Sharable Content Object Reference Model (SCORM) that can support similar use cases, but can also support many of the use 
 cases gathered by ADL and submitted by those involved in distributed learning that SCORM could not 
 enable.  
  
@@ -254,8 +254,7 @@ OSD, Training Readiness & Strategy (TRS)
 
 #### 2.2.2 Requirements Gathering Participants  
 In collection of requirements for the Experience API, many people and 
-organizations provided invaluable feedback to the Sharable Content Object
-Reference Model (SCORM®), distributed learning efforts, and learning technology
+organizations provided invaluable feedback to the SCORM, distributed learning efforts, and learning technology
 efforts in general.  While not an exhaustive listing, the white papers gathered 
 in 2008 by the Learning Education and Training Standards Interoperability (LETSI) 
 group, the Rustici Software _UserVoice_ website, one-on-one interviews and various
