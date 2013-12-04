@@ -3161,7 +3161,7 @@ Returns: ```200 OK```, Single 'about' JSON document.
 <td>version</td><td>array of version strings</td><td>xAPI versions this LRS supports</td>
 </tr>
 <tr>
-<td>Extensions</td><td><a href="#miscext">Object</a></td><td>A map of other properties as needed.</td>
+<td>extensions</td><td><a href="#miscext">Object</a></td><td>A map of other properties as needed.</td>
 </tr>
 </table>
 
