@@ -880,7 +880,7 @@ Activity id as belonging to two different Activities, even if it thinks this was
 when a conflict with another system occurs, it’s not possible to determine the intentions. 
 
 
-###### <a id="actdef">Activity Definition</a>
+###### <a name="actdef" />Activity Definition
 The table below lists the properties of the Activity Definition Object:
 
 <table>
@@ -923,11 +923,11 @@ The table below lists the properties of the Activity Definition Object:
 	</tr>
 </table>
 
-__Note on Activity types:__ IRI fragments (sometimes called relative IRLs) are not valid IRIs. As with Verbs, it is recommended that
+__Note:__ IRI fragments (sometimes called relative IRLs) are not valid IRIs. As with Verbs, it is recommended that
 Activity Providers look for and use established, widely adopted, Activity types.
 
 
-###### <a id="acturi">Activity Id Requirements</a>
+###### <a name="acturi" />Activity Id Requirements
 
 * An Activity id MUST be unique.
 * An Activity id MUST always reference the same Activity.
