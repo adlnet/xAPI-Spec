@@ -1044,7 +1044,7 @@ Interaction components are defined as follows:
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>A description of the interaction component 
 			(for example, the text for a given choice in a multiple-choice interaction)</td>
-		<td>Required</td>
+		<td>Optional</td>
 	</tr>
 </table>
 
