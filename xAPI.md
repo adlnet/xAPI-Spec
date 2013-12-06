@@ -1617,43 +1617,45 @@ The table below lists all properties of the Attachment Object.
 		<td>Identifies the usage of this attachment. For example: one expected use case
 		for attachments is to include a "completion certificate". A type IRI corresponding
 		to this usage should be coined, and used with completion certificate attachments.</td>
-		<td>yes</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>display</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>Display name (title) of this attachment.</td>
-		<td>yes</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>A description of the attachment</td>
-		<td>no</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>contentType</td>
 		<td><a href="https://www.ietf.org/rfc/rfc2046.txt?number=2046">Internet Media Type</a></td>
 		<td>The content type of the attachment.</td>
-		<td>yes</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>length</td>
 		<td>Integer</td>
 		<td>The length of the attachment data in octets.</td>
-		<td>yes</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>sha2</td>
 		<td>String</td>
-		<td>The SHA-2 (SHA-256, SHA-384, SHA-512) hash of the attachment data. SHA-224 SHOULD not be used: a minimum key size of 256 bits is recommended.</td>
-		<td>yes</td>
+		<td>The SHA-2 (SHA-256, SHA-384, SHA-512) hash of the attachment data. SHA-224 
+		SHOULD not be used: a minimum key size of 256 bits is recommended.</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>fileUrl</td>
 		<td>IRL</td>
-		<td>An IRL at which the attachment data may be retrieved, or from which it used to be retrievable. </td>
-		<td>no</td>
+		<td>An IRL at which the attachment data may be retrieved, or from which it used 
+		to be retrievable. </td>
+		<td>Optional</td>
 	</tr>
 </table>
 
