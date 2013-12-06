@@ -2515,7 +2515,7 @@ unexpected exception in processing on the server.
 The basic communication mechanism of the Experience API.  
 
 
-<a name="#stmtapiput"/>
+<a name="stmtapiput"/>
 
 ####7.2.1 PUT Statements
 
@@ -2545,7 +2545,7 @@ do not match.
 
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 
-<a name="#stmtapipost"/>
+<a name="stmtapipost"/>
 
 ####7.2.2 POST Statements
 
@@ -2582,7 +2582,7 @@ have limits.
 * The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
 parameters passed.
 
-<a name="#stmtapiget"/>
+<a name="stmtapiget"/>
 
 ####7.2.3 GET Statements
 
