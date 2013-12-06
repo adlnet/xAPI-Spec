@@ -153,7 +153,7 @@ the Experience API is designed with this larger architectural vision in mind.
 The Advanced Distributed Learning (ADL) Initiative has taken on the roles of steward and facilitator 
 in the development of the Experience API.  The Experience API is seen as one piece of the ADL Training 
 and Learning Architecture, which facilitates learning anytime and anywhere. ADL views the Experience API 
-as an evolved version of SCORM that can support similar use cases, but can also support many of the use 
+as an evolved version of Sharable Content Object Reference Model (SCORM) that can support similar use cases, but can also support many of the use 
 cases gathered by ADL and submitted by those involved in distributed learning that SCORM could not 
 enable.  
  
@@ -254,8 +254,7 @@ OSD, Training Readiness & Strategy (TRS)
 
 #### 2.2.2 Requirements Gathering Participants  
 In collection of requirements for the Experience API, many people and 
-organizations provided invaluable feedback to the Sharable Content Object
-Reference Model (SCORM®), distributed learning efforts, and learning technology
+organizations provided invaluable feedback to the SCORM, distributed learning efforts, and learning technology
 efforts in general.  While not an exhaustive listing, the white papers gathered 
 in 2008 by the Learning Education and Training Standards Interoperability (LETSI) 
 group, the Rustici Software _UserVoice_ website, one-on-one interviews and various
@@ -571,10 +570,13 @@ The table below lists the properties of Agent Objects.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a Statement's Object.</td><td>no</td></tr>
-	<tr><td>name</td><td>String</td><td>Full name of the Agent.</td><td>no</td></tr>
+	<tr><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a Statement's object.</td>
+	<td>Optional</td></tr>
+	<tr><td>name</td><td>String</td><td>Full name of the Agent.</td>
+	<td>Optional</td></tr>
 	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
-	    <td>An Inverse Functional Identifier unique to the Agent.</td><td>yes</td></tr>
+	    <td>An Inverse Functional Identifier unique to the Agent.</td>
+	    <td>Required</td></tr>
 </table>
 
 
@@ -595,9 +597,10 @@ The table below lists all properties of an Anonymous Group.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>yes</td></tr>
-	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>no</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td><td>The members of this Group.</td><td>yes</td></tr>
+	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>Required</td></tr>
+	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>Optional</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td><td>The members of this Group.</td>
+	<td>Required</td></tr>
 </table>
 
 An Identified Group is used to uniquely identify a cluster of Agents.
@@ -606,11 +609,12 @@ The table below lists all properties of an Identified Group.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>yes</td></tr>
-	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>no</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td><td>The members of this Group.</td><td>no</td></tr>
+	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>Required</td></tr>
+	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>Optional</td></tr>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td><td>The members of this Group.</td>
+	<td>Optional</td></tr>
 	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
-	    <td>An Inverse Functional Identifier unique to the Group.</td><td>yes</td></tr>	
+	    <td>An Inverse Functional Identifier unique to the Group.</td><td>Required</td></tr>	
 </table>
 
 ###### Requirements
@@ -652,10 +656,10 @@ The table below lists all possible Inverse Functional Identifier properties.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>mbox</td><td>mailto IRI</td><td>The required format is "mailto:email address". <br>
+	<tr><td><a href="http://xmlns.com/foaf/spec/#term_mbox">mbox</a></td><td>mailto IRI</td><td>The required format is "mailto:email address". <br>
 	Only email addresses that have only ever been and will ever be assigned to this Agent, 
 but no others, should be used for this property and mbox_sha1sum.</td></tr>
-	<tr><td>mbox_sha1sum</td><td>String</td><td>The SHA1 hash of a mailto IRI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
+	<tr><td><a href="http://xmlns.com/foaf/spec/#term_mbox_sha1sum">mbox_sha1sum</a></td><td>String</td><td>The SHA1 hash of a mailto IRI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
 	<tr><td>openid</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
 	<tr><td>account</td><td><a href="#agentaccount">Object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
 </table>
@@ -681,10 +685,11 @@ account number) to identify all Statements about a person while maintaining anon
 The table below lists all properties of Account Objects.
 
 <table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>homePage</td><td>IRL</td><td>The canonical home page for the system the account is on. This is based on FOAF's accountServiceHomePage.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr><td>homePage</td><td>IRL</td><td>The canonical home page for the system the account is on. This is based on FOAF's accountServiceHomePage.</td>
+	<td>Required</td></tr>
 	<tr><td>name</td><td>String</td><td>The unique id or name used to log in to this account. This is based 
-			on FOAF's accountName.</td></tr>
+			on FOAF's accountName.</td><td>Required</td></tr>
 </table>
 
 
@@ -725,13 +730,14 @@ corresponding to multiple languages or dialects which provide human-readable mea
 The table below lists all properties of the Verb Object.
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>id</td>
 		<td>IRI</td>
 		<td>Corresponds to a Verb definition. Each Verb definition 
 			corresponds to the meaning of a Verb, not the word. The IRI should 
 			be human-readable and contain the Verb meaning.</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>display</td>
@@ -740,6 +746,7 @@ The table below lists all properties of the Verb Object.
 			Verb in one or more languages. This does not have any impact on the 
 			meaning of the Statement, but serves to give a human-readable 
 			display of the meaning already determined by the chosen Verb.</td>
+		<td>Recommended</td>
 	</tr>
 </table>
 
@@ -2798,8 +2805,10 @@ Activity and/or Agent.
 
 ###### JSON Procedure with Requirements
 
-Activity Providers MAY use Documents of content type "application/json" to store sets of 
-variables. The following process walks through that process and the process requirements.  
+If an Activity Provider stores variables as JSON Objects in a document with 
+content type application/json, they can manipulate them as sets of variables using POST.
+
+The following process walks through that process and the process requirements.  
 For example, a document contains: 
 
 ```
@@ -2841,7 +2850,7 @@ If the original document exists, and the original document or the document being
 do not have a Content-Type:
 of "application/json", or if either document cannot be parsed as JSON Objects, the LRS MUST
 respond with HTTP status code ```400 Bad Request```, and MUST NOT update the target document
-as a result of the request. 
+as a result of the request.
 
 If the original document does not exist, the LRS MUST treat the request the same as it 
 would a PUT request and store the document being posted.
@@ -3057,12 +3066,12 @@ include the information associated with the requested Agent.
 	<tr><td>objectType</td><td>String</td><td>"Person". Required.</td></tr>
 	<tr><td>name</td><td>Array of strings.</td><td> Optional. List of names of Agents to retrieve.</td></tr>
 	<tr>
-		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox">mbox</a></td>
+		<td><a href="http://xmlns.com/foaf/spec/#term_mbox">mbox</a></td>
 		<td>Array of IRIs in the form "mailto:email address".</td>
 		<td>List of e-mail addresses of Agents to retrieve.</td>
 	</tr>
 	<tr>
-		<td><a href="http://xmlns.com/foaf/spec/%22%20%5Cl%20%22term_mbox_sha1sum">mbox_sha1sum</a></td>
+		<td><a href="http://xmlns.com/foaf/spec/#term_mbox_sha1sum">mbox_sha1sum</a></td>
 		<td>Array of strings.</td>
 		<td>List of the SHA1 hashes of mailto IRIs (such as go in an mbox property).</td>
 	</tr>
@@ -3160,7 +3169,7 @@ Returns: ```200 OK```, Single 'about' JSON document.
 <td>version</td><td>array of version strings</td><td>xAPI versions this LRS supports</td>
 </tr>
 <tr>
-<td>Extensions</td><td><a href="#miscext">Object</a></td><td>A map of other properties as needed.</td>
+<td>extensions</td><td><a href="#miscext">Object</a></td><td>A map of other properties as needed.</td>
 </tr>
 </table>
 
@@ -3389,7 +3398,7 @@ function _ruuid() {
 
 ###### Method Path  
 ```
-PUT : /xAPI/Statements/?statementId=ed1d064a-eba6-45ea-a3f6-34cdf6e1dfd9
+PUT : /xAPI/statements?statementId=ed1d064a-eba6-45ea-a3f6-34cdf6e1dfd9
 
 Body:
 {
