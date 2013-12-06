@@ -2080,16 +2080,18 @@ For supplying metadata about Activity ids, see <a href="#activity"> the Activity
 For supplying metadata about all other identifiers, see the format below:
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>name</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>The human readable/visual name</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>description</td>
 		<td><a href="misclangmap">Language Map</a></td>
 		<td>description</td>
+		<td>Optional</td>
 	</tr>
 </table>
 
