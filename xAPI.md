@@ -1279,63 +1279,65 @@ into some broader activity.
 The following table contains the properties of the Context Object.
 
 <table border="1">
-<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 <tr>
-<td>registration</td>
-<td>UUID</td>
-<td>The registration that the Statement is associated with. 
-
+	<td>registration</td>
+	<td>UUID</td>
+	<td>The registration that the Statement is associated with.</td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>instructor</td>
-<td>Agent (may be a Group)</td>
-<td>Instructor that the Statement relates to, if not included as the Actor of the Statement.</td>
-
+	<td>instructor</td>
+	<td>Agent (may be a Group)</td>
+	<td>Instructor that the Statement relates to, if not included as the Actor of the Statement.</td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>team</td>
-<td>Group</td>
-<td>Team that this Statement relates to, if not included as the Actor of the Statement.</td>
-
+	<td>team</td>
+	<td>Group</td>
+	<td>Team that this Statement relates to, if not included as the Actor of the Statement.</td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>contextActivities</td>
-<td>contextActivities Object</td>
-<td>A map of the types of learning activity context that this Statement is related to.
-Valid context types are: "parent", "grouping", "category" and "other". 
-
+	<td>contextActivities</td>
+	<td>contextActivities Object</td>
+	<td>A map of the types of learning activity context that this Statement is related to.
+	Valid context types are: "parent", "grouping", "category" and "other".</td> 
+	<td>optional</td>
 </tr>
 <tr>
-<td>revision</td>
-<td>String</td>
-<td>Revision of the learning activity associated with this Statement. Format is free.
+	<td>revision</td>
+	<td>String</td>
+	<td>Revision of the learning activity associated with this Statement. Format is free.
+	<td>optional</td>
 </tr>
 <tr>
-<td>platform</td>
-<td>String</td>
-<td>Platform used in the experience of this learning activity. </td>
-
+	<td>platform</td>
+	<td>String</td>
+	<td>Platform used in the experience of this learning activity. </td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>language</td>
-<td>String (as defined in <a href="http://tools.ietf.org/html/rfc5646">RFC 5646</a>)</td>
-<td>Code representing the language in which the experience being recorded in this Statement (mainly) occurred in, if 
-applicable and known.
-</td>
-
+	<td>language</td>
+	<td>String (as defined in <a href="http://tools.ietf.org/html/rfc5646">RFC 5646</a>)</td>
+	<td>Code representing the language in which the experience being recorded in this 
+	Statement (mainly) occurred in, if applicable and known.
+	</td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>statement</td>
-<td><a href="#stmtref">Statement Reference</a></td>
-<td>Another Statement, which should be considered as context for this Statement. </td>
-
+	<td>statement</td>
+	<td><a href="#stmtref">Statement Reference</a></td>
+	<td>Another Statement, which should be considered as context for this Statement. </td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>extensions</td>
-<td>Object</td>
-<td>A map of any other domain-specific context relevant to this Statement. For example, in a flight simulator 
-altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a href="#miscext">See Extensions</a>)</td>
-
+	<td>extensions</td>
+	<td>Object</td>
+	<td>A map of any other domain-specific context relevant to this Statement. For example, 
+	in a flight simulator altitude, airspeed, wind, attitude, GPS coordinates might all be 
+	relevant (<a href="#miscext">See Extensions</a>)</td>
+	<td>optional</td>
 </tr>
 
 </table>
