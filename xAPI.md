@@ -1845,13 +1845,14 @@ endpoint, see Section [7.2 "Statement API"](#stmtapi) for details.
 ###### Details
 The following table shows the data structure for the results of queries on the Statement API.
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr><td>statements</td><td>Array of Statements</td>
 		<td>List of Statements. If the list returned has been limited (due to pagination), 
 			and there are more results, they will be located at the "statements" property 
 			within the container located at the IRL provided by the "more" element of 
 			this Statement result Object.
 		</td>
+		<td>Required</td>
 	</tr>
 	<tr><td>more</td><td>IRL</td>
 		<td>Relative IRL that may be used to fetch more results, including the full path 
@@ -1864,6 +1865,7 @@ The following table shows the data structure for the results of queries on the S
 			query, but should avoid generating extremely long IRLs. The consumer should 
 			not attempt to interpret any meaning from the IRL returned.
 		</td>
+		<td>Required if the list returned has been limited, otherwise optional.</td>
 	</tr>
 </table>
 
