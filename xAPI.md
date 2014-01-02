@@ -70,14 +70,12 @@
     *	7.8.	[Cross Origin Requests](#cors)  
     *	7.9.	[Validation](#validation)  
     *	7.10.	[HTTP HEAD](#httphead)  
-*	[Appendix A: Bookmarklet](#AppendixA)  
-*	[Appendix B: Creating an "IE Mode" Request](#AppendixB)  
-*	[Appendix C: Example Statements](#AppendixC)  
-*	[Appendix D: Example statement objects of different types](#AppendixD)  
-*	[Appendix E: Example definitions for Activities of type "cmi.interaction"](#AppendixE)  
-*	[Appendix F: Converting Statements to 1.0.0](#AppendixF)   
-*	[Appendix G: Example Signed Statement](#AppendixG)
-*	[Appendix H: Table of All Endpoints](#AppendixH)
+*	[Appendix A: Example Statements](#AppendixA)  
+*	[Appendix B: Example statement objects of different types](#AppendixB)  
+*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](#AppendixC)  
+*	[Appendix D: Converting Statements to 1.0.0](#AppendixD)   
+*	[Appendix E: Example Signed Statement](#AppendixE)
+*	[Appendix F: Table of All Endpoints](#AppendixF)
 
 <a name="revhistory"/>  
 
@@ -3498,191 +3496,10 @@ identical HTTP GET request except:
     * The message-body MUST be omitted.
     * The Content-Length header MAY be omitted, in order to avoid wasting LRS resources.
 
-<a name="AppendixA"/> 
 
-## Appendix A: Bookmarklet
-
-###### Description
-The following is a prototype of a Bookmarklet configured using the Experience API.
-
-###### Details
-An xAPI Bookmarklet enables individual user tracking with basic authentication. Examples could be 
-an "I think this," "I learned this," "I like this," or "I don't like this" Statement that allows self-reporting. 
-The following code is an implementation of such a bookmarklet, and the Statement that this bookmarklet 
-would send if used on the page: http://adlnet.gov/xapi.
-
-The bookmarklet could also be provided by the LRS to track a specific user for behavior analytics.
-
-###### Usage
-The LRS IRL (variable "url" in the example below), authentication, and Actor information is 
-hard coded into the bookmarklet.
-
-__Note:__ Since the authorization token must be included in the bookmarklet, it is recommended the LRS 
-provide a token with limited privileges. Enabling the storage of self-reported learning Statements is sufficient
-permission to get full use from this prototype.
-
-In order to allow cross-domain reporting of Statements, a browser that supports the "Access-Control-Allow-Origin" 
-and "Access-Control-Allow-Methods" headers is necessary, such as IE 8+, FF 3.5+, Safari 4+, Safari iOS Chrome, or 
-Android browser. The server needs to set required headers based on the browser.
-
-In the example below, the following values in the first few lines can be replaced with your own values. All other 
-values should be left as they are. Be sure to include a UUID as a part of the bookmarklet PUT statement, because 
-if one is not provided, the LRS will generate one.
-
-<table>
-	<tr>
-		<th>Value in example</th>
-		<th>Explanation</th>
-	</tr>
-	<tr>
-		<td>http://localhost:8080/xAPI/</td>
-		<td>Endpoint of the LRS(where the Statements will be sent).</td>
-	</tr>
-	<tr>
-		<td>dGVzdDpwYXNzd29yZA==</td>
-		<td>Base 64 encoded username and password, usually in the form "username : password".</td>
-	</tr>
-	<tr>
-		<td>learner@example.adlnet.gov</td>
-		<td>Email address of the learner using the bookmarklet.</td>
-	</tr>
-</table>
-
-```javascript
-var url = "http://localhost:8080/xAPI/statements?statementId="+_ruuid();
-var auth = "Basic dGVzdDpwYXNzd29yZA==";
-var statement = {
-	"actor" : { 
-		"objectType" : "Agent", 
-		"mbox" : "mailto:learner@example.adlnet.gov"
-	},
-	"verb" : {
-		"id" : "",
-		"display" : {}
-	},
-	"object" : {
-		"id" : "",
-		"definition" : {}
-	}
-};
-var definition = statement.object.definition;
-
-statement.verb.id = 'http://adlnet.gov/expapi/verbs/experienced';
-statement.verb.display = { "en-US" : "experienced" };
-statement.object.id = window.location.toString();
-definition.type = "http://adlnet.gov/expapi/activities/link";
-
-var xhr = new XMLHttpRequest();
-xhr.open("PUT", url, true);
-xhr.setRequestHeader("X-Experience-API-Version", "1.0.0");
-xhr.setRequestHeader("Content-Type", "application/json");
-xhr.setRequestHeader("Authorization", auth);
-xhr.onreadystatechange = function() {
-	if(xhr.readyState == 4) {
-		alert(xhr.status + " : " + xhr.responseText);
-	}
-};
-xhr.send(JSON.stringify(statement));
-
-/*!
-Modified from: Math.uuid.js (v1.4)
-http://www.broofa.com
-mailto:robert@broofa.com
-
-Copyright (c) 2010 Robert Kieffer
-Dual licensed under the MIT and GPL licenses.
-*/
-function _ruuid() {
-	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-		var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-		return v.toString(16);
-	});
-}
-```
-
-###### Example Statement Using Bookmarklet  
-
-###### Headers  
-```
-{
-	"X-Experience-API-Version": "1.0.0",
-	"Content-Type": "application/json",
-	"Authorization": "Basic dGVzdDpwYXNzd29yZA==",
-	"Referer": "http://adlnet.gov/xapi/",
-	"Content-Length": "###",
-	"Origin": "http://adlnet.gov"
-}
-```
-
-###### Method Path  
-```
-PUT : /xAPI/statements?statementId=ed1d064a-eba6-45ea-a3f6-34cdf6e1dfd9
-
-Body:
-{
-	"actor": {
-		"objectType": "Agent",
-		"mbox": "mailto:learner@example.adlnet.gov"
-	},
-	"verb" : {
-		"id": "http://adlnet.gov/expapi/verbs/experienced",
-		"display": {
-			"en-US": "experienced"
-		}
-	},
-	"object": {
-		"id": "http://adlnet.gov/xapi/",
-		"definition": {
-			"type": "http://adlnet.gov/expapi/activities/link"
-		}
-	}
-}
-```
-<a name="AppendixB"/>
-
-## Appendix B: Creating an "IE Mode" Request
-```javascript
-function getIEModeRequest(method, url, headers, data){
-
-	var newUrl = url;
-
-	// Everything that was on query string goes into form vars
-	var formData = new Array();
-	var qsIndex = newUrl.indexOf('?');
-	if(qsIndex > 0){
-		formData.push(newUrl.substr(qsIndex+1));
-		newUrl = newUrl.substr(0, qsIndex);
-	}
-
-	// Method has to go on querystring, and nothing else
-	newUrl = newUrl + '?method=' + method;
-
-	// Headers
-	if(headers !== null){
-		for(var headerName in headers){
-			formData.push(
-				headerName + "=" +
-					encodeURIComponent(
-						headers[headerName]));
-		}
-	}
-
-	// The original data is repackaged as "content" form var
-	if(data !== null){
-		formData.push('content=' + encodeURIComponent(data));
-	}
-
-	return {
-		"method":"POST",
-		"url":newUrl,
-		"headers":{},
-		"data":formData.join("&")
-	};
-}
-``` 
-<a name="AppendixC"/>  
+<a name="AppendixA"/>  
  
-## Appendix C: Example statements
+## Appendix A: Example statements
 
 Example of a simple statement (line breaks are for display purposes only):  
 ```
@@ -3883,9 +3700,9 @@ a statement returned by an LRS including the authority and stored properties set
     }
 }
 ```  
-<a name="AppendixD"/>  
+<a name="AppendixB"/>  
 
-## Appendix D: Example statement objects of different types
+## Appendix B: Example statement objects of different types
 
 The object of a statement can be an activity, agent, group or statement. 
 This appendix provides one example of each. 
@@ -3967,9 +3784,9 @@ This example shows a Sub-Statement object whose object is a Statement Reference.
     }
 ```
 
-<a name="AppendixE"/>  
+<a name="AppendixC"/>  
 
-## Appendix E: Example definitions for Activities of type "cmi.interaction"
+## Appendix C: Example definitions for Activities of type "cmi.interaction"
 
 ###### true-false  
 
@@ -4247,9 +4064,9 @@ This example shows a Sub-Statement object whose object is a Statement Reference.
 }
 ```
 
-<a name="AppendixF"/>
+<a name="AppendixD"/>
 
-## Appendix F: Converting Statements to 1.0.0
+## Appendix D: Converting Statements to 1.0.0
 
 ######Rationale
 This is a 1.0.0 specification, and as such implementers should not have to consider prior
@@ -4431,8 +4248,8 @@ Converted to 1.0.0:
 }
 ```
 
-<a name="AppendixG"/>
-## Appendix G: Example Signed Statement
+<a name="AppendixE"/>
+## Appendix E: Example Signed Statement
 An example signed Statement, as described in: <a href="#signature">4.4 Signed Statements</a>.
 
 The original Statement serialization to be signed. New lines in this example are included
@@ -4598,9 +4415,9 @@ __Note:__ Attached signature not shown, see <a href="#attachments"> attachments<
 attachment message format.
 
 
-<a name="AppendixH"/>
+<a name="AppendixF"/>
 
-## Appendix H: Table of All Endpoints
+## Appendix F: Table of All Endpoints
 
 <table>
 	<tr>
@@ -4648,4 +4465,3 @@ attachment message format.
 		<td>Token Request</td>
 	</tr>
 </table>
->
