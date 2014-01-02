@@ -1325,63 +1325,65 @@ into some broader activity.
 The following table contains the properties of the Context Object.
 
 <table border="1">
-<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 <tr>
-<td>registration</td>
-<td>UUID</td>
-<td>The registration that the Statement is associated with. 
-
+	<td>registration</td>
+	<td>UUID</td>
+	<td>The registration that the Statement is associated with.</td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>instructor</td>
-<td>Agent (may be a Group)</td>
-<td>Instructor that the Statement relates to, if not included as the Actor of the Statement.</td>
-
+	<td>instructor</td>
+	<td>Agent (may be a Group)</td>
+	<td>Instructor that the Statement relates to, if not included as the Actor of the Statement.</td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>team</td>
-<td>Group</td>
-<td>Team that this Statement relates to, if not included as the Actor of the Statement.</td>
-
+	<td>team</td>
+	<td>Group</td>
+	<td>Team that this Statement relates to, if not included as the Actor of the Statement.</td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>contextActivities</td>
-<td>contextActivities Object</td>
-<td>A map of the types of learning activity context that this Statement is related to.
-Valid context types are: "parent", "grouping", "category" and "other". 
-
+	<td>contextActivities</td>
+	<td>contextActivities Object</td>
+	<td>A map of the types of learning activity context that this Statement is related to.
+	Valid context types are: "parent", "grouping", "category" and "other".</td> 
+	<td>optional</td>
 </tr>
 <tr>
-<td>revision</td>
-<td>String</td>
-<td>Revision of the learning activity associated with this Statement. Format is free.
+	<td>revision</td>
+	<td>String</td>
+	<td>Revision of the learning activity associated with this Statement. Format is free.
+	<td>optional</td>
 </tr>
 <tr>
-<td>platform</td>
-<td>String</td>
-<td>Platform used in the experience of this learning activity. </td>
-
+	<td>platform</td>
+	<td>String</td>
+	<td>Platform used in the experience of this learning activity. </td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>language</td>
-<td>String (as defined in <a href="http://tools.ietf.org/html/rfc5646">RFC 5646</a>)</td>
-<td>Code representing the language in which the experience being recorded in this Statement (mainly) occurred in, if 
-applicable and known.
-</td>
-
+	<td>language</td>
+	<td>String (as defined in <a href="http://tools.ietf.org/html/rfc5646">RFC 5646</a>)</td>
+	<td>Code representing the language in which the experience being recorded in this 
+	Statement (mainly) occurred in, if applicable and known.
+	</td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>statement</td>
-<td><a href="#stmtref">Statement Reference</a></td>
-<td>Another Statement, which should be considered as context for this Statement. </td>
-
+	<td>statement</td>
+	<td><a href="#stmtref">Statement Reference</a></td>
+	<td>Another Statement, which should be considered as context for this Statement. </td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>extensions</td>
-<td>Object</td>
-<td>A map of any other domain-specific context relevant to this Statement. For example, in a flight simulator 
-altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a href="#miscext">See Extensions</a>)</td>
-
+	<td>extensions</td>
+	<td>Object</td>
+	<td>A map of any other domain-specific context relevant to this Statement. For example, 
+	in a flight simulator altitude, airspeed, wind, attitude, GPS coordinates might all be 
+	relevant (<a href="#miscext">See Extensions</a>)</td>
+	<td>optional</td>
 </tr>
 
 </table>
@@ -1661,43 +1663,45 @@ The table below lists all properties of the Attachment Object.
 		<td>Identifies the usage of this attachment. For example: one expected use case
 		for attachments is to include a "completion certificate". A type IRI corresponding
 		to this usage should be coined, and used with completion certificate attachments.</td>
-		<td>yes</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>display</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>Display name (title) of this attachment.</td>
-		<td>yes</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>A description of the attachment</td>
-		<td>no</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>contentType</td>
 		<td><a href="https://www.ietf.org/rfc/rfc2046.txt?number=2046">Internet Media Type</a></td>
 		<td>The content type of the attachment.</td>
-		<td>yes</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>length</td>
 		<td>Integer</td>
 		<td>The length of the attachment data in octets.</td>
-		<td>yes</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>sha2</td>
 		<td>String</td>
-		<td>The SHA-2 (SHA-256, SHA-384, SHA-512) hash of the attachment data. SHA-224 SHOULD not be used: a minimum key size of 256 bits is recommended.</td>
-		<td>yes</td>
+		<td>The SHA-2 (SHA-256, SHA-384, SHA-512) hash of the attachment data. SHA-224 
+		SHOULD not be used: a minimum key size of 256 bits is recommended.</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>fileUrl</td>
 		<td>IRL</td>
-		<td>An IRL at which the attachment data may be retrieved, or from which it used to be retrievable. </td>
-		<td>no</td>
+		<td>An IRL at which the attachment data may be retrieved, or from which it used 
+		to be retrievable. </td>
+		<td>Optional</td>
 	</tr>
 </table>
 
@@ -1887,13 +1891,14 @@ endpoint, see Section [7.2 "Statement API"](#stmtapi) for details.
 ###### Details
 The following table shows the data structure for the results of queries on the Statement API.
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr><td>statements</td><td>Array of Statements</td>
 		<td>List of Statements. If the list returned has been limited (due to pagination), 
 			and there are more results, they will be located at the "statements" property 
 			within the container located at the IRL provided by the "more" element of 
 			this Statement result Object.
 		</td>
+		<td>Required</td>
 	</tr>
 	<tr><td>more</td><td>IRL</td>
 		<td>Relative IRL that may be used to fetch more results, including the full path 
@@ -1906,6 +1911,7 @@ The following table shows the data structure for the results of queries on the S
 			query, but should avoid generating extremely long IRLs. The consumer should 
 			not attempt to interpret any meaning from the IRL returned.
 		</td>
+		<td>Required if the list returned has been limited, otherwise optional.</td>
 	</tr>
 </table>
 
@@ -2120,16 +2126,18 @@ For supplying metadata about Activity ids, see <a href="#activity"> the Activity
 For supplying metadata about all other identifiers, see the format below:
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>name</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>The human readable/visual name</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>description</td>
 		<td><a href="misclangmap">Language Map</a></td>
 		<td>description</td>
+		<td>Optional</td>
 	</tr>
 </table>
 
@@ -2574,8 +2582,9 @@ Stores Statement with the given id.
 Returns: ```204 No Content```  
 
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Required</th><th>Description</th></tr>
-	<tr><td>statementId</td><td>String</td><td> </td><td>Required</td><td>Id of Statement to record</td></tr>
+	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th><th>Required</th></tr>
+	<tr><td>statementId</td><td>String</td><td> 
+	<td>Id of Statement to record</td></td><td>Required</td></tr>
 </table>
 
 ###### Requirements
@@ -2648,92 +2657,168 @@ Object.
 Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 4.2](#retstmts) for details)
 
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
-	<tr><td>statementId</td><td>String</td><td> </td><td>ID of Statement to fetch</td></tr>
-	<tr><td>voidedStatementId</td><td>String</td><td> </td><td>ID of voided Statement to fetch. see <a href="#voidedStatements">Voided Statements</a></td></tr>
-	<tr><td>agent</td><td>Agent or Identified Group Object (JSON)</td><td> </td>
-		<td>Filter, only return Statements for which the specified Agent or group is the Actor or Object of the Statement.
-			<ul><li> Agents or identified groups are equal when the same Inverse Functional Identifier is used in each
-			Object compared and those Inverse Functional Identifiers have equal values.
-			</li><li>For the purposes of this filter, groups that have members which match the specified Agent
-			based on their Inverse Functional Identifier as described above are considered a match</li></ul>
+	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>statementId</td>
+		<td>String</td>
+		<td> </td>
+		<td>ID of Statement to fetch</td>
+		<td>Optional</td>
+	</tr>
+	<tr>
+		<td>voidedStatementId</td>
+		<td>String</td>
+		<td> </td>
+		<td>ID of voided Statement to fetch. see <a href="#voidedStatements">Voided
+		Statements</a></td>
+		<td>Optional</td>
+	</tr>
+	<tr>
+		<td>agent</td>
+		<td>Agent or Identified Group Object (JSON)</td>
+		<td> </td>
+		<td>Filter, only return Statements for which the specified Agent or group is 
+		the Actor or Object of the Statement.
+			<ul>
+				<li> 
+					Agents or identified groups are equal when the same 
+					Inverse Functional Identifier is used in each Object compared and 
+					those Inverse Functional Identifiers have equal values.
+				</li><li>
+					For the purposes of this filter, groups that have members 
+					which match the specified Agent	based on their Inverse Functional
+					Identifier as described above are considered a match
+				</li>
+			</ul>
 			<br><br>See <a href="#actor">agent/group</a> Object definition
 			for details.
 		</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>verb</td><td>Verb id (IRI)</td><td> </td>
+	<tr>
+		<td>verb</td>
+		<td>Verb id (IRI)</td>
+		<td> </td>
 		<td>Filter, only return Statements matching the specified verb id.</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>activity</td><td>Activity id (IRI)</td><td> </td>
-		<td>Filter, only return Statements for which the Object of the Statement is an Activity with the 
-		specified id.
+	<tr>
+		<td>activity</td>
+		<td>Activity id (IRI)</td>
+		<td> </td>
+		<td>
+			Filter, only return Statements for which the Object of the Statement is 
+			an Activity with the specified id.
 		</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>registration</td><td>UUID</td><td> </td>
-		<td>Filter, only return Statements matching the specified registration 
+	<tr>
+		<td>registration</td>
+		<td>UUID</td>
+		<td> </td>
+		<td>
+			Filter, only return Statements matching the specified registration 
 			id. Note that although frequently a unique registration id will be used 
 			for one Actor assigned to one Activity, this should not be assumed. 
 			If only Statements for a certain Actor or Activity should be returned, 
 			those parameters should also be specified.
 		</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>related_activities</td><td>Boolean</td><td>False</td>
-		<td>Apply the Activity filter broadly. Include Statements for which the Object,
-		any of the  context Activities, or any of those properties in a contained Sub-Statement
-		match the Activity parameter, instead of that parameter's normal behavior. Matching
-		is defined in the same way it is for the 'Activity' parameter."
+	<tr>
+		<td>related_activities</td>
+		<td>Boolean</td>
+		<td>False</td>
+		<td>
+			Apply the Activity filter broadly. Include Statements for which the Object,
+			any of the  context Activities, or any of those properties in a contained
+			Sub-Statement match the Activity parameter, instead of that parameter's 
+			normal behavior. Matching is defined in the same way it is for the 
+			'Activity' parameter."
 		</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>related_agents</td><td>Boolean</td><td>False</td>
-		<td>Apply the Agent filter broadly. Include Statements for which 
+	<tr>
+		<td>related_agents</td>
+		<td>Boolean</td>
+		<td>False</td>
+		<td>
+			Apply the Agent filter broadly. Include Statements for which 
 			the Actor, Object, Authority, Instructor, Team,
 			or any of these properties in a contained Sub-Statement match the Agent parameter,
 			instead of that parameter's normal behavior. Matching is defined in the same way
 			it is for the 'agent' parameter.
 		</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>since</td><td>Timestamp</td><td> </td>
+	<tr>
+		<td>since</td>
+		<td>Timestamp</td>
+		<td> </td>
 		<td>Only Statements stored since the specified timestamp (exclusive) are returned.</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>until</td><td>Timestamp</td><td> </td>
+	<tr>
+		<td>until</td>
+		<td>Timestamp</td>
+		<td> </td>
 		<td>Only Statements stored at or before the specified timestamp are returned.</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>limit</td><td>Nonnegative Integer</td><td>0</td>
-		<td>Maximum number of Statements to return. 0 indicates return the 
-			maximum the server will allow.</td>
+	<tr>
+		<td>limit</td>
+		<td>Nonnegative Integer</td>
+		<td>0</td>
+		<td>
+			Maximum number of Statements to return. 0 indicates return the 
+			maximum the server will allow.
+		</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>format</td><td>String: ("ids", "exact", or "canonical")</td><td>exact</td>
+	<tr>
+		<td>format</td>
+		<td>String: ("ids", "exact", or "canonical")</td>
+		<td>exact</td>
 		<td>If "ids", only include minimum information necessary in Agent, Activity, 
 			and Group Objects to identify them. For anonymous groups this means including 
 			the minimum information needed to identify each member. 
-
+			<br/><br/>
 			If "exact", return Agent, Activity, and Group Objects populated exactly as they 
 			were when the Statement was received. An LRS requesting Statements for the purpose 
-			of importing them would use a format of "exact".<br/><br/>
-			
+			of importing them would use a format of "exact".  
+			<br/><br/>
 			If "canonical", return Activity Objects populated with the canonical
 			definition of the Activity Objects as determined by the LRS, after
 			applying the language filtering process defined below, and return the original
-			Agent Objects as in "exact" mode.<br/><br/>
-
+			Agent Objects as in "exact" mode.  
+			<br/><br/>
 			<b>Canonical Language Process:</b> Activity Objects contain Language Map Objects 
-			for name and description. Only one language should be returned in each of these maps.<br/><br/>
-
+			for name and description. Only one language should be returned in each of 
+			these maps.  
+			<br/><br/>
 			In the event of format being “canonical”, only one language should be returned in 
 			each of these maps. In order to choose the most relevant language, the LRS will 
 			apply the Accept-Language header as described in 
-			<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a> (HTTP 1.1), 
-			except that this logic will be applied to each language map individually to select which 
-			language entry to include, rather than to the resource (list of Statements) as a whole.
+			<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a>
+			(HTTP 1.1), except that this logic will be applied to each language map
+			individually to select which language entry to include, rather than to the 
+			resource (list of Statements) as a whole.
 		</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>attachments</td><td>Boolean</td><td>False</td>
+	<tr>
+		<td>attachments</td><td>Boolean</td><td>False</td>
 		<td>If true, the LRS uses the multipart response format and includes all attachments as 
 		described previously.  If false, the LRS sends the prescribed response with Content-Type 
 		application/json and cannot use attachments.</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>ascending</td><td>Boolean</td><td>False</td>
+	<tr>
+		<td>ascending</td>
+		<td>Boolean</td>
+		<td>False</td>
 		<td>If true, return results in ascending order of stored time</td>
+		<td>Optional</td>
 	</tr>
 </table>
 
@@ -2932,18 +3017,30 @@ exists in the context of the specified Activity, Agent, and registration (if spe
 Returns (PUT | POST | DELETE): ```204 No Content```  
 Returns (GET): ```200 OK```, State Content  
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-	<tr><td>activityId</td><td>String</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>activityId</td>
+		<td>String</td>
 		<td>The Activity id associated with this state.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>agent</td><td>JSON</td><td>yes</td>
+	<tr>
+		<td>agent</td>
+		<td>JSON</td>
 		<td>The Agent associated with this state.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>registration</td><td>UUID</td><td>no</td>
+	<tr>
+		<td>registration</td>
+		<td>UUID</td>
 		<td>The registration id associated with this state.</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>stateId</td><td>String</td><td>yes</td>
+	<tr>
+		<td>stateId</td>
+		<td>String</td>
 		<td>The id for this state, within the given context.</td>
+		<td>Required</td>
 	</tr>
 </table>
 
@@ -2957,18 +3054,30 @@ timestamp (exclusive).
 
 Returns: ```200 OK```, Array of ids  
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-	<tr><td>activityId</td><td>String</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>activityId</td>
+		<td>String</td>
 		<td>The Activity id associated with these states.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>agent</td><td>JSON</td><td>yes</td>
+	<tr>
+		<td>agent</td>
+		<td>JSON</td>
 		<td>The Agent associated with these states.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>registration</td><td>UUID</td><td>no</td>
+	<tr>
+		<td>registration</td>
+		<td>UUID</td>
 		<td>The registration id associated with these states.</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>since</td><td>Timestamp</td><td>no</td>
+	<tr>
+		<td>since</td>
+		<td>Timestamp</td>
 		<td>Only ids of states stored since the specified timestamp (exclusive) are returned.</td>
+		<td>Optional</td>
 	</tr>
 </table>
 
@@ -2980,15 +3089,24 @@ specified\]).
 
 Returns: ```204 No Content```  
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-	<tr><td>activityId</td><td>String</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>activityId</td>
+		<td>String</td>
 		<td>The Activity id associated with this state.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>agent</td><td>JSON<</td><td>yes</td>
+	<tr>
+		<td>agent</td>
+		<td>JSON<</td>
 		<td>The Agent associated with this state.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>registration</td><td>UUID</td><td>no</td>
+	<tr>
+		<td>registration</td>
+		<td>UUID</td>
 		<td>The registration id associated with this state.</td>
+		<td>Optional</td>
 	</tr>
 </table>
 
@@ -3019,9 +3137,12 @@ Loads the complete Activity Object specified.
 
 Returns: ```200 OK```, Content 
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-	<tr><td>activityId</td><td>String</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>activityId</td>
+		<td>String</td>
 		<td>The id associated with the Activities to load.</td>
+		<td>Required</td>
 	</td>
 </table>
 
@@ -3034,12 +3155,18 @@ specified Activity.
 Returns (PUT | POST | DELETE): ```204 No Content```  
 Returns (GET): ```200 OK```, Profile Content  
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-	<tr><td>activityId</td><td>String</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>activityId</td>
+		<td>String</td>
 		<td>The Activity id associated with this profile.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>profileId</td><td>String</td><td>yes</td>
+	<tr>
+		<td>profileId</td>
+		<td>String</td>
 		<td>The profile id associated with this profile.</td>
+		<td>Required</td>
 	</tr>
 </table>
 
@@ -3052,12 +3179,19 @@ the specified timestamp (exclusive).
 
 Returns: ```200 OK```, List of ids  
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th><tr>
-	<tr><td>activityId</td><td>String</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
+	<tr>
+		<td>activityId</td>
+		<td>String</td>
 		<td>The Activity id associated with these profiles.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>since</td><td>Timestamp</td><td>no</td>
-		<td>Only ids of profiles stored since the specified timestamp (exclusive) are returned.</td>
+	<tr>
+		<td>since</td>
+		<td>Timestamp</td>
+		<td>Only ids of profiles stored since the specified timestamp (exclusive) 
+		are returned.</td>
+		<td>Optional</td>
 	</tr>
 </table>
 
@@ -3108,28 +3242,43 @@ include the information associated with the requested Agent.
 ###### Details
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>String</td><td>"Person". Required.</td></tr>
-	<tr><td>name</td><td>Array of strings.</td><td> Optional. List of names of Agents to retrieve.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>objectType</td>
+		<td>String</td>
+		<td>"Person"</td>
+		<td>Required</td>
+	</tr>
+	<tr>
+		<td>name</td>
+		<td>Array of strings.</td>
+		<td>List of names of Agents to retrieve.</td>
+		<td>Optional</td>
+	</tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/#term_mbox">mbox</a></td>
 		<td>Array of IRIs in the form "mailto:email address".</td>
 		<td>List of e-mail addresses of Agents to retrieve.</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/#term_mbox_sha1sum">mbox_sha1sum</a></td>
 		<td>Array of strings.</td>
 		<td>List of the SHA1 hashes of mailto IRIs (such as go in an mbox property).</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>openid*</td>
 		<td>Array of strings.</td>
 		<td>List of openids that uniquely identify the Agents to retrieve.</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>account*</td>
 		<td>Array of account objects.</td>
-		<td>List of accounts to match. Complete account Objects (homePage and name) must be provided.</td>
+		<td>List of accounts to match. Complete account Objects (homePage and name) 
+		must be provided.</td>
+		<td>Optional</td>
 	</tr>
 </table> 
 
@@ -3138,9 +3287,12 @@ See also: [Section 4.1.2.1 Agent](#agent).
 Returns: ```200 OK```, Expanded Agent Object
 
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-	<tr><td>agent</td><td>Object (JSON)</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>agent</td>
+		<td>Object (JSON)</td>
 		<td>The Agent representation to use in fetching expanded Agent information.</td>
+		<td>Required</td>
 	</tr>
 </table>  
 
@@ -3160,12 +3312,18 @@ Returns (PUT | POST | DELETE): ```204 No Content```
 Returns (GET): ```200 OK```, Profile Content  
 
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-	<tr><td>agent</td><td>Object (JSON)</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>agent</td>
+		<td>Object (JSON)</td>
 		<td>The Agent associated with this profile.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>profileId</td><td>String</td><td>yes</td>
+	<tr>
+		<td>profileId</td>
+		<td>String</td>
 		<td>The profile id associated with this profile.</td>
+		<td>Required</td>
 	</tr>
 </table>  
 
@@ -3178,13 +3336,19 @@ timestamp (exclusive).
 
 Returns: ```200 OK```, List of ids  
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-	<tr><td>agent</td><td>Object (JSON)</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>agent</td>
+		<td>Object (JSON)</td>
 		<td>The Agent associated with this profile.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>since</td><td>Timestamp</td><td>no</td>
+	<tr>
+		<td>since</td>
+		<td>Timestamp</td>
 		<td>Only ids of profiles stored since the specified timestamp 
 			(exclusive) are returned.</td>
+		<td>Optional</td>
 	</tr>
 </table>  
 
@@ -3211,12 +3375,20 @@ Example endpoint: http://example.com/xAPI/about
 
 Returns: ```200 OK```, Single 'about' JSON document.
 <table border="1">
-<tr><th>property</th><th>type</th><th>description</th></tr>
-<td>version</td><td>array of version strings</td><td>xAPI versions this LRS supports</td>
-</tr>
-<tr>
-<td>extensions</td><td><a href="#miscext">Object</a></td><td>A map of other properties as needed.</td>
-</tr>
+	<tr><th>property</th><th>type</th><th>description</th><th>Required</th></tr>
+	<tr>
+		<td>version</td>
+		<td>array of version strings</td>
+		<td>xAPI versions this LRS supports</td>
+		<td>Required</td>
+	</tr>
+	<tr>
+		<td>extensions</td>
+		<td><a href="#miscext">Object</a></td>
+		<td>A map of other properties as needed.</td>
+		<td>Optional</td>
+	</tr>
+
 </table>
 
 ###### Requirements
