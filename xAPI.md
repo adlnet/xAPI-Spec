@@ -2219,7 +2219,7 @@ of the problem.
 
 * Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
 * Systems MAY convert Statements of older versions into a newer version only by following the methods described in
-<a href="#AppendixF">Appendix F: Converting Statements to 1.0.0</a>.
+<a href="#AppendixD">Appendix D: Converting Statements to 1.0.0</a>.
 
 <a name="concurrency"/> 
 ### 6.3 Concurrency
