@@ -895,7 +895,7 @@ that domain remain unique.
 
 ###### LRS Requirements
 
-* An LRS MUST NOT take action in the event it perceives an activity id is being by multiple 
+* An LRS MUST NOT take action in the event it perceives an activity id is being used by multiple 
 authors and/or organizations.
 * An LRS MUST NOT treat references to the same id as references to different Activities.
 * Upon receiving a Statement with an Activity Definition that differs from the one stored, an LRS
