@@ -943,7 +943,8 @@ that domain remain unique.
 
 ###### LRS Requirements
 
-* An LRS MUST ignore any information which indicates two authors or organizations may have used the same Activity id.
+* An LRS MUST NOT take action in the event it perceives an activity id is being used by multiple 
+authors and/or organizations.
 * An LRS MUST NOT treat references to the same id as references to different Activities.
 * Upon receiving a Statement with an Activity Definition that differs from the one stored, an LRS
 SHOULD decide whether it considers the Activity Provider to have the authority to change the definition and
