@@ -70,14 +70,12 @@
     *	7.8.	[Cross Origin Requests](#cors)  
     *	7.9.	[Validation](#validation)  
     *	7.10.	[HTTP HEAD](#httphead)  
-*	[Appendix A: Bookmarklet](#AppendixA)  
-*	[Appendix B: Creating an "IE Mode" Request](#AppendixB)  
-*	[Appendix C: Example Statements](#AppendixC)  
-*	[Appendix D: Example statement objects of different types](#AppendixD)  
-*	[Appendix E: Example definitions for Activities of type "cmi.interaction"](#AppendixE)  
-*	[Appendix F: Converting Statements to 1.0.0](#AppendixF)   
-*	[Appendix G: Example Signed Statement](#AppendixG)
-*	[Appendix H: Table of All Endpoints](#AppendixH)
+*	[Appendix A: Example Statements](#AppendixA)  
+*	[Appendix B: Example statement objects of different types](#AppendixB)  
+*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](#AppendixC)  
+*	[Appendix D: Converting Statements to 1.0.0](#AppendixD)   
+*	[Appendix E: Example Signed Statement](#AppendixE)
+*	[Appendix F: Table of All Endpoints](#AppendixF)
 
 <a name="revhistory"/>  
 
@@ -861,20 +859,23 @@ A Statement may represent an Activity as the Object of the Statement. The follow
 properties in this case.
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>objectType</td>
 		<td>String</td>
-		<td>MUST be "Activity" when present. Optional in all cases.</td>
+		<td>MUST be "Activity" when present</td>
+		<td>Optional in all cases</td>
 	</tr>
 	<tr>
 		<td><a href="#acturi">id</a></td><td>IRI</td>
-		<td>An identifier for a single unique Activity. Required.</td>
+		<td>An identifier for a single unique Activity</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td><a href="#actdef">definition</a></td>
 		<td>Object</td>
-		<td>Optional Metadata, <a href="#actdef">See below</a></td>
+		<td>Metadata, <a href="#actdef">See below</a></td>
+		<td>Optional</td>
 	</tr>
 </table>
 
@@ -883,36 +884,38 @@ these Activities could be questioned. This means an LRS may never treat (referen
 Activity id as belonging to two different Activities, even if it thinks this was intended. Namely, 
 when a conflict with another system occurs, it’s not possible to determine the intentions. 
 
+
+###### <a name="actdef" />Activity Definition
 The table below lists the properties of the Activity Definition Object:
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Use</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>name</td>
 		<td><a href="#misclangmap">Language Map</a></td>
-		<td>Recommended</td>
 		<td>The human readable/visual name of the Activity</td>
+		<td>Recommended</td>
 	</tr>
 	<tr>
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
-		<td>Recommended</td>
 		<td>A description of the Activity</td>
+		<td>Recommended</td>
 	</tr>
 	<tr>
 		<a name="acttype"/>
 		<td>type</td>
 		<td>IRI</td>
-		<td>Recommended</td>
 		<td>The type of Activity.</td>
+		<td>Recommended</td>
 	</tr>
 	<tr>
 		<td>moreInfo</td>
 		<td>IRL</td>
-		<td>Optional</td>
 		<td>SHOULD resolve to a document human-readable information about the Activity,
 		which MAY include a way to 'launch' the Activity.
 		</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td colspan="4">Interaction properties, See: <a href="#interactionacts">Interaction Activities</a></td>
@@ -920,8 +923,8 @@ The table below lists the properties of the Activity Definition Object:
 	<tr>
 		<td>extensions</td>
 		<td>Object</td>
-		<td>Optional</td>
 		<td>A map of other properties as needed (see: <a href="#miscext">Extensions</a>)</td>
+		<td>Optional</td>
 	</tr>
 </table>
 
@@ -929,7 +932,7 @@ __Note:__ IRI fragments (sometimes called relative IRLs) are not valid IRIs. As 
 Activity Providers look for and use established, widely adopted, Activity types.
 
 
-###### Activity Id Requirements
+###### <a name="acturi" />Activity Id Requirements
 
 * An Activity id MUST be unique.
 * An Activity id MUST always reference the same Activity.
@@ -940,7 +943,8 @@ that domain remain unique.
 
 ###### LRS Requirements
 
-* An LRS MUST ignore any information which indicates two authors or organizations may have used the same Activity id.
+* An LRS MUST NOT take action in the event it perceives an activity id is being used by multiple 
+authors and/or organizations.
 * An LRS MUST NOT treat references to the same id as references to different Activities.
 * Upon receiving a Statement with an Activity Definition that differs from the one stored, an LRS
 SHOULD decide whether it considers the Activity Provider to have the authority to change the definition and
@@ -994,12 +998,13 @@ of extensions to an Activity's type and definition.
 The table below lists the properties for Interaction Activities.
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>interactionType</td>
 		<td>String</td>
 		<td>As in "cmi.interactions.n.type" as defined in the SCORM 2004 4th 
 			Edition Run-Time Environment.</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>correctResponsesPattern</td>
@@ -1008,11 +1013,13 @@ The table below lists the properties for Interaction Activities.
 			"cmi.interactions.n.correct_responses.n.pattern" as defined in 
 			the SCORM 2004 4th Edition Run-Time Environment, where the final 
 			<em>n</em> is the index of the array.</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>choices | scale | source | target | steps</td>
 		<td>Array of interaction components</td>
 		<td>Specific to the given interactionType (<a href="#interactionType">see below</a>).</td>
+		<td>Optional</td>
 	</tr>
 </table>  
 
@@ -1031,17 +1038,19 @@ below and MAY return HTTP 400 "Bad Request" if the remaining properties are not 
 Interaction components are defined as follows:  
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>id</td>
 		<td>String</td>
 		<td>A value such as used in practice for "cmi.interactions.n.id" as
-            defined in the SCORM 2004 4th Edition Run-Time Environment</td> 
+            defined in the SCORM 2004 4th Edition Run-Time Environment</td>
+            	<td>Required</td>
 	<tr>
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>A description of the interaction component 
 			(for example, the text for a given choice in a multiple-choice interaction)</td>
+		<td>Optional</td>
 	</tr>
 </table>
 
@@ -1106,10 +1115,10 @@ A Statement Reference is a pointer to another pre-existing Statement.
 The table below lists all properties of a Statement Reference Object:
 
 <table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>String</td><td>In this case, MUST be "StatementRef".</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr><td>objectType</td><td>String</td><td>In this case, MUST be "StatementRef".</td><td>Required</td></tr>
 	<tr><td>id</td><td>UUID</td><td>The UUID of a Statement. 
-	</td></tr>
+	</td><td>Required</td></tr>
 </table>
 
 ###### Example
@@ -1211,25 +1220,44 @@ An optional field that represents a measured outcome related to the Statement in
 The following table contains the properties of the Results Object.
 
 <table border="1">
-<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-<td>score</td>
-<td>Object</td>
-<td>The score of the Agent in relation to the success or quality of the experience. <a href ="#Score">See: Score</a></a></td>
-</tr>
-<tr><td>success</td><td>Boolean</td><td>Indicates whether or not the attempt on the Activity was successful.</td>
-</tr>
-<tr><td>completion</td><td>Boolean</td><td>Indicates whether or not the Activity was completed.</td>
+<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<td>score</td>
+	<td>Object</td>
+	<td>The score of the Agent in relation to the success or quality of the experience. 
+	<a href ="#Score">See: Score</a></td>
+	<td>Optional</td>
 </tr>
 <tr>
-<td>response</td><td>String</td><td>A response appropriately formatted for the given Activity.</td>
+	<td>success</td>
+	<td>Boolean</td>
+	<td>Indicates whether or not the attempt on the Activity was successful.</td>
+	<td>Optional</td>
 </tr>
 <tr>
-<td>duration</td><td>Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>
-with a precision of 0.01 seconds</td><td>Period of time over which the Statement occurred.</td>
+	<td>completion</td>
+	<td>Boolean</td>
+	<td>Indicates whether or not the Activity was completed.</td>
+	<td>Optional</td>
 </tr>
 <tr>
-<td>extensions</td><td>Object</td><td>A map of other properties as needed.
-<a href="#miscext">See: Extensions</a></td>
+	<td>response</td>
+	<td>String</td>
+	<td>A response appropriately formatted for the given Activity.</td>
+	<td>Optional</td>
+</tr>
+<tr>
+	<td>duration</td>
+	<td>Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>
+	with a precision of 0.01 seconds</td>
+	<td>Period of time over which the Statement occurred.</td>
+	<td>Optional</td>
+</tr>
+<tr>
+	<td>extensions</td>
+	<td>Object</td>
+	<td>A map of other properties as needed.
+	<a href="#miscext">See: Extensions</a></td>
+	<td>Optional</td>
 </tr>
 </table> 
 
@@ -1245,11 +1273,31 @@ An optional field that represents the outcome of a graded Activity achieved by a
 The table below defines the Score Object. 
 
 <table border ="1">
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>scaled</td><td>Decimal number between -1 and 1, inclusive</td><td>Cf. 'cmi.score.scaled' in SCORM 2004 4th Edition</td></tr>
-	<tr><td>raw</td><td>Decimal number between min and max (if present, otherwise unrestricted), inclusive</td><td>Cf. 'cmi.score.raw'</td></tr>
-	<tr><td>min</td><td>Decimal number less than max (if present)</td><td>Cf. 'cmi.score.min'</td></tr>
-	<tr><td>max</td><td>Decimal number greater than min (if present)</td><td>Cf. 'cmi.score.max'</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>scaled</td>
+		<td>Decimal number between -1 and 1, inclusive</td>
+		<td>Cf. 'cmi.score.scaled' in SCORM 2004 4th Edition</td>
+		<td>Recommended</td>
+	</tr>
+	<tr>
+		<td>raw</td>
+		<td>Decimal number between min and max (if present, otherwise unrestricted), inclusive</td>
+		<td>Cf. 'cmi.score.raw'</td>
+		<td>Optional</td>
+	</tr>
+	<tr>
+		<td>min</td>
+		<td>Decimal number less than max (if present)</td>
+		<td>Cf. 'cmi.score.min'</td>
+		<td>Optional</td>
+	</tr>
+	<tr>
+		<td>max</td>
+		<td>Decimal number greater than min (if present)</td>
+		<td>Cf. 'cmi.score.max'</td>
+		<td>Optional</td>
+	</tr>
 </table>
 
 ###### Requirements
@@ -1257,9 +1305,6 @@ The table below defines the Score Object.
 * The Score Object SHOULD include 'scaled' if a logical percent based score is known.
 * The Score Object SHOULD NOT be used for scores relating to progress or completion.  Consider using an extension
 from an extension profile instead.
-
-
-
 
 
 <a name="context"/>
@@ -1279,63 +1324,65 @@ into some broader activity.
 The following table contains the properties of the Context Object.
 
 <table border="1">
-<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 <tr>
-<td>registration</td>
-<td>UUID</td>
-<td>The registration that the Statement is associated with. 
-
+	<td>registration</td>
+	<td>UUID</td>
+	<td>The registration that the Statement is associated with.</td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>instructor</td>
-<td>Agent (may be a Group)</td>
-<td>Instructor that the Statement relates to, if not included as the Actor of the Statement.</td>
-
+	<td>instructor</td>
+	<td>Agent (may be a Group)</td>
+	<td>Instructor that the Statement relates to, if not included as the Actor of the Statement.</td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>team</td>
-<td>Group</td>
-<td>Team that this Statement relates to, if not included as the Actor of the Statement.</td>
-
+	<td>team</td>
+	<td>Group</td>
+	<td>Team that this Statement relates to, if not included as the Actor of the Statement.</td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>contextActivities</td>
-<td>contextActivities Object</td>
-<td>A map of the types of learning activity context that this Statement is related to.
-Valid context types are: "parent", "grouping", "category" and "other". 
-
+	<td>contextActivities</td>
+	<td>contextActivities Object</td>
+	<td>A map of the types of learning activity context that this Statement is related to.
+	Valid context types are: "parent", "grouping", "category" and "other".</td> 
+	<td>optional</td>
 </tr>
 <tr>
-<td>revision</td>
-<td>String</td>
-<td>Revision of the learning activity associated with this Statement. Format is free.
+	<td>revision</td>
+	<td>String</td>
+	<td>Revision of the learning activity associated with this Statement. Format is free.
+	<td>optional</td>
 </tr>
 <tr>
-<td>platform</td>
-<td>String</td>
-<td>Platform used in the experience of this learning activity. </td>
-
+	<td>platform</td>
+	<td>String</td>
+	<td>Platform used in the experience of this learning activity. </td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>language</td>
-<td>String (as defined in <a href="http://tools.ietf.org/html/rfc5646">RFC 5646</a>)</td>
-<td>Code representing the language in which the experience being recorded in this Statement (mainly) occurred in, if 
-applicable and known.
-</td>
-
+	<td>language</td>
+	<td>String (as defined in <a href="http://tools.ietf.org/html/rfc5646">RFC 5646</a>)</td>
+	<td>Code representing the language in which the experience being recorded in this 
+	Statement (mainly) occurred in, if applicable and known.
+	</td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>statement</td>
-<td><a href="#stmtref">Statement Reference</a></td>
-<td>Another Statement, which should be considered as context for this Statement. </td>
-
+	<td>statement</td>
+	<td><a href="#stmtref">Statement Reference</a></td>
+	<td>Another Statement, which should be considered as context for this Statement. </td>
+	<td>optional</td>
 </tr>
 <tr>
-<td>extensions</td>
-<td>Object</td>
-<td>A map of any other domain-specific context relevant to this Statement. For example, in a flight simulator 
-altitude, airspeed, wind, attitude, GPS coordinates might all be relevant (<a href="#miscext">See Extensions</a>)</td>
-
+	<td>extensions</td>
+	<td>Object</td>
+	<td>A map of any other domain-specific context relevant to this Statement. For example, 
+	in a flight simulator altitude, airspeed, wind, attitude, GPS coordinates might all be 
+	relevant (<a href="#miscext">See Extensions</a>)</td>
+	<td>optional</td>
 </tr>
 
 </table>
@@ -1615,43 +1662,45 @@ The table below lists all properties of the Attachment Object.
 		<td>Identifies the usage of this attachment. For example: one expected use case
 		for attachments is to include a "completion certificate". A type IRI corresponding
 		to this usage should be coined, and used with completion certificate attachments.</td>
-		<td>yes</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>display</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>Display name (title) of this attachment.</td>
-		<td>yes</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>A description of the attachment</td>
-		<td>no</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>contentType</td>
 		<td><a href="https://www.ietf.org/rfc/rfc2046.txt?number=2046">Internet Media Type</a></td>
 		<td>The content type of the attachment.</td>
-		<td>yes</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>length</td>
 		<td>Integer</td>
 		<td>The length of the attachment data in octets.</td>
-		<td>yes</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>sha2</td>
 		<td>String</td>
-		<td>The SHA-2 (SHA-256, SHA-384, SHA-512) hash of the attachment data. SHA-224 SHOULD not be used: a minimum key size of 256 bits is recommended.</td>
-		<td>yes</td>
+		<td>The SHA-2 (SHA-256, SHA-384, SHA-512) hash of the attachment data. SHA-224 
+		SHOULD not be used: a minimum key size of 256 bits is recommended.</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>fileUrl</td>
 		<td>IRL</td>
-		<td>An IRL at which the attachment data may be retrieved, or from which it used to be retrievable. </td>
-		<td>no</td>
+		<td>An IRL at which the attachment data may be retrieved, or from which it used 
+		to be retrievable. </td>
+		<td>Optional</td>
 	</tr>
 </table>
 
@@ -1841,13 +1890,14 @@ endpoint, see Section [7.2 "Statement API"](#stmtapi) for details.
 ###### Details
 The following table shows the data structure for the results of queries on the Statement API.
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr><td>statements</td><td>Array of Statements</td>
 		<td>List of Statements. If the list returned has been limited (due to pagination), 
 			and there are more results, they will be located at the "statements" property 
 			within the container located at the IRL provided by the "more" element of 
 			this Statement result Object.
 		</td>
+		<td>Required</td>
 	</tr>
 	<tr><td>more</td><td>IRL</td>
 		<td>Relative IRL that may be used to fetch more results, including the full path 
@@ -1860,6 +1910,7 @@ The following table shows the data structure for the results of queries on the S
 			query, but should avoid generating extremely long IRLs. The consumer should 
 			not attempt to interpret any meaning from the IRL returned.
 		</td>
+		<td>Required if the list returned has been limited, otherwise optional.</td>
 	</tr>
 </table>
 
@@ -2074,16 +2125,18 @@ For supplying metadata about Activity ids, see <a href="#activity"> the Activity
 For supplying metadata about all other identifiers, see the format below:
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>name</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>The human readable/visual name</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>description</td>
 		<td><a href="misclangmap">Language Map</a></td>
 		<td>description</td>
+		<td>Optional</td>
 	</tr>
 </table>
 
@@ -2167,7 +2220,7 @@ of the problem.
 
 * Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
 * Systems MAY convert Statements of older versions into a newer version only by following the methods described in
-<a href="#AppendixF">Appendix F: Converting Statements to 1.0.0</a>.
+<a href="#AppendixD">Appendix D: Converting Statements to 1.0.0</a>.
 
 <a name="concurrency"/> 
 ### 6.3 Concurrency
@@ -2515,7 +2568,7 @@ unexpected exception in processing on the server.
 The basic communication mechanism of the Experience API.  
 
 
-<a name="#stmtapiput"/>
+<a name="stmtapiput"/>
 
 ####7.2.1 PUT Statements
 
@@ -2528,8 +2581,9 @@ Stores Statement with the given id.
 Returns: ```204 No Content```  
 
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Required</th><th>Description</th></tr>
-	<tr><td>statementId</td><td>String</td><td> </td><td>Required</td><td>Id of Statement to record</td></tr>
+	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th><th>Required</th></tr>
+	<tr><td>statementId</td><td>String</td><td> 
+	<td>Id of Statement to record</td></td><td>Required</td></tr>
 </table>
 
 ###### Requirements
@@ -2545,7 +2599,7 @@ do not match.
 
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 
-<a name="#stmtapipost"/>
+<a name="stmtapipost"/>
 
 ####7.2.2 POST Statements
 
@@ -2582,7 +2636,7 @@ have limits.
 * The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
 parameters passed.
 
-<a name="#stmtapiget"/>
+<a name="stmtapiget"/>
 
 ####7.2.3 GET Statements
 
@@ -2602,92 +2656,168 @@ Object.
 Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 4.2](#retstmts) for details)
 
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
-	<tr><td>statementId</td><td>String</td><td> </td><td>ID of Statement to fetch</td></tr>
-	<tr><td>voidedStatementId</td><td>String</td><td> </td><td>ID of voided Statement to fetch. see <a href="#voidedStatements">Voided Statements</a></td></tr>
-	<tr><td>agent</td><td>Agent or Identified Group Object (JSON)</td><td> </td>
-		<td>Filter, only return Statements for which the specified Agent or group is the Actor or Object of the Statement.
-			<ul><li> Agents or identified groups are equal when the same Inverse Functional Identifier is used in each
-			Object compared and those Inverse Functional Identifiers have equal values.
-			</li><li>For the purposes of this filter, groups that have members which match the specified Agent
-			based on their Inverse Functional Identifier as described above are considered a match</li></ul>
+	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>statementId</td>
+		<td>String</td>
+		<td> </td>
+		<td>ID of Statement to fetch</td>
+		<td>Optional</td>
+	</tr>
+	<tr>
+		<td>voidedStatementId</td>
+		<td>String</td>
+		<td> </td>
+		<td>ID of voided Statement to fetch. see <a href="#voidedStatements">Voided
+		Statements</a></td>
+		<td>Optional</td>
+	</tr>
+	<tr>
+		<td>agent</td>
+		<td>Agent or Identified Group Object (JSON)</td>
+		<td> </td>
+		<td>Filter, only return Statements for which the specified Agent or group is 
+		the Actor or Object of the Statement.
+			<ul>
+				<li> 
+					Agents or identified groups are equal when the same 
+					Inverse Functional Identifier is used in each Object compared and 
+					those Inverse Functional Identifiers have equal values.
+				</li><li>
+					For the purposes of this filter, groups that have members 
+					which match the specified Agent	based on their Inverse Functional
+					Identifier as described above are considered a match
+				</li>
+			</ul>
 			<br><br>See <a href="#actor">agent/group</a> Object definition
 			for details.
 		</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>verb</td><td>Verb id (IRI)</td><td> </td>
+	<tr>
+		<td>verb</td>
+		<td>Verb id (IRI)</td>
+		<td> </td>
 		<td>Filter, only return Statements matching the specified verb id.</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>activity</td><td>Activity id (IRI)</td><td> </td>
-		<td>Filter, only return Statements for which the Object of the Statement is an Activity with the 
-		specified id.
+	<tr>
+		<td>activity</td>
+		<td>Activity id (IRI)</td>
+		<td> </td>
+		<td>
+			Filter, only return Statements for which the Object of the Statement is 
+			an Activity with the specified id.
 		</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>registration</td><td>UUID</td><td> </td>
-		<td>Filter, only return Statements matching the specified registration 
+	<tr>
+		<td>registration</td>
+		<td>UUID</td>
+		<td> </td>
+		<td>
+			Filter, only return Statements matching the specified registration 
 			id. Note that although frequently a unique registration id will be used 
 			for one Actor assigned to one Activity, this should not be assumed. 
 			If only Statements for a certain Actor or Activity should be returned, 
 			those parameters should also be specified.
 		</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>related_activities</td><td>Boolean</td><td>False</td>
-		<td>Apply the Activity filter broadly. Include Statements for which the Object,
-		any of the  context Activities, or any of those properties in a contained Sub-Statement
-		match the Activity parameter, instead of that parameter's normal behavior. Matching
-		is defined in the same way it is for the 'Activity' parameter."
+	<tr>
+		<td>related_activities</td>
+		<td>Boolean</td>
+		<td>False</td>
+		<td>
+			Apply the Activity filter broadly. Include Statements for which the Object,
+			any of the  context Activities, or any of those properties in a contained
+			Sub-Statement match the Activity parameter, instead of that parameter's 
+			normal behavior. Matching is defined in the same way it is for the 
+			'Activity' parameter."
 		</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>related_agents</td><td>Boolean</td><td>False</td>
-		<td>Apply the Agent filter broadly. Include Statements for which 
+	<tr>
+		<td>related_agents</td>
+		<td>Boolean</td>
+		<td>False</td>
+		<td>
+			Apply the Agent filter broadly. Include Statements for which 
 			the Actor, Object, Authority, Instructor, Team,
 			or any of these properties in a contained Sub-Statement match the Agent parameter,
 			instead of that parameter's normal behavior. Matching is defined in the same way
 			it is for the 'agent' parameter.
 		</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>since</td><td>Timestamp</td><td> </td>
+	<tr>
+		<td>since</td>
+		<td>Timestamp</td>
+		<td> </td>
 		<td>Only Statements stored since the specified timestamp (exclusive) are returned.</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>until</td><td>Timestamp</td><td> </td>
+	<tr>
+		<td>until</td>
+		<td>Timestamp</td>
+		<td> </td>
 		<td>Only Statements stored at or before the specified timestamp are returned.</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>limit</td><td>Nonnegative Integer</td><td>0</td>
-		<td>Maximum number of Statements to return. 0 indicates return the 
-			maximum the server will allow.</td>
+	<tr>
+		<td>limit</td>
+		<td>Nonnegative Integer</td>
+		<td>0</td>
+		<td>
+			Maximum number of Statements to return. 0 indicates return the 
+			maximum the server will allow.
+		</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>format</td><td>String: ("ids", "exact", or "canonical")</td><td>exact</td>
+	<tr>
+		<td>format</td>
+		<td>String: ("ids", "exact", or "canonical")</td>
+		<td>exact</td>
 		<td>If "ids", only include minimum information necessary in Agent, Activity, 
 			and Group Objects to identify them. For anonymous groups this means including 
 			the minimum information needed to identify each member. 
-
+			<br/><br/>
 			If "exact", return Agent, Activity, and Group Objects populated exactly as they 
 			were when the Statement was received. An LRS requesting Statements for the purpose 
-			of importing them would use a format of "exact".<br/><br/>
-			
+			of importing them would use a format of "exact".  
+			<br/><br/>
 			If "canonical", return Activity Objects populated with the canonical
 			definition of the Activity Objects as determined by the LRS, after
 			applying the language filtering process defined below, and return the original
-			Agent Objects as in "exact" mode.<br/><br/>
-
+			Agent Objects as in "exact" mode.  
+			<br/><br/>
 			<b>Canonical Language Process:</b> Activity Objects contain Language Map Objects 
-			for name and description. Only one language should be returned in each of these maps.<br/><br/>
-
+			for name and description. Only one language should be returned in each of 
+			these maps.  
+			<br/><br/>
 			In the event of format being “canonical”, only one language should be returned in 
 			each of these maps. In order to choose the most relevant language, the LRS will 
 			apply the Accept-Language header as described in 
-			<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a> (HTTP 1.1), 
-			except that this logic will be applied to each language map individually to select which 
-			language entry to include, rather than to the resource (list of Statements) as a whole.
+			<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a>
+			(HTTP 1.1), except that this logic will be applied to each language map
+			individually to select which language entry to include, rather than to the 
+			resource (list of Statements) as a whole.
 		</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>attachments</td><td>Boolean</td><td>False</td>
+	<tr>
+		<td>attachments</td><td>Boolean</td><td>False</td>
 		<td>If true, the LRS uses the multipart response format and includes all attachments as 
 		described previously.  If false, the LRS sends the prescribed response with Content-Type 
 		application/json and cannot use attachments.</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>ascending</td><td>Boolean</td><td>False</td>
+	<tr>
+		<td>ascending</td>
+		<td>Boolean</td>
+		<td>False</td>
 		<td>If true, return results in ascending order of stored time</td>
+		<td>Optional</td>
 	</tr>
 </table>
 
@@ -2886,18 +3016,30 @@ exists in the context of the specified Activity, Agent, and registration (if spe
 Returns (PUT | POST | DELETE): ```204 No Content```  
 Returns (GET): ```200 OK```, State Content  
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-	<tr><td>activityId</td><td>String</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>activityId</td>
+		<td>String</td>
 		<td>The Activity id associated with this state.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>agent</td><td>JSON</td><td>yes</td>
+	<tr>
+		<td>agent</td>
+		<td>JSON</td>
 		<td>The Agent associated with this state.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>registration</td><td>UUID</td><td>no</td>
+	<tr>
+		<td>registration</td>
+		<td>UUID</td>
 		<td>The registration id associated with this state.</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>stateId</td><td>String</td><td>yes</td>
+	<tr>
+		<td>stateId</td>
+		<td>String</td>
 		<td>The id for this state, within the given context.</td>
+		<td>Required</td>
 	</tr>
 </table>
 
@@ -2911,18 +3053,30 @@ timestamp (exclusive).
 
 Returns: ```200 OK```, Array of ids  
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-	<tr><td>activityId</td><td>String</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>activityId</td>
+		<td>String</td>
 		<td>The Activity id associated with these states.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>agent</td><td>JSON</td><td>yes</td>
+	<tr>
+		<td>agent</td>
+		<td>JSON</td>
 		<td>The Agent associated with these states.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>registration</td><td>UUID</td><td>no</td>
+	<tr>
+		<td>registration</td>
+		<td>UUID</td>
 		<td>The registration id associated with these states.</td>
+		<td>Optional</td>
 	</tr>
-	<tr><td>since</td><td>Timestamp</td><td>no</td>
+	<tr>
+		<td>since</td>
+		<td>Timestamp</td>
 		<td>Only ids of states stored since the specified timestamp (exclusive) are returned.</td>
+		<td>Optional</td>
 	</tr>
 </table>
 
@@ -2934,15 +3088,24 @@ specified\]).
 
 Returns: ```204 No Content```  
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-	<tr><td>activityId</td><td>String</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>activityId</td>
+		<td>String</td>
 		<td>The Activity id associated with this state.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>agent</td><td>JSON<</td><td>yes</td>
+	<tr>
+		<td>agent</td>
+		<td>JSON<</td>
 		<td>The Agent associated with this state.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>registration</td><td>UUID</td><td>no</td>
+	<tr>
+		<td>registration</td>
+		<td>UUID</td>
 		<td>The registration id associated with this state.</td>
+		<td>Optional</td>
 	</tr>
 </table>
 
@@ -2973,9 +3136,12 @@ Loads the complete Activity Object specified.
 
 Returns: ```200 OK```, Content 
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-	<tr><td>activityId</td><td>String</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>activityId</td>
+		<td>String</td>
 		<td>The id associated with the Activities to load.</td>
+		<td>Required</td>
 	</td>
 </table>
 
@@ -2988,12 +3154,18 @@ specified Activity.
 Returns (PUT | POST | DELETE): ```204 No Content```  
 Returns (GET): ```200 OK```, Profile Content  
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-	<tr><td>activityId</td><td>String</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>activityId</td>
+		<td>String</td>
 		<td>The Activity id associated with this profile.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>profileId</td><td>String</td><td>yes</td>
+	<tr>
+		<td>profileId</td>
+		<td>String</td>
 		<td>The profile id associated with this profile.</td>
+		<td>Required</td>
 	</tr>
 </table>
 
@@ -3006,12 +3178,19 @@ the specified timestamp (exclusive).
 
 Returns: ```200 OK```, List of ids  
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th><tr>
-	<tr><td>activityId</td><td>String</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
+	<tr>
+		<td>activityId</td>
+		<td>String</td>
 		<td>The Activity id associated with these profiles.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>since</td><td>Timestamp</td><td>no</td>
-		<td>Only ids of profiles stored since the specified timestamp (exclusive) are returned.</td>
+	<tr>
+		<td>since</td>
+		<td>Timestamp</td>
+		<td>Only ids of profiles stored since the specified timestamp (exclusive) 
+		are returned.</td>
+		<td>Optional</td>
 	</tr>
 </table>
 
@@ -3062,28 +3241,43 @@ include the information associated with the requested Agent.
 ###### Details
 
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>objectType</td><td>String</td><td>"Person". Required.</td></tr>
-	<tr><td>name</td><td>Array of strings.</td><td> Optional. List of names of Agents to retrieve.</td></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>objectType</td>
+		<td>String</td>
+		<td>"Person"</td>
+		<td>Required</td>
+	</tr>
+	<tr>
+		<td>name</td>
+		<td>Array of strings.</td>
+		<td>List of names of Agents to retrieve.</td>
+		<td>Optional</td>
+	</tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/#term_mbox">mbox</a></td>
 		<td>Array of IRIs in the form "mailto:email address".</td>
 		<td>List of e-mail addresses of Agents to retrieve.</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/#term_mbox_sha1sum">mbox_sha1sum</a></td>
 		<td>Array of strings.</td>
 		<td>List of the SHA1 hashes of mailto IRIs (such as go in an mbox property).</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>openid*</td>
 		<td>Array of strings.</td>
 		<td>List of openids that uniquely identify the Agents to retrieve.</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>account*</td>
 		<td>Array of account objects.</td>
-		<td>List of accounts to match. Complete account Objects (homePage and name) must be provided.</td>
+		<td>List of accounts to match. Complete account Objects (homePage and name) 
+		must be provided.</td>
+		<td>Optional</td>
 	</tr>
 </table> 
 
@@ -3092,9 +3286,12 @@ See also: [Section 4.1.2.1 Agent](#agent).
 Returns: ```200 OK```, Expanded Agent Object
 
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-	<tr><td>agent</td><td>Object (JSON)</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>agent</td>
+		<td>Object (JSON)</td>
 		<td>The Agent representation to use in fetching expanded Agent information.</td>
+		<td>Required</td>
 	</tr>
 </table>  
 
@@ -3114,12 +3311,18 @@ Returns (PUT | POST | DELETE): ```204 No Content```
 Returns (GET): ```200 OK```, Profile Content  
 
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-	<tr><td>agent</td><td>Object (JSON)</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>agent</td>
+		<td>Object (JSON)</td>
 		<td>The Agent associated with this profile.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>profileId</td><td>String</td><td>yes</td>
+	<tr>
+		<td>profileId</td>
+		<td>String</td>
 		<td>The profile id associated with this profile.</td>
+		<td>Required</td>
 	</tr>
 </table>  
 
@@ -3132,13 +3335,19 @@ timestamp (exclusive).
 
 Returns: ```200 OK```, List of ids  
 <table>
-	<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
-	<tr><td>agent</td><td>Object (JSON)</td><td>yes</td>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>agent</td>
+		<td>Object (JSON)</td>
 		<td>The Agent associated with this profile.</td>
+		<td>Required</td>
 	</tr>
-	<tr><td>since</td><td>Timestamp</td><td>no</td>
+	<tr>
+		<td>since</td>
+		<td>Timestamp</td>
 		<td>Only ids of profiles stored since the specified timestamp 
 			(exclusive) are returned.</td>
+		<td>Optional</td>
 	</tr>
 </table>  
 
@@ -3165,12 +3374,20 @@ Example endpoint: http://example.com/xAPI/about
 
 Returns: ```200 OK```, Single 'about' JSON document.
 <table border="1">
-<tr><th>property</th><th>type</th><th>description</th></tr>
-<td>version</td><td>array of version strings</td><td>xAPI versions this LRS supports</td>
-</tr>
-<tr>
-<td>extensions</td><td><a href="#miscext">Object</a></td><td>A map of other properties as needed.</td>
-</tr>
+	<tr><th>property</th><th>type</th><th>description</th><th>Required</th></tr>
+	<tr>
+		<td>version</td>
+		<td>array of version strings</td>
+		<td>xAPI versions this LRS supports</td>
+		<td>Required</td>
+	</tr>
+	<tr>
+		<td>extensions</td>
+		<td><a href="#miscext">Object</a></td>
+		<td>A map of other properties as needed.</td>
+		<td>Optional</td>
+	</tr>
+
 </table>
 
 ###### Requirements
@@ -3280,191 +3497,10 @@ identical HTTP GET request except:
     * The message-body MUST be omitted.
     * The Content-Length header MAY be omitted, in order to avoid wasting LRS resources.
 
-<a name="AppendixA"/> 
 
-## Appendix A: Bookmarklet
-
-###### Description
-The following is a prototype of a Bookmarklet configured using the Experience API.
-
-###### Details
-An xAPI Bookmarklet enables individual user tracking with basic authentication. Examples could be 
-an "I think this," "I learned this," "I like this," or "I don't like this" Statement that allows self-reporting. 
-The following code is an implementation of such a bookmarklet, and the Statement that this bookmarklet 
-would send if used on the page: http://adlnet.gov/xapi.
-
-The bookmarklet could also be provided by the LRS to track a specific user for behavior analytics.
-
-###### Usage
-The LRS IRL (variable "url" in the example below), authentication, and Actor information is 
-hard coded into the bookmarklet.
-
-__Note:__ Since the authorization token must be included in the bookmarklet, it is recommended the LRS 
-provide a token with limited privileges. Enabling the storage of self-reported learning Statements is sufficient
-permission to get full use from this prototype.
-
-In order to allow cross-domain reporting of Statements, a browser that supports the "Access-Control-Allow-Origin" 
-and "Access-Control-Allow-Methods" headers is necessary, such as IE 8+, FF 3.5+, Safari 4+, Safari iOS Chrome, or 
-Android browser. The server needs to set required headers based on the browser.
-
-In the example below, the following values in the first few lines can be replaced with your own values. All other 
-values should be left as they are. Be sure to include a UUID as a part of the bookmarklet PUT statement, because 
-if one is not provided, the LRS will generate one.
-
-<table>
-	<tr>
-		<th>Value in example</th>
-		<th>Explanation</th>
-	</tr>
-	<tr>
-		<td>http://localhost:8080/xAPI/</td>
-		<td>Endpoint of the LRS(where the Statements will be sent).</td>
-	</tr>
-	<tr>
-		<td>dGVzdDpwYXNzd29yZA==</td>
-		<td>Base 64 encoded username and password, usually in the form "username : password".</td>
-	</tr>
-	<tr>
-		<td>learner@example.adlnet.gov</td>
-		<td>Email address of the learner using the bookmarklet.</td>
-	</tr>
-</table>
-
-```javascript
-var url = "http://localhost:8080/xAPI/statements?statementId="+_ruuid();
-var auth = "Basic dGVzdDpwYXNzd29yZA==";
-var statement = {
-	"actor" : { 
-		"objectType" : "Agent", 
-		"mbox" : "mailto:learner@example.adlnet.gov"
-	},
-	"verb" : {
-		"id" : "",
-		"display" : {}
-	},
-	"object" : {
-		"id" : "",
-		"definition" : {}
-	}
-};
-var definition = statement.object.definition;
-
-statement.verb.id = 'http://adlnet.gov/expapi/verbs/experienced';
-statement.verb.display = { "en-US" : "experienced" };
-statement.object.id = window.location.toString();
-definition.type = "http://adlnet.gov/expapi/activities/link";
-
-var xhr = new XMLHttpRequest();
-xhr.open("PUT", url, true);
-xhr.setRequestHeader("X-Experience-API-Version", "1.0.0");
-xhr.setRequestHeader("Content-Type", "application/json");
-xhr.setRequestHeader("Authorization", auth);
-xhr.onreadystatechange = function() {
-	if(xhr.readyState == 4) {
-		alert(xhr.status + " : " + xhr.responseText);
-	}
-};
-xhr.send(JSON.stringify(statement));
-
-/*!
-Modified from: Math.uuid.js (v1.4)
-http://www.broofa.com
-mailto:robert@broofa.com
-
-Copyright (c) 2010 Robert Kieffer
-Dual licensed under the MIT and GPL licenses.
-*/
-function _ruuid() {
-	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-		var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-		return v.toString(16);
-	});
-}
-```
-
-###### Example Statement Using Bookmarklet  
-
-###### Headers  
-```
-{
-	"X-Experience-API-Version": "1.0.0",
-	"Content-Type": "application/json",
-	"Authorization": "Basic dGVzdDpwYXNzd29yZA==",
-	"Referer": "http://adlnet.gov/xapi/",
-	"Content-Length": "###",
-	"Origin": "http://adlnet.gov"
-}
-```
-
-###### Method Path  
-```
-PUT : /xAPI/statements?statementId=ed1d064a-eba6-45ea-a3f6-34cdf6e1dfd9
-
-Body:
-{
-	"actor": {
-		"objectType": "Agent",
-		"mbox": "mailto:learner@example.adlnet.gov"
-	},
-	"verb" : {
-		"id": "http://adlnet.gov/expapi/verbs/experienced",
-		"display": {
-			"en-US": "experienced"
-		}
-	},
-	"object": {
-		"id": "http://adlnet.gov/xapi/",
-		"definition": {
-			"type": "http://adlnet.gov/expapi/activities/link"
-		}
-	}
-}
-```
-<a name="AppendixB"/>
-
-## Appendix B: Creating an "IE Mode" Request
-```javascript
-function getIEModeRequest(method, url, headers, data){
-
-	var newUrl = url;
-
-	// Everything that was on query string goes into form vars
-	var formData = new Array();
-	var qsIndex = newUrl.indexOf('?');
-	if(qsIndex > 0){
-		formData.push(newUrl.substr(qsIndex+1));
-		newUrl = newUrl.substr(0, qsIndex);
-	}
-
-	// Method has to go on querystring, and nothing else
-	newUrl = newUrl + '?method=' + method;
-
-	// Headers
-	if(headers !== null){
-		for(var headerName in headers){
-			formData.push(
-				headerName + "=" +
-					encodeURIComponent(
-						headers[headerName]));
-		}
-	}
-
-	// The original data is repackaged as "content" form var
-	if(data !== null){
-		formData.push('content=' + encodeURIComponent(data));
-	}
-
-	return {
-		"method":"POST",
-		"url":newUrl,
-		"headers":{},
-		"data":formData.join("&")
-	};
-}
-``` 
-<a name="AppendixC"/>  
+<a name="AppendixA"/>  
  
-## Appendix C: Example statements
+## Appendix A: Example statements
 
 Example of a simple statement (line breaks are for display purposes only):  
 ```
@@ -3665,9 +3701,9 @@ a statement returned by an LRS including the authority and stored properties set
     }
 }
 ```  
-<a name="AppendixD"/>  
+<a name="AppendixB"/>  
 
-## Appendix D: Example statement objects of different types
+## Appendix B: Example statement objects of different types
 
 The object of a statement can be an activity, agent, group or statement. 
 This appendix provides one example of each. 
@@ -3749,9 +3785,9 @@ This example shows a Sub-Statement object whose object is a Statement Reference.
     }
 ```
 
-<a name="AppendixE"/>  
+<a name="AppendixC"/>  
 
-## Appendix E: Example definitions for Activities of type "cmi.interaction"
+## Appendix C: Example definitions for Activities of type "cmi.interaction"
 
 ###### true-false  
 
@@ -4029,9 +4065,9 @@ This example shows a Sub-Statement object whose object is a Statement Reference.
 }
 ```
 
-<a name="AppendixF"/>
+<a name="AppendixD"/>
 
-## Appendix F: Converting Statements to 1.0.0
+## Appendix D: Converting Statements to 1.0.0
 
 ######Rationale
 This is a 1.0.0 specification, and as such implementers should not have to consider prior
@@ -4213,8 +4249,8 @@ Converted to 1.0.0:
 }
 ```
 
-<a name="AppendixG"/>
-## Appendix G: Example Signed Statement
+<a name="AppendixE"/>
+## Appendix E: Example Signed Statement
 An example signed Statement, as described in: <a href="#signature">4.4 Signed Statements</a>.
 
 The original Statement serialization to be signed. New lines in this example are included
@@ -4380,9 +4416,9 @@ __Note:__ Attached signature not shown, see <a href="#attachments"> attachments<
 attachment message format.
 
 
-<a name="AppendixH"/>
+<a name="AppendixF"/>
 
-## Appendix H: Table of All Endpoints
+## Appendix F: Table of All Endpoints
 
 <table>
 	<tr>
@@ -4430,4 +4466,3 @@ attachment message format.
 		<td>Token Request</td>
 	</tr>
 </table>
->
