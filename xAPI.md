@@ -1057,8 +1057,8 @@ A Statement Reference is a pointer to another pre-existing Statement.
 ###### Requirements
 
 * A Statement Reference MUST specify an "objectType" property with the value "StatementRef".
-* A Statement Reference MUST set the "id" property to the UUID of a Statement. As with other ids and IRIs, the 
-LRS cannot reasonably check what the resolution is, especially considering timing issues.
+* A Statement Reference MUST set the "id" property to the UUID of a Statement. There is no requirement for 
+the LRS to validate that the UUID matches a Statement that exists.
 
 The table below lists all properties of a Statement Reference Object:
 
