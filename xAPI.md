@@ -2622,7 +2622,7 @@ Returns: ```200 OK```, Statement id(s) (UUID).
 
 * An LRS MUST NOT make any modifications to its state based on a receiving a Statement
 with a statementID that it already has a Statement for. Whether it responds with
-```409 Conflict``` or ```204 No Content```, it MUST NOT modify the Statement or any other
+```409 Conflict``` or ```200 OK```, it MUST NOT modify the Statement or any other
 Object.
 
 * If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
