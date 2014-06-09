@@ -2920,7 +2920,7 @@ information in this section applies to all three APIs.
 	<tr>
 		<td>Agent Profile API</td>
 		<td>POST</td>
-		<td>agent/profile</td>
+		<td>agents/profile</td>
 		<td>http://example.com/xAPI/agents/profile</td>
 	</tr>
 </table>
