@@ -2710,7 +2710,7 @@ having prior knowledge of the Activity and/or Agent.
 	<tr>
 		<td>Agent Profile API</td>
 		<td>POST</td>
-		<td>agent/profile</td>
+		<td>agents/profile</td>
 		<td>http://example.com/xAPI/agents/profile</td>
 	</tr>
 </table>
