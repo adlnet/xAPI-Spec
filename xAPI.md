@@ -3123,7 +3123,7 @@ The Activity Profile API is much like the State API, allowing for arbitrary key
 
 ###### Details
 
-The semantics of the call are driven by the stateId parameter. If it is included, 
+The semantics of the call are driven by the activityId parameter. If it is included, 
 the GET method will act upon a single defined document identified by "profileId". 
 Otherwise, GET will return the available ids.
 
@@ -3206,7 +3206,7 @@ document pairs to be saved which are related to an Agent.
 
 ###### Details
 
-The semantics of the call are driven by the stateId parameter. If it is included, 
+The semantics of the call are driven by the agent parameter. If it is included, 
 the GET method will act upon a single defined document identified by "profileId". 
 Otherwise, GET will return the available ids.  
 
