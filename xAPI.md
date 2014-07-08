@@ -528,7 +528,7 @@ An example of the simplest possible Statement using all properties that MUST or 
 	}
 }
 ```  
-See [Appendix C: Example Statements](#AppendixC) for more examples. 
+See [Appendix A: Example Statements](#AppendixA) for more examples. 
 
 <a name="stmtid"/> 
 
@@ -1075,7 +1075,7 @@ an interaction Activity with the given interactionType.
 
 ###### Example
 
-See [Appendix E](#AppendixE) for examples of Activity Definitions for each of the cmi.interaction types.
+See [Appendix C](#AppendixC) for examples of Activity Definitions for each of the cmi.interaction types.
 
 <a name="agentasobj"/>
 
@@ -2036,7 +2036,7 @@ the scope of this specification.
 
 
 ##### Example
-See <a href="#AppendixG">Appendix G: Example Signed Statement</a> for an example.
+See <a href="#AppendixE">Appendix E: Example Signed Statement</a> for an example.
 
 
 
@@ -3439,9 +3439,6 @@ multipart/mixed request, therefore sending attachment data is not supported
 with this syntax. See [4.1.11. Attachments](#attachments) 
 
 * The LRS MUST support the syntax above.
-
-See [Appendix B](#AppendixB) for an example function written in JavaScript 
-which transforms a normal request into one using this alternate syntax.  
 
 It should also be noted that versions of Internet Explorer lower than 10 do not 
 support Cross Domain Requests between HTTP and HTTPS. This means that for IE9 and lower, 
