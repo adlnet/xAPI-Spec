@@ -3748,17 +3748,17 @@ This example shows an identified group with members.
     },
     "objectType": "Group",
     "member": [
-            {
-                "name": "Andrew Downes",
-                "mbox": "mailto:andrew@example.com",
-                "objectType": "Agent"
-            },
-            {
-                "name": "Aaron Silvers",
-                "openid": "aaron.openid.example.org",
-                "objectType": "Agent"
-            }
-        ],
+        {
+            "name": "Andrew Downes",
+            "mbox": "mailto:andrew@example.com",
+            "objectType": "Agent"
+        },
+        {
+            "name": "Aaron Silvers",
+            "openid": "aaron.openid.example.org",
+            "objectType": "Agent"
+        }
+    ]
 }
 ```
 
