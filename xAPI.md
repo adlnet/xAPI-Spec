@@ -3755,7 +3755,7 @@ This example shows an identified group with members.
         },
         {
             "name": "Aaron Silvers",
-            "openid": "aaron.openid.example.org",
+            "openid": "http://aaron.openid.example.org",
             "objectType": "Agent"
         }
     ]
