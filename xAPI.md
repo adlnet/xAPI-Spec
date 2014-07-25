@@ -3748,17 +3748,17 @@ This example shows an identified group with members.
     },
     "objectType": "Group",
     "member": [
-            {
-                "name": "Andrew Downes",
-                "mbox": "mailto:andrew@example.com",
-                "objectType": "Agent"
-            },
-            {
-                "name": "Aaron Silvers",
-                "openid": "aaron.openid.example.org",
-                "objectType": "Agent"
-            }
-        ],
+        {
+            "name": "Andrew Downes",
+            "mbox": "mailto:andrew@example.com",
+            "objectType": "Agent"
+        },
+        {
+            "name": "Aaron Silvers",
+            "openid": "http://aaron.openid.example.org",
+            "objectType": "Agent"
+        }
+    ]
 }
 ```
 
@@ -3768,22 +3768,22 @@ This example shows a Sub-Statement object whose object is a Statement Reference.
 
 ```
 {
-        "objectType": "SubStatement",
-        "actor" : {
-            "objectType": "Agent", 
-            "mbox":"mailto:agent@example.com" 
-        },
-        "verb" : { 
-            "id":"http://example.com/confirmed", 
-            "display":{
-                "en":"confirmed"
-            } 
-        },
-        "object": {
-            "objectType":"StatementRef",
-    		"id" :"9e13cefd-53d3-4eac-b5ed-2cf6693903bb"
-        }
+    "objectType": "SubStatement",
+    "actor" : {
+        "objectType": "Agent", 
+        "mbox":"mailto:agent@example.com" 
+    },
+    "verb" : { 
+        "id":"http://example.com/confirmed", 
+        "display":{
+            "en":"confirmed"
+        } 
+    },
+    "object": {
+        "objectType":"StatementRef",
+		"id" :"9e13cefd-53d3-4eac-b5ed-2cf6693903bb"
     }
+}
 ```
 
 <a name="AppendixC"/>  
