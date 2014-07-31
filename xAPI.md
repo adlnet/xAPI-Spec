@@ -1479,12 +1479,12 @@ useful when the Object of the Statement is an Agent, not an Activity.
 
 ```
 {
-	"parent" : [{
-	"id" : "http://example.adlnet.gov/xapi/example/test 1"
-	}],
-	"grouping" : [{
-	"id" : "http://example.adlnet.gov/xapi/example/Algebra1"
-	}]
+    "parent" : [
+        {"id" : "http://example.adlnet.gov/xapi/example/test1"}
+    ],
+    "grouping" : [
+        {"id" : "http://example.adlnet.gov/xapi/example/Algebra1"}
+    ]
 }
 ```
 
