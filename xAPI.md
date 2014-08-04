@@ -760,16 +760,14 @@ Using the display property for aggregation or categorization of Statements is an
 * The IRI contained in the id SHOULD be human-readable and imply the Verb meaning.
 
 ###### Example
-
+This example shows a Verb with the recommended fields set.
 ```
 {
-	"verb" : { 
-		"id":"http://www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)", 
-		"display":{
-			"en-US":"ran",
-			"es" : "corrió" 
-		} 
-	}
+    "id":"http://www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)", 
+    "display":{
+        "en-US":"ran",
+        "es" : "corrió" 
+    } 
 }
 ``` 
 
@@ -1481,12 +1479,12 @@ useful when the Object of the Statement is an Agent, not an Activity.
 
 ```
 {
-	"parent" : [{
-	"id" : "http://example.adlnet.gov/xapi/example/test 1"
-	}],
-	"grouping" : [{
-	"id" : "http://example.adlnet.gov/xapi/example/Algebra1"
-	}]
+    "parent" : [
+        {"id" : "http://example.adlnet.gov/xapi/example/test1"}
+    ],
+    "grouping" : [
+        {"id" : "http://example.adlnet.gov/xapi/example/Algebra1"}
+    ]
 }
 ```
 
