@@ -1002,7 +1002,7 @@ The table below lists the properties for Interaction Activities.
 		<td>String</td>
 		<td>As in "cmi.interactions.n.type" as defined in the SCORM 2004 4th 
 			Edition Run-Time Environment.</td>
-		<td>Required</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>correctResponsesPattern</td>
