@@ -2732,7 +2732,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 			any of the  context Activities, or any of those properties in a contained
 			Sub-Statement match the Activity parameter, instead of that parameter's 
 			normal behavior. Matching is defined in the same way it is for the 
-			'Activity' parameter."
+			'activity' parameter.
 		</td>
 		<td>Optional</td>
 	</tr>
