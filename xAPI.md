@@ -528,7 +528,7 @@ An example of the simplest possible Statement using all properties that MUST or 
 	}
 }
 ```  
-See [Appendix C: Example Statements](#AppendixC) for more examples. 
+See [Appendix A: Example Statements](#AppendixA) for more examples. 
 
 <a name="stmtid"/> 
 
@@ -760,16 +760,14 @@ Using the display property for aggregation or categorization of Statements is an
 * The IRI contained in the id SHOULD be human-readable and imply the Verb meaning.
 
 ###### Example
-
+This example shows a Verb with the recommended fields set.
 ```
 {
-	"verb" : { 
-		"id":"http://www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)", 
-		"display":{
-			"en-US":"ran",
-			"es" : "corrió" 
-		} 
-	}
+    "id":"http://www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)", 
+    "display":{
+        "en-US":"ran",
+        "es" : "corrió" 
+    } 
 }
 ``` 
 
@@ -912,8 +910,8 @@ The table below lists the properties of the Activity Definition Object:
 	<tr>
 		<td>moreInfo</td>
 		<td>IRL</td>
-		<td>SHOULD resolve to a document human-readable information about the Activity,
-		which MAY include a way to 'launch' the Activity.
+		<td>SHOULD resolve to a document containing human-readable information about
+		the Activity, which MAY include a way to 'launch' the Activity.
 		</td>
 		<td>Optional</td>
 	</tr>
@@ -1075,7 +1073,7 @@ an interaction Activity with the given interactionType.
 
 ###### Example
 
-See [Appendix E](#AppendixE) for examples of Activity Definitions for each of the cmi.interaction types.
+See [Appendix C](#AppendixC) for examples of Activity Definitions for each of the cmi.interaction types.
 
 <a name="agentasobj"/>
 
@@ -1110,7 +1108,8 @@ A Statement Reference is a pointer to another pre-existing Statement.
 ###### Requirements
 
 * A Statement Reference MUST specify an "objectType" property with the value "StatementRef".
-* A Statement Reference MUST set the "id" property to the UUID of a Statement.
+* A Statement Reference MUST set the "id" property to the UUID of a Statement. There is no requirement for 
+the LRS to validate that the UUID matches a Statement that exists.
 
 The table below lists all properties of a Statement Reference Object:
 
@@ -1480,12 +1479,12 @@ useful when the Object of the Statement is an Agent, not an Activity.
 
 ```
 {
-	"parent" : [{
-	"id" : "http://example.adlnet.gov/xapi/example/test 1"
-	}],
-	"grouping" : [{
-	"id" : "http://example.adlnet.gov/xapi/example/Algebra1"
-	}]
+    "parent" : [
+        {"id" : "http://example.adlnet.gov/xapi/example/test1"}
+    ],
+    "grouping" : [
+        {"id" : "http://example.adlnet.gov/xapi/example/Algebra1"}
+    ]
 }
 ```
 
@@ -2035,7 +2034,7 @@ the scope of this specification.
 
 
 ##### Example
-See <a href="#AppendixG">Appendix G: Example Signed Statement</a> for an example.
+See <a href="#AppendixE">Appendix E: Example Signed Statement</a> for an example.
 
 
 
@@ -2498,8 +2497,9 @@ syntax after this represents the particular endpoint used.
 ###### Requirements
 
 * The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
-of these APIs that use any parameters which the LRS does not recognize ( __Note:__ 
-LRSs may recognize and act on parameters not in this specification).
+of these APIs that use any parameters which the LRS does not recognize in their 
+intended context in this specification ( __Note:__ LRSs may recognize and act on 
+parameters not in this specification).
 
 * The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
 of these APIs that use any parameters matching parameters described in this 
@@ -2621,7 +2621,7 @@ Returns: ```200 OK```, Statement id(s) (UUID).
 
 * An LRS MUST NOT make any modifications to its state based on a receiving a Statement
 with a statementID that it already has a Statement for. Whether it responds with
-```409 Conflict``` or ```204 No Content```, it MUST NOT modify the Statement or any other
+```409 Conflict``` or ```200 OK```, it MUST NOT modify the Statement or any other
 Object.
 
 * If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
@@ -2919,7 +2919,7 @@ information in this section applies to all three APIs.
 	<tr>
 		<td>Agent Profile API</td>
 		<td>POST</td>
-		<td>agent/profile</td>
+		<td>agents/profile</td>
 		<td>http://example.com/xAPI/agents/profile</td>
 	</tr>
 </table>
@@ -3122,7 +3122,7 @@ The Activity Profile API is much like the State API, allowing for arbitrary key
 
 ###### Details
 
-The semantics of the call are driven by the stateId parameter. If it is included, 
+The semantics of the call are driven by the profileId parameter. If it is included, 
 the GET method will act upon a single defined document identified by "profileId". 
 Otherwise, GET will return the available ids.
 
@@ -3205,7 +3205,7 @@ document pairs to be saved which are related to an Agent.
 
 ###### Details
 
-The semantics of the call are driven by the stateId parameter. If it is included, 
+The semantics of the call are driven by the profileId parameter. If it is included, 
 the GET method will act upon a single defined document identified by "profileId". 
 Otherwise, GET will return the available ids.  
 
@@ -3439,9 +3439,6 @@ with this syntax. See [4.1.11. Attachments](#attachments)
 
 * The LRS MUST support the syntax above.
 
-See [Appendix B](#AppendixB) for an example function written in JavaScript 
-which transforms a normal request into one using this alternate syntax.  
-
 It should also be noted that versions of Internet Explorer lower than 10 do not 
 support Cross Domain Requests between HTTP and HTTPS. This means that for IE9 and lower, 
 if the LRS is on an HTTPS domain, the Client sending the Statement must also be on HTTPS. 
@@ -3590,7 +3587,7 @@ a statement returned by an LRS including the authority and stored properties set
             },
             {
                 "name": "Ena Hills",
-                "mbox_sha1sum": "esydnag7fhxkquopagrr4aiputa=",
+                "mbox_sha1sum": "ebd31e95054c018b10727ccffd2ef2ec3a016ee9",
                 "objectType": "Agent"
             }
         ],
@@ -3747,17 +3744,17 @@ This example shows an identified group with members.
     },
     "objectType": "Group",
     "member": [
-            {
-                "name": "Andrew Downes",
-                "mbox": "mailto:andrew@example.com",
-                "objectType": "Agent"
-            },
-            {
-                "name": "Aaron Silvers",
-                "openid": "aaron.openid.example.org",
-                "objectType": "Agent"
-            }
-        ],
+        {
+            "name": "Andrew Downes",
+            "mbox": "mailto:andrew@example.com",
+            "objectType": "Agent"
+        },
+        {
+            "name": "Aaron Silvers",
+            "openid": "http://aaron.openid.example.org",
+            "objectType": "Agent"
+        }
+    ]
 }
 ```
 
@@ -3767,22 +3764,22 @@ This example shows a Sub-Statement object whose object is a Statement Reference.
 
 ```
 {
-        "objectType": "SubStatement",
-        "actor" : {
-            "objectType": "Agent", 
-            "mbox":"mailto:agent@example.com" 
-        },
-        "verb" : { 
-            "id":"http://example.com/confirmed", 
-            "display":{
-                "en":"confirmed"
-            } 
-        },
-        "object": {
-            "objectType":"StatementRef",
-    		"id" :"9e13cefd-53d3-4eac-b5ed-2cf6693903bb"
-        }
+    "objectType": "SubStatement",
+    "actor" : {
+        "objectType": "Agent", 
+        "mbox":"mailto:agent@example.com" 
+    },
+    "verb" : { 
+        "id":"http://example.com/confirmed", 
+        "display":{
+            "en":"confirmed"
+        } 
+    },
+    "object": {
+        "objectType":"StatementRef",
+		"id" :"9e13cefd-53d3-4eac-b5ed-2cf6693903bb"
     }
+}
 ```
 
 <a name="AppendixC"/>  
