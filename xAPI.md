@@ -2322,7 +2322,7 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 ###### Requirements
 
 The LRS MUST support authentication using at least one of the following methods:
-- OAuth 1.0 (RFC 5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
+- [OAuth 1.0 (RFC 5849)](http://tools.ietf.org/html/rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
 - HTTP Basic Authentication
 - Common Access Cards (implementation details to follow in a later version)
 - The LRS MUST handle making, or delegating, decisions on the validity of Statements,
@@ -2471,7 +2471,7 @@ relating to their students).
 
 ##### Requirements
 
-* The LRS MUST accept a scope parameter as defined in [OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3).
+* The LRS MUST accept a scope parameter as defined in [OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-3.3).
 * The LRS MUST assume a requested scope of "statements/write" and "statements/read/mine" if no 
 scope is specified.
 * The LRS MUST support the scope of "all" as a minimum.
