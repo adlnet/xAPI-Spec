@@ -2497,8 +2497,9 @@ syntax after this represents the particular endpoint used.
 ###### Requirements
 
 * The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
-of these APIs that use any parameters which the LRS does not recognize ( __Note:__ 
-LRSs may recognize and act on parameters not in this specification).
+of these APIs that use any parameters which the LRS does not recognize in their 
+intended context in this specification ( __Note:__ LRSs may recognize and act on 
+parameters not in this specification).
 
 * The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
 of these APIs that use any parameters matching parameters described in this 
