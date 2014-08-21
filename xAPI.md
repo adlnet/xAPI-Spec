@@ -2631,7 +2631,7 @@ do not match.
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 
 * GET Statements MAY be called using POST and form fields if necessary as query strings 
-have limits. 
+have limits. See Section [7.8 Cross Origin Requests](#78-cross-origin-requests) for more details.
 
 * The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
 parameters passed.
