@@ -260,7 +260,11 @@ Whenever possible, the language and formatting used in this document is intended
 _considerate_ of non-technical readers because various tools, systems and services 
 are based on the specification set described below. For this reason, sections that provide a 
 _high-level overview_ of a given facet of the Experience API are labeled **description** or 
-**rationale**. Items in this document labeled as **requirements**, **details** or **examples** are more technical. 
+**rationale**. Items in this document labeled as **requirements**, **details** or **examples** are more technical.
+
+As a rule of thumb, if the guideline appears technical or seems to be a requirement, it should be interpreted 
+as such. This is especially true of longer, more, detailed explanations and of tables, each of which would 
+be unintuitive and/or lengthy to dissect into a list of requirements.
 
 <a name="definitions"/>
  
