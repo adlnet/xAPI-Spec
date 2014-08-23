@@ -1021,6 +1021,12 @@ The table below lists the properties for Interaction Activities.
 	</tr>
 </table>  
 
+###### A Note on Delimiters
+The SCORM 2004 4th Edition Run-Time Environment allows certain delimiters to be added to strings which convey certain information about that string. This is outlined in section 4.1.1.6: Reserved Delimiters of that document and referenced throughout the RTE data model. These delimiters can be used within the Correct Responses pattern for some types of interaction as defined in section 4.2.9.1: Correct Responses Pattern Data Model Element Specifics of the SCORM 2004 4th ed. RTE. 
+
+There is some discrepancy in the order of delimiters between sections 4.1.1.6 and 4.2.9.1. For the purposes of the Experience API, we take the order of delimiters listed in 4.2.9.1 to be correct. 
+
+
 ###### Requirements
 
 * Interaction Activities MUST have a valid interactionType.
