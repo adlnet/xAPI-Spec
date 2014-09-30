@@ -192,6 +192,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Bill McDonald</td><td>Boeing</td></tr>
 	<tr><td>Brian J. Miller</td><td>Rustici Software</td></tr>
 	<tr><td>Chad Udell</td><td>Float Mobile Learning</td></tr>
+	<tr><td>Chris Handorf</td><td>Pearson</td></tr>
 	<tr><td>Chris Sawwa</td><td>Meridian Knowledge Solutions</td></tr>
 	<tr><td>Dan Allen</td><td>Litmos</td></tr>
 	<tr><td>Dan Kuemmel</td><td>Sentry Insurance</td></tr>
@@ -1078,7 +1079,7 @@ an interaction Activity with the given interactionType.
 	<tr><td>likert</td><td>scale</td></tr>
 	<tr><td>matching</td><td>source, target</td></tr>
 	<tr><td>performance</td><td>steps</td></tr>
-	<tr><td>true-false, fill-in, numeric, other</td><td>[No component lists defined]</td></tr>
+	<tr><td>true-false, fill-in, long-fill-in, numeric, other</td><td>[No component lists defined]</td></tr>
 </table>
 
 ###### Requirements
@@ -3866,6 +3867,20 @@ This example shows a Sub-Statement object whose object is a Statement Reference.
 	"interactionType": "fill-in",
 	"correctResponsesPattern": [
 		"Bob's your uncle"
+	]
+}
+```
+
+###### long-fill-in  
+```
+"definition": {
+	"description": {
+		"en-US": "What is the purpose of the xAPI?"
+	},
+	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+	"interactionType": "long-fill-in",
+	"correctResponsesPattern": [
+		"{case_matters=false}{lang=en}To store and provide access to learning experiences."
 	]
 }
 ```
