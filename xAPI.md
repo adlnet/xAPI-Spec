@@ -288,6 +288,7 @@ be unintuitive and/or lengthy to dissect into a list of requirements.
 * [Actor](#def-actor)
 * [Authentication](#def-authentication)
 * [Authorization](#def-authorization)
+* [Base Endpoint](#def-baseendpoint)
 * [Community of Practice](#def-community-of-practice)
 * [Experience API (xAPI)](#def-experience-api)
 * [Immutable](#def-immutable)
@@ -335,6 +336,10 @@ allows interactions between the two "trusted" parties.
 
 __Authorization__: The affordance of permissions based on a user or system's role; 
 the process of making one user or system "trusted" by another.
+
+<a name="def-baseendpoint" />
+
+__Base Endpoint__: The maximal path under all Experience API endpoints, including a slash. E.g. an LRS with a statements endpoint of http://example.com/xAPI/statements would have a Base Endpoint of http://example.com/xAPI/"
 
 <a name="def-client" />
 
@@ -2501,7 +2506,7 @@ handled via RESTful HTTP methods. The Statement API can be used by itself to
 track learning records. 
 
 __Note:__ In all of the example endpoints given in the specification, 
-"http://example.com/xAPI/" is the example base IRI of the LRS. All other IRI 
+"http://example.com/xAPI/" is the example base endpoint of the LRS. All other IRI 
 syntax after this represents the particular endpoint used.
 
 ###### Requirements
@@ -4429,7 +4434,7 @@ attachment message format.
 
 <table>
 	<tr>
-		<th>Endpoint (Base IRI of the LRS Precedes Each Endpoint)</th>
+		<th>Endpoint (Base Endpoint of the LRS Precedes Each Endpoint)</th>
 		<th>Function</th>
 	</tr>
 	<tr>
