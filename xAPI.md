@@ -110,10 +110,22 @@ Various refinements and clarifications including:
 - Changes to querying the Statement API
 - Signed Statements
 
+[0.95...1.0.0](https://github.com/adlnet/xAPI-Spec/compare/0.95-spec...1.0.0)
+
 ###### 1.0.0 to 1.0.1 (October 1, 2013)
 Clarifications and additional examples including:
 - Fixed various typos
 - Added additional examples in the appendices
+
+[1.0.0...1.0.1](https://github.com/adlnet/xAPI-Spec/compare/1.0.0...1.0.1)
+
+###### 1.0.1 to 1.0.2 (October 1, 2014)
+- Added optional/required to tables
+- Added missing table heading on Interaction components
+- Change yes/no to required/optional in attachments
+- Clarified intent of 'moreInfo' property
+
+[1.0.1...1.0.2](https://github.com/adlnet/xAPI-Spec/compare/1.0.1...1.0.2)
 
 <a name="roleofxapi"/>
 
