@@ -110,10 +110,22 @@ Various refinements and clarifications including:
 - Changes to querying the Statement API
 - Signed Statements
 
+[0.95...1.0.0](https://github.com/adlnet/xAPI-Spec/compare/0.95-spec...1.0.0)
+
 ###### 1.0.0 to 1.0.1 (October 1, 2013)
 Clarifications and additional examples including:
 - Fixed various typos
 - Added additional examples in the appendices
+
+[1.0.0...1.0.1](https://github.com/adlnet/xAPI-Spec/compare/1.0.0...1.0.1)
+
+###### 1.0.1 to 1.0.2 (October 1, 2014)
+- Added optional/required to tables
+- Added missing table heading on Interaction components
+- Change yes/no to required/optional in attachments
+- Clarified intent of 'moreInfo' property
+
+[1.0.1...1.0.2](https://github.com/adlnet/xAPI-Spec/compare/1.0.1...1.0.2)
 
 <a name="roleofxapi"/>
 
@@ -192,6 +204,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Bill McDonald</td><td>Boeing</td></tr>
 	<tr><td>Brian J. Miller</td><td>Rustici Software</td></tr>
 	<tr><td>Chad Udell</td><td>Float Mobile Learning</td></tr>
+	<tr><td>Chris Handorf</td><td>Pearson</td></tr>
 	<tr><td>Chris Sawwa</td><td>Meridian Knowledge Solutions</td></tr>
 	<tr><td>Dan Allen</td><td>Litmos</td></tr>
 	<tr><td>Dan Kuemmel</td><td>Sentry Insurance</td></tr>
@@ -273,7 +286,11 @@ Whenever possible, the language and formatting used in this document is intended
 _considerate_ of non-technical readers because various tools, systems and services 
 are based on the specification set described below. For this reason, sections that provide a 
 _high-level overview_ of a given facet of the Experience API are labeled **description** or 
-**rationale**. Items in this document labeled as **requirements**, **details** or **examples** are more technical. 
+**rationale**. Items in this document labeled as **requirements**, **details** or **examples** are more technical.
+
+As a rule of thumb, if the guideline appears technical or seems to be a requirement, it should be interpreted 
+as such. This is especially true of longer, more, detailed explanations and of tables, each of which would 
+be unintuitive and/or lengthy to dissect into a list of requirements.
 
 <a name="definitions"/>
  
@@ -284,6 +301,7 @@ _high-level overview_ of a given facet of the Experience API are labeled **descr
 * [Actor](#def-actor)
 * [Authentication](#def-authentication)
 * [Authorization](#def-authorization)
+* [Base Endpoint](#def-baseendpoint)
 * [Community of Practice](#def-community-of-practice)
 * [Experience API (xAPI)](#def-experience-api)
 * [Immutable](#def-immutable)
@@ -331,6 +349,10 @@ allows interactions between the two "trusted" parties.
 
 __Authorization__: The affordance of permissions based on a user or system's role; 
 the process of making one user or system "trusted" by another.
+
+<a name="def-baseendpoint" />
+
+__Base Endpoint__: The maximal path under all Experience API endpoints, including a slash. E.g. an LRS with a statements endpoint of http://example.com/xAPI/statements would have a Base Endpoint of http://example.com/xAPI/"
 
 <a name="def-client" />
 
@@ -910,8 +932,8 @@ The table below lists the properties of the Activity Definition Object:
 	<tr>
 		<td>moreInfo</td>
 		<td>IRL</td>
-		<td>SHOULD resolve to a document containing human-readable information about
-		the Activity, which MAY include a way to 'launch' the Activity.
+		<td>Resolves to a document with human-readable information about the Actiivty, 
+		which could include a way to launch the activity.
 		</td>
 		<td>Optional</td>
 	</tr>
@@ -1021,6 +1043,12 @@ The table below lists the properties for Interaction Activities.
 	</tr>
 </table>  
 
+###### A Note on Delimiters
+The SCORM 2004 4th Edition Run-Time Environment allows certain delimiters to be added to strings which convey certain information about that string. This is outlined in section 4.1.1.6: Reserved Delimiters of that document and referenced throughout the RTE data model. These delimiters can be used within the Correct Responses pattern for some types of interaction as defined in section 4.2.9.1: Correct Responses Pattern Data Model Element Specifics of the SCORM 2004 4th ed. RTE. 
+
+There is some discrepancy in the order of delimiters between sections 4.1.1.6 and 4.2.9.1. For the purposes of the Experience API, we take the order of delimiters listed in 4.2.9.1 to be correct. 
+
+
 ###### Requirements
 
 * Interaction Activities MUST have a valid interactionType.
@@ -1063,7 +1091,7 @@ an interaction Activity with the given interactionType.
 	<tr><td>likert</td><td>scale</td></tr>
 	<tr><td>matching</td><td>source, target</td></tr>
 	<tr><td>performance</td><td>steps</td></tr>
-	<tr><td>true-false, fill-in, numeric, other</td><td>[No component lists defined]</td></tr>
+	<tr><td>true-false, fill-in, long-fill-in, numeric, other</td><td>[No component lists defined]</td></tr>
 </table>
 
 ###### Requirements
@@ -2322,7 +2350,7 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 ###### Requirements
 
 The LRS MUST support authentication using at least one of the following methods:
-- OAuth 1.0 (RFC 5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
+- [OAuth 1.0 (RFC 5849)](http://tools.ietf.org/html/rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
 - HTTP Basic Authentication
 - Common Access Cards (implementation details to follow in a later version)
 - The LRS MUST handle making, or delegating, decisions on the validity of Statements,
@@ -2471,7 +2499,7 @@ relating to their students).
 
 ##### Requirements
 
-* The LRS MUST accept a scope parameter as defined in [OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-v2-22%22%20%5Cl%20%22section-3.3).
+* The LRS MUST accept a scope parameter as defined in [OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-3.3).
 * The LRS MUST assume a requested scope of "statements/write" and "statements/read/mine" if no 
 scope is specified.
 * The LRS MUST support the scope of "all" as a minimum.
@@ -2491,7 +2519,7 @@ handled via RESTful HTTP methods. The Statement API can be used by itself to
 track learning records. 
 
 __Note:__ In all of the example endpoints given in the specification, 
-"http://example.com/xAPI/" is the example base IRI of the LRS. All other IRI 
+"http://example.com/xAPI/" is the example base endpoint of the LRS. All other IRI 
 syntax after this represents the particular endpoint used.
 
 ###### Requirements
@@ -2631,10 +2659,10 @@ do not match.
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 
 * GET Statements MAY be called using POST and form fields if necessary as query strings 
-have limits. 
+have limits. See Section [7.8 Cross Origin Requests](#78-cross-origin-requests) for more details.
 
 * The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
-parameters passed.
+parameters passed. See Section [7.8 Cross Origin Requests](#78-cross-origin-requests) for more details.
 
 <a name="stmtapiget"/>
 
@@ -2733,7 +2761,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 			any of the  context Activities, or any of those properties in a contained
 			Sub-Statement match the Activity parameter, instead of that parameter's 
 			normal behavior. Matching is defined in the same way it is for the 
-			'Activity' parameter."
+			'activity' parameter.
 		</td>
 		<td>Optional</td>
 	</tr>
@@ -3855,6 +3883,20 @@ This example shows a Sub-Statement object whose object is a Statement Reference.
 }
 ```
 
+###### long-fill-in  
+```
+"definition": {
+	"description": {
+		"en-US": "What is the purpose of the xAPI?"
+	},
+	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+	"interactionType": "long-fill-in",
+	"correctResponsesPattern": [
+		"{case_matters=false}{lang=en}To store and provide access to learning experiences."
+	]
+}
+```
+
 ###### likert  
 ```
 "definition": {
@@ -4419,7 +4461,7 @@ attachment message format.
 
 <table>
 	<tr>
-		<th>Endpoint (Base IRI of the LRS Precedes Each Endpoint)</th>
+		<th>Endpoint (Base Endpoint of the LRS Precedes Each Endpoint)</th>
 		<th>Function</th>
 	</tr>
 	<tr>
