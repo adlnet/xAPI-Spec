@@ -3249,7 +3249,7 @@ Example endpoint: http://example.com/xAPI/agents
 Return a special, Person Object for a specified Agent. The Person Object is 
 very similar to an Agent Object, but instead of each attribute having a single 
 value, each attribute has an array value, and it is legal to include multiple 
-identifying properties. Note that the argument is still a normal Agent Object 
+identifying properties. Note that the parameter is still a normal Agent Object 
 with a single identifier and no arrays. Note that this is different from the 
 FOAF concept of person, person is being used here to indicate a person-centric 
 view of the LRS Agent data, but Agents just refer to one persona (a person in 
@@ -3279,13 +3279,13 @@ include the information associated with the requested Agent.
 	<tr>
 		<td>name</td>
 		<td>Array of strings.</td>
-		<td>List of names of Agents to retrieve.</td>
+		<td>List of names of Agents retrieved.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/#term_mbox">mbox</a></td>
 		<td>Array of IRIs in the form "mailto:email address".</td>
-		<td>List of e-mail addresses of Agents to retrieve.</td>
+		<td>List of e-mail addresses of Agents retrieved.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
@@ -3297,7 +3297,7 @@ include the information associated with the requested Agent.
 	<tr>
 		<td>openid*</td>
 		<td>Array of strings.</td>
-		<td>List of openids that uniquely identify the Agents to retrieve.</td>
+		<td>List of openids that uniquely identify the Agents retrieved.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
@@ -3311,7 +3311,7 @@ include the information associated with the requested Agent.
 
 See also: [Section 4.1.2.1 Agent](#agent).
 
-Returns: ```200 OK```, Expanded Agent Object
+Returns: ```200 OK```, Person Object
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
