@@ -2643,7 +2643,7 @@ on the AP, and have the LRS query that API for the list of updated (or new)
 Statements periodically. This will likely only be a realistic option for systems 
 that provide a lot of data to the LRS.  
 
-Returns: ```200 OK```, Statement id(s) (UUID).  
+Returns: ```200 OK```, Array of Statement id(s) (UUID).  
 
 ###### Requirements
 
