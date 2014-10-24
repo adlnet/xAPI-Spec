@@ -2253,19 +2253,19 @@ of the problem.
 ### 6.3 Concurrency
 
 ##### Description
-Concurrency control makes certain that an API consumer does not PUT changes based on old
+Concurrency control makes certain that an API consumer does not PUT or POST changes based on old
 data into an LRS.
 
 ##### Details
 xAPI will use HTTP 1.1 entity tags ([ETags](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19))
-to implement optimistic concurrency control in the portions of the API where PUT may
+to implement optimistic concurrency control in the portions of the API where PUT or POST may
 overwrite existing data, being:
 
 * State API
 * Agent Profile API 
 * Activity Profile API
 
-The State API will permit PUT requests without concurrency headers, since state conflicts
+The State API will permit PUT and POST requests without concurrency headers, since state conflicts
 are unlikely. The requirements below only apply to Agent Profile API and Activity Profile API.
 
 
@@ -2288,8 +2288,12 @@ of the SHA-1 digest of the contents.
 modifications made after the consumer last fetched the document.
 * An LRS responding to a PUT request MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
 when there is a resource present that the consumer is not aware of.
+* An LRS responding to a POST request SHOULD handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
+modifications made after the consumer last fetched the document.
+* An LRS responding to a PUT request SHOULD handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
+when there is a resource present that the consumer is not aware of.
 
-If the header precondition in either of the PUT request cases above fails, the LRS:
+If the header precondition in any of the PUT or POST request cases above fails, the LRS:
 
 * MUST return HTTP status 412 "Precondition Failed".
 * MUST NOT make a modification to the resource. 
