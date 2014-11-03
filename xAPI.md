@@ -2915,7 +2915,7 @@ unless they themselves have been voided, as described in
 voiding Statement, which cannot be voided. Reporting tools can identify the presence and
 statementId of any voided Statements by the target of the voiding Statement. 
 
-*Reporting tools wishing to retrieve voided Statements SHOULD request these individually by 
+* Reporting tools wishing to retrieve voided Statements SHOULD request these individually by 
 voidedStatementId.
 
 <a name="docapis" />
