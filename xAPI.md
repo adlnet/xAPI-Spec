@@ -3050,7 +3050,7 @@ Returns (GET): ```200 OK```, State Content
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>activityId</td>
-		<td>String</td>
+		<td>Activity id (IRI)</td>
 		<td>The Activity id associated with this state.</td>
 		<td>Required</td>
 	</tr>
@@ -3087,7 +3087,7 @@ Returns: ```200 OK```, Array of ids
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>activityId</td>
-		<td>String</td>
+		<td>Activity id (IRI)</td>
 		<td>The Activity id associated with these states.</td>
 		<td>Required</td>
 	</tr>
@@ -3122,7 +3122,7 @@ Returns: ```204 No Content```
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>activityId</td>
-		<td>String</td>
+		<td>Activity id (IRI)</td>
 		<td>The Activity id associated with this state.</td>
 		<td>Required</td>
 	</tr>
@@ -3170,7 +3170,7 @@ Returns: ```200 OK```, Content
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>activityId</td>
-		<td>String</td>
+		<td>Activity id (IRI)</td>
 		<td>The id associated with the Activities to load.</td>
 		<td>Required</td>
 	</td>
@@ -3188,7 +3188,7 @@ Returns (GET): ```200 OK```, Profile Content
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>activityId</td>
-		<td>String</td>
+		<td>Activity id (IRI)</td>
 		<td>The Activity id associated with this profile.</td>
 		<td>Required</td>
 	</tr>
@@ -3212,7 +3212,7 @@ Returns: ```200 OK```, List of ids
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
 	<tr>
 		<td>activityId</td>
-		<td>String</td>
+		<td>Activity id (IRI)</td>
 		<td>The Activity id associated with these profiles.</td>
 		<td>Required</td>
 	</tr>
