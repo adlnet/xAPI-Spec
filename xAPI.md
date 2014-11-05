@@ -2184,7 +2184,7 @@ specification, the controller of that IRL SHOULD make this JSON metadata availab
 IRL when the IRL is requested and a Content-Type of "application/json" is requested.
 * Where an identifier already exists, the Activity Provider SHOULD use the corresponding existing identifier.
 * The Activity Provider MAY create and use their own identifiers where a suitable identifier does not already exist.
-* When defining identifiers, the Activity Provider SHOULD use URIs containing anchors so that a single page can contain definitions for multiple identifiers. E.g. http://example.com/xapi/verbs/exampled
+* When defining identifiers, the Activity Provider SHOULD use URIs containing anchors so that a single page can contain definitions for multiple identifiers. E.g. http://example.com/xapi/verbs#exampled
 * Other sources of information MAY be used to fill in missing details, such as translations, or
 take the place of this metadata entirely if it was not provided or cannot be loaded. This MAY
 include metadata in other formats stored at the IRL of an identifier, particularly if that
