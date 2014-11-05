@@ -1881,6 +1881,8 @@ Complete IRI validation is extremely difficult, so much of the burden for ensuri
 * Values requiring IRIs MUST be sent with valid IRIs. 
 * Keys of language maps MUST be sent with valid [RFC 5646](http://tools.ietf.org/html/rfc5646) language tags, for similar reasons.
 * A library SHOULD be used to construct IRIs, as opposed to string concatenation. 
+* Values SHOULD be considered to be case sensitive unless specified otherwise. 
+* Lowercase SHOULD be used to send case insensitive data.
 
 ###### LRS Requirements
 
@@ -1900,6 +1902,7 @@ matches the [RFC 5646](http://tools.ietf.org/html/rfc5646) standard.
 floating point numbers.
 * The LRS MUST validate parameter values to the same standards required for values of the
 same types in Statements. __Note:__ string parameter values are not quoted as they are in JSON.
+* The LRS SHOULD treat all values as case sensitive unless specified otherwise.
 * The LRS MAY use best-effort validation for IRL, IRI, and IRI formats to satisfy the
 non-format-following rejection requirement.
 * The LRS MAY use best-effort validation for language map keys to satisfy the
@@ -2912,7 +2915,7 @@ unless they themselves have been voided, as described in
 voiding Statement, which cannot be voided. Reporting tools can identify the presence and
 statementId of any voided Statements by the target of the voiding Statement. 
 
-*Reporting tools wishing to retrieve voided Statements SHOULD request these individually by 
+* Reporting tools wishing to retrieve voided Statements SHOULD request these individually by 
 voidedStatementId.
 
 <a name="docapis" />
@@ -3249,7 +3252,7 @@ Example endpoint: http://example.com/xAPI/agents
 Return a special, Person Object for a specified Agent. The Person Object is 
 very similar to an Agent Object, but instead of each attribute having a single 
 value, each attribute has an array value, and it is legal to include multiple 
-identifying properties. Note that the argument is still a normal Agent Object 
+identifying properties. Note that the parameter is still a normal Agent Object 
 with a single identifier and no arrays. Note that this is different from the 
 FOAF concept of person, person is being used here to indicate a person-centric 
 view of the LRS Agent data, but Agents just refer to one persona (a person in 
@@ -3279,13 +3282,13 @@ include the information associated with the requested Agent.
 	<tr>
 		<td>name</td>
 		<td>Array of strings.</td>
-		<td>List of names of Agents to retrieve.</td>
+		<td>List of names of Agents retrieved.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/#term_mbox">mbox</a></td>
 		<td>Array of IRIs in the form "mailto:email address".</td>
-		<td>List of e-mail addresses of Agents to retrieve.</td>
+		<td>List of e-mail addresses of Agents retrieved.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
@@ -3297,7 +3300,7 @@ include the information associated with the requested Agent.
 	<tr>
 		<td>openid*</td>
 		<td>Array of strings.</td>
-		<td>List of openids that uniquely identify the Agents to retrieve.</td>
+		<td>List of openids that uniquely identify the Agents retrieved.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
@@ -3311,7 +3314,7 @@ include the information associated with the requested Agent.
 
 See also: [Section 4.1.2.1 Agent](#agent).
 
-Returns: ```200 OK```, Expanded Agent Object
+Returns: ```200 OK```, Person Object
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
