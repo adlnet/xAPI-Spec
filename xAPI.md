@@ -3056,7 +3056,7 @@ Returns (GET): ```200 OK```, State Content
 	</tr>
 	<tr>
 		<td>agent</td>
-		<td>JSON</td>
+		<td>Agent object (JSON)</td>
 		<td>The Agent associated with this state.</td>
 		<td>Required</td>
 	</tr>
@@ -3093,7 +3093,7 @@ Returns: ```200 OK```, Array of ids
 	</tr>
 	<tr>
 		<td>agent</td>
-		<td>JSON</td>
+		<td>Agent object (JSON)</td>
 		<td>The Agent associated with these states.</td>
 		<td>Required</td>
 	</tr>
@@ -3128,7 +3128,7 @@ Returns: ```204 No Content```
 	</tr>
 	<tr>
 		<td>agent</td>
-		<td>JSON<</td>
+		<td>Agent object (JSON)</td>
 		<td>The Agent associated with this state.</td>
 		<td>Required</td>
 	</tr>
@@ -3320,7 +3320,7 @@ Returns: ```200 OK```, Person Object
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>agent</td>
-		<td>Object (JSON)</td>
+		<td>Agent object (JSON)</td>
 		<td>The Agent representation to use in fetching expanded Agent information.</td>
 		<td>Required</td>
 	</tr>
@@ -3345,7 +3345,7 @@ Returns (GET): ```200 OK```, Profile Content
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>agent</td>
-		<td>Object (JSON)</td>
+		<td>Agent object (JSON)</td>
 		<td>The Agent associated with this profile.</td>
 		<td>Required</td>
 	</tr>
@@ -3369,7 +3369,7 @@ Returns: ```200 OK```, List of ids
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>agent</td>
-		<td>Object (JSON)</td>
+		<td>Agent object (JSON)</td>
 		<td>The Agent associated with this profile.</td>
 		<td>Required</td>
 	</tr>
