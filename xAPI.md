@@ -194,7 +194,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Aaron Silvers</td><td>ADL</td></tr>
 	<tr><td>Al Bejcek</td><td>NetDimensions</td></tr>
 	<tr><td>Ali Shahrazad</td><td>SaLTBOX</td></tr>
-	<tr><td>Andrew Downes</td><td>Epic</td></tr>
+	<tr><td>Andrew Downes</td><td>Rustici Software</td></tr>
 	<tr><td>Andy Johnson</td><td>ADL</td></tr>
 	<tr><td>Andy Whitaker</td><td>Rustici Software</td></tr>
 	<tr><td>Anthony Altieri</td><td>American Red Cross</td></tr>
