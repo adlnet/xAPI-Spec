@@ -1950,6 +1950,9 @@ The following table shows the data structure for the results of queries on the S
 * An LRS MAY include all necessary information within the more property IRL to continue the query to avoid the 
 need to store IRLs and associated query data.
 * An LRS SHOULD NOT generate extremely long IRLs within the more property.
+* An LRS SHOULD* re-run the query at the point in time that the IRL retrieved from the more property is accessed such
+that it includes any new matching statements stored in the LRS and does not include statements voided since the original 
+query was run. 
 * The consumer SHOULD NOT attempt to interpret any meaning from the IRL returned from the more property.
 
 <a name="voided"/>
