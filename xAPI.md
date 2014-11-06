@@ -2159,7 +2159,7 @@ For supplying metadata about all other identifiers, see the format below:
 	<tr>
 		<td>name</td>
 		<td><a href="#misclangmap">Language Map</a></td>
-		<td>The human readable/visual name</td>
+		<td>The human readable/visual name. For verbs, this is equivelent to the display property in a statement.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
@@ -2188,6 +2188,12 @@ IRL when the IRL is requested and a Content-Type of "application/json" is reques
 take the place of this metadata entirely if it was not provided or cannot be loaded. This MAY
 include metadata in other formats stored at the IRL of an identifier, particularly if that
 identifier was not coined for use with this specification.
+* Systems displaying a statement's verb MAY choose to render the verb display property included within the 
+statement, the name property included in the metadata as described above, or the verb display as defined in some other location.
+* Systems displaying a statement's verb MUST NOT alter the meaning of the verb id but MAY alter the wording and tense displayed 
+for the purposes of human readability. 
+* The LRS MUST always return the display property exactly as included (or omitted) within the statement rather than using the
+name property defined within the metadata or some other source.
 
 
 <a name="rtcom"/>
