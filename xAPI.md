@@ -1845,8 +1845,9 @@ field set to "StatementRef".
 of the statement-to-be-voided by its "id" field.
 * Upon receiving a Statement that voids another, the LRS SHOULD reject the entire request which includes the 
 voiding Statement with HTTP 403 'Forbidden' if the request is not from a source authorized to void Statements.
-* Upon receiving a Statement that voids another, the LRS SHOULD NOT reject the request if the Object of that 
-voiding Statement cannot be found.
+* Upon receiving a Statement that voids another, the LRS SHOULD NOT reject the request on the grounds of the 
+Object of that voiding Statement not being present. * This SHOULD NOT will update to a MUST NOT in version 
+2.0.
 * Upon receiving a Statement that voids another, the LRS MAY roll back any changes to Activity or Agent 
 definitions which were introduced by the Statement that was just voided.
 * An Activity Provider that wants to "unvoid" a previously voided Statement SHOULD issue that Statement 
