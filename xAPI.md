@@ -1972,7 +1972,7 @@ itself be voided.
 field set to "StatementRef".
 * When issuing a Statement that voids another, the Object of that voiding Statement MUST specify the id 
 of the statement-to-be-voided by its "id" field.
-* an LRS MUST consider a Statement it contains 'voided' if and only if the Statement is not itself a voiding Statement and the LRS also contains a voiding Statement referring to the first Statement.
+* an LRS MUST consider a Statement it contains "voided" if and only if the Statement is not itself a voiding Statement and the LRS also contains a voiding Statement referring to the first Statement.
 * Upon receiving a Statement that voids another, the LRS SHOULD reject the entire request which includes the 
 voiding Statement with HTTP 403 'Forbidden' if the request is not from a source authorized to void Statements.
 * Upon receiving a Statement that voids another, the LRS MAY roll back any changes to Activity or Agent 
