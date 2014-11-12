@@ -3039,7 +3039,7 @@ will delete all state in the context given through the other parameters.
 ###### Single Document (PUT | POST | GET | DELETE)
 Example endpoint: http://example.com/xAPI/activities/state
 
-Stores, fetches, or deletes the document specified by the given stateId that 
+Stores, changes, fetches, or deletes the document specified by the given stateId that 
 exists in the context of the specified Activity, Agent, and registration (if specified).  
 
 Returns (PUT | POST | DELETE): ```204 No Content```  
@@ -3174,10 +3174,10 @@ Returns: ```200 OK```, Content
 	</td>
 </table>
 
-###### Single Document PUT | POST | GET | DELETE
+###### Single Document (PUT | POST | GET | DELETE)
 Example endpoint: http://example.com/xAPI/activities/profile
 
-Saves/retrieves/deletes the specified profile document in the context of the 
+Stores, changes, fetches, or deletes the specified profile document in the context of the 
 specified Activity.  
 
 Returns (PUT | POST | DELETE): ```204 No Content```  
@@ -3329,11 +3329,11 @@ Returns: ```200 OK```, Person Object
 All array properties must be populated with members with the 
 same definition as the similarly named property from Agent Objects.  
 
-###### Single Agent or Profile PUT | POST | GET | DELETE 
+###### Single Agent or Profile (PUT | POST | GET | DELETE) 
 
 Example endpoint: http://example.com/xAPI/agents/profile
 
-Saves/retrieves/deletes the specified profile document in the context of the 
+Stores, changes, fetches, or deletes the specified profile document in the context of the 
 specified Agent.  
 
 Returns (PUT | POST | DELETE): ```204 No Content```  
