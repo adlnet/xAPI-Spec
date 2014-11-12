@@ -2288,15 +2288,20 @@ of the SHA-1 digest of the contents.
 modifications made after the consumer last fetched the document.
 * An LRS responding to a PUT request MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
 when there is a resource present that the consumer is not aware of.
-* An LRS responding to a POST request SHOULD handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
+* An LRS responding to a POST request SHOULD* handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
 modifications made after the consumer last fetched the document.
-* An LRS responding to a PUT request SHOULD handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
+* An LRS responding to a POST request SHOULD* handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
 when there is a resource present that the consumer is not aware of.
 
-If the header precondition in any of the PUT or POST request cases above fails, the LRS:
+If the header precondition in any of the PUT request cases above fails, the LRS:
 
 * MUST return HTTP status 412 "Precondition Failed".
 * MUST NOT make a modification to the resource. 
+
+If the header precondition in any of the POST request cases above fails, the LRS:
+
+* SHOULD* return HTTP status 412 "Precondition Failed".
+* SHOULD* NOT make a modification to the resource. 
 
 If a PUT request is received without either header for a resource that already exists, the LRS:
 
