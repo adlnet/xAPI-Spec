@@ -1319,28 +1319,35 @@ The table below defines the Score Object.
 	<tr>
 		<td>scaled</td>
 		<td>Decimal number between -1 and 1, inclusive</td>
-		<td>Cf. 'cmi.score.scaled' in SCORM 2004 4th Edition</td>
+		<td>The score related to the experience as a proportion of the maximum score possible for the experience. 
+		In the case of negative score, the scaled score is calculated as a proportion of the minimum score possible.
+		For positive scores, the scaled score can be calculated as the raw score divided by the max score (where
+		those values are present). </td>
 		<td>Recommended</td>
 	</tr>
 	<tr>
 		<td>raw</td>
 		<td>Decimal number between min and max (if present, otherwise unrestricted), inclusive</td>
-		<td>Cf. 'cmi.score.raw'</td>
+		<td>The score achieved by the actor in the experience described by the statement. This is not modified by
+		any scaling or normalization.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>min</td>
 		<td>Decimal number less than max (if present)</td>
-		<td>Cf. 'cmi.score.min'</td>
+		<td>The lowest possible score for the experience described by the statement.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>max</td>
 		<td>Decimal number greater than min (if present)</td>
-		<td>Cf. 'cmi.score.max'</td>
+		<td>The highest possible score for the experience described by the statement.</td>
 		<td>Optional</td>
 	</tr>
 </table>
+
+The properties of the score object are based on the corresponding properties of cmi.score as defined in SCORM 2004 
+4th Edition. 
 
 ###### Requirements
 
