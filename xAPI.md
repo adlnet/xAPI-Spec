@@ -1004,14 +1004,14 @@ its internal representation of that Activity's definition.
 
 ###### Rationale
 
-Traditional e-learning has included structures for interactions or assessments. 
-As a way to allow these practices and structures to extend Experience API's 
-utility, this specification includes built-in definitions for interactions, which 
-borrows from the SCORM 2004 4th Edition Data Model. These definitions are intended to provide a 
-simple and familiar utility for recording interaction data. These definitions 
-are simple to use, and consequently limited. It is expected that communities of 
-practice requiring richer interactions definitions will do so through the use 
-of extensions to an Activity's type and definition. 
+Traditional e-learning has included structures for interactions or assessments. As a way to allow these practices and
+structures to extend Experience API's utility, this specification includes built-in definitions for interactions, which
+borrows from the SCORM 2004 4th Edition Data Model. These definitions are intended to provide a simple and familiar utility
+for recording interaction data. Since 1.0.3, direct references to the SCORM data model have started to be removed, and any
+associated requirements included directly in this document.
+
+These interaction definitions are simple to use, and consequently limited. It is expected that communities of practice
+requiring richer interactions definitions will do so through the use of extensions to an Activity's type and definition. 
 
 ###### Details
 
@@ -1022,28 +1022,37 @@ The table below lists the properties for Interaction Activities.
 	<tr>
 		<td>interactionType</td>
 		<td>String</td>
-		<td>As in "cmi.interactions.n.type" as defined in the SCORM 2004 4th 
-			Edition Run-Time Environment.</td>
+		<td>The type of interaction. Possible values are: “true-false”, “choice”, “fill-in”, “long-fill-in”,
+		“matching”, “performance”, “sequencing”, “likert”, “numeric” or “other”. </td>
 		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>correctResponsesPattern</td>
 		<td>An array of strings</td>
-		<td>Corresponds to 
-			"cmi.interactions.n.correct_responses.n.pattern" as defined in 
-			the SCORM 2004 4th Edition Run-Time Environment, where the final 
-			<em>n</em> is the index of the array.</td>
+		<td>A pattern representing the correct response to the interaction. The structure of this pattern varies
+		depending on the interactionType. This is detailed below. </td>
 		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>choices | scale | source | target | steps</td>
 		<td>Array of interaction components</td>
-		<td>Specific to the given interactionType (<a href="#interactionType">see below</a>).</td>
+		<td>Specific to the given interactionType (<a href="#interactionComponentLists">see below</a>).</td>
 		<td>Optional</td>
 	</tr>
 </table>  
 
+<!--###### Interaction Types
+The table below describes the kinds of interactions represented by each of the interactionTypes. -->
+
+###### correctResponsesPattern
+<!--TODO: Update this section to not require reference to SCORM 2004 in order to understand it. -->
+Corresponds to 
+"cmi.interactions.n.correct_responses.n.pattern" as defined in 
+the SCORM 2004 4th Edition Run-Time Environment, where the final 
+<em>n</em> is the index of the array.
+
 ###### A Note on Delimiters
+<!--TODO: Update this section to not require reference to SCORM 2004 in order to understand it. -->
 The SCORM 2004 4th Edition Run-Time Environment allows certain delimiters to be added to strings which convey certain information about that string. This is outlined in section 4.1.1.6: Reserved Delimiters of that document and referenced throughout the RTE data model. These delimiters can be used within the Correct Responses pattern for some types of interaction as defined in section 4.2.9.1: Correct Responses Pattern Data Model Element Specifics of the SCORM 2004 4th ed. RTE. 
 
 There is some discrepancy in the order of delimiters between sections 4.1.1.6 and 4.2.9.1. For the purposes of the Experience API, we take the order of delimiters listed in 4.2.9.1 to be correct. 
@@ -1052,7 +1061,7 @@ There is some discrepancy in the order of delimiters between sections 4.1.1.6 an
 ###### Requirements
 
 * Interaction Activities MUST have a valid interactionType.
-* Interaction Activities SHOULD have the Activity type http://adlnet.gov/expapi/activities/cmi.interaction".
+* Interaction Activities SHOULD have the Activity type "http://adlnet.gov/expapi/activities/cmi.interaction".
 * An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as specified in the table 
 below and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction Activity.
 
@@ -1080,26 +1089,32 @@ Interaction components are defined as follows:
 	</tr>
 </table>
 
-<a name="interactionType"/>
+<a name="#interactionComponentLists"/>
 
-The following table shows the supported lists of CMI interaction components for 
-an interaction Activity with the given interactionType.
+Depending on Interaction Type, Interaction Activities can take additional properties, each containing a 
+list of interaction components. These additional properties are called ‘interaction component lists’. The following table
+shows the supported interaction component list(s) for an Interaction Activity with the given interactionType.
 
 <table>
-	<tr><th>interactionType</th><th>supported component list(s)</th><tr>
-	<tr><td>choice, sequencing</td><td>choices</td></tr>
-	<tr><td>likert</td><td>scale</td></tr>
-	<tr><td>matching</td><td>source, target</td></tr>
-	<tr><td>performance</td><td>steps</td></tr>
-	<tr><td>true-false, fill-in, long-fill-in, numeric, other</td><td>[No component lists defined]</td></tr>
+	<tr><th>interactionType</th><th>supported interaction component list(s)</th><th>Description</th><tr>
+	<tr><td>choice, sequencing</td><td>choices</td>
+	<td>A list of the options available in the interaction for selection or ordering.</td></tr>
+	<tr><td>likert</td><td>scale</td>
+	<td>A list of the options on the likert scale.</td></tr>
+	<tr><td>matching</td><td>source, target</td>
+	<td>Lists of sources and targets to be matched.</td></tr>
+	<tr><td>performance</td><td>steps</td>
+	<td>A list of the elements making up the performance interaction.</td></tr>
+	<tr><td>true-false, fill-in, long-fill-in, numeric, other</td><td>[No component lists defined]</td><td></td></tr>
 </table>
+
 
 ###### Requirements
 
 * Within an array of interaction components, all id values MUST be distinct.
 * An interaction component's id value SHOULD NOT have whitespace.
 
-###### Example
+###### Examples
 
 See [Appendix C](#AppendixC) for examples of Activity Definitions for each of the cmi.interaction types.
 
