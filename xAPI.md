@@ -1926,6 +1926,8 @@ The following table shows the data structure for the results of queries on the S
 			and there are more results, they will be located at the "statements" property 
 			within the container located at the IRL provided by the "more" element of 
 			this Statement result Object.
+			
+			Where no matching statements are found, this property will contain an empty array.
 		</td>
 		<td>Required</td>
 	</tr>
@@ -2861,6 +2863,10 @@ which contain both statementId and voidedStatementId parameters
 * The LRS MUST reject with an ```HTTP 400``` error any requests to this resource 
 which contain statementId or voidedStatementId parameters, and also contain any 
 other parameter besides "attachments" or "format".
+
+* In the event that no statements are found matching the query filter criteria, the LRS MUST still return 
+```HTTP 200``` and a [StatementResult](#retstmts) Object. In this case, the statements property will contain
+an empty array.
 
 * The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
 <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601
