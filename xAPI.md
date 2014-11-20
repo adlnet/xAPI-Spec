@@ -1953,7 +1953,7 @@ need to store IRLs and associated query data.
 * An LRS MAY re-run the query at the point in time that the IRL retrieved from the more property is accessed such
 that the batch retrieved includes statements which would have been included in that batch if present in the LRS at 
 the time the original query was run and excludes statements from that batch which have since been voided. 
-* Alternatively, an LRS MAY cache a list of statements to be returned at the more link such that the batch of statements
+* Alternatively, an LRS MAY cache a list of statements to be returned at the more property such that the batch of statements
 returned matches those statements that would have been returned when the original query was run. 
 * An LRS MAY remove voided statements from the cached list of statements if using this method. 
 * The consumer SHOULD NOT attempt to interpret any meaning from the IRL returned from the more property.
