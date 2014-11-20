@@ -642,12 +642,7 @@ The table below lists all properties of an Identified Group.
 * A system consuming Statements MUST consider each Anonymous Group distinct even if it has an identical set of members.
 * Activity Providers SHOULD use an Identified Group when they wish to issue multiple statements, aggregate data 
 or store and retrieve documents relating to a group.
-* For ad hoc groups requiring an identifier, Activity Providers MAY use the 'account' inverse functional identifier, using
-the activity id of the experience the group was formed within as the homePage IRI. 
 * An Activity Provider MAY include a complete or partial list of Agents in the 'member' property of a given Anonymous or Identified Group.
-* An Activity Provider issuing a Statement with an Identified Group SHOULD provide a list of Agents relative to that Statement 
-and not simply list every Agent of the Group. For example, if a Group consisted of a list of 20 students/Agents and 4 participated 
-together, the Activity Provider might only list the 4 students/Agents who worked together.
 
 ###### Requirements for Anonymous Groups
 
