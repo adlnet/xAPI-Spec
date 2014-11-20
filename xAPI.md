@@ -2159,7 +2159,7 @@ For supplying metadata about all other identifiers, see the format below:
 	<tr>
 		<td>name</td>
 		<td><a href="#misclangmap">Language Map</a></td>
-		<td>The human readable/visual name. For verbs, this is equivelent to the display property in a statement.</td>
+		<td>The human readable/visual name. For verbs, this is equivalent to the display property in a statement.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
