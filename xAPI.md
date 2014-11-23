@@ -2761,7 +2761,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	<tr>
 		<td>related_activities</td>
 		<td>Boolean</td>
-		<td>False</td>
+		<td>false</td>
 		<td>
 			Apply the Activity filter broadly. Include Statements for which the Object,
 			any of the  context Activities, or any of those properties in a contained
@@ -2774,7 +2774,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	<tr>
 		<td>related_agents</td>
 		<td>Boolean</td>
-		<td>False</td>
+		<td>false</td>
 		<td>
 			Apply the Agent filter broadly. Include Statements for which 
 			the Actor, Object, Authority, Instructor, Team,
@@ -2849,7 +2849,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	<tr>
 		<td>ascending</td>
 		<td>Boolean</td>
-		<td>False</td>
+		<td>false</td>
 		<td>If true, return results in ascending order of stored time</td>
 		<td>Optional</td>
 	</tr>
