@@ -503,7 +503,7 @@ The details of each property of a statement are described in the table below.
 	of when this Statement was recorded. Set by LRS.</td>
 	<td>Set by LRS</td></tr>
 	<tr><td><a href="#authority">authority</a></td><td>Object</td>
-	<td>Agent who is asserting this Statement is true. Verified by the LRS based on 
+	<td>Agent or Group who is asserting this Statement is true. Verified by the LRS based on 
 	authentication, and set by LRS if left blank.</td>
 	<td>Optional</td></tr>
 	<tr><td><a href="#version">version</a></td><td>Version</td>
