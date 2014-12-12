@@ -2117,9 +2117,8 @@ be something valuable to just one application, or it might be a convention used 
 community of practice.
 
 ##### Details
-Extensions are defined by a map and logically relate to the part of the Statement where they are 
-present. The values of an extension can be any JSON value or data structure. Extensions in Statement 
-context provide context to the core experience, while those in the result provide elements related to 
+Extensions are defined as a colledtion of key/value pairs and logically relate to the part of the Statement where they are 
+present. The values of an extension can be any JSON value or data structure. Extensions in the context property of a Statement provide context to the core experience, while those in the result provide elements related to 
 some outcome. For Activities, extensions provide additional information that helps define an Activity 
 within some custom application or community. The meaning and structure of extension values under an 
 IRI key are defined by the person who controls the IRI.
@@ -2128,6 +2127,7 @@ IRI key are defined by the person who controls the IRI.
 
 * The keys of an extensions map MUST be IRIs.
 * An LRS MUST NOT reject a Statement based on the values of the extensions map.
+* Extensions SHOULD* have at least one key/value pair
 * Clients SHOULD always strive to map as much information as possible into the built-in 
 elements in order to leverage interoperability among Experience API conformant tools.
 * All extension IRIs SHOULD have controllers.
