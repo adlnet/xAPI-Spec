@@ -2117,7 +2117,7 @@ be something valuable to just one application, or it might be a convention used 
 community of practice.
 
 ##### Details
-Extensions are defined as a colledtion of key/value pairs and logically relate to the part of the Statement where they are 
+Extensions are defined as a collection of key/value pairs (map) and logically relate to the part of the Statement where they are 
 present. The values of an extension can be any JSON value or data structure. Extensions in the context property of a Statement provide context to the core experience, while those in the result provide elements related to 
 some outcome. For Activities, extensions provide additional information that helps define an Activity 
 within some custom application or community. The meaning and structure of extension values under an 
