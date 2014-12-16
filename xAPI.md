@@ -2248,7 +2248,7 @@ of the problem.
 
 * The Client MUST include the "X-Experience-API-Version" header in every request.
 * The Client MUST set this header's value to "1.0.1".
-* The Client SHOULD tolerate receiving responses with a version of "1.0.1" or later.
+* The Client SHOULD tolerate receiving responses with a version of "1.0.0" or later.
 * The Client SHOULD tolerate receiving data structures with additional properties.
 * The Client SHOULD ignore any properties not defined in version 1.0.1 of the spec.
 
