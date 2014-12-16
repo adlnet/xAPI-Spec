@@ -779,7 +779,7 @@ The table below lists all properties of the Verb Object.
 * A system reading a Statement MUST NOT use the display property for any purpose other than display to a human.
 Using the display property for aggregation or categorization of Statements is an example of violating this requirement. 
 * The display property SHOULD be used by all Statements.
-* The IRI contained in the id SHOULD be human-readable and imply the Verb meaning.
+* The IRI contained in an id SHOULD contain a human-readable portion
 
 ###### Example
 This example shows a Verb with the recommended fields set.
@@ -804,9 +804,9 @@ _Semantics_
 
 The IRI represented by the Verb id identifies the particular semantics of a word, not the word itself. 
 
-For example, the English word "fired" could mean different things depending on context, such as "fired a 
-weapon", "fired a kiln", or "fired an employee". In this case, an IRI MUST identify one of these specific 
-meanings, not the word "fired". 
+“For example, the English word "fired" could mean different things depending on context, such as 
+"fired(a weapon)", "fired(a kiln)", or "fired(an employee)". In this case, an IRI identifies one of 
+these specific meanings.
 
 The display property has some flexibility in tense. While the Verb IRIs are expected to remain in the 
 past tense, if conjugating verbs to another tense (using the same Verb) within the Activity makes sense, 
@@ -818,6 +818,11 @@ A Verb in the Experience API is an IRI, and denotes a specific meaning not tied 
 
 For example, a particular Verb IRI such as http://example.org/firearms#fire might denote the action of firing a gun, 
 or the Verb IRI http://example.com/فعل/خواندن might denote the action of reading a book. 
+
+###### Requirements
+
+* The IRI contained in an id MUST have a unique meaning associated with it .
+* A single language MUST NOT use the same syntax of the Verb IRI (or token) to refer to multiple meanings.
 
 ##### 4.1.3.2 Use in Communities of Practice
 
