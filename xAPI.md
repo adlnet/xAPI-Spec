@@ -1662,11 +1662,11 @@ flow among such LRSs the LRS is given some flexibility on Statement versions tha
 * An LRS MUST NOT reject Statements where their version starts with "1.0." if they otherwise validate.
 * An LRS MUST reject all Statements with a version specified that does not start with "1.0.".
 * Statements returned by an LRS MUST retain the version they are accepted with. If they
-lack a version, the version MUST be set to 1.0.3.
+lack a version, the version MUST be set to 1.0.1.
 
 
 ###### Client Requirements
-* If Clients set the Statement version, they MUST set it to 1.0.3
+* If Clients set the Statement version, they MUST set it to 1.0.1
 * Clients SHOULD NOT set the Statement version;
 
 
@@ -2236,25 +2236,25 @@ Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.
 ###### LRS Requirements
 
 * The LRS MUST include the "X-Experience-API-Version" header in every response.
-* The LRS MUST set this header's value to "1.0.3".
+* The LRS MUST set this header's value to "1.0.1".
 * The LRS MUST accept requests with a version header of "1.0" as if the version header was "1.0.0".
 * The LRS MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a 
 fully conformant implementation of the prior version specified in the header.
 * The LRS MUST reject requests with a version header of "1.1.0" or greater.
-* The LRS MUST make these rejects by responding with an HTTP 400 error and SHOULD include a short description 
+* The LRS MUST make these rejects by responding with an HTTP 400 error and MUST include a short description 
 of the problem.
 
 ###### Client Requirements
 
 * The Client MUST include the "X-Experience-API-Version" header in every request.
-* The Client MUST set this header's value to "1.0.3".
-* The Client SHOULD tolerate receiving responses with a version of "1.0.3" or later.
+* The Client MUST set this header's value to "1.0.1".
+* The Client SHOULD tolerate receiving responses with a version of "1.0.1" or later.
 * The Client SHOULD tolerate receiving data structures with additional properties.
-* The Client SHOULD ignore any properties not defined in version 1.0.3 of the spec.
+* The Client SHOULD ignore any properties not defined in version 1.0.1 of the spec.
 
 ###### Conversion Requirements
 
-* Systems MUST NOT convert Statements of newer minor or major versions into a prior minor or major version format, e.g., in order to handle version differences.
+* Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
 * Systems MAY convert Statements of older versions into a newer version only by following the methods described in
 <a href="#AppendixD">Appendix D: Converting Statements to 1.0.0</a>.
 
