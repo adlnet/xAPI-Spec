@@ -640,8 +640,9 @@ The table below lists all properties of an Identified Group.
 ###### Requirements
 
 * A system consuming Statements MUST consider each Anonymous Group distinct even if it has an identical set of members.
-* A system consuming Statements MUST NOT assume that Agents in the 'member' property comprise an exact list of Agents
-in a given anonymous or Identified Group.
+* Activity Providers SHOULD use an Identified Group when they wish to issue multiple statements, aggregate data 
+or store and retrieve documents relating to a group.
+* An Activity Provider MAY include a complete or partial list of Agents in the 'member' property of a given Anonymous or Identified Group.
 
 ###### Requirements for Anonymous Groups
 
