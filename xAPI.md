@@ -779,7 +779,8 @@ The table below lists all properties of the Verb Object.
 * A system reading a Statement MUST NOT use the display property for any purpose other than display to a human.
 Using the display property for aggregation or categorization of Statements is an example of violating this requirement. 
 * The display property SHOULD be used by all Statements.
-* The IRI contained in an id SHOULD contain a human-readable portion
+* The IRI contained in an id SHOULD contain a human-readable portion which SHOULD be used to provide meaning enough 
+* to disambiguate it from other similar(in syntax) Verbs.
 
 ###### Example
 This example shows a Verb with the recommended fields set.
@@ -804,7 +805,7 @@ _Semantics_
 
 The IRI represented by the Verb id identifies the particular semantics of a word, not the word itself. 
 
-“For example, the English word "fired" could mean different things depending on context, such as 
+For example, the English word "fired" could mean different things depending on context, such as 
 "fired(a weapon)", "fired(a kiln)", or "fired(an employee)". In this case, an IRI identifies one of 
 these specific meanings.
 
