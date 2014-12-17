@@ -3474,14 +3474,17 @@ and "POST", and not allowing HTTP headers to be set.
 
 The following describes alternate syntax for consumers to use only when unable 
 to use the usual syntax for specific calls due to the restrictions mentioned 
-above.   
+above. This altenrate syntax can also be used to GET Statements due to limits
+on query string length.  
 
 __Method__: All xAPI requests issued must be POST. The intended xAPI method 
 must be included as the only query string parameter on the request. 
-(example: http://example.com/xAPI/statements?method=PUT)  
+(Example: http://example.com/xAPI/statements?method=PUT)  
 
 __Headers__: Any required parameters which are expected to appear in the HTTP 
-header must instead be included as a form parameter with the same name.  
+header must instead be included as a form parameter with the same name. The
+value of the Content-Type header for this type of request will be 
+'application/x-www-form-urlencoded'. 
 
 __Content__: If the xAPI call involved sending content, that content must now 
 be encoded and included as a form parameter called "content". The LRS will 
