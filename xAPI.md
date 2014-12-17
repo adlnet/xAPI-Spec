@@ -2839,20 +2839,8 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 			<br/><br/>
 			If "canonical", return Activity Objects populated with the canonical
 			definition of the Activity Objects as determined by the LRS, after
-			applying the language filtering process defined below, and return the original
-			Agent Objects as in "exact" mode.  
-			<br/><br/>
-			<b>Canonical Language Process:</b> Activity Objects contain Language Map Objects 
-			for name and description. Only one language should be returned in each of 
-			these maps.  
-			<br/><br/>
-			In the event of format being “canonical”, only one language should be returned in 
-			each of these maps. In order to choose the most relevant language, the LRS will 
-			apply the Accept-Language header as described in 
-			<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a>
-			(HTTP 1.1), except that this logic will be applied to each language map
-			individually to select which language entry to include, rather than to the 
-			resource (list of Statements) as a whole.
+			applying the <a href="#queryLangFiltering">language filtering process defined below</a>,
+			and return the originalAgent Objects as in "exact" mode.  
 		</td>
 		<td>Optional</td>
 	</tr>
@@ -2922,6 +2910,18 @@ This section does not apply when retrieving Statements with statementId or voide
 
 __Note:__StatementRefs used in the statement field in context do not affect how
 Statements are filtered.
+
+<a name="queryLangFiltering" />
+
+###### Language filtering requirements for canonical format statements
+
+* Activity Objects contain Language Map Objects for name, description and interaction components. 
+The LRS MUST return only one language in each of these maps. 
+
+* In order to choose the most relevant language, the LRS MUST apply the Accept-Language header as 
+described in <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a> 
+(HTTP 1.1), except that this logic MUST be applied to each language map individually to select 
+which language entry to include, rather than to the resource (list of Statements) as a whole.
 
 <a name="voidedStatements" />
 
