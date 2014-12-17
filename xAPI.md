@@ -1041,21 +1041,149 @@ The table below lists the properties for Interaction Activities.
 	</tr>
 </table>  
 
-<!--###### Interaction Types
-The table below describes the kinds of interactions represented by each of the interactionTypes. -->
+###### Interaction Types
+The table below describes the kinds of interactions represented by each of the interactionTypes. These types of interactions were originally 
+based on the types of interactions allowed for "cmi.interactions.n.type" in the SCORM 2004 4th Edition Run-Time Environment.
+See [Appendix C](#AppendixC) for examples definitions for each interaction type. 
 
-###### correctResponsesPattern
-<!--TODO: Update this section to not require reference to SCORM 2004 in order to understand it. -->
-Corresponds to 
-"cmi.interactions.n.correct_responses.n.pattern" as defined in 
-the SCORM 2004 4th Edition Run-Time Environment, where the final 
-<em>n</em> is the index of the array.
+<table>
+	<tr><th>intractionType</th><th>Description</th></tr>
+	<tr>
+		<td>true-false</td>
+		<td>An interaction with two possible responses: true or false.</td>
+	</tr>
+	<tr>
+		<td>choice</td>
+		<td>An interaction with a number of possible choices from which the learner can select. 
+			This includes intractions in which the learner can select only one answer from the list and
+			those where the learner may select multiple items.</td>
+	</tr>
+	<tr>
+		<td>fill-in</td>
+		<td>An interaction which requires the learner to supply a short response in the form of one or more 
+			strings of characters. Typically, the correct response consists of part of a word, one word or a few words. 
+			'Short' means that the corect responses pattern and learner response strings will normally be 250 characters or less;
+		</td>
+	</tr>
+	<tr>
+		<td>long-fill-in</td>
+		<td>An interaction which requires the learner to supply a response in the form of a long string of characters.
+			'Long' means that the corect responses pattern and learner response strings will normally be more than 250 characters.
+		</td>
+	</tr>
+	<tr>
+		<td>matching</td>
+		<td>An interaction where the learner must match items in one set (the source set) to items in another set (the target set).
+			Items do not have to pair off exactly and it's possible for multiple or zero source items to be matched to a given target and vice versa.</td>
+	</tr>
+	<tr>
+		<td>performance</td>
+		<td>An interaction that requires the learner to perform a task that requires multiple steps.</td>
+	</tr>
+	<tr>
+		<td>sequencing</td>
+		<td>An interaction where the learner must order items in a set.</td>
+	</tr>
+	<tr>
+		<td>likert</td>
+		<td>An interaction which asks the learner to select from a discrete set of choices on a scale</td>
+	</tr>
+	<tr>
+		<td>numeric</td>
+		<td>Any interaction which requires a numeric response from the learner.</td>
+	</tr>
+	<tr>
+		<td>other</td>
+		<td>Another type of interaction that does not fit into those defined above.</td>
+	</tr>
+</table>
 
-###### A Note on Delimiters
-<!--TODO: Update this section to not require reference to SCORM 2004 in order to understand it. -->
-The SCORM 2004 4th Edition Run-Time Environment allows certain delimiters to be added to strings which convey certain information about that string. This is outlined in section 4.1.1.6: Reserved Delimiters of that document and referenced throughout the RTE data model. These delimiters can be used within the Correct Responses pattern for some types of interaction as defined in section 4.2.9.1: Correct Responses Pattern Data Model Element Specifics of the SCORM 2004 4th ed. RTE. 
+###### Response Patterns
+The table below outlines the format of the strings within correctResponsesPattern property for each interaction type. 
+This format is also used to represent the learner's response within the result object. These formats were originally based on the 
+requirements relating to "cmi.interactions.n.correct_responses.n.pattern" as defined in the SCORM 2004 4th Edition 
+Run-Time Environment. See [Appendix C](#AppendixC) for examples of each format. 
 
-There is some discrepancy in the order of delimiters between sections 4.1.1.6 and 4.2.9.1. For the purposes of the Experience API, we take the order of delimiters listed in 4.2.9.1 to be correct. 
+<table>
+	<tr><th>intractionType</th><th>Format</th></tr>
+	<tr>
+		<td>true-false</td>
+		<td>Either ```true``` or ```false```</td>
+	</tr>
+	<tr>
+		<td>choice</td>
+		<td>A list of item ids delimited by ```[,]```. If the response contains only one item, the delimiter MUST not be used.</td>
+	</tr>
+	<tr>
+		<td>fill-in and long-fill-in</td>
+		<td>A list of responses delimited by ```[,]```. If the response contains only one item, the delimiter MUST not be used.</td>
+	</tr>
+	<tr>
+		<td>matching</td>
+		<td>A list of matching pairs, where each  pair consists of a source item id followed by a target item id. 
+			Items can appear in multiple (or zero) pairs.
+			Items within a pair are delimited by ```[.]```. Pairs are delimited by ```[,]```.
+		</td>
+	</tr>
+	<tr>
+		<td>performance</td>
+		<td>
+			A list of steps containing a step ids and the response to that step.
+			Step ids are separated from responses by ```[.]```. Steps are delimited by ```[,]```.
+			The response can be a string as in a fill-in interaction or a number range as in a numeric interaction. 
+		</td>
+	</tr>
+	<tr>
+		<td>sequencing</td>
+		<td>An ordered list of item ids delimited by ```[,]```.</td>
+	</tr>
+	<tr>
+		<td>likert</td>
+		<td>A single item id</td>
+	</tr>
+	<tr>
+		<td>numeric</td>
+		<td>A range of numbers represented by a minimum and a maximum delimited by ```:```.
+		</td>
+	</tr>
+	<tr>
+		<td>other</td>
+		<td>Any format is valid within this string as appropriate for the type of interaction.</td>
+	</tr>
+</table>
+
+###### Characterstring parameters
+Some of the values within the responses described above can be prepended with certain additional parameters. These were originally based on the characterstring
+delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These parameters are represented by the format ```{parameter=value}```. See
+See [the long-fill-in example within Appendix C](#long-fill-in). 
+
+The following parameters are valid at the start of the string representing the list of items for the listed interaction types:
+<table>
+	<tr><th>Parameter</th><th>Description</th><th>Value</th><th>Interaction types</th></tr>
+	<tr>
+		<td>```case_matters```</td>
+		<td>Whether or not the case of items in the list matters.</td>
+		<td>```true``` or ```false```</td>
+		<td>fill-in, long-fill-in</td>
+	</tr>
+	<tr>
+		<td>```order_matters```</td>
+		<td>Whether or not the order of items in the list matters.</td>
+		<td>```true``` or ```false```</td>
+		<td>fill-in, long-fill-in, performance</td>
+	</tr>
+</table>
+
+The following parameters are valid at the start of each item in the list for the listed interaction types:
+<table>
+	<tr><th>Parameter</th><th>Description</th><th>Value</th><th>Interaction types</th></tr>
+	<tr>
+		<td>```lang```</td>
+		<td>The language used within the item.</td>
+		<td><a href="http://tools.ietf.org/html/rfc5646">RFC 5646 Language Tag</a></td>
+		<td>fill-in, long-fill-in, performance (string responses only)</td>
+	</tr>
+</table>
 
 
 ###### Requirements
@@ -1064,6 +1192,8 @@ There is some discrepancy in the order of delimiters between sections 4.1.1.6 an
 * Interaction Activities SHOULD have the Activity type "http://adlnet.gov/expapi/activities/cmi.interaction".
 * An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as specified in the table 
 below and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction Activity.
+* The LRS SHOULD* NOT enforce character limits relating to response patterns. 
+* The LRS SHOULD* NOT limit the length of the correctResponsesPattern array for any interactionType. 
 
 
 ##### Interaction Components  
@@ -4114,6 +4244,8 @@ This example shows a Sub-Statement object whose object is a Statement Reference.
 	]
 }
 ```
+
+In this example the minimum correct answer is 4 and there is no maximum. 5, 6 or 976 would all be correct answers. 
 
 ###### other  
 ```
