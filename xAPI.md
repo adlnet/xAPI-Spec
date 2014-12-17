@@ -2288,9 +2288,12 @@ are unlikely. The requirements below only apply to Agent Profile API and Activit
 [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the 
 [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header.
 
-* A Client making a POST or DELETE request to either the Agent Profile API or Activity Profile API SHOULD* include the 
+* A Client making a POST request to either the Agent Profile API or Activity Profile API SHOULD* include the 
 [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the 
 [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header.
+
+* A Client making a DELETE request to either the Agent Profile API or Activity Profile API SHOULD* include the 
+[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header.
 
 ##### LRS Requirements
 
