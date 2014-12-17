@@ -2112,6 +2112,10 @@ string in the language specified in the tag. This map should be populated as
 fully as possible based on the knowledge of the string in question in different 
 languages.  
 
+##### Requirements
+* String values within statement language maps SHOULD be plain text and SHOULD NOT include formatting such as HTML tags or Markdown code. 
+* An exception to the above is that language maps used within an extension MAY include formatting code if the extension specifically allows it. 
+
 <a name="miscext"/> 
 
 ### 5.3 Extensions
