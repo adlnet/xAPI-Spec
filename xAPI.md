@@ -1108,34 +1108,34 @@ Run-Time Environment. See [Appendix C](#AppendixC) for examples of each format.
 	<tr><th>intractionType</th><th>Format</th></tr>
 	<tr>
 		<td>true-false</td>
-		<td>Either ```true``` or ```false```</td>
+		<td>Either <code>true</code> or <code>false</code></td>
 	</tr>
 	<tr>
 		<td>choice</td>
-		<td>A list of item ids delimited by ```[,]```. If the response contains only one item, the delimiter MUST not be used.</td>
+		<td>A list of item ids delimited by <code>[,]</code>. If the response contains only one item, the delimiter MUST not be used.</td>
 	</tr>
 	<tr>
 		<td>fill-in and long-fill-in</td>
-		<td>A list of responses delimited by ```[,]```. If the response contains only one item, the delimiter MUST not be used.</td>
+		<td>A list of responses delimited by <code>[,]</code>. If the response contains only one item, the delimiter MUST not be used.</td>
 	</tr>
 	<tr>
 		<td>matching</td>
 		<td>A list of matching pairs, where each  pair consists of a source item id followed by a target item id. 
 			Items can appear in multiple (or zero) pairs.
-			Items within a pair are delimited by ```[.]```. Pairs are delimited by ```[,]```.
+			Items within a pair are delimited by <code>[.]</code>. Pairs are delimited by <code>[,]</code>.
 		</td>
 	</tr>
 	<tr>
 		<td>performance</td>
 		<td>
 			A list of steps containing a step ids and the response to that step.
-			Step ids are separated from responses by ```[.]```. Steps are delimited by ```[,]```.
+			Step ids are separated from responses by <code>[.]</code>. Steps are delimited by <code>[,]</code>.
 			The response can be a string as in a fill-in interaction or a number range as in a numeric interaction. 
 		</td>
 	</tr>
 	<tr>
 		<td>sequencing</td>
-		<td>An ordered list of item ids delimited by ```[,]```.</td>
+		<td>An ordered list of item ids delimited by <code>[,]</code>.</td>
 	</tr>
 	<tr>
 		<td>likert</td>
@@ -1143,7 +1143,7 @@ Run-Time Environment. See [Appendix C](#AppendixC) for examples of each format.
 	</tr>
 	<tr>
 		<td>numeric</td>
-		<td>A range of numbers represented by a minimum and a maximum delimited by ```:```.
+		<td>A range of numbers represented by a minimum and a maximum delimited by <code>:</code>.
 		</td>
 	</tr>
 	<tr>
@@ -1161,15 +1161,15 @@ The following parameters are valid at the start of the string representing the l
 <table>
 	<tr><th>Parameter</th><th>Description</th><th>Value</th><th>Interaction types</th></tr>
 	<tr>
-		<td>```case_matters```</td>
+		<td>case_matters</td>
 		<td>Whether or not the case of items in the list matters.</td>
-		<td>```true``` or ```false```</td>
+		<td><code>true</code> or <code>false</code></td>
 		<td>fill-in, long-fill-in</td>
 	</tr>
 	<tr>
-		<td>```order_matters```</td>
+		<td>order_matters</td>
 		<td>Whether or not the order of items in the list matters.</td>
-		<td>```true``` or ```false```</td>
+		<td><code>true</code> or <code>false</code></td>
 		<td>fill-in, long-fill-in, performance</td>
 	</tr>
 </table>
@@ -1178,7 +1178,7 @@ The following parameters are valid at the start of each item in the list for the
 <table>
 	<tr><th>Parameter</th><th>Description</th><th>Value</th><th>Interaction types</th></tr>
 	<tr>
-		<td>```lang```</td>
+		<td><code>lang</code></td>
 		<td>The language used within the item.</td>
 		<td><a href="http://tools.ietf.org/html/rfc5646">RFC 5646 Language Tag</a></td>
 		<td>fill-in, long-fill-in, performance (string responses only)</td>
