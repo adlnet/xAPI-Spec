@@ -495,8 +495,7 @@ The details of each property of a statement are described in the table below.
 	<td>Optional</td></tr>
 	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
-	of when the events described within this Statement occurred. If not provided, the LRS 
-	MUST set this and SHOULD* use the value of "stored".</td>
+	of when the events described within this Statement occurred. Set by the LRS if not provided.</td>
 	<td>Optional</td></tr>
 	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
@@ -504,7 +503,7 @@ The details of each property of a statement are described in the table below.
 	<td>Set by LRS</td></tr>
 	<tr><td><a href="#authority">authority</a></td><td>Object</td>
 	<td>Agent or Group who is asserting this Statement is true. Verified by the LRS based on 
-	authentication. MUST be set by LRS if not provided.</td>
+	authentication. Set by LRS if not provided or if a strong trust relationship between the sender and LRS has not been established.</td>
 	<td>Optional</td></tr>
 	<tr><td><a href="#version">version</a></td><td>Version</td>
 	<td>The Statement’s associated xAPI version, formatted according to <a href="http://semver.org/spec/v1.0.0.html">Semantic Versioning 1.0.0</a>.</td>
@@ -1546,8 +1545,8 @@ These examples are for illustrative purposes only and are not meant to be prescr
 * A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
 * A timestamp MAY be a moment in the future, to denote a deadline for planned learning, provided it is included 
 inside a Sub-Statement.
-
-
+* MUST be set by the LRS if not provided. 
+* SHOULD be set by the LRS to the value of [Stored](#stored) if not provided.
 
 
 <a name="stored"/> 
