@@ -2112,6 +2112,13 @@ string in the language specified in the tag. This map should be populated as
 fully as possible based on the knowledge of the string in question in different 
 languages.  
 
+The content of strings within a langauge map is plain text and it's expected that any formatting code 
+such as HTML tags or markdown will not be rendered, but will be displayed as code when this string is 
+displayed to the end user. An exception to this is if language map obejct is used in an extension and 
+the owner of that extension IRI explicitly states that a particular form of code should be rendered. 
+Indeed, a language map within an extension designed for this purpose is a good way for an activity 
+provider to record localized formatted text. 
+
 ##### Requirements
 * String values within statement language maps SHOULD be plain text and SHOULD NOT include formatting such as HTML tags or Markdown code. 
 * An exception to the above is that language maps used within an extension MAY include formatting code if the extension specifically allows it. 
