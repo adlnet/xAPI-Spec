@@ -2840,7 +2840,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 			If "canonical", return Activity Objects populated with the canonical
 			definition of the Activity Objects as determined by the LRS, after
 			applying the <a href="#queryLangFiltering">language filtering process defined below</a>,
-			and return the originalAgent Objects as in "exact" mode.  
+			and return the original Agent Objects as in "exact" mode.  
 		</td>
 		<td>Optional</td>
 	</tr>
