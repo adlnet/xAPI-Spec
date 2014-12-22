@@ -2188,8 +2188,8 @@ IRL when the IRL is requested and a Content-Type of "application/json" is reques
 take the place of this metadata entirely if it was not provided or cannot be loaded. This MAY
 include metadata in other formats stored at the IRL of an identifier, particularly if that
 identifier was not coined for use with this specification.
-* The LRS MUST always return the display property exactly as included (or omitted) within the statement rather than using the
-name property defined within the metadata or some other source. This requirement relates only to the LRS returning statements
+* The LRS MUST always return the Display property exactly as included (or omitted) within the Statement. 
+This requirement relates only to the LRS returning statements
 via the API, and not to the LRS displaying statements in a user interface. 
 * Systems displaying a statement's verb in a user interface MAY choose to render the verb display property included within the 
 statement, the name property included in the metadata as described above, or the verb display as defined in some other location.
