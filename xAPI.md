@@ -380,10 +380,14 @@ the same.
 
 <a name="def-iri" />
 
-__Internationalized Resource Identifier  (IRI)__:  A unique identifier which may be an IRL. 
-In the xAPI, all IRIs should be a full absolute IRIs including a scheme. Relative IRIs 
-should not be used. IRLs should be defined within a domain controlled by the person 
-creating the IRL.
+__Internationalized Resource Identifier  (IRI)__: A unique identifier which may be an IRL. 
+Used to identify an object such as a verb, activity or activity type. Unlike URIs, IRIs 
+can contain some characters outside of the ASCII character set in order to support international 
+languages. 
+
+IRIs always include a scheme. This is not a requirement of this standard, but part of the 
+definition of IRIs, per [RFC 3987](http://www.ietf.org/rfc/rfc3987.txt). What are sometimes 
+called 'relative IRIs' are not IRIs.
 
 <a name="def-irl" />
 
@@ -2189,6 +2193,7 @@ identifiers other than Activity id.
 
 * Metadata MAY be provided with an identifier.
 * If metadata is provided, both name and description SHOULD be included.
+* IRLs SHOULD be defined within a domain controlled by the person creating the IRL.
 * For any of the identifier IRIs above, if the IRI is an IRL created for use with this
 specification, the controller of that IRL SHOULD make this JSON metadata available at that 
 IRL when the IRL is requested and a Content-Type of "application/json" is requested.
