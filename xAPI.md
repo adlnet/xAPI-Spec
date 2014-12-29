@@ -562,8 +562,7 @@ See [Appendix A: Example Statements](#AppendixA) for more examples.
 
 ###### Description 
 
-A UUID (see [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt)
-for requirements, and the UUID must be in standard string form).
+A UUID (all versions of variant 2 in [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt) are valid, and the UUID must be in standard string form).
 
 ###### Requirements 
 
