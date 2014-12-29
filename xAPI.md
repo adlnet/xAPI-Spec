@@ -2431,8 +2431,8 @@ since OAuth specifies an application.
 * Requests MUST include headers for HTTP Basic Authentication based on a username and password containing zero or
 more space characters. 
 * Requests SHOULD* include headers for HTTP Basic Authentication based on a username and password each consisting of 
-an empty string. In this case the HTTP Basic Authentication header will be a base64 encoded version of the string ```Basic :```,
-which results in the string ```QmFzaWMgOg==```.
+an empty string. In this case the HTTP Basic Authentication header will be ``Basic ``` followed by a base64 encoded version of the string ```:```.
+This results in the string ```Basic Og==```.
 
 This is in order to distinguish an explicitly unauthenticated request from a request that should be given a HTTP Basic Authentication 
 challenge.
