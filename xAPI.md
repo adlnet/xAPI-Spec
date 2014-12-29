@@ -76,6 +76,8 @@
 *	[Appendix D: Converting Statements to 1.0.0](#AppendixD)   
 *	[Appendix E: Example Signed Statement](#AppendixE)
 *	[Appendix F: Table of All Endpoints](#AppendixF)
+*	[Appendix G: Cross Domain Request Example](#AppendixG)
+
 
 <a name="revhistory"/>  
 
@@ -3513,6 +3515,8 @@ Statements to the target LRS.
 * The LRS and the Client SHOULD consider the security risks before making the 
 decision to use this scheme.
 
+See [Appendix G: Cross Domain Request Example](#AppendixG) for an example. 
+
 <a name="validation"/> 
 
 ### 7.9 Validation
@@ -4535,3 +4539,55 @@ attachment message format.
 		<td>Token Request</td>
 	</tr>
 </table>
+
+<a name="AppendixG"/>
+
+## Appendix G: Cross Domain Request example
+
+Section [7.8 Cross Origin Requests](#78-cross-origin-requests) outlines alternative syntax for use 
+when the normal syntax cannot be used due to browser or querystring length restrictions. This appendix provides an example of a
+PUT statements request following this format. 
+
+Request using normal syntax:
+
+```
+URL: http://example.com/xAPI/statements?statementId=c70c2b85-c294-464f-baca-cebd4fb9b348
+Method: PUT
+
+Request Headers:
+    Accept:*/*
+    Accept-Encoding:gzip, deflate, sdch
+    Accept-Language:en-US,en;q=0.8
+    Authorization: Basic VGVzdFVzZXI6cGFzc3dvcmQ=
+    Content-Type: application/json
+    X-Experience-API-Version: 1.0.1
+
+Content:
+{"id":"c70c2b85-c294-464f-baca-cebd4fb9b348","timestamp":"2014-12-29T12:09:37.468Z","actor":{"objectType":"Agent","mbox":"mailto:example@example.com","name":"Test User"},"verb":{"id":"http://adlnet.gov/expapi/verbs/experienced","display":{"en-US":"experienced"}},"object":{"id":"http://example.com/xAPI/activities/myactivity","objectType":"Activity"}}
+
+```
+
+Request using using alternative syntax:
+
+```
+URL: http://example.com/xAPI/statements?method=PUT&statementId=c70c2b85-c294-464f-baca-cebd4fb9b348
+Method: POST
+
+Request Headers:
+    Content-Type: application/x-www-form-urlencoded
+
+Content:
+    Accept:*/*
+    Accept-Encoding:gzip, deflate, sdch
+    Accept-Language:en-US,en;q=0.8
+    Authorization: Basic VGVzdFVzZXI6cGFzc3dvcmQ=
+    content: {"id":"c70c2b85-c294-464f-baca-cebd4fb9b348","timestamp":"2014-12-29T12:09:37.468Z","actor":{"objectType":"Agent","mbox":"mailto:example@example.com","name":"Test User"},"verb":{"id":"http://adlnet.gov/expapi/verbs/experienced","display":{"en-US":"experienced"}},"object":{"id":"http://example.com/xAPI/activities/myactivity","objectType":"Activity"}}
+    Content-Type: application/json
+    X-Experience-API-Version: 1.0.1
+```
+
+
+
+
+
+
