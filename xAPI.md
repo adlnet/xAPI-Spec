@@ -3476,17 +3476,25 @@ and "POST", and not allowing HTTP headers to be set.
 
 The following describes alternate syntax for consumers to use only when unable 
 to use the usual syntax for specific calls due to the restrictions mentioned 
-above. This altenrate syntax can also be used to GET Statements due to limits
+above. This alternate syntax can also be used to GET Statements due to limits
 on query string length.  
 
 __Method__: All xAPI requests issued must be POST. The intended xAPI method 
 must be included as the only query string parameter on the request. 
 (Example: http://example.com/xAPI/statements?method=PUT)  
 
-__Headers__: Any required parameters which are expected to appear in the HTTP 
-header must instead be included as a form parameter with the same name. The
-value of the Content-Type header for this type of request will be 
-'application/x-www-form-urlencoded'. 
+__Query string parameters__: Any query string parameters other than 'method'
+must instead be included as a form parameter with the same name.  
+
+__Headers__: Any header parameters required by this specification (Authorization, 
+X-Experience-API-Version and Content-Type) which are expected to appear in the HTTP 
+header must instead be included as a form parameter with the same name.  
+
+Other headers not explictly required by this specification should appear 
+in the HTTP header as normal. The request should still include a Content-Type 
+header (in the HTTP header) for this type of request with a value of 
+'application/x-www-form-urlencoded'. The Content-Type form parameter will specify 
+the content type of the content within the content form parameter. 
 
 __Content__: If the xAPI call involved sending content, that content must now 
 be encoded and included as a form parameter called "content". The LRS will 
@@ -4551,8 +4559,11 @@ PUT statements request following this format.
 Request using normal syntax:
 
 ```
-URL: http://example.com/xAPI/statements?statementId=c70c2b85-c294-464f-baca-cebd4fb9b348
+URL: http://example.com/xAPI/statements
 Method: PUT
+
+Query String Parameters:
+    statementId=c70c2b85-c294-464f-baca-cebd4fb9b348
 
 Request Headers:
     Accept:*/*
@@ -4574,14 +4585,15 @@ URL: http://example.com/xAPI/statements?method=PUT&statementId=c70c2b85-c294-464
 Method: POST
 
 Request Headers:
-    Content-Type: application/x-www-form-urlencoded
-
-Content:
     Accept:*/*
     Accept-Encoding:gzip, deflate, sdch
     Accept-Language:en-US,en;q=0.8
-    Authorization: Basic VGVzdFVzZXI6cGFzc3dvcmQ=
-    content: {"id":"c70c2b85-c294-464f-baca-cebd4fb9b348","timestamp":"2014-12-29T12:09:37.468Z","actor":{"objectType":"Agent","mbox":"mailto:example@example.com","name":"Test User"},"verb":{"id":"http://adlnet.gov/expapi/verbs/experienced","display":{"en-US":"experienced"}},"object":{"id":"http://example.com/xAPI/activities/myactivity","objectType":"Activity"}}
-    Content-Type: application/json
-    X-Experience-API-Version: 1.0.1
+    Content-Type: application/x-www-form-urlencoded
+
+Content (with added line breaks and not URL encoded for readability):
+    statementId=c70c2b85-c294-464f-baca-cebd4fb9b348
+    &Authorization=Basic VGVzdFVzZXI6cGFzc3dvcmQ=
+    &X-Experience-API-Version: 1.0.1
+    &Content-Type: application/json
+    &content={"id":"c70c2b85-c294-464f-baca-cebd4fb9b348","timestamp":"2014-12-29T12:09:37.468Z","actor":{"objectType":"Agent","mbox":"mailto:example@example.com","name":"Test User"},"verb":{"id":"http://adlnet.gov/expapi/verbs/experienced","display":{"en-US":"experienced"}},"object":{"id":"http://example.com/xAPI/activities/myactivity","objectType":"Activity"}}
 ```
