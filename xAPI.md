@@ -3490,7 +3490,7 @@ __Headers__: Any header parameters required by this specification (Authorization
 X-Experience-API-Version and Content-Type) which are expected to appear in the HTTP 
 header must instead be included as a form parameter with the same name.  
 
-Other headers not explictly required by this specification should appear 
+Other header parameters not explictly required by this specification should appear 
 in the HTTP header as normal. The request should still include a Content-Type 
 header (in the HTTP header) for this type of request with a value of 
 'application/x-www-form-urlencoded'. The Content-Type form parameter will specify 
