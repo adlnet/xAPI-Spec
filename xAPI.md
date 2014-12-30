@@ -1545,8 +1545,7 @@ These examples are for illustrative purposes only and are not meant to be prescr
 * A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
 * A timestamp MAY be a moment in the future, to denote a deadline for planned learning, provided it is included 
 inside a Sub-Statement.
-* MUST be set by the LRS if not provided. 
-* SHOULD be set by the LRS to the value of [Stored](#stored) if not provided.
+* SHOULD* be set by the LRS to the value of [Stored](#stored) if not provided.
 
 
 <a name="stored"/> 
@@ -2411,8 +2410,7 @@ record the authority as the Agent representing the registered application.
 
 ###### Application not registered + known user Process and Requirements
 
-* The LRS MUST use a consumer secret consisting of zero or more space characters.
-* The LRS SHOULD* use a consumer secret consisting of an empty string.
+* The AP MUST use a consumer secret consisting of an empty string.
 * Call "Temporary Credential" request.
 * Specify "consumer_name" and other usual parameters; User will then see "consumer_name" plus a warning 
 that the identity of the application requesting authorization cannot be verified.
