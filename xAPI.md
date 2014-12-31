@@ -775,7 +775,7 @@ The table below lists all properties of the Verb Object.
 * A system reading a Statement MUST use the Verb IRI to infer meaning.
 * The IRI contained in an id SHOULD contain a human-readable portion which SHOULD provide meaning enough 
 to disambiguate it from other similar(in syntax) Verbs.
-* A single Verb IRI MUST be be used to refer to multiple meanings.
+* A single Verb IRI MUST not be used to refer to multiple meanings.
 
 ###### Verb Display AP Requirements
 * The display property SHOULD be used by all Statements.
