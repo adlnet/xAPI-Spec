@@ -3479,27 +3479,40 @@ to use the usual syntax for specific calls due to the restrictions mentioned
 above. This alternate syntax can also be used to GET Statements due to limits
 on query string length.  
 
-__Method__: All xAPI requests issued must be POST. The intended xAPI method 
-must be included as the only query string parameter on the request. 
-(Example: http://example.com/xAPI/statements?method=PUT)  
+__Method__:  
+* All xAPI requests issued MUST be POST. 
+* The intended xAPI method MUST be included as the value of the "method" query 
+string parameter. 
+* The AP MUST NOT include any other query string parameters on the request.
 
-__Query string parameters__: Any query string parameters other than 'method'
-must instead be included as a form parameter with the same name.  
+Example: http://example.com/xAPI/statements?method=PUT  
 
-__Headers__: Any header parameters required by this specification (Authorization, 
-X-Experience-API-Version and Content-Type) which are expected to appear in the HTTP 
-header must instead be included as a form parameter with the same name.  
-
-Other header parameters not explictly required by this specification should appear 
-in the HTTP header as normal. The request should still include a Content-Type 
-header (in the HTTP header) for this type of request with a value of 
-'application/x-www-form-urlencoded'. The Content-Type form parameter will specify 
-the content type of the content within the content form parameter. 
-
-__Content__: If the xAPI call involved sending content, that content must now 
-be encoded and included as a form parameter called "content". The LRS will 
-interpret this content as a UTF-8 string. Storing binary data is not supported 
+__Content__:  
+* If the xAPI call involved sending content, the AP MUST URL encode that content and 
+include it as a form parameter called "content". 
+* The LRS MUST interpret this content as a UTF-8 string. Storing binary data is not supported 
 with this syntax.  
+
+__Headers__:  
+* The AP MAY include any header parameters required by this specification which are 
+expected to appear in the HTTP header as form parameters with the same names. This applies 
+to the following parameters: Authorization, X-Experience-API-Version, Content-Type, Content-Length,
+If-Match and If-None-Match. 
+* The LRS MUST treat the form parameters listed above as header parameters. 
+* The AP MUST include other header parameters not listed above in the HTTP header as normal. 
+* The AP SHOULD* still include a Content-Type header (in the HTTP header) for this type of 
+request with a value of 'application/x-www-form-urlencoded'. 
+* The Content-Type form parameter SHOULD* specify the content type of the content within the content form parameter. 
+* The AP SHOULD* still include a Content-Length header (in the HTTP header) for this type of 
+request indicating the overall length of the request's content. 
+* The Content-Length form parameter SHOULD* specify the length of the content within the content form parameter and 
+will therefore be a lower figure than the length listed in the Content-Length header. 
+
+__Query string parameters__:  
+* Any query string parameters other than 'method'
+MUST instead be included as a form parameter with the same name.  
+* The LRS MUST treat any form parameters other than "content" or the 
+header parameters listed above as query string parameters. 
 
 __Attachments__: Sending attachment data requires sending a
 multipart/mixed request, therefore sending attachment data is not supported
@@ -4572,6 +4585,7 @@ Request Headers:
     Authorization: Basic VGVzdFVzZXI6cGFzc3dvcmQ=
     Content-Type: application/json
     X-Experience-API-Version: 1.0.1
+    Content-Length: 351
 
 Content:
 {"id":"c70c2b85-c294-464f-baca-cebd4fb9b348","timestamp":"2014-12-29T12:09:37.468Z","actor":{"objectType":"Agent","mbox":"mailto:example@example.com","name":"Test User"},"verb":{"id":"http://adlnet.gov/expapi/verbs/experienced","display":{"en-US":"experienced"}},"object":{"id":"http://example.com/xAPI/activities/myactivity","objectType":"Activity"}}
@@ -4589,11 +4603,13 @@ Request Headers:
     Accept-Encoding:gzip, deflate, sdch
     Accept-Language:en-US,en;q=0.8
     Content-Type: application/x-www-form-urlencoded
+    Content-Length: 745
 
 Content (with added line breaks and not URL encoded for readability):
     statementId=c70c2b85-c294-464f-baca-cebd4fb9b348
     &Authorization=Basic VGVzdFVzZXI6cGFzc3dvcmQ=
-    &X-Experience-API-Version: 1.0.1
-    &Content-Type: application/json
+    &X-Experience-API-Version=1.0.1
+    &Content-Type=application/json
+    &Content-Length=351
     &content={"id":"c70c2b85-c294-464f-baca-cebd4fb9b348","timestamp":"2014-12-29T12:09:37.468Z","actor":{"objectType":"Agent","mbox":"mailto:example@example.com","name":"Test User"},"verb":{"id":"http://adlnet.gov/expapi/verbs/experienced","display":{"en-US":"experienced"}},"object":{"id":"http://example.com/xAPI/activities/myactivity","objectType":"Activity"}}
 ```
