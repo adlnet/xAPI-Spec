@@ -770,16 +770,42 @@ The table below lists all properties of the Verb Object.
 	</tr>
 </table>
 
-###### Requirements
+###### Verb Id Requirements
 
-* The display property MUST be used to illustrate the meaning which is already determined by the Verb IRI.
 * A system reading a Statement MUST use the Verb IRI to infer meaning.
+* The IRI contained in an id SHOULD contain a human-readable portion which SHOULD provide meaning enough 
+to disambiguate it from other similar(in syntax) Verbs.
+* A single Verb IRI MUST be be used to refer to multiple meanings.
+
+###### Verb Display AP Requirements
+* The display property SHOULD be used by all Statements.
+* The display property MUST be used to illustrate the meaning which is already determined by the Verb IRI.
+
+###### Verb Display LRS Requirements
+The requirements below relate to the display property as returned by the LRS via the API.  
+
+* When queried for statements with a format of "exact", the LRS MUST return the Display property 
+exactly as included (or omitted) within the Statement.
+* When queried for statements with a format of "ids", the LRS SHOULD* NOT include the Display property.
+* When queried for statements with a format of "canonical", the LRS SHOULD return its canonical Display 
+for that Verb if it has one. 
+* The LRS may determine its canonical Display based on the Verb Display property included within 
+Statements it recieves, the name property included in the metadata as described in 
+[section 5.4 Identifier metadata](#miscmeta), or the Verb Display as defined in some other location.
+
+###### Verb Display Client Requirements
+The requirements below relate to the display property as displayed to a user either by the LRS or
+another system. 
+
 * The display property MUST NOT be used to alter the meaning of a Verb.
 * A system reading a Statement MUST NOT use the display property to infer any meaning from the Statement.
 * A system reading a Statement MUST NOT use the display property for any purpose other than display to a human.
 Using the display property for aggregation or categorization of Statements is an example of violating this requirement. 
-* The display property SHOULD be used by all Statements.
-* The IRI contained in the id SHOULD be human-readable and imply the Verb meaning.
+* Systems displaying a Statement's Verb in a user interface MAY choose to render the Verb Display property included within the 
+Statement, the name property included in the metadata as described in [section 5.4 Identifier metadata](#miscmeta), or the 
+Verb Display as defined in some other location.
+* Systems displaying a Statement's Verb MUST NOT display a word that differs from the meaning of the Verb but 
+MAY alter the wording and tense displayed for the purposes of human readability. 
 
 ###### Example
 This example shows a Verb with the recommended fields set.
@@ -804,9 +830,9 @@ _Semantics_
 
 The IRI represented by the Verb id identifies the particular semantics of a word, not the word itself. 
 
-For example, the English word "fired" could mean different things depending on context, such as "fired a 
-weapon", "fired a kiln", or "fired an employee". In this case, an IRI MUST identify one of these specific 
-meanings, not the word "fired". 
+For example, the English word "fired" could mean different things depending on context, such as 
+"fired(a weapon)", "fired(a kiln)", or "fired(an employee)". In this case, an IRI identifies one of 
+these specific meanings. 
 
 The display property has some flexibility in tense. While the Verb IRIs are expected to remain in the 
 past tense, if conjugating verbs to another tense (using the same Verb) within the Activity makes sense, 
@@ -2188,13 +2214,6 @@ IRL when the IRL is requested and a Content-Type of "application/json" is reques
 take the place of this metadata entirely if it was not provided or cannot be loaded. This MAY
 include metadata in other formats stored at the IRL of an identifier, particularly if that
 identifier was not coined for use with this specification.
-* The LRS MUST always return the Display property exactly as included (or omitted) within the Statement. 
-This requirement relates only to the LRS returning statements
-via the API, and not to the LRS displaying statements in a user interface. 
-* Systems displaying a statement's verb in a user interface MAY choose to render the verb display property included within the 
-statement, the name property included in the metadata as described above, or the verb display as defined in some other location.
-* Systems displaying a statement's verb MUST NOT display a word that differs from the meaning of the verb id but 
-MAY alter the wording and tense displayed for the purposes of human readability. 
 
 <a name="rtcom"/>
 
