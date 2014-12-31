@@ -3510,8 +3510,8 @@ will therefore be a lower figure than the length listed in the Content-Length he
 
 __Query string parameters__:  
 * Any query string parameters other than 'method'
-MUST instead be included as a form parameter with the same name.  
-* The LRS MUST treat any form parameters other than "content" or the 
+MUST instead be included as a form parameter with the same name. 
+* The LRS MUST treat any form parameters other than "content" or the 
 header parameters listed above as query string parameters. 
 
 __Attachments__: Sending attachment data requires sending a
