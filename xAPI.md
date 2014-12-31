@@ -787,8 +787,8 @@ The requirements below relate to the display property as returned by the LRS via
 * When queried for statements with a format of "exact", the LRS MUST return the Display property 
 exactly as included (or omitted) within the Statement.
 * When queried for statements with a format of "ids", the LRS SHOULD* NOT include the Display property.
-* When queried for statements with a format of "canonical", the LRS SHOULD return its canonical Display 
-for that Verb if it has one. 
+* When queried for statements with a format of "canonical", the LRS SHOULD* return a canonical Display 
+for that Verb. 
 * The LRS may determine its canonical Display based on the Verb Display property included within 
 Statements it recieves, the name property included in the metadata as described in 
 [section 5.4 Identifier metadata](#miscmeta), or the Verb Display as defined in some other location.
