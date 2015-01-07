@@ -782,7 +782,8 @@ The table below lists all properties of the Verb Object.
 * A system reading a Statement MUST NOT use the display property for any purpose other than display to a human.
 Using the display property for aggregation or categorization of Statements is an example of violating this requirement. 
 * The display property SHOULD be used by all Statements.
-* The IRI contained in the id SHOULD be human-readable and imply the Verb meaning.
+* The IRI contained in an id SHOULD contain a human-readable portion which SHOULD be used to provide meaning enough 
+* to disambiguate it from other similar(in syntax) Verbs.
 
 ###### Example
 This example shows a Verb with the recommended fields set.
@@ -807,9 +808,9 @@ _Semantics_
 
 The IRI represented by the Verb id identifies the particular semantics of a word, not the word itself. 
 
-For example, the English word "fired" could mean different things depending on context, such as "fired a 
-weapon", "fired a kiln", or "fired an employee". In this case, an IRI MUST identify one of these specific 
-meanings, not the word "fired". 
+For example, the English word "fired" could mean different things depending on context, such as 
+"fired(a weapon)", "fired(a kiln)", or "fired(an employee)". In this case, an IRI identifies one of 
+these specific meanings.
 
 The display property has some flexibility in tense. While the Verb IRIs are expected to remain in the 
 past tense, if conjugating verbs to another tense (using the same Verb) within the Activity makes sense, 
@@ -821,6 +822,11 @@ A Verb in the Experience API is an IRI, and denotes a specific meaning not tied 
 
 For example, a particular Verb IRI such as http://example.org/firearms#fire might denote the action of firing a gun, 
 or the Verb IRI http://example.com/فعل/خواندن might denote the action of reading a book. 
+
+###### Requirements
+
+* The IRI contained in an id MUST have a unique meaning associated with it .
+* A single language MUST NOT use the same syntax of the Verb IRI (or token) to refer to multiple meanings.
 
 ##### 4.1.3.2 Use in Communities of Practice
 
@@ -1808,15 +1814,15 @@ flow among such LRSs the LRS is given some flexibility on Statement versions tha
 * Version MUST be formatted as laid out for the API version header in [API Versioning](#apiversioning)
 
 ###### LRS Requirements
-* An LRS MUST accept all Statements where their version starts with "1.0." if they otherwise validate.
+* An LRS MUST NOT reject Statements where their version starts with "1.0." if they otherwise validate.
 * An LRS MUST reject all Statements with a version specified that does not start with "1.0.".
 * Statements returned by an LRS MUST retain the version they are accepted with. If they
-lack a version, the version MUST be set to 1.0.0.
+lack a version, the version MUST be set to the current version number (i.e. "1.0.0").
 
 
 ###### Client Requirements
-* If Clients set the Statement version, they MUST set it to 1.0.0
-* Clients SHOULD NOT set the Statement version;
+* If Clients set the Statement version, they MUST set it to the current version number.
+* Clients SHOULD NOT set the Statement version.
 
 
 <a name="attachments"/>
@@ -2400,21 +2406,21 @@ Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.
 ###### LRS Requirements
 
 * The LRS MUST include the "X-Experience-API-Version" header in every response.
-* The LRS MUST set this header to "1.0.1".
+* The LRS MUST set this header's value to the current version number.
 * The LRS MUST accept requests with a version header of "1.0" as if the version header was "1.0.0".
 * The LRS MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a 
 fully conformant implementation of the prior version specified in the header.
 * The LRS MUST reject requests with a version header of "1.1.0" or greater.
-* The LRS MUST make these rejects by responding with an HTTP 400 error including a short description 
+* The LRS MUST make these rejects by responding with an HTTP 400 error and MUST include a short description 
 of the problem.
 
 ###### Client Requirements
 
 * The Client MUST include the "X-Experience-API-Version" header in every request.
-* The Client MUST set this header to "1.0.1".
+* The Client MUST set this header's value to the current version number.
 * The Client SHOULD tolerate receiving responses with a version of "1.0.0" or later.
 * The Client SHOULD tolerate receiving data structures with additional properties.
-* The Client SHOULD ignore any properties not defined in version 1.0.0 of the spec.
+* The Client SHOULD ignore any properties not defined in the current version of the spec.
 
 ###### Conversion Requirements
 
