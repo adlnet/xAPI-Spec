@@ -1007,14 +1007,14 @@ its internal representation of that Activity's definition.
 
 ###### Rationale
 
-Traditional e-learning has included structures for interactions or assessments. 
-As a way to allow these practices and structures to extend Experience API's 
-utility, this specification includes built-in definitions for interactions, which 
-borrows from the SCORM 2004 4th Edition Data Model. These definitions are intended to provide a 
-simple and familiar utility for recording interaction data. These definitions 
-are simple to use, and consequently limited. It is expected that communities of 
-practice requiring richer interactions definitions will do so through the use 
-of extensions to an Activity's type and definition. 
+Traditional e-learning has included structures for interactions or assessments. As a way to allow these practices and
+structures to extend Experience API's utility, this specification includes built-in definitions for interactions, which
+borrows from the SCORM 2004 4th Edition Data Model. These definitions are intended to provide a simple and familiar utility
+for recording interaction data. Since 1.0.3, direct references to the SCORM data model have started to be removed, and any
+associated requirements included directly in this document.
+
+These interaction definitions are simple to use, and consequently limited. It is expected that communities of practice
+requiring richer interactions definitions will do so through the use of extensions to an Activity's type and definition. 
 
 ###### Details
 
@@ -1025,39 +1025,178 @@ The table below lists the properties for Interaction Activities.
 	<tr>
 		<td>interactionType</td>
 		<td>String</td>
-		<td>As in "cmi.interactions.n.type" as defined in the SCORM 2004 4th 
-			Edition Run-Time Environment.</td>
+		<td>The type of interaction. Possible values are: “true-false”, “choice”, “fill-in”, “long-fill-in”,
+		“matching”, “performance”, “sequencing”, “likert”, “numeric” or “other”. </td>
 		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>correctResponsesPattern</td>
 		<td>An array of strings</td>
-		<td>Corresponds to 
-			"cmi.interactions.n.correct_responses.n.pattern" as defined in 
-			the SCORM 2004 4th Edition Run-Time Environment, where the final 
-			<em>n</em> is the index of the array.</td>
+		<td>A pattern representing the correct response to the interaction. The structure of this pattern varies
+		depending on the interactionType. This is detailed below. </td>
 		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>choices | scale | source | target | steps</td>
 		<td>Array of interaction components</td>
-		<td>Specific to the given interactionType (<a href="#interactionType">see below</a>).</td>
+		<td>Specific to the given interactionType (<a href="#interactionComponentLists">see below</a>).</td>
 		<td>Optional</td>
 	</tr>
 </table>  
 
-###### A Note on Delimiters
-The SCORM 2004 4th Edition Run-Time Environment allows certain delimiters to be added to strings which convey certain information about that string. This is outlined in section 4.1.1.6: Reserved Delimiters of that document and referenced throughout the RTE data model. These delimiters can be used within the Correct Responses pattern for some types of interaction as defined in section 4.2.9.1: Correct Responses Pattern Data Model Element Specifics of the SCORM 2004 4th ed. RTE. 
+###### Interaction Types
+The table below describes the kinds of interactions represented by each of the interactionTypes. These types of interactions were originally 
+based on the types of interactions allowed for "cmi.interactions.n.type" in the SCORM 2004 4th Edition Run-Time Environment.
+See [Appendix C](#AppendixC) for examples definitions for each interaction type. 
 
-There is some discrepancy in the order of delimiters between sections 4.1.1.6 and 4.2.9.1. For the purposes of the Experience API, we take the order of delimiters listed in 4.2.9.1 to be correct. 
+<table>
+	<tr><th>intractionType</th><th>Description</th></tr>
+	<tr>
+		<td>true-false</td>
+		<td>An interaction with two possible responses: true or false.</td>
+	</tr>
+	<tr>
+		<td>choice</td>
+		<td>An interaction with a number of possible choices from which the learner can select. 
+			This includes intractions in which the learner can select only one answer from the list and
+			those where the learner may select multiple items.</td>
+	</tr>
+	<tr>
+		<td>fill-in</td>
+		<td>An interaction which requires the learner to supply a short response in the form of one or more 
+			strings of characters. Typically, the correct response consists of part of a word, one word or a few words. 
+			'Short' means that the corect responses pattern and learner response strings will normally be 250 characters or less;
+		</td>
+	</tr>
+	<tr>
+		<td>long-fill-in</td>
+		<td>An interaction which requires the learner to supply a response in the form of a long string of characters.
+			'Long' means that the corect responses pattern and learner response strings will normally be more than 250 characters.
+		</td>
+	</tr>
+	<tr>
+		<td>matching</td>
+		<td>An interaction where the learner must match items in one set (the source set) to items in another set (the target set).
+			Items do not have to pair off exactly and it's possible for multiple or zero source items to be matched to a given target and vice versa.</td>
+	</tr>
+	<tr>
+		<td>performance</td>
+		<td>An interaction that requires the learner to perform a task that requires multiple steps.</td>
+	</tr>
+	<tr>
+		<td>sequencing</td>
+		<td>An interaction where the learner must order items in a set.</td>
+	</tr>
+	<tr>
+		<td>likert</td>
+		<td>An interaction which asks the learner to select from a discrete set of choices on a scale</td>
+	</tr>
+	<tr>
+		<td>numeric</td>
+		<td>Any interaction which requires a numeric response from the learner.</td>
+	</tr>
+	<tr>
+		<td>other</td>
+		<td>Another type of interaction that does not fit into those defined above.</td>
+	</tr>
+</table>
+
+###### Response Patterns
+The table below outlines the format of the strings within correctResponsesPattern property for each interaction type. 
+This format is also used to represent the learner's response within the result object. These formats were originally based on the 
+requirements relating to "cmi.interactions.n.correct_responses.n.pattern" as defined in the SCORM 2004 4th Edition 
+Run-Time Environment. See [Appendix C](#AppendixC) for examples of each format. 
+
+<table>
+	<tr><th>intractionType</th><th>Format</th></tr>
+	<tr>
+		<td>true-false</td>
+		<td>Either <code>true</code> or <code>false</code></td>
+	</tr>
+	<tr>
+		<td>choice</td>
+		<td>A list of item ids delimited by <code>[,]</code>. If the response contains only one item, the delimiter MUST not be used.</td>
+	</tr>
+	<tr>
+		<td>fill-in and long-fill-in</td>
+		<td>A list of responses delimited by <code>[,]</code>. If the response contains only one item, the delimiter MUST not be used.</td>
+	</tr>
+	<tr>
+		<td>matching</td>
+		<td>A list of matching pairs, where each  pair consists of a source item id followed by a target item id. 
+			Items can appear in multiple (or zero) pairs.
+			Items within a pair are delimited by <code>[.]</code>. Pairs are delimited by <code>[,]</code>.
+		</td>
+	</tr>
+	<tr>
+		<td>performance</td>
+		<td>
+			A list of steps containing a step ids and the response to that step.
+			Step ids are separated from responses by <code>[.]</code>. Steps are delimited by <code>[,]</code>.
+			The response can be a string as in a fill-in interaction or a number range as in a numeric interaction. 
+		</td>
+	</tr>
+	<tr>
+		<td>sequencing</td>
+		<td>An ordered list of item ids delimited by <code>[,]</code>.</td>
+	</tr>
+	<tr>
+		<td>likert</td>
+		<td>A single item id</td>
+	</tr>
+	<tr>
+		<td>numeric</td>
+		<td>A range of numbers represented by a minimum and a maximum delimited by <code>:</code>.
+		</td>
+	</tr>
+	<tr>
+		<td>other</td>
+		<td>Any format is valid within this string as appropriate for the type of interaction.</td>
+	</tr>
+</table>
+
+###### Characterstring parameters
+Some of the values within the responses described above can be prepended with certain additional parameters. These were originally based on the characterstring
+delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These parameters are represented by the format ```{parameter=value}```. See
+See [the long-fill-in example within Appendix C](#long-fill-in). 
+
+The following parameters are valid at the start of the string representing the list of items for the listed interaction types:
+<table>
+	<tr><th>Parameter</th><th>Description</th><th>Value</th><th>Interaction types</th></tr>
+	<tr>
+		<td>case_matters</td>
+		<td>Whether or not the case of items in the list matters.</td>
+		<td><code>true</code> or <code>false</code></td>
+		<td>fill-in, long-fill-in</td>
+	</tr>
+	<tr>
+		<td>order_matters</td>
+		<td>Whether or not the order of items in the list matters.</td>
+		<td><code>true</code> or <code>false</code></td>
+		<td>fill-in, long-fill-in, performance</td>
+	</tr>
+</table>
+
+The following parameters are valid at the start of each item in the list for the listed interaction types:
+<table>
+	<tr><th>Parameter</th><th>Description</th><th>Value</th><th>Interaction types</th></tr>
+	<tr>
+		<td><code>lang</code></td>
+		<td>The language used within the item.</td>
+		<td><a href="http://tools.ietf.org/html/rfc5646">RFC 5646 Language Tag</a></td>
+		<td>fill-in, long-fill-in, performance (string responses only)</td>
+	</tr>
+</table>
 
 
 ###### Requirements
 
 * Interaction Activities MUST have a valid interactionType.
-* Interaction Activities SHOULD have the Activity type http://adlnet.gov/expapi/activities/cmi.interaction".
+* Interaction Activities SHOULD have the Activity type "http://adlnet.gov/expapi/activities/cmi.interaction".
 * An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as specified in the table 
 below and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction Activity.
+* The LRS SHOULD* NOT enforce character limits relating to response patterns. 
+* The LRS SHOULD* NOT limit the length of the correctResponsesPattern array for any interactionType. 
 
 
 ##### Interaction Components  
@@ -1083,26 +1222,32 @@ Interaction components are defined as follows:
 	</tr>
 </table>
 
-<a name="interactionType"/>
+<a name="#interactionComponentLists"/>
 
-The following table shows the supported lists of CMI interaction components for 
-an interaction Activity with the given interactionType.
+Depending on Interaction Type, Interaction Activities can take additional properties, each containing a 
+list of interaction components. These additional properties are called ‘interaction component lists’. The following table
+shows the supported interaction component list(s) for an Interaction Activity with the given interactionType.
 
 <table>
-	<tr><th>interactionType</th><th>supported component list(s)</th><tr>
-	<tr><td>choice, sequencing</td><td>choices</td></tr>
-	<tr><td>likert</td><td>scale</td></tr>
-	<tr><td>matching</td><td>source, target</td></tr>
-	<tr><td>performance</td><td>steps</td></tr>
-	<tr><td>true-false, fill-in, long-fill-in, numeric, other</td><td>[No component lists defined]</td></tr>
+	<tr><th>interactionType</th><th>supported interaction component list(s)</th><th>Description</th><tr>
+	<tr><td>choice, sequencing</td><td>choices</td>
+	<td>A list of the options available in the interaction for selection or ordering.</td></tr>
+	<tr><td>likert</td><td>scale</td>
+	<td>A list of the options on the likert scale.</td></tr>
+	<tr><td>matching</td><td>source, target</td>
+	<td>Lists of sources and targets to be matched.</td></tr>
+	<tr><td>performance</td><td>steps</td>
+	<td>A list of the elements making up the performance interaction.</td></tr>
+	<tr><td>true-false, fill-in, long-fill-in, numeric, other</td><td>[No component lists defined]</td><td></td></tr>
 </table>
+
 
 ###### Requirements
 
 * Within an array of interaction components, all id values MUST be distinct.
 * An interaction component's id value SHOULD NOT have whitespace.
 
-###### Example
+###### Examples
 
 See [Appendix C](#AppendixC) for examples of Activity Definitions for each of the cmi.interaction types.
 
@@ -1307,28 +1452,35 @@ The table below defines the Score Object.
 	<tr>
 		<td>scaled</td>
 		<td>Decimal number between -1 and 1, inclusive</td>
-		<td>Cf. 'cmi.score.scaled' in SCORM 2004 4th Edition</td>
+		<td>The score related to the experience as a proportion of the maximum score possible for the experience. 
+		In the case of negative score, the scaled score is calculated as a proportion of the minimum score possible.
+		For positive scores, the scaled score can be calculated as the raw score divided by the max score (where
+		those values are present). </td>
 		<td>Recommended</td>
 	</tr>
 	<tr>
 		<td>raw</td>
 		<td>Decimal number between min and max (if present, otherwise unrestricted), inclusive</td>
-		<td>Cf. 'cmi.score.raw'</td>
+		<td>The score achieved by the actor in the experience described by the statement. This is not modified by
+		any scaling or normalization.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>min</td>
 		<td>Decimal number less than max (if present)</td>
-		<td>Cf. 'cmi.score.min'</td>
+		<td>The lowest possible score for the experience described by the statement.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>max</td>
 		<td>Decimal number greater than min (if present)</td>
-		<td>Cf. 'cmi.score.max'</td>
+		<td>The highest possible score for the experience described by the statement.</td>
 		<td>Optional</td>
 	</tr>
 </table>
+
+The properties of the score object are based on the corresponding properties of cmi.score as defined in SCORM 2004 
+4th Edition. 
 
 ###### Requirements
 
@@ -4132,6 +4284,8 @@ This example shows a Sub-Statement object whose object is a Statement Reference.
 	]
 }
 ```
+
+In this example the minimum correct answer is 4 and there is no maximum. 5, 6 or 976 would all be correct answers. 
 
 ###### other  
 ```
