@@ -380,10 +380,14 @@ the same.
 
 <a name="def-iri" />
 
-__Internationalized Resource Identifier  (IRI)__:  A unique identifier which may be an IRL. 
-In the xAPI, all IRIs should be a full absolute IRIs including a scheme. Relative IRIs 
-should not be used. IRLs should be defined within a domain controlled by the person 
-creating the IRL.
+__Internationalized Resource Identifier  (IRI)__: A unique identifier which may be an IRL. 
+Used to identify an object such as a verb, activity or activity type. Unlike URIs, IRIs 
+can contain some characters outside of the ASCII character set in order to support international 
+languages. 
+
+IRIs always include a scheme. This is not a requirement of this standard, but part of the 
+definition of IRIs, per [RFC 3987](http://www.ietf.org/rfc/rfc3987.txt). What are sometimes 
+called 'relative IRIs' are not IRIs.
 
 <a name="def-irl" />
 
@@ -573,8 +577,7 @@ See [Appendix A: Example Statements](#AppendixA) for more examples.
 
 ###### Description 
 
-A UUID (see [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt)
-for requirements, and the UUID must be in standard string form).
+A UUID (all versions of variant 2 in [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt) are valid, and the UUID must be in standard string form).
 
 ###### Requirements 
 
@@ -2211,6 +2214,7 @@ identifiers other than Activity id.
 
 * Metadata MAY be provided with an identifier.
 * If metadata is provided, both name and description SHOULD be included.
+* IRLs SHOULD be defined within a domain controlled by the person creating the IRL.
 * For any of the identifier IRIs above, if the IRI is an IRL created for use with this
 specification, the controller of that IRL SHOULD make this JSON metadata available at that 
 IRL when the IRL is requested and a Content-Type of "application/json" is requested.
@@ -2289,28 +2293,33 @@ of the problem.
 ### 6.3 Concurrency
 
 ##### Description
-Concurrency control makes certain that an API consumer does not PUT or POST changes based on old
+Concurrency control makes certain that an API consumer does not PUT, POST or DELETE documents based on old
 data into an LRS.
 
 ##### Details
 xAPI will use HTTP 1.1 entity tags ([ETags](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19))
-to implement optimistic concurrency control in the portions of the API where PUT or POST may
-overwrite existing data, being:
+to implement optimistic concurrency control in the portions of the API where PUT, POST or DELETE may
+overwrite or remove existing data, being:
 
 * State API
 * Agent Profile API 
 * Activity Profile API
 
-The State API will permit PUT and POST requests without concurrency headers, since state conflicts
+The State API will permit PUT, POST and DELETE requests without concurrency headers, since state conflicts
 are unlikely. The requirements below only apply to Agent Profile API and Activity Profile API.
-
-
 
 ##### Client Requirements
 
-* A Client using either Agent Profile API or Activity Profile API MUST include the 
+* A Client making a PUT request to either the Agent Profile API or Activity Profile API MUST include the 
 [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the 
 [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header.
+
+* A Client making a POST request to either the Agent Profile API or Activity Profile API SHOULD* include the 
+[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the 
+[If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header.
+
+* A Client making a DELETE request to either the Agent Profile API or Activity Profile API SHOULD* include the 
+[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header.
 
 ##### LRS Requirements
 
@@ -2324,17 +2333,17 @@ of the SHA-1 digest of the contents.
 modifications made after the consumer last fetched the document.
 * An LRS responding to a PUT request MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
 when there is a resource present that the consumer is not aware of.
-* An LRS responding to a POST request SHOULD* handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
+* An LRS responding to a POST or DELETE request SHOULD* handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
 modifications made after the consumer last fetched the document.
 * An LRS responding to a POST request SHOULD* handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
 when there is a resource present that the consumer is not aware of.
 
-If the header precondition in any of the PUT request cases above fails, the LRS:
+If the header precondition in either of the PUT request cases above fails, the LRS:
 
 * MUST return HTTP status 412 "Precondition Failed".
 * MUST NOT make a modification to the resource. 
 
-If the header precondition in any of the POST request cases above fails, the LRS:
+If the header precondition in any of the POST or DELETE request cases above fails, the LRS:
 
 * SHOULD* return HTTP status 412 "Precondition Failed".
 * SHOULD* NOT make a modification to the resource. 
@@ -2346,7 +2355,6 @@ If a PUT request is received without either header for a resource that already e
 	- check the current state of the resource.
 	- set the "If-Match" header with the current ETag to resolve the conflict.
 * MUST NOT make a modification to the resource.
-
 
 <a name="security"/>
 
@@ -2861,20 +2869,8 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 			<br/><br/>
 			If "canonical", return Activity Objects populated with the canonical
 			definition of the Activity Objects as determined by the LRS, after
-			applying the language filtering process defined below, and return the original
-			Agent Objects as in "exact" mode.  
-			<br/><br/>
-			<b>Canonical Language Process:</b> Activity Objects contain Language Map Objects 
-			for name and description. Only one language should be returned in each of 
-			these maps.  
-			<br/><br/>
-			In the event of format being “canonical”, only one language should be returned in 
-			each of these maps. In order to choose the most relevant language, the LRS will 
-			apply the Accept-Language header as described in 
-			<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a>
-			(HTTP 1.1), except that this logic will be applied to each language map
-			individually to select which language entry to include, rather than to the 
-			resource (list of Statements) as a whole.
+			applying the <a href="#queryLangFiltering">language filtering process defined below</a>,
+			and return the original Agent Objects as in "exact" mode.  
 		</td>
 		<td>Optional</td>
 	</tr>
@@ -2944,6 +2940,18 @@ This section does not apply when retrieving Statements with statementId or voide
 
 __Note:__StatementRefs used in the statement field in context do not affect how
 Statements are filtered.
+
+<a name="queryLangFiltering" />
+
+###### Language filtering requirements for canonical format statements
+
+* Activity Objects contain Language Map Objects for name, description and interaction components. 
+The LRS MUST return only one language in each of these maps. 
+
+* In order to choose the most relevant language, the LRS MUST apply the Accept-Language header as 
+described in <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a> 
+(HTTP 1.1), except that this logic MUST be applied to each language map individually to select 
+which language entry to include, rather than to the resource (list of Statements) as a whole.
 
 <a name="voidedStatements" />
 
