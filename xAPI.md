@@ -2152,8 +2152,11 @@ can make sense of it.
 ### 5.4 Identifier Metadata
 
 ##### Description
-Additional information can be provided within a Statement about an identifier. This allows 
-metadata about the IRI to be expressed without the necessity of resolving it.
+Additional information about an identifier can be provided within a Statement and can 
+be hosted at the location pointed to by the identifier IRI. Including metadata in a statement
+allows metadata about the IRI to be expressed without the necessity of resolving it. Hosting
+metadata at the IRI location allows the owner of the IRI to define the canonical metadata for
+that IRI. 
 
 ##### Details
 There are several types of IRI identifiers used in this specification:
@@ -2163,9 +2166,9 @@ There are several types of IRI identifiers used in this specification:
 * <a href="#miscext">extension key</a>
 * <a href="#attachmentUsage">attachment usage type</a>
 
-For supplying metadata about Activity ids, see <a href="#activity"> the Activity Definition Object</a>.
+For the structure of hosted metadata about Activity ids, see <a href="#activity"> the Activity Definition Object</a>.
 
-For supplying metadata about all other identifiers, see the format below:
+For the structure of hosted metadata about all other identifiers, see the format below:
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -2183,7 +2186,8 @@ For supplying metadata about all other identifiers, see the format below:
 	</tr>
 </table>
 
-If this metadata is provided as described above, it is the canonical source of information about the 
+Hosted metadata consists of a document containing a JSON object as described above. 
+If this hosted metadata is provided, it is the canonical source of information about the 
 identifier it describes.  We recommend that 
 Activity Providers look for and use established, widely adopted identifiers for all types of IRI 
 identifiers other than Activity id.
