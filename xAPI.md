@@ -2304,6 +2304,7 @@ are unlikely. The requirements below only apply to Agent Profile API and Activit
 * An LRS responding to a GET request MUST add an ETag HTTP header to the response. (The reason for 
 specifying the LRS ETag format is to allow API consumers that can't read the ETag header to calculate 
 it themselves.)
+* An LRS responding to a PUT or POST request SHOULD* add an ETag HTTP header to the response.
 * An LRS responding to a GET request MUST calculate the value of this header to be a hexidecimal string 
 of the SHA-1 digest of the contents.
 * An LRS responding to a GET request MUST enclose the header in quotes.  
