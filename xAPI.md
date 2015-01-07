@@ -478,7 +478,7 @@ The details of each property of a statement are described in the table below.
 		<a href="#group">Group</a> Object. Represents the "I" in "I Did This".</td>
 	<td>Required</td></tr>
 	<tr><td><a href="#verb">verb</a></td><td>Object</td>
-	<td>Action of the Learner or Team Object. Represents the "Did" in "I Did This".</td>
+	<td>Action taken by the Actor. Represents the "Did" in "I Did This".</td>
 	<td>Required</td></tr>
 	<tr><td><a href="#object">object</a></td><td>Object</td>
 	<td>Activity, Agent, or another Statement that is the Object of the Statement. 
