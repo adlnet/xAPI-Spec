@@ -1884,6 +1884,8 @@ Complete IRI validation is extremely difficult, so much of the burden for ensuri
 * A library SHOULD be used to construct IRIs, as opposed to string concatenation. 
 * Values SHOULD be considered to be case sensitive unless specified otherwise. 
 * Lowercase SHOULD be used to send case insensitive data.
+* Additional properties SHOULD* NOT be added to statements and other objects unless explicitly allowed and the 
+LRS MAY* reject statements and objects containing such additional properties.
 
 ###### LRS Requirements
 
@@ -1893,9 +1895,10 @@ Complete IRI validation is extremely difficult, so much of the burden for ensuri
     * with strings where booleans are required, even if those strings contain booleans.
     * with any non-format-following key or value, including the empty string, where a
       string with a particular format (such as mailto IRI, UUID, or IRI) is required.
-    * where the case of a key does not match the case specified in the standard.
+    * where the case of a key does not match the case specified in this specification.
     * where the case of a value restricted to enumerated values does not match
-      an enumerated value given in the standard exactly.
+      an enumerated value given in this specification exactly.
+    * where a key or value is not allowed by this specification.
 * The LRS MUST reject Statements containing IRL, IRI, or IRI values without a scheme.
 * The LRS MUST at least validate that the sequence of token lengths for language map keys
 matches the [RFC 5646](http://tools.ietf.org/html/rfc5646) standard.
