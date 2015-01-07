@@ -755,8 +755,8 @@ The table below lists all properties of the Verb Object.
 		<td>id</td>
 		<td>IRI</td>
 		<td>Corresponds to a Verb definition. Each Verb definition 
-			corresponds to the meaning of a Verb, not the word. The IRI should 
-			be human-readable and contain the Verb meaning.</td>
+			corresponds to the meaning of a Verb, not the word. 
+		</td>
 		<td>Required</td>
 	</tr>
 	<tr>
@@ -774,7 +774,7 @@ The table below lists all properties of the Verb Object.
 
 * A system reading a Statement MUST use the Verb IRI to infer meaning.
 * The IRI contained in an id SHOULD contain a human-readable portion which SHOULD provide meaning enough 
-to disambiguate it from other similar(in syntax) Verbs.
+for a person reviewing the raw statement to disambiguate the Verb from other similar(in syntax) Verbs.
 * A single Verb IRI MUST NOT be used to refer to multiple meanings.
 
 ###### Verb Display AP Requirements
