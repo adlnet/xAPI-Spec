@@ -2859,18 +2859,18 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 		<td>format</td>
 		<td>String: ("ids", "exact", or "canonical")</td>
 		<td>exact</td>
-		<td>If "ids", only include minimum information necessary in Agent, Activity, 
+		<td>If "ids", only include minimum information necessary in Agent, Activity, Verb 
 			and Group Objects to identify them. For anonymous groups this means including 
 			the minimum information needed to identify each member. 
 			<br/><br/>
-			If "exact", return Agent, Activity, and Group Objects populated exactly as they 
+			If "exact", return Agent, Activity, Verb and Group Objects populated exactly as they 
 			were when the Statement was received. An LRS requesting Statements for the purpose 
 			of importing them would use a format of "exact".  
 			<br/><br/>
-			If "canonical", return Activity Objects populated with the canonical
-			definition of the Activity Objects as determined by the LRS, after
+			If "canonical", return Activity Objects and Verbs populated with the canonical
+			definition of the Activity Objects and Display of the Verbs as determined by the LRS, after
 			applying the <a href="#queryLangFiltering">language filtering process defined below</a>,
-			and return the original Agent Objects as in "exact" mode.  
+			and return the original Agent and Group Objects as in "exact" mode.  
 		</td>
 		<td>Optional</td>
 	</tr>
@@ -2947,6 +2947,9 @@ Statements are filtered.
 
 * Activity Objects contain Language Map Objects for name, description and interaction components. 
 The LRS MUST return only one language in each of these maps. 
+
+* Verb Objects contain Language Map Objects for Display. 
+The LRS SHOULD* return only one language in this map. 
 
 * In order to choose the most relevant language, the LRS MUST apply the Accept-Language header as 
 described in <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a> 
