@@ -516,13 +516,28 @@ The details of each property of a statement are described in the table below.
 	<td>Optional</td></tr>
 </table>  
 
-Aside from (potential or required) assignments of properties during LRS 
-processing ("id", "authority", "stored", "timestamp", "version") Statements are immutable. Note that the content of 
+###### Statement Immutablity and Exceptions
+Statements are immutable (they cannot be changed). The following are exceptions or areas not covered by this rule:
+
+* Potential or required assignments of properties during LRS 
+processing ("id", "authority", "stored", "timestamp", "version"). 
+
+* Activties referenced by a Statement. The content of 
 Activities that are referenced in Statements is not considered part of the 
-Statement itself. So while the Statement is immutable, the Activities referenced 
-by that Statement are not. This means a deep serialization of a Statement into 
+Statement itself. This means a deep serialization of a Statement into 
 JSON will change if the referenced Activities change (see the
 [Statement API's](#stmtapi) "format" parameter for details).  
+
+* Verbs referenced by a Statement. The Display property of the Verb is not considered 
+part of the Statement itself (see the [Statement API's](#stmtapi) "format" parameter for details). 
+
+* Serialization of timestamp data. This is not considered part of the immutable statement 
+itself. For example, the timestamp and stored properties of a statement can be returned
+in a different timezone to the one with which they were stored so long as the point in time
+referenced is not affected. See [4.1.7 Timestamp](#timestamp) and [4.1.8 Stored](#stored) for details. 
+
+* Serialization of un-ordered lists. The list of Agents in a Group is not considered to be an ordered list
+and so the LRS can return this list of agents in any order. See [4.1.2.2 Groups](#group).
 
 ###### Requirements 
 
@@ -619,7 +634,8 @@ The table below lists all properties of an Anonymous Group.
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>Required</td></tr>
 	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>Optional</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td><td>The members of this Group.</td>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td>
+	<td>The members of this Group. This is an un-ordered list.</td>
 	<td>Required</td></tr>
 </table>
 
@@ -631,7 +647,8 @@ The table below lists all properties of an Identified Group.
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>Required</td></tr>
 	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>Optional</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td><td>The members of this Group.</td>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td>
+	<td>The members of this Group. This is an un-ordered list.</td>
 	<td>Optional</td></tr>
 	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
 	    <td>An Inverse Functional Identifier unique to the Group.</td><td>Required</td></tr>	
@@ -643,6 +660,7 @@ The table below lists all properties of an Identified Group.
 * Activity Providers SHOULD use an Identified Group when they wish to issue multiple statements, aggregate data 
 or store and retrieve documents relating to a group.
 * An Activity Provider MAY include a complete or partial list of Agents in the 'member' property of a given Anonymous or Identified Group.
+* An LRS returning a statement MAY return the list of group members in any order.
 
 ###### Requirements for Anonymous Groups
 
@@ -1541,6 +1559,8 @@ These examples are for illustrative purposes only and are not meant to be prescr
 ###### Requirements
 * A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
 * A timestamp SHOULD include the time zone.
+* If the timestamp includes a time zone, the LRS MAY be return the timestamp using a different timezone to the one originally used in the statement
+so long as the point in time referenced is not affected. The LRS SHOULD* return the timestamp in UTC timezone. 
 * A timestamp SHOULD be the current or a past time when it is outside of a Sub-Statement.
 * A timestamp MAY represent any point of time during the experience happened over a period of time. 
 * A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
@@ -1564,6 +1584,8 @@ to record a time at which the experience described in the Statement occurred.
 
 * The stored property MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
 * The stored property SHOULD include the time zone.
+* If the stored property includes a time zone, the LRS MAY be return the stored property using a different timezone to the one originally used in the statement
+so long as the point in time referenced is not affected. The LRS SHOULD* return the stored property in UTC timezone. 
 * The stored property SHOULD be the current or a past time
 * The stored property MAY be truncated or rounded to a precision of at least 3 decimal digits
 for seconds (millisecond precision MUST be preserved). 
