@@ -2549,6 +2549,15 @@ Agent, and Activity Profile. These four sub-APIs of the Experience API are
 handled via RESTful HTTP methods. The Statement API can be used by itself to 
 track learning records. 
 
+There are certain conditions under which an LRS has to reject statements and other
+conditions which the LRS has to ignore when deciding whether or not to accept a statement. 
+None of this contradicts the idea that the LRS is also able to reject statements for 
+reasons not outlined in this specification. For example, the LRS might assign permissions
+to a particular set of credentials such that those credentials can only issues statements
+relating to a particular agent. It could then reject any statements using those credentials
+not relaing to that agent. The permissions that can be assigned by an LRS are out of scope of
+this specification. 
+
 __Note:__ In all of the example endpoints given in the specification, 
 "http://example.com/xAPI/" is the example base endpoint of the LRS. All other IRI 
 syntax after this represents the particular endpoint used.
