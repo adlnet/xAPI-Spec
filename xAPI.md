@@ -499,8 +499,7 @@ The details of each property of a statement are described in the table below.
 	<td>Optional</td></tr>
 	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
-	of when the events described within this Statement occurred. If not provided, LRS 
-	should set this to the value of "stored" time.</td>
+	of when the events described within this Statement occurred. Set by the LRS if not provided.</td>
 	<td>Optional</td></tr>
 	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
@@ -508,7 +507,7 @@ The details of each property of a statement are described in the table below.
 	<td>Set by LRS</td></tr>
 	<tr><td><a href="#authority">authority</a></td><td>Object</td>
 	<td>Agent or Group who is asserting this Statement is true. Verified by the LRS based on 
-	authentication, and set by LRS if left blank.</td>
+	authentication. Set by LRS if not provided or if a strong trust relationship between the sender and LRS has not been established.</td>
 	<td>Optional</td></tr>
 	<tr><td><a href="#version">version</a></td><td>Version</td>
 	<td>The Statement’s associated xAPI version, formatted according to <a href="http://semver.org/spec/v1.0.0.html">Semantic Versioning 1.0.0</a>.</td>
@@ -1549,8 +1548,7 @@ These examples are for illustrative purposes only and are not meant to be prescr
 * A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
 * A timestamp MAY be a moment in the future, to denote a deadline for planned learning, provided it is included 
 inside a Sub-Statement.
-
-
+* SHOULD* be set by the LRS to the value of [Stored](#stored) if not provided.
 
 
 <a name="stored"/> 
@@ -2420,7 +2418,7 @@ record the authority as the Agent representing the registered application.
 
 ###### Application not registered + known user Process and Requirements
 
-* Use a blank consumer secret.
+* The AP MUST use a consumer secret consisting of an empty string.
 * Call "Temporary Credential" request.
 * Specify "consumer_name" and other usual parameters; User will then see "consumer_name" plus a warning 
 that the identity of the application requesting authorization cannot be verified.
@@ -2436,8 +2434,13 @@ since OAuth specifies an application.
 
 ###### No authorization Process and Requirements
 
-* Requests should include headers for HTTP Basic Authentication based on a blank username and password, in order to 
-distinguish an explicitly unauthenticated request from a  request that should be given a HTTP Basic Authentication 
+* Requests MUST include headers for HTTP Basic Authentication based on a username and password containing zero or
+more space characters. 
+* Requests SHOULD* include headers for HTTP Basic Authentication based on a username and password each consisting of 
+an empty string. In this case the HTTP Basic Authentication header will be ```Basic ``` followed by a base64 encoded version of the string ```:```.
+This results in the string ```Basic Og==```.
+
+This is in order to distinguish an explicitly unauthenticated request from a request that should be given a HTTP Basic Authentication 
 challenge.
 
 <a name="oauthscope"/> 
