@@ -543,6 +543,9 @@ referenced is not affected. See [4.1.7 Timestamp](#timestamp) and [4.1.8 Stored]
 * Serialization of un-ordered lists. The list of Agents in a Group is not considered to be an ordered list
 and so the LRS can return this list of agents in any order. See [4.1.2.2 Groups](#group).
 
+* Attachments. These are not part of statements and an LRS will return statements without attachments when the client
+requests this (see the [Statement API's](#stmtapi) "attachments" parameter for details).
+
 ###### Requirements 
 
 * A Statement MUST use each property no more than one time.
