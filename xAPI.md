@@ -2549,14 +2549,22 @@ Agent, and Activity Profile. These four sub-APIs of the Experience API are
 handled via RESTful HTTP methods. The Statement API can be used by itself to 
 track learning records. 
 
-There are certain conditions under which an LRS has to reject statements and other
-conditions which the LRS has to ignore when deciding whether or not to accept a statement. 
-None of this contradicts the idea that the LRS is also able to reject statements for 
+There are certain conditions under which an LRS has to reject requests and other
+conditions which the LRS has to ignore when deciding whether to accept or reject a request. 
+None of this contradicts the idea that the LRS is also allowed to be configurable to reject requests for 
 reasons not outlined in this specification. For example, the LRS might assign permissions
-to a particular set of credentials such that those credentials can only issues statements
+to a particular set of credentials such that those credentials can only issue statements
 relating to a particular agent. It could then reject any statements using those credentials
-not relaing to that agent. The permissions that can be assigned by an LRS are out of scope of
-this specification. 
+not relaing to that agent.
+
+The permissions that can be assigned by an LRS are out of scope of
+this specification, aside from the list of recommended OAuth Authorization scope values in
+section [6.4.2](#oauthscope). 
+
+Permissions set by an LRS could cause a technically conformant LRS to fail conformance testing. 
+This could occur where requests made by the test suite are rejected on the basis of permissions. For this reason
+the LRS needs to be configurable, or credentials used for testing need to have sufficent permissions granted,
+such that permission restrictions do not affect the result of conformance testing. 
 
 __Note:__ In all of the example endpoints given in the specification, 
 "http://example.com/xAPI/" is the example base endpoint of the LRS. All other IRI 
@@ -2575,6 +2583,16 @@ specification in all but case.
 
 * The LRS MUST reject a batch of statements if any statement within that 
 batch is rejected.
+
+* The LRS MUST reject with ```HTTP 403 Forbidden``` status any request rejected by the
+LRS where the credentials associated with the request do not have permission to make that request. 
+
+* The LRS SHOULD* be configurable not to reject any requests from a particular set of credentials on the basis of permissions. 
+This set of credentials SHOULD* be used for conformance testing but MAY be deleted/deactivated on live systems. 
+
+* In order to test that the LRS returns ``HTTP 403 Forbidden``` correctly for permission voilations, the LRS SHOULD* be configurable 
+to reject all requests from a particular set of credentials on the basis of permissions. This set of credentials SHOULD* be available 
+within conformance testing but MAY be deleted/deactivated on live systems. 
 
 <a name="errorcodes" /> 
 
