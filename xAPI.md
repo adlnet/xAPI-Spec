@@ -1899,6 +1899,7 @@ LRS MAY* reject statements and objects containing such additional properties.
     * where the case of a value restricted to enumerated values does not match
       an enumerated value given in this specification exactly.
     * where a key or value is not allowed by this specification.
+    * where a key occurs mutliple times within an object. 
 * The LRS MUST reject Statements containing IRL, IRI, or IRI values without a scheme.
 * The LRS MUST at least validate that the sequence of token lengths for language map keys
 matches the [RFC 5646](http://tools.ietf.org/html/rfc5646) standard.
@@ -3355,8 +3356,11 @@ Returns: ```200 OK```, Person Object
 
 ###### Requirements
 
-All array properties must be populated with members with the 
+* All array properties must be populated with members with the 
 same definition as the similarly named property from Agent Objects.  
+
+* Additional properties not listed here SHOULD* NOT be added to this object and each 
+property MUST occur only once.  
 
 ###### Single Agent or Profile (PUT | POST | GET | DELETE) 
 
@@ -3455,6 +3459,8 @@ the latest minor and patch version the LRS conforms to, for each major version.
     * For version 1.0.0 of this specification, this means that "1.0.0" MUST be included;
     "0.9" and "0.95" MAY be included. (For the purposes of this requirement, "0.9" and "0.95"
     are considered major versions.)
+* Additional properties MUST NOT be added to this object outside of extensions and each 
+property MUST occur only once.  
 * An LRS SHOULD allow unauthenticated access to this resource
 * An LRS MUST NOT reject requests based on their version header as would otherwise be 
 required by <a href="#apiversioning"/>6.2 API Versioning</a>.
