@@ -288,7 +288,7 @@ are based on the specification set described below. For this reason, sections th
 _high-level overview_ of a given facet of the Experience API are labeled **description** or 
 **rationale**. Items in this document labeled as **requirements**, **details** or **examples** are more technical.
 
-As a rule of thumb, if the guideline appears technical or seems to be a requirement, it should be interpreted 
+As a rule of thumb, if the guideline appears technical or seems to be a requirement, interpret it 
 as such. This is especially true of longer, more, detailed explanations and of tables, each of which would 
 be unintuitive and/or lengthy to dissect into a list of requirements.
 
@@ -486,9 +486,7 @@ The details of each property of a statement are described in the table below.
 	<td>Required</td></tr>
 	<tr><td><a href="#object">object</a></td><td>Object</td>
 	<td>Activity, Agent, or another Statement that is the Object of the Statement. 
-	Represents the "This" in "I Did This". Note that Objects which are provided as a value for this property should 
-	include an "objectType" property. If not specified, the Object is assumed to be 
-	an Activity.</td>
+	Represents the "This" in "I Did This".</td>
 	<td>Required</td></tr>
 	<tr><td><a href="#result">result</a></td><td>Object</td>
 	<td>Result Object, further details representing a measured outcome relevant to the specified Verb.</td>
@@ -681,7 +679,7 @@ The table below lists all possible Inverse Functional Identifier properties.
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
 	<tr><td><a href="http://xmlns.com/foaf/spec/#term_mbox">mbox</a></td><td>mailto IRI</td><td>The required format is "mailto:email address". <br>
 	Only email addresses that have only ever been and will ever be assigned to this Agent, 
-but no others, should be used for this property and mbox_sha1sum.</td></tr>
+but no others, SHOULD be used for this property and mbox_sha1sum.</td></tr>
 	<tr><td><a href="http://xmlns.com/foaf/spec/#term_mbox_sha1sum">mbox_sha1sum</a></td><td>String</td><td>The SHA1 hash of a mailto IRI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
 	<tr><td>openid</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
 	<tr><td>account</td><td><a href="#agentaccount">Object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
@@ -1555,7 +1553,7 @@ The following table contains the properties of the Context Object.
 <tr>
 	<td>statement</td>
 	<td><a href="#stmtref">Statement Reference</a></td>
-	<td>Another Statement, which should be considered as context for this Statement. </td>
+	<td>Another Statement to be considered as context for this Statement. </td>
 	<td>optional</td>
 </tr>
 <tr>
@@ -1842,7 +1840,7 @@ The table below lists all properties of the Attachment object.
 		<td>IRI</td>
 		<td>Identifies the usage of this attachment. For example: one expected use case
 		for attachments is to include a "completion certificate". A type IRI corresponding
-		to this usage should be coined, and used with completion certificate attachments.</td>
+		to this usage MUST be coined, and used with completion certificate attachments.</td>
 		<td>Required</td>
 	</tr>
 	<tr>
@@ -2255,7 +2253,7 @@ in this specification do. The id is stored in the IRL, "updated" is HTTP header 
 ##### Description
 A language map is a dictionary where the key is a 
 [RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the value is an 
-string in the language specified in the tag. This map should be populated as 
+string in the language specified in the tag. This map SHOULD be populated as 
 fully as possible based on the knowledge of the string in question in different 
 languages.  
 
@@ -2557,14 +2555,14 @@ such a mechanism.
 
 * Use endpoints in section [6.4.2 OAuth Authorization Scope](#oauthscope) to complete the standard OAuth workflow 
 (details not in this specification).
-* If this form of authentication is used  to record Statements and no authority is specified, the LRS should 
+* If this form of authentication is used to record Statements and no authority is specified, the LRS SHOULD 
 record the authority as a group consisting of an Agent representing the registered application, and an Agent 
 representing the known user.
 
 ###### Application registered + user unknown Process and Requirements
 
 * The LRS honors requests that are signed using OAuth with the registered application's credentials and with an empty token and token secret.
-* If this form of authentication is used  to record Statements and no authority is specified, the LRS should 
+* If this form of authentication is used  to record Statements and no authority is specified, the LRS SHOULD 
 record the authority as the Agent representing the registered application.
 
 ###### Application not registered + known user Process and Requirements
@@ -2591,7 +2589,7 @@ more space characters.
 an empty string. In this case the HTTP Basic Authentication header will be ```Basic ``` followed by a base64 encoded version of the string ```:```.
 This results in the string ```Basic Og==```.
 
-This is in order to distinguish an explicitly unauthenticated request from a request that should be given a HTTP Basic Authentication 
+This is in order to distinguish an explicitly unauthenticated request from a request that needs to be given a HTTP Basic Authentication 
 challenge.
 
 <a name="oauthscope"/> 
@@ -2599,7 +2597,7 @@ challenge.
 #### 6.4.2 OAuth Authorization Scope
 
 ##### Description
-These are recommendations for scopes which should enable an LRS and an application
+These are recommendations for scopes designed to enable an LRS and an application
 communicating using the xAPI to negotiate a level of access which accomplishes what the
 application needs while minimizing the potential for misuse. The limitations of each scope
 are in addition to any security limitations placed on the user account associated with the
@@ -2648,7 +2646,7 @@ The following table lists xAPI scope values:
 
 ###### OAuth Extended Parameters  
 Note that the parameters "consumer_name" and "scope" are not part of 
-OAuth 1.0, and therefore if used should be passed as query string or form 
+OAuth 1.0, and therefore if used MUST be passed as query string or form 
 parameters, not in the OAuth header.  
 
 ###### OAuth Endpoints  
@@ -2931,9 +2929,9 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 		<td>
 			Filter, only return Statements matching the specified registration 
 			id. Note that although frequently a unique registration id will be used 
-			for one Actor assigned to one Activity, this should not be assumed. 
-			If only Statements for a certain Actor or Activity should be returned, 
-			those parameters should also be specified.
+			for one Actor assigned to one Activity, this cannot be assumed. 
+			If only Statements for a certain Actor or Activity are required, 
+			those parameters also need to be specified.
 		</td>
 		<td>Optional</td>
 	</tr>
@@ -3656,7 +3654,7 @@ with this syntax. See [4.1.11. Attachments](#attachments)
 
 * The LRS MUST support the syntax above.
 
-It should also be noted that versions of Internet Explorer lower than 10 do not 
+__Note__: Versions of Internet Explorer lower than 10 do not 
 support Cross Domain Requests between HTTP and HTTPS. This means that for IE9 and lower, 
 if the LRS is on an HTTPS domain, the Client sending the Statement must also be on HTTPS. 
 If the LRS is on HTTP, the Client must be too.  
@@ -4300,7 +4298,7 @@ In this example the minimum correct answer is 4 and there is no maximum. 5, 6 or
 ## Appendix D: Converting Statements to 1.0.0
 
 ######Rationale
-This is a 1.0.0 specification, and as such implementers should not have to consider prior
+This is a 1.0.0 specification, and as such implementers do not have to consider prior
 versions of the specification. However, prior versions did see notable adoption. This data
 conversion is specified in order
 to preserve the data tracked using earlier versions, and make it available to new implementers
@@ -4334,7 +4332,7 @@ A 1.0.0 system converting a Statement created in 0.9 MUST follow the steps below
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
 * if the Statement property in Context was set, remove it from the Statement.
-* Preserve all other properties without modification, including "stored". Stored should still
+* Preserve all other properties without modification, including "stored". Stored will still
 be updated if the Statement is passed to another system.
 
 ######Conversion of Statements created based on version 0.95
@@ -4350,7 +4348,7 @@ an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
 * If the Statement property in Context was set to anything other than a
 StatementRef, remove it from the Statement.
-* Preserve all other properties without modification, including "stored". Stored should still
+* Preserve all other properties without modification, including "stored". Stored will still
 be updated if the Statement is passed to another system.
 
 
