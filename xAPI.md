@@ -98,7 +98,7 @@ details and scope.
 - Changed from using a person-centric view of Agents to a persona-centric 
 view.
 - Friend of a Friend (FOAF) Agent merging requirement was removed.
-- Agent Objects must now have exactly 1 uniquely identifying property, instead 
+- Agent Objects now have exactly 1 uniquely identifying property, instead 
 of at least one.
 
 ###### 0.95 to 1.0.0 (April 26, 2013) 
@@ -561,7 +561,7 @@ See [Appendix A: Example Statements](#AppendixA) for more examples.
 
 ###### Description 
 
-A UUID (all versions of variant 2 in [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt) are valid, and the UUID must be in standard string form).
+A UUID (all versions of variant 2 in [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt) are valid, and the UUID MUST be in standard string form).
 
 ###### Requirements 
 
@@ -1076,7 +1076,7 @@ See [Appendix C](#AppendixC) for examples definitions for each interaction type.
 	</tr>
 	<tr>
 		<td>matching</td>
-		<td>An interaction where the learner must match items in one set (the source set) to items in another set (the target set).
+		<td>An interaction where the learner is asked to match items in one set (the source set) to items in another set (the target set).
 			Items do not have to pair off exactly and it's possible for multiple or zero source items to be matched to a given target and vice versa.</td>
 	</tr>
 	<tr>
@@ -1085,7 +1085,7 @@ See [Appendix C](#AppendixC) for examples definitions for each interaction type.
 	</tr>
 	<tr>
 		<td>sequencing</td>
-		<td>An interaction where the learner must order items in a set.</td>
+		<td>An interaction where the learner is asked to order items in a set.</td>
 	</tr>
 	<tr>
 		<td>likert</td>
@@ -2821,7 +2821,7 @@ do not match.
 Example endpoint: ```http://example.com/xAPI/statements```
 
 Stores a Statement, or a set of Statements. Since the PUT method targets a specific 
-Statement id, POST must be used rather than PUT to save multiple Statements, or to 
+Statement id, POST is used rather than PUT to save multiple Statements, or to 
 save one Statement without first generating a Statement id. An alternative for systems 
 that generate a large amount of Statements is to provide the LRS side of the API 
 on the AP, and have the LRS query that API for the list of updated (or new) 
@@ -3056,7 +3056,7 @@ include attachment raw data and MUST report application/json.
 For filter parameters which are not time or sequence based (that is, other than
 since, until, or limit), Statements which target another Statement (by using a StatementRef
 as the Object of the Statement) will meet the filter condition if the targeted Statement meets 
-the condition. The time and sequence based parameters must still be applied to the Statement 
+the condition. The time and sequence based parameters MUST still be applied to the Statement 
 making the StatementRef in this manner. This rule applies recursively, so that "Statement a" is a 
 match when a targets b which targets c and the filter conditions described above match for 
 "Statement c".
@@ -3493,7 +3493,7 @@ include the information associated with the requested Agent.
 		<td>account*</td>
 		<td>Array of account objects.</td>
 		<td>List of accounts to match. Complete account Objects (homePage and name) 
-		must be provided.</td>
+		MUST be provided.</td>
 		<td>Optional</td>
 	</tr>
 </table> 
@@ -3514,7 +3514,7 @@ Returns: ```200 OK```, Person Object
 
 ###### Requirements
 
-All array properties must be populated with members with the 
+All array properties MUST be populated with members with the 
 same definition as the similarly named property from Agent Objects.  
 
 ###### Single Agent or Profile (PUT | POST | GET | DELETE) 
