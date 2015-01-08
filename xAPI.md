@@ -144,7 +144,7 @@ which are the means by which experiences are conveyed by an Activity Provider.
 
 * Data Transfer methods for the storage and retrieval (but not validation) of
 these Objects to/from a Learning Record Store.  Note that the systems storing 
-or retrieving records need not be Activity Providers. LRSs may 
+or retrieving records need not be Activity Providers. LRSs can 
 communicate with other LRSs, or reporting systems.
 
 * Security methods allowing for the trusted exchange of information between
@@ -333,7 +333,7 @@ examples of activities include a book, an e-learning course, a hike or a meeting
 __Activity Provider (AP)__: The software object that is communicating with 
 the LRS to record information about a learning experience. May be similar to a SCORM 
 package in that it is possible to bundle learning assets with the software object that performs this 
-communication, but an Activity Provider may also be separate from the experience it is reporting about.
+communication, but an Activity Provider could also be separate from the experience it is reporting about.
 
 <a name="def-actor" />
 
@@ -356,7 +356,7 @@ __Base Endpoint__: The maximal path under all Experience API endpoints, includin
 
 <a name="def-client" />
 
-__Client__: - Refers to any entity that may interact with an LRS. A Client can be an 
+__Client__: - Refers to any entity that might interact with an LRS. A Client can be an 
 Activity Provider, reporting tool, an LMS, or another LRS.
 
 <a name="def-community-of-practice" />
@@ -380,7 +380,7 @@ the same.
 
 <a name="def-iri" />
 
-__Internationalized Resource Identifier  (IRI)__: A unique identifier which may be an IRL. 
+__Internationalized Resource Identifier  (IRI)__: A unique identifier which could be an IRL. 
 Used to identify an object such as a verb, activity or activity type. Unlike URIs, IRIs 
 can contain some characters outside of the ASCII character set in order to support international 
 languages. 
@@ -446,7 +446,7 @@ experience.
 
 __Statement__: A simple construct consisting of ```<actor (learner)>``` ```<verb>``` ```<object>```, 
 with ```<result>```, in ```<context>``` to track an aspect of a learning experience. A set of 
-several Statements may be used to track complete details about a learning experience.
+several Statements might be used to track complete details about a learning experience.
 
 <a name="def-tcapi"/>
 
@@ -832,7 +832,7 @@ Therefore, it is expected that xAPI communities of practice generate profiles, l
 centered on Verb vocabularies.  ADL is creating a companion document containing Verbs for xAPI to serve the ADL Community.
 
 In fulfillment of the requirements below, a collection of IRIs of recommended Verbs exists.  There are times when 
-Activity Providers may wish to use a different Verb for the same meaning.
+Activity Providers might wish to use a different Verb for the same meaning.
 
 ###### Requirements for Communities of Practice
 
@@ -878,7 +878,7 @@ The properties of an Object change according to the objectType.
 
 ###### Details
 
-A Statement may represent an Activity as the Object of the Statement. The following table lists the Object 
+A Statement can represent an Activity as the Object of the Statement. The following table lists the Object 
 properties in this case.
 
 <table>
@@ -903,7 +903,7 @@ properties in this case.
 </table>
 
 If it were possible to use the same id for two different Activities, the validity of Statements about 
-these Activities could be questioned. This means an LRS may never treat (references to) the same 
+these Activities could be questioned. This means an LRS can't ever treat (references to) the same 
 Activity id as belonging to two different Activities, even if it thinks this was intended. Namely, 
 when a conflict with another system occurs, it’s not possible to determine the intentions. 
 
@@ -973,7 +973,7 @@ authors and/or organizations.
 SHOULD decide whether it considers the Activity Provider to have the authority to change the definition and
 SHOULD update the stored Activity Definition accordingly if that decision is positive.
 * An LRS MAY accept small corrections to the Activity’s definition. For example, it would be okay for an LRS
-to accept spelling fixes, but it may not accept changes to correct responses.
+to accept spelling fixes, but not to accept changes to correct responses.
 
 
 ###### Activity Provider Requirements
@@ -1059,7 +1059,7 @@ See [Appendix C](#AppendixC) for examples definitions for each interaction type.
 		<td>choice</td>
 		<td>An interaction with a number of possible choices from which the learner can select. 
 			This includes intractions in which the learner can select only one answer from the list and
-			those where the learner may select multiple items.</td>
+			those where the learner can select multiple items.</td>
 	</tr>
 	<tr>
 		<td>fill-in</td>
@@ -1515,7 +1515,7 @@ The following table contains the properties of the Context Object.
 </tr>
 <tr>
 	<td>instructor</td>
-	<td>Agent (may be a Group)</td>
+	<td>Agent (MAY be a Group)</td>
 	<td>Instructor that the Statement relates to, if not included as the Actor of the Statement.</td>
 	<td>optional</td>
 </tr>
@@ -1826,7 +1826,7 @@ lack a version, the version MUST be set to 1.0.0.
 A digital artifact providing evidence of a learning experience.
 
 ###### Rationale 
-In some cases an attachment may logically be an important part of a learning record. Think of a simulated 
+In some cases an attachment is logically an important part of a learning record. Think of a simulated 
 communication with ATC, an essay, a video, etc. Another example of such an attachment is (the image of) a 
 certificate that was granted as a result of an experience. It is useful to have a way to store these attachments 
 in and retrieve them from an LRS. In the case of wanting to include an attachment(s) for a Sub-Statement, we strongly recommend including the attachment(s) in the Statement Attachment object and including the payloads as you would normally for a Statement.
@@ -1879,7 +1879,7 @@ The table below lists all properties of the Attachment object.
 	<tr>
 		<td>fileUrl</td>
 		<td>IRL</td>
-		<td>An IRL at which the attachment data may be retrieved, or from which it used 
+		<td>An IRL at which the attachment data can be retrieved, or from which it used 
 		to be retrievable. </td>
 		<td>Optional</td>
 	</tr>
@@ -2086,15 +2086,9 @@ The following table shows the data structure for the results of queries on the S
 		<td>Required</td>
 	</tr>
 	<tr><td>more</td><td>IRL</td>
-		<td>Relative IRL that may be used to fetch more results, including the full path 
+		<td>Relative IRL that can be used to fetch more results, including the full path 
 			and optionally a query string but excluding scheme, host, and port. 
-			Empty string if there are no more results to fetch.<br/><br/>
-
-			This IRL must be usable for at least 24 hours after it is returned by the LRS. 
-			In order to avoid the need to store these IRLs and associated query data, an 
-			LRS may include all necessary information within the IRL to continue the 
-			query, but should avoid generating extremely long IRLs. The consumer should 
-			not attempt to interpret any meaning from the IRL returned.
+			Empty string if there are no more results to fetch.
 		</td>
 		<td>Required if the list returned has been limited, otherwise optional.</td>
 	</tr>
@@ -2179,13 +2173,13 @@ This example Statement voids a previous Statement which it identifies with the S
 #### 4.4 Signed Statements
 
 ##### Description
-A Statement may include a <a href="https://en.wikipedia.org/wiki/Digital_signature">
+A Statement can include a <a href="https://en.wikipedia.org/wiki/Digital_signature">
 digital signature</a> to provide strong and durable evidence of the authenticity and
 integrity of the Statement.
 
 ##### Rationale
 Some Statements will have regulatory or legal significance, or otherwise require strong
-and durable evidence of their authenticity and integrity. It may be necessary to verify
+and durable evidence of their authenticity and integrity. It might be necessary to verify
 these Statements without trusting the system they were first recorded in, or perhaps
 without access to that system. Digital signatures will enable a third-party system
 to validate such Statements.
@@ -2241,7 +2235,7 @@ See <a href="#AppendixE">Appendix E: Example Signed Statement</a> for an example
 
 ##### Description
 The Experience API provides a facility for Activity Providers to save arbitrary data in 
-the form of documents, which may be related to an Activity, Agent, or combination of both.  
+the form of documents, perhaps related to an Activity, Agent, or combination of both.  
 
 ##### Details
 Note that the following table shows generic properties, not a JSON Object as many other tables 
@@ -2367,7 +2361,7 @@ identifier was not coined for use with this specification.
 Sections 6 and 7 detail the more technical side of the Experience API, dealing with 
 how Statements are transferred between Activity Provider and LRS. A number of libraries 
 are under development for a range of technologies (including JavaScript) which handle 
-this part of the specification. It therefore may not be necessary for content developers 
+this part of the specification. It therefore might not be necessary for content developers 
 to fully understand every detail of this part of the specification.
 
 <a name="encoding"/> 
@@ -2383,10 +2377,10 @@ to fully understand every detail of this part of the specification.
 
 ###### Rationale
 
-Future revisions of the specification may introduce changes such as properties added to 
+Future revisions of the specification might introduce changes such as properties added to 
 Statements.
 
-Systems retrieving Statements may then receive responses that include Statements of different
+Systems retrieving Statements might then receive responses that include Statements of different
 versions. The version header allows for these version differences to be handled correctly, and 
 to ascertain that no partial or mixed LRS version implementations exist.
 
@@ -2431,7 +2425,7 @@ data into an LRS.
 
 ##### Details
 xAPI will use HTTP 1.1 entity tags ([ETags](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19))
-to implement optimistic concurrency control in the portions of the API where PUT, POST or DELETE may
+to implement optimistic concurrency control in the portions of the API where PUT, POST or DELETE might
 overwrite or remove existing data, being:
 
 * State API
@@ -2540,7 +2534,7 @@ The LRS MUST support authentication using at least one of the following methods:
 - HTTP Basic Authentication
 - Common Access Cards (implementation details to follow in a later version)
 - The LRS MUST handle making, or delegating, decisions on the validity of Statements,
- and determining what operations may be performed based on the credentials used.
+ and determining what operations might be performed based on the credentials used.
 	
 <a name="authdefs"/>
 
@@ -2636,8 +2630,8 @@ The following table lists xAPI scope values:
 		<td>define</td>
 		<td>(re)Define Activities and Actors. If storing a Statement 
 			when this is not granted, ids will be saved and the LRS 
-			may save the original Statement for audit purposes, but 
-			should not update its internal representation of any 
+			MAY save the original Statement for audit purposes, but 
+			SHOULD NOT update its internal representation of any 
 			Actors or Activities.
 		</td>
 	</tr>
@@ -2717,7 +2711,7 @@ syntax after this represents the particular endpoint used.
 
 * The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
 of these APIs that use any parameters which the LRS does not recognize in their 
-intended context in this specification ( __Note:__ LRSs may recognize and act on 
+intended context in this specification ( __Note:__ LRSs MAY recognize and act on 
 parameters not in this specification).
 
 * The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
@@ -2863,7 +2857,7 @@ parameters passed. See Section [7.8 Cross Origin Requests](#78-cross-origin-requ
 
 Example endpoint: ```http://example.com/xAPI/statements```
 
-This method may be called to fetch a single Statement or multiple Statements. If the
+This method is called to fetch a single Statement or multiple Statements. If the
 statementId or voidedStatementId parameter is specified a single Statement is returned.
 
 Otherwise returns: A [StatementResult](#retstmts) Object,
@@ -3667,7 +3661,7 @@ support Cross Domain Requests between HTTP and HTTPS. This means that for IE9 an
 if the LRS is on an HTTPS domain, the Client sending the Statement must also be on HTTPS. 
 If the LRS is on HTTP, the Client must be too.  
 
-There may be cases where there is a requirement for the Client Activity Provider to support 
+There might be cases where there is a requirement for the Client Activity Provider to support 
 IE8 and IE9 where the Client code is hosted on a different scheme (HTTP or HTTPS) from 
 the LRS. In these cases, proxy is needed to communicate to the LRS. Two simple solutions 
 might be to 1) set up a proxy pass through on the same scheme as the Client code to the LRS 
@@ -3706,7 +3700,7 @@ the HTTP headers, and not the actual document.
 
 ###### Rationale
 
-Clients accessing the LRS may need to check if a particular Statement exists, or determine
+Clients accessing the LRS might need to check if a particular Statement exists, or determine
 the modification date of documents such as state or Activity or Agent profile. Particularly
 for large documents it's more efficient not to get the entire document just to check its
 modification date.
