@@ -758,8 +758,8 @@ The table below lists all properties of the Verb Object.
 		<td>id</td>
 		<td>IRI</td>
 		<td>Corresponds to a Verb definition. Each Verb definition 
-			corresponds to the meaning of a Verb, not the word. The IRI should 
-			be human-readable and contain the Verb meaning.</td>
+			corresponds to the meaning of a Verb, not the word. 
+		</td>
 		<td>Required</td>
 	</tr>
 	<tr>
@@ -773,16 +773,42 @@ The table below lists all properties of the Verb Object.
 	</tr>
 </table>
 
-###### Requirements
+###### Verb Id Requirements
 
-* The display property MUST be used to illustrate the meaning which is already determined by the Verb IRI.
 * A system reading a Statement MUST use the Verb IRI to infer meaning.
-* The display property MUST NOT be used to alter the meaning of a Verb.
-* A system reading a Statement MUST NOT use the display property to infer any meaning from the Statement.
-* A system reading a Statement MUST NOT use the display property for any purpose other than display to a human.
-Using the display property for aggregation or categorization of Statements is an example of violating this requirement. 
-* The display property SHOULD be used by all Statements.
-* The IRI contained in the id SHOULD be human-readable and imply the Verb meaning.
+* The IRI contained in an id SHOULD contain a human-readable portion which SHOULD provide meaning enough 
+for a person reviewing the raw statement to disambiguate the Verb from other similar(in syntax) Verbs.
+* A single Verb IRI MUST NOT be used to refer to multiple meanings.
+
+###### Verb Display AP Requirements
+* The Display property SHOULD be used by all Statements.
+* The Display property MUST be used to illustrate the meaning which is already determined by the Verb IRI.
+
+###### Verb Display LRS Requirements
+The requirements below relate to the Display property as returned by the LRS via the API.  
+
+* When queried for Statements with a Format of "exact", the LRS MUST return the Display property 
+exactly as included (or omitted) within the Statement.
+* When queried for Statements with a Format of "ids", the LRS SHOULD* NOT include the Display property.
+* When queried for Statements with a Format of "canonical", the LRS SHOULD* return a canonical Display 
+for that Verb. 
+* The LRS may determine its canonical Display based on the Verb Display property included within 
+Statements it recieves, the Name property included in the metadata as described in 
+[section 5.4 Identifier metadata](#miscmeta), or the Verb Display as defined in some other location.
+
+###### Verb Display Client Requirements
+The requirements below relate to the display property as displayed to a user either by the LRS or
+another system. 
+
+* The Display property MUST NOT be used to alter the meaning of a Verb.
+* A system reading a Statement MUST NOT use the Display property to infer any meaning from the Statement.
+* A system reading a Statement MUST NOT use the Display property for any purpose other than Display to a human.
+Using the Display property for aggregation or categorization of Statements is an example of violating this requirement. 
+* Systems displaying a Statement's Verb in a user interface MAY choose to render the Verb Display property included within the 
+Statement, the Name property included in the metadata as described in [section 5.4 Identifier metadata](#miscmeta), or the 
+Verb Display as defined in some other location.
+* Systems displaying a Statement's Verb MUST NOT display a word that differs from the meaning of the Verb but 
+MAY alter the wording and tense displayed for the purposes of human-readability. 
 
 ###### Example
 This example shows a Verb with the recommended fields set.
@@ -807,9 +833,9 @@ _Semantics_
 
 The IRI represented by the Verb id identifies the particular semantics of a word, not the word itself. 
 
-For example, the English word "fired" could mean different things depending on context, such as "fired a 
-weapon", "fired a kiln", or "fired an employee". In this case, an IRI MUST identify one of these specific 
-meanings, not the word "fired". 
+For example, the English word "fired" could mean different things depending on context, such as 
+"fired(a weapon)", "fired(a kiln)", or "fired(an employee)". In this case, an IRI identifies one of 
+these specific meanings. 
 
 The display property has some flexibility in tense. While the Verb IRIs are expected to remain in the 
 past tense, if conjugating verbs to another tense (using the same Verb) within the Activity makes sense, 
@@ -2327,7 +2353,7 @@ For supplying metadata about all other identifiers, see the format below:
 	<tr>
 		<td>name</td>
 		<td><a href="#misclangmap">Language Map</a></td>
-		<td>The human readable/visual name</td>
+		<td>The human readable/visual name. For Verbs, this is equivalent to the Display property in a statement.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
@@ -2358,7 +2384,6 @@ IRL when the IRL is requested and a Content-Type of "application/json" is reques
 take the place of this metadata entirely if it was not provided or cannot be loaded. This MAY
 include metadata in other formats stored at the IRL of an identifier, particularly if that
 identifier was not coined for use with this specification.
-
 
 <a name="rtcom"/>
 
