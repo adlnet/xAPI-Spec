@@ -1462,6 +1462,12 @@ The following table contains the properties of the Results Object.
 </tr>
 </table> 
 
+###### Requirements
+
+* The Duration property MUST be expressed using the format for duration in ISO 8601:2004(E) section 4.4.3.2.
+The alternative format (in conformity with the format used for time points and described in ISO 8601:2004(E) 
+section 4.4.3.3) MUST NOT be used.
+
 <a name="Score"/>
 
 ##### 4.1.5.1 Score
