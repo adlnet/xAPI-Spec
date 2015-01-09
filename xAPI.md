@@ -486,8 +486,8 @@ The details of each property of a statement are described in the table below.
 	<td>Required</td></tr>
 	<tr><td><a href="#object">object</a></td><td>Object</td>
 	<td>Activity, Agent, or another Statement that is the Object of the Statement. 
-	Represents the "This" in "I Did This". Note that Objects which are provided as a value for this field should 
-	include an "objectType" field. If not specified, the Object is assumed to be 
+	Represents the "This" in "I Did This". Note that Objects which are provided as a value for this property should 
+	include an "objectType" property. If not specified, the Object is assumed to be 
 	an Activity.</td>
 	<td>Required</td></tr>
 	<tr><td><a href="#result">result</a></td><td>Object</td>
@@ -811,7 +811,7 @@ Verb Display as defined in some other location.
 MAY alter the wording and tense displayed for the purposes of human-readability. 
 
 ###### Example
-This example shows a Verb with the recommended fields set.
+This example shows a Verb with the recommended properties set.
 ```
 {
     "id":"http://www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)", 
@@ -893,8 +893,8 @@ Some examples:
 
 ###### Details
 
-Objects which are provided as a value for this field SHOULD include an "objectType" 
-field. If not specified, the objectType is assumed to be "Activity". Other valid values 
+Objects which are provided as a value for this property SHOULD include an "objectType" 
+property. If not specified, the objectType is assumed to be "Activity". Other valid values 
 are: <a href="#agentasobj">Agent</a>, <a href="#agentasobj">Group</a>, <a href="#substmt">SubStatement</a> or [StatementRef](#stmtref)</a>.
 The properties of an Object change according to the objectType.
 
@@ -1415,7 +1415,7 @@ action. The concrete example that follows logically states that
 #### 4.1.5 Result
 
 ###### Description
-An optional field that represents a measured outcome related to the Statement in which it is included.
+An optional property that represents a measured outcome related to the Statement in which it is included.
 
 ###### Details
 The following table contains the properties of the Results Object.
@@ -1473,7 +1473,7 @@ section 4.4.3.3) MUST NOT be used.
 ##### 4.1.5.1 Score
 
 ###### Description
-An optional field that represents the outcome of a graded Activity achieved by an Agent.
+An optional property that represents the outcome of a graded Activity achieved by an Agent.
 
 ###### Details
 
@@ -1526,10 +1526,10 @@ from an extension profile instead.
 #### 4.1.6 Context
 
 ###### Description 
-An optional field that provides a place to add contextual information to a Statement. All properties are optional.
+An optional property that provides a place to add contextual information to a Statement. All properties are optional.
 
 ###### Rationale 
-The "context" field provides a place to add some contextual information to a Statement. It can store information such 
+The Context property provides a place to add some contextual information to a Statement. It can store information such 
 as the instructor for an experience, if this experience happened as part of a team Activity, or how an experience fits 
 into some broader activity.
 
@@ -1660,7 +1660,7 @@ For example: Anna attempts a biology exam, and the Statement is
 tracked using the CMI-5 profile. The Statement's Activity refers
 to the exam, and the category is the CMI-5 profile.
 
-5. __Other__: a context Activity that doesn't fit one of the other fields.
+5. __Other__: a context Activity that doesn't fit one of the other properties.
 For example: Anna studies a textbook for a biology exam. The Statement's
 Activity refers to the textbook, and the exam is a context Activity of type "other".
 
@@ -1796,11 +1796,11 @@ or them as a user, but the unique combination of both.
 * The authority MUST contain an Agent Object that represents the OAuth consumer, either by itself, or 
 as part of a group in the case of 3-legged OAuth.
 * The Agent representing the OAuth consumer MUST be identified by account.
-* The Agent representing the OAuth consumer MUST use the consumer key as the “account name” field.
+* The Agent representing the OAuth consumer MUST use the consumer key as the value of the Account "name” property.
 * If the Agent representing the OAuth consumer is a registered application, the token request endpoint 
 MUST be used as the account homePage.
 * If the Agent representing the OAuth consumer is not a registered application, the temporary  
-credentials endpoint MUST be used as the account homePage.
+credentials endpoint MUST be used as the Account "homePage".
 * An LRS MUST NOT trust the application portion of the authority in the event the account name is from 
 the same source as the unregistered application. (Multiple unregistered applications could choose the same consumer key. 
 As a result, there is no consistent way to verify this combination of temporary credentials and 
@@ -1861,10 +1861,10 @@ A digital artifact providing evidence of a learning experience.
 In some cases an attachment may logically be an important part of a learning record. Think of a simulated 
 communication with ATC, an essay, a video, etc. Another example of such an attachment is (the image of) a 
 certificate that was granted as a result of an experience. It is useful to have a way to store these attachments 
-in and retrieve them from an LRS. In the case of wanting to include an attachment(s) for a Sub-Statement, we strongly recommend including the attachment(s) in the Statement attachment field and including the payloads as you would normally for a Statement.
+in and retrieve them from an LRS. In the case of wanting to include an attachment(s) for a Sub-Statement, we strongly recommend including the attachment(s) in the Statement Attachment object and including the payloads as you would normally for a Statement.
 
 ###### Details
-The table below lists all properties of the Attachment Object.
+The table below lists all properties of the Attachment object.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -1941,12 +1941,12 @@ results when the attachments filter is false.
     * The first part of the multipart document MUST contain the Statements themselves, with type "application/json".
     * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
 capability will be available when issuing PUT or POST against the Statement resource.
-	* MUST include an X-Experience-API-Hash field in each part's header after the first (Statements) part.
-	* This field MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
+	* MUST include an X-Experience-API-Hash parameter in each part's header after the first (Statements) part.
+	* This parameter MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
 	attachment included in this part.
-	* MUST include a Content-Transfer-Encoding field with a value of "binary" in each part's header after the first (statements) part.
+	* MUST include a Content-Transfer-Encoding parameter with a value of "binary" in each part's header after the first (statements) part.
     * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple Statements that are sent together.
-    * SHOULD include a Content-type field in each part's header, for the first part this MUST be "application/json".
+    * SHOULD include a Content-Type parameter in each part's header, for the first part this MUST be "application/json".
 
 
 ###### LRS Requirements
@@ -2163,9 +2163,9 @@ itself be voided.
 ###### Requirements
 
 * When issuing a Statement that voids another, the Object of that voiding Statement MUST have the "objectType" 
-field set to "StatementRef".
+property set to "StatementRef".
 * When issuing a Statement that voids another, the Object of that voiding Statement MUST specify the id 
-of the statement-to-be-voided by its "id" field.
+of the statement-to-be-voided by its "id" property.
 * an LRS MUST consider a Statement it contains "voided" if and only if the Statement is not itself a voiding Statement and the LRS also contains a voiding Statement referring to the first Statement.
 * Upon receiving a Statement that voids another, the LRS SHOULD reject the entire request which includes the 
 voiding Statement with HTTP 403 'Forbidden' if the request is not from a source authorized to void Statements.
@@ -2880,7 +2880,7 @@ do not match.
 
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 
-* GET Statements MAY be called using POST and form fields if necessary as query strings 
+* GET Statements MAY be called using POST and form parameters if necessary as query strings 
 have limits. See Section [7.8 Cross Origin Requests](#78-cross-origin-requests) for more details.
 
 * The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
@@ -3107,7 +3107,7 @@ being fetched.
 
 This section does not apply when retrieving Statements with statementId or voidedStatementId.
 
-__Note:__StatementRefs used in the statement field in context do not affect how
+__Note:__StatementRefs used as a value of the Statement property within Context do not affect how
 Statements are filtered.
 
 <a name="queryLangFiltering" />
@@ -4370,8 +4370,8 @@ A 1.0.0 system converting a Statement created in 0.9 MUST follow the steps below
 * If an authority was not previously set, set the authority to an Agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
-* if the Statement field in context was set, remove it from the Statement.
-* Preserve all other fields without modification, including "stored". Stored should still
+* if the Statement property in Context was set, remove it from the Statement.
+* Preserve all other properties without modification, including "stored". Stored should still
 be updated if the Statement is passed to another system.
 
 ######Conversion of Statements created based on version 0.95
@@ -4385,9 +4385,9 @@ A 1.0.0 system converting a Statement created in 0.95 MUST follow the steps belo
 * If an authority was not previously set, set the authority to an Agent identified by
 an account with a homePage set to the home page corresponding to the
 system performing the conversion and an accountName of "unknown".
-* If the Statement field in context was set to anything other than a
+* If the Statement property in Context was set to anything other than a
 StatementRef, remove it from the Statement.
-* Preserve all other fields without modification, including "stored". Stored should still
+* Preserve all other properties without modification, including "stored". Stored should still
 be updated if the Statement is passed to another system.
 
 
