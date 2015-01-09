@@ -2549,15 +2549,27 @@ Agent, and Activity Profile. These four sub-APIs of the Experience API are
 handled via RESTful HTTP methods. The Statement API can be used by itself to 
 track learning records. 
 
-There are certain conditions under which an LRS has to reject requests and other
-conditions which the LRS has to ignore when deciding whether to accept or reject a request. 
-None of this contradicts the idea that the LRS is also allowed to be configurable to reject requests for 
-reasons not outlined in this specification. For example, the LRS might assign permissions
+__Note:__ In all of the example endpoints given in the specification, 
+"http://example.com/xAPI/" is the example base endpoint of the LRS. All other IRI 
+syntax after this represents the particular endpoint used.
+
+<a name="errorcodes" /> 
+
+### 7.1 Error Codes
+
+##### Description
+
+This specifical defines requirements, some of which are imposed on the LRS to accept or reject requests
+in certain conditions. In cases where an LRS is required to reject a request, the appropriate error code
+is listed as part of the rerquirement. 
+
+None of these requirements contradict the idea that the LRS is also allowed to 
+be configurable to reject requests in cases not outlined in this specification. 
+
+One of these cases is permissions. For example, the LRS might assign permissions
 to a particular set of credentials such that those credentials can only issue statements
 relating to a particular agent. It could then reject any statements using those credentials
-not relaing to that agent.
-
-The permissions that can be assigned by an LRS are out of scope of
+not relaing to that agent. The permissions that can be assigned by an LRS are out of scope of
 this specification, aside from the list of recommended OAuth Authorization scope values in
 section [6.4.2](#oauthscope). 
 
@@ -2566,44 +2578,19 @@ This could occur where requests made by the test suite are rejected on the basis
 the LRS needs to be configurable, or credentials used for testing need to have sufficent permissions granted,
 such that permission restrictions do not affect the result of conformance testing. 
 
-__Note:__ In all of the example endpoints given in the specification, 
-"http://example.com/xAPI/" is the example base endpoint of the LRS. All other IRI 
-syntax after this represents the particular endpoint used.
+Another case is where the request sent is beyond the size limits set by the LRS. It would be unreasonable
+to expect the LRS to always accept requests of any size. The LRS can choose any size limit it sees fit, but
+needs to be configurable so as not to apply size limits during conformance testing. Of course, some size limits
+will still exist during conformance testing due to limitations of hardware etc. but it is expected that these limits
+are sufficently high so as not to affect the running of tests. 
 
-###### Requirements
-
-* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
-of these APIs that use any parameters which the LRS does not recognize in their 
-intended context in this specification ( __Note:__ LRSs may recognize and act on 
-parameters not in this specification).
-
-* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
-of these APIs that use any parameters matching parameters described in this 
-specification in all but case.
-
-* The LRS MUST reject a batch of statements if any statement within that 
-batch is rejected.
-
-* The LRS MUST reject with ```HTTP 403 Forbidden``` status any request rejected by the
-LRS where the credentials associated with the request do not have permission to make that request. 
-
-* The LRS SHOULD* be configurable not to reject any requests from a particular set of credentials on the basis of permissions. 
-This set of credentials SHOULD* be used for conformance testing but MAY be deleted/deactivated on live systems. 
-
-* In order to test that the LRS returns ``HTTP 403 Forbidden``` correctly for permission voilations, the LRS SHOULD* be configurable 
-to reject all requests from a particular set of credentials on the basis of permissions. This set of credentials SHOULD* be available 
-within conformance testing but MAY be deleted/deactivated on live systems. 
-
-<a name="errorcodes" /> 
-
-### 7.1 Error Codes
-
-##### Description
-
-The list below offers some general guidance on HTTP error codes that could
-be returned from various methods in the API. 
+The LRS can also reject requests or revoke credentials in case of suspected malicious intend, for example
+an unexpected large number of requests made in a short peroid of time. It is expected that that limits 
+will be sufficently high such that the rate of requests made during conformance testing will not trigger any rate limits. 
 
 ##### Details 
+The list below offers some general guidance on HTTP error codes that could
+be returned from various methods in the API. 
 
 * ```400 Bad Request``` - Indicates
 an error condition caused by an invalid or missing argument. The term 
@@ -2632,9 +2619,11 @@ a precondition posted with the request, in the case of State or Agent Profile or
 API calls. See Section [6.3 Concurrency](#concurrency) for more details.
 
 * ```413 Request Entity Too Large``` - Indicates that the LRS has rejected the Statement or 
-document because its size is larger than the maximum allowed by the LRS. The LRS is free to
-choose any limit and MAY vary this limit on any basis, e.g., per authority, but
-MUST be configurable to accept Statements of any size.
+Document because its size (or the size of an Attachment included in the request) is larger than 
+the maximum allowed by the LRS. 
+
+* ```Too Many Requests``` - Indicates that the LRS has rejected the request because it has recieved 
+too many requests from the client or set of credentials in a given amount of time. 
 
 * ```500 Internal Server Error``` - Indicates a general error condition, typically an 
 unexpected exception in processing on the server.
@@ -2644,6 +2633,46 @@ unexpected exception in processing on the server.
 * An LRS MUST return the error code most appropriate to the error condition from the list above.
 
 * An LRS SHOULD return a message in the response explaining the cause of the error.
+
+* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
+of these APIs that use any parameters which the LRS does not recognize in their 
+intended context in this specification ( __Note:__ LRSs may recognize and act on 
+parameters not in this specification).
+
+* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
+of these APIs that use any parameters matching parameters described in this 
+specification in all but case.
+
+* The LRS MUST reject a batch of statements if any statement within that 
+batch is rejected.
+
+* The LRS MUST reject with ```HTTP 403 Forbidden``` status any request rejected by the
+LRS where the credentials associated with the request do not have permission to make that request. 
+
+* The LRS MUST reject with ```HTTP 413 Request Entity Too Large``` status any request rejected by the
+LRS where the size of the Attachment, Statement or Document is larger than the maximum allowed by the LRS.
+
+* The LRS MAY choose any Attachment, Statement and Document size limits and MAY vary this limit on any basis, e.g., per authority.
+
+* The LRS MUST reject with ```429 Too Many Requests``` status any request rejected by the
+LRS where the request is rejected due to too many requests being recieved by a particular client 
+or set of credentials in a given amount of time. 
+
+* The LRS MAY choose any rate limit and MAY vary this limit on any basis, e.g., per authority.
+
+The following requirements exist for the purposes of conformance testing, to ensure that any limitations or permissions implemented 
+by the LRS do not affect the running of a conformance test suite. 
+
+* The LRS SHOULD* be configurable not to reject any requests from a particular set of credentials on the basis of permissions. 
+This set of credentials SHOULD* be used for conformance testing but MAY be deleted/deactivated on live systems. 
+
+* The LRS MUST be configurable to accept Attachments, Statements or Documents of any reasonable size (see above).
+
+* The LRS MUST be configurable to accept requests at any reasonable rate. 
+
+* In order to test that the LRS returns the correct error codes, the LRS SHOULD* be configurable with three sets of credentials: one which
+rejects all requests based on permissions, one which rejects all requests based on size and one which rejects all requests after the first based on rate. 
+These sets of credentials SHOULD* be available within conformance testing but MAY be deleted/deactivated on live systems. 
 
 <a name="stmtapi"/> 
 
