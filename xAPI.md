@@ -2065,14 +2065,13 @@ X.509 certificate.
 the associated certificate chain.
 * The LRS MUST reject requests to store Statements that contain malformed signatures, with HTTP 400.
 * The LRS SHOULD include a message in the response of a rejected statement.  
-
-In order to verify signatures are well formed, the LRS MUST do the following:
+* In order to verify signatures are well formed, the LRS MUST do the following:
     * Decode the JWS signature, and load the signed serialization of the Statement from the
       JWS signature payload.
     * Validate that the "original" Statement is logically equivalent to the received Statement.
-    	* When making this equivalence check, differences which could have been caused by
-    	allowed or required LRS processing of "id", "authority", "stored", "timestamp", or
-    	"version" MUST be ignored.
+        * When making this equivalence check, differences which could have been caused by
+        allowed or required LRS processing of "id", "authority", "stored", "timestamp", or
+        "version" MUST be ignored.
     * If the JWS header includes an X.509 certificate, validate the signature against that
     certificate as defined in JWS.
 * Clients MUST NOT assume a signature is valid simply because an LRS has accepted it.
