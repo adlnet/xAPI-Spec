@@ -1884,8 +1884,11 @@ Complete IRI validation is extremely difficult, so much of the burden for ensuri
 * A library SHOULD be used to construct IRIs, as opposed to string concatenation. 
 * Values SHOULD be considered to be case sensitive unless specified otherwise. 
 * Lowercase SHOULD be used to send case insensitive data.
-* Additional properties SHOULD* NOT be added to statements and other objects unless explicitly allowed and the 
-LRS MAY* reject statements and objects containing such additional properties.
+* Additional properties SHOULD* NOT be added to Statements unless explicitly allowed by this specification. 
+
+Note that the LRS is recommended to reject Statements containing additional properties, and many do. 
+Additional properties in Statements will mean that the statement will not be interoperable with all LRS, hence the
+strong recommendation above not to include additional properties in Statements. 
 
 ###### LRS Requirements
 
@@ -1899,7 +1902,7 @@ LRS MAY* reject statements and objects containing such additional properties.
     * where the case of a value restricted to enumerated values does not match
       an enumerated value given in this specification exactly.
     * where a key or value is not allowed by this specification.
-    * where a key occurs mutliple times within an object. 
+    * where a key occurs multiple times within an object. 
 * The LRS MUST reject Statements containing IRL, IRI, or IRI values without a scheme.
 * The LRS MUST at least validate that the sequence of token lengths for language map keys
 matches the [RFC 5646](http://tools.ietf.org/html/rfc5646) standard.
@@ -1912,7 +1915,8 @@ same types in Statements. __Note:__ string parameter values are not quoted as th
 non-format-following rejection requirement.
 * The LRS MAY use best-effort validation for language map keys to satisfy the
 non-format-following rejection requirement.
-
+* Additional properties SHOULD* NOT be added to Statements and other objects unless explicitly allowed by this specification and the 
+LRS SHOULD* reject Statements containing such additional properties.
 
 <a name="retstmts"/> 
 
