@@ -2559,7 +2559,7 @@ syntax after this represents the particular endpoint used.
 
 ##### Description
 
-This specifical defines requirements, some of which are imposed on the LRS to accept or reject requests,
+This specification defines requirements, some of which are imposed on the LRS to accept or reject requests,
 return responses and perform other behaviours in certain conditions. In cases where an LRS is required 
 to reject a request, the appropriate error code is listed as part of the requirement. 
 
@@ -2570,34 +2570,34 @@ that are out of scope this specification.
 One of these conditions is permission. For example, the LRS might assign permissions
 to a particular set of credentials such that those credentials can only issue statements
 relating to a particular agent. It could then reject any statements using those credentials
-not relaing to that agent. The permissions that can be assigned by an LRS are out of scope of
+not relating to that agent. The permissions that can be assigned by an LRS are out of scope of
 this specification, aside from the list of recommended OAuth Authorization scope values in
 section [6.4.2](#oauthscope). 
 
 Permissions can also affect the response returned by an LRS to GET requests. For example, 
 a set of credentials might have permission only to view statements about a particular actor, in which case
-the LRS will filter any returned statements to exlcude any statements not relating to that actor. See 
+the LRS will filter any returned statements to exclude any statements not relating to that actor. See 
 [Section 7.2.3 GET Statements](#stmtapiget) for details. 
 
-In cases explictly allowed by this specificiation, the credentials used can also affect the LRS behaviour in 
+In cases explicitly allowed by this specification, the credentials used can also affect the LRS behaviour in 
 handling a request, for example the LRS will normally overwrite the Authority property of a Statement, but can 
 sometimes accept a submitted authority if it has a strong trust relationship associated with the credentials 
 used to submit the statement. See [Section 4.1.9 Authority](#authority) for details. 
 
 Permissions set by an LRS could cause a technically conformant LRS to fail conformance testing. 
 This could occur where requests made by the test suite are rejected on the basis of permissions. For this reason
-the LRS needs to be configurable, or credentials used for testing need to have sufficent permissions granted,
+the LRS needs to be configurable, or credentials used for testing need to have sufficient permissions granted,
 such that permission restrictions do not affect the result of conformance testing. 
 
 Another condition is where the request sent is beyond the size limits set by the LRS. It would be unreasonable
 to expect the LRS to always accept requests of any size. The LRS can choose any size limit it sees fit, but
 needs to be configurable so as not to apply size limits during conformance testing. Of course, some size limits
 will still exist during conformance testing due to limitations of hardware etc. but it is expected that these limits
-are sufficently high so as not to affect the running of tests. 
+are sufficiently high so as not to affect the running of tests. 
 
 The LRS can also reject requests or revoke credentials in case of suspected malicious intend, for example
-an unexpected large number of requests made in a short peroid of time. It is expected that that limits 
-will be sufficently high such that the rate of requests made during conformance testing will not trigger any rate limits. f
+an unexpected large number of requests made in a short period of time. It is expected that that limits 
+will be sufficiently high such that the rate of requests made during conformance testing will not trigger any rate limits.
 
 ##### Details 
 The list below offers some general guidance on HTTP error codes that could
