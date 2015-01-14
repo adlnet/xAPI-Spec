@@ -3497,7 +3497,7 @@ __Headers__:
 * The AP MAY include any header parameters required by this specification which are 
 expected to appear in the HTTP header as form parameters with the same names. This applies 
 to the following parameters: Authorization, X-Experience-API-Version, Content-Type, Content-Length,
-If-Match and If-None-Match. 
+If-Match and If-None-Match. It does not apply to Content-Transfer-Encoding.
 * The LRS MUST treat the form parameters listed above as header parameters. 
 * The AP MUST include other header parameters not listed above in the HTTP header as normal. 
 * The AP SHOULD* still include a Content-Type header (in the HTTP header) for this type of 
