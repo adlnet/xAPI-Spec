@@ -2633,7 +2633,7 @@ API calls. See Section [6.3 Concurrency](#concurrency) for more details.
 Document because its size (or the size of an Attachment included in the request) is larger than 
 the maximum allowed by the LRS. 
 
-* ```Too Many Requests``` - Indicates that the LRS has rejected the request because it has recieved 
+* ```Too Many Requests``` - Indicates that the LRS has rejected the request because it has received 
 too many requests from the client or set of credentials in a given amount of time. 
 
 * ```500 Internal Server Error``` - Indicates a general error condition, typically an 
@@ -2666,7 +2666,7 @@ LRS where the size of the Attachment, Statement or Document is larger than the m
 * The LRS MAY choose any Attachment, Statement and Document size limits and MAY vary this limit on any basis, e.g., per authority.
 
 * The LRS MUST reject with ```429 Too Many Requests``` status any request rejected by the
-LRS where the request is rejected due to too many requests being recieved by a particular client 
+LRS where the request is rejected due to too many requests being received by a particular client 
 or set of credentials in a given amount of time. 
 
 * The LRS MAY choose any rate limit and MAY vary this limit on any basis, e.g., per authority.
@@ -2680,10 +2680,6 @@ This set of credentials SHOULD* be used for conformance testing but MAY be delet
 * The LRS MUST be configurable to accept Attachments, Statements or Documents of any reasonable size (see above).
 
 * The LRS MUST be configurable to accept requests at any reasonable rate. 
-
-* In order to test that the LRS returns the correct error codes, the LRS SHOULD* be configurable with three sets of credentials: one which
-rejects all requests based on permissions, one which rejects all requests based on size and one which rejects all requests after the first based on rate. 
-These sets of credentials SHOULD* be available within conformance testing but MAY be deleted/deactivated on live systems. 
 
 <a name="stmtapi"/> 
 
