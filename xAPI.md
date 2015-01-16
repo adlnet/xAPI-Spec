@@ -2633,7 +2633,7 @@ API calls. See Section [6.3 Concurrency](#concurrency) for more details.
 Document because its size (or the size of an Attachment included in the request) is larger than 
 the maximum allowed by the LRS. 
 
-* ```Too Many Requests``` - Indicates that the LRS has rejected the request because it has received 
+* ```429 Too Many Requests``` - Indicates that the LRS has rejected the request because it has received 
 too many requests from the client or set of credentials in a given amount of time. 
 
 * ```500 Internal Server Error``` - Indicates a general error condition, typically an 
