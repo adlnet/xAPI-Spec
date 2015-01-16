@@ -76,6 +76,8 @@
 *	[Appendix D: Converting Statements to 1.0.0](#AppendixD)   
 *	[Appendix E: Example Signed Statement](#AppendixE)
 *	[Appendix F: Table of All Endpoints](#AppendixF)
+*	[Appendix G: Cross Domain Request Example](#AppendixG)
+
 
 <a name="revhistory"/>  
 
@@ -3772,19 +3774,43 @@ and "POST", and not allowing HTTP headers to be set.
 
 The following describes alternate syntax for consumers to use only when unable 
 to use the usual syntax for specific calls due to the restrictions mentioned 
-above.   
+above. This alternate syntax can also be used to GET Statements due to limits
+on query string length.  
 
-__Method__: All xAPI requests issued must be POST. The intended xAPI method 
-must be included as the only query string parameter on the request. 
-(example: http://example.com/xAPI/statements?method=PUT)  
+__Method__:  
+* All xAPI requests issued MUST be POST. 
+* The intended xAPI method MUST be included as the value of the "method" query 
+string parameter. 
+* The AP MUST NOT include any other query string parameters on the request.
 
-__Headers__: Any required parameters which are expected to appear in the HTTP 
-header must instead be included as a form parameter with the same name.  
+Example: http://example.com/xAPI/statements?method=PUT  
 
-__Content__: If the xAPI call involved sending content, that content must now 
-be encoded and included as a form parameter called "content". The LRS will 
-interpret this content as a UTF-8 string. Storing binary data is not supported 
+__Content__:  
+* If the xAPI call involved sending content, the AP MUST URL encode that content and 
+include it as a form parameter called "content". 
+* The LRS MUST interpret this content as a UTF-8 string. Storing binary data is not supported 
 with this syntax.  
+
+__Headers__:  
+* The AP MAY include any header parameters required by this specification which are 
+expected to appear in the HTTP header as form parameters with the same names. This applies 
+to the following parameters: Authorization, X-Experience-API-Version, Content-Type, Content-Length,
+If-Match and If-None-Match. It does not apply to Content-Transfer-Encoding.
+* The LRS MUST treat the form parameters listed above as header parameters. 
+* The AP MUST include other header parameters not listed above in the HTTP header as normal. 
+* The AP SHOULD* still include a Content-Type header (in the HTTP header) for this type of 
+request with a value of 'application/x-www-form-urlencoded'. 
+* The Content-Type form parameter SHOULD* specify the content type of the content within the content form parameter. 
+* The AP SHOULD* still include a Content-Length header (in the HTTP header) for this type of 
+request indicating the overall length of the request's content. 
+* The Content-Length form parameter SHOULD* specify the length of the content within the content form parameter and 
+will therefore be a lower figure than the length listed in the Content-Length header. 
+
+__Query string parameters__:  
+* Any query string parameters other than 'method'
+MUST instead be included as a form parameter with the same name. 
+* The LRS MUST treat any form parameters other than "content" or the 
+header parameters listed above as query string parameters. 
 
 __Attachments__: Sending attachment data requires sending a
 multipart/mixed request, therefore sending attachment data is not supported
@@ -3807,6 +3833,8 @@ Statements to the target LRS.
 * The LRS MAY choose to provide both HTTP and HTTPS endpoints to support this use case. 
 * The LRS and the Client SHOULD consider the security risks before making the 
 decision to use this scheme.
+
+See [Appendix G: Cross Domain Request Example](#AppendixG) for an example. 
 
 <a name="validation"/> 
 
@@ -4832,3 +4860,56 @@ attachment message format.
 		<td>Token Request</td>
 	</tr>
 </table>
+
+<a name="AppendixG"/>
+
+## Appendix G: Cross Domain Request example
+
+Section [7.8 Cross Origin Requests](#78-cross-origin-requests) outlines alternative syntax for use 
+when the normal syntax cannot be used due to browser or querystring length restrictions. This appendix provides an example of a
+PUT statements request following this format. 
+
+Request using normal syntax:
+
+```
+URL: http://example.com/xAPI/statements
+Method: PUT
+
+Query String Parameters:
+    statementId=c70c2b85-c294-464f-baca-cebd4fb9b348
+
+Request Headers:
+    Accept:*/*
+    Accept-Encoding:gzip, deflate, sdch
+    Accept-Language:en-US,en;q=0.8
+    Authorization: Basic VGVzdFVzZXI6cGFzc3dvcmQ=
+    Content-Type: application/json
+    X-Experience-API-Version: 1.0.1
+    Content-Length: 351
+
+Content:
+{"id":"c70c2b85-c294-464f-baca-cebd4fb9b348","timestamp":"2014-12-29T12:09:37.468Z","actor":{"objectType":"Agent","mbox":"mailto:example@example.com","name":"Test User"},"verb":{"id":"http://adlnet.gov/expapi/verbs/experienced","display":{"en-US":"experienced"}},"object":{"id":"http://example.com/xAPI/activities/myactivity","objectType":"Activity"}}
+
+```
+
+Request using using alternative syntax:
+
+```
+URL: http://example.com/xAPI/statements?method=PUT&statementId=c70c2b85-c294-464f-baca-cebd4fb9b348
+Method: POST
+
+Request Headers:
+    Accept:*/*
+    Accept-Encoding:gzip, deflate, sdch
+    Accept-Language:en-US,en;q=0.8
+    Content-Type: application/x-www-form-urlencoded
+    Content-Length: 745
+
+Content (with added line breaks and not URL encoded for readability):
+    statementId=c70c2b85-c294-464f-baca-cebd4fb9b348
+    &Authorization=Basic VGVzdFVzZXI6cGFzc3dvcmQ=
+    &X-Experience-API-Version=1.0.1
+    &Content-Type=application/json
+    &Content-Length=351
+    &content={"id":"c70c2b85-c294-464f-baca-cebd4fb9b348","timestamp":"2014-12-29T12:09:37.468Z","actor":{"objectType":"Agent","mbox":"mailto:example@example.com","name":"Test User"},"verb":{"id":"http://adlnet.gov/expapi/verbs/experienced","display":{"en-US":"experienced"}},"object":{"id":"http://example.com/xAPI/activities/myactivity","objectType":"Activity"}}
+```
