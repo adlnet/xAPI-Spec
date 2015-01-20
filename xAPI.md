@@ -2094,6 +2094,10 @@ Complete IRI validation is extremely difficult, so much of the burden for ensuri
 * A library SHOULD be used to construct IRIs, as opposed to string concatenation. 
 * Values SHOULD be considered to be case sensitive unless specified otherwise. 
 * Lowercase SHOULD be used to send case insensitive data.
+* Additional properties SHOULD* NOT be added to Statements unless explicitly allowed by this specification. 
+
+Note: The LRS is recommended to reject Statements containing additional properties. Additional properties in 
+Statements would mean that the Statement would not be interoperable with all LRS. 
 
 ###### LRS Requirements
 
@@ -2103,9 +2107,11 @@ Complete IRI validation is extremely difficult, so much of the burden for ensuri
     * with strings where booleans are required, even if those strings contain booleans.
     * with any non-format-following key or value, including the empty string, where a
       string with a particular format (such as mailto IRI, UUID, or IRI) is required.
-    * where the case of a key does not match the case specified in the standard.
+    * where the case of a key does not match the case specified in this specification.
     * where the case of a value restricted to enumerated values does not match
-      an enumerated value given in the standard exactly.
+      an enumerated value given in this specification exactly.
+    * where a key or value is not allowed by this specification.
+    * where a key occurs multiple times within an object. 
 * The LRS MUST reject Statements containing IRL, IRI, or IRI values without a scheme.
 * The LRS MUST at least validate that the sequence of token lengths for language map keys
 matches the [RFC 5646](http://tools.ietf.org/html/rfc5646) standard.
@@ -2118,7 +2124,8 @@ same types in Statements. __Note:__ string parameter values are not quoted as th
 non-format-following rejection requirement.
 * The LRS MAY use best-effort validation for language map keys to satisfy the
 non-format-following rejection requirement.
-
+* Additional properties SHOULD* NOT be added to Statements and other objects unless explicitly allowed by this specification and the 
+LRS SHOULD* reject Statements containing such additional properties.
 
 <a name="retstmts"/> 
 
@@ -2260,14 +2267,14 @@ X.509 certificate.
 * If X.509 was used to sign, the JWS header SHOULD include the "x5c" property containing
 the associated certificate chain.
 * The LRS MUST reject requests to store Statements that contain malformed signatures, with HTTP 400.
-* The LRS SHOULD include a message in the response of a rejected statement
-In order to verify signatures are well formed, the LRS MUST do the following:
+* The LRS SHOULD include a message in the response of a rejected statement.  
+* In order to verify signatures are well formed, the LRS MUST do the following:
     * Decode the JWS signature, and load the signed serialization of the Statement from the
       JWS signature payload.
     * Validate that the "original" Statement is logically equivalent to the received Statement.
-    	* When making this equivalence check, differences which could have been caused by
-    	allowed or required LRS processing of "id", "authority", "stored", "timestamp", or
-    	"version" MUST be ignored.
+        * When making this equivalence check, differences which could have been caused by
+        allowed or required LRS processing of "id", "authority", "stored", "timestamp", or
+        "version" MUST be ignored.
     * If the JWS header includes an X.509 certificate, validate the signature against that
     certificate as defined in JWS.
 * Clients MUST NOT assume a signature is valid simply because an LRS has accepted it.
@@ -3644,8 +3651,11 @@ Returns: ```200 OK```, Person Object
 
 ###### Requirements
 
-All array properties MUST be populated with members with the 
+* All array properties MUST be populated with members with the 
 same definition as the similarly named property from Agent Objects.  
+
+* Additional properties not listed here SHOULD* NOT be added to this object and each 
+property MUST occur only once.  
 
 ###### Single Agent or Profile (PUT | POST | GET | DELETE) 
 
@@ -3744,6 +3754,8 @@ the latest minor and patch version the LRS conforms to, for each major version.
     * For version 1.0.0 of this specification, this means that "1.0.0" MUST be included;
     "0.9" and "0.95" MAY be included. (For the purposes of this requirement, "0.9" and "0.95"
     are considered major versions.)
+* Additional properties MUST NOT be added to this object outside of extensions and each 
+property MUST occur only once.  
 * An LRS SHOULD allow unauthenticated access to this resource
 * An LRS MUST NOT reject requests based on their version header as would otherwise be 
 required by <a href="#apiversioning"/>6.2 API Versioning</a>.
