@@ -1886,9 +1886,8 @@ Complete IRI validation is extremely difficult, so much of the burden for ensuri
 * Lowercase SHOULD be used to send case insensitive data.
 * Additional properties SHOULD* NOT be added to Statements unless explicitly allowed by this specification. 
 
-Note that the LRS is recommended to reject Statements containing additional properties, and many do. 
-Additional properties in Statements will mean that the statement will not be interoperable with all LRS, hence the
-strong recommendation above not to include additional properties in Statements. 
+Note: The LRS is recommended to reject Statements containing additional properties. Additional properties in 
+Statements would mean that the Statement would not be interoperable with all LRS. 
 
 ###### LRS Requirements
 
