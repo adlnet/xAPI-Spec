@@ -3651,11 +3651,8 @@ Returns: ```200 OK```, Person Object
 
 ###### Requirements
 
-<<<<<<< HEAD
-* All array properties must be populated with members with the 
-=======
-All array properties MUST be populated with members with the 
->>>>>>> upstream/master
+* All array properties MUST be populated with members with the 
+
 same definition as the similarly named property from Agent Objects.  
 
 * Additional properties not listed here SHOULD* NOT be added to this object and each 
