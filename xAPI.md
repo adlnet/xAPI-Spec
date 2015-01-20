@@ -76,6 +76,8 @@
 *	[Appendix D: Converting Statements to 1.0.0](#AppendixD)   
 *	[Appendix E: Example Signed Statement](#AppendixE)
 *	[Appendix F: Table of All Endpoints](#AppendixF)
+*	[Appendix G: Cross Domain Request Example](#AppendixG)
+
 
 <a name="revhistory"/>  
 
@@ -482,7 +484,7 @@ The details of each property of a statement are described in the table below.
 		<a href="#group">Group</a> Object. Represents the "I" in "I Did This".</td>
 	<td>Required</td></tr>
 	<tr><td><a href="#verb">verb</a></td><td>Object</td>
-	<td>Action of the Learner or Team Object. Represents the "Did" in "I Did This".</td>
+	<td>Action taken by the Actor. Represents the "Did" in "I Did This".</td>
 	<td>Required</td></tr>
 	<tr><td><a href="#object">object</a></td><td>Object</td>
 	<td>Activity, Agent, or another Statement that is the Object of the Statement. 
@@ -517,13 +519,31 @@ The details of each property of a statement are described in the table below.
 	<td>Optional</td></tr>
 </table>  
 
-Aside from (potential or required) assignments of properties during LRS 
-processing ("id", "authority", "stored", "timestamp", "version") Statements are immutable. Note that the content of 
+###### Statement Immutablity and Exceptions
+Statements are immutable (they cannot be changed). The following are exceptions or areas not covered by this rule:
+
+* Potential or required assignments of properties during LRS 
+processing ("id", "authority", "stored", "timestamp", "version"). 
+
+* Activties referenced by a Statement. The content of 
 Activities that are referenced in Statements is not considered part of the 
-Statement itself. So while the Statement is immutable, the Activities referenced 
-by that Statement are not. This means a deep serialization of a Statement into 
+Statement itself. This means a deep serialization of a Statement into 
 JSON will change if the referenced Activities change (see the
 [Statement API's](#stmtapi) "format" parameter for details).  
+
+* Verbs referenced by a Statement. The Display property of the Verb is not considered 
+part of the Statement itself (see the [Statement API's](#stmtapi) "format" parameter for details). 
+
+* Serialization of timestamp data. This is not considered part of the immutable statement 
+itself. For example, the timestamp and stored properties of a statement can be returned
+in a different timezone to the one with which they were stored so long as the point in time
+referenced is not affected. See [4.1.7 Timestamp](#timestamp) and [4.1.8 Stored](#stored) for details. 
+
+* Serialization of un-ordered lists. The list of Agents in a Group is not considered to be an ordered list
+and so the LRS can return this list of agents in any order. See [4.1.2.2 Groups](#group).
+
+* Attachments. These are not part of statements and an LRS will return statements without attachments when the client
+requests this (see the [Statement API's](#stmtapi) "attachments" parameter for details).
 
 ###### Requirements 
 
@@ -619,7 +639,8 @@ The table below lists all properties of an Anonymous Group.
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>Required</td></tr>
 	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>Optional</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td><td>The members of this Group.</td>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td>
+	<td>The members of this Group. This is an un-ordered list.</td>
 	<td>Required</td></tr>
 </table>
 
@@ -631,7 +652,8 @@ The table below lists all properties of an Identified Group.
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>Required</td></tr>
 	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>Optional</td></tr>
-	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td><td>The members of this Group.</td>
+	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td>
+	<td>The members of this Group. This is an un-ordered list.</td>
 	<td>Optional</td></tr>
 	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
 	    <td>An Inverse Functional Identifier unique to the Group.</td><td>Required</td></tr>	
@@ -643,6 +665,7 @@ The table below lists all properties of an Identified Group.
 * Activity Providers SHOULD use an Identified Group when they wish to issue multiple statements, aggregate data 
 or store and retrieve documents relating to a group.
 * An Activity Provider MAY include a complete or partial list of Agents in the 'member' property of a given Anonymous or Identified Group.
+* An LRS returning a statement MAY return the list of group members in any order.
 
 ###### Requirements for Anonymous Groups
 
@@ -756,8 +779,8 @@ The table below lists all properties of the Verb Object.
 		<td>id</td>
 		<td>IRI</td>
 		<td>Corresponds to a Verb definition. Each Verb definition 
-			corresponds to the meaning of a Verb, not the word. The IRI should 
-			be human-readable and contain the Verb meaning.</td>
+			corresponds to the meaning of a Verb, not the word. 
+		</td>
 		<td>Required</td>
 	</tr>
 	<tr>
@@ -771,16 +794,42 @@ The table below lists all properties of the Verb Object.
 	</tr>
 </table>
 
-###### Requirements
+###### Verb Id Requirements
 
-* The display property MUST be used to illustrate the meaning which is already determined by the Verb IRI.
 * A system reading a Statement MUST use the Verb IRI to infer meaning.
-* The display property MUST NOT be used to alter the meaning of a Verb.
-* A system reading a Statement MUST NOT use the display property to infer any meaning from the Statement.
-* A system reading a Statement MUST NOT use the display property for any purpose other than display to a human.
-Using the display property for aggregation or categorization of Statements is an example of violating this requirement. 
-* The display property SHOULD be used by all Statements.
-* The IRI contained in the id SHOULD be human-readable and imply the Verb meaning.
+* The IRI contained in an id SHOULD contain a human-readable portion which SHOULD provide meaning enough 
+for a person reviewing the raw statement to disambiguate the Verb from other similar(in syntax) Verbs.
+* A single Verb IRI MUST NOT be used to refer to multiple meanings.
+
+###### Verb Display AP Requirements
+* The Display property SHOULD be used by all Statements.
+* The Display property MUST be used to illustrate the meaning which is already determined by the Verb IRI.
+
+###### Verb Display LRS Requirements
+The requirements below relate to the Display property as returned by the LRS via the API.  
+
+* When queried for Statements with a Format of "exact", the LRS MUST return the Display property 
+exactly as included (or omitted) within the Statement.
+* When queried for Statements with a Format of "ids", the LRS SHOULD* NOT include the Display property.
+* When queried for Statements with a Format of "canonical", the LRS SHOULD* return a canonical Display 
+for that Verb. 
+* The LRS may determine its canonical Display based on the Verb Display property included within 
+Statements it recieves, the Name property included in the metadata as described in 
+[section 5.4 Identifier metadata](#miscmeta), or the Verb Display as defined in some other location.
+
+###### Verb Display Client Requirements
+The requirements below relate to the display property as displayed to a user either by the LRS or
+another system. 
+
+* The Display property MUST NOT be used to alter the meaning of a Verb.
+* A system reading a Statement MUST NOT use the Display property to infer any meaning from the Statement.
+* A system reading a Statement MUST NOT use the Display property for any purpose other than Display to a human.
+Using the Display property for aggregation or categorization of Statements is an example of violating this requirement. 
+* Systems displaying a Statement's Verb in a user interface MAY choose to render the Verb Display property included within the 
+Statement, the Name property included in the metadata as described in [section 5.4 Identifier metadata](#miscmeta), or the 
+Verb Display as defined in some other location.
+* Systems displaying a Statement's Verb MUST NOT display a word that differs from the meaning of the Verb but 
+MAY alter the wording and tense displayed for the purposes of human-readability. 
 
 ###### Example
 This example shows a Verb with the recommended properties set.
@@ -805,9 +854,9 @@ _Semantics_
 
 The IRI represented by the Verb id identifies the particular semantics of a word, not the word itself. 
 
-For example, the English word "fired" could mean different things depending on context, such as "fired a 
-weapon", "fired a kiln", or "fired an employee". In this case, an IRI MUST identify one of these specific 
-meanings, not the word "fired". 
+For example, the English word "fired" could mean different things depending on context, such as 
+"fired(a weapon)", "fired(a kiln)", or "fired(an employee)". In this case, an IRI identifies one of 
+these specific meanings. 
 
 The display property has some flexibility in tense. While the Verb IRIs are expected to remain in the 
 past tense, if conjugating verbs to another tense (using the same Verb) within the Activity makes sense, 
@@ -1434,6 +1483,12 @@ The following table contains the properties of the Results Object.
 </tr>
 </table> 
 
+###### Requirements
+
+* The Duration property MUST be expressed using the format for duration in ISO 8601:2004(E) section 4.4.3.2.
+The alternative format (in conformity with the format used for time points and described in ISO 8601:2004(E) 
+section 4.4.3.3) MUST NOT be used.
+
 <a name="Score"/>
 
 ##### 4.1.5.1 Score
@@ -1693,6 +1748,8 @@ These examples are for illustrative purposes only and are not meant to be prescr
 ###### Requirements
 * A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
 * A timestamp SHOULD include the time zone.
+* If the timestamp includes a time zone, the LRS MAY be return the timestamp using a different timezone to the one originally used in the statement
+so long as the point in time referenced is not affected. The LRS SHOULD* return the timestamp in UTC timezone. 
 * A timestamp SHOULD be the current or a past time when it is outside of a Sub-Statement.
 * A timestamp MAY represent any point of time during the experience happened over a period of time. 
 * A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
@@ -1715,6 +1772,8 @@ to record a time at which the experience described in the Statement occurred.
 
 * The stored property MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
 * The stored property SHOULD include the time zone.
+* If the stored property includes a time zone, the LRS MAY be return the stored property using a different timezone to the one originally used in the statement
+so long as the point in time referenced is not affected. The LRS SHOULD* return the stored property in UTC timezone. 
 * The stored property SHOULD be the current or a past time
 * The stored property MAY be truncated or rounded to a precision of at least 3 decimal digits
 for seconds (millisecond precision MUST be preserved). 
@@ -2299,8 +2358,11 @@ can make sense of it.
 ### 5.4 Identifier Metadata
 
 ##### Description
-Additional information can be provided within a Statement about an identifier. This allows 
-metadata about the IRI to be expressed without the necessity of resolving it.
+Additional information about an identifier can be provided within a Statement and can 
+be hosted at the location pointed to by the identifier IRI. Including metadata in a statement
+allows metadata about the IRI to be expressed without the necessity of resolving it. Hosting
+metadata at the IRI location allows the owner of the IRI to define the canonical metadata for
+that IRI. 
 
 ##### Details
 There are several types of IRI identifiers used in this specification:
@@ -2310,16 +2372,16 @@ There are several types of IRI identifiers used in this specification:
 * <a href="#miscext">extension key</a>
 * <a href="#attachmentUsage">attachment usage type</a>
 
-For supplying metadata about Activity ids, see <a href="#activity"> the Activity Definition Object</a>.
+For the structure of hosted metadata about Activity ids, see <a href="#activity"> the Activity Definition Object</a>.
 
-For supplying metadata about all other identifiers, see the format below:
+For the structure of hosted metadata about all other identifiers, see the format below:
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>name</td>
 		<td><a href="#misclangmap">Language Map</a></td>
-		<td>The human readable/visual name</td>
+		<td>The human readable/visual name. For Verbs, this is equivalent to the Display property in a statement.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
@@ -2330,7 +2392,8 @@ For supplying metadata about all other identifiers, see the format below:
 	</tr>
 </table>
 
-If this metadata is provided as described above, it is the canonical source of information about the 
+Hosted metadata consists of a document containing a JSON object as described above. 
+If this hosted metadata is provided, it is the canonical source of information about the 
 identifier it describes.  We recommend that 
 Activity Providers look for and use established, widely adopted identifiers for all types of IRI 
 identifiers other than Activity id.
@@ -2350,7 +2413,6 @@ IRL when the IRL is requested and a Content-Type of "application/json" is reques
 take the place of this metadata entirely if it was not provided or cannot be loaded. This MAY
 include metadata in other formats stored at the IRL of an identifier, particularly if that
 identifier was not coined for use with this specification.
-
 
 <a name="rtcom"/>
 
@@ -2451,6 +2513,7 @@ are unlikely. The requirements below only apply to Agent Profile API and Activit
 * An LRS responding to a GET request MUST add an ETag HTTP header to the response. (The reason for 
 specifying the LRS ETag format is to allow API consumers that can't read the ETag header to calculate 
 it themselves.)
+* An LRS responding to a PUT or POST request SHOULD* add the ETag HTTP header for the entity just created or modified to the response.
 * An LRS responding to a GET request MUST calculate the value of this header to be a hexidecimal string 
 of the SHA-1 digest of the contents.
 * An LRS responding to a GET request MUST enclose the header in quotes.  
@@ -2705,30 +2768,55 @@ __Note:__ In all of the example endpoints given in the specification,
 "http://example.com/xAPI/" is the example base endpoint of the LRS. All other IRI 
 syntax after this represents the particular endpoint used.
 
-###### Requirements
-
-* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
-of these APIs that use any parameters which the LRS does not recognize in their 
-intended context in this specification ( __Note:__ LRSs MAY recognize and act on 
-parameters not in this specification).
-
-* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
-of these APIs that use any parameters matching parameters described in this 
-specification in all but case.
-
-* The LRS MUST reject a batch of statements if any statement within that 
-batch is rejected.
-
 <a name="errorcodes" /> 
 
 ### 7.1 Error Codes
 
 ##### Description
 
-The list below offers some general guidance on HTTP error codes that could
-be returned from various methods in the API. 
+This specification defines requirements, some of which are imposed on the LRS to accept or reject requests,
+return responses and perform other behaviours in certain conditions. In cases where an LRS is required 
+to reject a request, the appropriate error code is listed as part of the requirement. 
+
+None of these requirements contradict the idea that the LRS is also allowed to 
+be configurable to reject requests and respond or behave differently on the basis of conditions 
+that are out of scope this specification. 
+
+One of these conditions is permission. For example, the LRS might assign permissions
+to a particular set of credentials such that those credentials can only issue statements
+relating to a particular agent. It could then reject any statements using those credentials
+not relating to that agent. The permissions that can be assigned by an LRS are out of scope of
+this specification, aside from the list of recommended OAuth Authorization scope values in
+section [6.4.2](#oauthscope). 
+
+Permissions can also affect the response returned by an LRS to GET requests. For example, 
+a set of credentials might have permission only to view statements about a particular actor, in which case
+the LRS will filter any returned statements to exclude any statements not relating to that actor. See 
+[Section 7.2.3 GET Statements](#stmtapiget) for details. 
+
+In cases explicitly allowed by this specification, the credentials used can also affect the LRS behaviour in 
+handling a request, for example the LRS will normally overwrite the Authority property of a Statement, but can 
+sometimes accept a submitted authority if it has a strong trust relationship associated with the credentials 
+used to submit the statement. See [Section 4.1.9 Authority](#authority) for details. 
+
+Permissions set by an LRS could cause a technically conformant LRS to fail conformance testing. 
+This could occur where requests made by the test suite are rejected on the basis of permissions. For this reason
+the LRS needs to be configurable, or credentials used for testing need to have sufficient permissions granted,
+such that permission restrictions do not affect the result of conformance testing. 
+
+Another condition is where the request sent is beyond the size limits set by the LRS. It would be unreasonable
+to expect the LRS to always accept requests of any size. The LRS can choose any size limit it sees fit, but
+needs to be configurable so as not to apply size limits during conformance testing. Of course, some size limits
+will still exist during conformance testing due to limitations of hardware etc. but it is expected that these limits
+are sufficiently high so as not to affect the running of tests. 
+
+The LRS can also reject requests or revoke credentials in case of suspected malicious intend, for example
+an unexpected large number of requests made in a short period of time. It is expected that that limits 
+will be sufficiently high such that the rate of requests made during conformance testing will not trigger any rate limits.
 
 ##### Details 
+The list below offers some general guidance on HTTP error codes that could
+be returned from various methods in the API. 
 
 * ```400 Bad Request``` - Indicates
 an error condition caused by an invalid or missing argument. The term 
@@ -2757,9 +2845,11 @@ a precondition posted with the request, in the case of State or Agent Profile or
 API calls. See Section [6.3 Concurrency](#concurrency) for more details.
 
 * ```413 Request Entity Too Large``` - Indicates that the LRS has rejected the Statement or 
-document because its size is larger than the maximum allowed by the LRS. The LRS is free to
-choose any limit and MAY vary this limit on any basis, e.g., per authority, but
-MUST be configurable to accept Statements of any size.
+Document because its size (or the size of an Attachment included in the request) is larger than 
+the maximum allowed by the LRS. 
+
+* ```429 Too Many Requests``` - Indicates that the LRS has rejected the request because it has received 
+too many requests from the client or set of credentials in a given amount of time. 
 
 * ```500 Internal Server Error``` - Indicates a general error condition, typically an 
 unexpected exception in processing on the server.
@@ -2769,6 +2859,42 @@ unexpected exception in processing on the server.
 * An LRS MUST return the error code most appropriate to the error condition from the list above.
 
 * An LRS SHOULD return a message in the response explaining the cause of the error.
+
+* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
+of these APIs that use any parameters which the LRS does not recognize in their 
+intended context in this specification ( __Note:__ LRSs MAY recognize and act on 
+parameters not in this specification).
+
+* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
+of these APIs that use any parameters matching parameters described in this 
+specification in all but case.
+
+* The LRS MUST reject a batch of statements if any statement within that 
+batch is rejected.
+
+* The LRS MUST reject with ```HTTP 403 Forbidden``` status any request rejected by the
+LRS where the credentials associated with the request do not have permission to make that request. 
+
+* The LRS MUST reject with ```HTTP 413 Request Entity Too Large``` status any request rejected by the
+LRS where the size of the Attachment, Statement or Document is larger than the maximum allowed by the LRS.
+
+* The LRS MAY choose any Attachment, Statement and Document size limits and MAY vary this limit on any basis, e.g., per authority.
+
+* The LRS MUST reject with ```429 Too Many Requests``` status any request rejected by the
+LRS where the request is rejected due to too many requests being received by a particular client 
+or set of credentials in a given amount of time. 
+
+* The LRS MAY choose any rate limit and MAY vary this limit on any basis, e.g., per authority.
+
+The following requirements exist for the purposes of conformance testing, to ensure that any limitations or permissions implemented 
+by the LRS do not affect the running of a conformance test suite. 
+
+* The LRS SHOULD* be configurable not to reject any requests from a particular set of credentials on the basis of permissions. 
+This set of credentials SHOULD* be used for conformance testing but MAY be deleted/deactivated on live systems. 
+
+* The LRS MUST be configurable to accept Attachments, Statements or Documents of any reasonable size (see above).
+
+* The LRS MUST be configurable to accept requests at any reasonable rate. 
 
 <a name="stmtapi"/> 
 
@@ -2989,18 +3115,18 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 		<td>format</td>
 		<td>String: ("ids", "exact", or "canonical")</td>
 		<td>exact</td>
-		<td>If "ids", only include minimum information necessary in Agent, Activity, 
+		<td>If "ids", only include minimum information necessary in Agent, Activity, Verb 
 			and Group Objects to identify them. For anonymous groups this means including 
 			the minimum information needed to identify each member. 
 			<br/><br/>
-			If "exact", return Agent, Activity, and Group Objects populated exactly as they 
+			If "exact", return Agent, Activity, Verb and Group Objects populated exactly as they 
 			were when the Statement was received. An LRS requesting Statements for the purpose 
 			of importing them would use a format of "exact".  
 			<br/><br/>
-			If "canonical", return Activity Objects populated with the canonical
-			definition of the Activity Objects as determined by the LRS, after
+			If "canonical", return Activity Objects and Verbs populated with the canonical
+			definition of the Activity Objects and Display of the Verbs as determined by the LRS, after
 			applying the <a href="#queryLangFiltering">language filtering process defined below</a>,
-			and return the original Agent Objects as in "exact" mode.  
+			and return the original Agent and Group Objects as in "exact" mode.  
 		</td>
 		<td>Optional</td>
 	</tr>
@@ -3028,6 +3154,9 @@ which contain both statementId and voidedStatementId parameters
 * The LRS MUST reject with an ```HTTP 400``` error any requests to this resource 
 which contain statementId or voidedStatementId parameters, and also contain any 
 other parameter besides "attachments" or "format".
+
+* The LRS MAY apply additional query filter criteria based on permissions associated
+with the credentials used. 
 
 * In the event that no statements are found matching the query filter criteria, the LRS MUST still return 
 ```HTTP 200``` and a [StatementResult](#retstmts) Object. In this case, the statements property will contain
@@ -3077,6 +3206,9 @@ Statements are filtered.
 
 * Activity Objects contain Language Map Objects for name, description and interaction components. 
 The LRS MUST return only one language in each of these maps. 
+
+* Verb Objects contain Language Map Objects for Display. 
+The LRS SHOULD* return only one language in this map. 
 
 * In order to choose the most relevant language, the LRS MUST apply the Accept-Language header as 
 described in <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a> 
@@ -3634,19 +3766,43 @@ and "POST", and not allowing HTTP headers to be set.
 
 The following describes alternate syntax for consumers to use only when unable 
 to use the usual syntax for specific calls due to the restrictions mentioned 
-above.   
+above. This alternate syntax can also be used to GET Statements due to limits
+on query string length.  
 
-__Method__: All xAPI requests issued must be POST. The intended xAPI method 
-must be included as the only query string parameter on the request. 
-(example: http://example.com/xAPI/statements?method=PUT)  
+__Method__:  
+* All xAPI requests issued MUST be POST. 
+* The intended xAPI method MUST be included as the value of the "method" query 
+string parameter. 
+* The AP MUST NOT include any other query string parameters on the request.
 
-__Headers__: Any required parameters which are expected to appear in the HTTP 
-header must instead be included as a form parameter with the same name.  
+Example: http://example.com/xAPI/statements?method=PUT  
 
-__Content__: If the xAPI call involved sending content, that content must now 
-be encoded and included as a form parameter called "content". The LRS will 
-interpret this content as a UTF-8 string. Storing binary data is not supported 
+__Content__:  
+* If the xAPI call involved sending content, the AP MUST URL encode that content and 
+include it as a form parameter called "content". 
+* The LRS MUST interpret this content as a UTF-8 string. Storing binary data is not supported 
 with this syntax.  
+
+__Headers__:  
+* The AP MAY include any header parameters required by this specification which are 
+expected to appear in the HTTP header as form parameters with the same names. This applies 
+to the following parameters: Authorization, X-Experience-API-Version, Content-Type, Content-Length,
+If-Match and If-None-Match. It does not apply to Content-Transfer-Encoding.
+* The LRS MUST treat the form parameters listed above as header parameters. 
+* The AP MUST include other header parameters not listed above in the HTTP header as normal. 
+* The AP SHOULD* still include a Content-Type header (in the HTTP header) for this type of 
+request with a value of 'application/x-www-form-urlencoded'. 
+* The Content-Type form parameter SHOULD* specify the content type of the content within the content form parameter. 
+* The AP SHOULD* still include a Content-Length header (in the HTTP header) for this type of 
+request indicating the overall length of the request's content. 
+* The Content-Length form parameter SHOULD* specify the length of the content within the content form parameter and 
+will therefore be a lower figure than the length listed in the Content-Length header. 
+
+__Query string parameters__:  
+* Any query string parameters other than 'method'
+MUST instead be included as a form parameter with the same name. 
+* The LRS MUST treat any form parameters other than "content" or the 
+header parameters listed above as query string parameters. 
 
 __Attachments__: Sending attachment data requires sending a
 multipart/mixed request, therefore sending attachment data is not supported
@@ -3669,6 +3825,8 @@ Statements to the target LRS.
 * The LRS MAY choose to provide both HTTP and HTTPS endpoints to support this use case. 
 * The LRS and the Client SHOULD consider the security risks before making the 
 decision to use this scheme.
+
+See [Appendix G: Cross Domain Request Example](#AppendixG) for an example. 
 
 <a name="validation"/> 
 
@@ -4694,3 +4852,56 @@ attachment message format.
 		<td>Token Request</td>
 	</tr>
 </table>
+
+<a name="AppendixG"/>
+
+## Appendix G: Cross Domain Request example
+
+Section [7.8 Cross Origin Requests](#78-cross-origin-requests) outlines alternative syntax for use 
+when the normal syntax cannot be used due to browser or querystring length restrictions. This appendix provides an example of a
+PUT statements request following this format. 
+
+Request using normal syntax:
+
+```
+URL: http://example.com/xAPI/statements
+Method: PUT
+
+Query String Parameters:
+    statementId=c70c2b85-c294-464f-baca-cebd4fb9b348
+
+Request Headers:
+    Accept:*/*
+    Accept-Encoding:gzip, deflate, sdch
+    Accept-Language:en-US,en;q=0.8
+    Authorization: Basic VGVzdFVzZXI6cGFzc3dvcmQ=
+    Content-Type: application/json
+    X-Experience-API-Version: 1.0.1
+    Content-Length: 351
+
+Content:
+{"id":"c70c2b85-c294-464f-baca-cebd4fb9b348","timestamp":"2014-12-29T12:09:37.468Z","actor":{"objectType":"Agent","mbox":"mailto:example@example.com","name":"Test User"},"verb":{"id":"http://adlnet.gov/expapi/verbs/experienced","display":{"en-US":"experienced"}},"object":{"id":"http://example.com/xAPI/activities/myactivity","objectType":"Activity"}}
+
+```
+
+Request using using alternative syntax:
+
+```
+URL: http://example.com/xAPI/statements?method=PUT&statementId=c70c2b85-c294-464f-baca-cebd4fb9b348
+Method: POST
+
+Request Headers:
+    Accept:*/*
+    Accept-Encoding:gzip, deflate, sdch
+    Accept-Language:en-US,en;q=0.8
+    Content-Type: application/x-www-form-urlencoded
+    Content-Length: 745
+
+Content (with added line breaks and not URL encoded for readability):
+    statementId=c70c2b85-c294-464f-baca-cebd4fb9b348
+    &Authorization=Basic VGVzdFVzZXI6cGFzc3dvcmQ=
+    &X-Experience-API-Version=1.0.1
+    &Content-Type=application/json
+    &Content-Length=351
+    &content={"id":"c70c2b85-c294-464f-baca-cebd4fb9b348","timestamp":"2014-12-29T12:09:37.468Z","actor":{"objectType":"Agent","mbox":"mailto:example@example.com","name":"Test User"},"verb":{"id":"http://adlnet.gov/expapi/verbs/experienced","display":{"en-US":"experienced"}},"object":{"id":"http://example.com/xAPI/activities/myactivity","objectType":"Activity"}}
+```
