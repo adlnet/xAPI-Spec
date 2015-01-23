@@ -1774,8 +1774,8 @@ to record the time at which the experience described in the Statement.
 ###### Requirements
 
 * The stored property MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
-* The stored property MUST be set by the LRS.
-* An LRS MUST ignore any value the Statement's stored property has when handling requests.
+* The stored property MUST be set by the LRS; An LRS MUST validate and then overwrite any value currently in the 
+stored property of a Statement it receives.
 * The stored property SHOULD include the time zone.
 * If the stored property includes a time zone, the LRS MAY be return the stored property using a different timezone to the one originally used in the statement.
 so long as the point in time referenced is not affected. The LRS SHOULD* return the stored property in UTC timezone. 
