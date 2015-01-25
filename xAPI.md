@@ -58,10 +58,10 @@
 *	7.0.	[Data Transfer (REST)](#datatransfer)  
     *	7.1.	[Error Codes](#errorcodes)  
     *	7.2.	[Statement API](#stmtapi)
-    	*	7.2.1 [PUT Statements](#stmtapiput)
-    	*	7.2.2 [POST Statements](#stmtapipost)
-    	*	7.2.3 [GET Statements](#stmtapiget)
-    	*	7.2.4 [Voided Statements](#voidedStatements)	  
+    	*	7.2.1. [PUT Statements](#stmtapiput)
+    	*	7.2.2. [POST Statements](#stmtapipost)
+    	*	7.2.3. [GET Statements](#stmtapiget)
+    	*	7.2.4. [Voided Statements](#voidedStatements)	  
     *	7.3.	[Document APIs](#docapis)  
     *	7.4.	[State API](#stateapi)  
     *	7.5.	[Activity Profile API](#actprofapi)  
@@ -982,7 +982,7 @@ The table below lists the properties of the Activity Definition Object:
 	<tr>
 		<td>moreInfo</td>
 		<td>IRL</td>
-		<td>Resolves to a document with human-readable information about the Actiivty, 
+		<td>Resolves to a document with human-readable information about the Activity, 
 		which could include a way to launch the activity.
 		</td>
 		<td>Optional</td>
@@ -3710,7 +3710,7 @@ Returns: ```200 OK```, List of ids
 
 <a name="aboutresource"/> 
 
-### 7.7. About Resource
+### 7.7 About Resource
 
 ###### Description
 
@@ -3860,7 +3860,7 @@ responsibility of the Activity Provider sending the Statement.
 
 <a name="httphead"/>
 
-### 7.10. HTTP HEAD
+### 7.10 HTTP HEAD
 
 ###### Description
 The LRS will respond to HEAD requests by returning the meta information only, using 
