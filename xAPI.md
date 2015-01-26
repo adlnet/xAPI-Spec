@@ -1732,6 +1732,11 @@ useful when the Object of the Statement is an Agent, not an Activity.
 The time at which the experience occurred.
 
 ###### Details
+
+A timestamp is formatted according to the normal format of ISO 8601 and corresponds to the time of when the events 
+described within this Statement occurred. If it is not included in the Statement when it is submitted to the LRS,
+the LRS populates it with the same value it would use with [Stored](#stored).
+
 A timestamp in a Statement can differ from 
 [Stored](#stored) (the time at which the statement is stored). Namely, there can be delays between the occurrence of the 
 experience and the reception of the corresponding Statement by the LRS. 
@@ -1743,10 +1748,9 @@ be most appropriate to record the timestamp of the start of the experience; when
 completing a qualification, it might be most appropriate to record the timestamp of the end of the experience.
 These examples are for illustrative purposes only and are not meant to be prescriptive.
 
-
-
 ###### Requirements
 * A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
+* The timestamp property SHOULD* be set by the LRS to the value of [Stored](#stored) if not provided.
 * A timestamp SHOULD include the time zone.
 * If the timestamp includes a time zone, the LRS MAY be return the timestamp using a different timezone to the one originally used in the statement
 so long as the point in time referenced is not affected. The LRS SHOULD* return the timestamp in UTC timezone. 
@@ -1755,8 +1759,6 @@ so long as the point in time referenced is not affected. The LRS SHOULD* return 
 * A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
 * A timestamp MAY be a moment in the future, to denote a deadline for planned learning, provided it is included 
 inside a Sub-Statement.
-* SHOULD* be set by the LRS to the value of [Stored](#stored) if not provided.
-
 
 <a name="stored"/> 
 
@@ -1765,16 +1767,19 @@ inside a Sub-Statement.
 ###### Description 
 The time at which a Statement is stored by the LRS.
 
-The stored property is the literal time the Statement was stored.  Use [Timestamp](#timestamp) 
-to record a time at which the experience described in the Statement occurred.
+###### Details 
+The stored property is the literal time the Statement was stored.  The LRS will use [Timestamp](#timestamp) 
+to record the time at which the experience described in the Statement.
 
 ###### Requirements
 
 * The stored property MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
+* The stored property MUST be set by the LRS; An LRS MUST validate and then overwrite any value currently in the 
+stored property of a Statement it receives.
 * The stored property SHOULD include the time zone.
-* If the stored property includes a time zone, the LRS MAY be return the stored property using a different timezone to the one originally used in the statement
+* If the stored property includes a time zone, the LRS MAY be return the stored property using a different timezone to the one originally used in the statement.
 so long as the point in time referenced is not affected. The LRS SHOULD* return the stored property in UTC timezone. 
-* The stored property SHOULD be the current or a past time
+* The stored property SHOULD be the current or a past time.
 * The stored property MAY be truncated or rounded to a precision of at least 3 decimal digits
 for seconds (millisecond precision MUST be preserved). 
 
