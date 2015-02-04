@@ -2328,7 +2328,7 @@ string in the language specified in the tag. This map SHOULD be populated as
 fully as possible based on the knowledge of the string in question in different 
 languages.  
 
-The content of strings within a langauge map is plain text. It's expected that any formatting code 
+The content of strings within a language map is plain text. It's expected that any formatting code 
 such as HTML tags or markdown will not be rendered, but will be displayed as code when this string is 
 displayed to an end user. An important exception to this is if language map object is used in an extension and 
 the owner of that extension IRI explicitly states that a particular form of code will be rendered. 
