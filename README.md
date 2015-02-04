@@ -109,6 +109,23 @@ direct you to a page that gives you the ability to submit a request to the
 master repository to merge in the changes you committed.
 
 ##Style Guide
+### Property and object names
+
+When refering to a property or object, the name should be capitalized. No formatting or quotes should be used. 
+
+For example:
+
+    The Context Activities property within the Context of the Statement is awesome.
+
+Double quotes may be used when refering to properties within properties. When used within quotes, the capitalization of 
+should match that actually used in the object being described. 
+
+For example:
+
+    You can use "category" Context Activities to denote the recipe being followed in crafting the statement. 
+
+    The Group "member" property is an un-ordered list!
+
 ### Headings
 Hashes (#) should be used for all headings following the following format:
 
