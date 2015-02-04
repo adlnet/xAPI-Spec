@@ -2551,7 +2551,7 @@ If the header precondition in any of the POST or DELETE request cases above fail
 If a PUT request is received without either header for a resource that already exists, the LRS:
 
 * MUST return HTTP status 409 "Conflict".
-* MUST return a plain text body explaining that the consumer SHOULD
+* MUST return a response explaining that the consumer SHOULD
 	- check the current state of the resource.
 	- set the "If-Match" header with the current ETag to resolve the conflict.
 * MUST NOT make a modification to the resource.
