@@ -3125,17 +3125,17 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	</tr>
 	<tr>
 		<td>format</td>
-		<td>String: (```ids```, ```exact```, or ```canonical```)</td>
+		<td>String: ("ids", "exact", or "canonical")</td>
 		<td>exact</td>
-		<td>If ```ids```, only include minimum information necessary in Agent, Activity, Verb 
+		<td>If "ids", only include minimum information necessary in Agent, Activity, Verb 
 			and Group Objects to identify them. For anonymous groups this means including 
 			the minimum information needed to identify each member. 
 			<br/><br/>
-			If ```exact```, return Agent, Activity, Verb and Group Objects populated exactly as they 
+			If "exact", return Agent, Activity, Verb and Group Objects populated exactly as they 
 			were when the Statement was received. An LRS requesting Statements for the purpose 
 			of importing them would use a format of ```exact```.  
 			<br/><br/>
-			If ```canonical```, return Activity Objects and Verbs populated with the canonical
+			If "canonical", return Activity Objects and Verbs populated with the canonical
 			definition of the Activity Objects and Display of the Verbs as determined by the LRS, after
 			applying the <a href="#queryLangFiltering">language filtering process defined below</a>,
 			and return the original Agent and Group Objects as in ```exact``` mode.  
@@ -3144,8 +3144,8 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	</tr>
 	<tr>
 		<td>attachments</td><td>Boolean</td><td>false</td>
-		<td>If ```true```, the LRS uses the multipart response format and includes all attachments as 
-		described previously.  If ```false```, the LRS sends the prescribed response with Content-Type 
+		<td>If "true", the LRS uses the multipart response format and includes all attachments as 
+		described previously.  If "false", the LRS sends the prescribed response with Content-Type 
 		application/json and cannot use attachments.</td>
 		<td>Optional</td>
 	</tr>
@@ -3153,7 +3153,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 		<td>ascending</td>
 		<td>Boolean</td>
 		<td>false</td>
-		<td>If ```true```, return results in ascending order of stored time</td>
+		<td>If "true", return results in ascending order of stored time</td>
 		<td>Optional</td>
 	</tr>
 </table>
