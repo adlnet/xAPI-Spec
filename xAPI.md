@@ -2962,7 +2962,7 @@ The basic communication mechanism of the Experience API.
 
 Example endpoint: ```http://example.com/xAPI/statements```
 
-Stores Statement with the given id.
+Stores a single Statement with the given id. POST can also be used to store single Statements.
 
 Returns: ```204 No Content```  
 
@@ -2972,7 +2972,7 @@ Returns: ```204 No Content```
 	<td>Id of Statement to record</td></td><td>Required</td></tr>
 </table>
 
-###### Requirements
+###### LRS Requirements
 
 * An LRS MUST NOT make any modifications to its state based on receiving a Statement
 with a statementID that it already has a Statement for. Whether it responds with
@@ -2985,6 +2985,13 @@ do not match.
 
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 
+###### Activity Provider Requirements
+
+* Activity Providers SHOULD use POST instead of PUT. 
+* When PUTing statements, the Id property of the Statement SHOULD* be used. 
+* Where provided, the Id property of the Statement MUST match the 'statementId' parameter of the request. 
+
+
 <a name="stmtapipost"/>
 
 ####7.3.2 POST Statements
@@ -2993,9 +3000,9 @@ do not match.
 
 Example endpoint: ```http://example.com/xAPI/statements```
 
-Stores a Statement, or a set of Statements. Since the PUT method targets a specific 
-Statement id, POST is used rather than PUT to save multiple Statements, or to 
-save one Statement without first generating a Statement id. An alternative for systems 
+Stores a Statement, or a set of Statements. 
+
+An alternative for systems 
 that generate a large amount of Statements is to provide the LRS side of the API 
 on the AP, and have the LRS query that API for the list of updated (or new) 
 Statements periodically. This will likely only be a realistic option for systems 
