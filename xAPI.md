@@ -3144,8 +3144,8 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	</tr>
 	<tr>
 		<td>attachments</td><td>Boolean</td><td>false</td>
-		<td>If "true", the LRS uses the multipart response format and includes all attachments as 
-		described previously.  If "false", the LRS sends the prescribed response with Content-Type 
+		<td>If <code>true</code>, the LRS uses the multipart response format and includes all attachments as 
+		described previously.  If <code>false</code>, the LRS sends the prescribed response with Content-Type 
 		application/json and cannot use attachments.</td>
 		<td>Optional</td>
 	</tr>
@@ -3153,7 +3153,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 		<td>ascending</td>
 		<td>Boolean</td>
 		<td>false</td>
-		<td>If "true", return results in ascending order of stored time</td>
+		<td>If <code>true</code>, return results in ascending order of stored time</td>
 		<td>Optional</td>
 	</tr>
 </table>
@@ -3184,10 +3184,10 @@ are known with reasonable certainty to be available for retrieval. This time SHO
 account any temporary condition, such as excessive load, which might cause a delay in Statements 
 becoming available for retrieval.
 
-* If the attachment property of a GET statement is used and is set to "true", the LRS MUST use the 
+* If the attachment property of a GET statement is used and is set to <code>true</code>, the LRS MUST use the 
 multipart response format and include all attachments as described in <a href="#attachments">4.1.11</a>.
 
-* If the attachment property of a GET statement is used and is set to "false", the LRS MUST NOT
+* If the attachment property of a GET statement is used and is set to <code>false</code>, the LRS MUST NOT
 include attachment raw data and MUST report application/json.
 
 <a name="queryStatementRef" />
