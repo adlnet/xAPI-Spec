@@ -1983,7 +1983,7 @@ results when the attachments filter is false.
     * MUST include an X-Experience-API-Hash parameter in each part's header after the first (Statements) part.
     * MUST include a Content-Transfer-Encoding parameter with a value of "binary" in each part's header after the first (statements) part.
     * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple Statements that are sent together.
-    * SHOULD include a Content-Type parameter in each part's header, for the first part (containing the statement) this MUST be "application/json".
+    * SHOULD include a Content-Type parameter in each part's header. For the first part (containing the statement) this MUST be "application/json".
     * Where parameters have a corresponding property within the Attachment Object (outlined in the table above), the value of these parameters and properties
     for each Attachment MUST match. 
 
