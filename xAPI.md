@@ -514,7 +514,7 @@ The details of each property of a statement are described in the table below.
 	<td>Not Recommended</td></tr>
 	<tr>
 		<td><a href="#attachments">attachments</a></td>
-		<td>Array of attachment Objects</td>
+		<td>Ordered array of Attachment Objects</td>
 	    <td>Headers for attachments to the Statement</td>
 	<td>Optional</td></tr>
 </table>  
@@ -1896,7 +1896,7 @@ in and retrieve them from an LRS. In the case of wanting to include an attachmen
 ###### Details
 The table below lists all properties of the Attachment object.
 <table>
-	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th><th>Corresponding request parameter</th></tr>
 	<tr>
 		<a name="attachmentUsage" />
 
@@ -1906,30 +1906,35 @@ The table below lists all properties of the Attachment object.
 		for attachments is to include a "completion certificate". A type IRI corresponding
 		to this usage MUST be coined, and used with completion certificate attachments.</td>
 		<td>Required</td>
+		<td></td>
 	</tr>
 	<tr>
 		<td>display</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>Display name (title) of this attachment.</td>
 		<td>Required</td>
+		<td></td>
 	</tr>
 	<tr>
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
 		<td>A description of the attachment</td>
 		<td>Optional</td>
+		<td></td>
 	</tr>
 	<tr>
 		<td>contentType</td>
 		<td><a href="https://www.ietf.org/rfc/rfc2046.txt?number=2046">Internet Media Type</a></td>
 		<td>The content type of the attachment.</td>
 		<td>Required</td>
+		<td>Content-Type</td>
 	</tr>
 	<tr>
 		<td>length</td>
 		<td>Integer</td>
 		<td>The length of the attachment data in octets.</td>
 		<td>Required</td>
+		<td>Content-Length</td>
 	</tr>
 	<tr>
 		<td>sha2</td>
@@ -1937,13 +1942,15 @@ The table below lists all properties of the Attachment object.
 		<td>The SHA-2 (SHA-256, SHA-384, SHA-512) hash of the attachment data. SHA-224 
 		SHOULD not be used: a minimum key size of 256 bits is recommended.</td>
 		<td>Required</td>
+		<td>X-Experience-API-Hash</td>
 	</tr>
 	<tr>
 		<td>fileUrl</td>
 		<td>IRL</td>
 		<td>An IRL at which the attachment data can be retrieved, or from which it used 
 		to be retrievable. </td>
-		<td>Optional</td>
+        <td>Optional</td>
+		<td></td>
 	</tr>
 </table>
 
@@ -1970,13 +1977,13 @@ results when the attachments filter is false.
 * It MUST conform to the definition of multipart/mixed in [RFC 1341](http://www.w3.org/Protocols/rfc1341/7_2_Multipart.html) and:
     * The first part of the multipart document MUST contain the Statements themselves, with type "application/json".
     * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
-capability will be available when issuing PUT or POST against the Statement resource.
-	* MUST include an X-Experience-API-Hash parameter in each part's header after the first (Statements) part.
-	* This parameter MUST be set to match the "sha2" property of the attachment declaration corresponding to the 
-	attachment included in this part.
-	* MUST include a Content-Transfer-Encoding parameter with a value of "binary" in each part's header after the first (statements) part.
+    capability will be available when issuing PUT or POST against the Statement resource.
+    * MUST include an X-Experience-API-Hash parameter in each part's header after the first (Statements) part.
+    * MUST include a Content-Transfer-Encoding parameter with a value of "binary" in each part's header after the first (statements) part.
     * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple Statements that are sent together.
-    * SHOULD include a Content-Type parameter in each part's header, for the first part this MUST be "application/json".
+    * SHOULD include a Content-Type parameter in each part's header, for the first part (containing the statement) this MUST be "application/json".
+    * Where parameters have a corresponding property within the Attachment Object (outlined in the table above), the value of these parameters and properties
+    for each Attachment MUST match. 
 
 
 ###### LRS Requirements
