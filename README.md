@@ -161,17 +161,6 @@ And
 
     The 'binary' value should be used.
 
-Values of properties and parameters should be presented as code. ```<code></code>``` tags can be used for this
-purpose inside tables. 
-
-For example:
-
-    ```true```
-
-    <table><tr><td>
-        <code>true</code>
-    </td></tr></table>
-
 ### Headings
 Hashes (#) should be used for all headings following the following format:
 
