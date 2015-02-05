@@ -900,7 +900,7 @@ accessible at the IRI.
 
 ###### Description
 
-The Object of a Statement can be an Activity, Agent/Group, Sub-Statement, or Statement Reference. It is the "this" part of the 
+The Object of a Statement can be an Activity, Agent/Group, SubStatement, or Statement Reference. It is the "this" part of the 
 Statement, i.e. "I did this". 
 
 Some examples:
@@ -909,7 +909,7 @@ Some examples:
 
 * The Object is an Agent: "Nellie interviewed Jeff."
 
-* The Object is a Sub-Statement or Statement Reference (different implementations, but similar when human-read): 
+* The Object is a SubStatement or Statement Reference (different implementations, but similar when human-read): 
 "Nellie commented on 'Jeff wrote an essay about hiking.'"
 
 ###### Details
@@ -1318,8 +1318,8 @@ There are two possibilities for using a Statement as an Object.  First, an Objec
 of a Statement that already exists by using a Statement Reference. A common use case for 
 Statement References is grading or commenting on an experience that could be tracked as an 
 independent event.  The special case of voiding a Statement would also use a Statement Reference.
-Second, an Object can be a brand new Statement by using a Sub-Statement.  A common use case for 
-Sub-Statements would be any experience that would be misleading as its own Statement. Each type is defined below.
+Second, an Object can be a brand new Statement by using a SubStatement.  A common use case for 
+SubStatements would be any experience that would be misleading as its own Statement. Each type is defined below.
 
 <a name="stmtref"/>
 
@@ -1373,22 +1373,22 @@ comment could be issued on the original Statement, using a new Statement:
 
 <a name="substmt"/>
 
-##### Sub-Statements
+##### SubStatements
 
 ###### Description
-A Sub-Statement is a new Statement included as part of a parent Statement.
+A SubStatement is like a Statement included as part of a containing Statement, but does not represent an event that has occurred (unlike a Statement). It can be used to describe, for example, a pattern of a potential future Statement, or the behavior a teacher looked for when evaluating a student (without representing the student actually doing that behavior). 
 
 ###### Requirements
 
-* A Sub-Statement MUST specify an "objectType" property with the value "SubStatement".
-* A Sub-Statement MUST be validated as a Statement in addition to other Sub-Statement requirements.
-* A Sub-Statement MUST NOT have the "id", "stored", "version" or "authority" properties.
-* A Sub-Statement MUST NOT contain a Sub-Statement of their own, i.e., cannot be nested.
+* A SubStatement MUST specify an "objectType" property with the value "SubStatement".
+* A SubStatement MUST be validated as a Statement in addition to other SubStatement requirements.
+* A SubStatement MUST NOT have the "id", "stored", "version" or "authority" properties.
+* A SubStatement MUST NOT contain a SubStatement of their own, i.e., cannot be nested.
 
 ###### Example
 
-One interesting use of Sub-Statements is in creating Statements of intention. 
-For example, using Sub-Statements we can create Statements of the form 
+One interesting use of SubStatements is in creating Statements of intention. 
+For example, using SubStatements we can create Statements of the form 
 ```"<I> <planned> (<I> <did> <this>)"```  to indicate that we've planned to take some 
 action. The concrete example that follows logically states that 
 "I planned to visit 'Some Awesome Website'". 
@@ -1751,14 +1751,14 @@ These examples are for illustrative purposes only and are not meant to be prescr
 ###### Requirements
 * A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
 * The timestamp property SHOULD* be set by the LRS to the value of [Stored](#stored) if not provided.
-* A timestamp SHOULD include the time zone.
+* A timestamp SHOULD* include the time zone.
 * If the timestamp includes a time zone, the LRS MAY be return the timestamp using a different timezone to the one originally used in the statement
 so long as the point in time referenced is not affected. The LRS SHOULD* return the timestamp in UTC timezone. 
-* A timestamp SHOULD be the current or a past time when it is outside of a Sub-Statement.
-* A timestamp MAY represent any point of time during the experience happened over a period of time. 
+* A timestamp MAY represent any point during an experience, not necessarily the beginning or end. 
 * A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
-* A timestamp MAY be a moment in the future, to denote a deadline for planned learning, provided it is included 
-inside a Sub-Statement.
+* An AP MUST NOT use a future time for a timestamp in a Statement.
+* An LRS MUST NOT reject a timestamp for being from the future, to prevent issues due to clock errors.
+* A SubStatement MAY have a timestamp that is in the future.
 
 <a name="stored"/> 
 
@@ -1891,7 +1891,7 @@ A digital artifact providing evidence of a learning experience.
 In some cases an attachment is logically an important part of a learning record. Think of a simulated 
 communication with ATC, an essay, a video, etc. Another example of such an attachment is (the image of) a 
 certificate that was granted as a result of an experience. It is useful to have a way to store these attachments 
-in and retrieve them from an LRS. In the case of wanting to include an attachment(s) for a Sub-Statement, we strongly recommend including the attachment(s) in the Statement Attachment object and including the payloads as you would normally for a Statement.
+in and retrieve them from an LRS. In the case of wanting to include an attachment(s) for a SubStatement, we strongly recommend including the attachment(s) in the Statement Attachment object and including the payloads as you would normally for a Statement.
 
 ###### Details
 The table below lists all properties of the Attachment object.
@@ -3080,7 +3080,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 		<td>
 			Apply the Activity filter broadly. Include Statements for which the Object,
 			any of the  context Activities, or any of those properties in a contained
-			Sub-Statement match the Activity parameter, instead of that parameter's 
+			SubStatement match the Activity parameter, instead of that parameter's 
 			normal behavior. Matching is defined in the same way it is for the 
 			'activity' parameter.
 		</td>
@@ -3093,7 +3093,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 		<td>
 			Apply the Agent filter broadly. Include Statements for which 
 			the Actor, Object, Authority, Instructor, Team,
-			or any of these properties in a contained Sub-Statement match the Agent parameter,
+			or any of these properties in a contained SubStatement match the Agent parameter,
 			instead of that parameter's normal behavior. Matching is defined in the same way
 			it is for the 'agent' parameter.
 		</td>
@@ -4150,7 +4150,7 @@ This example shows an identified group with members.
 
 
 ###### Statement
-This example shows a Sub-Statement object whose object is a Statement Reference.
+This example shows a SubStatement object whose object is a Statement Reference.
 
 ```
 {
