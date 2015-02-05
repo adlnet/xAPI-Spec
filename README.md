@@ -127,7 +127,7 @@ And
 
 The Score Object SHOULD include 'scaled'. or The 'binary' value should be used.
 
-If a specific data format and value are to be used, the <code> style should be used to denote this.
+If a specific data format and value are to be used, the ```code``` style should be used to denote this.
 
 For example:
 
