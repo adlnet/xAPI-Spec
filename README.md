@@ -131,7 +131,7 @@ If a specific data format and value are to be used, the <code> style should be u
 
 For example:
 
-A list of item ids is delimited by '''[,]'''.  The value returned must be '''false'''.
+A list of item ids is delimited by ```[,]```.  The value returned must be ```false```.
 
 ### Property and object names
 
