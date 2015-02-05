@@ -3005,7 +3005,7 @@ do not match.
 
 * Activity Providers SHOULD use POST instead of PUT. 
 * When PUTing statements, the Id property of the Statement SHOULD* be used. 
-* Where provided, the Id property of the Statement MUST match the 'statementId' parameter of the request. 
+* Where provided, the Id property of the Statement MUST match the "statementId" parameter of the request. 
 
 
 <a name="stmtapipost"/>
