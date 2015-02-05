@@ -109,22 +109,48 @@ direct you to a page that gives you the ability to submit a request to the
 master repository to merge in the changes you committed.
 
 ##Style Guide
-### Property and object names
+### Expected Values
 
-When refering to a property or object, the name should be capitalized. No formatting or quotes should be used. 
+When a value is expected or described within plain text, but isn't specifically code, single quotes should be used.
+In situations where it is important to group text to be specific to the concept, single quotes should also be used.
+Single quotes are also allowable if the text would be unclear due to certain property names.
 
 For example:
 
-    The Context Activities property within the Context of the Statement is awesome.
+The reserved Verb 'http://adlnet.gov/expapi/verbs/voided' is an exception.
 
-Double quotes may be used when refering to properties within properties. When used within quotes, the capitalization of 
-should match that actually used in the object being described. 
+And
+
+These additional properties are called ‘interaction component lists’
+
+And
+
+The Score Object SHOULD include 'scaled'. or The 'binary' value should be used.
+
+If a specific data format and value are to be used, the <code> style should be used to denote this.
+
+For example:
+
+A list of item ids is delimited by <code>[,]</code>.  The value returned must be <code>false</code>.
+
+### Property and object names
+
+When refering to a property, parameter or object (but not calling it as that type, the name should be capitalized. 
+No formatting or quotes should be used. 
+
+For example:
+
+    Context Activities within the Context of the Statement are awesome.
+
+Double quotes should be used when refering to properties (also for objects and parameters) within properties or when the
+specific type is called out. When used within quotes, the capitalization of should match that actually used in the object
+being described. 
 
 For example:
 
     You can use "category" Context Activities to denote the recipe being followed in crafting the statement. 
 
-    The Group "member" property is an un-ordered list!
+    The "member" property is an un-ordered list!
 
 ### Headings
 Hashes (#) should be used for all headings following the following format:
