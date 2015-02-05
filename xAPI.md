@@ -2872,7 +2872,7 @@ unexpected exception in processing on the server.
 
 * An LRS SHOULD return a message in the response explaining the cause of the error.
 
-* An LRS SHOULD use content negotiation as described in [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html) to decide the format of the error.
+* An LRS SHOULD use content negotiation as described in [RFC 7231](http://tools.ietf.org/html/rfc7231#section-5.3) to decide the format of the error.
 
 * An LRS SHOULD allow for plain text, HTML, and JSON responses for errors (using content negotiation).
 
