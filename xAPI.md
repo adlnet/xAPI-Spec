@@ -2470,12 +2470,12 @@ Using Semantic Versioning will allow Clients and LRSs to reliably know compatibi
 ###### Details
 
 Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html).  Every request from a Client and every response from the LRS includes an HTTP header with the name 
-“X-Experience-API-Version" and the version as the value. For example, ``X-Experience-API-Version : 1.0.1``
+“X-Experience-API-Version" and the version as the value. For example, ``X-Experience-API-Version : 1.0.3``
 
 ###### LRS Requirements
 
 * The LRS MUST include the "X-Experience-API-Version" header in every response.
-* The LRS MUST set this header to "1.0.1".
+* The LRS MUST set this header to "1.0.3".
 * The LRS MUST accept requests with a version header of "1.0" as if the version header was "1.0.0".
 * The LRS MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a 
 fully conformant implementation of the prior version specified in the header.
@@ -2486,7 +2486,7 @@ of the problem.
 ###### Client Requirements
 
 * The Client MUST include the "X-Experience-API-Version" header in every request.
-* The Client MUST set this header to "1.0.1".
+* The Client MUST set this header to "1.0.3".
 * The Client SHOULD tolerate receiving responses with a version of "1.0.0" or later.
 * The Client SHOULD tolerate receiving data structures with additional properties.
 * The Client SHOULD ignore any properties not defined in version 1.0.0 of the spec.
@@ -4963,7 +4963,7 @@ Request Headers:
     Accept-Language:en-US,en;q=0.8
     Authorization: Basic VGVzdFVzZXI6cGFzc3dvcmQ=
     Content-Type: application/json
-    X-Experience-API-Version: 1.0.1
+    X-Experience-API-Version: 1.0.3
     Content-Length: 351
 
 Content:
@@ -4987,7 +4987,7 @@ Request Headers:
 Content (with added line breaks and not URL encoded for readability):
     statementId=c70c2b85-c294-464f-baca-cebd4fb9b348
     &Authorization=Basic VGVzdFVzZXI6cGFzc3dvcmQ=
-    &X-Experience-API-Version=1.0.1
+    &X-Experience-API-Version=1.0.3
     &Content-Type=application/json
     &Content-Length=351
     &content={"id":"c70c2b85-c294-464f-baca-cebd4fb9b348","timestamp":"2014-12-29T12:09:37.468Z","actor":{"objectType":"Agent","mbox":"mailto:example@example.com","name":"Test User"},"verb":{"id":"http://adlnet.gov/expapi/verbs/experienced","display":{"en-US":"experienced"}},"object":{"id":"http://example.com/xAPI/activities/myactivity","objectType":"Activity"}}
