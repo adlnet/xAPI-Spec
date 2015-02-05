@@ -2778,7 +2778,14 @@ track learning records.
 
 __Note:__ In all of the example endpoints given in the specification, 
 "http://example.com/xAPI/" is the example base endpoint of the LRS. All other IRI 
-syntax after this represents the particular endpoint used.
+syntax after this represents the particular endpoint used. A full list of endpoints
+is included in [Appendix F: Table of All Endpoints](#AppendixF).
+
+###### Requirements
+
+* The LRS MUST support all of the endpoints described in [this section](#datatransfer). (__Note:__ This requirement *does not* apply to 
+the OAuth endpoints described in [Section 6.4.2 OAuth Authorization Scope](#oauthscope); see that section for requirements relating to
+the OAuth endpoints.) 
 
 <a name="errorcodes" /> 
 
@@ -4823,6 +4830,7 @@ attachment message format.
 
 ## Appendix F: Table of All Endpoints
 
+### Required Endpoints
 <table>
 	<tr>
 		<th>Endpoint (Base Endpoint of the LRS Precedes Each Endpoint)</th>
@@ -4855,6 +4863,14 @@ attachment message format.
 	<tr>
 		<td>about</td>
 		<td>LRS Information</td>
+	</tr>
+</table>
+
+### OAuth Endpoints
+<table>
+	<tr>
+		<th>Endpoint (Base Endpoint of the LRS Precedes Each Endpoint)</th>
+		<th>Function</th>
 	</tr>
 	<tr>
 		<td>OAuth/initiate</td>
