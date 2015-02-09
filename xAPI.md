@@ -2872,6 +2872,12 @@ unexpected exception in processing on the server.
 
 * An LRS SHOULD return a message in the response explaining the cause of the error.
 
+* An LRS SHOULD use content negotiation as described in [RFC 7231](http://tools.ietf.org/html/rfc7231#section-5.3) to decide the format of the error.
+
+* An LRS SHOULD allow for plain text, HTML, and JSON responses for errors (using content negotiation).
+
+* An AP SHOULD send an Accept header with requests to enable content negotiation.
+
 * The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
 of these APIs that use any parameters which the LRS does not recognize in their 
 intended context in this specification ( __Note:__ LRSs MAY recognize and act on 
