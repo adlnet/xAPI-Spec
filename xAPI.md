@@ -525,7 +525,7 @@ Statements are immutable (they cannot be changed). The following are exceptions 
 * Potential or required assignments of properties during LRS 
 processing ("id", "authority", "stored", "timestamp", "version"). 
 
-* Activties referenced by a Statement. The content of 
+* Activities referenced by a Statement. The content of 
 Activities that are referenced in Statements is not considered part of the 
 Statement itself. This means a deep serialization of a Statement into 
 JSON will change if the referenced Activities change (see the
