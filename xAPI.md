@@ -24,7 +24,7 @@
  	*	2.2.	[Contributors](#contributors)
  		*	2.2.1.	[Working Group Participants](#wg)  
 		*	2.2.2.	[Requirements Gathering Participants](#reqparticipants) 
-	*	2.2.3	[Reading Guidelines for the Non-Technically Inclined](#readingguidelines)
+	*	2.3.	[Reading Guidelines for the Non-Technically Inclined](#readingguidelines)
 *	3.0.	[Definitions](#definitions)  
 *	4.0.	[Statement](#statement)  
     *	4.1.	[Statement Properties](#stmtprops)  
