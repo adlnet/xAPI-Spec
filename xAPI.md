@@ -1097,7 +1097,7 @@ based on the types of interactions allowed for "cmi.interactions.n.type" in the 
 See [Appendix C](#AppendixC) for examples definitions for each interaction type. 
 
 <table>
-	<tr><th>intractionType</th><th>Description</th></tr>
+	<tr><th>interactionType</th><th>Description</th></tr>
 	<tr>
 		<td>true-false</td>
 		<td>An interaction with two possible responses: true or false.</td>
@@ -1105,7 +1105,7 @@ See [Appendix C](#AppendixC) for examples definitions for each interaction type.
 	<tr>
 		<td>choice</td>
 		<td>An interaction with a number of possible choices from which the learner can select. 
-			This includes intractions in which the learner can select only one answer from the list and
+			This includes interactions in which the learner can select only one answer from the list and
 			those where the learner can select multiple items.</td>
 	</tr>
 	<tr>
@@ -1155,7 +1155,7 @@ requirements relating to "cmi.interactions.n.correct_responses.n.pattern" as def
 Run-Time Environment. See [Appendix C](#AppendixC) for examples of each format. 
 
 <table>
-	<tr><th>intractionType</th><th>Format</th></tr>
+	<tr><th>interactionType</th><th>Format</th></tr>
 	<tr>
 		<td>true-false</td>
 		<td>Either <code>true</code> or <code>false</code></td>
