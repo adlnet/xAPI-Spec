@@ -1534,7 +1534,7 @@ The table below defines the Score Object.
 	</tr>
 </table>
 
-The properties of the score object were originally based on the corresponding properties of cmi.score as defined in SCORM 2004 
+The properties of the score object are based on the corresponding properties of cmi.score as defined in SCORM 2004 
 4th Edition. 
 
 ###### Requirements
