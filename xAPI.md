@@ -2783,9 +2783,9 @@ is included in [Appendix F: Table of All Endpoints](#AppendixF).
 
 ###### Requirements
 
-* The LRS MUST support all of the endpoints described in [this section](#datatransfer). (__Note:__ This requirement *does not* apply to 
-the OAuth endpoints described in [Section 6.4.2 OAuth Authorization Scope](#oauthscope); see that section for requirements relating to
-the OAuth endpoints.) 
+* The LRS MUST support all of the endpoints described in [this section](#datatransfer). 
+* If the LRS implements OAuth 1.0, the LRS MUST also support all of the OAuth endpoints 
+described in [Section 6.4.2 OAuth Authorization Scope](#oauthscope).
 
 <a name="errorcodes" /> 
 
