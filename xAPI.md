@@ -1987,8 +1987,8 @@ results when the attachments filter is false.
     * MUST include a Content-Transfer-Encoding parameter with a value of "binary" in each part's header after the first (statements) part.
     * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple Statements that are sent together.
     * SHOULD include a Content-Type parameter in each part's header. For the first part (containing the statement) this MUST be "application/json".
-    * Where parameters have a corresponding property within the Attachment Object (outlined in the table above), the value of these parameters and properties
-    for each Attachment MUST match. 
+   	* Where parameters have a corresponding property within the Attachment Object (outlined in the table above), and both the parameter and 
+   	property are specified for a given Attachment, the value of these parameters and properties MUST match. 
 
 
 ###### LRS Requirements
