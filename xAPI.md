@@ -1194,6 +1194,8 @@ Run-Time Environment. See [Appendix C](#AppendixC) for examples of each format.
 	<tr>
 		<td>numeric</td>
 		<td>A range of numbers represented by a minimum and a maximum delimited by <code>[:]</code>. 
+			Where the range does not have a maximum or does not have a minimum, that number is omitted but the delimiter is
+			still used. E.g. ```"[:]4"``` indicates a maximum for 4 and no minimum. 
 			Where the correct response or learner's response is a single number rather than a range, the single number
 			with no delimiter MAY be used. 
 		</td>
