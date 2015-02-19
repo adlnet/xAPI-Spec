@@ -3004,8 +3004,8 @@ do not match.
 
 ###### Activity Provider Requirements
 
-* Activity Providers SHOULD use POST instead of PUT. 
-* When PUTing statements, the "id" property of the Statement SHOULD* be used. 
+* Activity Providers SHOULD POST Statements including the Statement "id" property instead of using PUT. 
+* When PUTing statements, the "id" property of the Statement SHOULD be used. 
 * Where provided, the "id" property of the Statement MUST match the "statementId" parameter of the request. 
 
 
