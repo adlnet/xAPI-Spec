@@ -1420,6 +1420,7 @@ action. The concrete example that follows logically states that
 			} 
 		},
 		"object": {
+			"objectType": "Activity",
 			"id":"http://example.com/website",
 			"definition": { 
 				"name" : {
