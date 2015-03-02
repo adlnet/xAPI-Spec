@@ -1193,7 +1193,11 @@ Run-Time Environment. See [Appendix C](#AppendixC) for examples of each format.
 	</tr>
 	<tr>
 		<td>numeric</td>
-		<td>A range of numbers represented by a minimum and a maximum delimited by <code>:</code>.
+		<td>A range of numbers represented by a minimum and a maximum delimited by <code>[:]</code>. 
+			Where the range does not have a maximum or does not have a minimum, that number is omitted but the delimiter is
+			still used. E.g. ```"[:]4"``` indicates a maximum for 4 and no minimum. 
+			Where the correct response or learner's response is a single number rather than a range, the single number
+			with no delimiter MAY be used. 
 		</td>
 	</tr>
 	<tr>
@@ -1257,9 +1261,8 @@ Interaction components are defined as follows:
 	<tr>
 		<td>id</td>
 		<td>String</td>
-		<td>A value such as used in practice for "cmi.interactions.n.id" as
-            defined in the SCORM 2004 4th Edition Run-Time Environment</td>
-            	<td>Required</td>
+		<td>Identifies the interaction component within the list.</td>
+        <td>Required</td>
 	<tr>
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
@@ -4471,7 +4474,7 @@ This example shows a SubStatement object whose object is a Statement Reference.
 	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
 	"interactionType": "numeric",
 	"correctResponsesPattern": [
-		"4:"
+		"4[:]"
 	]
 }
 ```
