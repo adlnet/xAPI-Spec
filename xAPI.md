@@ -702,14 +702,13 @@ or store and retrieve documents relating to a group.
 
 ##### 4.1.2.3 Inverse Functional Identifier
 ###### Description 
-An "Inverse Functional Identifier" is a value of an Agent or Identified
+An Inverse Functional Identifier (IFI) is a value of an Agent or Identified
 Group that is guaranteed to only ever refer to that Agent or Identified Group.
 
 ###### Rationale
-Learning experiences become meaningless if they cannot be attributed to identifiable
-individuals and/or groups. In an xAPI Statement this is accomplished with a set of
-Inverse Functional Identifiers loosely inspired on the widely accepted FOAF principle
-(see: <a href="http://xmlns.com/foaf/spec/#term_Agent"> Friend Of A Friend</a>).
+Agents and Groups need to be uniquely identifiable in order for data to be stored and retrieved against them. 
+In an xAPI Statement this is accomplished using Inverse Functional Identifiers which are loosely inspired 
+on the widely accepted FOAF principle (see: <a href="http://xmlns.com/foaf/spec/#term_Agent"> Friend Of A Friend</a>).
 
 ###### Details
 
