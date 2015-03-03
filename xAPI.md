@@ -2020,6 +2020,21 @@ contain attachments.
 * The Client MAY send batches of type "application/json" where every attachment
 Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
 
+###### File URL
+The File URL is intended to provide a location from which the LRS or another system can retrieve the
+attachment. There are, however, no requirements for the owner of the attachment to make the 
+attachment data available at the location indefinately or to make the attachment publically
+available without security restrictions. When determining attachment hosting arrangements, 
+designers of systems that will send Statements using the "fileUrl" property are encouraged to 
+consider the needs of end recipient(s) of the Statement especially if the attachment content 
+is not included with the Statement.
+
+* The attachment data SHOULD be retirevable at the IRL indicated by the fileUrl.
+* The file host MAY stop providing the attachment data at this IRL at any time. 
+* Security restrictions MAY be applied to clients attempting to access the attachment data at this IRL. 
+
+The duration an attachment is made available for, and the security restrictions applied to
+hosted attachments, are out of scope of this specification. 
 
 ###### Example
 
