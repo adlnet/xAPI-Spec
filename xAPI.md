@@ -438,6 +438,9 @@ specification. A system that fails to implement a MUST (or a MUST NOT) requireme
 Failing to meet a SHOULD requirement is not a violation of conformity, but goes against best practices. 
 MAY indicates an option, to be decided by the developer with no consequences for conformity.
 
+The use of an asterisk* following SHOULD indicates a very strong recommendation. It is likely that
+these recommendations will become MUST requirements in a future version. 
+
 <a name="def-profile" />
 
 __Profile__: A construct where information about the learner or activity is kept, 
