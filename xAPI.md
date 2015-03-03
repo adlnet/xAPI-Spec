@@ -2545,10 +2545,9 @@ overwrite or remove existing data, being:
 * Agent Profile API 
 * Activity Profile API
 
+##### Client Requirements
 The State API will permit PUT, POST and DELETE requests without concurrency headers, since state conflicts
 are unlikely. The requirements below only apply to Agent Profile API and Activity Profile API.
-
-##### Client Requirements
 
 * A Client making a PUT request to either the Agent Profile API or Activity Profile API MUST include the 
 [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the 
