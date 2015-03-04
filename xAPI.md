@@ -2490,7 +2490,6 @@ Metadata Consumer does not trust it. Other sources of information MAY
 include metadata in other formats stored at the IRL of an identifier, particularly if that
 identifier was not coined for use with this specification.
 
-
 <a name="rtcom"/>
 
 ## 6.0 Run-time Communication
