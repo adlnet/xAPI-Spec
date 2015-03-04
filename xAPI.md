@@ -1222,6 +1222,19 @@ Run-Time Environment. See [Appendix C](#AppendixC) for examples of each format.
 	</tr>
 </table>
 
+Note that the Correct Response Pattern contains an array of response patterns. A learner's response will be considered correct if it matches
+**any** of the response patterns in that array. Where a response pattern is a delimited list, the learner's response is only considered correct
+if **all** of the items in that list match the learner's response. For example, consider the Correct Response Pattern with a value of:
+
+```
+"correctResponsesPattern": [
+    "foo[,]bar",
+    "foo"
+]
+``` 
+
+In this example, ```foo[,]bar``` and  ```foo``` are correct learner responses; ```bar``` is not.
+
 ###### Characterstring parameters
 Some of the values within the responses described above can be prepended with certain additional parameters. These were originally based on the characterstring
 delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These parameters are represented by the format ```{parameter=value}```.
