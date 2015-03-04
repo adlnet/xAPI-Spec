@@ -3344,7 +3344,7 @@ the resulting document stored in the LRS is:
 
 ###### Requirements
 
-* If the document being posted or any existing document do not have a Content-Type
+* If the document being posted or any existing document does not have a Content-Type
 of "application/json", or if either document cannot be parsed as a JSON Object, the LRS MUST
 respond with HTTP status code ```400 Bad Request```, and MUST NOT update the target document
 as a result of the request.
