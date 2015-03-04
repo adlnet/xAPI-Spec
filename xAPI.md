@@ -3339,7 +3339,7 @@ The LRS MUST return only one language in each of these maps.
 
 * The LRS MAY maintain canonical versions of language maps for any language map used in an object
 which has an id (objects without an id could never be matched to a canonical definition). 
-This includes the Verb Display property and some properties used within extensions. 
+This includes the Verb Display property and any language maps used within extensions. 
 
 * If the LRS maintains a canonical version of a language map, it SHOULD* return this when canonical 
 format is used. 
