@@ -3310,12 +3310,14 @@ include attachment raw data and MUST report application/json.
 
 This section outlines rules by which additional Statements are considered to meet the filter coniditions even
 if they do not match the original query's filter parameters but instead target a Statement which does. 
-These rules **do not** apply when using filter parameters which are time or sequence based (that is, other 
-than since, until, or limit), and when retrieving a single Statement with statementId or voidedStatementId.
+These rules **do not** apply when retrieving a single Statement with statementId or voidedStatementId.
 
+For filter parameters which are not time or sequence based (that is, other than since, until, or limit), 
 Statements which target another Statement (by using a StatementRef
 as the Object of the Statement) will meet the filter condition if the targeted Statement meets 
-the condition. The time and sequence based parameters MUST still be applied to the Statement 
+the condition of that filter parameter.
+
+The time and sequence based parameters MUST still be applied to the Statement 
 making the StatementRef in this manner. This rule applies recursively, so that "Statement a" is a 
 match when a targets b which targets c and the filter conditions described above match for 
 "Statement c".
