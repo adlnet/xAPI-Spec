@@ -1208,7 +1208,7 @@ Run-Time Environment. See [Appendix C](#AppendixC) for examples of each format.
 
 ###### Characterstring parameters
 Some of the values within the responses described above can be prepended with certain additional parameters. These were originally based on the characterstring
-delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These parameters are represented by the format ```{parameter=value}```. See
+delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These parameters are represented by the format ```{parameter=value}```.
 See [the long-fill-in example within Appendix C](#long-fill-in). 
 
 The following parameters are valid at the start of the string representing the list of items for the listed interaction types:
