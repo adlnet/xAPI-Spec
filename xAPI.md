@@ -1509,10 +1509,8 @@ The table below defines the Score Object.
 	<tr>
 		<td>scaled</td>
 		<td>Decimal number between -1 and 1, inclusive</td>
-		<td>The score related to the experience as a proportion of the maximum score possible for the experience. 
-		In the case of negative score, the scaled score is calculated as a proportion of the minimum score possible.
-		For positive scores, the scaled score can be calculated as the raw score divided by the max score (where
-		those values are present). </td>
+		<td>The score related to the experience as modified by scaling and/or normalization. 
+		</td>
 		<td>Recommended</td>
 	</tr>
 	<tr>
@@ -1537,7 +1535,8 @@ The table below defines the Score Object.
 </table>
 
 The properties of the score object are based on the corresponding properties of cmi.score as defined in SCORM 2004 
-4th Edition. 
+4th Edition. If both scaled and raw score are provided, the exact relationship between the scaled and raw score is determined 
+by the Activity Provider or their Community of Practice; scaling and normalization are out of scope of this specification.
 
 ###### Requirements
 
