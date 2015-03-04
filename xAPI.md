@@ -1548,7 +1548,7 @@ The table below defines the Score Object.
 </table>
 
 The properties of the score object are based on the corresponding properties of cmi.score as defined in SCORM 2004 
-4th Edition. If both scaled and raw score are provided, the exact relationship between the scaled and raw score is determined 
+4th Edition. If both "scaled" and "raw" properties are provided, the exact relationship between their two values is determined 
 by the Activity Provider or their Community of Practice; scaling and normalization are out of scope of this specification.
 
 ###### Requirements
