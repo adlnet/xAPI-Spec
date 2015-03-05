@@ -1,7 +1,7 @@
 # Experience API
 ## Advanced Distributed Learning (ADL) Co-Laboratories
 
->"Copyright 201 Advanced Distributed Learning (ADL) Initiative, U.S. Department of Defense
+>"Copyright 2013 Advanced Distributed Learning (ADL) Initiative, U.S. Department of Defense
 
 >Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except 
 >in compliance with the License. You may obtain a copy of the License at
@@ -306,7 +306,6 @@ be unintuitive and/or lengthy to dissect into a list of requirements.
 * [Authorization](#def-authorization)
 * [Base Endpoint](#def-baseendpoint)
 * [Community of Practice](#def-community-of-practice)
-* [Controlled Vocabulary](#def-controlled-vocabulary)
 * [Experience API (xAPI)](#def-experience-api)
 * [Immutable](#def-immutable)
 * [Internationalized Resource Identifier (IRI)](#def-iri)
@@ -369,14 +368,6 @@ Activity Provider, reporting tool, an LMS, or another LRS.
 
 __Community of Practice__: A group, usually connected by a common cause, role or 
 purpose, which operates in a common modality.
-
-<a name="def-community-profile" />
-
-__Community Profile__: A unique collection of artifacts such as CoP use cases, controlled vocabulary terms, implementation instructions, and pre-defined examples (e.g., recipes) of how to capture specific types of learning activities using xAPI. 
-
-<a name="def-controlled-vocabulary" />
-
-__Controlled Vocabulary__: A restricted, agreed-on list of words or terms developed by a CoP. The objective of a controlled vocabulary is to achieve consistency in the semantic description, storage, and retrieval of xAPI data. It is controlled because terms from the list are intended to be used for a specific subject area or domain of knowledge. There should also be control over how the list is maintained. The vocabualry list could grow, but only under defined policies by a CoP.
 
 <a name="def-experience-api" />
 
@@ -452,8 +443,8 @@ these recommendations will become MUST requirements in a future version.
 
 <a name="def-profile" />
 
-__Profile__: A construct where information about the agent or activity is kept, 
-typically in name/document pairs that may provide meaning for an application.
+__Profile__: A construct where information about the learner or activity is kept, 
+typically in name/document pairs that have meaning to an instructional system component.
 
 <a name="def-registration" />
 
@@ -483,7 +474,7 @@ informal references to the Experience API.
 
 <a name="def-verb" />
 
-__Verb__: Defines the action performed by the Actor on an Activity within a Statement. 
+__Verb__: Defines the action being done by the Actor within the Activity within a Statement. 
 
 <a name="statement"/> 
 
@@ -900,7 +891,8 @@ or the Verb IRI http://example.com/فعل/خواندن might denote the action o
 
 Communities of practice will, at some point in time, need to establish new Verbs to meet the needs of their constituency.
 
-Therefore, it is expected that xAPI communities of practice generate <a href="#def-community-profile">community profiles</a> based on both new and existing <a href="#controlled-vocabulary">controlled vocabularies</a>. 
+Therefore, it is expected that xAPI communities of practice generate profiles, lists, and repositories that become 
+centered on Verb vocabularies.  ADL is creating a companion document containing Verbs for xAPI to serve the ADL Community.
 
 In fulfillment of the requirements below, a collection of IRIs of recommended Verbs exists.  There are times when 
 Activity Providers might wish to use a different Verb for the same meaning.
@@ -1579,7 +1571,8 @@ outside the scope of this specification.
 ###### Requirements
 
 * The Score Object SHOULD include 'scaled' if a logical percent based score is known.
-* The Score Object SHOULD NOT be used for scores relating to progress or completion.  Consider using an <a href="https://github.com/adlnet/xAPI-Spec/blob/master/xAPI.md#miscext">extension</a> instead.
+* The Score Object SHOULD NOT be used for scores relating to progress or completion.  Consider using an extension
+from an extension profile instead.
 
 
 <a name="context"/>
@@ -1716,7 +1709,7 @@ the qualification relates to the class as the grouping.
 
 3. __Category__: an Activity used to categorize the Statement.
 "Tags" would be a synonym. Category SHOULD be used to indicate
-a <a href="#def-community-profile">community profile</a> of xAPI behaviors, as well as other categorizations.
+a "profile" of xAPI behaviors, as well as other categorizations.
 For example: Anna attempts a biology exam, and the Statement is
 tracked using the CMI-5 profile. The Statement's Activity refers
 to the exam, and the category is the CMI-5 profile.
