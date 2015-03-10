@@ -3228,9 +3228,10 @@ include attachment raw data and MUST report application/json.
 
 This section outlines rules by which Statements targeting other Statements can sometimes be considered to 
 meet the filter conditions of a query even if they do not match the original query's filter parameters. 
-These rules **do not** apply when retrieving a single Statement with statementId or voidedStatementId.
+These rules **do not** apply when retrieving a single Statement using "statementId" or "voidedStatementId" query 
+parameters.
 
-For filter parameters which are not time or sequence based (that is, other than since, until, or limit), 
+For filter parameters which are not time or sequence based (that is, other than "since", "until", or "limit"), 
 Statements which target another Statement (by using a StatementRef
 as the Object of the Statement) will meet the filter condition if the targeted Statement meets 
 the filter condition.
