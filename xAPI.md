@@ -3253,8 +3253,14 @@ Statements are filtered.
 * Activity Objects contain Language Map Objects for name, description and interaction components. 
 The LRS MUST return only one language in each of these maps. 
 
-* Verb Objects contain Language Map Objects for Display. 
-The LRS SHOULD* return only one language in this map. 
+* The LRS MAY maintain canonical versions of language maps against any IRI identifying an object containing
+language maps. This includes the language map stored in the Verb Display property and potentially some 
+language maps used within extensions. 
+
+* If the LRS maintains a canonical version of a language map, it SHOULD* return this cannonical langauge map
+ when canonical format is used to retrieve Statements. 
+
+* The LRS SHOULD* return only one language within each language map for which it returns a canonical map. 
 
 * In order to choose the most relevant language, the LRS MUST apply the Accept-Language header as 
 described in <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a> 
