@@ -53,7 +53,7 @@
     *	6.2.	[API Versioning](#apiversioning)  
     *	6.3.	[Concurrency](#concurrency)  
     *	6.4.	[Security](#security)  
-		*	6.4.1.	[Process for Each Scenario](#authdefs)  
+		*	6.4.1.	[Authentication Scenarios and Methods](#authdefs)  
 		*	6.4.2.	[OAuth Authorization Scope](#oauthscope)  
 *	7.0.	[Data Transfer (REST)](#datatransfer)  
     *	7.1.	[Error Codes](#errorcodes)  
@@ -2578,8 +2578,40 @@ In order to balance interoperability and the varying security requirements of di
 environments, several authentication options are defined.
 
 ###### Details
+The following authentication methods are defined within the specification. Any given LRS will 
+implement at least one of these methods and might implement additional methods not defined within
+this specification. 
 
-The below matrix describes the possible authentication scenarios.
+- [OAuth 1.0 (RFC 5849)](http://tools.ietf.org/html/rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
+- [HTTP Basic Authentication](http://tools.ietf.org/html/rfc7235)
+- Common Access Cards
+
+Whislt Common Access Cards are defined as an authentication option within this specification,
+the implementation details of this authentication method are not defined. The xAPI Working Group
+encourages LRS developers implementing Common Access Cards as an authentication method to collaborate
+in defining the details of this authentication method in a future version of this specification. 
+
+No further details are provided to describe HTTP Basic Authentication as this authentication method
+is clearly and completely defined in [RFC 7235](http://tools.ietf.org/html/rfc7235). 
+
+###### Requirements
+
+- The LRS MUST support authentication using at least one of the authentication methods defined in this 
+specification.
+
+- The LRS MUST handle making, or delegating, decisions on the validity of Statements,
+ and determining what operations might be performed based on the credentials used.
+
+<a name="authdefs"/>
+
+#### 6.4.1 OAuth 1.0 Authentication Scenarios and Methods
+
+The matrix and requirements below describe the possible authentication 
+scenarios used within OAuth and recommends the authentication workflow to be 
+used in these scenarios. The process described for each scenario is not intended 
+to be comprehensive, but rather outline variations to the standard OAuth workflow. 
+
+The requirements in this section only apply if the LRS supports OAuth 1.0.
 
 A **registered application** is an application that will authenticate to the LRS as an OAuth 
 consumer that has been registered with the LRS.
@@ -2612,19 +2644,6 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 
 </table> 
 
-###### Requirements
-
-The LRS MUST support authentication using at least one of the following methods:
-- [OAuth 1.0 (RFC 5849)](http://tools.ietf.org/html/rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
-- HTTP Basic Authentication
-- Common Access Cards (implementation details to follow in a later version)
-- The LRS MUST handle making, or delegating, decisions on the validity of Statements,
- and determining what operations might be performed based on the credentials used.
-	
-<a name="authdefs"/>
-
-#### 6.4.1 Process of Each Scenario
-
 ##### Requirements
 
 * The LRS MUST record the application's name and a unique consumer key (identifier).
@@ -2639,34 +2658,48 @@ such a mechanism.
 * The LRS SHOULD at a minimum supply OAuth with "HMAC-SHA1" and "RSA-SHA1" signatures.
 
 ###### Application registered + known user Process and Requirements
+**Process:** The standard workflow for OAUth 1.0 is used. 
 
-* Use endpoints in section [6.4.2 OAuth Authorization Scope](#oauthscope) to complete the standard OAuth workflow 
+**Requirements:**
+* The LRS MUST support the endpoints in section [6.4.2 OAuth Authorization Scope](#oauthscope) to complete the standard OAuth workflow 
 (details not in this specification).
 * If this form of authentication is used to record Statements and no authority is specified, the LRS SHOULD 
 record the authority as a group consisting of an Agent representing the registered application, and an Agent 
 representing the known user.
 
 ###### Application registered + user unknown Process and Requirements
+**Process:** 
+The LRS honors requests that are signed using OAuth with the registered application's credentials and with an empty token and token secret.
 
-* The LRS honors requests that are signed using OAuth with the registered application's credentials and with an empty token and token secret.
-* If this form of authentication is used  to record Statements and no authority is specified, the LRS SHOULD 
+**Requirements:**
+* If this form of authentication is used to record Statements, the LRS SHOULD 
 record the authority as the Agent representing the registered application.
 
 ###### Application not registered + known user Process and Requirements
+**Process:**
+The AP uses a consumer secret consisting of an empty string to call the 
+Temporary Credential Request endpoint specifying the "consumer_name" and other usual parameters.
+The "consumer_name" contains a string representing the application requesting access. 
 
-* The AP MUST use a consumer secret consisting of an empty string.
-* Call "Temporary Credential" request.
-* Specify "consumer_name" and other usual parameters; User will then see "consumer_name" plus a warning 
-that the identity of the application requesting authorization cannot be verified.
-* The LRS MUST record an  authority that includes both that application and the authenticating user, as a group, 
-since OAuth specifies an application.
+The AP then sends the user's browser to the Resource Owner Authorization using the 
+temporary credentials obtained from the LRS. The Resource Owner Authorization presents a 
+page displaying the "consumer_name" plus a warning that the identity of the application requesting 
+authorization cannot be verified.
+
+Otherwise the process follows the standard OAuth workflow. 
+
+**Requirements:**
+* If this form of authentication is used to record Statements, the LRS SHOULD record an authority 
+that includes both that application and the authenticating user, as a group, since OAuth specifies 
+an application.
 
 ###### No application + known user Process and Requirements
+**Process:**
+Use a username/password combination provided by the LRS for use by the known user.
 
-* Use username/password combination that corresponds to an LRS login.
-* Authority to be recorded as the Agent identified by the login, **unless…**
-	* other Authority is specified **and…**
-	* LRS trusts the known user to specify this Authority.
+**Requirements:**
+* If this form of authentication is used to record Statements, the LRS SHOULD 
+record the authority as the Agent representing the known user.
 
 ###### No authorization Process and Requirements
 
@@ -2681,7 +2714,7 @@ challenge.
 
 <a name="oauthscope"/> 
 
-#### 6.4.2 OAuth Authorization Scope
+#### 6.4.2 OAuth 1.0 Authorization Scope
 
 ##### Description
 These are recommendations for scopes designed to enable an LRS and an application
@@ -2689,6 +2722,12 @@ communicating using the xAPI to negotiate a level of access which accomplishes w
 application needs while minimizing the potential for misuse. The limitations of each scope
 are in addition to any security limitations placed on the user account associated with the
 request.
+
+Elements of this section draw on [OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-3.3)
+despite this section describing requirements for LRS supporting [OAuth 1.0](http://tools.ietf.org/html/rfc5849). 
+
+The requirements in this section only apply if the LRS
+supports OAuth 1.0.
 
 ##### Details
 
