@@ -3534,12 +3534,12 @@ Returns (GET): ```200 OK```, State Content
 ###### Multiple Document GET
 Example endpoint: http://example.com/xAPI/activities/state
 
-Fetches ids of all state data for this context (Activity + Agent \[ + 
+Fetches State Ids of all state data for this context (Activity + Agent \[ + 
 registration if specified\]). If "since" parameter is specified, this 
 is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
 
-Returns: ```200 OK```, Array of ids  
+Returns: ```200 OK```, Array of 'stateId' values.  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -3660,11 +3660,11 @@ Returns (GET): ```200 OK```, Profile Content
 ###### Multiple Document GET
 Example endpoint: http://example.com/xAPI/activities/profile
 
-Loads ids of all profile entries for an Activity. If "since" parameter is 
+Fetches Profile Ids of all profile entries for an Activity. If "since" parameter is 
 specified, this is limited to entries that have been stored or updated since 
 the specified timestamp (exclusive).  
 
-Returns: ```200 OK```, List of ids  
+Returns: ```200 OK```, Array of 'profileId' values. 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
 	<tr>
@@ -3817,14 +3817,14 @@ Returns (GET): ```200 OK```, Profile Content
 	</tr>
 </table>  
 
-###### Multiple Agent or Profile GET 
+###### Multiple Document GET 
 Example endpoint: http://example.com/xAPI/agents/profile
 
-Loads ids of all profile entries for an Agent. If "since" parameter is specified, 
+Fetches Profile Ids of all profile entries for an Agent. If "since" parameter is specified, 
 this is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
 
-Returns: ```200 OK```, List of ids  
+Returns: ```200 OK```, Array of 'profileId' values.   
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
