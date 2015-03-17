@@ -1944,7 +1944,9 @@ The table below lists all properties of the Attachment object.
 		<td>sha2</td>
 		<td>String</td>
 		<td>The SHA-2 (SHA-256, SHA-384, SHA-512) hash of the attachment data. SHA-224 
-		SHOULD not be used: a minimum key size of 256 bits is recommended.</td>
+		SHOULD not be used: a minimum key size of 256 bits is recommended.<br/>
+		This property is always required, even if "fileURL" is also specified. 
+		</td>
 		<td>Required</td>
 		<td>X-Experience-API-Hash</td>
 	</tr>
