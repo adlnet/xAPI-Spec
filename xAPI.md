@@ -2800,7 +2800,7 @@ handled via RESTful HTTP methods. The Statement API can be used by itself to
 track learning records. 
 
 An LRS will support all of the endpoints described in this section. It's also possible
-for a tool which is not an LRS to choose to follow thbe LRS requirements of one or 
+for a tool which is not an LRS to choose to follow the LRS requirements of one or 
 more of the endpoints and methods described in this section. For example a tool might
 implement POST Statements for the purposes of receiving incoming Statements forwarded by an LRS.
 Such a system is not considered to be an LRS or 'partial LRS'; it is simply not an LRS. 
