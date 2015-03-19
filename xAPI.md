@@ -3315,6 +3315,10 @@ meet the filter conditions of a query even if they do not match the original que
 These rules **do not** apply when retrieving a single Statement using "statementId" or "voidedStatementId" query 
 parameters.
 
+'Targeting Statements' means that one Statement (the targeting Statement) includes the Statement Id of another
+Statement (the targeted Statement) as a Statemnent Reference either as the object of the Statement or within the 
+"statement" property of the Context. 
+
 For filter parameters which are not time or sequence based (that is, other than "since", "until", or "limit"), 
 Statements which target another Statement (by using a StatementRef
 as the Object of the Statement) will meet the filter condition if the targeted Statement meets 
