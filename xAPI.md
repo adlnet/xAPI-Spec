@@ -110,10 +110,22 @@ Various refinements and clarifications including:
 - Changes to querying the Statement API
 - Signed Statements
 
+[0.95...1.0.0](https://github.com/adlnet/xAPI-Spec/compare/0.95-spec...1.0.0)
+
 ###### 1.0.0 to 1.0.1 (October 1, 2013)
 Clarifications and additional examples including:
 - Fixed various typos
 - Added additional examples in the appendices
+
+[1.0.0...1.0.1](https://github.com/adlnet/xAPI-Spec/compare/1.0.0...1.0.1)
+
+###### 1.0.1 to 1.0.2 (October 1, 2014)
+- Added optional/required to tables
+- Added missing table heading on Interaction components
+- Change yes/no to required/optional in attachments
+- Clarified intent of 'moreInfo' property
+
+[1.0.1...1.0.2](https://github.com/adlnet/xAPI-Spec/compare/1.0.1...1.0.2)
 
 <a name="roleofxapi"/>
 
@@ -182,7 +194,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Aaron Silvers</td><td>ADL</td></tr>
 	<tr><td>Al Bejcek</td><td>NetDimensions</td></tr>
 	<tr><td>Ali Shahrazad</td><td>SaLTBOX</td></tr>
-	<tr><td>Andrew Downes</td><td>Epic</td></tr>
+	<tr><td>Andrew Downes</td><td>Rustici Software</td></tr>
 	<tr><td>Andy Johnson</td><td>ADL</td></tr>
 	<tr><td>Andy Whitaker</td><td>Rustici Software</td></tr>
 	<tr><td>Anthony Altieri</td><td>American Red Cross</td></tr>
@@ -920,7 +932,7 @@ The table below lists the properties of the Activity Definition Object:
 	<tr>
 		<td>moreInfo</td>
 		<td>IRL</td>
-		<td>Resolves to a document with human-readable information about the Actiivty, 
+		<td>Resolves to a document with human-readable information about the Activity, 
 		which could include a way to launch the activity.
 		</td>
 		<td>Optional</td>
@@ -1869,6 +1881,8 @@ Complete IRI validation is extremely difficult, so much of the burden for ensuri
 * Values requiring IRIs MUST be sent with valid IRIs. 
 * Keys of language maps MUST be sent with valid [RFC 5646](http://tools.ietf.org/html/rfc5646) language tags, for similar reasons.
 * A library SHOULD be used to construct IRIs, as opposed to string concatenation. 
+* Values SHOULD be considered to be case sensitive unless specified otherwise. 
+* Lowercase SHOULD be used to send case insensitive data.
 
 ###### LRS Requirements
 
@@ -1888,6 +1902,7 @@ matches the [RFC 5646](http://tools.ietf.org/html/rfc5646) standard.
 floating point numbers.
 * The LRS MUST validate parameter values to the same standards required for values of the
 same types in Statements. __Note:__ string parameter values are not quoted as they are in JSON.
+* The LRS SHOULD treat all values as case sensitive unless specified otherwise.
 * The LRS MAY use best-effort validation for IRL, IRI, and IRI formats to satisfy the
 non-format-following rejection requirement.
 * The LRS MAY use best-effort validation for language map keys to satisfy the
@@ -1911,6 +1926,8 @@ The following table shows the data structure for the results of queries on the S
 			and there are more results, they will be located at the "statements" property 
 			within the container located at the IRL provided by the "more" element of 
 			this Statement result Object.
+			
+			Where no matching statements are found, this property will contain an empty array.
 		</td>
 		<td>Required</td>
 	</tr>
@@ -1957,14 +1974,15 @@ itself be voided.
 field set to "StatementRef".
 * When issuing a Statement that voids another, the Object of that voiding Statement MUST specify the id 
 of the statement-to-be-voided by its "id" field.
+* an LRS MUST consider a Statement it contains "voided" if and only if the Statement is not itself a voiding Statement and the LRS also contains a voiding Statement referring to the first Statement.
 * Upon receiving a Statement that voids another, the LRS SHOULD reject the entire request which includes the 
 voiding Statement with HTTP 403 'Forbidden' if the request is not from a source authorized to void Statements.
-* Upon receiving a Statement that voids another, the LRS SHOULD return a descriptive error if the target 
-Statement cannot be found.
+* Upon receiving a Statement that voids another, the LRS SHOULD NOT* reject the request on the grounds of the 
+Object of that voiding Statement not being present. 
 * Upon receiving a Statement that voids another, the LRS MAY roll back any changes to Activity or Agent 
-definitions which were introduced by the Statement that was just voided;
+definitions which were introduced by the Statement that was just voided.
 * An Activity Provider that wants to "unvoid" a previously voided Statement SHOULD issue that Statement 
-again under a new id
+again under a new id.
 * A reporting system SHOULD NOT show voided or voiding Statements by default.
 
 __Note:__ See ["Statement References"](#stmtref) in [Section 4.1.4.3 When the "Object" is a Statement](#stmtasobj) 
@@ -2631,7 +2649,7 @@ on the AP, and have the LRS query that API for the list of updated (or new)
 Statements periodically. This will likely only be a realistic option for systems 
 that provide a lot of data to the LRS.  
 
-Returns: ```200 OK```, Statement id(s) (UUID).  
+Returns: ```200 OK```, Array of Statement id(s) (UUID).  
 
 ###### Requirements
 
@@ -2743,7 +2761,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	<tr>
 		<td>related_activities</td>
 		<td>Boolean</td>
-		<td>False</td>
+		<td>false</td>
 		<td>
 			Apply the Activity filter broadly. Include Statements for which the Object,
 			any of the  context Activities, or any of those properties in a contained
@@ -2756,7 +2774,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	<tr>
 		<td>related_agents</td>
 		<td>Boolean</td>
-		<td>False</td>
+		<td>false</td>
 		<td>
 			Apply the Agent filter broadly. Include Statements for which 
 			the Actor, Object, Authority, Instructor, Team,
@@ -2831,7 +2849,7 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 	<tr>
 		<td>ascending</td>
 		<td>Boolean</td>
-		<td>False</td>
+		<td>false</td>
 		<td>If true, return results in ascending order of stored time</td>
 		<td>Optional</td>
 	</tr>
@@ -2845,6 +2863,10 @@ which contain both statementId and voidedStatementId parameters
 * The LRS MUST reject with an ```HTTP 400``` error any requests to this resource 
 which contain statementId or voidedStatementId parameters, and also contain any 
 other parameter besides "attachments" or "format".
+
+* In the event that no statements are found matching the query filter criteria, the LRS MUST still return 
+```HTTP 200``` and a [StatementResult](#retstmts) Object. In this case, the statements property will contain
+an empty array.
 
 * The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
 <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601
@@ -2900,7 +2922,7 @@ unless they themselves have been voided, as described in
 voiding Statement, which cannot be voided. Reporting tools can identify the presence and
 statementId of any voided Statements by the target of the voiding Statement. 
 
-*Reporting tools wishing to retrieve voided Statements SHOULD request these individually by 
+* Reporting tools wishing to retrieve voided Statements SHOULD request these individually by 
 voidedStatementId.
 
 <a name="docapis" />
@@ -3026,7 +3048,7 @@ will delete all state in the context given through the other parameters.
 ###### Single Document (PUT | POST | GET | DELETE)
 Example endpoint: http://example.com/xAPI/activities/state
 
-Stores, fetches, or deletes the document specified by the given stateId that 
+Stores, changes, fetches, or deletes the document specified by the given stateId that 
 exists in the context of the specified Activity, Agent, and registration (if specified).  
 
 Returns (PUT | POST | DELETE): ```204 No Content```  
@@ -3035,13 +3057,13 @@ Returns (GET): ```200 OK```, State Content
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>activityId</td>
-		<td>String</td>
+		<td>Activity id (IRI)</td>
 		<td>The Activity id associated with this state.</td>
 		<td>Required</td>
 	</tr>
 	<tr>
 		<td>agent</td>
-		<td>JSON</td>
+		<td>Agent object (JSON)</td>
 		<td>The Agent associated with this state.</td>
 		<td>Required</td>
 	</tr>
@@ -3072,13 +3094,13 @@ Returns: ```200 OK```, Array of ids
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>activityId</td>
-		<td>String</td>
+		<td>Activity id (IRI)</td>
 		<td>The Activity id associated with these states.</td>
 		<td>Required</td>
 	</tr>
 	<tr>
 		<td>agent</td>
-		<td>JSON</td>
+		<td>Agent object (JSON)</td>
 		<td>The Agent associated with these states.</td>
 		<td>Required</td>
 	</tr>
@@ -3107,13 +3129,13 @@ Returns: ```204 No Content```
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>activityId</td>
-		<td>String</td>
+		<td>Activity id (IRI)</td>
 		<td>The Activity id associated with this state.</td>
 		<td>Required</td>
 	</tr>
 	<tr>
 		<td>agent</td>
-		<td>JSON<</td>
+		<td>Agent object (JSON)</td>
 		<td>The Agent associated with this state.</td>
 		<td>Required</td>
 	</tr>
@@ -3155,16 +3177,16 @@ Returns: ```200 OK```, Content
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>activityId</td>
-		<td>String</td>
+		<td>Activity id (IRI)</td>
 		<td>The id associated with the Activities to load.</td>
 		<td>Required</td>
 	</td>
 </table>
 
-###### Single Document PUT | POST | GET | DELETE
+###### Single Document (PUT | POST | GET | DELETE)
 Example endpoint: http://example.com/xAPI/activities/profile
 
-Saves/retrieves/deletes the specified profile document in the context of the 
+Stores, changes, fetches, or deletes the specified profile document in the context of the 
 specified Activity.  
 
 Returns (PUT | POST | DELETE): ```204 No Content```  
@@ -3173,7 +3195,7 @@ Returns (GET): ```200 OK```, Profile Content
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>activityId</td>
-		<td>String</td>
+		<td>Activity id (IRI)</td>
 		<td>The Activity id associated with this profile.</td>
 		<td>Required</td>
 	</tr>
@@ -3197,7 +3219,7 @@ Returns: ```200 OK```, List of ids
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
 	<tr>
 		<td>activityId</td>
-		<td>String</td>
+		<td>Activity id (IRI)</td>
 		<td>The Activity id associated with these profiles.</td>
 		<td>Required</td>
 	</tr>
@@ -3237,7 +3259,7 @@ Example endpoint: http://example.com/xAPI/agents
 Return a special, Person Object for a specified Agent. The Person Object is 
 very similar to an Agent Object, but instead of each attribute having a single 
 value, each attribute has an array value, and it is legal to include multiple 
-identifying properties. Note that the argument is still a normal Agent Object 
+identifying properties. Note that the parameter is still a normal Agent Object 
 with a single identifier and no arrays. Note that this is different from the 
 FOAF concept of person, person is being used here to indicate a person-centric 
 view of the LRS Agent data, but Agents just refer to one persona (a person in 
@@ -3267,13 +3289,13 @@ include the information associated with the requested Agent.
 	<tr>
 		<td>name</td>
 		<td>Array of strings.</td>
-		<td>List of names of Agents to retrieve.</td>
+		<td>List of names of Agents retrieved.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/#term_mbox">mbox</a></td>
 		<td>Array of IRIs in the form "mailto:email address".</td>
-		<td>List of e-mail addresses of Agents to retrieve.</td>
+		<td>List of e-mail addresses of Agents retrieved.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
@@ -3285,7 +3307,7 @@ include the information associated with the requested Agent.
 	<tr>
 		<td>openid*</td>
 		<td>Array of strings.</td>
-		<td>List of openids that uniquely identify the Agents to retrieve.</td>
+		<td>List of openids that uniquely identify the Agents retrieved.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
@@ -3299,13 +3321,13 @@ include the information associated with the requested Agent.
 
 See also: [Section 4.1.2.1 Agent](#agent).
 
-Returns: ```200 OK```, Expanded Agent Object
+Returns: ```200 OK```, Person Object
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>agent</td>
-		<td>Object (JSON)</td>
+		<td>Agent object (JSON)</td>
 		<td>The Agent representation to use in fetching expanded Agent information.</td>
 		<td>Required</td>
 	</tr>
@@ -3316,11 +3338,11 @@ Returns: ```200 OK```, Expanded Agent Object
 All array properties must be populated with members with the 
 same definition as the similarly named property from Agent Objects.  
 
-###### Single Agent or Profile PUT | POST | GET | DELETE 
+###### Single Agent or Profile (PUT | POST | GET | DELETE) 
 
 Example endpoint: http://example.com/xAPI/agents/profile
 
-Saves/retrieves/deletes the specified profile document in the context of the 
+Stores, changes, fetches, or deletes the specified profile document in the context of the 
 specified Agent.  
 
 Returns (PUT | POST | DELETE): ```204 No Content```  
@@ -3330,7 +3352,7 @@ Returns (GET): ```200 OK```, Profile Content
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>agent</td>
-		<td>Object (JSON)</td>
+		<td>Agent object (JSON)</td>
 		<td>The Agent associated with this profile.</td>
 		<td>Required</td>
 	</tr>
@@ -3354,7 +3376,7 @@ Returns: ```200 OK```, List of ids
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>agent</td>
-		<td>Object (JSON)</td>
+		<td>Agent object (JSON)</td>
 		<td>The Agent associated with this profile.</td>
 		<td>Required</td>
 	</tr>
