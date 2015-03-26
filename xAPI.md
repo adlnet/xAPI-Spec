@@ -932,7 +932,7 @@ The table below lists the properties of the Activity Definition Object:
 	<tr>
 		<td>moreInfo</td>
 		<td>IRL</td>
-		<td>Resolves to a document with human-readable information about the Actiivty, 
+		<td>Resolves to a document with human-readable information about the Activity, 
 		which could include a way to launch the activity.
 		</td>
 		<td>Optional</td>
