@@ -53,8 +53,8 @@
     *	6.2.	[API Versioning](#apiversioning)  
     *	6.3.	[Concurrency](#concurrency)  
     *	6.4.	[Security](#security)  
-		*	6.4.1.	[Authentication Scenarios and Methods](#authdefs)  
-		*	6.4.2.	[OAuth Authorization Scope](#oauthscope)  
+		*	6.4.1.	[OAuth 1.0 Authentication Scenarios and Methods](#authdefs)  
+		*	6.4.2.	[OAuth 1.0 Authorization Scope](#oauthscope)  
 *	7.0.	[Data Transfer (REST)](#datatransfer)  
     *	7.1.	[Error Codes](#errorcodes)  
     *	7.2.	[Statement API](#stmtapi)
@@ -2689,7 +2689,7 @@ authorization cannot be verified.
 Otherwise the process follows the standard OAuth workflow. 
 
 **Requirements:**
-* If this form of authentication is used to record Statements, the LRS SHOULD record an authority 
+* If this form of authentication is used to record Statements, the LRS MUST record an authority 
 that includes both that application and the authenticating user, as a group, since OAuth specifies 
 an application.
 
