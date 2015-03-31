@@ -67,7 +67,7 @@
     *	7.5.	[Activity Profile API](#actprofapi)  
     *	7.6.	[Agent Profile API](#agentprofapi)  
     *	7.7.	[About resource](#aboutresource)  
-    *	7.8.	[Cross Origin Requests](#cors)  
+    *	7.8.	[Alternate Request Syntax](#alt-request-syntax)  
     *	7.9.	[Validation](#validation)  
     *	7.10.	[HTTP HEAD](#httphead)  
 *	[Appendix A: Example Statements](#AppendixA)  
@@ -3012,10 +3012,10 @@ do not match.
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 
 * GET Statements MAY be called using POST and form parameters if necessary as query strings 
-have limits. See Section [7.8 Cross Origin Requests](#78-cross-origin-requests) for more details.
+have limits. See Section [7.8 Alternate Request Syntax](#alt-request-syntax) for more details.
 
 * The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
-parameters passed. See Section [7.8 Cross Origin Requests](#78-cross-origin-requests) for more details.
+parameters passed. See Section [7.8 Alternate Request Syntax](#alt-request-syntax) for more details.
 
 <a name="stmtapiget"/>
 
@@ -3806,9 +3806,9 @@ property MUST occur only once.
 required by <a href="#apiversioning"/>6.2 API Versioning</a>.
 
 
-<a name="cors"/>
+<a name="alt-request-syntax"/>
 
-### 7.8 Cross Origin Requests
+### 7.8 Alternate Request Syntax
 
 ###### Description
 
@@ -3861,9 +3861,8 @@ MUST instead be included as a form parameter with the same name.
 * The LRS MUST treat any form parameters other than "content" or the 
 header parameters listed above as query string parameters. 
 
-__Attachments__: Sending attachment data requires sending a
-multipart/mixed request, therefore sending attachment data is not supported
-with this syntax. See [4.1.11. Attachments](#attachments) 
+__Attachments__: Note that due to issues relating to encoding, it is not possible to send 
+binary data attachments using this syntax. See [4.1.11. Attachments](#attachments) 
 
 * The LRS MUST support the syntax above.
 
@@ -4923,7 +4922,7 @@ attachment message format.
 
 ## Appendix G: Cross Domain Request example
 
-Section [7.8 Cross Origin Requests](#78-cross-origin-requests) outlines alternative syntax for use 
+Section [7.8 Alternate Request Syntax](#alt-request-syntax) outlines alternative syntax for use 
 when the normal syntax cannot be used due to browser or querystring length restrictions. This appendix provides an example of a
 PUT statements request following this format. 
 
