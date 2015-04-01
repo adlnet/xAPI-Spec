@@ -3054,7 +3054,7 @@ on the AP, and have the LRS query that API for the list of updated (or new)
 Statements periodically. This will likely only be a realistic option for systems 
 that provide a lot of data to the LRS.  
 
-**Content:** An array of Statements or a single Statement object to be stored. 
+**Content:** An array of Statements or a single Statement to be stored. 
 
 **Returns:** ```200 OK```, Array of Statement id(s) (UUID).  
 
@@ -3483,11 +3483,11 @@ Example endpoint: http://example.com/xAPI/activities/state
 Stores, changes, fetches, or deletes the document specified by the given stateId that 
 exists in the context of the specified Activity, Agent, and registration (if specified).  
 
-**Content (PUT | POST):** The Document object to be stored or updated.  
+**Content (PUT | POST):** The document to be stored or updated.  
 **Content (GET | DELETE):** None.  
 
 **Returns (PUT | POST | DELETE):** ```204 No Content```  
-**Returns (GET):** ```200 OK```, State Content  
+**Returns (GET):** ```200 OK```, the State document 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -3631,11 +3631,11 @@ Example endpoint: http://example.com/xAPI/activities/profile
 Stores, changes, fetches, or deletes the specified profile document in the context of the 
 specified Activity.  
 
-**Content (PUT | POST):** The Document object to be stored or updated.  
+**Content (PUT | POST):** The document to be stored or updated.  
 **Content (GET | DELETE):** None.  
 
 **Returns (PUT | POST | DELETE)** ```204 No Content```  
-**Returns (GET):** ```200 OK```, Profile Content  
+**Returns (GET):** ```200 OK```, the Profile document  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -3798,11 +3798,11 @@ Example endpoint: http://example.com/xAPI/agents/profile
 Stores, changes, fetches, or deletes the specified profile document in the context of the 
 specified Agent.  
 
-**Content (PUT | POST):** The Document object to be stored or updated.  
+**Content (PUT | POST):** The document to be stored or updated.  
 **Content (GET | DELETE):** None.  
 
 **Returns (PUT | POST | DELETE):** ```204 No Content```  
-**Returns (GET):** ```200 OK```, Profile Content  
+**Returns (GET):** ```200 OK```, the Profile document  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -3871,7 +3871,7 @@ Example endpoint: http://example.com/xAPI/about
 
 **Content:** None.
 
-**Returns:** ```200 OK```, Single 'about' JSON document.
+**Returns:** ```200 OK```, JSON object containing basic metadata about this LRS
 <table border="1">
 	<tr><th>property</th><th>type</th><th>description</th><th>Required</th></tr>
 	<tr>
