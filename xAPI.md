@@ -3225,10 +3225,21 @@ include attachment raw data and MUST report application/json.
 
 ###### Filter Conditions for StatementRefs 
 
-For filter parameters which are not time or sequence based (that is, other than
-since, until, or limit), Statements which target another Statement (by using a StatementRef
+This section outlines rules by which Statements targeting other Statements can sometimes be considered to 
+meet the filter conditions of a query even if they do not match the original query's filter parameters. 
+These rules **do not** apply when retrieving a single Statement using "statementId" or "voidedStatementId" query 
+parameters.
+
+'Targeting Statements' means that one Statement (the targeting Statement) includes the Statement Id of another
+Statement (the targeted Statement) as a Statemnent Reference either as the object of the Statement or within the 
+"statement" property of the Context. 
+
+For filter parameters which are not time or sequence based (that is, other than "since", "until", or "limit"), 
+Statements which target another Statement (by using a StatementRef
 as the Object of the Statement) will meet the filter condition if the targeted Statement meets 
-the condition. The time and sequence based parameters MUST still be applied to the Statement 
+the filter condition.
+
+The time and sequence based parameters MUST still be applied to the Statement 
 making the StatementRef in this manner. This rule applies recursively, so that "Statement a" is a 
 match when a targets b which targets c and the filter conditions described above match for 
 "Statement c".
@@ -3239,8 +3250,6 @@ Statement will not mention "Ben" or "explosives training", but when fetching Sta
 with an Actor filter of "Ben" or an Activity filter of "explosives training", both
 Statements match and will be returned so long as they fall into the time or sequence
 being fetched.
-
-This section does not apply when retrieving Statements with statementId or voidedStatementId.
 
 __Note:__StatementRefs used as a value of the Statement property within Context do not affect how
 Statements are filtered.
@@ -3273,11 +3282,12 @@ which language entry to include, rather than to the resource (list of Statements
 ###### Requirements
 
 * The LRS MUST not return any Statement which has been voided, unless that Statement has been
-requested by voidedStatementId. 
+requested by voidedStatementId. The process described in
+[the section on filter conditions for StatementRefs](#queryStatementRef) is no exception to this
+requirement.
 
 * The LRS MUST still return any Statements targeting the voided 
-Statement when retrieving Statements using explicit or implicit time or sequence based retrieval,
-unless they themselves have been voided, as described in
+Statement, following the process and conditions described in
 [the section on filter conditions for StatementRefs](#queryStatementRef). This includes the
 voiding Statement, which cannot be voided. Reporting tools can identify the presence and
 statementId of any voided Statements by the target of the voiding Statement. 
