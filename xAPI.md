@@ -1804,7 +1804,7 @@ The two Agents represent an application and user together.
 * The LRS MUST include the user as an Agent as the entire authority if a user connects 
 directly (using HTTP Basic Authentication) or is included as part of a Group. 
 * The LRS MUST ensure that all Statements stored have an authority.
-* The LRS SHOULD overwrite the authority on all stored received Statements, 
+* The LRS SHOULD overwrite the authority on all Statements it stores,
 based on the credentials used to send those Statements.
 * The LRS MAY leave the submitted authority unchanged but SHOULD do so only 
 where a strong trust relationship has been established, and with extreme caution.
