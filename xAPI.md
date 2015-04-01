@@ -431,7 +431,6 @@ Whilst these recommendations cannot be MUST requirements within this version (as
 the xAPI Working Group strongly encourages adopters to implement these requirements as though they were MUST requirements, 
 whilst continuing to support other adopters that might not do so.
 
-
 <a name="def-profile" />
 
 __Profile__: A construct where information about the learner or activity is kept, 
