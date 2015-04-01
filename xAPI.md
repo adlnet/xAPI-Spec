@@ -1206,6 +1206,19 @@ Run-Time Environment. See [Appendix C](#AppendixC) for examples of each format.
 	</tr>
 </table>
 
+Note that the Correct Response Pattern contains an array of response patterns. A learner's response will be considered correct if it matches
+**any** of the response patterns in that array. Where a response pattern is a delimited list, the learner's response is only considered correct
+if **all** of the items in that list match the learner's response. For example, consider the Correct Response Pattern with a value of:
+
+```
+"correctResponsesPattern": [
+    "foo[,]bar",
+    "foo"
+]
+``` 
+
+In this example, ```foo[,]bar``` and  ```foo``` are correct learner responses; ```bar``` is not.
+
 ###### Characterstring parameters
 Some of the values within the responses described above can be prepended with certain additional parameters. These were originally based on the characterstring
 delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These parameters are represented by the format ```{parameter=value}```.
@@ -1509,10 +1522,8 @@ The table below defines the Score Object.
 	<tr>
 		<td>scaled</td>
 		<td>Decimal number between -1 and 1, inclusive</td>
-		<td>The score related to the experience as a proportion of the maximum score possible for the experience. 
-		In the case of negative score, the scaled score is calculated as a proportion of the minimum score possible.
-		For positive scores, the scaled score can be calculated as the raw score divided by the max score (where
-		those values are present). </td>
+		<td>The score related to the experience as modified by scaling and/or normalization. 
+		</td>
 		<td>Recommended</td>
 	</tr>
 	<tr>
@@ -1536,8 +1547,10 @@ The table below defines the Score Object.
 	</tr>
 </table>
 
-The properties of the score object are based on the corresponding properties of cmi.score as defined in SCORM 2004 
-4th Edition. 
+The properties of the Score Object are based on the corresponding properties of cmi.score as defined in SCORM 2004 
+4th Edition. The "scaled" and "raw" properties do not necessarily relate directly as scaling and normalization can
+be applied differently by Activity Providers within different Communities of Practice. Scaling and normalization are 
+outside the scope of this specification.
 
 ###### Requirements
 
