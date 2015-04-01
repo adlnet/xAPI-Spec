@@ -2275,8 +2275,7 @@ for discoverability of the signer X.509 certificates SHOULD be used.
 * A Signed Statement MUST include a JSON web signature (JWS) as defined here:
 http://tools.ietf.org/html/draft-ietf-jose-json-web-signature, as an attachment with a usageType
 of "http://adlnet.gov/expapi/attachments/signature" and a contentType of "application/octet-stream".
-* The JWS signature MUST have a payload of a valid JSON serialization of the Statement generated
-before the signature was added.
+* The JWS signature MUST have a payload of a valid JSON serialization of the complete Statement, minus signature.
 * The JWS signature MUST use an algorithm of "RS256","RS384", or "RS512".
 * The JWS signature SHOULD have been created based on the private key associated with an
 X.509 certificate.
