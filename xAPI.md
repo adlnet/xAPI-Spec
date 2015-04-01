@@ -359,8 +359,8 @@ __Base Endpoint__: The maximal path under all Experience API endpoints, includin
 
 <a name="def-client" />
 
-__Client__: - Refers to any entity that might interact with an LRS. A Client can be an 
-Activity Provider, reporting system, an LMS, or another LRS.
+__Client__: - Refers to any entity that might interact with an LRS. A Client can be (for example) 
+an Activity Provider, reporting system, an LMS, or another LRS.
 
 <a name="def-community-of-practice" />
 
@@ -2815,8 +2815,6 @@ is included in [Appendix F: Table of All Endpoints](#AppendixF).
 * The LRS MUST support all of the endpoints described in [this section](#datatransfer). 
 * If the LRS implements OAuth 1.0, the LRS MUST also support all of the OAuth endpoints 
 described in [Section 6.4.2 OAuth Authorization Scope](#oauthscope).
-* Other systems, which are not LRS, MAY implement the LRS requirements for one or more of 
-the endpoints and methods described in [this section](#datatransfer). 
 
 <a name="errorcodes" /> 
 
@@ -3293,7 +3291,8 @@ which language entry to include, rather than to the resource (list of Statements
 ###### Requirements
 
 * The LRS MUST not return any Statement which has been voided, unless that Statement has been
-requested by voidedStatementId. 
+requested by voidedStatementId. Clients wishing to retrieve voided Statements request these 
+individually by voidedStatementId.
 
 * The LRS MUST still return any Statements targeting the voided 
 Statement when retrieving Statements using explicit or implicit time or sequence based retrieval,
@@ -3301,9 +3300,6 @@ unless they themselves have been voided, as described in
 [the section on filter conditions for StatementRefs](#queryStatementRef). This includes the
 voiding Statement, which cannot be voided. Clients can identify the presence and
 statementId of any voided Statements by the target of the voiding Statement. 
-
-* Clients wishing to retrieve voided Statements SHOULD request these individually by 
-voidedStatementId.
 
 <a name="docapis" />
 
