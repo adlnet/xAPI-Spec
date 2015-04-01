@@ -2062,8 +2062,8 @@ designers of systems that will send Statements using the "fileUrl" property are 
 consider the needs of end recipient(s) of the Statement especially if the attachment content 
 is not included with the Statement.
 
-* The attachment data SHOULD be retirevable at the IRL indicated by the fileUrl.
-* The file host MAY stop providing the attachment data at this IRL at any time. 
+* The attachment data SHOULD be retrievable at the URL indicated by the fileUrl.
+* The owner of the attachment MAY stop providing the attachment data at this IRL at any time. 
 * Security restrictions MAY be applied to clients attempting to access the attachment data at this IRL. 
 
 The duration an attachment is made available for, and the security restrictions applied to
