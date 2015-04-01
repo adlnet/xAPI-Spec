@@ -147,7 +147,7 @@ which are the means by which experiences are conveyed by an Activity Provider.
 * Data Transfer methods for the storage and retrieval (but not validation) of
 these Objects to/from a Learning Record Store.  Note that the systems storing 
 or retrieving records need not be Activity Providers. LRSs can 
-communicate with other LRSs, or reporting systems.
+communicate with other [clients](#def-client).
 
 * Security methods allowing for the trusted exchange of information between
 the Learning Record Store and trusted sources.  
@@ -316,6 +316,7 @@ be unintuitive and/or lengthy to dissect into a list of requirements.
 * [Profile](#def-profile)
 * [Registration](#def-registration)
 * [Representational State Transfer (REST)](#def-rest)
+* [Reporting System](def-reporting-system)
 * [Service](#def-service)
 * [Statement](#def-statement)
 * [Tin Can API (TCAPI)](#def-tcapi)
@@ -358,8 +359,8 @@ __Base Endpoint__: The maximal path under all Experience API endpoints, includin
 
 <a name="def-client" />
 
-__Client__: - Refers to any entity that might interact with an LRS. A Client can be an 
-Activity Provider, reporting tool, an LMS, or another LRS.
+__Client__: - Refers to any entity that might interact with an LRS. A Client can be (for example) 
+an Activity Provider, reporting system, an LMS, or another LRS.
 
 <a name="def-community-of-practice" />
 
@@ -437,6 +438,16 @@ __Registration__: An instance of a learner experiencing a particular Activity.
 
 __Representational State Transfer (REST)__: An architecture for designing networked web Services.
 It relies on HTTP methods and uses current web best practices.
+
+<a name="def-reporting-system" />
+
+__Reporting System__: A system or tool used to report on and analyse xAPI data and display this to the user. 
+Within this specification, requirements relating to the display of xAPI data to a user are often directed
+at reporting systems. Note that debugging tools used by developers to display data during development
+are not considered reporting tools and are therefore not bound by these requirements.  
+
+A reporting system might or might not incorprate an LRS. It might be a stand alone system or be itself
+incoprorated into an LMS. 
 
 <a name="def-service" />
 
@@ -1635,8 +1646,8 @@ The following table contains the properties of the Context Object.
 * The revision property SHOULD NOT be used if there is a major change in learning objectives, pedagogy, 
 or assets of an Activity. (Use a new Activity id instead).
 
-__Note:__ Revision has no behavioral implications within the scope of xAPI. It is simply stored,
-so that it is available for reporting tools.
+__Note:__ Revision has no behavioral implications within the scope of xAPI. It is simply stored
+so that it is available for reporting systems.
 
 <a name="Registration"/>
 
@@ -2762,7 +2773,7 @@ parameters, not in the OAuth header.
 
 ##### Example
 The list of scopes determines the set of permissions that is being requested. 
-For example,an instructor might grant "statements/read" to a reporting tool, 
+For example, an instructor might grant "statements/read" to a reporting system, 
 but the LRS would still limit that tool to Statements that the instructor could 
 read if querying the LRS with their credentials directly (such as Statements 
 relating to their students).
@@ -2787,6 +2798,12 @@ This section describes that the xAPI consists of 4 sub-APIs: Statement, State,
 Agent, and Activity Profile. These four sub-APIs of the Experience API are 
 handled via RESTful HTTP methods. The Statement API can be used by itself to 
 track learning records. 
+
+An LRS will support all of the endpoints described in this section. It's also possible
+for a tool which is not an LRS to choose to follow the LRS requirements of one or 
+more of the endpoints and methods described in this section. For example a tool might
+implement POST Statements for the purposes of receiving incoming Statements forwarded by an LRS.
+Such a system is not considered to be an LRS or 'partial LRS'; it is simply not an LRS. 
 
 __Note:__ In all of the example endpoints given in the specification, 
 "http://example.com/xAPI/" is the example base endpoint of the LRS. All other IRI 
@@ -3274,17 +3291,15 @@ which language entry to include, rather than to the resource (list of Statements
 ###### Requirements
 
 * The LRS MUST not return any Statement which has been voided, unless that Statement has been
-requested by voidedStatementId. 
+requested by voidedStatementId. Clients wishing to retrieve voided Statements request these 
+individually by voidedStatementId.
 
 * The LRS MUST still return any Statements targeting the voided 
 Statement when retrieving Statements using explicit or implicit time or sequence based retrieval,
 unless they themselves have been voided, as described in
 [the section on filter conditions for StatementRefs](#queryStatementRef). This includes the
-voiding Statement, which cannot be voided. Reporting tools can identify the presence and
+voiding Statement, which cannot be voided. Clients can identify the presence and
 statementId of any voided Statements by the target of the voiding Statement. 
-
-* Reporting tools wishing to retrieve voided Statements SHOULD request these individually by 
-voidedStatementId.
 
 <a name="docapis" />
 
