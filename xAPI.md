@@ -312,6 +312,8 @@ be unintuitive and/or lengthy to dissect into a list of requirements.
 * [Inverse Functional Identifier](#def-inverse-functional-identifier)
 * [Learning Management System (LMS)](#def-learning-management-system)
 * [Learning Record Store (LRS)](#def-learning-record-store)
+* [Metadata Provider](#def-metadata-provider)
+* [Metadata Consumer](#def-metadata-consumer)
 * [MUST / SHOULD / MAY](#def-must-should-may)
 * [Profile](#def-profile)
 * [Registration](#def-registration)
@@ -416,6 +418,17 @@ __Learning Record Store (LRS)__: A system that stores learning information. Prio
 most LRSs were Learning Management Systems (LMSs); however this document uses the term 
 LRS to be clear that a full LMS is not necessary to implement the xAPI. The xAPI 
 is dependent on an LRS to function.
+
+<a name="def-metadata-consumer" />
+
+__Metadata Consumer__: A person, organization, software program or other thing that seeks to determine the meaning represented
+by an IRI used within this specification and/or retrieves metadata about an IRI. An LRS might or
+might not be a metadata consumer. 
+
+<a name="def-metadata-provider" />
+
+__Metadata Provider__: A person, organization, software program or other thing that coins IRIs to be used within this specification and/or
+hosts metadata about an IRI. 
 
 <a name="def-must-should-may" />
 
@@ -2162,7 +2175,7 @@ Statements would mean that the Statement would not be interoperable with all LRS
       an enumerated value given in this specification exactly.
     * where a key or value is not allowed by this specification.
     * where a key occurs multiple times within an object. 
-* The LRS MUST reject Statements containing IRL, IRI, or IRI values without a scheme.
+* The LRS MUST reject Statements containing IRL or IRI values without a scheme.
 * The LRS MUST at least validate that the sequence of token lengths for language map keys
 matches the [RFC 5646](http://tools.ietf.org/html/rfc5646) standard.
 * The LRS MUST process and store numbers with at least the precision of IEEE 754 32-bit
@@ -2170,7 +2183,7 @@ floating point numbers.
 * The LRS MUST validate parameter values to the same standards required for values of the
 same types in Statements. __Note:__ string parameter values are not quoted as they are in JSON.
 * The LRS SHOULD treat all values as case sensitive unless specified otherwise.
-* The LRS MAY use best-effort validation for IRL, IRI, and IRI formats to satisfy the
+* The LRS MAY use best-effort validation for IRL and IRI formats to satisfy the
 non-format-following rejection requirement.
 * The LRS MAY use best-effort validation for language map keys to satisfy the
 non-format-following rejection requirement.
@@ -2454,20 +2467,31 @@ identifier it describes.  We recommend that
 Activity Providers look for and use established, widely adopted identifiers for all types of IRI 
 identifiers other than Activity id.
 
-##### Requirements
+##### Metadata Provider Requirements
 
 * Metadata MAY be provided with an identifier.
 * If metadata is provided, both name and description SHOULD be included.
-* IRLs SHOULD be defined within a domain controlled by the person creating the IRL.
-* For any of the identifier IRIs above, if the IRI is an IRL created for use with this
-specification, the controller of that IRL SHOULD make this JSON metadata available at that 
-IRL when the IRL is requested and a Content-Type of "application/json" is requested.
-* Where an identifier already exists, the Activity Provider SHOULD use the corresponding existing identifier.
-* The Activity Provider MAY create and use their own identifiers where a suitable identifier does not already exist.
-* When defining identifiers, the Activity Provider MAY use URIs containing anchors so that a single page can contain definitions for multiple identifiers. E.g. http://example.com/xapi/verbs#defenestrated
-* Other sources of information MAY be used to fill in missing details, such as translations, or
-take the place of this metadata entirely if it was not provided or cannot be loaded. This MAY
-include metadata in other formats stored at the IRL of an identifier, particularly if that
+* IRIs SHOULD be defined within a domain controlled by the [Metadata Provider](#def-metadata-provider) creating the IRI.
+* For any of the identifier IRIs above the Metadata Provider SHOULD ensure that this JSON metadata available at that 
+IRI when the IRI is requested and a Content-Type of "application/json" is requested.
+* Where a suitable identifier already exists, the Metadata Provider SHOULD NOT create a new identifier.
+* The Metadata Provider MAY create their own identifiers where a suitable identifier does not already exist.
+* When defining identifiers, the Metadata Provider MAY use IRIs containing anchors so that a single page can contain 
+definitions for multiple identifiers. E.g. http://example.com/xapi/verbs#defenestrated
+
+##### Activity Provider Requirements
+* Where a suitable identifier already exists, the Activity Provider SHOULD use the corresponding existing identifier.
+
+##### LRS Requirements
+* The LRS MAY act as a [Metadata Consumer](#def-metadata-consumer) and attempt to resolve identifier IRIs.
+
+##### Metadata Consumer Requirements
+* If a Metadata Consumer obtains metadata from an IRI, it SHOULD make a strong presumption that the 
+metadata found at that IRI is authoritative in regards to the properties and languages included in that metadata. 
+* The Metadata Consumer MAY use other sources of information to fill in missing details, 
+such as translations, or take the place of the hosted metadata entirely if it was not provided, cannot be loaded or the 
+Metadata Consumer does not trust it. Other sources of information MAY
+include metadata in other formats stored at the IRI of an identifier, particularly if that
 identifier was not coined for use with this specification.
 
 <a name="rtcom"/>
