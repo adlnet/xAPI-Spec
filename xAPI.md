@@ -424,8 +424,13 @@ specification. A system that fails to implement a MUST (or a MUST NOT) requireme
 Failing to meet a SHOULD requirement is not a violation of conformity, but goes against best practices. 
 MAY indicates an option, to be decided by the developer with no consequences for conformity.
 
-The use of an asterisk* following SHOULD indicates a very strong recommendation. It is likely that
-these recommendations will become MUST requirements in a future version. 
+The use of an asterisk* following SHOULD indicates a very strong recommendation. It is planned that these 
+recommendations will become MUST requirements in a future version. Not following these recommendations could 
+risk interoperability and and/or lead to various other issues depending on the specifics of the recommendation. 
+Whilst these recommendations cannot be MUST requirements within this version (as these would be breaking changes) 
+the xAPI Working Group strongly encourages adopters to implement these requirements as though they were MUST requirements, 
+whilst continuing to support other adopters that might not do so.
+
 
 <a name="def-profile" />
 
