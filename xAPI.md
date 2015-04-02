@@ -3526,7 +3526,7 @@ timestamp (exclusive).
 
 **Content:** None.
 
-**Returns:** ```200 OK```, Array of 'stateId' values.  
+**Returns:** ```200 OK```, Array of State Ids  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -3661,7 +3661,7 @@ the specified timestamp (exclusive).
 
 **Content:** None.
 
-**Returns:** ```200 OK```, Array of 'profileId' values. 
+**Returns:** ```200 OK```, Array of Profile Ids  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
@@ -3829,7 +3829,7 @@ timestamp (exclusive).
 
 **Content:** None.
 
-**Returns:** ```200 OK```, Array of 'profileId' values.  
+**Returns:** ```200 OK```, Array of Profile Ids  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
