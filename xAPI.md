@@ -3341,7 +3341,7 @@ which language entry to include, rather than to the resource (list of Statements
 
 ####7.2.4 Voided Statements
 [Section 4.3 Voided](#voided) describes the process by which statements can be voided. This section
-desribes how voided statements are handled by the LRS when querried. 
+desribes how voided statements are handled by the LRS when queried. 
 
 Clients can identify the presence and statementId of any voided Statements by the target of the voiding Statement. 
 Aside from debugging tools, many clients will not want to display voiding statements to their
