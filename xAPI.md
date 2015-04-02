@@ -1943,7 +1943,7 @@ The table below lists all properties of the Attachment object.
 	<tr>
 		<td>sha2</td>
 		<td>String</td>
-		<td>The SHA-2 (SHA-256, SHA-384, SHA-512) hash of the attachment data. <br/>
+		<td>The SHA-2 hash of the attachment data. <br/>
 		This property is always required, even if "fileURL" is also specified. 
 		</td>
 		<td>Required</td>
@@ -2020,7 +2020,7 @@ contain attachments.
 * The Client MAY send multiple Statements where some or all have attachments if using "POST".
 * The Client MAY send batches of type "application/json" where every attachment
 Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
-* The Client SHOULD NOT use SHA-224 to populate the "sha2" property: a minimum key size of 256 bits is recommended.
+* The Client SHOULD use SHA-256, SHA-384, or SHA-512  to populate the "sha2" property.
 
 
 ###### Example
