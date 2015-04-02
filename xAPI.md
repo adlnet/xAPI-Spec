@@ -19,12 +19,12 @@
 
 ## Table of Contents
 *	1.0.	[Revision History](#revhistory)  
-*	2.0.	[Role of the Experience API](#roleofxapi)
+*	2.0.	[Role of the Experience API](#roleofxapi)  
 	*	2.1.	[ADL's Role in the Experience API](#adlrole)  
- 	*	2.2.	[Contributors](#contributors)
+ 	*	2.2.	[Contributors](#contributors)  
  		*	2.2.1.	[Working Group Participants](#wg)  
-		*	2.2.2.	[Requirements Gathering Participants](#reqparticipants) 
-	*	2.3.	[Reading Guidelines for the Non-Technically Inclined](#readingguidelines)
+		*	2.2.2.	[Requirements Gathering Participants](#reqparticipants)  
+	*	2.3.	[Reading Guidelines for the Non-Technically Inclined](#readingguidelines)  
 *	3.0.	[Definitions](#definitions)  
 *	4.0.	[Statement](#statement)  
     *	4.1.	[Statement Properties](#stmtprops)  
@@ -57,26 +57,27 @@
 		*	6.4.2.	[OAuth Authorization Scope](#oauthscope)  
 *	7.0.	[Data Transfer (REST)](#datatransfer)  
     *	7.1.	[Error Codes](#errorcodes)  
-    *	7.2.	[Statement API](#stmtapi)
-    	*	7.2.1. [PUT Statements](#stmtapiput)
-    	*	7.2.2. [POST Statements](#stmtapipost)
-    	*	7.2.3. [GET Statements](#stmtapiget)
-    	*	7.2.4. [Voided Statements](#voidedStatements)	  
-    *	7.3.	[Document APIs](#docapis)  
-    *	7.4.	[State API](#stateapi)  
-    *	7.5.	[Activity Profile API](#actprofapi)  
-    *	7.6.	[Agent Profile API](#agentprofapi)  
-    *	7.7.	[About resource](#aboutresource)  
-    *	7.8.	[Alternate Request Syntax](#alt-request-syntax)  
-    *	7.9.	[Validation](#validation)  
-    *	7.10.	[HTTP HEAD](#httphead)  
+    *	7.2.	[Header Parameters](#header-parameters)  
+    *	7.3.	[Statement API](#stmtapi)  
+    	*	7.3.1. [PUT Statements](#stmtapiput)  
+    	*	7.3.2. [POST Statements](#stmtapipost)  
+    	*	7.3.3. [GET Statements](#stmtapiget)  
+    	*	7.3.4. [Voided Statements](#voidedStatements)  
+    *	7.4.	[Document APIs](#docapis)  
+    *	7.5.	[State API](#stateapi)  
+    *	7.6.	[Activity Profile API](#actprofapi)  
+    *	7.7.	[Agent Profile API](#agentprofapi)  
+    *	7.8.	[About resource](#aboutresource)  
+    *	7.9.	[Alternate Request Syntax](#alt-request-syntax)  
+    *	7.10.	[Validation](#validation)  
+    *	7.11.	[HTTP HEAD](#httphead)  
 *	[Appendix A: Example Statements](#AppendixA)  
 *	[Appendix B: Example statement objects of different types](#AppendixB)  
 *	[Appendix C: Example definitions for Activities of type "cmi.interaction"](#AppendixC)  
-*	[Appendix D: Converting Statements to 1.0.0](#AppendixD)   
-*	[Appendix E: Example Signed Statement](#AppendixE)
-*	[Appendix F: Table of All Endpoints](#AppendixF)
-*	[Appendix G: Cross Domain Request Example](#AppendixG)
+*	[Appendix D: Converting Statements to 1.0.0](#AppendixD)  
+*	[Appendix E: Example Signed Statement](#AppendixE)  
+*	[Appendix F: Table of All Endpoints](#AppendixF)  
+*	[Appendix G: Cross Domain Request Example](#AppendixG)  
 
 
 <a name="revhistory"/>  
@@ -2025,7 +2026,7 @@ results when the attachments filter is false.
 ###### LRS Requirements
 
 * An LRS MUST include attachments in the Transmission Format described above
-when requested by the Client (see Section [7.2 "Statement API"](#stmtapi)).
+when requested by the Client (see Section [7.3 "Statement API"](#stmtapi)).
 * An LRS MUST NOT pull Statements from another LRS without requesting attachments.
 * An LRS MUST NOT push Statements into another LRS without including attachment data
 received, if any, for those attachments.
@@ -2196,7 +2197,7 @@ LRS SHOULD* reject Statements containing such additional properties.
 
 ###### Description
 A collection of Statements can be retrieved by performing a query on the "statements" 
-endpoint, see Section [7.2 "Statement API"](#stmtapi) for details. 
+endpoint, see Section [7.3 "Statement API"](#stmtapi) for details. 
 
 ###### Details
 The following table shows the data structure for the results of queries on the Statement API.
@@ -2268,7 +2269,7 @@ again under a new id.
 
 __Note:__ See ["Statement References"](#stmtref) in [Section 4.1.4.3 When the "Object" is a Statement](#stmtasobj) 
 for details about making references to other Statements.  To see how voided statements behave when queried, 
-See [StatementRef](#queryStatementRef) in 7.2 Statement API).
+See [StatementRef](#queryStatementRef) in 7.3 Statement API).
 
 ###### Example
 
@@ -2879,7 +2880,7 @@ section [6.4.2](#oauthscope).
 Permissions can also affect the response returned by an LRS to GET requests. For example, 
 a set of credentials might have permission only to view statements about a particular actor, in which case
 the LRS will filter any returned statements to exclude any statements not relating to that actor. See 
-[Section 7.2.3 GET Statements](#stmtapiget) for details. 
+[Section 7.3.3 GET Statements](#stmtapiget) for details. 
 
 In cases explicitly allowed by this specification, the credentials used can also affect the LRS behaviour in 
 handling a request, for example the LRS will normally overwrite the Authority property of a Statement, but can 
@@ -2989,9 +2990,39 @@ This set of credentials SHOULD* be used for conformance testing but MAY be delet
 
 * The LRS MUST be configurable to accept requests at any reasonable rate. 
 
+<a name="header-parameters"/> 
+### 7.2 Header Parameters
+Some header parameters used within xAPI data transfer are 
+[standard HTTP headers](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields). Others are specific to this
+ specification. The following request headers are expected to be used by the Activity Provider in some or all 
+ of the types of request and situations described in this specification:
+
+* Accept
+* Accept-Encoding
+* Accept-Language
+* Authorization
+* Content-Type
+* Content-Length
+* Content-Transfer-Encoding
+* If-Match
+* If-None-Match
+* X-Experience-API-Version 
+
+The following response headers are expected to be used by the LRS. Again, not all of these apply
+to every type of request and/or situations:
+
+* Content-Type
+* Content-Length
+* ETag
+* Status
+* X-Experience-API-Version
+* X-Experience-API-Consistent-Through
+
+The lists above are not intended to be exhaustive. See requirements throughout this document for more details.
+
 <a name="stmtapi"/> 
 
-### 7.2 Statement API
+### 7.3 Statement API
 
 ###### Description
 
@@ -3000,7 +3031,7 @@ The basic communication mechanism of the Experience API.
 
 <a name="stmtapiput"/>
 
-####7.2.1 PUT Statements
+####7.3.1 PUT Statements
 
 ###### Details
 
@@ -3038,7 +3069,7 @@ do not match.
 
 <a name="stmtapipost"/>
 
-####7.2.2 POST Statements
+####7.3.2 POST Statements
 
 ###### Details
 
@@ -3068,14 +3099,15 @@ do not match.
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 
 * GET Statements MAY be called using POST and form parameters if necessary as query strings 
-have limits. See Section [7.8 Alternate Request Syntax](#alt-request-syntax) for more details.
+
+have limits. See Section [7.9 Alternate Request Syntax](#alt-request-syntax) for more details.
 
 * The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
-parameters passed. See Section [7.8 Alternate Request Syntax](#alt-request-syntax) for more details.
+parameters passed. See Section [7.9 Alternate Request Syntax](#alt-request-syntax) for more details.
 
 <a name="stmtapiget"/>
 
-####7.2.3 GET Statements
+####7.3.3 GET Statements
 
 ###### Details
 
@@ -3334,7 +3366,7 @@ which language entry to include, rather than to the resource (list of Statements
 
 <a name="voidedStatements" />
 
-####7.2.4 Voided Statements
+####7.3.4 Voided Statements
 
 ###### Requirements
 
@@ -3354,7 +3386,7 @@ voidedStatementId.
 
 <a name="docapis" />
 
-### 7.3 Document APIs
+### 7.4 Document APIs
 
 The three Document APIs provide [document](#miscdocument) storage for learning activity 
 providers and Agents. The details of each API are found in the following sections, and the 
@@ -3457,7 +3489,7 @@ a property, it SHOULD use a PUT request to replace the whole document as describ
 
 <a name="stateapi"/> 
 
-### 7.4 State API
+### 7.5 State API
 
 ##### Description
 
@@ -3577,7 +3609,7 @@ Returns: ```204 No Content```
 
 <a name="actprofapi"/> 
 
-### 7.5 Activity Profile API
+### 7.6 Activity Profile API
 
 ###### Description
 
@@ -3660,7 +3692,7 @@ Returns: ```200 OK```, Array of 'profileId' values.
 
 <a name="agentprofapi"/> 
 
-### 7.6 Agent Profile API
+### 7.7 Agent Profile API
 
 ###### Description
 
@@ -3820,7 +3852,7 @@ Returns: ```200 OK```, Array of 'profileId' values.
 
 <a name="aboutresource"/> 
 
-### 7.7 About Resource
+### 7.8 About Resource
 
 ###### Description
 
@@ -3873,7 +3905,8 @@ required by <a href="#apiversioning"/>6.2 API Versioning</a>.
 
 <a name="alt-request-syntax"/>
 
-### 7.8 Alternate Request Syntax
+### 7.9 Alternate Request Syntax
+
 
 ###### Description
 
@@ -3951,7 +3984,7 @@ See [Appendix G: Cross Domain Request Example](#AppendixG) for an example.
 
 <a name="validation"/> 
 
-### 7.9 Validation
+### 7.10 Validation
 
 ###### Description
 
@@ -3969,7 +4002,7 @@ responsibility of the Activity Provider sending the Statement.
 
 <a name="httphead"/>
 
-### 7.10 HTTP HEAD
+### 7.11 HTTP HEAD
 
 ###### Description
 The LRS will respond to HEAD requests by returning the meta information only, using 
@@ -4987,7 +5020,7 @@ attachment message format.
 
 ## Appendix G: Cross Domain Request example
 
-Section [7.8 Alternate Request Syntax](#alt-request-syntax) outlines alternative syntax for use 
+Section [7.9 Alternate Request Syntax](#alt-request-syntax) outlines alternative syntax for use 
 when the normal syntax cannot be used due to browser or querystring length restrictions. This appendix provides an example of a
 PUT statements request following this format. 
 
