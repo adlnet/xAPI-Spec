@@ -3008,7 +3008,9 @@ Example endpoint: ```http://example.com/xAPI/statements```
 
 Stores a single Statement with the given id. POST can also be used to store single Statements.
 
-Returns: ```204 No Content```  
+**Content:** The Statement object to be stored. 
+
+**Returns:** ```204 No Content```  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th><th>Required</th></tr>
@@ -3052,7 +3054,9 @@ on the AP, and have the LRS query that API for the list of updated (or new)
 Statements periodically. This will likely only be a realistic option for systems 
 that provide a lot of data to the LRS.  
 
-Returns: ```200 OK```, Array of Statement id(s) (UUID).  
+**Content:** An array of Statements or a single Statement to be stored. 
+
+**Returns:** ```200 OK```, Array of Statement id(s) (UUID).  
 
 ###### Requirements
 
@@ -3090,7 +3094,9 @@ subject to permissions and maximum list length. If additional results are
 available, an IRL to retrieve them will be included in the StatementResult 
 Object.
 
-Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 4.2](#retstmts) for details)
+**Content:** None.
+
+**Returns:** ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 4.2](#retstmts) for details)
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th><th>Required</th></tr>
@@ -3477,8 +3483,11 @@ Example endpoint: http://example.com/xAPI/activities/state
 Stores, changes, fetches, or deletes the document specified by the given stateId that 
 exists in the context of the specified Activity, Agent, and registration (if specified).  
 
-Returns (PUT | POST | DELETE): ```204 No Content```  
-Returns (GET): ```200 OK```, State Content  
+**Content (PUT | POST):** The document to be stored or updated.  
+**Content (GET | DELETE):** None.  
+
+**Returns (PUT | POST | DELETE):** ```204 No Content```  
+**Returns (GET):** ```200 OK```, the State document 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -3515,7 +3524,10 @@ registration if specified\]). If "since" parameter is specified, this
 is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
 
-Returns: ```200 OK```, Array of 'stateId' values.  
+**Content:** None.
+
+**Returns:** ```200 OK```, Array of State Ids  
+
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -3550,7 +3562,9 @@ Example endpoint: http://example.com/xAPI/activities/state
 Deletes all state data for this context (Activity + Agent \[+ registration if 
 specified\]).  
 
-Returns: ```204 No Content```  
+**Content:** None.
+
+**Returns**: ```204 No Content```  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -3598,7 +3612,9 @@ Example endpoint: http://example.com/xAPI/activities
 
 Loads the complete Activity Object specified.  
 
-Returns: ```200 OK```, Content 
+**Content:** None.
+
+**Returns:** ```200 OK```, Content 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -3615,8 +3631,11 @@ Example endpoint: http://example.com/xAPI/activities/profile
 Stores, changes, fetches, or deletes the specified profile document in the context of the 
 specified Activity.  
 
-Returns (PUT | POST | DELETE): ```204 No Content```  
-Returns (GET): ```200 OK```, Profile Content  
+**Content (PUT | POST):** The document to be stored or updated.  
+**Content (GET | DELETE):** None.  
+
+**Returns (PUT | POST | DELETE)** ```204 No Content```  
+**Returns (GET):** ```200 OK```, the Profile document  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -3640,7 +3659,10 @@ Fetches Profile Ids of all profile entries for an Activity. If "since" parameter
 specified, this is limited to entries that have been stored or updated since 
 the specified timestamp (exclusive).  
 
-Returns: ```200 OK```, Array of 'profileId' values. 
+**Content:** None.
+
+**Returns:** ```200 OK```, Array of Profile Ids  
+
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
 	<tr>
@@ -3747,7 +3769,9 @@ include the information associated with the requested Agent.
 
 See also: [Section 4.1.2.1 Agent](#agent).
 
-Returns: ```200 OK```, Person Object
+**Content:** None.
+
+**Returns:** ```200 OK```, Person Object
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -3774,8 +3798,11 @@ Example endpoint: http://example.com/xAPI/agents/profile
 Stores, changes, fetches, or deletes the specified profile document in the context of the 
 specified Agent.  
 
-Returns (PUT | POST | DELETE): ```204 No Content```  
-Returns (GET): ```200 OK```, Profile Content  
+**Content (PUT | POST):** The document to be stored or updated.  
+**Content (GET | DELETE):** None.  
+
+**Returns (PUT | POST | DELETE):** ```204 No Content```  
+**Returns (GET):** ```200 OK```, the Profile document  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -3800,7 +3827,10 @@ Fetches Profile Ids of all profile entries for an Agent. If "since" parameter is
 this is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
 
-Returns: ```200 OK```, Array of 'profileId' values.   
+**Content:** None.
+
+**Returns:** ```200 OK```, Array of Profile Ids  
+
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -3839,7 +3869,9 @@ allow other uses to emerge.
 
 Example endpoint: http://example.com/xAPI/about
 
-Returns: ```200 OK```, Single 'about' JSON document.
+**Content:** None.
+
+**Returns:** ```200 OK```, JSON object containing basic metadata about this LRS
 <table border="1">
 	<tr><th>property</th><th>type</th><th>description</th><th>Required</th></tr>
 	<tr>
