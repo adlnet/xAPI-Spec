@@ -3789,6 +3789,20 @@ FOAF concept of person, person is being used here to indicate a person-centric
 view of the LRS Agent data, but Agents just refer to one persona (a person in 
 one context).  
 
+**Content:** None.
+
+**Returns:** ```200 OK```, Person Object
+
+<table>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>agent</td>
+		<td>Agent object (JSON)</td>
+		<td>The Agent representation to use in fetching expanded Agent information.</td>
+		<td>Required</td>
+	</tr>
+</table>  
+
 ###### Requirements
 * An LRS capable of returning multiple identifying properties for a Person 
 Object SHOULD require the connecting credentials have increased, explicitly 
@@ -3796,7 +3810,11 @@ given permissions.
 * An LRS SHOULD reject insufficiently privileged requests with 403 "Forbidden".
 * If an LRS does not have any additional information about an Agent to return, 
 the LRS MUST still return a Person when queried, but that Person Object will only 
-include the information associated with the requested Agent.  
+include the information associated with the requested Agent. 
+
+__Note:__ This means that if a request is made for an Agent which the LRS has no 
+prior knowledge of, it will still return a Person object containing the information 
+about the Agent it received in the request. 
 
 ###### Person Properties
 
@@ -3844,20 +3862,6 @@ include the information associated with the requested Agent.
 </table> 
 
 See also: [Section 4.1.2.1 Agent](#agent).
-
-**Content:** None.
-
-**Returns:** ```200 OK```, Person Object
-
-<table>
-	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr>
-		<td>agent</td>
-		<td>Agent object (JSON)</td>
-		<td>The Agent representation to use in fetching expanded Agent information.</td>
-		<td>Required</td>
-	</tr>
-</table>  
 
 ###### Requirements
 
