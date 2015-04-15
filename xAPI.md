@@ -3548,7 +3548,8 @@ own internal storage, or need to persist state across devices.
 The semantics of the call are driven by the stateId parameter. If it is included, 
 the GET and DELETE methods will act upon a single defined state document 
 identified by "stateId". Otherwise, GET will return the available ids, and DELETE 
-will delete all state in the context given through the other parameters.  
+will delete all state in the context given through the other parameters. This API has
+[Concurrency](#concurrency) controls associated with it.
 
 ###### Single Document (PUT | POST | GET | DELETE)
 Example endpoint: http://example.com/xAPI/activities/state
@@ -3678,7 +3679,8 @@ the GET method will act upon a single defined document identified by "profileId"
 Otherwise, GET will return the available ids.
 
 The Activity Profile API also includes a method to retrieve a full description 
-of an Activity from the LRS.  
+of an Activity from the LRS. This API has [Concurrency](#concurrency) controls 
+associated with it.
 
 ###### Full Activity Object GET
 Example endpoint: http://example.com/xAPI/activities
@@ -3770,7 +3772,8 @@ Otherwise, GET will return the available ids.
 
 The Agent Profile API also includes a method to retrieve a special Object with 
 combined information about an Agent derived from an outside service, such as a 
-directory service.  
+directory service. This API has [Concurrency](#concurrency) controls associated 
+with it.
 
 ###### Combined Information GET 
 
