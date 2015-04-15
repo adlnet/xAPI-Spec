@@ -2859,7 +2859,7 @@ parameters, not in the OAuth header.
 
 ##### Example
 The list of scopes determines the set of permissions that is being requested. 
-For example,an instructor might grant "statements/read" to a client, 
+For example,an instructor might grant "statements/read" to a Client, 
 but the LRS would still limit that tool to Statements that the instructor could 
 read if querying the LRS with their credentials directly (such as Statements 
 relating to their students).
@@ -3423,7 +3423,7 @@ which language entry to include, rather than to the resource (list of Statements
 desribes how voided statements are handled by the LRS when queried. 
 
 Clients can identify the presence and statementId of any voided Statements by the target of the voiding Statement. 
-Aside from debugging tools, many clients will not want to display voiding statements to their
+Aside from debugging tools, many Clients will not want to display voiding statements to their
 users and will not display these as part of activity streams and other reports. 
 
 ###### Requirements
