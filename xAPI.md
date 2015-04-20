@@ -2340,8 +2340,7 @@ the original serialization of the Statement to be included along with the signat
 For interoperability, the "RSA + SHA" series of JWS algorithms have been selected, and
 for discoverability of the signer X.509 certificates SHOULD be used.
 
-##### Requirements
-
+##### Signature Requirements
 * A Signed Statement MUST include a JSON web signature (JWS) as defined here:
 http://tools.ietf.org/html/draft-ietf-jose-json-web-signature, as an attachment with a usageType
 of "http://adlnet.gov/expapi/attachments/signature" and a contentType of "application/octet-stream".
@@ -2351,8 +2350,10 @@ of "http://adlnet.gov/expapi/attachments/signature" and a contentType of "applic
 X.509 certificate.
 * If X.509 was used to sign, the JWS header SHOULD include the "x5c" property containing
 the associated certificate chain.
+
+##### LRS Requirements
 * The LRS MUST reject requests to store Statements that contain malformed signatures, with HTTP 400.
-* The LRS SHOULD include a message in the response of a rejected statement.  
+* The LRS SHOULD include a message in the response of a rejected statement. 
 * In order to verify signatures are well formed, the LRS MUST do the following:
     * Decode the JWS signature, and load the signed serialization of the Statement from the
       JWS signature payload.
@@ -2360,18 +2361,19 @@ the associated certificate chain.
     See [Statement comparision requirements](statement-comparision-requirements).
     * If the JWS header includes an X.509 certificate, validate the signature against that
     certificate as defined in JWS.
-* Clients MUST NOT assume a signature is valid simply because an LRS has accepted it.
+    * validate that the Signature Requirements outlined above have been met. 
 
 __Note:__ The step of validating against the included X.509 certificate is intended as a
 way to catch mistakes in the signature, not as a security measure. The steps to authenticate
 a signed Statement will vary based on the degree of certainty required and are outside
 the scope of this specification.
 
+##### Client Requirements
+* Clients MUST follow the Signature Requirements outlined above.
+* Clients MUST NOT assume a signature is valid simply because an LRS has accepted it.
 
 ##### Example
 See <a href="#AppendixE">Appendix E: Example Signed Statement</a> for an example.
-
-
 
 <a name="misctypes"/>
 ## 5.0 Miscellaneous Types
