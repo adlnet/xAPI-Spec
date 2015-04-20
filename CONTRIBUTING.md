@@ -1,13 +1,13 @@
 xAPI-Spec
 =========
 
-# Specification versions
+# Workflow for Editing the Experience API Specification
+
+## Specification versions
 
 The current version of the specification is [1.0.2](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI.md). 
 [1.0.3](https://github.com/adlnet/xAPI-Spec/blob/1.0.3/xAPI.md) is currently being developed by
 the specification working group. 
-
-# Workflow for Editing the Experience API Specification
 
 ## Set up
 If you are not currently working with GitHub and git, follow these set up steps 
