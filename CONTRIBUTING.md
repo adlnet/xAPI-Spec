@@ -24,10 +24,10 @@ and comments).
 * Check that the [Stle Guide](#style-guide) has been followed.
 * If you spot any issues with the PR, add a comment describing these problems as best you can and suggesting how they can
 be resolved. 
-* If the PR looks good to to, add a comment saying "+1".
+* If the PR looks good to you, add a comment saying "+1".
 * If you are unsure about the PR or have questions, ask questions in the PR comments. 
 * If you feel that the PR should never be merged, even with changes, add a comment starting with "-1" and explaining your
-reasons. If your comments run contrary to what's already been agreed in the issues, they might been some resistance, but that's ok
+reasons. If your comments run contrary to what's already been agreed in the issues, there might be some resistance, but that's ok
 if you have a strong arguement! 
 
 When reviewing a PR please don't:
@@ -40,7 +40,7 @@ When reviewing a PR please don't:
 <a name='suggest-solution'/>
 # Suggest a solution
 The second most helpful and second easiest way to contribute to the specification is to suggest a solution to an issue that has been raised. 
-Ideally the person who raises the issue will propose a solution, but this does not always happen and others may have concerns about the proposal. 
+Ideally the person who raises the issue will propose a solution, but this does not always happen and you may be able to improve a suggestion. 
 
 To suggest a solution to an issue you should:
 
@@ -53,6 +53,8 @@ To suggest a solution to an issue you should:
 
 Once your suggestion has been discussed and agreed, add another comment summarising your understanding of the outcome of the discussion and
 including proposed wording for the changes you've suggested. 
+
+Good and detailed suggested solutions for issues maake it much easier to write PRa and helps to ensure those PRs are merged faster. 
 
 <a name='make-pr'/>
 # Make a Pull Request (PR)

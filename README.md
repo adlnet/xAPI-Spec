@@ -12,12 +12,13 @@ the specification working group.
 ##What to do if the spec is unclear
 If when implementing the specification you find something is unclear or unhelpful, it may be that the others have similarly found that
 section unclear and that it has been fixed in the 
-[development version of the specification (1.0.3)](https://github.com/adlnet/xAPI-Spec/blob/1.0.3/xAPI.md). Which is being developed by the 
+[development version of the specification (1.0.3)](https://github.com/adlnet/xAPI-Spec/blob/1.0.3/xAPI.md) which is being developed by the 
 xAPI Working Group. You can and should look at the development version of the specification for reference, but be aware that this version has
 not been published, could contain errors and might be changed before it is released. 
 
-If your confusions and concerns have not been can help to improve the specification by 
-[raising an issue here](https://github.com/adlnet/xAPI-Spec/issues). When raising an issue, please give as much detail as you can in regards to:
+If your confusions and concerns have not been addressed in the [development version)](https://github.com/adlnet/xAPI-Spec/blob/1.0.3/xAPI.md), 
+you can help to improve the specification by [raising an issue here](https://github.com/adlnet/xAPI-Spec/issues). When raising an issue, 
+please give as much detail as you can in regards to:
 
 * Which part/parts of the specification you are reading.
 * Your understanding of what these parts mean.
