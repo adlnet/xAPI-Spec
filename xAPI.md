@@ -3297,20 +3297,20 @@ Object.
 	</tr>
 	<tr>
 		<td>format</td>
-		<td>String: ("ids", "exact", or "canonical")</td>
+		<td>String: ('ids', 'exact', or 'canonical')</td>
 		<td>exact</td>
-		<td>If "ids", only include minimum information necessary in Agent, Activity, Verb 
+		<td>If 'ids', only include minimum information necessary in Agent, Activity, Verb 
 			and Group Objects to identify them. For anonymous groups this means including 
 			the minimum information needed to identify each member. 
 			<br/><br/>
-			If "exact", return Agent, Activity, Verb and Group Objects populated exactly as they 
+			If 'exact', return Agent, Activity, Verb and Group Objects populated exactly as they 
 			were when the Statement was received. An LRS requesting Statements for the purpose 
-			of importing them would use a format of ```exact```.  
+			of importing them would use a format of 'exact'.  
 			<br/><br/>
-			If "canonical", return Activity Objects and Verbs populated with the canonical
+			If 'canonical', return Activity Objects and Verbs populated with the canonical
 			definition of the Activity Objects and Display of the Verbs as determined by the LRS, after
 			applying the <a href="#queryLangFiltering">language filtering process defined below</a>,
-			and return the original Agent and Group Objects as in ```exact``` mode.  
+			and return the original Agent and Group Objects as in 'exact' mode.  
 		</td>
 		<td>Optional</td>
 	</tr>
@@ -3372,7 +3372,7 @@ These rules **do not** apply when retrieving a single Statement using "statement
 parameters.
 
 'Targeting Statements' means that one Statement (the targeting Statement) includes the Statement Id of another
-Statement (the targeted Statement) as a Statemnent Reference either as the object of the Statement or within the 
+Statement (the targeted Statement) as a Statement Reference either as the object of the Statement or within the 
 "statement" property of the Context. 
 
 For filter parameters which are not time or sequence based (that is, other than "since", "until", or "limit"), 
@@ -4119,13 +4119,13 @@ Example of a simple statement (line breaks are for display purposes only):
 		"mbox":"mailto:user@example.com"
 	},
 	"verb":{
-		"id":"http://adlnet.gov/expapi/verbs/created",
+		"id":"http://example.com/xapi/verbs#sent-a-statement",
 		"display":{ 
-			"en-US":"created" 
+			"en-US":"sent" 
 		}
 	},
 	"object":{
-		"id":"http://example.adlnet.gov/xapi/example/simplestatement",
+		"id":"http://example.com/xapi/activity/simplestatement",
 		"definition":{
 			"name":{ 
 				"en-US":"simple statement" 
