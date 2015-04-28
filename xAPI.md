@@ -2361,7 +2361,7 @@ the associated certificate chain.
     See [Statement comparision requirements](statement-comparision-requirements).
     * If the JWS header includes an X.509 certificate, validate the signature against that
     certificate as defined in JWS.
-    * validate that the Signature Requirements outlined above have been met. 
+    * Validate that the Signature Requirements outlined above have been met. 
 
 __Note:__ The step of validating against the included X.509 certificate is intended as a
 way to catch mistakes in the signature, not as a security measure. The steps to authenticate
