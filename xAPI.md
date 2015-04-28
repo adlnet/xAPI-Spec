@@ -2983,7 +2983,7 @@ a precondition posted with the request, in the case of State or Agent Profile or
 API calls. See Section [6.3 Concurrency](#concurrency) for more details.
 
 * ```413 Request Entity Too Large``` - Indicates that the LRS has rejected the Statement or 
-Document because its size (or the size of an Attachment included in the request) is larger than 
+document because its size (or the size of an Attachment included in the request) is larger than 
 the maximum allowed by the LRS. 
 
 * ```429 Too Many Requests``` - Indicates that the LRS has rejected the request because it has received 
@@ -3020,9 +3020,9 @@ batch is rejected.
 LRS where the credentials associated with the request do not have permission to make that request. 
 
 * The LRS MUST reject with ```HTTP 413 Request Entity Too Large``` status any request rejected by the
-LRS where the size of the Attachment, Statement or Document is larger than the maximum allowed by the LRS.
+LRS where the size of the Attachment, Statement or document is larger than the maximum allowed by the LRS.
 
-* The LRS MAY choose any Attachment, Statement and Document size limits and MAY vary this limit on any basis, e.g., per authority.
+* The LRS MAY choose any Attachment, Statement and document size limits and MAY vary this limit on any basis, e.g., per authority.
 
 * The LRS MUST reject with ```429 Too Many Requests``` status any request rejected by the
 LRS where the request is rejected due to too many requests being received by a particular client 
@@ -3036,7 +3036,7 @@ by the LRS do not affect the running of a conformance test suite.
 * The LRS SHOULD* be configurable not to reject any requests from a particular set of credentials on the basis of permissions. 
 This set of credentials SHOULD* be used for conformance testing but MAY be deleted/deactivated on live systems. 
 
-* The LRS MUST be configurable to accept Attachments, Statements or Documents of any reasonable size (see above).
+* The LRS MUST be configurable to accept Attachments, Statements or documents of any reasonable size (see above).
 
 * The LRS MUST be configurable to accept requests at any reasonable rate. 
 
