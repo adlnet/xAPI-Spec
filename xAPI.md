@@ -3063,6 +3063,7 @@ to every type of request and/or situations:
 
 * Content-Type
 * Content-Length
+* Last-Modified
 * ETag
 * Status
 * X-Experience-API-Version
@@ -3366,6 +3367,8 @@ multipart response format and include all attachments as described in <a href="#
 * If the attachment property of a GET statement is used and is set to <code>false</code>, the LRS MUST NOT
 include attachment raw data and MUST report application/json.
 
+* The LRS SHOULD* include a "Last-Modified" header which matches the Stored timestamp of the Statement. 
+
 <a name="queryStatementRef" />
 
 ###### Filter Conditions for StatementRefs 
@@ -3486,6 +3489,15 @@ Agents that the LRS does not have prior knowledge of.
 * The LRS MUST NOT reject documents on the basis of not having prior knowledge of the 
 Activity and/or Agent.
 
+##### Last Modified
+The "Last Modified" header is set by the LRS when returning single or multiple documents in response
+to a GET request. 
+
+###### Requirements
+* When returning a single document, the LRS SHOULD* include a "Last-Modified" header indicating when
+the document was last modified. 
+* When returning multiple documents, the LRS SHOULD* include a "Last-Modified" header indicating when
+the most recently modified document was last modified. 
 
 ###### JSON Procedure with Requirements
 
