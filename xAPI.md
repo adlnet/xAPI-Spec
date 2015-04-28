@@ -3376,8 +3376,7 @@ These rules **do not** apply when retrieving a single Statement using "statement
 parameters.
 
 'Targeting Statements' means that one Statement (the targeting Statement) includes the Statement Id of another
-Statement (the targeted Statement) as a Statement Reference either as the object of the Statement or within the 
-"statement" property of the Context. 
+Statement (the targeted Statement) as a Statement Reference as the object of the Statement. 
 
 For filter parameters which are not time or sequence based (that is, other than "since", "until", or "limit"), 
 Statements which target another Statement (by using a StatementRef
