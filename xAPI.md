@@ -2904,7 +2904,7 @@ described in [Section 6.4.2 OAuth Authorization Scope](#oauthscope).
 * The LRS MAY support additional endpoints not described in this specification. 
 * Past, current and future versions of this specification do not and will not define endpoints 
 with path segements starting 'extensions/'. LRSs supporting additional endpoints not defined 
-in this specification SHOULD* define those endpoints with path segments starting 'extensions/'.
+in this specification SHOULD define those endpoints with path segments starting 'extensions/'.
 
 <a name="errorcodes" /> 
 
