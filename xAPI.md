@@ -2901,6 +2901,10 @@ is included in [Appendix F: Table of All Endpoints](#AppendixF).
 * The LRS MUST support all of the endpoints described in [this section](#datatransfer). 
 * If the LRS implements OAuth 1.0, the LRS MUST also support all of the OAuth endpoints 
 described in [Section 6.4.2 OAuth Authorization Scope](#oauthscope).
+* The LRS MAY support additional endpoints not described in this specification. 
+* Past, current and future versions of this specification do not and will not define endpoints 
+with path segements starting 'extensions/'. LRSs supporting additional endpoints not defined 
+in this specification SHOULD define those endpoints with path segments starting 'extensions/'.
 
 <a name="errorcodes" /> 
 
@@ -2979,7 +2983,7 @@ a precondition posted with the request, in the case of State or Agent Profile or
 API calls. See Section [6.3 Concurrency](#concurrency) for more details.
 
 * ```413 Request Entity Too Large``` - Indicates that the LRS has rejected the Statement or 
-Document because its size (or the size of an Attachment included in the request) is larger than 
+document because its size (or the size of an Attachment included in the request) is larger than 
 the maximum allowed by the LRS. 
 
 * ```429 Too Many Requests``` - Indicates that the LRS has rejected the request because it has received 
@@ -3016,9 +3020,9 @@ batch is rejected.
 LRS where the credentials associated with the request do not have permission to make that request. 
 
 * The LRS MUST reject with ```HTTP 413 Request Entity Too Large``` status any request rejected by the
-LRS where the size of the Attachment, Statement or Document is larger than the maximum allowed by the LRS.
+LRS where the size of the Attachment, Statement or document is larger than the maximum allowed by the LRS.
 
-* The LRS MAY choose any Attachment, Statement and Document size limits and MAY vary this limit on any basis, e.g., per authority.
+* The LRS MAY choose any Attachment, Statement and document size limits and MAY vary this limit on any basis, e.g., per authority.
 
 * The LRS MUST reject with ```429 Too Many Requests``` status any request rejected by the
 LRS where the request is rejected due to too many requests being received by a particular client 
@@ -3032,7 +3036,7 @@ by the LRS do not affect the running of a conformance test suite.
 * The LRS SHOULD* be configurable not to reject any requests from a particular set of credentials on the basis of permissions. 
 This set of credentials SHOULD* be used for conformance testing but MAY be deleted/deactivated on live systems. 
 
-* The LRS MUST be configurable to accept Attachments, Statements or Documents of any reasonable size (see above).
+* The LRS MUST be configurable to accept Attachments, Statements or documents of any reasonable size (see above).
 
 * The LRS MUST be configurable to accept requests at any reasonable rate. 
 
@@ -3059,6 +3063,7 @@ to every type of request and/or situations:
 
 * Content-Type
 * Content-Length
+* Last-Modified
 * ETag
 * Status
 * X-Experience-API-Version
@@ -3362,6 +3367,8 @@ multipart response format and include all attachments as described in <a href="#
 * If the attachment property of a GET statement is used and is set to <code>false</code>, the LRS MUST NOT
 include attachment raw data and MUST report application/json.
 
+* The LRS SHOULD* include a "Last-Modified" header which matches the Stored timestamp of the Statement. 
+
 <a name="queryStatementRef" />
 
 ###### Filter Conditions for StatementRefs 
@@ -3372,8 +3379,7 @@ These rules **do not** apply when retrieving a single Statement using "statement
 parameters.
 
 'Targeting Statements' means that one Statement (the targeting Statement) includes the Statement Id of another
-Statement (the targeted Statement) as a Statement Reference either as the object of the Statement or within the 
-"statement" property of the Context. 
+Statement (the targeted Statement) as a Statement Reference as the object of the Statement. 
 
 For filter parameters which are not time or sequence based (that is, other than "since", "until", or "limit"), 
 Statements which target another Statement (by using a StatementRef
@@ -3483,6 +3489,15 @@ Agents that the LRS does not have prior knowledge of.
 * The LRS MUST NOT reject documents on the basis of not having prior knowledge of the 
 Activity and/or Agent.
 
+##### Last Modified
+The "Last Modified" header is set by the LRS when returning single or multiple documents in response
+to a GET request. 
+
+###### Requirements
+* When returning a single document, the LRS SHOULD* include a "Last-Modified" header indicating when
+the document was last modified. 
+* When returning multiple documents, the LRS SHOULD* include a "Last-Modified" header indicating when
+the most recently modified document was last modified. 
 
 ###### JSON Procedure with Requirements
 
