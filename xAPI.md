@@ -540,6 +540,29 @@ The details of each property of a statement are described in the table below.
 	<td>Optional</td></tr>
 </table>  
 
+###### Example
+
+An example of the simplest possible Statement using all properties that MUST or SHOULD be used:  
+```
+{
+    "id": "12345678-1234-5678-1234-567812345678",
+    "actor":{
+        "mbox":"mailto:xapi@adlnet.gov"
+    },
+    "verb":{
+        "id":"http://adlnet.gov/expapi/verbs/created",
+        "display":{
+            "en-US":"created"
+        }
+    },
+    "object":{
+        "id":"http://example.adlnet.gov/xapi/example/activity"
+    }
+}
+```  
+See [Appendix A: Example Statements](#AppendixA) for more examples. 
+
+<a name="statement-immutablity-and-exceptions" />
 ###### Statement Immutablity and Exceptions
 Statements are immutable (they cannot be changed). The following are exceptions or areas not covered by this rule:
 
@@ -566,33 +589,30 @@ and so the LRS can return this list of agents in any order. See [4.1.2.2 Groups]
 * Attachments. These are not part of statements and an LRS will return statements without attachments when the client
 requests this (see the [Statement API's](#stmtapi) "attachments" parameter for details).
 
+The following explictly are **not** exceptions and **are** covered by this rule:
+
+* Result Duration. Due to variable lengths of months, years and even minutes and the flexible nature of the 
+timestamp property as representing either the start, middle or end of the experience, it is not possible for 
+an LRS to accurately deserialize the Result Duration and convert between units of time. For this reason, the 
+Result Duration is considered a string for purposes of statement comparision. 
+
 ###### Requirements 
 
 * A Statement MUST use each property no more than one time.
 * A Statement MUST use “actor”, “verb”, and “object”.
 * A Statement MAY use its properties in any order.
+* The LRS MUST NOT return a different serialisation of any properties except those 
+[listed as exceptions above](#statement-immutablity-and-exceptions).
 
-###### Example
+<a name="statement-comparision-requirements" />
+###### Statement Comparision Requirements
+There are a number of scenarios outlined in this specification which require statements to be
+compared to see if they match. In this scenarios, the following rules apply:
 
-An example of the simplest possible Statement using all properties that MUST or SHOULD be used:  
-```
-{
-	"id": "12345678-1234-5678-1234-567812345678",
-	"actor":{
-		"mbox":"mailto:xapi@adlnet.gov"
-	},
-	"verb":{
-		"id":"http://adlnet.gov/expapi/verbs/created",
-		"display":{
-			"en-US":"created"
-		}
-	},
-	"object":{
-		"id":"http://example.adlnet.gov/xapi/example/activity"
-	}
-}
-```  
-See [Appendix A: Example Statements](#AppendixA) for more examples. 
+* Differences which could have been caused by 
+[exceptions to Statement immutability](#statement-immutablity-and-exceptions) MUST be ignored.
+* Differences relating to a different serialisation of any properties not
+[listed as exceptions](#statement-immutablity-and-exceptions) MUST not be ignored. 
 
 <a name="stmtid"/> 
 
@@ -2319,8 +2339,7 @@ the original serialization of the Statement to be included along with the signat
 For interoperability, the "RSA + SHA" series of JWS algorithms have been selected, and
 for discoverability of the signer X.509 certificates SHOULD be used.
 
-##### Requirements
-
+##### Signature Requirements
 * A Signed Statement MUST include a JSON web signature (JWS) as defined here:
 http://tools.ietf.org/html/draft-ietf-jose-json-web-signature, as an attachment with a usageType
 of "http://adlnet.gov/expapi/attachments/signature" and a contentType of "application/octet-stream".
@@ -2330,29 +2349,30 @@ of "http://adlnet.gov/expapi/attachments/signature" and a contentType of "applic
 X.509 certificate.
 * If X.509 was used to sign, the JWS header SHOULD include the "x5c" property containing
 the associated certificate chain.
+
+##### LRS Requirements
 * The LRS MUST reject requests to store Statements that contain malformed signatures, with HTTP 400.
-* The LRS SHOULD include a message in the response of a rejected statement.  
+* The LRS SHOULD include a message in the response of a rejected statement. 
 * In order to verify signatures are well formed, the LRS MUST do the following:
     * Decode the JWS signature, and load the signed serialization of the Statement from the
       JWS signature payload.
-    * Validate that the "original" Statement is logically equivalent to the received Statement.
-        * When making this equivalence check, differences which could have been caused by
-        allowed or required LRS processing of "id", "authority", "stored", "timestamp", or
-        "version" MUST be ignored.
+    * Validate that the "original" Statement is logically equivalent to the received Statement. 
+    See [Statement comparision requirements](statement-comparision-requirements).
     * If the JWS header includes an X.509 certificate, validate the signature against that
     certificate as defined in JWS.
-* Clients MUST NOT assume a signature is valid simply because an LRS has accepted it.
+    * Validate that the Signature Requirements outlined above have been met. 
 
 __Note:__ The step of validating against the included X.509 certificate is intended as a
 way to catch mistakes in the signature, not as a security measure. The steps to authenticate
 a signed Statement will vary based on the degree of certainty required and are outside
 the scope of this specification.
 
+##### Client Requirements
+* Clients MUST follow the Signature Requirements outlined above.
+* Clients MUST NOT assume a signature is valid simply because an LRS has accepted it.
 
 ##### Example
 See <a href="#AppendixE">Appendix E: Example Signed Statement</a> for an example.
-
-
 
 <a name="misctypes"/>
 ## 5.0 Miscellaneous Types
@@ -3109,7 +3129,7 @@ Object.
 
 * If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
 verify the received Statement matches the existing one and return ```409 Conflict``` if they
-do not match.
+do not match. See [Statement comparision requirements](statement-comparision-requirements).
 
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 
@@ -3149,7 +3169,7 @@ Object.
 
 * If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
 verify the received Statement matches the existing one and return ```409 Conflict``` if they
-do not match.
+do not match. See [Statement comparision requirements]statement-comparision-requirements).
 
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 
