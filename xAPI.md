@@ -4192,7 +4192,7 @@ Example of a simple statement (line breaks are for display purposes only):
 	}
 }
 ```   
-Typical simple completion with verb "attempted":  
+Completion with verb "attempted" and duration expressed in seconds (not converted to minutes and seconds):  
 ```
 {
 	"actor":{
@@ -4222,7 +4222,8 @@ Typical simple completion with verb "attempted":
 			"scaled":0.95
 		},
 		"success":true,
-		"completion":true
+		"completion":true,
+		"duration": "PT1234S"
 	}
 }
 ```  
