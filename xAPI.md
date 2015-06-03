@@ -2561,7 +2561,7 @@ see the [Revision History](#revhistory) for the current version of this specific
 * The LRS MUST accept requests with a version header of "1.0" as if the version header was "1.0.0".
 * The LRS MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a 
 fully conformant implementation of the prior version specified in the header.
-* The LRS MUST accept requests with a version header starting with "1.0.".
+* The LRS MUST accept requests with a version header starting with "1.0." if the request is otherwise valid. 
 * The LRS MUST reject requests with a version header of "1.1.0" or greater.
 * The LRS MUST make these rejects by responding with an HTTP 400 error including a short description 
 of the problem.
