@@ -1835,7 +1835,8 @@ so long as the point in time referenced is not affected. The LRS SHOULD* return 
 #### 4.1.8 Stored
 
 ###### Description 
-The time at which a Statement is stored by the LRS.
+The time at which a Statement is stored by the LRS. This can be any time between when the LRS receives the Statement and when it is written
+to storage. 
 
 ###### Details 
 The stored property is the literal time the Statement was stored.  The LRS will use [Timestamp](#timestamp) 
