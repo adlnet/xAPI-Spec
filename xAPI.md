@@ -563,7 +563,7 @@ An example of the simplest possible Statement using all properties that MUST or 
 See [Appendix A: Example Statements](#AppendixA) for more examples. 
 
 <a name="statement-immutablity-and-exceptions" />
-###### Statement Immutablity and Exceptions
+###### Statement Immutability and Exceptions
 Statements are immutable (they cannot be changed). The following are exceptions or areas not covered by this rule:
 
 * Potential or required assignments of properties during LRS 
@@ -588,6 +588,10 @@ and so the LRS can return this list of agents in any order. See [4.1.2.2 Groups]
 
 * Attachments. These are not part of statements and an LRS will return statements without attachments when the client
 requests this (see the [Statement API's](#stmtapi) "attachments" parameter for details).
+
+* Case sensitivity. Some properties are case insensitive and changes in case therefore do not affect immutability. 
+For example the domain portion an e-mail address is case insensitive. It is recommended to use lowercase for any case 
+insensitive text. 
 
 The following explictly are **not** exceptions and **are** covered by this rule:
 
@@ -748,6 +752,9 @@ but no others, SHOULD be used for this property and mbox_sha1sum.</td></tr>
 	<tr><td>account</td><td><a href="#agentaccount">Object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
 </table>
 
+###### Client Requirements
+* The domain portions of email addresses are case insensitive. Clients SHOULD uses lowercase for the domain portion of the email address when calculating the SHA1 hash
+for the "mbox_sha1sum" property. 
 
 <a name="agentaccount"/>
 
@@ -1540,11 +1547,17 @@ The following table contains the properties of the Results Object.
 </tr>
 </table> 
 
-###### Requirements
+###### Duration Requirements
 
 * The Duration property MUST be expressed using the format for duration in ISO 8601:2004(E) section 4.4.3.2.
 The alternative format (in conformity with the format used for time points and described in ISO 8601:2004(E) 
 section 4.4.3.3) MUST NOT be used.
+* Clients SHOULD provide a maximum precision of 0.01 seconds. 
+* Clients MAY provide less precision, for example in the case of reading a University Degree precision might 
+be in months or years. 
+* On receiving a Duration with more that 0.01 second precision, the LRS SHOULD* NOT reject the request but MAY 
+truncate the Duration property to 0.01 second precision. 
+* When comparing Statements, any precision beyond 0.01 second precision SHOULD* NOT be included in the comparison. 
 
 <a name="Score"/>
 
@@ -1822,7 +1835,8 @@ so long as the point in time referenced is not affected. The LRS SHOULD* return 
 #### 4.1.8 Stored
 
 ###### Description 
-The time at which a Statement is stored by the LRS.
+The time at which a Statement is stored by the LRS. This can be any time between when the LRS receives the Statement and when it is written
+to storage. 
 
 ###### Details 
 The stored property is the literal time the Statement was stored.  The LRS will use [Timestamp](#timestamp) 
