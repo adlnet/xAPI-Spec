@@ -2575,6 +2575,7 @@ see the [Revision History](#revhistory) for the current version of this specific
 * The LRS MUST accept requests with a version header of "1.0" as if the version header was "1.0.0".
 * The LRS MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a 
 fully conformant implementation of the prior version specified in the header.
+* The LRS MUST accept requests with a version header starting with "1.0." if the request is otherwise valid. 
 * The LRS MUST reject requests with a version header of "1.1.0" or greater.
 * The LRS MUST make these rejects by responding with an HTTP 400 error including a short description 
 of the problem.
@@ -2624,6 +2625,8 @@ are unlikely. The requirements below only apply to Agent Profile API and Activit
 * A Client making a DELETE request to either the Agent Profile API or Activity Profile API SHOULD* include the 
 [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header.
 
+* Clients SHOULD use the ETag value provided by the LRS rather than calculating it themselves. 
+
 ##### LRS Requirements
 
 * An LRS responding to a GET request MUST add an ETag HTTP header to the response. (The reason for 
@@ -2631,8 +2634,9 @@ specifying the LRS ETag format is to allow API consumers that can't read the ETa
 it themselves.)
 * An LRS responding to a PUT or POST request SHOULD* add the ETag HTTP header for the entity just created or modified to the response.
 * An LRS responding to a GET request MUST calculate the value of this header to be a hexidecimal string 
-of the SHA-1 digest of the contents.
-* An LRS responding to a GET request MUST enclose the header in quotes.  
+of the SHA-1 digest of the contents. This hexidecimal string SHOULD* be rendered using numbers and lowercase 
+characters only; uppercase characters SHOULD* NOT be used. 
+* As defined in [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19), an LRS responding to a GET request MUST enclose the header in quotes.  
 * An LRS responding to a PUT request MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
 modifications made after the consumer last fetched the document.
 * An LRS responding to a PUT request MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
