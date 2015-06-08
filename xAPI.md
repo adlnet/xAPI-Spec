@@ -248,13 +248,13 @@ learning that SCORM could not enable.
 *	[Appendix G: Cross Domain Request Example](#AppendixG)  
 
 
-<a name="revhistory"/>  
-
+#Part One: About The Experience API
 
 
 <a name="roleofxapi"/>
 
-## 2.0 Role of the Experience API  
+## 1.0 Summary of the Experience API
+
 The Experience API is a service that allows for statements of experience
 to be delivered to and stored securely in a Learning Record Store (LRS). These statements
 of experience are typically learning experiences, but the API can address statements
@@ -281,12 +281,10 @@ services, querying services, visualization services, and personal data services
 are some examples of additional technologies which the Experience API is designed
 to support. While the implementation details of these services are not specified here,
 the Experience API is designed with this larger architectural vision in mind.
- 
-
 
 <a name="readingguidelines"/> 
 
-### 2.3 Reading Guidelines for the Non-Technically Inclined
+## 2.0 How to Use This Document
 
 This is a definitive document which describes how the Experience API is to be implemented
 across a variety of systems. It is a technical document authored specifically for individuals 
@@ -304,9 +302,20 @@ As a rule of thumb, if the guideline appears technical or seems to be a requirem
 as such. This is especially true of longer, more, detailed explanations and of tables, each of which would 
 be unintuitive and/or lengthy to dissect into a list of requirements.
 
+## 3.0 Guidenelines for Implementing Technical Specificationss Like xAPI
+
+## 4.0 Binding to JavaScript Object Notation (JSON)
+
+### 4.1 Serialization
+
+### 4.2 Population of JSON Properties
+
+## 5.0 xAPI as a "RESTish" Web Service
+
+
 <a name="definitions"/>
  
-## 3.0 Definitions  
+## 6.0 Definitions  
 
 * [Activity](#def-activity)
 * [Activity Provider (AP)](#def-activity-provider)
@@ -488,6 +497,18 @@ informal references to the Experience API.
 <a name="def-verb" />
 
 __Verb__: Defines the action being done by the Actor within the Activity within a Statement. 
+
+## 7.0 xAPI Components
+
+## 8.0 Extending xAPI Through Profiles and Communities of Practice 
+
+
+
+
+
+
+
+
 
 <a name="statement"/> 
 
