@@ -672,6 +672,7 @@ Statements to the target LRS.
 * The LRS and the Client SHOULD consider the security risks before making the 
 decision to use this scheme.
 
+See [Appendix G: Cross Domain Request Example](#AppendixG) for an example. 
 
 <a name="docapis" />
 ## 2.0 Documents
@@ -3240,9 +3241,479 @@ Statement, following the process and conditions described in
 [the section on filter conditions for StatementRefs](#queryStatementRef). This includes the
 voiding Statement, which cannot be voided. 
 
-<a name="concurrency"/>
+<a name="stateapi"/> 
+
+### 1.2 State API
+
+##### Description
+
+Generally, this is a scratch area for Activity Providers that do not have their 
+own internal storage, or need to persist state across devices. 
+
+##### Details
+
+The semantics of the call are driven by the stateId parameter. If it is included, 
+the GET and DELETE methods will act upon a single defined state document 
+identified by "stateId". Otherwise, GET will return the available ids, and DELETE 
+will delete all state in the context given through the other parameters. This API has
+[Concurrency](#concurrency) controls associated with it.
+
+###### Single Document (PUT | POST | GET | DELETE)
+Example endpoint: http://example.com/xAPI/activities/state
+
+Stores, changes, fetches, or deletes the document specified by the given stateId that 
+exists in the context of the specified Activity, Agent, and registration (if specified).  
+
+**Content (PUT | POST):** The document to be stored or updated.  
+**Content (GET | DELETE):** None.  
+
+**Returns (PUT | POST | DELETE):** ```204 No Content```  
+**Returns (GET):** ```200 OK```, the State document 
+<table>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>activityId</td>
+		<td>Activity id (IRI)</td>
+		<td>The Activity id associated with this state.</td>
+		<td>Required</td>
+	</tr>
+	<tr>
+		<td>agent</td>
+		<td>Agent object (JSON)</td>
+		<td>The Agent associated with this state.</td>
+		<td>Required</td>
+	</tr>
+	<tr>
+		<td>registration</td>
+		<td>UUID</td>
+		<td>The registration id associated with this state.</td>
+		<td>Optional</td>
+	</tr>
+	<tr>
+		<td>stateId</td>
+		<td>String</td>
+		<td>The id for this state, within the given context.</td>
+		<td>Required</td>
+	</tr>
+</table>
+
+###### Multiple Document GET
+Example endpoint: http://example.com/xAPI/activities/state
+
+Fetches State Ids of all state data for this context (Activity + Agent \[ + 
+registration if specified\]). If "since" parameter is specified, this 
+is limited to entries that have been stored or updated since the specified 
+timestamp (exclusive).  
+
+**Content:** None.
+
+**Returns:** ```200 OK```, Array of State Ids  
+
+<table>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>activityId</td>
+		<td>Activity id (IRI)</td>
+		<td>The Activity id associated with these states.</td>
+		<td>Required</td>
+	</tr>
+	<tr>
+		<td>agent</td>
+		<td>Agent object (JSON)</td>
+		<td>The Agent associated with these states.</td>
+		<td>Required</td>
+	</tr>
+	<tr>
+		<td>registration</td>
+		<td>UUID</td>
+		<td>The registration id associated with these states.</td>
+		<td>Optional</td>
+	</tr>
+	<tr>
+		<td>since</td>
+		<td>Timestamp</td>
+		<td>Only ids of states stored since the specified timestamp (exclusive) are returned.</td>
+		<td>Optional</td>
+	</tr>
+</table>
+
+###### Multiple Document DELETE
+Example endpoint: http://example.com/xAPI/activities/state
+
+Deletes all state data for this context (Activity + Agent \[+ registration if 
+specified\]).  
+
+**Content:** None.
+
+**Returns**: ```204 No Content```  
+<table>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>activityId</td>
+		<td>Activity id (IRI)</td>
+		<td>The Activity id associated with this state.</td>
+		<td>Required</td>
+	</tr>
+	<tr>
+		<td>agent</td>
+		<td>Agent object (JSON)</td>
+		<td>The Agent associated with this state.</td>
+		<td>Required</td>
+	</tr>
+	<tr>
+		<td>registration</td>
+		<td>UUID</td>
+		<td>The registration id associated with this state.</td>
+		<td>Optional</td>
+	</tr>
+</table>
+
+### 1.3 Agents Profile
+
+The Agent Profile API also includes a method to retrieve a special Object with 
+combined information about an Agent derived from an outside service, such as a 
+directory service. This API has [Concurrency](#concurrency) controls associated 
+with it.
+
+###### Combined Information GET 
+
+###### Details
+Example endpoint: http://example.com/xAPI/agents
+
+Return a special, Person Object for a specified Agent. The Person Object is 
+very similar to an Agent Object, but instead of each attribute having a single 
+value, each attribute has an array value, and it is legal to include multiple 
+identifying properties. Note that the parameter is still a normal Agent Object 
+with a single identifier and no arrays. Note that this is different from the 
+FOAF concept of person, person is being used here to indicate a person-centric 
+view of the LRS Agent data, but Agents just refer to one persona (a person in 
+one context).  
+
+**Content:** None.
+
+**Returns:** ```200 OK```, Person Object
+
+<table>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>agent</td>
+		<td>Agent object (JSON)</td>
+		<td>The Agent representation to use in fetching expanded Agent information.</td>
+		<td>Required</td>
+	</tr>
+</table>  
+
+###### Requirements
+* An LRS capable of returning multiple identifying properties for a Person 
+Object SHOULD require the connecting credentials have increased, explicitly 
+given permissions. 
+* An LRS SHOULD reject insufficiently privileged requests with 403 "Forbidden".
+* If an LRS does not have any additional information about an Agent to return, 
+the LRS MUST still return a Person when queried, but that Person Object will only 
+include the information associated with the requested Agent. 
+
+__Note:__ This means that if a request is made for an Agent which the LRS has no 
+prior knowledge of, it will still return a Person object containing the information 
+about the Agent it received in the request. 
+
+###### Person Properties
+
+###### Details
+
+<table>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>objectType</td>
+		<td>String</td>
+		<td>"Person"</td>
+		<td>Required</td>
+	</tr>
+	<tr>
+		<td>name</td>
+		<td>Array of strings.</td>
+		<td>List of names of Agents retrieved.</td>
+		<td>Optional</td>
+	</tr>
+	<tr>
+		<td><a href="http://xmlns.com/foaf/spec/#term_mbox">mbox</a></td>
+		<td>Array of IRIs in the form "mailto:email address".</td>
+		<td>List of e-mail addresses of Agents retrieved.</td>
+		<td>Optional</td>
+	</tr>
+	<tr>
+		<td><a href="http://xmlns.com/foaf/spec/#term_mbox_sha1sum">mbox_sha1sum</a></td>
+		<td>Array of strings.</td>
+		<td>List of the SHA1 hashes of mailto IRIs (such as go in an mbox property).</td>
+		<td>Optional</td>
+	</tr>
+	<tr>
+		<td>openid*</td>
+		<td>Array of strings.</td>
+		<td>List of openids that uniquely identify the Agents retrieved.</td>
+		<td>Optional</td>
+	</tr>
+	<tr>
+		<td>account*</td>
+		<td>Array of account objects.</td>
+		<td>List of accounts to match. Complete account Objects (homePage and name) 
+		MUST be provided.</td>
+		<td>Optional</td>
+	</tr>
+</table> 
+
+See also: [Section 4.1.2.1 Agent](#agent).
+
+###### Requirements
+
+* All array properties MUST be populated with members with the 
+same definition as the similarly named property from Agent Objects.  
+
+* Additional properties not listed here SHOULD* NOT be added to this object and each 
+property MUST occur only once.  
+
+### 1.4 Activities API
+
+The Activity Profile API also includes a method to retrieve a full description 
+of an Activity from the LRS. This API has [Concurrency](#concurrency) controls 
+associated with it.
+
+###### Full Activity Object GET
+Example endpoint: http://example.com/xAPI/activities
+
+Loads the complete Activity Object specified.  
+
+**Content:** None.
+
+**Returns:** ```200 OK```, Content 
+<table>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>activityId</td>
+		<td>Activity id (IRI)</td>
+		<td>The id associated with the Activities to load.</td>
+		<td>Required</td>
+	</td>
+</table>
+
+
+### 1.5 Agent Profile API
+
+###### Description
+
+The Agent Profile API is much like the State API, allowing for arbitrary key / 
+document pairs to be saved which are related to an Agent. 
+
+###### Details
+
+The semantics of the call are driven by the profileId parameter. If it is included, 
+the GET method will act upon a single defined document identified by "profileId". 
+Otherwise, GET will return the available ids.  
+
+###### Single Agent or Profile (PUT | POST | GET | DELETE) 
+
+Example endpoint: http://example.com/xAPI/agents/profile
+
+Stores, changes, fetches, or deletes the specified profile document in the context of the 
+specified Agent.  
+
+**Content (PUT | POST):** The document to be stored or updated.  
+**Content (GET | DELETE):** None.  
+
+**Returns (PUT | POST | DELETE):** ```204 No Content```  
+**Returns (GET):** ```200 OK```, the Profile document  
+
+<table>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>agent</td>
+		<td>Agent object (JSON)</td>
+		<td>The Agent associated with this profile.</td>
+		<td>Required</td>
+	</tr>
+	<tr>
+		<td>profileId</td>
+		<td>String</td>
+		<td>The profile id associated with this profile.</td>
+		<td>Required</td>
+	</tr>
+</table>  
+
+###### Multiple Document GET 
+Example endpoint: http://example.com/xAPI/agents/profile
+
+Fetches Profile Ids of all profile entries for an Agent. If "since" parameter is specified, 
+this is limited to entries that have been stored or updated since the specified 
+timestamp (exclusive).  
+
+**Content:** None.
+
+**Returns:** ```200 OK```, Array of Profile Ids  
+
+<table>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>agent</td>
+		<td>Agent object (JSON)</td>
+		<td>The Agent associated with this profile.</td>
+		<td>Required</td>
+	</tr>
+	<tr>
+		<td>since</td>
+		<td>Timestamp</td>
+		<td>Only ids of profiles stored since the specified timestamp 
+			(exclusive) are returned.</td>
+		<td>Optional</td>
+	</tr>
+</table>  
+
+<a name="actprofapi"/> 
+
+### 1.7 Activity Profile API
+
+###### Description
+
+The Activity Profile API is much like the State API, allowing for arbitrary key 
+/ document pairs to be saved which are related to an Activity. 
+
+###### Details
+
+The semantics of the call are driven by the profileId parameter. If it is included, 
+the GET method will act upon a single defined document identified by "profileId". 
+Otherwise, GET will return the available ids.
+
+###### Single Document (PUT | POST | GET | DELETE)
+Example endpoint: http://example.com/xAPI/activities/profile
+
+Stores, changes, fetches, or deletes the specified profile document in the context of the 
+specified Activity.  
+
+**Content (PUT | POST):** The document to be stored or updated.  
+**Content (GET | DELETE):** None.  
+
+**Returns (PUT | POST | DELETE)** ```204 No Content```  
+**Returns (GET):** ```200 OK```, the Profile document  
+<table>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
+	<tr>
+		<td>activityId</td>
+		<td>Activity id (IRI)</td>
+		<td>The Activity id associated with this profile.</td>
+		<td>Required</td>
+	</tr>
+	<tr>
+		<td>profileId</td>
+		<td>String</td>
+		<td>The profile id associated with this profile.</td>
+		<td>Required</td>
+	</tr>
+</table>
+
+###### Multiple Document GET
+Example endpoint: http://example.com/xAPI/activities/profile
+
+Fetches Profile Ids of all profile entries for an Activity. If "since" parameter is 
+specified, this is limited to entries that have been stored or updated since 
+the specified timestamp (exclusive).  
+
+**Content:** None.
+
+**Returns:** ```200 OK```, Array of Profile Ids  
+
+<table>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
+	<tr>
+		<td>activityId</td>
+		<td>Activity id (IRI)</td>
+		<td>The Activity id associated with these profiles.</td>
+		<td>Required</td>
+	</tr>
+	<tr>
+		<td>since</td>
+		<td>Timestamp</td>
+		<td>Only ids of profiles stored since the specified timestamp (exclusive) 
+		are returned.</td>
+		<td>Optional</td>
+	</tr>
+</table>
+
+
+<a name="aboutresource"/> 
+
+### 1.7 About API
+
+###### Description
+
+Returns JSON Object containing information about this LRS, including the xAPI version
+supported.
+
+###### Rationale
+
+Primarily this resource exists to allow Clients that support multiple xAPI versions to
+decide which version to use when communicating with the LRS. Extensions are included to
+allow other uses to emerge.
+
+###### Details
+
+###### Information GET
+
+Example endpoint: http://example.com/xAPI/about
+
+**Content:** None.
+
+**Returns:** ```200 OK```, JSON object containing basic metadata about this LRS
+<table border="1">
+	<tr><th>property</th><th>type</th><th>description</th><th>Required</th></tr>
+	<tr>
+		<td>version</td>
+		<td>array of version strings</td>
+		<td>xAPI versions this LRS supports</td>
+		<td>Required</td>
+	</tr>
+	<tr>
+		<td>extensions</td>
+		<td><a href="#miscext">Object</a></td>
+		<td>A map of other properties as needed.</td>
+		<td>Optional</td>
+	</tr>
+
+</table>
+
+###### Requirements
+
+* An LRS MUST return the JSON document described above, with a version property that includes
+the latest minor and patch version the LRS conforms to, for each major version.
+    * For version 1.0.0 of this specification, this means that "1.0.0" MUST be included;
+    "0.9" and "0.95" MAY be included. (For the purposes of this requirement, "0.9" and "0.95"
+    are considered major versions.)
+* Additional properties MUST NOT be added to this object outside of extensions and each 
+property MUST occur only once.  
+* An LRS SHOULD allow unauthenticated access to this resource
+* An LRS MUST NOT reject requests based on their version header as would otherwise be 
+required by <a href="#apiversioning"/>6.2 API Versioning</a>.
+
+
+<a name="validation"/> 
 
 ## 2.0 Data Validation
+
+
+### 2.1 Basics (May not need and just put at 2.0)
+
+###### Description
+
+The function of the LRS within the xAPI is to store and retrieve Statements. 
+As long as it has sufficient information to perform these tasks, it is 
+expected that it does them. Validation of Statements in the Experience API is 
+focused solely on syntax, not semantics. Enforcing the rules that ensure 
+valid meaning among Verb definitions, Activity types, and extensions is the 
+responsibility of the Activity Provider sending the Statement. 
+
+###### Requirements
+
+* The LRS SHOULD enforce rules regarding structure. 
+* The LRS SHOULD NOT enforce rules regarding meaning.  
+
+<a name="concurrency"/>
 
 ### 2.2 Concurrency
 
@@ -3746,483 +4217,6 @@ will be granted.
 
 
 
-
-
-
-
-
-
-
-<a name="stateapi"/> 
-
-### 7.5 State API
-
-##### Description
-
-Generally, this is a scratch area for Activity Providers that do not have their 
-own internal storage, or need to persist state across devices. 
-
-##### Details
-
-The semantics of the call are driven by the stateId parameter. If it is included, 
-the GET and DELETE methods will act upon a single defined state document 
-identified by "stateId". Otherwise, GET will return the available ids, and DELETE 
-will delete all state in the context given through the other parameters. This API has
-[Concurrency](#concurrency) controls associated with it.
-
-###### Single Document (PUT | POST | GET | DELETE)
-Example endpoint: http://example.com/xAPI/activities/state
-
-Stores, changes, fetches, or deletes the document specified by the given stateId that 
-exists in the context of the specified Activity, Agent, and registration (if specified).  
-
-**Content (PUT | POST):** The document to be stored or updated.  
-**Content (GET | DELETE):** None.  
-
-**Returns (PUT | POST | DELETE):** ```204 No Content```  
-**Returns (GET):** ```200 OK```, the State document 
-<table>
-	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr>
-		<td>activityId</td>
-		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with this state.</td>
-		<td>Required</td>
-	</tr>
-	<tr>
-		<td>agent</td>
-		<td>Agent object (JSON)</td>
-		<td>The Agent associated with this state.</td>
-		<td>Required</td>
-	</tr>
-	<tr>
-		<td>registration</td>
-		<td>UUID</td>
-		<td>The registration id associated with this state.</td>
-		<td>Optional</td>
-	</tr>
-	<tr>
-		<td>stateId</td>
-		<td>String</td>
-		<td>The id for this state, within the given context.</td>
-		<td>Required</td>
-	</tr>
-</table>
-
-###### Multiple Document GET
-Example endpoint: http://example.com/xAPI/activities/state
-
-Fetches State Ids of all state data for this context (Activity + Agent \[ + 
-registration if specified\]). If "since" parameter is specified, this 
-is limited to entries that have been stored or updated since the specified 
-timestamp (exclusive).  
-
-**Content:** None.
-
-**Returns:** ```200 OK```, Array of State Ids  
-
-<table>
-	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr>
-		<td>activityId</td>
-		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with these states.</td>
-		<td>Required</td>
-	</tr>
-	<tr>
-		<td>agent</td>
-		<td>Agent object (JSON)</td>
-		<td>The Agent associated with these states.</td>
-		<td>Required</td>
-	</tr>
-	<tr>
-		<td>registration</td>
-		<td>UUID</td>
-		<td>The registration id associated with these states.</td>
-		<td>Optional</td>
-	</tr>
-	<tr>
-		<td>since</td>
-		<td>Timestamp</td>
-		<td>Only ids of states stored since the specified timestamp (exclusive) are returned.</td>
-		<td>Optional</td>
-	</tr>
-</table>
-
-###### Multiple Document DELETE
-Example endpoint: http://example.com/xAPI/activities/state
-
-Deletes all state data for this context (Activity + Agent \[+ registration if 
-specified\]).  
-
-**Content:** None.
-
-**Returns**: ```204 No Content```  
-<table>
-	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr>
-		<td>activityId</td>
-		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with this state.</td>
-		<td>Required</td>
-	</tr>
-	<tr>
-		<td>agent</td>
-		<td>Agent object (JSON)</td>
-		<td>The Agent associated with this state.</td>
-		<td>Required</td>
-	</tr>
-	<tr>
-		<td>registration</td>
-		<td>UUID</td>
-		<td>The registration id associated with this state.</td>
-		<td>Optional</td>
-	</tr>
-</table>
-
-
-
-<a name="actprofapi"/> 
-
-### 7.6 Activity Profile API
-
-###### Description
-
-The Activity Profile API is much like the State API, allowing for arbitrary key 
-/ document pairs to be saved which are related to an Activity. 
-
-###### Details
-
-The semantics of the call are driven by the profileId parameter. If it is included, 
-the GET method will act upon a single defined document identified by "profileId". 
-Otherwise, GET will return the available ids.
-
-The Activity Profile API also includes a method to retrieve a full description 
-of an Activity from the LRS. This API has [Concurrency](#concurrency) controls 
-associated with it.
-
-###### Full Activity Object GET
-Example endpoint: http://example.com/xAPI/activities
-
-Loads the complete Activity Object specified.  
-
-**Content:** None.
-
-**Returns:** ```200 OK```, Content 
-<table>
-	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr>
-		<td>activityId</td>
-		<td>Activity id (IRI)</td>
-		<td>The id associated with the Activities to load.</td>
-		<td>Required</td>
-	</td>
-</table>
-
-###### Single Document (PUT | POST | GET | DELETE)
-Example endpoint: http://example.com/xAPI/activities/profile
-
-Stores, changes, fetches, or deletes the specified profile document in the context of the 
-specified Activity.  
-
-**Content (PUT | POST):** The document to be stored or updated.  
-**Content (GET | DELETE):** None.  
-
-**Returns (PUT | POST | DELETE)** ```204 No Content```  
-**Returns (GET):** ```200 OK```, the Profile document  
-<table>
-	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr>
-		<td>activityId</td>
-		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with this profile.</td>
-		<td>Required</td>
-	</tr>
-	<tr>
-		<td>profileId</td>
-		<td>String</td>
-		<td>The profile id associated with this profile.</td>
-		<td>Required</td>
-	</tr>
-</table>
-
-###### Multiple Document GET
-Example endpoint: http://example.com/xAPI/activities/profile
-
-Fetches Profile Ids of all profile entries for an Activity. If "since" parameter is 
-specified, this is limited to entries that have been stored or updated since 
-the specified timestamp (exclusive).  
-
-**Content:** None.
-
-**Returns:** ```200 OK```, Array of Profile Ids  
-
-<table>
-	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
-	<tr>
-		<td>activityId</td>
-		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with these profiles.</td>
-		<td>Required</td>
-	</tr>
-	<tr>
-		<td>since</td>
-		<td>Timestamp</td>
-		<td>Only ids of profiles stored since the specified timestamp (exclusive) 
-		are returned.</td>
-		<td>Optional</td>
-	</tr>
-</table>
-
-<a name="agentprofapi"/> 
-
-### 7.7 Agent Profile API
-
-###### Description
-
-The Agent Profile API is much like the State API, allowing for arbitrary key / 
-document pairs to be saved which are related to an Agent. 
-
-###### Details
-
-The semantics of the call are driven by the profileId parameter. If it is included, 
-the GET method will act upon a single defined document identified by "profileId". 
-Otherwise, GET will return the available ids.  
-
-The Agent Profile API also includes a method to retrieve a special Object with 
-combined information about an Agent derived from an outside service, such as a 
-directory service. This API has [Concurrency](#concurrency) controls associated 
-with it.
-
-###### Combined Information GET 
-
-###### Details
-Example endpoint: http://example.com/xAPI/agents
-
-Return a special, Person Object for a specified Agent. The Person Object is 
-very similar to an Agent Object, but instead of each attribute having a single 
-value, each attribute has an array value, and it is legal to include multiple 
-identifying properties. Note that the parameter is still a normal Agent Object 
-with a single identifier and no arrays. Note that this is different from the 
-FOAF concept of person, person is being used here to indicate a person-centric 
-view of the LRS Agent data, but Agents just refer to one persona (a person in 
-one context).  
-
-**Content:** None.
-
-**Returns:** ```200 OK```, Person Object
-
-<table>
-	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr>
-		<td>agent</td>
-		<td>Agent object (JSON)</td>
-		<td>The Agent representation to use in fetching expanded Agent information.</td>
-		<td>Required</td>
-	</tr>
-</table>  
-
-###### Requirements
-* An LRS capable of returning multiple identifying properties for a Person 
-Object SHOULD require the connecting credentials have increased, explicitly 
-given permissions. 
-* An LRS SHOULD reject insufficiently privileged requests with 403 "Forbidden".
-* If an LRS does not have any additional information about an Agent to return, 
-the LRS MUST still return a Person when queried, but that Person Object will only 
-include the information associated with the requested Agent. 
-
-__Note:__ This means that if a request is made for an Agent which the LRS has no 
-prior knowledge of, it will still return a Person object containing the information 
-about the Agent it received in the request. 
-
-###### Person Properties
-
-###### Details
-
-<table>
-	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr>
-		<td>objectType</td>
-		<td>String</td>
-		<td>"Person"</td>
-		<td>Required</td>
-	</tr>
-	<tr>
-		<td>name</td>
-		<td>Array of strings.</td>
-		<td>List of names of Agents retrieved.</td>
-		<td>Optional</td>
-	</tr>
-	<tr>
-		<td><a href="http://xmlns.com/foaf/spec/#term_mbox">mbox</a></td>
-		<td>Array of IRIs in the form "mailto:email address".</td>
-		<td>List of e-mail addresses of Agents retrieved.</td>
-		<td>Optional</td>
-	</tr>
-	<tr>
-		<td><a href="http://xmlns.com/foaf/spec/#term_mbox_sha1sum">mbox_sha1sum</a></td>
-		<td>Array of strings.</td>
-		<td>List of the SHA1 hashes of mailto IRIs (such as go in an mbox property).</td>
-		<td>Optional</td>
-	</tr>
-	<tr>
-		<td>openid*</td>
-		<td>Array of strings.</td>
-		<td>List of openids that uniquely identify the Agents retrieved.</td>
-		<td>Optional</td>
-	</tr>
-	<tr>
-		<td>account*</td>
-		<td>Array of account objects.</td>
-		<td>List of accounts to match. Complete account Objects (homePage and name) 
-		MUST be provided.</td>
-		<td>Optional</td>
-	</tr>
-</table> 
-
-See also: [Section 4.1.2.1 Agent](#agent).
-
-###### Requirements
-
-* All array properties MUST be populated with members with the 
-same definition as the similarly named property from Agent Objects.  
-
-* Additional properties not listed here SHOULD* NOT be added to this object and each 
-property MUST occur only once.  
-
-###### Single Agent or Profile (PUT | POST | GET | DELETE) 
-
-Example endpoint: http://example.com/xAPI/agents/profile
-
-Stores, changes, fetches, or deletes the specified profile document in the context of the 
-specified Agent.  
-
-**Content (PUT | POST):** The document to be stored or updated.  
-**Content (GET | DELETE):** None.  
-
-**Returns (PUT | POST | DELETE):** ```204 No Content```  
-**Returns (GET):** ```200 OK```, the Profile document  
-
-<table>
-	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr>
-		<td>agent</td>
-		<td>Agent object (JSON)</td>
-		<td>The Agent associated with this profile.</td>
-		<td>Required</td>
-	</tr>
-	<tr>
-		<td>profileId</td>
-		<td>String</td>
-		<td>The profile id associated with this profile.</td>
-		<td>Required</td>
-	</tr>
-</table>  
-
-###### Multiple Document GET 
-Example endpoint: http://example.com/xAPI/agents/profile
-
-Fetches Profile Ids of all profile entries for an Agent. If "since" parameter is specified, 
-this is limited to entries that have been stored or updated since the specified 
-timestamp (exclusive).  
-
-**Content:** None.
-
-**Returns:** ```200 OK```, Array of Profile Ids  
-
-<table>
-	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr>
-		<td>agent</td>
-		<td>Agent object (JSON)</td>
-		<td>The Agent associated with this profile.</td>
-		<td>Required</td>
-	</tr>
-	<tr>
-		<td>since</td>
-		<td>Timestamp</td>
-		<td>Only ids of profiles stored since the specified timestamp 
-			(exclusive) are returned.</td>
-		<td>Optional</td>
-	</tr>
-</table>  
-
-<a name="aboutresource"/> 
-
-### 7.8 About Resource
-
-###### Description
-
-Returns JSON Object containing information about this LRS, including the xAPI version
-supported.
-
-###### Rationale
-
-Primarily this resource exists to allow Clients that support multiple xAPI versions to
-decide which version to use when communicating with the LRS. Extensions are included to
-allow other uses to emerge.
-
-###### Details
-
-###### Information GET
-
-Example endpoint: http://example.com/xAPI/about
-
-**Content:** None.
-
-**Returns:** ```200 OK```, JSON object containing basic metadata about this LRS
-<table border="1">
-	<tr><th>property</th><th>type</th><th>description</th><th>Required</th></tr>
-	<tr>
-		<td>version</td>
-		<td>array of version strings</td>
-		<td>xAPI versions this LRS supports</td>
-		<td>Required</td>
-	</tr>
-	<tr>
-		<td>extensions</td>
-		<td><a href="#miscext">Object</a></td>
-		<td>A map of other properties as needed.</td>
-		<td>Optional</td>
-	</tr>
-
-</table>
-
-###### Requirements
-
-* An LRS MUST return the JSON document described above, with a version property that includes
-the latest minor and patch version the LRS conforms to, for each major version.
-    * For version 1.0.0 of this specification, this means that "1.0.0" MUST be included;
-    "0.9" and "0.95" MAY be included. (For the purposes of this requirement, "0.9" and "0.95"
-    are considered major versions.)
-* Additional properties MUST NOT be added to this object outside of extensions and each 
-property MUST occur only once.  
-* An LRS SHOULD allow unauthenticated access to this resource
-* An LRS MUST NOT reject requests based on their version header as would otherwise be 
-required by <a href="#apiversioning"/>6.2 API Versioning</a>.
-
-
-
-
-See [Appendix G: Cross Domain Request Example](#AppendixG) for an example. 
-
-<a name="validation"/> 
-
-### 7.10 Validation
-
-###### Description
-
-The function of the LRS within the xAPI is to store and retrieve Statements. 
-As long as it has sufficient information to perform these tasks, it is 
-expected that it does them. Validation of Statements in the Experience API is 
-focused solely on syntax, not semantics. Enforcing the rules that ensure 
-valid meaning among Verb definitions, Activity types, and extensions is the 
-responsibility of the Activity Provider sending the Statement. 
-
-###### Requirements
-
-* The LRS SHOULD enforce rules regarding structure. 
-* The LRS SHOULD NOT enforce rules regarding meaning.  
 
 
 
