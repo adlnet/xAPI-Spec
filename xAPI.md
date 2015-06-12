@@ -310,6 +310,13 @@ be unintuitive and/or lengthy to dissect into a list of requirements.
 
 ### 4.2 Population of JSON Properties
 
+<a name="encoding"/> 
+
+### Encoding
+
+###### Requirement
+* All strings MUST be encoded and interpreted as UTF-8. 
+
 ## 5.0 xAPI as a "RESTish" Web Service
 
 
@@ -2820,397 +2827,11 @@ identifier was not coined for use with this specification.
 
 
 
-
-
-
-
-
-
-<a name="rtcom"/>
-
-## 6.0 Run-time Communication
-
-Sections 6 and 7 detail the more technical side of the Experience API, dealing with 
-how Statements are transferred between Activity Provider and LRS. A number of libraries 
-are under development for a range of technologies (including JavaScript) which handle 
-this part of the specification. It therefore might not be necessary for content developers 
-to fully understand every detail of this part of the specification.
-
-<a name="encoding"/> 
-
-### 6.1 Encoding
-
-###### Requirement
-* All strings MUST be encoded and interpreted as UTF-8. 
-
-<a name="apiversioning"/> 
-
-### 6.2 API Versioning
-
-###### Rationale
-
-Future revisions of the specification might introduce changes such as properties added to 
-Statements.
-
-Systems retrieving Statements might then receive responses that include Statements of different
-versions. The version header allows for these version differences to be handled correctly, and 
-to ascertain that no partial or mixed LRS version implementations exist.
-
-Using Semantic Versioning will allow Clients and LRSs to reliably know compatibility as the specification changes.
-
-###### Details
-
-Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html).  Every request from a Client and every response from the LRS includes an HTTP header with the name 
-“X-Experience-API-Version" and the version as the value. For example, ``X-Experience-API-Version : 1.0.3`` for version 1.0.3; 
-see the [Revision History](#revhistory) for the current version of this specification. 
-
-###### LRS Requirements
-
-* The LRS MUST include the "X-Experience-API-Version" header in every response.
-* The LRS MUST set this header to the latest patch version.
-* The LRS MUST accept requests with a version header of "1.0" as if the version header was "1.0.0".
-* The LRS MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a 
-fully conformant implementation of the prior version specified in the header.
-* The LRS MUST accept requests with a version header starting with "1.0." if the request is otherwise valid. 
-* The LRS MUST reject requests with a version header of "1.1.0" or greater.
-* The LRS MUST make these rejects by responding with an HTTP 400 error including a short description 
-of the problem.
-
-###### Client Requirements
-
-* The Client MUST include the "X-Experience-API-Version" header in every request.
-* The Client MUST set this header to the latest patch version.
-* The Client SHOULD tolerate receiving responses with a version of "1.0.0" or later.
-* The Client SHOULD tolerate receiving data structures with additional properties.
-* The Client SHOULD ignore any properties not defined in version 1.0.0 of the spec.
-
-###### Conversion Requirements
-
-* Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
-* Systems MAY convert Statements of older versions into a newer version only by following the methods described in
-<a href="#AppendixD">Appendix D: Converting Statements to 1.0.0</a>.
-
-<a name="concurrency"/> 
-### 6.3 Concurrency
-
-##### Description
-Concurrency control makes certain that an API consumer does not PUT, POST or DELETE documents based on old
-data into an LRS.
-
-##### Details
-xAPI will use HTTP 1.1 entity tags ([ETags](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19))
-to implement optimistic concurrency control in the portions of the API where PUT, POST or DELETE might
-overwrite or remove existing data, being:
-
-* State API
-* Agent Profile API 
-* Activity Profile API
-
-##### Client Requirements
-The State API will permit PUT, POST and DELETE requests without concurrency headers, since state conflicts
-are unlikely. The requirements below only apply to Agent Profile API and Activity Profile API.
-
-* A Client making a PUT request to either the Agent Profile API or Activity Profile API MUST include the 
-[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the 
-[If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header.
-
-* A Client making a POST request to either the Agent Profile API or Activity Profile API SHOULD* include the 
-[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the 
-[If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header.
-
-* A Client making a DELETE request to either the Agent Profile API or Activity Profile API SHOULD* include the 
-[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header.
-
-* Clients SHOULD use the ETag value provided by the LRS rather than calculating it themselves. 
-
-##### LRS Requirements
-
-* An LRS responding to a GET request MUST add an ETag HTTP header to the response. (The reason for 
-specifying the LRS ETag format is to allow API consumers that can't read the ETag header to calculate 
-it themselves.)
-* An LRS responding to a PUT or POST request SHOULD* add the ETag HTTP header for the entity just created or modified to the response.
-* An LRS responding to a GET request MUST calculate the value of this header to be a hexidecimal string 
-of the SHA-1 digest of the contents. This hexidecimal string SHOULD* be rendered using numbers and lowercase 
-characters only; uppercase characters SHOULD* NOT be used. 
-* As defined in [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19), an LRS responding to a GET request MUST enclose the header in quotes.  
-* An LRS responding to a PUT request MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
-modifications made after the consumer last fetched the document.
-* An LRS responding to a PUT request MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
-when there is a resource present that the consumer is not aware of.
-* An LRS responding to a POST or DELETE request SHOULD* handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
-modifications made after the consumer last fetched the document.
-* An LRS responding to a POST request SHOULD* handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
-when there is a resource present that the consumer is not aware of.
-
-If the header precondition in either of the PUT request cases above fails, the LRS:
-
-* MUST return HTTP status 412 "Precondition Failed".
-* MUST NOT make a modification to the resource. 
-
-If the header precondition in any of the POST or DELETE request cases above fails, the LRS:
-
-* SHOULD* return HTTP status 412 "Precondition Failed".
-* SHOULD* NOT make a modification to the resource. 
-
-If a PUT request is received without either header for a resource that already exists, the LRS:
-
-* MUST return HTTP status 409 "Conflict".
-* MUST return a response explaining that the consumer SHOULD
-	- check the current state of the resource.
-	- set the "If-Match" header with the current ETag to resolve the conflict.
-* MUST NOT make a modification to the resource.
-
-<a name="security"/>
-
-### 6.4 Security
-
-###### Rationale
-
-In order to balance interoperability and the varying security requirements of different
-environments, several authentication options are defined.
-
-###### Details
-The following authentication methods are defined within the specification. Any given LRS will 
-implement at least one of these methods and might implement additional methods not defined within
-this specification. 
-
-- [OAuth 1.0 (RFC 5849)](http://tools.ietf.org/html/rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
-- [HTTP Basic Authentication](http://tools.ietf.org/html/rfc7235)
-- Common Access Cards
-
-Whislt Common Access Cards are defined as an authentication option within this specification,
-the implementation details of this authentication method are not defined. The xAPI Working Group
-encourages LRS developers implementing Common Access Cards as an authentication method to collaborate
-in defining the details of this authentication method in a future version of this specification. 
-
-No further details are provided to describe HTTP Basic Authentication as this authentication method
-is clearly and completely defined in [RFC 7235](http://tools.ietf.org/html/rfc7235). 
-
-###### Requirements
-
-- The LRS MUST support authentication using at least one of the authentication methods defined in this 
-specification.
-
-- The LRS MUST handle making, or delegating, decisions on the validity of Statements,
- and determining what operations might be performed based on the credentials used.
-
-<a name="authdefs"/>
-
-#### 6.4.1 OAuth 1.0 Authentication Scenarios and Methods
-
-The matrix and requirements below describe the possible authentication 
-scenarios used within OAuth and recommends the authentication workflow to be 
-used in these scenarios. The process described for each scenario is not intended 
-to be comprehensive, but rather outline variations to the standard OAuth workflow. 
-
-The requirements in this section only apply if the LRS supports OAuth 1.0.
-
-A **registered application** is an application that will authenticate to the LRS as an OAuth 
-consumer that has been registered with the LRS.
-
-A **known user** is a user account on the LRS, or on a system which the LRS trusts to define users.
-
-
-<table border="1">
-<tr><th></th><th>Known user</th><th>User unknown</th></tr>
-<tr>
-<td>Application is registered</td>
-<td>Standard workflow for OAuth.</td>
-<td>LRS trusts application to access xAPI without additional user credentials. OAuth token steps are not invoked</td>
-</tr>
-<tr>
-<td>Application is not registered</td>
-<td>The application Agent is not identified as a registered Agent and the LRS cannot make assumptions on its identity.</td>
-<td></br></td>
-</tr>
-<tr>
-<td>No application</td>
-<td>HTTP Basic Authentication is used instead of OAuth, since no application is involved.</td>
-<td></br></td>
-</tr>
-<tr>
-<td>No authentication</td>
-<td align="center"colspan="2">MAY be supported by the LRS, possibly for testing purposes.</td>
-
-</tr>
-
-</table> 
-
-##### Requirements
-
-* The LRS MUST record the application's name and a unique consumer key (identifier).
-* The LRS MUST provide a mechanism to complete this registration, or delegate to another system that provides 
-such a mechanism.
-* The LRS MUST be able to be configured for complete support of the xAPI:
-	* With any of the methods below.
-	* In any of the workflow scenarios below.
-* The LRS MAY (for security reasons): 
-	* Support a subset of the methods below.
-	* Limit the known users or registered applications.
-* The LRS SHOULD at a minimum supply OAuth with "HMAC-SHA1" and "RSA-SHA1" signatures.
-
-###### Application registered + known user Process and Requirements
-**Process:** The standard workflow for OAUth 1.0 is used. 
-
-**Requirements:**
-* The LRS MUST support the endpoints in section [6.4.2 OAuth Authorization Scope](#oauthscope) to complete the standard OAuth workflow 
-(details not in this specification).
-* If this form of authentication is used to record Statements and no authority is specified, the LRS SHOULD 
-record the authority as a group consisting of an Agent representing the registered application, and an Agent 
-representing the known user.
-
-###### Application registered + user unknown Process and Requirements
-**Process:** 
-The LRS honors requests that are signed using OAuth with the registered application's credentials and with an empty token and token secret.
-
-**Requirements:**
-* If this form of authentication is used to record Statements, the LRS SHOULD 
-record the authority as the Agent representing the registered application.
-
-###### Application not registered + known user Process and Requirements
-**Process:**
-The AP uses a consumer secret consisting of an empty string to call the 
-Temporary Credential Request endpoint specifying the "consumer_name" and other usual parameters.
-The "consumer_name" contains a string representing the application requesting access. 
-
-The AP then sends the user's browser to the Resource Owner Authorization using the 
-temporary credentials obtained from the LRS. The Resource Owner Authorization presents a 
-page displaying the "consumer_name" plus a warning that the identity of the application requesting 
-authorization cannot be verified.
-
-Otherwise the process follows the standard OAuth workflow. 
-
-**Requirements:**
-* If this form of authentication is used to record Statements, the LRS MUST record an authority 
-that includes both that application and the authenticating user, as a group, since OAuth specifies 
-an application.
-
-###### No application + known user Process and Requirements
-**Process:**
-Use a username/password combination provided by the LRS for use by the known user.
-
-**Requirements:**
-* If this form of authentication is used to record Statements, the LRS SHOULD 
-record the authority as the Agent representing the known user.
-
-###### No authorization Process and Requirements
-
-* Requests MUST include headers for HTTP Basic Authentication based on a username and password containing zero or
-more space characters. 
-* Requests SHOULD* include headers for HTTP Basic Authentication based on a username and password each consisting of 
-an empty string. In this case the HTTP Basic Authentication header will be ```Basic ``` followed by a base64 encoded version of the string ```:```.
-This results in the string ```Basic Og==```.
-
-This is in order to distinguish an explicitly unauthenticated request from a request that needs to be given a HTTP Basic Authentication 
-challenge.
-
-<a name="oauthscope"/> 
-
-#### 6.4.2 OAuth 1.0 Authorization Scope
-
-##### Description
-These are recommendations for scopes designed to enable an LRS and an application
-communicating using the xAPI to negotiate a level of access which accomplishes what the
-application needs while minimizing the potential for misuse. The limitations of each scope
-are in addition to any security limitations placed on the user account associated with the
-request.
-
-Elements of this section draw on [OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-3.3)
-despite this section describing requirements for LRS supporting [OAuth 1.0](http://tools.ietf.org/html/rfc5849). 
-
-The requirements in this section only apply if the LRS
-supports OAuth 1.0.
-
-##### Details
-
-The following table lists xAPI scope values:  
-<table>
-	<tr><th>Scope</th><th>Permission</th></tr>
-	<tr><td>statements/write</td><td>write any Statement</td></tr>
-	<tr>
-		<td>statements/read/mine</td>
-		<td>read Statements written by "me", that is with an authority 
-			matching what the LRS would assign if writing a Statement with 
-			the current token.
-		</td>
-	</tr>
-	<tr><td>statements/read</td><td>read any Statement</td>
-	<tr>
-		<td>state</td>
-		<td>read/write state data, limited to Activities and Actors 
-			associated with the current token to the extent it is 
-			possible to determine this relationship.
-		</td>
-	</tr>
-	<tr>
-		<td>define</td>
-		<td>(re)Define Activities and Actors. If storing a Statement 
-			when this is not granted, ids will be saved and the LRS 
-			MAY save the original Statement for audit purposes, but 
-			SHOULD NOT update its internal representation of any 
-			Actors or Activities.
-		</td>
-	</tr>
-	<tr>
-		<td>profile</td>
-		<td>read/write profile data, limited to Activities and Actors 
-			associated with the current token to the extent it is 
-			possible to determine this relationship.
-		</td>
-	</tr>
-	<tr><td>all/read</td><td>unrestricted read access</td></tr>
-	<tr><td>all</td><td>unrestricted access</td></tr>
-</table>
-
-###### OAuth Extended Parameters  
-Note that the parameters "consumer_name" and "scope" are not part of 
-OAuth 1.0, and therefore if used MUST be passed as query string or form 
-parameters, not in the OAuth header.  
-
-###### OAuth Endpoints  
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Endpoint</th>
-		<th>Example</th>
-	</tr>
-	<tr>
-		<td>Temporary Credential Request</td>
-		<td>OAuth/initiate</td>
-		<td>http://example.com/xAPI/OAuth/initiate</td>
-	</tr>
-	<tr>
-		<td>Resource Owner Authorization</td>
-		<td>OAuth/authorize</td>
-		<td>http://example.com/xAPI/OAuth/authorize</td>
-	</tr>
-	<tr>
-		<td>Token Request</td>
-		<td>OAuth/token</td>
-		<td>http://example.com/xAPI/OAuth/token </td>
-	</tr>
-</table>
-
-##### Example
-The list of scopes determines the set of permissions that is being requested. 
-For example,an instructor might grant "statements/read" to a Client, 
-but the LRS would still limit that tool to Statements that the instructor could 
-read if querying the LRS with their credentials directly (such as Statements 
-relating to their students).
-
-##### Requirements
-
-* The LRS MUST accept a scope parameter as defined in [OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-3.3).
-* The LRS MUST assume a requested scope of "statements/write" and "statements/read/mine" if no 
-scope is specified.
-* The LRS MUST support the scope of "all" as a minimum.
-* The LRS MAY support other scopes.
-* The Client SHOULD request only the minimal needed scopes, to increase the chances that the request
-will be granted.
-
 <a name="datatransfer"/> 
 
-## 7.0 Data Transfer (REST)
+# Section 3 - Data Validation, Transportation, and Security
+
+## 1.0 Data Transfer (Sub-APIs)
 
 ###### Description
 
@@ -3240,145 +2861,15 @@ described in [Section 6.4.2 OAuth Authorization Scope](#oauthscope).
 with path segements starting 'extensions/'. LRSs supporting additional endpoints not defined 
 in this specification SHOULD define those endpoints with path segments starting 'extensions/'.
 
-<a name="errorcodes" /> 
-
-### 7.1 Error Codes
-
-##### Description
-
-This specification defines requirements, some of which are imposed on the LRS to accept or reject requests,
-return responses and perform other behaviours in certain conditions. In cases where an LRS is required 
-to reject a request, the appropriate error code is listed as part of the requirement. 
-
-None of these requirements contradict the idea that the LRS is also allowed to 
-be configurable to reject requests and respond or behave differently on the basis of conditions 
-that are out of scope this specification. 
-
-One of these conditions is permission. For example, the LRS might assign permissions
-to a particular set of credentials such that those credentials can only issue statements
-relating to a particular agent. It could then reject any statements using those credentials
-not relating to that agent. The permissions that can be assigned by an LRS are out of scope of
-this specification, aside from the list of recommended OAuth Authorization scope values in
-section [6.4.2](#oauthscope). 
-
-Permissions can also affect the response returned by an LRS to GET requests. For example, 
-a set of credentials might have permission only to view statements about a particular actor, in which case
-the LRS will filter any returned statements to exclude any statements not relating to that actor. See 
-[Section 7.3.3 GET Statements](#stmtapiget) for details. 
-
-In cases explicitly allowed by this specification, the credentials used can also affect the LRS behaviour in 
-handling a request, for example the LRS will normally overwrite the Authority property of a Statement, but can 
-sometimes accept a submitted authority if it has a strong trust relationship associated with the credentials 
-used to submit the statement. See [Section 4.1.9 Authority](#authority) for details. 
-
-Permissions set by an LRS could cause a technically conformant LRS to fail conformance testing. 
-This could occur where requests made by the test suite are rejected on the basis of permissions. For this reason
-the LRS needs to be configurable, or credentials used for testing need to have sufficient permissions granted,
-such that permission restrictions do not affect the result of conformance testing. 
-
-Another condition is where the request sent is beyond the size limits set by the LRS. It would be unreasonable
-to expect the LRS to always accept requests of any size. The LRS can choose any size limit it sees fit, but
-needs to be configurable so as not to apply size limits during conformance testing. Of course, some size limits
-will still exist during conformance testing due to limitations of hardware etc. but it is expected that these limits
-are sufficiently high so as not to affect the running of tests. 
-
-The LRS can also reject requests or revoke credentials in case of suspected malicious intend, for example
-an unexpected large number of requests made in a short period of time. It is expected that that limits 
-will be sufficiently high such that the rate of requests made during conformance testing will not trigger any rate limits.
-
-##### Details 
-The list below offers some general guidance on HTTP error codes that could
-be returned from various methods in the API. 
-
-* ```400 Bad Request``` - Indicates
-an error condition caused by an invalid or missing argument. The term 
-"invalid arguments" includes malformed JSON or invalid Object structures.
-
-* ```401 Unauthorized``` - Indicates that authentication is required, or in the 
-case authentication has been posted in the request, that the given credentials 
-have been refused.
-
-* ```403 Forbidden``` - Indicates that the request is unauthorized for the given 
-credentials. Note this is different than refusing the credentials given. In 
-this case, the credentials have been validated, but the authenticated Client 
-is not allowed to perform the given action.
-
-* ```404 Not Found``` - Indicates the requested resource was not found. May be 
-returned by any method that returns a uniquely identified resource, for 
-instance, any State or Agent Profile or Activity Profile API call targeting a specific document, 
-or the method to retrieve a single Statement.
-
-* ```409 Conflict``` - Indicates an error condition due to a conflict with the 
-current state of a resource, in the case of State API, Agent Profile or Activity Profile API
-calls, or in the Statement PUT or POST calls. See Section [6.3 Concurrency](#concurrency) for more details.
-
-* ```412 Precondition Failed``` - Indicates an error condition due to a failure of 
-a precondition posted with the request, in the case of State or Agent Profile or Activity Profile 
-API calls. See Section [6.3 Concurrency](#concurrency) for more details.
-
-* ```413 Request Entity Too Large``` - Indicates that the LRS has rejected the Statement or 
-document because its size (or the size of an Attachment included in the request) is larger than 
-the maximum allowed by the LRS. 
-
-* ```429 Too Many Requests``` - Indicates that the LRS has rejected the request because it has received 
-too many requests from the client or set of credentials in a given amount of time. 
-
-* ```500 Internal Server Error``` - Indicates a general error condition, typically an 
-unexpected exception in processing on the server.
-
-##### Requirements
-
-* An LRS MUST return the error code most appropriate to the error condition from the list above.
-
-* An LRS SHOULD return a message in the response explaining the cause of the error.
-
-* An LRS SHOULD use content negotiation as described in [RFC 7231](http://tools.ietf.org/html/rfc7231#section-5.3) to decide the format of the error.
-
-* An LRS SHOULD allow for plain text, HTML, and JSON responses for errors (using content negotiation).
-
-* An AP SHOULD send an Accept header with requests to enable content negotiation.
-
-* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
-of these APIs that use any parameters which the LRS does not recognize in their 
-intended context in this specification ( __Note:__ LRSs MAY recognize and act on 
-parameters not in this specification).
-
-* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
-of these APIs that use any parameters matching parameters described in this 
-specification in all but case.
-
-* The LRS MUST reject a batch of statements if any statement within that 
-batch is rejected.
-
-* The LRS MUST reject with ```HTTP 403 Forbidden``` status any request rejected by the
-LRS where the credentials associated with the request do not have permission to make that request. 
-
-* The LRS MUST reject with ```HTTP 413 Request Entity Too Large``` status any request rejected by the
-LRS where the size of the Attachment, Statement or document is larger than the maximum allowed by the LRS.
-
-* The LRS MAY choose any Attachment, Statement and document size limits and MAY vary this limit on any basis, e.g., per authority.
-
-* The LRS MUST reject with ```429 Too Many Requests``` status any request rejected by the
-LRS where the request is rejected due to too many requests being received by a particular client 
-or set of credentials in a given amount of time. 
-
-* The LRS MAY choose any rate limit and MAY vary this limit on any basis, e.g., per authority.
-
-The following requirements exist for the purposes of conformance testing, to ensure that any limitations or permissions implemented 
-by the LRS do not affect the running of a conformance test suite. 
-
-* The LRS SHOULD* be configurable not to reject any requests from a particular set of credentials on the basis of permissions. 
-This set of credentials SHOULD* be used for conformance testing but MAY be deleted/deactivated on live systems. 
-
-* The LRS MUST be configurable to accept Attachments, Statements or documents of any reasonable size (see above).
-
-* The LRS MUST be configurable to accept requests at any reasonable rate. 
-
-
+Sections 6 and 7 detail the more technical side of the Experience API, dealing with 
+how Statements are transferred between Activity Provider and LRS. A number of libraries 
+are under development for a range of technologies (including JavaScript) which handle 
+this part of the specification. It therefore might not be necessary for content developers 
+to fully understand every detail of this part of the specification.
 
 <a name="stmtapi"/> 
 
-### 7.3 Statement API
+### 1.1 Statement API
 
 ###### Description
 
@@ -3387,7 +2878,7 @@ The basic communication mechanism of the Experience API.
 
 <a name="stmtapiput"/>
 
-####7.3.1 PUT Statements
+####1.1.1 PUT Statements
 
 ###### Details
 
@@ -3427,7 +2918,7 @@ do not match. See [Statement comparision requirements](statement-comparision-req
 
 <a name="stmtapipost"/>
 
-####7.3.2 POST Statements
+####1.1.2 POST Statements
 
 ###### Details
 
@@ -3467,7 +2958,7 @@ parameters passed. See Section [7.9 Alternate Request Syntax](#alt-request-synta
 
 <a name="stmtapiget"/>
 
-####7.3.3 GET Statements
+####1.1.3 GET Statements
 
 ###### Details
 
@@ -3729,7 +3220,7 @@ which language entry to include, rather than to the resource (list of Statements
 
 <a name="voidedStatements" />
 
-####7.3.4 Voided Statements
+####1.1.4 Voided Statements
 [Section 4.3 Voided](#voided) describes the process by which statements can be voided. This section
 desribes how voided statements are handled by the LRS when queried. 
 
@@ -3748,6 +3239,517 @@ requirement. Clients wishing to retrieve voided Statements request these individ
 Statement, following the process and conditions described in
 [the section on filter conditions for StatementRefs](#queryStatementRef). This includes the
 voiding Statement, which cannot be voided. 
+
+<a name="concurrency"/>
+
+## 2.0 Data Validation
+
+### 2.2 Concurrency
+
+##### Description
+Concurrency control makes certain that an API consumer does not PUT, POST or DELETE documents based on old
+data into an LRS.
+
+##### Details
+xAPI will use HTTP 1.1 entity tags ([ETags](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19))
+to implement optimistic concurrency control in the portions of the API where PUT, POST or DELETE might
+overwrite or remove existing data, being:
+
+* State API
+* Agent Profile API 
+* Activity Profile API
+
+##### Client Requirements
+The State API will permit PUT, POST and DELETE requests without concurrency headers, since state conflicts
+are unlikely. The requirements below only apply to Agent Profile API and Activity Profile API.
+
+* A Client making a PUT request to either the Agent Profile API or Activity Profile API MUST include the 
+[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the 
+[If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header.
+
+* A Client making a POST request to either the Agent Profile API or Activity Profile API SHOULD* include the 
+[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the 
+[If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header.
+
+* A Client making a DELETE request to either the Agent Profile API or Activity Profile API SHOULD* include the 
+[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header.
+
+* Clients SHOULD use the ETag value provided by the LRS rather than calculating it themselves. 
+
+##### LRS Requirements
+
+* An LRS responding to a GET request MUST add an ETag HTTP header to the response. (The reason for 
+specifying the LRS ETag format is to allow API consumers that can't read the ETag header to calculate 
+it themselves.)
+* An LRS responding to a PUT or POST request SHOULD* add the ETag HTTP header for the entity just created or modified to the response.
+* An LRS responding to a GET request MUST calculate the value of this header to be a hexidecimal string 
+of the SHA-1 digest of the contents. This hexidecimal string SHOULD* be rendered using numbers and lowercase 
+characters only; uppercase characters SHOULD* NOT be used. 
+* As defined in [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19), an LRS responding to a GET request MUST enclose the header in quotes.  
+* An LRS responding to a PUT request MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
+modifications made after the consumer last fetched the document.
+* An LRS responding to a PUT request MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
+when there is a resource present that the consumer is not aware of.
+* An LRS responding to a POST or DELETE request SHOULD* handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
+modifications made after the consumer last fetched the document.
+* An LRS responding to a POST request SHOULD* handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
+when there is a resource present that the consumer is not aware of.
+
+If the header precondition in either of the PUT request cases above fails, the LRS:
+
+* MUST return HTTP status 412 "Precondition Failed".
+* MUST NOT make a modification to the resource. 
+
+If the header precondition in any of the POST or DELETE request cases above fails, the LRS:
+
+* SHOULD* return HTTP status 412 "Precondition Failed".
+* SHOULD* NOT make a modification to the resource. 
+
+If a PUT request is received without either header for a resource that already exists, the LRS:
+
+* MUST return HTTP status 409 "Conflict".
+* MUST return a response explaining that the consumer SHOULD
+	- check the current state of the resource.
+	- set the "If-Match" header with the current ETag to resolve the conflict.
+* MUST NOT make a modification to the resource.
+
+<a name="errorcodes" /> 
+
+### 2.3 Error Codes
+
+##### Description
+
+This specification defines requirements, some of which are imposed on the LRS to accept or reject requests,
+return responses and perform other behaviours in certain conditions. In cases where an LRS is required 
+to reject a request, the appropriate error code is listed as part of the requirement. 
+
+None of these requirements contradict the idea that the LRS is also allowed to 
+be configurable to reject requests and respond or behave differently on the basis of conditions 
+that are out of scope this specification. 
+
+One of these conditions is permission. For example, the LRS might assign permissions
+to a particular set of credentials such that those credentials can only issue statements
+relating to a particular agent. It could then reject any statements using those credentials
+not relating to that agent. The permissions that can be assigned by an LRS are out of scope of
+this specification, aside from the list of recommended OAuth Authorization scope values in
+section [6.4.2](#oauthscope). 
+
+Permissions can also affect the response returned by an LRS to GET requests. For example, 
+a set of credentials might have permission only to view statements about a particular actor, in which case
+the LRS will filter any returned statements to exclude any statements not relating to that actor. See 
+[Section 7.3.3 GET Statements](#stmtapiget) for details. 
+
+In cases explicitly allowed by this specification, the credentials used can also affect the LRS behaviour in 
+handling a request, for example the LRS will normally overwrite the Authority property of a Statement, but can 
+sometimes accept a submitted authority if it has a strong trust relationship associated with the credentials 
+used to submit the statement. See [Section 4.1.9 Authority](#authority) for details. 
+
+Permissions set by an LRS could cause a technically conformant LRS to fail conformance testing. 
+This could occur where requests made by the test suite are rejected on the basis of permissions. For this reason
+the LRS needs to be configurable, or credentials used for testing need to have sufficient permissions granted,
+such that permission restrictions do not affect the result of conformance testing. 
+
+Another condition is where the request sent is beyond the size limits set by the LRS. It would be unreasonable
+to expect the LRS to always accept requests of any size. The LRS can choose any size limit it sees fit, but
+needs to be configurable so as not to apply size limits during conformance testing. Of course, some size limits
+will still exist during conformance testing due to limitations of hardware etc. but it is expected that these limits
+are sufficiently high so as not to affect the running of tests. 
+
+The LRS can also reject requests or revoke credentials in case of suspected malicious intend, for example
+an unexpected large number of requests made in a short period of time. It is expected that that limits 
+will be sufficiently high such that the rate of requests made during conformance testing will not trigger any rate limits.
+
+##### Details 
+The list below offers some general guidance on HTTP error codes that could
+be returned from various methods in the API. 
+
+* ```400 Bad Request``` - Indicates
+an error condition caused by an invalid or missing argument. The term 
+"invalid arguments" includes malformed JSON or invalid Object structures.
+
+* ```401 Unauthorized``` - Indicates that authentication is required, or in the 
+case authentication has been posted in the request, that the given credentials 
+have been refused.
+
+* ```403 Forbidden``` - Indicates that the request is unauthorized for the given 
+credentials. Note this is different than refusing the credentials given. In 
+this case, the credentials have been validated, but the authenticated Client 
+is not allowed to perform the given action.
+
+* ```404 Not Found``` - Indicates the requested resource was not found. May be 
+returned by any method that returns a uniquely identified resource, for 
+instance, any State or Agent Profile or Activity Profile API call targeting a specific document, 
+or the method to retrieve a single Statement.
+
+* ```409 Conflict``` - Indicates an error condition due to a conflict with the 
+current state of a resource, in the case of State API, Agent Profile or Activity Profile API
+calls, or in the Statement PUT or POST calls. See Section [6.3 Concurrency](#concurrency) for more details.
+
+* ```412 Precondition Failed``` - Indicates an error condition due to a failure of 
+a precondition posted with the request, in the case of State or Agent Profile or Activity Profile 
+API calls. See Section [6.3 Concurrency](#concurrency) for more details.
+
+* ```413 Request Entity Too Large``` - Indicates that the LRS has rejected the Statement or 
+document because its size (or the size of an Attachment included in the request) is larger than 
+the maximum allowed by the LRS. 
+
+* ```429 Too Many Requests``` - Indicates that the LRS has rejected the request because it has received 
+too many requests from the client or set of credentials in a given amount of time. 
+
+* ```500 Internal Server Error``` - Indicates a general error condition, typically an 
+unexpected exception in processing on the server.
+
+##### Requirements
+
+* An LRS MUST return the error code most appropriate to the error condition from the list above.
+
+* An LRS SHOULD return a message in the response explaining the cause of the error.
+
+* An LRS SHOULD use content negotiation as described in [RFC 7231](http://tools.ietf.org/html/rfc7231#section-5.3) to decide the format of the error.
+
+* An LRS SHOULD allow for plain text, HTML, and JSON responses for errors (using content negotiation).
+
+* An AP SHOULD send an Accept header with requests to enable content negotiation.
+
+* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
+of these APIs that use any parameters which the LRS does not recognize in their 
+intended context in this specification ( __Note:__ LRSs MAY recognize and act on 
+parameters not in this specification).
+
+* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
+of these APIs that use any parameters matching parameters described in this 
+specification in all but case.
+
+* The LRS MUST reject a batch of statements if any statement within that 
+batch is rejected.
+
+* The LRS MUST reject with ```HTTP 403 Forbidden``` status any request rejected by the
+LRS where the credentials associated with the request do not have permission to make that request. 
+
+* The LRS MUST reject with ```HTTP 413 Request Entity Too Large``` status any request rejected by the
+LRS where the size of the Attachment, Statement or document is larger than the maximum allowed by the LRS.
+
+* The LRS MAY choose any Attachment, Statement and document size limits and MAY vary this limit on any basis, e.g., per authority.
+
+* The LRS MUST reject with ```429 Too Many Requests``` status any request rejected by the
+LRS where the request is rejected due to too many requests being received by a particular client 
+or set of credentials in a given amount of time. 
+
+* The LRS MAY choose any rate limit and MAY vary this limit on any basis, e.g., per authority.
+
+The following requirements exist for the purposes of conformance testing, to ensure that any limitations or permissions implemented 
+by the LRS do not affect the running of a conformance test suite. 
+
+* The LRS SHOULD* be configurable not to reject any requests from a particular set of credentials on the basis of permissions. 
+This set of credentials SHOULD* be used for conformance testing but MAY be deleted/deactivated on live systems. 
+
+* The LRS MUST be configurable to accept Attachments, Statements or documents of any reasonable size (see above).
+
+* The LRS MUST be configurable to accept requests at any reasonable rate. 
+
+<a name="apiversioning"/> 
+
+### 2.5 Versioning
+
+###### Rationale
+
+Future revisions of the specification might introduce changes such as properties added to 
+Statements.
+
+Systems retrieving Statements might then receive responses that include Statements of different
+versions. The version header allows for these version differences to be handled correctly, and 
+to ascertain that no partial or mixed LRS version implementations exist.
+
+Using Semantic Versioning will allow Clients and LRSs to reliably know compatibility as the specification changes.
+
+###### Details
+
+Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html).  Every request from a Client and every response from the LRS includes an HTTP header with the name 
+“X-Experience-API-Version" and the version as the value. For example, ``X-Experience-API-Version : 1.0.3`` for version 1.0.3; 
+see the [Revision History](#revhistory) for the current version of this specification. 
+
+###### LRS Requirements
+
+* The LRS MUST include the "X-Experience-API-Version" header in every response.
+* The LRS MUST set this header to the latest patch version.
+* The LRS MUST accept requests with a version header of "1.0" as if the version header was "1.0.0".
+* The LRS MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a 
+fully conformant implementation of the prior version specified in the header.
+* The LRS MUST accept requests with a version header starting with "1.0." if the request is otherwise valid. 
+* The LRS MUST reject requests with a version header of "1.1.0" or greater.
+* The LRS MUST make these rejects by responding with an HTTP 400 error including a short description 
+of the problem.
+
+###### Client Requirements
+
+* The Client MUST include the "X-Experience-API-Version" header in every request.
+* The Client MUST set this header to the latest patch version.
+* The Client SHOULD tolerate receiving responses with a version of "1.0.0" or later.
+* The Client SHOULD tolerate receiving data structures with additional properties.
+* The Client SHOULD ignore any properties not defined in version 1.0.0 of the spec.
+
+###### Conversion Requirements
+
+* Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
+* Systems MAY convert Statements of older versions into a newer version only by following the methods described in
+<a href="#AppendixD">Appendix D: Converting Statements to 1.0.0</a>.
+
+
+<a name="security"/>
+
+## 3.0 Security
+
+###### Rationale
+
+In order to balance interoperability and the varying security requirements of different
+environments, several authentication options are defined.
+
+###### Details
+The following authentication methods are defined within the specification. Any given LRS will 
+implement at least one of these methods and might implement additional methods not defined within
+this specification. 
+
+- [OAuth 1.0 (RFC 5849)](http://tools.ietf.org/html/rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
+- [HTTP Basic Authentication](http://tools.ietf.org/html/rfc7235)
+- Common Access Cards
+
+Whislt Common Access Cards are defined as an authentication option within this specification,
+the implementation details of this authentication method are not defined. The xAPI Working Group
+encourages LRS developers implementing Common Access Cards as an authentication method to collaborate
+in defining the details of this authentication method in a future version of this specification. 
+
+No further details are provided to describe HTTP Basic Authentication as this authentication method
+is clearly and completely defined in [RFC 7235](http://tools.ietf.org/html/rfc7235). 
+
+###### Requirements
+
+- The LRS MUST support authentication using at least one of the authentication methods defined in this 
+specification.
+
+- The LRS MUST handle making, or delegating, decisions on the validity of Statements,
+ and determining what operations might be performed based on the credentials used.
+
+<a name="authdefs"/>
+
+### 3.1 OAuth 1.0 Authentication Scenarios and Methods
+
+The matrix and requirements below describe the possible authentication 
+scenarios used within OAuth and recommends the authentication workflow to be 
+used in these scenarios. The process described for each scenario is not intended 
+to be comprehensive, but rather outline variations to the standard OAuth workflow. 
+
+The requirements in this section only apply if the LRS supports OAuth 1.0.
+
+A **registered application** is an application that will authenticate to the LRS as an OAuth 
+consumer that has been registered with the LRS.
+
+A **known user** is a user account on the LRS, or on a system which the LRS trusts to define users.
+
+
+<table border="1">
+<tr><th></th><th>Known user</th><th>User unknown</th></tr>
+<tr>
+<td>Application is registered</td>
+<td>Standard workflow for OAuth.</td>
+<td>LRS trusts application to access xAPI without additional user credentials. OAuth token steps are not invoked</td>
+</tr>
+<tr>
+<td>Application is not registered</td>
+<td>The application Agent is not identified as a registered Agent and the LRS cannot make assumptions on its identity.</td>
+<td></br></td>
+</tr>
+<tr>
+<td>No application</td>
+<td>HTTP Basic Authentication is used instead of OAuth, since no application is involved.</td>
+<td></br></td>
+</tr>
+<tr>
+<td>No authentication</td>
+<td align="center"colspan="2">MAY be supported by the LRS, possibly for testing purposes.</td>
+
+</tr>
+
+</table> 
+
+##### Requirements
+
+* The LRS MUST record the application's name and a unique consumer key (identifier).
+* The LRS MUST provide a mechanism to complete this registration, or delegate to another system that provides 
+such a mechanism.
+* The LRS MUST be able to be configured for complete support of the xAPI:
+	* With any of the methods below.
+	* In any of the workflow scenarios below.
+* The LRS MAY (for security reasons): 
+	* Support a subset of the methods below.
+	* Limit the known users or registered applications.
+* The LRS SHOULD at a minimum supply OAuth with "HMAC-SHA1" and "RSA-SHA1" signatures.
+
+###### Application registered + known user Process and Requirements
+**Process:** The standard workflow for OAUth 1.0 is used. 
+
+**Requirements:**
+* The LRS MUST support the endpoints in section [6.4.2 OAuth Authorization Scope](#oauthscope) to complete the standard OAuth workflow 
+(details not in this specification).
+* If this form of authentication is used to record Statements and no authority is specified, the LRS SHOULD 
+record the authority as a group consisting of an Agent representing the registered application, and an Agent 
+representing the known user.
+
+###### Application registered + user unknown Process and Requirements
+**Process:** 
+The LRS honors requests that are signed using OAuth with the registered application's credentials and with an empty token and token secret.
+
+**Requirements:**
+* If this form of authentication is used to record Statements, the LRS SHOULD 
+record the authority as the Agent representing the registered application.
+
+###### Application not registered + known user Process and Requirements
+**Process:**
+The AP uses a consumer secret consisting of an empty string to call the 
+Temporary Credential Request endpoint specifying the "consumer_name" and other usual parameters.
+The "consumer_name" contains a string representing the application requesting access. 
+
+The AP then sends the user's browser to the Resource Owner Authorization using the 
+temporary credentials obtained from the LRS. The Resource Owner Authorization presents a 
+page displaying the "consumer_name" plus a warning that the identity of the application requesting 
+authorization cannot be verified.
+
+Otherwise the process follows the standard OAuth workflow. 
+
+**Requirements:**
+* If this form of authentication is used to record Statements, the LRS MUST record an authority 
+that includes both that application and the authenticating user, as a group, since OAuth specifies 
+an application.
+
+###### No application + known user Process and Requirements
+**Process:**
+Use a username/password combination provided by the LRS for use by the known user.
+
+**Requirements:**
+* If this form of authentication is used to record Statements, the LRS SHOULD 
+record the authority as the Agent representing the known user.
+
+###### No authorization Process and Requirements
+
+* Requests MUST include headers for HTTP Basic Authentication based on a username and password containing zero or
+more space characters. 
+* Requests SHOULD* include headers for HTTP Basic Authentication based on a username and password each consisting of 
+an empty string. In this case the HTTP Basic Authentication header will be ```Basic ``` followed by a base64 encoded version of the string ```:```.
+This results in the string ```Basic Og==```.
+
+This is in order to distinguish an explicitly unauthenticated request from a request that needs to be given a HTTP Basic Authentication 
+challenge.
+
+<a name="oauthscope"/> 
+
+#### 3.2 OAuth 1.0 Authorization Scope
+
+##### Description
+These are recommendations for scopes designed to enable an LRS and an application
+communicating using the xAPI to negotiate a level of access which accomplishes what the
+application needs while minimizing the potential for misuse. The limitations of each scope
+are in addition to any security limitations placed on the user account associated with the
+request.
+
+Elements of this section draw on [OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-3.3)
+despite this section describing requirements for LRS supporting [OAuth 1.0](http://tools.ietf.org/html/rfc5849). 
+
+The requirements in this section only apply if the LRS
+supports OAuth 1.0.
+
+##### Details
+
+The following table lists xAPI scope values:  
+<table>
+	<tr><th>Scope</th><th>Permission</th></tr>
+	<tr><td>statements/write</td><td>write any Statement</td></tr>
+	<tr>
+		<td>statements/read/mine</td>
+		<td>read Statements written by "me", that is with an authority 
+			matching what the LRS would assign if writing a Statement with 
+			the current token.
+		</td>
+	</tr>
+	<tr><td>statements/read</td><td>read any Statement</td>
+	<tr>
+		<td>state</td>
+		<td>read/write state data, limited to Activities and Actors 
+			associated with the current token to the extent it is 
+			possible to determine this relationship.
+		</td>
+	</tr>
+	<tr>
+		<td>define</td>
+		<td>(re)Define Activities and Actors. If storing a Statement 
+			when this is not granted, ids will be saved and the LRS 
+			MAY save the original Statement for audit purposes, but 
+			SHOULD NOT update its internal representation of any 
+			Actors or Activities.
+		</td>
+	</tr>
+	<tr>
+		<td>profile</td>
+		<td>read/write profile data, limited to Activities and Actors 
+			associated with the current token to the extent it is 
+			possible to determine this relationship.
+		</td>
+	</tr>
+	<tr><td>all/read</td><td>unrestricted read access</td></tr>
+	<tr><td>all</td><td>unrestricted access</td></tr>
+</table>
+
+###### OAuth Extended Parameters  
+Note that the parameters "consumer_name" and "scope" are not part of 
+OAuth 1.0, and therefore if used MUST be passed as query string or form 
+parameters, not in the OAuth header.  
+
+###### OAuth Endpoints  
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Endpoint</th>
+		<th>Example</th>
+	</tr>
+	<tr>
+		<td>Temporary Credential Request</td>
+		<td>OAuth/initiate</td>
+		<td>http://example.com/xAPI/OAuth/initiate</td>
+	</tr>
+	<tr>
+		<td>Resource Owner Authorization</td>
+		<td>OAuth/authorize</td>
+		<td>http://example.com/xAPI/OAuth/authorize</td>
+	</tr>
+	<tr>
+		<td>Token Request</td>
+		<td>OAuth/token</td>
+		<td>http://example.com/xAPI/OAuth/token </td>
+	</tr>
+</table>
+
+##### Example
+The list of scopes determines the set of permissions that is being requested. 
+For example,an instructor might grant "statements/read" to a Client, 
+but the LRS would still limit that tool to Statements that the instructor could 
+read if querying the LRS with their credentials directly (such as Statements 
+relating to their students).
+
+##### Requirements
+
+* The LRS MUST accept a scope parameter as defined in [OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-3.3).
+* The LRS MUST assume a requested scope of "statements/write" and "statements/read/mine" if no 
+scope is specified.
+* The LRS MUST support the scope of "all" as a minimum.
+* The LRS MAY support other scopes.
+* The Client SHOULD request only the minimal needed scopes, to increase the chances that the request
+will be granted.
+
+
+
+
+
+
+
+
 
 
 
