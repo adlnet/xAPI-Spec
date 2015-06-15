@@ -3921,7 +3921,7 @@ This set of credentials SHOULD* be used for conformance testing but MAY be delet
 
 <a name="apiversioning"/> 
 
-### 2.5 Versioning
+### 2.4 Versioning
 
 ###### Rationale
 
@@ -4113,7 +4113,7 @@ challenge.
 
 <a name="oauthscope"/> 
 
-#### 3.2 OAuth 1.0 Authorization Scope
+### 3.2 OAuth 1.0 Authorization Scope
 
 ##### Description
 These are recommendations for scopes designed to enable an LRS and an application
