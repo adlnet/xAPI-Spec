@@ -683,70 +683,6 @@ See [Appendix G: Cross Domain Request Example](#AppendixG) for an example.
 The Experience API provides a facility for Activity Providers to save arbitrary data in 
 the form of documents, perhaps related to an Activity, Agent, or combination of both.  
 
-##### Details
-Note that the following table shows generic properties, not a JSON Object as many other tables 
-in this specification do. The id is stored in the IRL, "updated" is HTTP header information, and 
-"contents" is the HTTP document itself (as opposed to an Object).
-<table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>id</td><td>String</td><td>Set by AP, unique within the scope of the agent or activity.</td></tr>
-	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
-	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
-</table>
-
-The three Document APIs provide [document](#miscdocument) storage for learning activity 
-providers and Agents. The details of each API are found in the following sections, and the 
-information in this section applies to all three APIs.
-
-###### Details
-
-<table>
-	<tr>
-		<th>API</th>
-		<th>Method</th>
-		<th>Endpoint</th>
-		<th>Example</th>
-	</tr>
-	<tr>
-		<td>State API</td>
-		<td>POST</td>
-		<td>activities/state</td>
-		<td>http://example.com/xAPI/activities/state</td>
-	</tr>
-	<tr>
-		<td>Activity Profile API</td>
-		<td>POST</td>
-		<td>activities/profile</td>
-		<td>http://example.com/xAPI/activities/profile</td>
-	</tr>
-	<tr>
-		<td>Agent Profile API</td>
-		<td>POST</td>
-		<td>agents/profile</td>
-		<td>http://example.com/xAPI/agents/profile</td>
-	</tr>
-</table>
-
-###### Requirements
-
-* An Activity Provider MAY send documents to any of the document APIs for Activities and 
-Agents that the LRS does not have prior knowledge of. 
-
-* The LRS MUST NOT reject documents on the basis of not having prior knowledge of the 
-Activity and/or Agent.
-
-##### Last Modified
-The "Last Modified" header is set by the LRS when returning single or multiple documents in response
-to a GET request. 
-
-###### Requirements
-* When returning a single document, the LRS SHOULD* include a "Last-Modified" header indicating when
-the document was last modified. 
-* When returning multiple documents, the LRS SHOULD* include a "Last-Modified" header indicating when
-the most recently modified document was last modified. 
-
-###### JSON Procedure with Requirements
-
 If an Activity Provider stores variables as JSON Objects in a document with 
 content type application/json, they can manipulate them as sets of variables using POST.
 
@@ -788,20 +724,6 @@ the resulting document stored in the LRS is:
 	"z" : "faz"
 }
 ```
-
-###### Requirements
-
-* If the document being posted or any existing document does not have a Content-Type
-of "application/json", or if either document cannot be parsed as a JSON Object, the LRS MUST
-respond with HTTP status code ```400 Bad Request```, and MUST NOT update the target document
-as a result of the request.
-
-* If the merge is successful, the LRS MUST respond with HTTP 
-status code ```204 No Content```.
-
-* If an AP needs to delete
-a property, it SHOULD use a PUT request to replace the whole document as described below. 
-
 
 <a name="statement"/> 
 
@@ -2833,7 +2755,134 @@ identifier was not coined for use with this specification.
 
 # Part Three: Data Validation, Transportation, and Security
 
-## 1.0 Data Transfer (Sub-APIs)
+## 1.0 Data Transfer (Documents and Sub-APIs)
+
+### 1.1 Documents
+
+##### Description
+The Experience API provides a facility for Activity Providers to save arbitrary data in 
+the form of documents, perhaps related to an Activity, Agent, or combination of both.  
+
+##### Details
+Note that the following table shows generic properties, not a JSON Object as many other tables 
+in this specification do. The id is stored in the IRL, "updated" is HTTP header information, and 
+"contents" is the HTTP document itself (as opposed to an Object).
+<table>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>id</td><td>String</td><td>Set by AP, unique within the scope of the agent or activity.</td></tr>
+	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
+	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
+</table>
+
+The three Document APIs provide [document](#miscdocument) storage for learning activity 
+providers and Agents. The details of each API are found in the following sections, and the 
+information in this section applies to all three APIs.
+
+###### Details
+
+<table>
+	<tr>
+		<th>API</th>
+		<th>Method</th>
+		<th>Endpoint</th>
+		<th>Example</th>
+	</tr>
+	<tr>
+		<td>State API</td>
+		<td>POST</td>
+		<td>activities/state</td>
+		<td>http://example.com/xAPI/activities/state</td>
+	</tr>
+	<tr>
+		<td>Activity Profile API</td>
+		<td>POST</td>
+		<td>activities/profile</td>
+		<td>http://example.com/xAPI/activities/profile</td>
+	</tr>
+	<tr>
+		<td>Agent Profile API</td>
+		<td>POST</td>
+		<td>agents/profile</td>
+		<td>http://example.com/xAPI/agents/profile</td>
+	</tr>
+</table>
+
+###### Requirements
+
+* An Activity Provider MAY send documents to any of the document APIs for Activities and 
+Agents that the LRS does not have prior knowledge of. 
+
+* The LRS MUST NOT reject documents on the basis of not having prior knowledge of the 
+Activity and/or Agent.
+
+##### Last Modified
+The "Last Modified" header is set by the LRS when returning single or multiple documents in response
+to a GET request. 
+
+###### Requirements
+* When returning a single document, the LRS SHOULD* include a "Last-Modified" header indicating when
+the document was last modified. 
+* When returning multiple documents, the LRS SHOULD* include a "Last-Modified" header indicating when
+the most recently modified document was last modified. 
+
+###### JSON Procedure with Requirements
+
+If an Activity Provider stores variables as JSON Objects in a document with 
+content type application/json, they can manipulate them as sets of variables using POST.
+
+The following process walks through that process and the process requirements.  
+For example, a document contains: 
+
+```
+{
+	"x" : "foo",
+	"y" : "bar"
+}
+```  
+When an LRS receives a POST request with content type application/json for an existing document also of
+content type application/json, it MUST merge the posted document with the existing document. 
+In this context merge is defined as:
+* de-serialize the Objects represented by each document
+* for each property directly defined on the Object being posted, set the corresponding
+property on the existing Object equal to the value from the posted Object.    
+* store any valid json serialization of the existing Object as the document referenced in the request
+
+Note that only top-level properties are merged, even if a top-level property is an Object.
+The entire contents of each original property are replaced with the entire contents of
+each new property.
+
+For example, this document is POSTed with the same id as the existing 
+document above:
+
+```
+{
+	"x" : "bash",
+	"z" : "faz"
+}
+```  
+the resulting document stored in the LRS is:
+```
+{
+	"x" : "bash",
+	"y" : "bar",
+	"z" : "faz"
+}
+```
+
+###### Requirements
+
+* If the document being posted or any existing document does not have a Content-Type
+of "application/json", or if either document cannot be parsed as a JSON Object, the LRS MUST
+respond with HTTP status code ```400 Bad Request```, and MUST NOT update the target document
+as a result of the request.
+
+* If the merge is successful, the LRS MUST respond with HTTP 
+status code ```204 No Content```.
+
+* If an AP needs to delete
+a property, it SHOULD use a PUT request to replace the whole document as described below. 
+
+### 1.2 Sub-APIs
 
 ###### Description
 
@@ -2871,7 +2920,7 @@ to fully understand every detail of this part of the specification.
 
 <a name="stmtapi"/> 
 
-### 1.1 Statement API
+#### 1.2.1 Statement API
 
 ###### Description
 
@@ -2880,7 +2929,7 @@ The basic communication mechanism of the Experience API.
 
 <a name="stmtapiput"/>
 
-####1.1.1 PUT Statements
+#####1.2.1.1 PUT Statements
 
 ###### Details
 
@@ -2920,7 +2969,7 @@ do not match. See [Statement comparision requirements](statement-comparision-req
 
 <a name="stmtapipost"/>
 
-####1.1.2 POST Statements
+####1.2.1.2 POST Statements
 
 ###### Details
 
@@ -2960,7 +3009,7 @@ parameters passed. See Section [7.9 Alternate Request Syntax](#alt-request-synta
 
 <a name="stmtapiget"/>
 
-####1.1.3 GET Statements
+####1.2.1.3 GET Statements
 
 ###### Details
 
@@ -3222,7 +3271,7 @@ which language entry to include, rather than to the resource (list of Statements
 
 <a name="voidedStatements" />
 
-####1.1.4 Voided Statements
+##### 1.2.1.4 Voided Statements
 [Section 4.3 Voided](#voided) describes the process by which statements can be voided. This section
 desribes how voided statements are handled by the LRS when queried. 
 
@@ -3244,7 +3293,7 @@ voiding Statement, which cannot be voided.
 
 <a name="stateapi"/> 
 
-### 1.2 State API
+### 1.2.2 State API
 
 ##### Description
 
@@ -3369,7 +3418,7 @@ specified\]).
 	</tr>
 </table>
 
-### 1.3 Agents Profile
+### 1.2.3 Agents Profile
 
 The Agent Profile API also includes a method to retrieve a special Object with 
 combined information about an Agent derived from an outside service, such as a 
@@ -3472,7 +3521,7 @@ same definition as the similarly named property from Agent Objects.
 * Additional properties not listed here SHOULD* NOT be added to this object and each 
 property MUST occur only once.  
 
-### 1.4 Activities API
+### 1.2.4 Activities API
 
 The Activity Profile API also includes a method to retrieve a full description 
 of an Activity from the LRS. This API has [Concurrency](#concurrency) controls 
@@ -3497,7 +3546,7 @@ Loads the complete Activity Object specified.
 </table>
 
 
-### 1.5 Agent Profile API
+### 1.2.5 Agent Profile API
 
 ###### Description
 
@@ -3569,7 +3618,7 @@ timestamp (exclusive).
 
 <a name="actprofapi"/> 
 
-### 1.6 Activity Profile API
+### 1.2.6 Activity Profile API
 
 ###### Description
 
@@ -3640,7 +3689,7 @@ the specified timestamp (exclusive).
 
 <a name="aboutresource"/> 
 
-### 1.7 About API
+### 1.2.7 About API
 
 ###### Description
 
@@ -3696,6 +3745,7 @@ required by <a href="#apiversioning"/>6.2 API Versioning</a>.
 <a name="validation"/> 
 
 ## 2.0 Data Validation
+
 
 
 ### 2.1 Basics (May not need and just put at 2.0)
