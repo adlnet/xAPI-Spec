@@ -2831,7 +2831,7 @@ identifier was not coined for use with this specification.
 
 <a name="datatransfer"/> 
 
-# Section 3 - Data Validation, Transportation, and Security
+# Part Three: Data Validation, Transportation, and Security
 
 ## 1.0 Data Transfer (Sub-APIs)
 
