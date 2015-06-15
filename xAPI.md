@@ -2629,7 +2629,7 @@ returned matches those statements that would have been returned when the origina
 * The consumer SHOULD NOT attempt to interpret any meaning from the IRL returned from the more property.
 
 <a name="signature"/>
-#### 3.5 Signed Statements
+### 3.5 Signed Statements
 
 ##### Description
 A Statement can include a <a href="https://en.wikipedia.org/wiki/Digital_signature">
@@ -3569,7 +3569,7 @@ timestamp (exclusive).
 
 <a name="actprofapi"/> 
 
-### 1.7 Activity Profile API
+### 1.6 Activity Profile API
 
 ###### Description
 
