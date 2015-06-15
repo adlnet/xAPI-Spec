@@ -878,10 +878,11 @@ LRS SHOULD* reject Statements containing such additional properties.
 <a name="stmtprops"/>
 
 
-### 3.2 Statement Lifecycle\
+### 3.2 Statement Lifecycle
 
 <a name="statement-immutablity-and-exceptions" />
-### 3.2.1 Statement Immutability
+
+#### 3.2.1 Statement Immutability
 
 Statements are immutable (they cannot be changed). The following are exceptions or areas not covered by this rule:
 
