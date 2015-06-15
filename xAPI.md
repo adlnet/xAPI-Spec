@@ -2640,20 +2640,6 @@ can make sense of it.
 
 <a name="misclangmap"/>
 
-### 3.7 Language Map
-
-##### Description
-A language map is a dictionary where the key is a 
-[RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the value is an 
-string in the language specified in the tag. This map SHOULD be populated as 
-fully as possible based on the knowledge of the string in question in different 
-languages.  
-
-The content of strings within a language map is plain text. It's expected that any formatting code 
-such as HTML tags or markdown will not be rendered, but will be displayed as code when this string is 
-displayed to an end user. An important exception to this is if language map object is used in an extension and 
-the owner of that extension IRI explicitly states that a particular form of code will be rendered. 
-
 ## 4.0 Metadata
 
 ### 4.1 IRI Requirements
@@ -2746,6 +2732,64 @@ such as translations, or take the place of the hosted metadata entirely if it wa
 Metadata Consumer does not trust it. Other sources of information MAY
 include metadata in other formats stored at the IRI of an identifier, particularly if that
 identifier was not coined for use with this specification.
+
+## 5.0 Special Data Types and Rules
+
+<a name="miscext"/> 
+
+### 5.1 Extensions
+
+##### Description
+Extensions are available as part of Activity Definitions, as part of Statement context, 
+or as part of a Statement result. In each case, they're intended to provide a natural 
+way to extend those elements for some specialized use. The contents of these extensions might 
+be something valuable to just one application, or it might be a convention used by an entire 
+community of practice.
+
+##### Details
+Extensions are defined by a map and logically relate to the part of the Statement where they are 
+present. The values of an extension can be any JSON value or data structure. Extensions in Statement 
+context provide context to the core experience, while those in the result provide elements related to 
+some outcome. For Activities, extensions provide additional information that helps define an Activity 
+within some custom application or community. The meaning and structure of extension values under an 
+IRI key are defined by the person who controls the IRI.
+
+##### Requirements
+
+* The keys of an extensions map MUST be IRIs.
+* An LRS MUST NOT reject a Statement based on the values of the extensions map.
+* Clients SHOULD always strive to map as much information as possible into the built-in 
+elements in order to leverage interoperability among Experience API conformant tools.
+* All extension IRIs SHOULD have controllers.
+* The controller of an IRL extension key SHOULD make a human-readable description
+of the intended meaning of the extension supported by the IRL accessible at the IRL.
+
+__Note:__ A Statement defined entirely by its extensions becomes meaningless as no other system 
+can make sense of it.  
+
+### 5.2 Language Maps
+
+##### Description
+A language map is a dictionary where the key is a 
+[RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the value is an 
+string in the language specified in the tag. This map SHOULD be populated as 
+fully as possible based on the knowledge of the string in question in different 
+languages.  
+
+The content of strings within a language map is plain text. It's expected that any formatting code 
+such as HTML tags or markdown will not be rendered, but will be displayed as code when this string is 
+displayed to an end user. An important exception to this is if language map object is used in an extension and 
+the owner of that extension IRI explicitly states that a particular form of code will be rendered.
+
+### 5.2.1 Lang Codes
+
+### 5.3 IRIs
+
+### 5.4 UUIDs
+
+### 5.5 ISO 8601 Timestamps
+
+### 5.6 ISO 8601 Durations
 
 
 
