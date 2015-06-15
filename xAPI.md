@@ -4318,7 +4318,7 @@ will be granted.
 
 <a name="AppendixA"/>  
  
-## Appendix A: Example statements
+# Appendix A: Example statements
 
 Example of a simple statement (line breaks are for display purposes only):  
 ```
@@ -4522,7 +4522,7 @@ a statement returned by an LRS including the authority and stored properties set
 ```  
 <a name="AppendixB"/>  
 
-## Appendix B: Example statement objects of different types
+# Appendix B: Example statement objects of different types
 
 The object of a statement can be an activity, agent, group or statement. 
 This appendix provides one example of each. 
@@ -4606,7 +4606,7 @@ This example shows a SubStatement object whose object is a Statement Reference.
 
 <a name="AppendixC"/>  
 
-## Appendix C: Example definitions for Activities of type "cmi.interaction"
+# Appendix C: Example definitions for Activities of type "cmi.interaction"
 
 ###### true-false  
 
@@ -4902,7 +4902,7 @@ In this example the minimum correct answer is 4 and there is no maximum. 5, 6 or
 
 <a name="AppendixD"/>
 
-## Appendix D: Converting Statements to 1.0.0
+# Appendix D: Converting Statements to 1.0.0
 
 ######Rationale
 This is a 1.0.0 specification, and as such implementers do not have to consider prior
@@ -5085,7 +5085,7 @@ Converted to 1.0.0:
 ```
 
 <a name="AppendixE"/>
-## Appendix E: Example Signed Statement
+# Appendix E: Example Signed Statement
 An example signed Statement, as described in: <a href="#signature">4.4 Signed Statements</a>.
 
 The original Statement serialization to be signed. New lines in this example are included
@@ -5253,7 +5253,7 @@ attachment message format.
 
 <a name="AppendixF"/>
 
-## Appendix F: Table of All Endpoints
+# Appendix F: Table of All Endpoints
 
 ### Required Endpoints
 <table>
@@ -5313,7 +5313,7 @@ attachment message format.
 
 <a name="AppendixG"/>
 
-## Appendix G: Cross Domain Request example
+# Appendix G: Cross Domain Request example
 
 Section [7.9 Alternate Request Syntax](#alt-request-syntax) outlines alternative syntax for use 
 when the normal syntax cannot be used due to browser or querystring length restrictions. This appendix provides an example of a
