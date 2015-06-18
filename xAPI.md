@@ -536,152 +536,9 @@ accessible at the IRI.
 
 #Part Two: Experience API (xAPI) Data
 
-## 1.0 Requests
-
-### 1.1 Request Types
-
-#### 1.1.1 HTTP PUT
-
-#### 1.1.2 HTTP POST
-
-#### 1.1.3 HTTP GET
-
-#### 1.1.4 HTTP DELETE
-
-<a name="httphead"/>
-
-#### 1.1.5 HTTP HEAD
-
-###### Description
-The LRS will respond to HEAD requests by returning the meta information only, using 
-the HTTP headers, and not the actual document.  
-
-###### Rationale
-
-Clients accessing the LRS might need to check if a particular Statement exists, or determine
-the modification date of documents such as state or Activity or Agent profile. Particularly
-for large documents it's more efficient not to get the entire document just to check its
-modification date.
-
-###### LRS Requirements
-* The LRS MUST respond to any HTTP HEAD request as it would have responded to an otherwise
-identical HTTP GET request except:
-    * The message-body MUST be omitted.
-    * The Content-Length header MAY be omitted, in order to avoid wasting LRS resources.
-
-<a name="header-parameters"/> 
-### 1.2 Headers
-
-##### Header Parameters
-Some header parameters used within xAPI data transfer are 
-[standard HTTP headers](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields). Others are specific to this
- specification. The following request headers are expected to be used by the Activity Provider in some or all 
- of the types of request and situations described in this specification:
-
-* Accept
-* Accept-Encoding
-* Accept-Language
-* Authorization
-* Content-Type
-* Content-Length
-* Content-Transfer-Encoding
-* If-Match
-* If-None-Match
-* X-Experience-API-Version 
-
-The following response headers are expected to be used by the LRS. Again, not all of these apply
-to every type of request and/or situations:
-
-* Content-Type
-* Content-Length
-* Last-Modified
-* ETag
-* Status
-* X-Experience-API-Version
-* X-Experience-API-Consistent-Through
-
-The lists above are not intended to be exhaustive. See requirements throughout this document for more details.
-
-<a name="alt-request-syntax"/>
-
-### 1.3 Alternate Request Syntax
-
-###### Description
-
-One of the goals of the xAPI is to allow cross-domain tracking, and even though 
-xAPI seeks to enable tracking from applications other than browsers, browsers 
-still need to be supported. Internet Explorer 8 and 9 do not implement Cross 
-Origin Resource Sharing, but rather use their own Cross Domain Request API, 
-which cannot use all of the xAPI as described above due to only supporting "GET" 
-and "POST", and not allowing HTTP headers to be set.  
-
-###### Details/Requirements
-
-The following describes alternate syntax for consumers to use only when unable 
-to use the usual syntax for specific calls due to the restrictions mentioned 
-above. This alternate syntax can also be used to GET Statements due to limits
-on query string length.  
-
-__Method__:  
-* All xAPI requests issued MUST be POST. 
-* The intended xAPI method MUST be included as the value of the "method" query 
-string parameter. 
-* The AP MUST NOT include any other query string parameters on the request.
-
-Example: http://example.com/xAPI/statements?method=PUT  
-
-__Content__:  
-* If the xAPI call involved sending content, the AP MUST URL encode that content and 
-include it as a form parameter called "content". 
-* The LRS MUST interpret this content as a UTF-8 string. Storing binary data is not supported 
-with this syntax.  
-
-__Headers__:  
-* The AP MAY include any header parameters required by this specification which are 
-expected to appear in the HTTP header as form parameters with the same names. This applies 
-to the following parameters: Authorization, X-Experience-API-Version, Content-Type, Content-Length,
-If-Match and If-None-Match. It does not apply to Content-Transfer-Encoding.
-* The LRS MUST treat the form parameters listed above as header parameters. 
-* The AP MUST include other header parameters not listed above in the HTTP header as normal. 
-* The AP SHOULD* still include a Content-Type header (in the HTTP header) for this type of 
-request with a value of 'application/x-www-form-urlencoded'. 
-* The Content-Type form parameter SHOULD* specify the content type of the content within the content form parameter. 
-* The AP SHOULD* still include a Content-Length header (in the HTTP header) for this type of 
-request indicating the overall length of the request's content. 
-* The Content-Length form parameter SHOULD* specify the length of the content within the content form parameter and 
-will therefore be a lower figure than the length listed in the Content-Length header. 
-
-__Query string parameters__:  
-* Any query string parameters other than 'method'
-MUST instead be included as a form parameter with the same name. 
-* The LRS MUST treat any form parameters other than "content" or the 
-header parameters listed above as query string parameters. 
-
-__Attachments__: Note that due to issues relating to encoding, it is not possible to send 
-binary data attachments using this syntax. See [4.1.11. Attachments](#attachments) 
-
-* The LRS MUST support the syntax above.
-
-__Note__: Versions of Internet Explorer lower than 10 do not 
-support Cross Domain Requests between HTTP and HTTPS. This means that for IE9 and lower, 
-if the LRS is on an HTTPS domain, the Client sending the Statement must also be on HTTPS. 
-If the LRS is on HTTP, the Client must be too.  
-
-There might be cases where there is a requirement for the Client Activity Provider to support 
-IE8 and IE9 where the Client code is hosted on a different scheme (HTTP or HTTPS) from 
-the LRS. In these cases, proxy is needed to communicate to the LRS. Two simple solutions 
-might be to 1) set up a proxy pass through on the same scheme as the Client code to the LRS 
-or 2) to host an intermediary server-side LRS on the same scheme as the Client code to route 
-Statements to the target LRS.   
-
-* The LRS MAY choose to provide both HTTP and HTTPS endpoints to support this use case. 
-* The LRS and the Client SHOULD consider the security risks before making the 
-decision to use this scheme.
-
-See [Appendix G: Cross Domain Request Example](#AppendixG) for an example. 
 
 <a name="docapis" />
-## 2.0 Documents
+## 1.0 Documents
 
 ### Document
 
@@ -741,16 +598,16 @@ the resulting document stored in the LRS is:
 
 <a name="statement"/> 
 
-## 3.0 Statements  
+## 2.0 Statements  
 
-### 3.1 Purpose
+### 2.1 Purpose
 
 ###### Description 
 The Statement is the core of the xAPI. All learning events are stored as Statements.
 A Statement is akin to a sentence of the form "I did this".
 
 <a name="dataconstraints"/>
-### 3.2 Formatting Requirements
+### 2.2 Formatting Requirements
 
 ###### Details
 
@@ -814,11 +671,11 @@ LRS SHOULD* reject Statements containing such additional properties.
 <a name="stmtprops"/>
 
 
-### 3.2 Statement Lifecycle
+### 2.2 Statement Lifecycle
 
 <a name="statement-immutablity-and-exceptions" />
 
-#### 3.2.1 Statement Immutability
+#### 2.2.1 Statement Immutability
 
 Statements are immutable (they cannot be changed). The following are exceptions or areas not covered by this rule:
 
@@ -868,7 +725,7 @@ compared to see if they match. In this scenarios, the following rules apply:
 
 <a name="voided"/>
 
-#### 3.2.2 Voiding
+#### 2.2.2 Voiding
 
 ###### Rationale
 
@@ -926,7 +783,7 @@ This example Statement voids a previous Statement which it identifies with the S
 }
 ```  
 
-### 3.3 Statement Properties  
+### 2.3 Statement Properties  
 
 ###### Details
 The details of each property of a statement are described in the table below.  
@@ -2624,9 +2481,9 @@ See <a href="#AppendixE">Appendix E: Example Signed Statement</a> for an example
 
 <a name="misclangmap"/>
 
-## 4.0 Metadata
+## 3.0 Metadata
 
-### 4.1 IRI Requirements
+### 3.1 IRI Requirements
 
 ###### Metadata Requirements
 
@@ -2647,7 +2504,7 @@ its internal representation of that Activity's definition.
 
 <a name="miscmeta"/>
 
-### 4.2 Hosted Metadata
+### 3.2 Hosted Metadata
 
 ##### Description
 Additional information about an identifier can be provided within a Statement and can 
@@ -2717,11 +2574,11 @@ Metadata Consumer does not trust it. Other sources of information MAY
 include metadata in other formats stored at the IRI of an identifier, particularly if that
 identifier was not coined for use with this specification.
 
-## 5.0 Special Data Types and Rules
+## 4.0 Special Data Types and Rules
 
 <a name="miscext"/> 
 
-### 5.1 Extensions
+### 4.1 Extensions
 
 ##### Description
 Extensions are available as part of Activity Definitions, as part of Statement context, 
@@ -2751,7 +2608,7 @@ of the intended meaning of the extension supported by the IRL accessible at the 
 __Note:__ A Statement defined entirely by its extensions becomes meaningless as no other system 
 can make sense of it.  
 
-### 5.2 Language Maps
+### 4.2 Language Maps
 
 ##### Description
 A language map is a dictionary where the key is a 
@@ -2765,27 +2622,174 @@ such as HTML tags or markdown will not be rendered, but will be displayed as cod
 displayed to an end user. An important exception to this is if language map object is used in an extension and 
 the owner of that extension IRI explicitly states that a particular form of code will be rendered.
 
-### 5.2.1 Lang Codes
+### 4.2.1 Lang Codes
 
-### 5.3 IRIs
+### 4.3 IRIs
 
-### 5.4 UUIDs
+### 4.4 UUIDs
 
-### 5.5 ISO 8601 Timestamps
+### 4.5 ISO 8601 Timestamps
 
-### 5.6 ISO 8601 Durations
-
-
+### 4.6 ISO 8601 Durations
 
 
 
-<a name="datatransfer"/> 
+
+
+
 
 # Part Three: Data Storage and Retrieval
 
-## 1.0 Data Transfer (Documents and Sub-APIs)
 
-### 1.1 Documents
+## 1.0 Requests
+
+### 1.1 Request Types
+
+#### 1.1.1 HTTP PUT
+
+#### 1.1.2 HTTP POST
+
+#### 1.1.3 HTTP GET
+
+#### 1.1.4 HTTP DELETE
+
+<a name="httphead"/>
+
+#### 1.1.5 HTTP HEAD
+
+###### Description
+The LRS will respond to HEAD requests by returning the meta information only, using 
+the HTTP headers, and not the actual document.  
+
+###### Rationale
+
+Clients accessing the LRS might need to check if a particular Statement exists, or determine
+the modification date of documents such as state or Activity or Agent profile. Particularly
+for large documents it's more efficient not to get the entire document just to check its
+modification date.
+
+###### LRS Requirements
+* The LRS MUST respond to any HTTP HEAD request as it would have responded to an otherwise
+identical HTTP GET request except:
+    * The message-body MUST be omitted.
+    * The Content-Length header MAY be omitted, in order to avoid wasting LRS resources.
+
+<a name="header-parameters"/> 
+### 1.2 Headers
+
+##### Header Parameters
+Some header parameters used within xAPI data transfer are 
+[standard HTTP headers](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields). Others are specific to this
+ specification. The following request headers are expected to be used by the Activity Provider in some or all 
+ of the types of request and situations described in this specification:
+
+* Accept
+* Accept-Encoding
+* Accept-Language
+* Authorization
+* Content-Type
+* Content-Length
+* Content-Transfer-Encoding
+* If-Match
+* If-None-Match
+* X-Experience-API-Version 
+
+The following response headers are expected to be used by the LRS. Again, not all of these apply
+to every type of request and/or situations:
+
+* Content-Type
+* Content-Length
+* Last-Modified
+* ETag
+* Status
+* X-Experience-API-Version
+* X-Experience-API-Consistent-Through
+
+The lists above are not intended to be exhaustive. See requirements throughout this document for more details.
+
+<a name="alt-request-syntax"/>
+
+### 1.3 Alternate Request Syntax
+
+###### Description
+
+One of the goals of the xAPI is to allow cross-domain tracking, and even though 
+xAPI seeks to enable tracking from applications other than browsers, browsers 
+still need to be supported. Internet Explorer 8 and 9 do not implement Cross 
+Origin Resource Sharing, but rather use their own Cross Domain Request API, 
+which cannot use all of the xAPI as described above due to only supporting "GET" 
+and "POST", and not allowing HTTP headers to be set.  
+
+###### Details/Requirements
+
+The following describes alternate syntax for consumers to use only when unable 
+to use the usual syntax for specific calls due to the restrictions mentioned 
+above. This alternate syntax can also be used to GET Statements due to limits
+on query string length.  
+
+__Method__:  
+* All xAPI requests issued MUST be POST. 
+* The intended xAPI method MUST be included as the value of the "method" query 
+string parameter. 
+* The AP MUST NOT include any other query string parameters on the request.
+
+Example: http://example.com/xAPI/statements?method=PUT  
+
+__Content__:  
+* If the xAPI call involved sending content, the AP MUST URL encode that content and 
+include it as a form parameter called "content". 
+* The LRS MUST interpret this content as a UTF-8 string. Storing binary data is not supported 
+with this syntax.  
+
+__Headers__:  
+* The AP MAY include any header parameters required by this specification which are 
+expected to appear in the HTTP header as form parameters with the same names. This applies 
+to the following parameters: Authorization, X-Experience-API-Version, Content-Type, Content-Length,
+If-Match and If-None-Match. It does not apply to Content-Transfer-Encoding.
+* The LRS MUST treat the form parameters listed above as header parameters. 
+* The AP MUST include other header parameters not listed above in the HTTP header as normal. 
+* The AP SHOULD* still include a Content-Type header (in the HTTP header) for this type of 
+request with a value of 'application/x-www-form-urlencoded'. 
+* The Content-Type form parameter SHOULD* specify the content type of the content within the content form parameter. 
+* The AP SHOULD* still include a Content-Length header (in the HTTP header) for this type of 
+request indicating the overall length of the request's content. 
+* The Content-Length form parameter SHOULD* specify the length of the content within the content form parameter and 
+will therefore be a lower figure than the length listed in the Content-Length header. 
+
+__Query string parameters__:  
+* Any query string parameters other than 'method'
+MUST instead be included as a form parameter with the same name. 
+* The LRS MUST treat any form parameters other than "content" or the 
+header parameters listed above as query string parameters. 
+
+__Attachments__: Note that due to issues relating to encoding, it is not possible to send 
+binary data attachments using this syntax. See [4.1.11. Attachments](#attachments) 
+
+* The LRS MUST support the syntax above.
+
+__Note__: Versions of Internet Explorer lower than 10 do not 
+support Cross Domain Requests between HTTP and HTTPS. This means that for IE9 and lower, 
+if the LRS is on an HTTPS domain, the Client sending the Statement must also be on HTTPS. 
+If the LRS is on HTTP, the Client must be too.  
+
+There might be cases where there is a requirement for the Client Activity Provider to support 
+IE8 and IE9 where the Client code is hosted on a different scheme (HTTP or HTTPS) from 
+the LRS. In these cases, proxy is needed to communicate to the LRS. Two simple solutions 
+might be to 1) set up a proxy pass through on the same scheme as the Client code to the LRS 
+or 2) to host an intermediary server-side LRS on the same scheme as the Client code to route 
+Statements to the target LRS.   
+
+* The LRS MAY choose to provide both HTTP and HTTPS endpoints to support this use case. 
+* The LRS and the Client SHOULD consider the security risks before making the 
+decision to use this scheme.
+
+See [Appendix G: Cross Domain Request Example](#AppendixG) for an example. 
+
+<a name="datatransfer"/> 
+
+## 2.0 Data Transfer (Documents and Sub-APIs)
+
+### 2.1 Documents
 
 ##### Description
 The Experience API provides a facility for Activity Providers to save arbitrary data in 
@@ -2910,7 +2914,7 @@ status code ```204 No Content```.
 * If an AP needs to delete
 a property, it SHOULD use a PUT request to replace the whole document as described below. 
 
-### 1.2 Sub-APIs
+### 2.2 Sub-APIs
 
 ###### Description
 
@@ -2948,7 +2952,7 @@ to fully understand every detail of this part of the specification.
 
 <a name="stmtapi"/> 
 
-#### 1.2.1 Statement API
+#### 2.2.1 Statement API
 
 ###### Description
 
@@ -2957,7 +2961,7 @@ The basic communication mechanism of the Experience API.
 
 <a name="stmtapiput"/>
 
-#####1.2.1.1 PUT Statements
+#####2.2.1.1 PUT Statements
 
 ###### Details
 
@@ -2997,7 +3001,7 @@ do not match. See [Statement comparision requirements](statement-comparision-req
 
 <a name="stmtapipost"/>
 
-####1.2.1.2 POST Statements
+#####2.2.1.2 POST Statements
 
 ###### Details
 
@@ -3037,7 +3041,7 @@ parameters passed. See Section [7.9 Alternate Request Syntax](#alt-request-synta
 
 <a name="stmtapiget"/>
 
-####1.2.1.3 GET Statements
+#####2.2.1.3 GET Statements
 
 ###### Details
 
@@ -3299,7 +3303,7 @@ which language entry to include, rather than to the resource (list of Statements
 
 <a name="voidedStatements" />
 
-##### 1.2.1.4 Voided Statements
+##### 2.2.1.4 Voided Statements
 [Section 4.3 Voided](#voided) describes the process by which statements can be voided. This section
 desribes how voided statements are handled by the LRS when queried. 
 
@@ -3321,7 +3325,7 @@ voiding Statement, which cannot be voided.
 
 <a name="stateapi"/> 
 
-### 1.2.2 State API
+### 2.2.2 State API
 
 ##### Description
 
@@ -3446,7 +3450,7 @@ specified\]).
 	</tr>
 </table>
 
-### 1.2.3 Agents Profile
+### 2.2.3 Agents Profile
 
 The Agent Profile API also includes a method to retrieve a special Object with 
 combined information about an Agent derived from an outside service, such as a 
@@ -3549,7 +3553,7 @@ same definition as the similarly named property from Agent Objects.
 * Additional properties not listed here SHOULD* NOT be added to this object and each 
 property MUST occur only once.  
 
-### 1.2.4 Activities API
+### 2.2.4 Activities API
 
 The Activity Profile API also includes a method to retrieve a full description 
 of an Activity from the LRS. This API has [Concurrency](#concurrency) controls 
@@ -3574,7 +3578,7 @@ Loads the complete Activity Object specified.
 </table>
 
 
-### 1.2.5 Agent Profile API
+### 2.2.5 Agent Profile API
 
 ###### Description
 
@@ -3646,7 +3650,7 @@ timestamp (exclusive).
 
 <a name="actprofapi"/> 
 
-### 1.2.6 Activity Profile API
+### 2.2.6 Activity Profile API
 
 ###### Description
 
@@ -3717,7 +3721,7 @@ the specified timestamp (exclusive).
 
 <a name="aboutresource"/> 
 
-### 1.2.7 About API
+### 2.2.7 About API
 
 ###### Description
 
@@ -3772,11 +3776,11 @@ required by <a href="#apiversioning"/>6.2 API Versioning</a>.
 
 <a name="validation"/> 
 
-## 2.0 Data Validation
+## 3.0 Data Validation
 
 
 
-### 2.1 Basics (May not need and just put at 2.0)
+### 3.1 Basics (May not need and just put at 2.0)
 
 ###### Description
 
@@ -3794,7 +3798,7 @@ responsibility of the Activity Provider sending the Statement.
 
 <a name="concurrency"/>
 
-### 2.2 Concurrency
+### 3.2 Concurrency
 
 ##### Description
 Concurrency control makes certain that an API consumer does not PUT, POST or DELETE documents based on old
@@ -3865,7 +3869,7 @@ If a PUT request is received without either header for a resource that already e
 
 <a name="errorcodes" /> 
 
-### 2.3 Error Codes
+### 3.3 Error Codes
 
 ##### Description
 
@@ -3999,7 +4003,7 @@ This set of credentials SHOULD* be used for conformance testing but MAY be delet
 
 <a name="apiversioning"/> 
 
-### 2.4 Versioning
+### 3.4 Versioning
 
 ###### Rationale
 
@@ -4047,7 +4051,7 @@ of the problem.
 
 <a name="security"/>
 
-## 3.0 Security
+## 4.0 Security
 
 ###### Rationale
 
@@ -4081,7 +4085,7 @@ specification.
 
 <a name="authdefs"/>
 
-### 3.1 OAuth 1.0 Authentication Scenarios and Methods
+### 4.1 OAuth 1.0 Authentication Scenarios and Methods
 
 The matrix and requirements below describe the possible authentication 
 scenarios used within OAuth and recommends the authentication workflow to be 
@@ -4191,7 +4195,7 @@ challenge.
 
 <a name="oauthscope"/> 
 
-### 3.2 OAuth 1.0 Authorization Scope
+### 4.2 OAuth 1.0 Authorization Scope
 
 ##### Description
 These are recommendations for scopes designed to enable an LRS and an application
