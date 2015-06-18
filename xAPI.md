@@ -683,8 +683,16 @@ See [Appendix G: Cross Domain Request Example](#AppendixG) for an example.
 The Experience API provides a facility for Activity Providers to save arbitrary data in 
 the form of documents, perhaps related to an Activity, Agent, or combination of both.  
 
-If an Activity Provider stores variables as JSON Objects in a document with 
-content type application/json, they can manipulate them as sets of variables using POST.
+##### Details
+Note that the following table shows generic properties, not a JSON Object as many other tables 
+in this specification do. The id is stored in the IRL, "updated" is HTTP header information, and 
+"contents" is the HTTP document itself (as opposed to an Object).
+<table>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>id</td><td>String</td><td>Set by AP, unique within the scope of the agent or activity.</td></tr>
+	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
+	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
+</table>
 
 The following process walks through that process and the process requirements.  
 For example, a document contains: 
