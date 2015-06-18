@@ -507,7 +507,13 @@ __Verb__: Defines the action being done by the Actor within the Activity within 
 
 ## 7.0 xAPI Components
 
-## 8.0 Extending xAPI Through Profiles and Communities of Practice 
+## 8.0 Getting More Out of xAPI
+
+### 8.1 Extending xAPI
+
+### 8.2 Profiles
+
+### 8.3 Communities of Practice
 
 ##### Use in Communities of Practice
 
@@ -2615,36 +2621,6 @@ the scope of this specification.
 See <a href="#AppendixE">Appendix E: Example Signed Statement</a> for an example.
 
 <a name="miscext"/> 
-
-### 3.6 Extensions
-
-##### Description
-Extensions are available as part of Activity Definitions, as part of Statement context, 
-or as part of a Statement result. In each case, they're intended to provide a natural 
-way to extend those elements for some specialized use. The contents of these extensions might 
-be something valuable to just one application, or it might be a convention used by an entire 
-community of practice.
-
-##### Details
-Extensions are defined by a map and logically relate to the part of the Statement where they are 
-present. The values of an extension can be any JSON value or data structure. Extensions in Statement 
-context provide context to the core experience, while those in the result provide elements related to 
-some outcome. For Activities, extensions provide additional information that helps define an Activity 
-within some custom application or community. The meaning and structure of extension values under an 
-IRI key are defined by the person who controls the IRI.
-
-##### Requirements
-
-* The keys of an extensions map MUST be IRIs.
-* An LRS MUST NOT reject a Statement based on the values of the extensions map.
-* Clients SHOULD always strive to map as much information as possible into the built-in 
-elements in order to leverage interoperability among Experience API conformant tools.
-* All extension IRIs SHOULD have controllers.
-* The controller of an IRL extension key SHOULD make a human-readable description
-of the intended meaning of the extension supported by the IRL accessible at the IRL.
-
-__Note:__ A Statement defined entirely by its extensions becomes meaningless as no other system 
-can make sense of it. 
 
 <a name="misclangmap"/>
 
