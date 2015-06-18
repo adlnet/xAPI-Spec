@@ -2638,7 +2638,7 @@ the owner of that extension IRI explicitly states that a particular form of code
 
 
 
-# Part Three: Data Storage and Retrieval
+# Part Three: Data Processing, Validation, and Security 
 
 
 ## 1.0 Requests
@@ -2787,7 +2787,7 @@ See [Appendix G: Cross Domain Request Example](#AppendixG) for an example.
 
 <a name="datatransfer"/> 
 
-## 2.0 Data Transfer (Documents and Sub-APIs)
+## 2.0 Data Storage and Retrieval
 
 ### 2.1 Documents
 
