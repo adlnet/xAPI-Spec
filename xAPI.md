@@ -2914,7 +2914,7 @@ status code ```204 No Content```.
 * If an AP needs to delete
 a property, it SHOULD use a PUT request to replace the whole document as described below. 
 
-### 2.2 Sub-APIs
+### 2.2 Resources
 
 ###### Description
 
@@ -2952,7 +2952,7 @@ to fully understand every detail of this part of the specification.
 
 <a name="stmtapi"/> 
 
-#### 2.2.1 Statement API
+#### 2.2.1 Statement Resource
 
 ###### Description
 
@@ -3325,7 +3325,7 @@ voiding Statement, which cannot be voided.
 
 <a name="stateapi"/> 
 
-### 2.2.2 State API
+### 2.2.2 State Resource
 
 ##### Description
 
@@ -3450,7 +3450,7 @@ specified\]).
 	</tr>
 </table>
 
-### 2.2.3 Agents Profile
+### 2.2.3 Agents Resource
 
 The Agent Profile API also includes a method to retrieve a special Object with 
 combined information about an Agent derived from an outside service, such as a 
@@ -3553,7 +3553,7 @@ same definition as the similarly named property from Agent Objects.
 * Additional properties not listed here SHOULD* NOT be added to this object and each 
 property MUST occur only once.  
 
-### 2.2.4 Activities API
+### 2.2.4 Activities Resource
 
 The Activity Profile API also includes a method to retrieve a full description 
 of an Activity from the LRS. This API has [Concurrency](#concurrency) controls 
@@ -3578,7 +3578,7 @@ Loads the complete Activity Object specified.
 </table>
 
 
-### 2.2.5 Agent Profile API
+### 2.2.5 Agent Profile Resource
 
 ###### Description
 
@@ -3650,7 +3650,7 @@ timestamp (exclusive).
 
 <a name="actprofapi"/> 
 
-### 2.2.6 Activity Profile API
+### 2.2.6 Activity Profile Resource
 
 ###### Description
 
@@ -3721,7 +3721,7 @@ the specified timestamp (exclusive).
 
 <a name="aboutresource"/> 
 
-### 2.2.7 About API
+### 2.2.7 About Resource
 
 ###### Description
 
