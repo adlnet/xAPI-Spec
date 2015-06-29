@@ -255,6 +255,25 @@ learning that SCORM could not enable.
 
 ## 1.0 Summary of the Experience API
 
+The Experience API (Application Programming Interface) - or xAPI as it is commonly called - is a framework that 
+facilitates the description of learning experiences and their communication and storage in a consistent manner 
+in a digital environment. As an application programming interface, the xAPI does not set out how the framework  
+should be implemented. Rather, it sets out the essential components of that framework and how they relate to each other. The purpose of the xAPI and the goals of this document are:
+
+* To maximize interoperability and reliability of computer programs which create, gather and store information  
+about learning experiences.
+* To provide a guide to computer programmers who want to build applications that conform to and implement this 
+framework.
+* To provide users of these programs a description of features and capabilities that they can expect from them.
+* To provide the ADL that certifies conformance to this framework with criteria against which certification can 
+be tested.
+
+There are three main ways that the xAPI promotes the interoperability and reliability of programs that implement the framework. The first is by requiring that programs that gather and store information about learning experiences describe those experiences in a consistent manner. To that end, it sets out a set of terms for describing those experiences including such terms as "Actor", "Activity", "Verb", "Result", and "Context" as well as rules of syntax for how they should be combined. 
+
+The second way that the xAPI promotes interoperability is by setting out the transfer methods that must be used when communicating information about learning experiences between programs that adhere to the framework. As part of this, it sets out the information that needs to be included and how it must be handled via RESTFul HTTP methods. 
+
+Finally, a major goal of the framework is to promote the reliability of programs that use the framework. Reliability in this context means that users of the programs can be assured that the descriptions of learning experiences that are stored and retrieved have not been altered but are treated as "immutable". It also means that these programs have implemented certain minimum levels of security.
+
 The Experience API is a service that allows for statements of experience
 to be delivered to and stored securely in a Learning Record Store (LRS). These statements
 of experience are typically learning experiences, but the API can address statements
