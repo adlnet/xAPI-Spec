@@ -306,9 +306,20 @@ be unintuitive and/or lengthy to dissect into a list of requirements.
 
 ## 4.0 Binding to JavaScript Object Notation (JSON)
 
+This specification makes a specific binding to JSON for most of the data structures allowed.  There are some 
+generic document portions, but JSON is the current structure for Statements and the recommended use for document 
+types.  While other bindings of xAPI could potentially exist, this document does not cover such cases.
+
 ### 4.1 Serialization
 
+JSON data structures can use multiple serializations in xAPI. This means that properties and objects can have different orderings  (but not different parent/child relationships) and still be equivalent. A Statement's serialization will not actually change the Statement in terms of <a href="#statement-immutablity-and-exceptions"> immutability </a>, in some cases, even when the values change.  Statements that are <a href="#signature"> signed </a>are expected to maintain their original serialization before undergoing the signature process.
+
 ### 4.2 Population of JSON Properties
+
+As xAPI is designed to capture experiences in time, any notion of sending data merely as a placeholder is not 
+a normal practice.  To put it another way, a state-based tracking system may need some sort of initialization to set a value to upon initialization but before a regular value is assigned.  The temporal nature of xAPI removes this need.
+
+Thus, it is highly discouraged to have name/value pairs without values (it is recognized that "null" is appropriate sometimes) and especially empty container elements.  While LRSs will not reject based on these principles, data visualizations and other tools will not perform well with empty values.
 
 <a name="encoding"/> 
 
