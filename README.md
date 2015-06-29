@@ -109,6 +109,58 @@ direct you to a page that gives you the ability to submit a request to the
 master repository to merge in the changes you committed.
 
 ##Style Guide
+### Expected Values
+
+If a specific data format and value are to be used, the ```code``` style should be used to denote this.
+
+For example:
+
+    A list of item ids is delimited by ```[,]```
+
+And
+
+    The value returned must be ```false```.
+
+### Property and object names
+
+When refering to a property, parameter or object, but not specifically calling it out as property, parameter, or object 
+the name should be capitalized. No formatting or quotes should be used. 
+
+For example:
+
+    Context Activities within the Context of the Statement are awesome.
+
+When a specific type is called out, Double quotes should be used (e.g. properties, parameters, and objects). When used within quotes, the capitalization should match that actually used in the object being described. 
+
+For example:
+
+    You can use "category" Context Activities to denote the recipe being followed in crafting the statement. 
+
+And
+
+    The "member" property is an un-ordered list!
+
+When a value is expected or described within plain text, but isn't specifically code, single quotes should be used.
+In situations where it is important to group text to be specific to the concept, single quotes should also be used.
+Single quotes are also allowable if the text would be unclear due to certain property names.  Basically, single quotes
+are the catch-all for any case where not having any clarifying punctuation or style would cause confusion.
+
+For example:
+
+    The reserved Verb 'http://adlnet.gov/expapi/verbs/voided' is an exception.
+
+And
+
+    These additional properties are called ‘interaction component lists’
+
+And
+
+    The Score Object SHOULD include 'scaled'
+  
+And
+
+    The 'binary' value should be used.
+
 ### Headings
 Hashes (#) should be used for all headings following the following format:
 
