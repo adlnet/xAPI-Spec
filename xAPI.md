@@ -302,7 +302,44 @@ As a rule of thumb, if the guideline appears technical or seems to be a requirem
 as such. This is especially true of longer, more, detailed explanations and of tables, each of which would 
 be unintuitive and/or lengthy to dissect into a list of requirements.
 
-## 3.0 Guidenelines for Implementing Technical Specificationss Like xAPI
+## 3.0 Guidelines for Implementing Technical Specifications Like xAPI
+
+Specific words in all caps will designate the difference between a requirement and simply explanatory text.  The 
+specific tokens used are MUST, SHOULD, MAY, and NOT.  Usage of these words outside of requirement language does not 
+designate a requirement as is avoided whenever possible.  Usage is as follows:
+
+* MUST indicates a 100% requirement or the implementation is non-compliant.
+* SHOULD indicates a best practice, typically chosen because it is the only reasonable way.  Alternatives could 
+exist, so the option is open.
+* MAY indicates that something can be done, but doesn't have to be.  The reason for MAY requirements instead of
+simply nothing is to indicate that some thought went into the issue and there are multiple reasonable solutions.  
+MAY is also used to introduce implementations or details that the reader may not have thought of.
+* MUST NOT indicates that if a certain condition is met, then the implementation is non-compliant.
+* SHOULD NOT indicates a common practice that is against an industry best practice or that will lead to perceived 
+poor results in most circumstances.
+* MAY NOT is logically the same as MUST NOT and is not used.
+
+In technical specification documents, it is important to understand the relationships that exist between various
+parts which comprise an ecosystem.  In the case of xAPI, whose main structured component is Statements, there 
+are LRSs and other systems (like reporting) that may use the Statement data (among other data).  
+
+Tables are a great way of structuring information and putting a lot of information in one place, but can cause 
+confusion in requirements.  A good rule of thumb is that any required/optional portion will be present if not 
+everything is uniform.  The context of the table (i.e. this behavior is optional) will set the tone.  Systems 
+working with the data structure represented in the table (i.e. Statements in xAPI) implement all fields such that 
+processing can be done.
+
+If an optional best practice is given, or an optional implementation, it should be understood that any 
+instructions following are only necessary if said optional piece is used.  That is, if it is implemented, it is 
+done a certain way, but it doesn't have to be implemented.
+
+Where there is nothing mentioned about a particular facet of the spec, it is open for interpretation and therefore 
+has no requirements within the specification.  Certain technological limitations and practices sometimes restrict 
+the choice and may or may not be called out in this spec.  This specification tries to avoid vagueness and will 
+usually give a rationale even if there no requirement in a given area.  
+
+In the absence of requirements, or in the vagueness or requirements, examples should be heavily leaned upon to 
+show both requirements and industry best practices.
 
 ## 4.0 Binding to JavaScript Object Notation (JSON)
 
