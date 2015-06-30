@@ -319,6 +319,31 @@ be unintuitive and/or lengthy to dissect into a list of requirements.
 
 ## 5.0 xAPI as a "RESTish" Web Service
 
+REST, or "Representational State Transfer" is a growing set of principles upon which a majority of Web Services architectures are based.  REST has all but replaced SOAP and WSDL-based design due to ease of use.  
+
+xAPI implements many of these principles, although not all of the principles are followed strongly enough to be considered RESTful.  Here is a summary of the core principles of REST and how xAPI follows them:
+
+##### Using HTTP Methods to Maintain a Notion of Client/Server Separation
+
+Explicitly defining what HTTP Methods do and are supposed to do is something that xAPI does in a "RESTish" way. 
+The spirit of REST is that HTTP Methods are not completely overloaded to do multiple tasks, like triggering server 
+actions in response to the user making a request.  HTTP GET, in particular, is normally abused in this way. xAPI 
+defines very specific actions for all of the HTTP Methods and does not allow this kind of method overloading.  
+It doesn't, however, use PUT and POST exclusively for their intended actions.  xAPI's support of alternate request syntax uses "POST-wrapped" Statements in a way that is not pure and borders on overloading.  For most modern 
+Web Service solutions, however, xAPI is close to RESTful. 
+
+##### Accurate Resource Representation
+
+A RESTful resource representation is grounded as a snapshot in time and has accountability to the time it was 
+requested.  The use of JSON in xAPI, the human-readable data it produces (thus fulfilling the REST requirement of simple HTTP body or payload data), and the ability of the varying data types of xAPI to capture both time and 
+related resource data all drive this requirement home.
+
+##### Exposed URIs
+
+xAPI follows the RESTful principle of exposed URIs by having some degree of human readability built into the 
+identifiers where appropriate (Personally Identifiable Information in some cases should not follow this).  The 
+practice of encouraging resolvable IRIs (a form of URIs) to metadata and are based on rules surrounding them. 
+Having those who "coin" IRIs control a domain on which they reside also aids persistence. xAPI also has multiple endpoints with a logical structure and naming convention.
 
 <a name="definitions"/>
  
