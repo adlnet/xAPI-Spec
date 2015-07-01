@@ -507,6 +507,47 @@ __Verb__: Defines the action being done by the Actor within the Activity within 
 
 ## 7.0 xAPI Components
 
+This section explains and shows graphically how different pieces of xAPI can fit together.  
+
+##### Tracking Experiences Through Systems
+
+Figure 1 shows the tracking of experiences through the data flow of a series of systems.  The cloud in the picture 
+represents a Learning Management System, or LMS.  An LMS, if present, would likely encapsulate everything within 
+the cloud.  In either case, a user will be dependent on a relationship between content and one or more Learning 
+Record Stores.  It is also possible a learner is dependent on an Activity Provider to deliver and/or authorize use 
+of content to them.  Once this triangle of authorization and access is complete, a registration exists for that 
+user in that content for that LRS.  LRSs, at request of the user, can also share data to other LRSs that may or 
+may not be a part of the LMS framework.  Web Services, again as a part of or independent of the LMS, can pull 
+data from one or more LRSs, send them through other Web Services or LRSs.
+
+##### Activity Data Flow
+
+Understanding how a single activity (as uniquely identified by its IRI) is produced, populated, updated, and 
+consumed is a key concept in xAPI. Figure 2 shows this process.  An xAPI Statement includes an Activity, which has 
+metadata within its Activity Definition.  For each Statement, this amount may be large or extremely sparse.  All Statements are sent via the Statement endpoint to the LRS.  Within the Activity is an IRI which also could have 
+metadata located at it (note that this is different from the moreinfo URL in the Activity Definition, which could 
+also have information located at it, is not involved in any other way in this information flow.  The base portion 
+of the IRI as well as any metadata where the IRI resolves is under the control of the Metadata Provider.  Any 
+metadata at the IRI is the authoritative source of metadata, and will populate the overall Activity Definition. 
+This is known as the canonical definition of the activity can be returned on its own by querying 'canonical' on the Statement Endpoint.  It can then be used by the Metadata Consumer.  Other forms of the metadata can be returned 
+via other query options of the Statement Endpoint or the Activity Definition in its entirety can be obtained via 
+the Activities Endpoint.  The LRS is responsible for population and updates of this Activity Definition as well 
+as sending the corresponding metadata upon being queried by the Statement Resource (Endpoint).
+
+
+##### Agent and Profile Management
+
+xAPI grants the framework for allowing selective access to one's personal data.  This is done through the management of what we've come to call personas.  In xAPI, the Actor represents the "I" in "I did this" and is 
+logically the subject of the Statement.  A user sending records to an LRS could have multiple Agents (the single type of Actor) associated with him or her.  In Figure 3, a single user can access multiple accounts (could be multiple user names, email addresses, etc.), all of which send data to the LRS.  In this single-user case, Each  
+Statement in the LRS has a single Agent associated with it and each representing a different persona.  With this 
+information, the LRS can do things like return only Statements from a single persona using the Statements Resource 
+(Endpoint).  It can aggregate all of the information of each of the Agents into one "Person" Object and send it 
+through the Agents Resource (Endpoint).  Finally, it can create Agent profiles, which are documents with specific 
+Agent information.  It can handle multiple documents per Agent, so sharing of personal information can become 
+even more granular than showing someone all of the Learning Records from one of your accounts.  This sharing is 
+done through the Agents Profile Resource (Endpoint).     
+
+
 ## 8.0 Getting More Out of xAPI
 
 ### 8.1 Extending xAPI
