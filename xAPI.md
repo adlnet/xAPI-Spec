@@ -298,48 +298,46 @@ are based on the specification set described below. For this reason, sections th
 _high-level overview_ of a given facet of the Experience API are labeled **description** or 
 **rationale**. Items in this document labeled as **requirements**, **details** or **examples** are more technical.
 
+<a name="def-must-should-may" />
+### 2.1 MUST / SHOULD / MAY 
+Three levels of obligation with regards to conformance to the xAPI 
+specification identified by the terms MUST, SHOULD and MAY. A system that fails to implement a MUST 
+(or a MUST NOT) requirement is non-conformant. Failing to meet a SHOULD requirement is not a violation of conformity, 
+but goes against best practices. MAY indicates an option, to be decided by the developer with no consequences for conformity. 
+Usage of these terms outside of requirement language does not 
+designate a requirement and is avoided whenever possible. Complete definitions of MUST, SHOULD, MAY, MUST NOT and 
+SHOULD NOT are found in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
+
+The use of an asterisk* following SHOULD indicates a very strong recommendation. It is planned that these 
+recommendations will become MUST requirements in a future version. Not following these recommendations could 
+risk interoperability and and/or lead to various other issues depending on the specifics of the recommendation. 
+Whilst these recommendations cannot be MUST requirements within this version (as these would be breaking changes) 
+the xAPI Working Group strongly encourages adopters to implement these requirements as though they were MUST requirements, 
+whilst continuing to support other adopters that might not do so.
+
+### 2.2 Guidelines for interpreting descriptive text and tables
 As a rule of thumb, if the guideline appears technical or seems to be a requirement, interpret it 
 as such. This is especially true of longer, more, detailed explanations and of tables, each of which would 
 be unintuitive and/or lengthy to dissect into a list of requirements.
 
-## 3.0 Guidelines for Implementing Technical Specifications Like xAPI
-
-Specific words in all caps will designate the difference between a requirement and simply explanatory text.  The 
-specific tokens used are MUST, SHOULD, MAY, and NOT.  Usage of these words outside of requirement language does not 
-designate a requirement as is avoided whenever possible.  Usage is as follows:
-
-* MUST indicates a 100% requirement or the implementation is non-compliant.
-* SHOULD indicates a best practice, typically chosen because it is the only reasonable way.  Alternatives could 
-exist, so the option is open.
-* MAY indicates that something can be done, but doesn't have to be.  The reason for MAY requirements instead of
-simply nothing is to indicate that some thought went into the issue and there are multiple reasonable solutions.  
-MAY is also used to introduce implementations or details that the reader may not have thought of.
-* MUST NOT indicates that if a certain condition is met, then the implementation is non-compliant.
-* SHOULD NOT indicates a common practice that is against an industry best practice or that will lead to perceived 
-poor results in most circumstances.
-* MAY NOT is logically the same as MUST NOT and is not used.
-
-In technical specification documents, it is important to understand the relationships that exist between various
-parts which comprise an ecosystem.  In the case of xAPI, whose main structured component is Statements, there 
-are LRSs and other systems (like reporting) that may use the Statement data (among other data).  
-
-Tables are a great way of structuring information and putting a lot of information in one place, but can cause 
-confusion in requirements.  A good rule of thumb is that any required/optional portion will be present if not 
-everything is uniform.  The context of the table (i.e. this behavior is optional) will set the tone.  Systems 
-working with the data structure represented in the table (i.e. Statements in xAPI) implement all fields such that 
-processing can be done.
+Tables are used throughout this specification to define the data structure of objects. The tables define which properties
+are required, recommended and optional. Generally, 'optional' relates to the system creating the object and systems receiving
+and interpreting the object need to be able to interpret all properties of that object. Often, properties are optional because the
+data may not be relevant in all contexts; if the data is relevant in a particular context, then it's expected the property will
+be populated.
 
 If an optional best practice is given, or an optional implementation, it should be understood that any 
 instructions following are only necessary if said optional piece is used.  That is, if it is implemented, it is 
 done a certain way, but it doesn't have to be implemented.
 
-Where there is nothing mentioned about a particular facet of the spec, it is open for interpretation and therefore 
-has no requirements within the specification.  Certain technological limitations and practices sometimes restrict 
-the choice and may or may not be called out in this spec.  This specification tries to avoid vagueness and will 
-usually give a rationale even if there no requirement in a given area.  
+Examples are provided through the specification and in appendices to illustrate implementation. The content of these examples is fictional 
+in order to illustrate the requirements of the specification and may not always illustrate the best practice approach to tracking
+the particular learning experience used in the example. Examples can be used to inform interpretation of requirements but aren't intended 
+to take precedence over requirements. 
 
-In the absence of requirements, or in the vagueness or requirements, examples should be heavily leaned upon to 
-show both requirements and industry best practices.
+Where the specification does not include requirements relating to a particular facet of implementation, that detail can be
+considered to be outside of the scope of this specification and it is up to the implementer to determine a sensible approach. 
+This specification tries to avoid vagueness and will usually give a rationale even if there no requirement in a given area.
 
 ## 4.0 Binding to JavaScript Object Notation (JSON)
 
@@ -377,7 +375,6 @@ show both requirements and industry best practices.
 * [Learning Record Store (LRS)](#def-learning-record-store)
 * [Metadata Provider](#def-metadata-provider)
 * [Metadata Consumer](#def-metadata-consumer)
-* [MUST / SHOULD / MAY](#def-must-should-may)
 * [Profile](#def-profile)
 * [Registration](#def-registration)
 * [Representational State Transfer (REST)](#def-rest)
@@ -492,20 +489,6 @@ might not be a metadata consumer.
 
 __Metadata Provider__: A person, organization, software program or other thing that coins IRIs to be used within this specification and/or
 hosts metadata about an IRI. 
-
-<a name="def-must-should-may" />
-
-__MUST / SHOULD / MAY__: Three levels of obligation with regards to conformance to the xAPI 
-specification. A system that fails to implement a MUST (or a MUST NOT) requirement is non-conformant.
-Failing to meet a SHOULD requirement is not a violation of conformity, but goes against best practices. 
-MAY indicates an option, to be decided by the developer with no consequences for conformity.
-
-The use of an asterisk* following SHOULD indicates a very strong recommendation. It is planned that these 
-recommendations will become MUST requirements in a future version. Not following these recommendations could 
-risk interoperability and and/or lead to various other issues depending on the specifics of the recommendation. 
-Whilst these recommendations cannot be MUST requirements within this version (as these would be breaking changes) 
-the xAPI Working Group strongly encourages adopters to implement these requirements as though they were MUST requirements, 
-whilst continuing to support other adopters that might not do so.
 
 <a name="def-profile" />
 
