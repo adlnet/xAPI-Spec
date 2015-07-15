@@ -600,11 +600,19 @@ the resulting document stored in the LRS is:
 
 ## 2.0 Statements  
 
-### 2.1 Purpose
-
 ###### Description 
 The Statement is the core of the xAPI. All learning events are stored as Statements.
 A Statement is akin to a sentence of the form "I did this".
+
+### 2.1 Purpose
+
+Statements are the evidence for any sort of experience or event which is to be tracked in xAPI.  A Statement has at 
+a minimum, a subject or doer ("actor"), an action ("verb"), and an object ("object").  Object is very generic 
+because object can be a person ("actor"), some content ("activity"), or an actual object like a cookie, chair, 
+elephant, or computer.  There are other parts of a Statement that are outlined below.  Statements can be expressed 
+using natural language, which is extremely useful for the design process, in addition to the machine language 
+(code) expected in a data format.  Statements are meant to be aggregated and analyzed to provide larger meaning for
+the overall experience than just the sum of its parts.
 
 <a name="dataconstraints"/>
 ### 2.2 Formatting Requirements
