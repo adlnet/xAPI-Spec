@@ -859,7 +859,7 @@ See [Appendix A: Example Statements](#AppendixA) for more examples.
 
 <a name="stmtid"/> 
 
-#### 4.1.1 ID 
+#### 2.3.1 ID 
 
 ###### Description 
 
@@ -872,14 +872,14 @@ A UUID (all versions of variant 2 in [RFC 4122](http://www.ietf.org/rfc/rfc4122.
 
 <a name="actor"/>
 
-#### 4.1.2 Actor  
+#### 2.3.2 Actor  
 
 ###### Description 
 A mandatory Agent or Group Object.
 
 <a name="agent"/>
 
-##### 4.1.2.1 When the Actor ObjectType is Agent
+##### 2.3.2.1 When the Actor ObjectType is Agent
 ###### Description
 An Agent (an individual) is a persona or system.
 
@@ -906,7 +906,7 @@ The table below lists the properties of Agent Objects.
 
 <a name="group"/>
 
-##### 4.1.2.2 When the Actor ObjectType is Group
+##### 2.3.2.2 When the Actor ObjectType is Group
 ###### Description
 
 A Group represents a collection of Agents and can be used in most of the same situations an Agent 
@@ -967,7 +967,7 @@ or store and retrieve documents relating to a group.
 
 <a name="inversefunctional">
 
-##### 4.1.2.3 Inverse Functional Identifier
+##### 2.3.2.3 Inverse Functional Identifier
 ###### Description 
 An Inverse Functional Identifier (IFI) is a value of an Agent or Identified
 Group that is guaranteed to only ever refer to that Agent or Identified Group.
@@ -997,7 +997,7 @@ for the "mbox_sha1sum" property.
 
 <a name="agentaccount"/>
 
-##### 4.1.2.4 Account Object
+##### 2.3.2.4 Account Object
 
 ###### Description 
 
@@ -1039,7 +1039,7 @@ This example shows an Agent identified by an opaque account:
 
 <a name="verb"/>
 
-#### 4.1.3 Verb
+#### 2.3.3 Verb
 
 ###### Description
 The Verb defines the action between Actor and Activity. 
@@ -1133,7 +1133,7 @@ The Verb in the example above is included for illustrative purposes only. This i
 a Verb with this meaning has been defined with this id. This applies to all example verbs given in this 
 specification document, with the exception of the reserved Verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>. 
 			
-##### 4.1.3.1 Use in Language and Semantics of Verbs
+##### 2.3.3.1 Use in Language and Semantics of Verbs
 
 ###### Details
 _Semantics_
@@ -1164,7 +1164,7 @@ or the Verb IRI http://example.com/فعل/خواندن might denote the action o
 
 <a name="object"/>
 
-####4.1.4 Object
+####2.3.4 Object
 
 ###### Description
 
@@ -1189,7 +1189,7 @@ The properties of an Object change according to the objectType.
 
 <a name="activity"/>
 
-##### 4.1.4.1 When the ObjectType is Activity
+##### 2.3.4.1 When the ObjectType is Activity
 
 ###### Details
 
@@ -1569,7 +1569,7 @@ See [Appendix C](#AppendixC) for examples of Activity Definitions for each of th
 
 <a name="agentasobj"/>
 
-##### 4.1.4.2 When the "Object" is an Agent or a Group
+##### 2.3.4.2 When the "Object" is an Agent or a Group
 
 ###### Requirements
 
@@ -1579,7 +1579,7 @@ See [Section 4.1.2 Actor](#actor) for details regarding Agents.
 
 <a name="stmtasobj"/>
 
-##### 4.1.4.3 When the "Object" is a Statement
+##### 2.3.4.3 When the "Object" is a Statement
 
 ###### Rationale
 
@@ -1703,7 +1703,7 @@ action. The concrete example that follows logically states that
 
 <a name="result"/>
 
-#### 4.1.5 Result
+#### 2.3.5 Result
 
 ###### Description
 An optional property that represents a measured outcome related to the Statement in which it is included.
@@ -1767,7 +1767,7 @@ truncate the Duration property to 0.01 second precision.
 
 <a name="Score"/>
 
-##### 4.1.5.1 Score
+##### 2.3.5.1 Score
 
 ###### Description
 An optional property that represents the outcome of a graded Activity achieved by an Agent.
@@ -1820,7 +1820,7 @@ from an extension profile instead.
 
 <a name="context"/>
 
-#### 4.1.6 Context
+#### 2.3.6 Context
 
 ###### Description 
 An optional property that provides a place to add contextual information to a Statement. All properties are optional.
@@ -1912,7 +1912,7 @@ so that it is available for systems interpreting and displaying data.
 
 <a name="Registration"/>
 
-##### 4.1.6.1 Registration Property
+##### 2.3.6.1 Registration Property
 
 ###### Description
 An instance of a learner undertaking a particular learning activity.
@@ -1925,7 +1925,7 @@ completing an Activity ends a registration. Nor is a registration necessarily co
 
 <a name="contextActivities"/>
 
-##### 4.1.6.2 ContextActivities Property
+##### 2.3.6.2 ContextActivities Property
 
 ###### Description
 A map of the types of learning activity context that this Statement is related to.
@@ -2002,7 +2002,7 @@ useful when the Object of the Statement is an Agent, not an Activity.
 
 <a name="timestamp"/>
 
-#### 4.1.7 Timestamp
+#### 2.3.7 Timestamp
 
 ###### Description
 The time at which the experience occurred.
@@ -2038,7 +2038,7 @@ so long as the point in time referenced is not affected. The LRS SHOULD* return 
 
 <a name="stored"/> 
 
-#### 4.1.8 Stored
+#### 2.3.8 Stored
 
 ###### Description 
 The time at which a Statement is stored by the LRS. This can be any time between when the LRS receives the Statement and when it is written
@@ -2062,7 +2062,7 @@ for seconds (millisecond precision MUST be preserved).
 
 <a name="authority"/> 
 
-#### 4.1.9 Authority
+#### 2.3.9 Authority
 
 ###### Description
 The authority property provides information about whom or what has asserted that 
@@ -2137,7 +2137,7 @@ The pairing of an OAuth consumer and a user.
 
 <a name="version"/> 
 
-#### 4.1.10 Version
+#### 2.3.10 Version
 ###### Description
 Version information in Statements helps systems that process data from an LRS get their bearings. Since
 the Statement data model is guaranteed consistent through all 1.0.x versions, in order to support data
@@ -2159,7 +2159,7 @@ lack a version, the version MUST be set to 1.0.0.
 
 
 <a name="attachments"/>
-#### 4.1.11 Attachments
+#### 2.3.11 Attachments
 
 ###### Description
 A digital artifact providing evidence of a learning experience.
@@ -2378,7 +2378,7 @@ X-Experience-API-Hash:495395e777cd98da653df9615d09c0fd6bb2f8d4788394cd53c56a3bfd
 here is a simple attachment
 --abcABC0123'()+_,-./:=?--
 ```
-### 3.4 Retrieval of Statements
+### 2.4 Retrieval of Statements
 
 ###### Description
 A collection of Statements can be retrieved by performing a query on the "statements" 
@@ -2422,7 +2422,7 @@ returned matches those statements that would have been returned when the origina
 * The consumer SHOULD NOT attempt to interpret any meaning from the IRL returned from the more property.
 
 <a name="signature"/>
-### 3.5 Signed Statements
+### 2.5 Signed Statements
 
 ##### Description
 A Statement can include a <a href="https://en.wikipedia.org/wiki/Digital_signature">
