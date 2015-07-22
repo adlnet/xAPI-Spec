@@ -2643,23 +2643,53 @@ the owner of that extension IRI explicitly states that a particular form of code
 
 ## 1.0 Requests
 
-### 1.1 Request Types
+xAPI tracking is done in the form of HTTP Requests from the Activity Provider (client) to the LRS (server).  This 
+specification offers guidance in some aspects of this communication.  Where no guidance is offered, it is 
+recommended that those implementing xAPI use current industry best practices.
+
+### 1.1 Request Methods
+
+xAPI supports the use of PUT, POST, GET, DELETE, and HEAD.  Use of other methods is beyond the scope of xAPI.  Each of the following sections details the traditional use of each method and how xAPI may differ slightly.  For full 
+implementation details, see each of the Resources (link) below.
 
 #### 1.1.1 HTTP PUT
 
+The HTTP PUT method is used to either create or update.  The enclosed entity is stored by the corresponding  
+Resource.  If it is new, it is created.  If there is a conflict, it is updated.  xAPI has a major exception to this 
+in that Statements are not allowed to be updated and thus there are rules around using PUT to update them.  Also in 
+xAPI, a PUT can only add a single Statement at a time.
+
+A major difference between PUT and POST is that PUT is idempotent, meaning if the method is executed more than  
+once, the same effect occurs as if it were executed just one time.
+
 #### 1.1.2 HTTP POST
+
+Traditionally the HTTP POST method is used only to create.  Like PUT, the enclosed entity is stored by the  
+corresponding Resource.  However, POST methods to any of the Document APIs will result in a merge operation (link).  
+The rule of Statements not being updated or replaced is still true for POST requests.  Only POST requests can be 
+used to send multiple Statements to the LRS.
 
 #### 1.1.3 HTTP GET
 
+The HTTP GET method is used to retrieve information from the given Resource.  Using GET has no effect on the 
+actual data itself (thus, it is idempotent).  xAPI has no deviating behaviors from RESTful GET.
+
 #### 1.1.4 HTTP DELETE
+
+The HTTP DELETE method is used to delete the target from the given Resource.  In xAPI, DELETE is not allowed 
+on the Statement Resource as Statements cannot be deleted, only voided.  This does not impact the RESTfulness of 
+the DELETE method, just when it is applicable. 
 
 <a name="httphead"/>
 
 #### 1.1.5 HTTP HEAD
 
+The HTTP HEAD method is traditionally used to check on the availability of a resource.  It is like the HTTP GET  
+method, with a few exceptions.  xAPI has a very specific implementation as outlined below. 
+
 ###### Description
-The LRS will respond to HEAD requests by returning the meta information only, using 
-the HTTP headers, and not the actual document.  
+The LRS will respond to HEAD requests by returning the meta information only, using the HTTP headers, and not 
+the actual document.  
 
 ###### Rationale
 
