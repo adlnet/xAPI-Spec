@@ -2789,7 +2789,14 @@ See [Appendix G: Cross Domain Request Example](#AppendixG) for an example.
 
 ## 2.0 Data Storage and Retrieval
 
+This section contains implementation details and requirements surrounding the specifics of data storage within an 
+LRS and retrieval from that LRS.  As mentioned in the previous section, this communication is done through HTTP 
+Requests to specific Resources, all of which have Endpoints. 
+
 ### 2.1 Documents
+
+Documents are a common storage and retrieval mechanism in many of the xAPI Resources.  This section details their 
+use.
 
 ##### Description
 The Experience API provides a facility for Activity Providers to save arbitrary data in 
