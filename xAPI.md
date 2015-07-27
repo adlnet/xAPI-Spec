@@ -304,28 +304,33 @@ be unintuitive and/or lengthy to dissect into a list of requirements.
 
 ## 3.0 Guidenelines for Implementing Technical Specificationss Like xAPI
 
-## 4.0 Binding to JavaScript Object Notation (JSON)
+## 4.0 Serialization and JavaScript Object Notation (JSON)
 
-This specification makes a specific binding to JSON for most of the data structures allowed.  There are some 
-generic document portions, but JSON is the current structure for Statements and the recommended use for document 
-types.  While other bindings of xAPI could potentially exist, this document does not cover such cases.
+Serialization is the process of translating data objects and structures into a format for storage or transmission, such that the original data object can 
+be recreated from the resulting serialization. In some cases it might be possible to serialize a piece of data in more than one way, for example a boolean 
+property with a value of true might be represented as ```true``` or ```1``` depending on the serialization used. 
 
-### 4.1 Serialization
+xAPI follows the rules of JSON for serializations (so boolean values are represented as ```true``` or ```false```). It might also be possible to
+represent the objects defined in this specification using other serializations, such as XML. This is out of scope of this 
+specification and use of anything other than JSON to represent the objects defined in this specification is not conformant
+with this specification. 
 
-JSON data structures can use multiple serializations in xAPI. This means that properties and objects can have different orderings  (but not different parent/child relationships) and still be equivalent. A Statement's serialization will not actually change the Statement in terms of <a href="#statement-immutablity-and-exceptions"> immutability </a>, in some cases, even when the values change.  Statements that are <a href="#signature"> signed </a>are expected to maintain their original serialization before undergoing the signature process.
+Even within the rules of JSON there are
+possible variations of how data can be serialized, especially in relation to data about time. This is significant as a number of features of xAPI 
+rely on systems being able to determine whether two Statements are equivalent. See <a href="#statement-immutability-and-exceptions"> Immutability 
+and exceptions</a> for more details about the properties of the Statement affected by this. 
 
-### 4.2 Population of JSON Properties
+JSON allows for obejcts to have properties that do not contain values. This is not recommended within xAPI; if the statement is not intended to contain
+data about a property then it is expected that the property will not be used at all. All required properties are required to contain values. 
 
-As xAPI is designed to capture experiences in time, any notion of sending data merely as a placeholder is not 
-a normal practice.  To put it another way, a state-based tracking system may need some sort of initialization to set a value to upon initialization but before a regular value is assigned.  The temporal nature of xAPI removes this need.
-
-Thus, it is highly discouraged to have name/value pairs without values (it is recognized that "null" is appropriate sometimes) and especially empty container elements.  While LRSs will not reject based on these principles, data visualizations and other tools will not perform well with empty values.
+###### Requirements
+* Statements and other objects SHOULD NOT include properties without values. 
 
 <a name="encoding"/> 
 
 ### Encoding
 
-###### Requirement
+###### Requirements
 * All strings MUST be encoded and interpreted as UTF-8. 
 
 ## 5.0 xAPI as a "RESTish" Web Service
