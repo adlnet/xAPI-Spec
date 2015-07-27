@@ -511,7 +511,7 @@ This section explains and shows graphically how different pieces of xAPI can fit
 
 ##### Tracking Experiences Through Systems
 
-<a href="/xAPIDataFlow.jpg"> Image 1</a>
+![Data Flow in xAPI](/xAPIDataFlow.jpg)
 
 Figure 1 shows the tracking of experiences through the data flow of a series of systems.  The cloud in the picture 
 represents a Learning Management System, or LMS.  An LMS, if present, would likely encapsulate everything within 
@@ -522,9 +522,9 @@ user in that content for that LRS.  LRSs, at request of the user, can also share
 may not be a part of the LMS framework.  Web Services, again as a part of or independent of the LMS, can pull 
 data from one or more LRSs, send them through other Web Services or LRSs.
 
-##### Activity Data Flow
+##### Activity Data and Metadata
 
-<a href="/xAPIMetadata.jpg"> Image 2</a>
+![xAPI Activity Data and Metadata](/xAPIMetadata.jpg)
 
 Understanding how a single activity (as uniquely identified by its IRI) is produced, populated, updated, and 
 consumed is a key concept in xAPI. Figure 2 shows this process.  xAPI Statements with the Object as an Activity, 
@@ -533,7 +533,7 @@ have metadata within its Activity Definition.  For each Statement, this amount m
 
 ##### Agent and Profile Management
 
-<a href="/xAPIAgentsAndEndpoints.jpg"> Image 3</a>
+![xAPI Activity Data and Metadata](/xAPIAgentsAndEndpoints.jpg)
 
 xAPI grants the framework for allowing selective access to one's personal data.  This is done through the management of what we've come to call personas.  In xAPI, the Actor represents the "I" in "I did this" and is 
 logically the subject of the Statement.  A user sending records to an LRS could have multiple Agents (the single type of Actor) associated with him or her.  In Figure 3, a single user can access multiple accounts (could be multiple user names, email addresses, etc.), all of which send data to the LRS.  In this single-user case, Each 
