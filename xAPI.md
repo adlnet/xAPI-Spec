@@ -509,48 +509,36 @@ __Verb__: Defines the action being done by the Actor within the Activity within 
 
 ## 8.0 Getting More Out of xAPI
 
-xAPI was developed to be as lightweight as possible, but able to be focused to be powerful.  xAPI defines only 
-one verb (for voiding Statements) and only one activity type (cmi.interaction).  Obviously, this isn't meant to 
-be the extent of what xAPI can do.  xAPI is limitless in how far it can be taken, which is why this document 
-doesn't attempt to define a "starting set", because it would encourage adoption of only said set.  Many of the 
-Resources, such as State and Activity Profile, are intentionally left as "a set of name/value" pairs to not try 
-to force a certain practice.  The very notion of IRIs and suggested resolvable metadata be at the location is a 
-way to continuously increase the value of xAPI by not tying definitions down permanently.  
+xAPI focuses on the structure of communication between a client and an LRS.  It spares many details of the content to
+increase flexibility.  The intention in only supplying a basic amount of syntax rules is that Communities of Practice (CoP) can define content (verbs, activity types, contextual relationships, extensions, etc.) for their use cases.  It is very 
+important that such communities exist and share best practices.
 
 ### 8.1 Extending xAPI
 
-xAPI can be extended in a few ways.  The most notable is Statement Extensions, which are covered in a 
-<a href="#miscext">later section</a>.  Extending Statements is how new types of information are brought into a 
-Statement and can only be done in three places.  
+xAPI can be extended in a few ways.  The most notable and extensive is Statement Extensions, which allow great flexibility 
+within Statements.  It is recommended that profiles or Communities or Practice agree on how to use extensions for their 
+particular use cases. Implementation details are covered in a <a href="#miscext">later section</a>.  
 
-The About Resource is another way xAPI enables extensions.  Of the Resources (located at various Endpoints), the  
-only one that can be extended is the About Resource.  It is hoped that if more information is available about an  
+The About Resource is another way xAPI enables extensions.  The LRS may find it useful to communicate features or 
+behaviors beyond this specification to activity provider.  It is hoped that if more information is available about an 
 LRS, that the About Resource captures it.
 
 Finally, the set of Resources implemented is not expected to be constrained by this document. While not explicitly 
 defined, this document suggests that no new Endpoints defined in future iterations of this specification will 
 begin with /extensions and that LRSs create other custom xAPI Resources there. 
 
-### 8.2 Profiles
+<a name="COPs" />
 
-Profile in this specification usually refers to the Activity Profile or Agent Profile, which are useful Resources, 
-each having their own Endpoint.  These profiles, while useful, are not very defined.  Another use of profile in 
-xAPI is applying a set of rules and/or vocabularies consistently.  An xAPI Profile follows all rules (MUSTs) of 
-the specification, but can more narrowly define xAPI requirements or create its own.  
+### 8.2 Profiles and Communities of Practice
+
+A profile of xAPI is a set of rules and/or vocabularies applied to a valid xAPI implementation.  Often, a CoP leverages many best practices to create a profile.
 
 A profile will typically define some of the open-ended areas of the specification, such as identifying verbs, activity types, structure and domains for IRIs, and names/possible values within xAPI Resources like the State API.
-
-The implementation details of profile are typically best practices as defined by one or more <a href="COPs">Communities of Practice</a>
-
 
 It is recommended that a profile use a unique "category" within a Statement's context to refer to any Statement  
 which follows the profile.
 
-<a name="COPs" />
-
-### 8.3 Communities of Practice
-
-xAPI Communities of Practice (CoP)s are groups of people that have common goals for tracking a certain domain that can utilize xAPI.  A CoP typically already has a certain taxonomy to it, methodologies, and values.  xAPI CoPs 
+xAPI Communities of Practice are groups of people that have common goals for tracking a certain domain that can utilize xAPI.  A CoP typically already has a certain taxonomy to it, methodologies, and values.  xAPI CoPs 
 can define their own Verbs, Activity types, extensions, and other parts of Statements and Resources to align with 
 their group's needs.  
 
