@@ -306,8 +306,6 @@ be unintuitive and/or lengthy to dissect into a list of requirements.
 
 ## 4.0 Binding to JavaScript Object Notation (JSON)
 
-<<<<<<< HEAD
-=======
 This specification makes a specific binding to JSON for most of the data structures allowed.  There are some 
 generic document portions, but JSON is the current structure for Statements and the recommended use for document 
 types.  While other bindings of xAPI could potentially exist, this document does not cover such cases.
@@ -323,7 +321,6 @@ a normal practice.  To put it another way, a state-based tracking system may nee
 
 Thus, it is highly discouraged to have name/value pairs without values (it is recognized that "null" is appropriate sometimes) and especially empty container elements.  While LRSs will not reject based on these principles, data visualizations and other tools will not perform well with empty values.
 
->>>>>>> parent of a4e7d8e... Update xAPI.md
 <a name="encoding"/> 
 
 ### Encoding
