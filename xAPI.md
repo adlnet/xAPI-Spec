@@ -256,9 +256,8 @@ learning that SCORM could not enable.
 
 The Experience API (xAPI) is an Application Programming Interface (API) specification that 
 facilitates communication about experiences between a Learning Record Store and a client, 
-typically an Activity Provider. These experiences are typically learning experiences, but the API can be used
-to facilitates communication about any kind of experience. The scope of xAPI is limited to the communication of data 
-between these systems. 
+typically an Activity Provider. This specification was developed with learning experiences in mind, 
+but many other kinds of experiences could be tracked using xAPI. 
 
 This specification does not attempt to standardize how the Activity Provider facilitates and tracks the learning experience, 
 nor how the Learning Store stores and procesess that data. The scope of this specification is limited to the requests and responses
@@ -282,7 +281,7 @@ The second way that the xAPI promotes interoperability is by setting out the tra
 be used when communicating information about learning experiences between programs that adhere to the 
 specification. As part of this, it sets out the format of requests and the expected responses. Note that the 
 systems storing or retrieving records need not be Activity Providers. LRSs can communicate with other LRSs, or systems. 
-xAPI follows the guidlines of the REST software architecture style, and as such data is tranferred via HTTP requests and
+xAPI follows the guidelines of the REST software architecture style, and as such data is tranferred via HTTP requests and
 responses. xAPI also defines security methods allowing for the trusted exchange of information between
 the Learning Record Store and trusted sources. 
 
