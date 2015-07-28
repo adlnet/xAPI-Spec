@@ -533,17 +533,21 @@ begin with /extensions and that LRSs create other custom xAPI Resources there.
 
 A profile of xAPI is a set of rules and/or vocabularies applied to a valid xAPI implementation.  Often, a CoP leverages many best practices to create a profile.
 
-A profile will typically define some of the open-ended areas of the specification, such as identifying verbs, activity types, structure and domains for IRIs, and names/possible values within xAPI Resources like the State API.
+A profile will typically define some of the open-ended areas of the specification, such as identifying verbs, activity types, structure and domains for IRIs, and names/possible values within xAPI Resources like the State API.  This is 
+referred to as creating a vocabulary.
 
 It is recommended that a profile use a unique "category" within a Statement's context to refer to any Statement  
-which follows the profile.
+which follows the profile.  An example profile is <a href="https://github.com/AICC/CMI-5_Spec_Current/tree/sandstone-release"> cmi5 </a>, which fits the 
+traditional single learner, single online learning use case.
 
-xAPI Communities of Practice are groups of people that have common goals for tracking a certain domain that can utilize xAPI.  A CoP typically already has a certain taxonomy to it, methodologies, and values.  xAPI CoPs 
-can define their own Verbs, Activity types, extensions, and other parts of Statements and Resources to align with 
-their group's needs.  
+xAPI Communities of Practice are groups that have common goals for tracking a certain domain that can utilize xAPI.  
+A CoP typically already has a certain vocabulary used, processes, and values.  xAPI CoPs can define their own verbs,
+activity types, extensions, and other parts of statements and resources to align with their group's needs.  
 
 CoPs are highly recommended to avoid duplication of effort, as creating too many ways to solve the same problem 
-will cause fragmentation in similar domains and will hurt interoperability.
+will cause fragmentation in similar domains and will hurt interoperability.  An example of a CoP for the medical 
+field is the <a href="http://groups.medbiq.org/medbiq/display/XIG/XAPI+Interest+Group+Home">Medbiquitous xAPI Interest 
+Group </a>.
 
 The text below will be expanded to include all "coined" parts
 
