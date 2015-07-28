@@ -676,12 +676,12 @@ LRS SHOULD* reject Statements containing such additional properties.
 <a name="statement-immutablity-and-exceptions" />
 
 Statements are evidence of a tracked learning experience.  Because this information is considered to be evidence, 
-the information represented in the Statement has already happened.  Thus, Statements will use the past tense of 
-Verbs when they display information and IRIs are encouraged to follow this same pattern of tense whenever possible.
+the information represented in the Statement has already happened.  Thus, the natural language used in "display" or 
+in the human-readable portion of the verb will usually use the past tense.
 
 Because Statements are evidence, they are expected to be permanent.  The only way to undo a Statement within this 
-specification is to <a name="voided">"void" it</a>it.  Voiding does not destroy a Statement, rather infers that 
-the evidence in the Statement is to be disregarded.
+specification is to <a name="voided">"void" it</a>it.  Voiding does not destroy a Statement, rather indicates the 
+evidence in the Statement is to be disregarded.
 
 Just as evidence is to be shared among all authorized parties, it is expected that LRSs can perform various 
 operations to move Statements around as needed.  Details of those operations is beyond the scope of this 
