@@ -2483,17 +2483,16 @@ See <a href="#AppendixE">Appendix E: Example Signed Statement</a> for an example
 
 ## 3.0 Metadata
 
-Metadata is additional information about the resource of which it is associated.  It enables decision making,  
-search, and discoverability within Systems.  In xAPI, Metadata can take on many forms.  The most common of these 
-forms is within <a name="actdef"> Activity Definitions </a>, where the metadata describes the Activity. Most 
-types of metadata have the opportunity to have Extensions.  Other forms include Verbs, Activity types, and 
-attachment usage.
+Metadata is additional information about the resource.  It enables decision making, search, and discoverability within 
+systems.  In xAPI, metadata can be utilized in a variety of locations.  The most common is within <a name="actdef"> Activity Definitions </a>, 
+where the metadata describes the Activity. Most types of metadata have the opportunity to have Extensions.  
+Other uses include Verbs, Activity types, and attachments.
 
 ### 3.1 IRI Requirements
 
-Most xAPI metadata is set up to be resolvable to maximize the possibilities of keeping it updated.  The structure 
-used to ensure uniqueness and promote resolvability is the IRI.  The LRS and Activity each have responsibilities 
-in regard to each IRI.  Activity Definitions have additional rules which can be found in <a name="actdef"> 
+Up-to-date information is the most effective. xAPI metadata is no exception, which is why xAPI uses IRIs for identifiers.
+Using IRIs ensures uniqueness and promotes resolvability is the IRI.  The LRS and Activity each have responsibilities 
+in regard to each IRI as outline below.  Activity Definitions have additional rules which can be found in <a name="actdef"> 
 this section</a>.
 
 ###### Metadata Requirements
