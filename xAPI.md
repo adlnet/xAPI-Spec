@@ -392,53 +392,6 @@ __Authentication__: The concept of verifying the identity of a user or system. A
 allows interactions between the two "trusted" parties.
 
 <a name="def-authorization" />
-377
-378
-379
-380
-381
-382
-383
-384
-385
-386
-387
-388
-389
-390
-391
-392
-393
-394
-395
-396
-397
-398
-399
-400
-401
-402
-403
-404
-allows interactions between the two "trusted" parties.
-<a name="def-authorization" />
-__Authorization__: The affordance of permissions based on a user or system's role; 
-the process of making one user or system "trusted" by another.
-<a name="def-baseendpoint" />
-__Base Endpoint__: The maximal path under all Experience API endpoints, including a slash. E.g. an LRS with a statements 
-endpoint of http://example.com/xAPI/statements would have a Base Endpoint of http://example.com/xAPI/"
-<a name="def-client" />
-__Client__: - Refers to any entity that might interact with an LRS. A Client can be (for example) an 
-Activity Provider, an LMS, or another LRS.
-<a name="def-community-of-practice" />
-__Community of Practice__: A group, usually connected by a common cause, role or 
-purpose, which operates in a common modality.
-<a name="def-experience-api" />
-__Experience API (xAPI)__: The API defined in this document, the product of 
-"Project Tin Can". A simple, lightweight way for any permitted Actor to store 
-and retrieve extensible learning records, learner and learning experience profiles, 
-regardless of platform.  
-
 
 __Authorization__: The affordance of permissions based on a user or system's role; 
 the process of making one user or system "trusted" by another.
