@@ -300,35 +300,32 @@ _high-level overview_ of a given facet of the Experience API are labeled **descr
 
 <a name="def-must-should-may" />
 ### 2.1 MUST / SHOULD / MAY 
-Three levels of obligation with regards to conformance to the xAPI 
-specification identified by the terms MUST, SHOULD and MAY. A system that fails to implement a MUST 
-(or a MUST NOT) requirement is non-conformant. Failing to meet a SHOULD requirement is not a violation of conformity, 
-but goes against best practices. MAY indicates an option, to be decided by the developer with no consequences for conformity. 
-Usage of these terms outside of requirement language does not 
-designate a requirement and is avoided whenever possible. Complete definitions of MUST, SHOULD, MAY, MUST NOT and 
-SHOULD NOT are found in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
+There are three levels of obligation with regards to conformance to the xAPI specification identified by the terms 
+MUST, SHOULD and MAY. A system that fails to implement a MUST (or a MUST NOT) requirement is non-conformant. 
+Failing to meet a SHOULD requirement is not a violation of conformity, but goes against the recommendations of the specification. MAY indicates an option, to be decided by the developer with no consequences for conformity. Usage 
+of these terms outside of requirement language does not designate a requirement and is avoided whenever possible. 
+Complete definitions of MUST, SHOULD, MAY, MUST NOT and SHOULD NOT are found in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
 
 The use of an asterisk* following SHOULD indicates a very strong recommendation. It is planned that these 
 recommendations will become MUST requirements in a future version. Not following these recommendations could 
 risk interoperability and and/or lead to various other issues depending on the specifics of the recommendation. 
 Whilst these recommendations cannot be MUST requirements within this version (as these would be breaking changes) 
-the xAPI Working Group strongly encourages adopters to implement these requirements as though they were MUST requirements, 
-whilst continuing to support other adopters that might not do so.
+the xAPI Working Group strongly encourages adopters to implement these requirements as though they were MUST 
+requirements, whilst continuing to support other adopters that might not do so.
 
-### 2.2 Guidelines for interpreting descriptive text and tables
+### 2.2 Guidelines for Interpreting Descriptive Text and Tables
 As a rule of thumb, if the guideline appears technical or seems to be a requirement, interpret it 
 as such. This is especially true of longer, more, detailed explanations and of tables, each of which would 
 be unintuitive and/or lengthy to dissect into a list of requirements.
 
-Tables are used throughout this specification to define the data structure of objects. The tables define which properties
-are required, recommended and optional. Generally, 'optional' relates to the system creating the object and systems receiving
-and interpreting the object need to be able to interpret all properties of that object. Often, properties are optional because the
-data may not be relevant in all contexts; if the data is relevant in a particular context, then it's expected the property will
-be populated.
+Tables are used throughout this specification to define requirements for lists of properties, parameters, etc.
+The tables define which propertiesare required, recommended and optional. Generally, 'optional' relates to the  
+system creating the object and systems receiving and interpreting the object need to be able to interpret all 
+properties of that object. Often, properties are optional because the data may not be relevant in all contexts; 
+if the data is relevant in a particular context, then it's expected the property will be populated.
 
-If an optional best practice is given, or an optional implementation, it should be understood that any 
-instructions following are only necessary if said optional piece is used.  That is, if it is implemented, it is 
-done a certain way, but it doesn't have to be implemented.
+If an optional property or parameter contains an object with properties that are recommended or required, then 
+these properties are only recommended/required IF the property or parameter containing them is used.
 
 Examples are provided through the specification and in appendices to illustrate implementation. The content of these examples is fictional 
 in order to illustrate the requirements of the specification and may not always illustrate the best practice approach to tracking
