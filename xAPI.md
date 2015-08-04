@@ -252,28 +252,38 @@ learning that SCORM could not enable.
 
 
 <a name="roleofxapi"/>
-
 ## 1.0 Summary of the Experience API
 
-The Experience API is a service that allows for statements of experience
-to be delivered to and stored securely in a Learning Record Store (LRS). These statements
-of experience are typically learning experiences, but the API can address statements
-of any kind of experience. The Experience API is dependent on Activity Providers to 
-create and track these learning experiences; this specification provides a data model and 
-associated components on how to accomplish these tasks.
+The Experience API (xAPI) is an Application Programming Interface (API) specification that 
+facilitates communication about experiences between a Learning Record Store and a client, 
+typically an Activity Provider. This specification was developed with learning experiences in mind, 
+but many other kinds of experiences could be tracked using xAPI. 
 
-Specifically, the Experience API provides:  
+This specification does not attempt to standardize how the Activity Provider facilitates and tracks the learning experience, 
+nor how the Learning Store stores and procesess that data. The scope of this specification is limited to the requests and responses
+between Learning Record Store and client. 
 
-* The structure and definition of Statement, State, Learner, Activity and Objects,
-which are the means by which experiences are conveyed by an Activity Provider.
+The purpose of the xAPI and the goals of this document are:
+* To maximize interoperability of systems which create, gather and store information  
+about learning experiences.
+* To provide a guide to those who want to build applications that conform to and implement this 
+specification.
+* To provide criteria against which conformance to this specification can be tested.
 
-* Data Transfer methods for the storage and retrieval (but not validation) of
-these Objects to/from a Learning Record Store.  Note that the systems storing 
-or retrieving records need not be Activity Providers. LRSs can 
-communicate with other LRSs, or systems.
+There are two main ways that the xAPI promotes interoperability between systems that 
+implement the specification. The first is by requiring that systems implementing the specification
+follow a consistent data structure. To that end, this specification defines a data model for various data
+objects that are transferred between systems. The most significant object within the xAPI data model is the Statement object. This
+specification defines the properties of the Statement object (including "Actor", "Verb", "Object", "Result", and "Context")
+and the rules of syntax for the values of those properties and how they are represented.
 
-* Security methods allowing for the trusted exchange of information between
-the Learning Record Store and trusted sources.  
+The second way that the xAPI promotes interoperability is by setting out the transfer methods that must 
+be used when communicating information about learning experiences between programs that adhere to the 
+specification. As part of this, it sets out the format of requests and the expected responses. Note that the 
+systems storing or retrieving records need not be Activity Providers. LRSs can communicate with other LRSs, or systems. 
+xAPI follows the guidelines of the REST software architecture style, and as such data is tranferred via HTTP requests and
+responses. xAPI also defines security methods allowing for the trusted exchange of information between
+the Learning Record Store and trusted sources. 
 
 The Experience API is the first of many envisioned technologies that will enable
 a richer architecture of online learning and training. Authentication
