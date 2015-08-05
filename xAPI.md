@@ -683,9 +683,6 @@ Because Statements are evidence, they are expected to be permanent.  The only wa
 specification is to <a name="voided">"void" it</a>it.  Voiding does not destroy a Statement, rather indicates the 
 evidence in the Statement is to be disregarded.
 
-Just as evidence is to be shared among all authorized parties, it is expected that LRSs can perform various 
-operations to move Statements around as needed.  Details of those operations is beyond the scope of this 
-specification.  
 
 #### 2.2.1 Statement Immutability
 
