@@ -2613,8 +2613,7 @@ can make sense of it.
 ### 4.2 Language Maps
 
 ##### Description
-A language map is a dictionary where the key is a [RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the value is a string in the language specified in the tag. This map SHOULD be populated as fully as possible based on the knowledge of the string in question in different languages.  There are also places in the specification, 
-such as context, which will require only a language "code" from RFC 5646.
+A language map is a dictionary where the key is a [RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the value is a string in the language specified in the tag. This map SHOULD be populated as fully as possible based on the knowledge of the string in question in different languages.  
 
 The content of strings within a language map is plain text. It's expected that any formatting code 
 such as HTML tags or markdown will not be rendered, but will be displayed as code when this string is 
@@ -2631,8 +2630,9 @@ of the ASCII character set.
 IRIs always include a scheme. This is not a requirement of this standard, but part of the definition of IRIs, per RFC 3987. What are sometimes called 'relative IRIs' are not IRIs.
 
 When used as an id, the IRI SHOULD contain a human-readable portion which would allow for disambiguation from 
-other syntactically similar character strings as this portion of the IRI represents semantics.  It is not a token 
-with multiple interpretations.
+other syntactically similar character strings as this portion of the IRI represents semantics.  This portion has 
+only one definition, regardless of any alternate definitions or similarities it has to other lexicons in any 
+language. 
 
 ### 4.4 UUIDs
 
@@ -2649,11 +2649,19 @@ seconds).
 
 ### 4.6 ISO 8601 Durations
 
-Durations are strings representing the amount of time something took. They are formatted according to ISO 8601's format for duration in ISO 8601:2004(E) section 4.4.3.2.  The alternative format in section 4.4.3.3 of the 
-same document cannot be used.  It is strongly recommended that the precision of duration not go beyond hundredths 
-of seconds (.01).
+Durations are strings representing the amount of time something took.  A duration is a property of a Result Object.
 
+###### Requirements
 
+* The Duration property MUST be expressed using the format for duration in ISO 8601:2004(E) section 4.4.3.2.
+The alternative format (in conformity with the format used for time points and described in ISO 8601:2004(E) 
+section 4.4.3.3) MUST NOT be used.
+* Clients SHOULD provide a maximum precision of 0.01 seconds. 
+* Clients MAY provide less precision, for example in the case of reading a University Degree precision might 
+be in months or years. 
+* On receiving a Duration with more that 0.01 second precision, the LRS SHOULD* NOT reject the request but MAY 
+truncate the Duration property to 0.01 second precision. 
+* When comparing Statements, any precision beyond 0.01 second precision SHOULD* NOT be included in the comparison.
 
 
 
