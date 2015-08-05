@@ -3788,10 +3788,6 @@ required by <a href="#apiversioning"/>6.2 API Versioning</a>.
 
 ## 3.0 Data Validation
 
-
-
-### 3.1 Basics (May not need and just put at 2.0)
-
 ###### Description
 
 The function of the LRS within the xAPI is to store and retrieve Statements. 
@@ -3808,7 +3804,7 @@ responsibility of the Activity Provider sending the Statement.
 
 <a name="concurrency"/>
 
-### 3.2 Concurrency
+### 3.1 Concurrency
 
 ##### Description
 Concurrency control makes certain that an API consumer does not PUT, POST or DELETE documents based on old
@@ -3879,7 +3875,7 @@ If a PUT request is received without either header for a resource that already e
 
 <a name="errorcodes" /> 
 
-### 3.3 Error Codes
+### 3.2 Error Codes
 
 ##### Description
 
@@ -4013,7 +4009,7 @@ This set of credentials SHOULD* be used for conformance testing but MAY be delet
 
 <a name="apiversioning"/> 
 
-### 3.4 Versioning
+### 3.3 Versioning
 
 ###### Rationale
 
