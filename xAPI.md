@@ -2483,34 +2483,12 @@ See <a href="#AppendixE">Appendix E: Example Signed Statement</a> for an example
 
 ## 3.0 Metadata
 
-Metadata is additional information about the resource.  It enables decision making, search, and discoverability within 
-systems.  In xAPI, metadata can be utilized in a variety of locations.  The most common is within <a name="actdef"> Activity Definitions </a>, 
-where the metadata describes the Activity. Most types of metadata have the opportunity to have Extensions.  
-Other uses include Verbs, Activity types, and attachments.
+Metadata is additional information about the resource.  It enables decision making, search, and discoverability  
+within systems.  In xAPI, metadata can be utilized in a variety of locations.  The most common is within [Activity Definitions](#actdef)
 
 ### 3.1 IRI Requirements
 
-Up-to-date information is the most effective. xAPI metadata is no exception, which is why xAPI uses IRIs for identifiers.
-Using IRIs ensures uniqueness and promotes resolvability is the IRI.  The LRS and Activity each have responsibilities 
-in regard to each IRI as outline below.  Activity Definitions have additional rules which can be found in <a name="actdef"> 
-this section</a>.
-
-###### Metadata Requirements
-
-* If an Activity IRI is an IRL, an LRS SHOULD attempt to GET that IRL, and include in HTTP
-headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
-first encounters the Activity id.
-
-* Upon loading JSON which is a valid Activity Definition from an IRL used as an Activity id,
- an LRS SHOULD incorporate the loaded definition into its internal definition for that Activity,
-while preserving names or definitions not included in the loaded definition.
-
-* An Activity with an IRL identifier MAY host metadata using the <a href="#actdef">
-Activity Definition</a> JSON format which is used in Statements, with a Content-Type of "application/json"
-
-* Upon loading any document from which the LRS can parse an Activity Definition
-from an IRL used as an Activity id, an LRS MAY consider this definition when determining
-its internal representation of that Activity's definition.
+Up-to-date information is the most effective. xAPI metadata is no exception, which is why xAPI uses IRIs for identifiers.Using IRIs ensures uniqueness and promotes resolvability is the IRI.  The LRS and Activity each have responsibilities in regard to each IRI as outline below.  Activity Definitions have additional rules which can be found in [this section](#actdef).
 
 <a name="miscmeta"/>
 
