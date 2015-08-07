@@ -319,22 +319,21 @@ as such. This is especially true of longer, more, detailed explanations and of t
 be unintuitive and/or lengthy to dissect into a list of requirements.
 
 Tables are used throughout this specification to define requirements for lists of properties, parameters, etc.
-The tables define which propertiesare required, recommended and optional. Generally, 'optional' relates to the  
+The tables define which properties are required, recommended and optional. Generally, 'optional' relates to the  
 system creating the object and systems receiving and interpreting the object need to be able to interpret all 
 properties of that object. Often, properties are optional because the data may not be relevant in all contexts; 
 if the data is relevant in a particular context, then it's expected the property will be populated.
 
 If an optional property or parameter contains an object with properties that are recommended or required, then 
-these properties are only recommended/required IF the property or parameter containing them is used.
+these properties are only recommended/required if the property or parameter containing them is used.
 
-Examples are provided through the specification and in appendices to illustrate implementation. The content of these examples is fictional 
-in order to illustrate the requirements of the specification and may not always illustrate the best practice approach to tracking
-the particular learning experience used in the example. Examples can be used to inform interpretation of requirements but aren't intended 
-to take precedence over requirements. 
+Examples are provided through the specification and in appendices to illustrate implementation. The content of these examples is fictional in order to illustrate the requirements of the specification and may not always 
+illustrate the best practice approach to tracking the particular learning experience used in the example. Examples 
+can be used to inform interpretation of requirements but aren't intended to take precedence over requirements. 
 
-Where the specification does not include requirements relating to a particular facet of implementation, that detail can be
-considered to be outside of the scope of this specification and it is up to the implementer to determine a sensible approach. 
-This specification tries to avoid vagueness and will usually give a rationale even if there no requirement in a given area.
+Where the specification does not include requirements relating to a particular facet of implementation, that detail can be considered to be outside of the scope of this specification and it is up to the implementer to determine a 
+sensible approach. This specification tries to avoid vagueness and will usually give a rationale even if there no 
+requirement in a given area.
 
 ## 4.0 Binding to JavaScript Object Notation (JSON)
 
