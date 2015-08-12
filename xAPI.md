@@ -2587,7 +2587,7 @@ Extensions are available as part of Activity Definitions, as part of Statement c
 or as part of a Statement result. In each case, they're intended to provide a natural 
 way to extend those elements for some specialized use. The contents of these extensions might 
 be something valuable to just one application, or it might be a convention used by an entire 
-community of practice.
+Community of Practice.
 
 ##### Details
 Extensions are defined by a map and logically relate to the part of the Statement where they are 
@@ -2638,7 +2638,7 @@ language.
 
 Universally Unique Identifiers, or UUIDs, are 128-bit values that are globally unique.  Unlike IRIs, there is 
 no expectation of resolvability as UUIDs take on a completely different format.  UUIDs MUST be in the standard 
-string form.  It is recommended variant 2 in [RFC 4122](http://tools.ietf.org/html/rfc4122) are used.
+string form.  It is recommended variant 2 in [RFC 4122](http://tools.ietf.org/html/rfc4122) is used.
 
 ### 4.5 ISO 8601 Timestamps
 
