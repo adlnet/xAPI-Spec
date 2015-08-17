@@ -2669,23 +2669,17 @@ the owner of that extension IRI explicitly states that a particular form of code
 
 ## 1.0 Requests
 
-### 1.1 Request Types
-
-#### 1.1.1 HTTP PUT
-
-#### 1.1.2 HTTP POST
-
-#### 1.1.3 HTTP GET
-
-#### 1.1.4 HTTP DELETE
+xAPI tracking is done via HTTP Requests from the Activity Provider (client) to the LRS (server).  This 
+specification offers guidance in some aspects of this communication.  Where no guidance is offered, it is 
+recommended that those implementing xAPI use current industry best practices.
 
 <a name="httphead"/>
 
-#### 1.1.5 HTTP HEAD
+### 1.1 HEAD Request Implementation
 
 ###### Description
-The LRS will respond to HEAD requests by returning the meta information only, using 
-the HTTP headers, and not the actual document.  
+The LRS will respond to HEAD requests by returning the meta information only, using the HTTP headers, and 
+not the actual document.  
 
 ###### Rationale
 
@@ -2942,6 +2936,8 @@ status code ```204 No Content```.
 
 * If an AP needs to delete
 a property, it SHOULD use a PUT request to replace the whole document as described below. 
+
+<a name="resources"/>
 
 ### 2.2 Resources
 
