@@ -324,7 +324,7 @@ JSON allows for obejcts to have properties that do not contain values. This is n
 data about a property then it is expected that the property will not be used at all. All required properties are required to contain values. 
 
 ###### Requirements
-* Statements and other objects SHOULD NOT include properties without values. 
+* Statements and other objects SHOULD NOT include properties with a value of an empty object. 
 
 <a name="encoding"/> 
 
