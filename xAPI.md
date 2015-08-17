@@ -2627,13 +2627,6 @@ resolving is not a requirement, IRIs/URIs are used instead of IRLs/URLs. In orde
 in the characters used in an identifier, IRIs are used instead of URIs as IRIs can contain some characters outside 
 of the ASCII character set. 
 
-IRIs always include a scheme. This is not a requirement of this standard, but part of the definition of IRIs, per RFC 3987. What are sometimes called 'relative IRIs' are not IRIs.
-
-When used as an id, the IRI SHOULD contain a human-readable portion which would allow for disambiguation from 
-other syntactically similar character strings as this portion of the IRI represents semantics.  This portion has 
-only one definition, regardless of any alternate definitions or similarities it has to other lexicons in any 
-language. 
-
 ### 4.4 UUIDs
 
 Universally Unique Identifiers, or UUIDs, are 128-bit values that are globally unique.  Unlike IRIs, there is 
@@ -2646,6 +2639,14 @@ Timestamps are a format type (and also a Statement property of type Timestamp) w
 a specific time.  They are formatted according to ISO 8601's normal format.  Statements sent to an LRS can be 
 expected (a MUST requirement on the LRS) to keep precision to at least milliseconds (3 decimal points beyond 
 seconds).  
+
+###### Requirements
+* A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
+* A timestamp SHOULD* include the time zone.
+* If the timestamp includes a time zone, the LRS MAY be return the timestamp using a different timezone to the one originally used in the statement so long as the point in time referenced is not affected. The LRS SHOULD* return 
+the timestamp in UTC timezone. 
+* A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
+* An LRS MUST NOT reject a timestamp for being from the future, to prevent issues due to clock errors.
 
 ### 4.6 ISO 8601 Durations
 
