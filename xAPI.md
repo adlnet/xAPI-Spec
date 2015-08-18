@@ -516,10 +516,10 @@ This section explains and shows graphically how different pieces of xAPI can fit
 Figure 1 shows the tracking of experiences through the data flow of xAPI. A user either accesses on their own, or 
 is provided access to web-enabled content.  The user, known by the LRS, is tracked in the experiences that he or 
 she has while taking that content. A Data Analysis Tool, acting as a Service with permission, can grab the data  
-from the LRS and use it to display meaningful reports or visualizations to the user. In the case of more 
-structured   learning, a user may be dependent on an Activity Provider to deliver and/or authorize use of content 
-to them.  Once this triangle of authorization and access is complete, a registration exists for that user in that 
-content tracked by that LRS and experience tracking may proceed.
+from the LRS and use it to display meaningful reports or visualizations. In the case of more structured learning, 
+a user may be dependent on an Activity Provider to deliver and/or authorize use of content to them.  Once this  
+triangle of authorization and access is complete, a registration exists for that user in that content tracked by 
+that LRS and experience tracking may proceed.
 
 ##### Activity Data and Metadata
 
@@ -543,7 +543,7 @@ personas of the same user.  The LRS can aggregate all of the information of each
 Object and send it through the Agents Resource.  
 
 Data kept about each persona is not restricted to Statements.  Data can also be kept in an Agent Profile, which 
-use the same personas as defined in the Statements.  An agent profile could be used to see learner preferences or 
+use the same personas as defined in the Statements.  An Agent Profile could be used to see learner preferences or 
 progress by people or systems to offer recommendations or interventions.  The LRS provides access to Agent Profiles 
 via the Agent Profile Resource.   
 
