@@ -2488,9 +2488,9 @@ within systems.  In xAPI, metadata can be utilized in a variety of locations.  T
 
 ### 3.1 IRI Requirements
 
-Up-to-date information is the most effective. xAPI metadata is no exception, which is why xAPI uses IRIs for 
-identifiers. Using IRIs ensures uniqueness and promotes resolvability is the IRI.  The LRS and Activity each have 
-responsibilities in regard to each IRI as outline below.  Activity Definitions have additional rules which can be found in [this section](#actdef).
+xAPI uses IRIs for identifiers. Using IRIs ensures uniqueness and promotes resolvability. The LRS and Activity 
+each have responsibilities in regard to each IRI as outlined below.  Activity Definitions have additional rules 
+which can be found in [this section](#actdef).
 
 <a name="miscmeta"/>
 
