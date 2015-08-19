@@ -331,7 +331,7 @@ be unintuitive and/or lengthy to dissect into a list of requirements.
 * [Authorization](#def-authorization)
 * [Base Endpoint](#def-baseendpoint)
 * [Community of Practice](#def-community-of-practice)
-* [Experience API (xAPI)](#def-experience-api)r
+* [Experience API (xAPI)](#def-experience-api)
 * [Immutable](#def-immutable)
 * [Internationalized Resource Identifier (IRI)](#def-iri)
 * [Internationalized Resource Locator (IRL)](#def-irl)
@@ -513,13 +513,7 @@ This section explains and shows graphically how different pieces of xAPI can fit
 
 ![Data Flow in xAPI](/xAPIDataFlow.jpg)
 
-Figure 1 shows the tracking of experiences through the data flow of xAPI. A user either accesses on their own, or 
-is provided access to web-enabled content.  The user, known by the LRS, is tracked in the experiences that he or 
-she has while taking that content. A Data Analysis Tool, acting as a Service with permission, can grab the data  
-from the LRS and use it to display meaningful reports or visualizations. In the case of more structured learning, 
-a user may be dependent on an Activity Provider to deliver and/or authorize use of content to them.  Once this  
-triangle of authorization and access is complete, a registration exists for that user in that content tracked by 
-that LRS and experience tracking may proceed.
+Figure 1 shows the tracking of experiences through the data flow of xAPI. While, a learner experiences a learning activity, data about that experience is tracked to a Learning Record Store (LRS).  Authentication with the LRS may use the learner's credentials, the activity provider's credentials, or a combination.  A Data Analysis Tool, acting as a Service with permission, can request the data from the LRS and use it to display meaningful reports or visualizations. In the case of more structured learning, a user may be dependent on an Activity Provider to deliver and/or authorize use of content to them. Once this triangle of authorization and access is complete, a registration exists for that user in that content tracked by that LRS and experience tracking may proceed.
 
 ##### Activity Data and Metadata
 
