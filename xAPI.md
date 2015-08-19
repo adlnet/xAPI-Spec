@@ -547,10 +547,10 @@ those listed in this specification can be implemented and co-exist with the Reso
 
 ## 9.0 Profiles and Communities of Practice
 
-xAPI strictly defines the structure of statements communicated between the client and an LRS but is very flexible as to the content of that statement structure. For example, the specification requires that all statements have a verb property, but does not restrict the values of that property; any verb can be used. This flexibility enables Tin Can to be used in any context, including future use cases not envisaged by the specification authors.
+xAPI strictly defines the structure of statements communicated between the client and an LRS but is very flexible as to the content of that statement structure. For example, the specification requires that all statements have a verb property, but does not restrict the values of that property; any verb can be used. This flexibility enables xAPI to be used in any context, including future use cases not envisaged by the specification authors.
 
-It is intended that Communities of Practice (CoPs) will define the identifiers (verbs, activity types, contextual relationships, extensions, etc.) to be used in their use 
-cases. It is very important that such communities exist and share best practices. The CoP will define these identifiers in a profile. This is a set of rules and/or 
+It is intended that Communities of Practice (CoPs) will define the identifiers (verbs, activity types, contextual relationships, extensions, etc.) to be used in their use cases. It is very important that such communities exist  
+and share best practices. The CoP will define these identifiers in a profile. This is a set of rules and/or 
 vocabularies to implemented in addition to xAPI for the particular use case being addressed.
 
 It is recommended that a profile use a unique "category" within a Statement's context to refer to any Statement  
