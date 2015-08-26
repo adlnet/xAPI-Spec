@@ -724,7 +724,7 @@ compared to see if they match. In this scenarios, the following rules apply:
 [listed as exceptions](#statement-immutablity-and-exceptions) MUST not be ignored. 
 
 <a name="voided"/>
-3.
+
 #### 2.2.2 Voiding
 
 ###### Rationale
@@ -2483,14 +2483,14 @@ See <a href="#AppendixE">Appendix E: Example Signed Statement</a> for an example
 
 ## 3.0 Metadata
 
-Metadata is additional information about the resource.  It enables decision making, search, and discoverability  
-within systems.  In xAPI, metadata can be utilized in a variety of locations.  The most common is within [Activity Definitions](#actdef)
+Metadata is additional information about the resource. It enables decision making, search, and discoverability  
+within systems.  In xAPI, metadata can be utilized in a variety of locations. The most common is within [Activity Definitions](#actdef)
 
 ### 3.1 IRI Requirements
 
 xAPI uses IRIs for identifiers. Using IRIs ensures uniqueness and promotes resolvability. The LRS and Activity 
-each have responsibilities in regard to each IRI as outlined below.  Activity Definitions have additional rules 
-which can be found in [this section](#actdef).
+Provider each have responsibilities in regard to each IRI as outlined below. Activity Definitions have 
+additional rules which can be found in [this section](#actdef).
 
 <a name="miscmeta"/>
 
