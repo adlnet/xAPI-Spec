@@ -533,13 +533,32 @@ __Verb__: Defines the action being done by the Actor within the Activity within 
 
 ## 7.0 xAPI Components
 
-## 8.0 Getting More Out of xAPI
+## 8.0 Extending xAPI
 
-### 8.1 Extending xAPI
+xAPI can be extended in a few ways. The most notable is Statement Extensions, which allow great flexibility within Statements.  It is recommended that profiles or Communities or Practice agree on how to use  
+extensions for their particular use cases. Implementation details are covered in a [later section](#miscext)
 
-### 8.2 Profiles
+The About Resource is another place xAPI supports Extensions.  The LRS may find it useful to communicate features or behaviors beyond this specification to activity provider. The LRS can use extensions to the About Resource to communicate these features and behaviours.
 
-### 8.3 Communities of Practice
+Finally, the set of Resources implemented is not expected to be constrained by this document. Resources beyond 
+those listed in this specification can be implemented and co-exist with the Resources defined in this specification.
+
+<a name="COPs" />
+
+## 9.0 Profiles and Communities of Practice
+
+xAPI strictly defines the structure of statements communicated between the client and an LRS but is very flexible as to the content of that statement structure. For example, the specification requires that all statements have a verb property, but does not restrict the values of that property; any verb can be used. This flexibility enables xAPI to be used in any context, including future use cases not envisaged by the specification authors.
+
+It is intended that Communities of Practice (CoPs) will define the identifiers (verbs, activity types, contextual relationships, extensions, etc.) to be used in their use cases. It is very important that such communities exist  
+and share best practices. The CoP will define these identifiers in a profile. This is a set of rules and/or 
+vocabularies to implemented in addition to xAPI for the particular use case being addressed.
+
+It is recommended that a profile use a unique "category" within a Statement's context to refer to any Statement  
+which follows the profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current/blob/quartz/cmi5_runtime.md#ContextActivities"), which is designed for the traditional single learner, single online learning use case.
+
+CoPs are highly recommended to avoid duplication of effort, as creating too many ways to solve the same problem 
+will cause fragmentation in similar domains and will hurt interoperability.  An example of a CoP for the medical 
+field is the [Medbiquitous xAPI Interest Group](http://groups.medbiq.org/medbiq/display/XIG/XAPI+Interest+Group+Home).
 
 ##### Use in Communities of Practice
 
