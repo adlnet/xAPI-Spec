@@ -673,15 +673,14 @@ LRS SHOULD* reject Statements containing such additional properties.
 
 ### 2.2 Statement Lifecycle
 
-<a name="statement-immutablity-and-exceptions" />
-
-Statements are information about a tracked learning experience.  Typically, the information represented in the Statement has already happened.  Thus, the natural language used in "display" or in the human-readable portion of  
-the verb will usually use the past tense.
+Statements are information about a tracked learning experience. Typically, the information represented in the Statement has already happened.  Thus, the natural language used in "display" or in the human-readable portion of  
+the verb id will usually use the past tense.
 
 Statements are expected to be permanent.  The only way to undo a Statement within this specification is to 
 <a name="voided">"void" it</a>.  Voiding does not destroy a Statement, rather indicates the evidence in the 
 Statement is to be disregarded.
 
+<a name="statement-immutablity-and-exceptions" />
 
 #### 2.2.1 Statement Immutability
 
