@@ -2621,6 +2621,8 @@ identifier was not coined for use with this specification.
 
 ## 4.0 Special Data Types and Rules
 
+The following are data types requiring additional rules that are found commonly in this specification.
+
 <a name="miscext"/> 
 
 ### 4.1 Extensions
@@ -2630,7 +2632,7 @@ Extensions are available as part of Activity Definitions, as part of Statement c
 or as part of a Statement result. In each case, they're intended to provide a natural 
 way to extend those elements for some specialized use. The contents of these extensions might 
 be something valuable to just one application, or it might be a convention used by an entire 
-community of practice.
+Community of Practice.
 
 ##### Details
 Extensions are defined by a map and logically relate to the part of the Statement where they are 
@@ -2656,29 +2658,56 @@ can make sense of it.
 ### 4.2 Language Maps
 
 ##### Description
-A language map is a dictionary where the key is a 
-[RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the value is an 
-string in the language specified in the tag. This map SHOULD be populated as 
-fully as possible based on the knowledge of the string in question in different 
-languages.  
+A language map is a dictionary where the key is a [RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the value is a string in the language specified in the tag. This map SHOULD be populated as fully as possible based on the knowledge of the string in question in different languages.  
 
 The content of strings within a language map is plain text. It's expected that any formatting code 
 such as HTML tags or markdown will not be rendered, but will be displayed as code when this string is 
 displayed to an end user. An important exception to this is if language map object is used in an extension and 
 the owner of that extension IRI explicitly states that a particular form of code will be rendered.
 
-### 4.2.1 Lang Codes
-
 ### 4.3 IRIs
+
+Internationalized Resource Identifiers, or IRIs, are unique identifiers which could also be resolvable. Because 
+resolving is not a requirement, IRIs/URIs are used instead of IRLs/URLs. In order to allow the greatest flexibility 
+in the characters used in an identifier, IRIs are used instead of URIs as IRIs can contain some characters outside 
+of the ASCII character set. 
 
 ### 4.4 UUIDs
 
+Universally Unique Identifiers, or UUIDs, are 128-bit values that are globally unique.  Unlike IRIs, there is 
+no expectation of resolvability as UUIDs take on a completely different format.  UUIDs MUST be in the standard 
+string form.  It is recommended variant 2 in [RFC 4122](http://tools.ietf.org/html/rfc4122) is used.
+
 ### 4.5 ISO 8601 Timestamps
+
+Timestamps are a format type (and also a Statement property of type Timestamp) which are strings which represent 
+a specific time.  They are formatted according to ISO 8601's normal format.  Statements sent to an LRS can be 
+expected (a MUST requirement on the LRS) to keep precision to at least milliseconds (3 decimal points beyond 
+seconds).  
+
+###### Requirements
+* A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
+* A timestamp SHOULD* include the time zone.
+* If the timestamp includes a time zone, the LRS MAY be return the timestamp using a different timezone to the one originally used in the statement so long as the point in time referenced is not affected. The LRS SHOULD* return 
+the timestamp in UTC timezone. 
+* A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
+* An LRS MUST NOT reject a timestamp for being from the future, to prevent issues due to clock errors.
 
 ### 4.6 ISO 8601 Durations
 
+Durations are strings representing the amount of time something took.  A duration is a property of a Result Object.
 
+###### Requirements
 
+* The Duration property MUST be expressed using the format for duration in ISO 8601:2004(E) section 4.4.3.2.
+The alternative format (in conformity with the format used for time points and described in ISO 8601:2004(E) 
+section 4.4.3.3) MUST NOT be used.
+* Clients SHOULD provide a maximum precision of 0.01 seconds. 
+* Clients MAY provide less precision, for example in the case of reading a University Degree precision might 
+be in months or years. 
+* On receiving a Duration with more that 0.01 second precision, the LRS SHOULD* NOT reject the request but MAY 
+truncate the Duration property to 0.01 second precision. 
+* When comparing Statements, any precision beyond 0.01 second precision SHOULD* NOT be included in the comparison.
 
 
 
