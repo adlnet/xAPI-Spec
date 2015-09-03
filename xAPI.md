@@ -28,13 +28,11 @@ learning that SCORM could not enable.
 >send all feedback and inquiries to helpdesk@adlnet.gov  
 
 ## Table of Contents
-*	1.0.	[Revision History](#revhistory)  
-*	2.0.	[Role of the Experience API](#roleofxapi)  
-	*	2.1.	[ADL's Role in the Experience API](#adlrole)  
- 	*	2.2.	[Contributors](#contributors)  
- 		*	2.2.1.	[Working Group Participants](#wg)  
-		*	2.2.2.	[Requirements Gathering Participants](#reqparticipants)  
-	*	2.3.	[Reading Guidelines for the Non-Technically Inclined](#readingguidelines)  
+*	[Part One: About The Experience API](#partone)
+*	1.0.	[Overview](#overview)  
+*	2.0.	[How to Use this Document](#readingguidelines) 
+	*	2.1.	[MUST / SHOULD / MAY](#def-must-should-may) 
+	*	2.2. 	[Guidelines for Interpreting Descriptive Text and Tables](#descriptive_text_tables)
 *	3.0.	[Definitions](#definitions)  
 *	4.0.	[Statement](#statement)  
     *	4.1.	[Statement Properties](#stmtprops)  
@@ -88,12 +86,13 @@ learning that SCORM could not enable.
 *	[Appendix E: Example Signed Statement](#AppendixE)  
 *	[Appendix F: Table of All Endpoints](#AppendixF)  
 *	[Appendix G: Cross Domain Request Example](#AppendixG)  
+*	[Appendix H: Revision History](#AppendixH) 
 
-
+<a name="partone"/>
 #Part One: About The Experience API
 
 
-<a name="roleofxapi"/>
+<a name="overview"/>
 ## 1.0 Overview
 
 The Experience API (xAPI) is an Application Programming Interface (API) specification that 
@@ -165,6 +164,7 @@ Whilst these recommendations cannot be MUST requirements within this version (as
 the xAPI Working Group strongly encourages adopters to implement these requirements as though they were MUST 
 requirements, whilst continuing to support other adopters that might not do so.
 
+<a name="descriptive_text_tables"/>
 ### 2.2 Guidelines for Interpreting Descriptive Text and Tables
 As a rule of thumb, if the guideline appears technical or seems to be a requirement, interpret it 
 as such. This is especially true of longer, more, detailed explanations and of tables, each of which would 
