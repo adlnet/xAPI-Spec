@@ -94,7 +94,7 @@ learning that SCORM could not enable.
 
 
 <a name="roleofxapi"/>
-## 1.0 Summary of the Experience API
+## 1.0 Overview
 
 The Experience API (xAPI) is an Application Programming Interface (API) specification that 
 facilitates communication about experiences between a Learning Record Store and a client, 
