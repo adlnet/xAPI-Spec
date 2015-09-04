@@ -673,11 +673,12 @@ LRS SHOULD* reject Statements containing such additional properties.
 
 ### 2.2 Statement Lifecycle
 
-Statements are information about a tracked learning experience. Typically, the information represented in the Statement has already happened.  Thus, the natural language used in "display" or in the human-readable portion of  
+Statements are information about a tracked learning experience. Typically, the information represented in the 
+Statement has already happened. Thus, the natural language used in "display" or in the human-readable portion of 
 the verb id will usually use the past tense.
 
-Statements are expected to be permanent.  The only way to undo a Statement within this specification is to 
-<a name="voided">"void" it</a>.  Voiding does not destroy a Statement, rather indicates the evidence in the 
+Statements are expected to be permanent. The only way to undo a Statement within this specification is to 
+<a name="voided">"void" it</a>. Voiding does not destroy a Statement, rather indicates the evidence in the 
 Statement is to be disregarded.
 
 <a name="statement-immutablity-and-exceptions" />
@@ -740,9 +741,7 @@ The certainty that an LRS has an accurate and complete collection of data is gua
 cannot be logically changed or deleted. This immutability of Statements is a key factor in enabling the distributed 
 nature of Experience API.
 
-However, not all Statements are perpetually valid once they have been issued. Mistakes or other factors could  
-require that a previously made Statement is marked as invalid. This is called "voiding a Statement" and the reserved Verb “http://adlnet.gov/expapi/verbs/voided" is used for this purpose. Any Statement that voids another  
-cannot itself be voided.
+However, not all Statements are perpetually valid once they have been issued. Mistakes or other factors could  require that a previously made Statement is marked as invalid. This is called "voiding a Statement" and the  reserved Verb “http://adlnet.gov/expapi/verbs/voided" is used for this purpose. Any Statement that voids another  cannot itself be voided.
 
 ###### Requirements
 
