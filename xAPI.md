@@ -730,6 +730,14 @@ LRS SHOULD* reject Statements containing such additional properties.
 
 ### 2.2 Statement Lifecycle
 
+Statements are information about a tracked learning experience. Typically, the information represented in the 
+Statement has already happened. Thus, the natural language used in "display" or in the human-readable portion of 
+the verb id will usually use the past tense.
+
+Statements are expected to be permanent. The only way to undo a Statement within this specification is to 
+<a name="voided">"void" it</a>. Voiding does not destroy a Statement, rather indicates the evidence in the 
+Statement is to be disregarded.
+
 <a name="statement-immutablity-and-exceptions" />
 
 #### 2.2.1 Statement Immutability
@@ -763,12 +771,12 @@ requests this (see the [Statement API's](#stmtapi) "attachments" parameter for d
 For example the domain portion an e-mail address is case insensitive. It is recommended to use lowercase for any case 
 insensitive text. 
 
-The following explictly are **not** exceptions and **are** covered by this rule:
+The following explicitly are **not** exceptions and **are** covered by this rule:
 
 * Result Duration. Due to variable lengths of months, years and even minutes and the flexible nature of the 
 timestamp property as representing either the start, middle or end of the experience, it is not possible for 
 an LRS to accurately deserialize the Result Duration and convert between units of time. For this reason, the 
-Result Duration is considered a string for purposes of statement comparision. 
+Result Duration is considered a string for purposes of statement comparison. 
 
 <a name="statement-comparision-requirements" />
 ###### Statement Comparision Requirements
@@ -790,10 +798,9 @@ The certainty that an LRS has an accurate and complete collection of data is gua
 cannot be logically changed or deleted. This immutability of Statements is a key factor in enabling the distributed 
 nature of Experience API.
 
-However, not all Statements are perpetually valid once they have been issued. Mistakes or other factors could require 
-that a previously made Statement is marked as invalid. This is called "voiding a Statement" and the reserved Verb 
-“http://adlnet.gov/expapi/verbs/voided" is used for this purpose. Any Statement that voids another cannot 
-itself be voided.
+However, not all Statements are perpetually valid once they have been issued. Mistakes or other factors could require that a previously made Statement is marked as invalid. This is called "voiding a Statement" and the
+reserved Verb “http://adlnet.gov/expapi/verbs/voided" is used for this purpose. Any Statement that voids another
+cannot itself be voided.
 
 ###### Requirements
 
