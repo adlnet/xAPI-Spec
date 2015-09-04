@@ -2483,14 +2483,13 @@ See <a href="#AppendixE">Appendix E: Example Signed Statement</a> for an example
 
 ## 3.0 Metadata
 
-Metadata is additional information about the resource. It enables decision making, search, and discoverability  
-within systems.  In xAPI, metadata can be utilized in a variety of locations. The most common is within [Activity Definitions](#actdef)
+Metadata is additional information about the resource. It enables decision making, search, and discoverability  within systems.  In xAPI, metadata can be utilized in a variety of locations. The most common is within 
+[Activity Definitions](#actdef).
 
 ### 3.1 IRI Requirements
 
 xAPI uses IRIs for identifiers. Using IRIs ensures uniqueness and promotes resolvability. The LRS and Activity 
-Provider each have responsibilities in regard to each IRI as outlined below. Activity Definitions have 
-additional rules which can be found in [this section](#actdef).
+Provider each have responsibilities in regard to each IRI as outlined below. Activity Definitions have additional  rules which can be found in [this section](#actdef).
 
 <a name="miscmeta"/>
 
