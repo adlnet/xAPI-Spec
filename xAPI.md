@@ -365,8 +365,7 @@ JSON allows for objects to have properties that contain empty objects. This is n
 ###### Requirements
 * All strings MUST be encoded and interpreted as UTF-8. 
 
-## 5.0 xAPI as a "RESTish" Web Service
-
+## 5.0 xAPI Implements REST
 
 <a name="definitions"/>
  
