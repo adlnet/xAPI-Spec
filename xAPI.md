@@ -1,164 +1,6 @@
 # Experience API
 ## Advanced Distributed Learning (ADL) Co-Laboratories
 
->#### Revision History
->###### 0.8 (Project Tin Can API Deliverable) to 0.9 (March 31, 2012)  
-  
->Rustici Software, who delivered the Project Tin Can API, made modifications to the 
->API prior to the April 2012 Kickoff Meeting. It was voted in this meeting to 
->move those changes into the current specification and revision to 0.9.
-
->###### 0.90 to 0.95 (August 31, 2012)  
-
->"Core" Verbs and Activity types were removed from the specification. References 
->to these verbs in results, context, interactions, and Activity Definitions were 
->also  removed. It was recommended that implementers prefer community defined 
->verbs to creating their own verbs.
->- Verbs, Activity types, and extension keys are now URIs
->- Restructured and added language around some of the other implementation 
->details and scope.
->- Changed from using a person-centric view of Agents to a persona-centric 
->view.
->- Friend of a Friend (FOAF) Agent merging requirement was removed.
->- Agent Objects now have exactly 1 uniquely identifying property, instead 
->of at least one.
-
->###### 0.95 to 1.0.0 (April 26, 2013) 
->Various refinements and clarifications including:
-.- Adding attachments
->- Activity metadata is now stored as JSON rather than XML
->- Changes to voiding Statements
->- Clarification and naming of the Document APIs
->- Changes to querying the Statement API
->- Signed Statements
-
->[0.95...1.0.0](https://github.com/adlnet/xAPI-Spec/compare/0.95-spec...1.0.0)
-
->###### 1.0.0 to 1.0.1 (October 1, 2013)
->Clarifications and additional examples including:
->- Fixed various typos
->- Added additional examples in the appendices
-
->[1.0.0...1.0.1](https://github.com/adlnet/xAPI-Spec/compare/1.0.0...1.0.1)
-
->###### 1.0.1 to 1.0.2 (October 1, 2014)
->- Added optional/required to tables
->- Added missing table heading on Interaction components
->- Change yes/no to required/optional in attachments
->- Clarified intent of 'moreInfo' property
-
->[1.0.1...1.0.2](https://github.com/adlnet/xAPI-Spec/compare/1.0.1...1.0.2)
- 
-<a name="contributors"/> 
-
->####Contributions
-
->###### Message To Contributors
-> _"My thanks to everyone who contributed to the Experience API project. Many of 
-you have called into the weekly meetings and helped to shape the specification 
-into something that is useful for the entire distributed learning community. 
-Many of you assisted in releasing code samples, products, and documentation to 
-aid those who are creating and adopting the specification.  I'd also like to 
-thank all of those who were involved in supplying useful, honest information 
-about your organization's use of SCORM and other learning best practices. 
-Through the use-cases, shared experiences, and knowledge you have shared, ADL 
-and the community clearly identified the first step in creating the Training 
-and Learning Architecture--the Experience API.  You are truly the community 
-leaders on which we depend to make our training and education the very best."_ 
-
->Kristy S. Murray, Ed.D.  
->Director, ADL Initiative  
->OSD, Training Readiness & Strategy (TRS)  
-
-<a name="wg"/>
-
->###### Working Group Contributors  
->  <table>
-	<tr><th>Name</th><th>Organization</th></tr>
-	<tr><td>Aaron Silvers</td><td>ADL</td></tr>
-	<tr><td>Al Bejcek</td><td>NetDimensions</td></tr>
-	<tr><td>Ali Shahrazad</td><td>SaLTBOX</td></tr>
-	<tr><td>Andrew Downes</td><td>Rustici Software</td></tr>
-	<tr><td>Andy Johnson</td><td>ADL</td></tr>
-	<tr><td>Andy Whitaker</td><td>Rustici Software</td></tr>
-	<tr><td>Anthony Altieri</td><td>American Red Cross</td></tr>
-	<tr><td>Anto Valan</td><td>Omnivera Learning Solutions</td></tr>
-	<tr><td>Avron Barr</td><td>Aldo Ventures, Inc.</td></tr>
-	<tr><td>Ben Clark</td><td>Rustici Software</td></tr>
-	<tr><td>Bill McDonald</td><td>Boeing</td></tr>
-	<tr><td>Brian J. Miller</td><td>Rustici Software</td></tr>
-	<tr><td>Chad Udell</td><td>Float Mobile Learning</td></tr>
-	<tr><td>Chris Handorf</td><td>Pearson</td></tr>
-	<tr><td>Chris Sawwa</td><td>Meridian Knowledge Solutions</td></tr>
-	<tr><td>Dan Allen</td><td>Litmos</td></tr>
-	<tr><td>Dan Kuemmel</td><td>Sentry Insurance</td></tr>
-	<tr><td>Dave Mozealous</td><td>Articulate</td></tr>
-	<tr><td>David Ells</td><td>Rustici Software</td></tr>
-	<tr><td>David N. Johnson</td><td>Clear Learning Systems</td></tr>
-	<tr><td>Doug Hagy</td><td>Twin Lakes Consulting Corporation</td></tr>
-	<tr><td>Eric Johnson</td><td>Planning and Learning Technologies, Inc.</td></tr>
-	<tr><td>Fiona Leteney</td><td>Feenix e-learning</td></tr>
-	<tr><td>Greg Tatka</td><td>Menco Social Learning</td></tr>
-	<tr><td>Ingo Dahn</td><td>University Koblenz-Landau</td></tr>
-	<tr><td>Jason Haag</td><td>ADL</td></tr>
-	<tr><td>Jeff Place</td><td>Questionmark</td></tr>
-	<tr><td>Jennifer Cameron</td><td>Sencia Corporate Web Solutions</td></tr>
-	<tr><td>Jeremy Brockman</td><td> </td></tr>
-	<tr><td>Jhorlin De Armas</td><td>Riptide Software</td></tr>
-	<tr><td>Joe Gorup</td><td>CourseAvenue</td></tr>
-	<tr><td>John Kleeman</td><td>Questionmark</td></tr>
-	<tr><td>Jonathan Archibald</td><td>Brightwave</td></tr>
-	<tr><td>Jonathan Poltrack</td><td>ADL</td></tr>
-	<tr><td>Kris Miller</td><td>edcetra Training</td></tr>
-	<tr><td>Kris Rockwell</td><td>Hybrid Learning Systems</td></tr>
-	<tr><td>Lang Holloman</td><td> </td></tr>
-	<tr><td>Lou Wolford</td><td>ADL</td></tr>
-	<tr><td>Luke Hickey</td><td>dominKnow</td></tr>
-	<tr><td>Marcus Birtwhistle</td><td>ADL</td></tr>
-	<tr><td>Mark Davis</td><td>Exambuilder</td></tr>
-	<tr><td>Matteo Scaramuccia</td><td> </td></tr>
-	<tr><td>Megan Bowe</td><td>Rustici Software</td></tr>
-	<tr><td>Melanie VanHorn</td><td>ADL</td></tr>
-	<tr><td>Michael Flores</td><td>Here Everything's Better</td></tr>
-	<tr><td>Michael Roberts</td><td>vTrainingRoom</td></tr>
-	<tr><td>Mike Palmer</td><td>OnPoint Digital</td></tr>
-	<tr><td>Mike Rustici</td><td>Rustici Software</td></tr>
-	<tr><td>Nick Washburn</td><td>Riptide Software</td></tr>
-	<tr><td>Nikolaus Hruska</td><td>ADL</td></tr>
-	<tr><td>Pankaj Agrawal</td><td>Next Software Solutions</td></tr>
-	<tr><td>Patrick Kedziora</td><td>Kedzoh</td></tr>
-	<tr><td>Paul Esch</td><td>Nine Set</td></tr>
-	<tr><td>Paul Roberts</td><td>Questionmark</td></tr>
-	<tr><td>Rich Chetwynd</td><td>Litmos</td></tr>
-	<tr><td>Richard Fouchaux</td><td>Ontario Human Rights  Commission</td></tr>
-	<tr><td>Richard Lenz</td><td>Organizational Strategies, Inc.</td></tr>
-	<tr><td>Rick Raymer</td><td></td></tr>
-	<tr><td>Rob Chadwick</td><td>ADL</td></tr>
-	<tr><td>Robert Lowe</td><td>NetDimensions</td></tr>
-	<tr><td>Russell Duhon</td><td>SaLTBOX</td></tr>
-	<tr><td>Stephen Trevorrow</td><td>Problem Solutions, LLC.</td></tr>
-	<tr><td>Steve Baumgartner</td><td></td></tr>
-	<tr><td>Steve Flowers</td><td>XPConcept</td></tr>
-	<tr><td>Thomas Ho</td><td></td></tr>
-	<tr><td>Tim Martin</td><td>Rustici Software</td></tr>
-	<tr><td>Tom Creighton</td><td>ADL</td></tr>
-	<tr><td>Walt Grata</td><td>ADL</td></tr>
-</table> 
-
-><a name="reqparticipants"/> 
-
-
->###### Historical Contributors  
-> In collection of requirements for the Experience API, many people and 
-organizations provided invaluable feedback to the SCORM, distributed learning efforts, and learning technology
-efforts in general.  While not an exhaustive listing, the white papers gathered 
-in 2008 by the Learning Education and Training Standards Interoperability (LETSI) 
-group, the Rustici Software UserVoice website, one-on-one interviews and various
-blogs were important sources from which requirements were gathered for the 
-Experience API specification.
-
-><a name="adlrole"/>
-
 >#### ADL's Role in the Experience API  
 >The Advanced Distributed Learning (ADL) Initiative has taken on the roles of steward and facilitator 
 in the development of the Experience API.  The Experience API is seen as one piece of the ADL Training 
@@ -186,13 +28,11 @@ learning that SCORM could not enable.
 >send all feedback and inquiries to helpdesk@adlnet.gov  
 
 ## Table of Contents
-*	1.0.	[Revision History](#revhistory)  
-*	2.0.	[Role of the Experience API](#roleofxapi)  
-	*	2.1.	[ADL's Role in the Experience API](#adlrole)  
- 	*	2.2.	[Contributors](#contributors)  
- 		*	2.2.1.	[Working Group Participants](#wg)  
-		*	2.2.2.	[Requirements Gathering Participants](#reqparticipants)  
-	*	2.3.	[Reading Guidelines for the Non-Technically Inclined](#readingguidelines)  
+*	[Part One: About The Experience API](#partone)
+*	1.0.	[Overview](#overview)  
+*	2.0.	[How to Use this Document](#readingguidelines) 
+	*	2.1.	[MUST / SHOULD / MAY](#def-must-should-may) 
+	*	2.2. 	[Guidelines for Interpreting Descriptive Text and Tables](#descriptive_text_tables)
 *	3.0.	[Definitions](#definitions)  
 *	4.0.	[Statement](#statement)  
     *	4.1.	[Statement Properties](#stmtprops)  
@@ -246,13 +86,14 @@ learning that SCORM could not enable.
 *	[Appendix E: Example Signed Statement](#AppendixE)  
 *	[Appendix F: Table of All Endpoints](#AppendixF)  
 *	[Appendix G: Cross Domain Request Example](#AppendixG)  
+*	[Appendix H: Revision History](#AppendixH) 
 
-
+<a name="partone"/>
 #Part One: About The Experience API
 
 
-<a name="roleofxapi"/>
-## 1.0 Summary of the Experience API
+<a name="overview"/>
+## 1.0 Overview
 
 The Experience API (xAPI) is an Application Programming Interface (API) specification that 
 facilitates communication about experiences between a Learning Record Store and a client, 
@@ -323,6 +164,7 @@ Whilst these recommendations cannot be MUST requirements within this version (as
 the xAPI Working Group strongly encourages adopters to implement these requirements as though they were MUST 
 requirements, whilst continuing to support other adopters that might not do so.
 
+<a name="descriptive_text_tables"/>
 ### 2.2 Guidelines for Interpreting Descriptive Text and Tables
 As a rule of thumb, if the guideline appears technical or seems to be a requirement, interpret it 
 as such. This is especially true of longer, more, detailed explanations and of tables, each of which would 
@@ -5462,3 +5304,162 @@ Content (with added line breaks and not URL encoded for readability):
     &Content-Length=351
     &content={"id":"c70c2b85-c294-464f-baca-cebd4fb9b348","timestamp":"2014-12-29T12:09:37.468Z","actor":{"objectType":"Agent","mbox":"mailto:example@example.com","name":"Test User"},"verb":{"id":"http://adlnet.gov/expapi/verbs/experienced","display":{"en-US":"experienced"}},"object":{"id":"http://example.com/xAPI/activities/myactivity","objectType":"Activity"}}
 ```
+<a name="AppendixH"/>
+>##Appendix H: Revision History
+>###### 0.8 (Project Tin Can API Deliverable) to 0.9 (March 31, 2012)  
+  
+>Rustici Software, who delivered the Project Tin Can API, made modifications to the 
+>API prior to the April 2012 Kickoff Meeting. It was voted in this meeting to 
+>move those changes into the current specification and revision to 0.9.
+
+>###### 0.90 to 0.95 (August 31, 2012)  
+
+>"Core" Verbs and Activity types were removed from the specification. References 
+>to these verbs in results, context, interactions, and Activity Definitions were 
+>also  removed. It was recommended that implementers prefer community defined 
+>verbs to creating their own verbs.
+>- Verbs, Activity types, and extension keys are now URIs
+>- Restructured and added language around some of the other implementation 
+>details and scope.
+>- Changed from using a person-centric view of Agents to a persona-centric 
+>view.
+>- Friend of a Friend (FOAF) Agent merging requirement was removed.
+>- Agent Objects now have exactly 1 uniquely identifying property, instead 
+>of at least one.
+
+>###### 0.95 to 1.0.0 (April 26, 2013) 
+>Various refinements and clarifications including:
+.- Adding attachments
+>- Activity metadata is now stored as JSON rather than XML
+>- Changes to voiding Statements
+>- Clarification and naming of the Document APIs
+>- Changes to querying the Statement API
+>- Signed Statements
+
+>[0.95...1.0.0](https://github.com/adlnet/xAPI-Spec/compare/0.95-spec...1.0.0)
+
+>###### 1.0.0 to 1.0.1 (October 1, 2013)
+>Clarifications and additional examples including:
+>- Fixed various typos
+>- Added additional examples in the appendices
+
+>[1.0.0...1.0.1](https://github.com/adlnet/xAPI-Spec/compare/1.0.0...1.0.1)
+
+>###### 1.0.1 to 1.0.2 (October 1, 2014)
+>- Added optional/required to tables
+>- Added missing table heading on Interaction components
+>- Change yes/no to required/optional in attachments
+>- Clarified intent of 'moreInfo' property
+
+>[1.0.1...1.0.2](https://github.com/adlnet/xAPI-Spec/compare/1.0.1...1.0.2)
+ 
+<a name="contributors"/> 
+
+>####Contributions
+
+>###### Message To Contributors
+> _"My thanks to everyone who contributed to the Experience API project. Many of 
+you have called into the weekly meetings and helped to shape the specification 
+into something that is useful for the entire distributed learning community. 
+Many of you assisted in releasing code samples, products, and documentation to 
+aid those who are creating and adopting the specification.  I'd also like to 
+thank all of those who were involved in supplying useful, honest information 
+about your organization's use of SCORM and other learning best practices. 
+Through the use-cases, shared experiences, and knowledge you have shared, ADL 
+and the community clearly identified the first step in creating the Training 
+and Learning Architecture--the Experience API.  You are truly the community 
+leaders on which we depend to make our training and education the very best."_ 
+
+>Kristy S. Murray, Ed.D.  
+>Director, ADL Initiative  
+>OSD, Training Readiness & Strategy (TRS)  
+
+<a name="wg"/>
+
+>###### Working Group Contributors  
+>  <table>
+	<tr><th>Name</th><th>Organization</th></tr>
+	<tr><td>Aaron Silvers</td><td>ADL</td></tr>
+	<tr><td>Al Bejcek</td><td>NetDimensions</td></tr>
+	<tr><td>Ali Shahrazad</td><td>SaLTBOX</td></tr>
+	<tr><td>Andrew Downes</td><td>Rustici Software</td></tr>
+	<tr><td>Andy Johnson</td><td>ADL</td></tr>
+	<tr><td>Andy Whitaker</td><td>Rustici Software</td></tr>
+	<tr><td>Anthony Altieri</td><td>American Red Cross</td></tr>
+	<tr><td>Anto Valan</td><td>Omnivera Learning Solutions</td></tr>
+	<tr><td>Avron Barr</td><td>Aldo Ventures, Inc.</td></tr>
+	<tr><td>Ben Clark</td><td>Rustici Software</td></tr>
+	<tr><td>Bill McDonald</td><td>Boeing</td></tr>
+	<tr><td>Brian J. Miller</td><td>Rustici Software</td></tr>
+	<tr><td>Chad Udell</td><td>Float Mobile Learning</td></tr>
+	<tr><td>Chris Handorf</td><td>Pearson</td></tr>
+	<tr><td>Chris Sawwa</td><td>Meridian Knowledge Solutions</td></tr>
+	<tr><td>Dan Allen</td><td>Litmos</td></tr>
+	<tr><td>Dan Kuemmel</td><td>Sentry Insurance</td></tr>
+	<tr><td>Dave Mozealous</td><td>Articulate</td></tr>
+	<tr><td>David Ells</td><td>Rustici Software</td></tr>
+	<tr><td>David N. Johnson</td><td>Clear Learning Systems</td></tr>
+	<tr><td>Doug Hagy</td><td>Twin Lakes Consulting Corporation</td></tr>
+	<tr><td>Eric Johnson</td><td>Planning and Learning Technologies, Inc.</td></tr>
+	<tr><td>Fiona Leteney</td><td>Feenix e-learning</td></tr>
+	<tr><td>Greg Tatka</td><td>Menco Social Learning</td></tr>
+	<tr><td>Ingo Dahn</td><td>University Koblenz-Landau</td></tr>
+	<tr><td>Jason Haag</td><td>ADL</td></tr>
+	<tr><td>Jeff Place</td><td>Questionmark</td></tr>
+	<tr><td>Jennifer Cameron</td><td>Sencia Corporate Web Solutions</td></tr>
+	<tr><td>Jeremy Brockman</td><td> </td></tr>
+	<tr><td>Jhorlin De Armas</td><td>Riptide Software</td></tr>
+	<tr><td>Joe Gorup</td><td>CourseAvenue</td></tr>
+	<tr><td>John Kleeman</td><td>Questionmark</td></tr>
+	<tr><td>Jonathan Archibald</td><td>Brightwave</td></tr>
+	<tr><td>Jonathan Poltrack</td><td>ADL</td></tr>
+	<tr><td>Kris Miller</td><td>edcetra Training</td></tr>
+	<tr><td>Kris Rockwell</td><td>Hybrid Learning Systems</td></tr>
+	<tr><td>Lang Holloman</td><td> </td></tr>
+	<tr><td>Lou Wolford</td><td>ADL</td></tr>
+	<tr><td>Luke Hickey</td><td>dominKnow</td></tr>
+	<tr><td>Marcus Birtwhistle</td><td>ADL</td></tr>
+	<tr><td>Mark Davis</td><td>Exambuilder</td></tr>
+	<tr><td>Matteo Scaramuccia</td><td> </td></tr>
+	<tr><td>Megan Bowe</td><td>Rustici Software</td></tr>
+	<tr><td>Melanie VanHorn</td><td>ADL</td></tr>
+	<tr><td>Michael Flores</td><td>Here Everything's Better</td></tr>
+	<tr><td>Michael Roberts</td><td>vTrainingRoom</td></tr>
+	<tr><td>Mike Palmer</td><td>OnPoint Digital</td></tr>
+	<tr><td>Mike Rustici</td><td>Rustici Software</td></tr>
+	<tr><td>Nick Washburn</td><td>Riptide Software</td></tr>
+	<tr><td>Nikolaus Hruska</td><td>ADL</td></tr>
+	<tr><td>Pankaj Agrawal</td><td>Next Software Solutions</td></tr>
+	<tr><td>Patrick Kedziora</td><td>Kedzoh</td></tr>
+	<tr><td>Paul Esch</td><td>Nine Set</td></tr>
+	<tr><td>Paul Roberts</td><td>Questionmark</td></tr>
+	<tr><td>Rich Chetwynd</td><td>Litmos</td></tr>
+	<tr><td>Richard Fouchaux</td><td>Ontario Human Rights  Commission</td></tr>
+	<tr><td>Richard Lenz</td><td>Organizational Strategies, Inc.</td></tr>
+	<tr><td>Rick Raymer</td><td></td></tr>
+	<tr><td>Rob Chadwick</td><td>ADL</td></tr>
+	<tr><td>Robert Lowe</td><td>NetDimensions</td></tr>
+	<tr><td>Russell Duhon</td><td>SaLTBOX</td></tr>
+	<tr><td>Stephen Trevorrow</td><td>Problem Solutions, LLC.</td></tr>
+	<tr><td>Steve Baumgartner</td><td></td></tr>
+	<tr><td>Steve Flowers</td><td>XPConcept</td></tr>
+	<tr><td>Thomas Ho</td><td></td></tr>
+	<tr><td>Tim Martin</td><td>Rustici Software</td></tr>
+	<tr><td>Tom Creighton</td><td>ADL</td></tr>
+	<tr><td>Walt Grata</td><td>ADL</td></tr>
+</table> 
+
+><a name="reqparticipants"/> 
+
+
+>###### Historical Contributors  
+> In collection of requirements for the Experience API, many people and 
+organizations provided invaluable feedback to the SCORM, distributed learning efforts, and learning technology
+efforts in general.  While not an exhaustive listing, the white papers gathered 
+in 2008 by the Learning Education and Training Standards Interoperability (LETSI) 
+group, the Rustici Software UserVoice website, one-on-one interviews and various
+blogs were important sources from which requirements were gathered for the 
+Experience API specification.
+
+><a name="adlrole"/>
+
