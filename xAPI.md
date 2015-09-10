@@ -186,59 +186,70 @@ learning that SCORM could not enable.
 >send all feedback and inquiries to helpdesk@adlnet.gov  
 
 ## Table of Contents
-*	1.0.	[Revision History](#revhistory)  
-*	2.0.	[Role of the Experience API](#roleofxapi)  
-	*	2.1.	[ADL's Role in the Experience API](#adlrole)  
- 	*	2.2.	[Contributors](#contributors)  
- 		*	2.2.1.	[Working Group Participants](#wg)  
-		*	2.2.2.	[Requirements Gathering Participants](#reqparticipants)  
-	*	2.3.	[Reading Guidelines for the Non-Technically Inclined](#readingguidelines)  
-*	3.0.	[Definitions](#definitions)  
-*	4.0.	[Statement](#statement)  
-    *	4.1.	[Statement Properties](#stmtprops)  
-        *	4.1.1.	[ID](#stmtid)  
-        *	4.1.2.	[Actor](#actor)  
-        *	4.1.3.	[Verb](#verb)  
-        *	4.1.4.	[Object](#object)  
-        *	4.1.5.	[Result](#result)  
-        *	4.1.6.	[Context](#context)  
-        *	4.1.7.	[Timestamp](#timestamp)  
-        *	4.1.8.	[Stored](#stored)  
-        *	4.1.9.	[Authority](#authority)  
-        *	4.1.10.	[Version](#version)  
-        *	4.1.11.	[Attachments](#attachments)  
-        *	4.1.12.	[Data Constraints](#dataconstraints)  
-    *	4.2.	[Retrieval of Statements](#retstmts)  
-	*	4.3.	[Voided](#voided)  
-	*	4.4.	[Signed Statements](#signature)  
-*	5.0.	[Miscellaneous Types](#misctypes)  
-    *	5.1.	[Document](#miscdocument)  
-    *	5.2.	[Language Map](#misclangmap)  
-    *	5.3.	[Extensions](#miscext)  
-    *	5.4.	[Identifier Metadata](#miscmeta)  
-*	6.0.	[Run-time Communication](#rtcom)  
-    *	6.1.	[Encoding](#encoding)  
-    *	6.2.	[API Versioning](#apiversioning)  
-    *	6.3.	[Concurrency](#concurrency)  
-    *	6.4.	[Security](#security)  
-		*	6.4.1.	[OAuth 1.0 Authentication Scenarios and Methods](#authdefs)  
-		*	6.4.2.	[OAuth 1.0 Authorization Scope](#oauthscope)  
-*	7.0.	[Data Transfer (REST)](#datatransfer)  
-    *	7.1.	[Error Codes](#errorcodes)  
-    *	7.2.	[Header Parameters](#header-parameters)  
-    *	7.3.	[Statement API](#stmtapi)  
-    	*	7.3.1. [PUT Statements](#stmtapiput)  
-    	*	7.3.2. [POST Statements](#stmtapipost)  
-    	*	7.3.3. [GET Statements](#stmtapiget)  
-    	*	7.3.4. [Voided Statements](#voidedStatements)  
-    *	7.4.	[Document APIs](#docapis)  
-    *	7.5.	[State API](#stateapi)  
-    *	7.6.	[Activity Profile API](#actprofapi)  
-    *	7.7.	[Agent Profile API](#agentprofapi)  
-    *	7.8.	[About resource](#aboutresource)  
-    *	7.9.	[Alternate Request Syntax](#alt-request-syntax)  
-    *	7.10.	[Validation](#validation)  
-    *	7.11.	[HTTP HEAD](#httphead)  
+*	Part One:	[Summary of the Experience API](#partone)  
+	*	1.0.	[Role of the Experience API](#roleofxapi) 
+	*	2.0.	[How To Use This Document](#readingguidelines)  
+		*	2.1.	[MUST / SHOULD / MAY](#def-must-should-may)  
+	 	*	2.2.	[Guidelines for Interpreting Descriptive Text and Tables](#interpret-text-table)  
+	*	3.0.	[Serialization and JavaScript Object Notation](#json)
+	*	4.0.	[Definitions](#definitions) 
+	*	5.0.	[xAPI Components](#extending-xapi) 
+	*	6.0.	[Extending xAPI](#roleofxapi) 
+	*	7.0.	[Profiles and Communities of Practice](#COPs)  
+*	Part Two:	[Experience API (xAPI) Data](#parttwo)  
+	*	1.0.	[Documents](#documents) 
+	*	2.0.	[Statements](#statement)  
+		*	2.1.	[Purpose](#statement-purpose)  
+	 	*	2.2.	[Formatting Requirements](#dataconstraints) 
+	 	*	2.3.	[Statement Lifecycle](#lifecycle) 
+		 	*	2.3.1.	[Statement Immutability](#statement-immutablity-and-exceptions) 
+		 	*	2.3.2.	[Voiding](#voided) 
+   		*	2.4.	[Statement Properties](#stmtprops)  
+	        *	2.4.1.	[ID](#stmtid)  
+	        *	2.4.2.	[Actor](#actor)  
+	        *	2.4.3.	[Verb](#verb)  
+	        *	2.4.4.	[Object](#object)  
+	        *	2.4.5.	[Result](#result)  
+	        *	2.4.6.	[Context](#context)  
+	        *	2.4.7.	[Timestamp](#timestamp)  
+	        *	2.4.8.	[Stored](#stored)  
+	        *	2.4.9.	[Authority](#authority)  
+	        *	2.4.10.	[Version](#version)  
+	        *	2.4.11.	[Attachments](#attachments)  
+    	*	2.5.	[Retrieval of Statements](#retrieval)   
+    	*	2.6.	[Signed Statements](#signature)  
+	*	3.0.	[Metadata](#metadata)
+		*	3.1.	[IRI Requirements](#iri-requirements)  
+		*	3.2.	[Hosted Metadata](#miscmeta)  
+    *	4.0.	[Special Data Types and Rules](#special-data)  
+		*	4.1.	[Extensions](#extensions) 
+		*	4.2.	[Language Maps](#lang-maps)
+		*	4.3.	[IRIs](#iris)
+		*	4.4.	[UUIDs](#uuids)
+		*	4.5.	[ISO 8601 Timestamps](#timestamps)
+		*	4.6.	[ISO 8601 Durations](#durations)
+*	Part Three:	[Data Processing, Validation, and Security](#partthree)  
+	*	1.0.	[Requests](#requests)
+		*	1.1.	[HEAD Request Implementation](#httphead)  
+	 	*	1.2.	[Headers](#header-parameters) 
+	 	*	1.3.	[Alternate Request Syntax](#alt-request-syntax) 
+	*	2.0.	[Data Storage and Retrieval](#datatransfer)   
+	 	*	2.1.	[Documents](#doctransfer) 
+	 	*	2.2.	[Resources](#resources) 
+		 	*	2.2.1.	[Statement Resource](#stmtres) 
+		 	*	2.2.2.	[State Resource](#stateres) 
+		 	*	2.2.3.	[Agents Resource](#agentsres) 
+		 	*	2.2.4.	[Activities Resource](#activitiesres) 
+		 	*	2.2.5.	[Agent Profile Resource](#agentprofres) 
+		 	*	2.2.6.	[Activity Profile Resource](#actprofres) 
+		 	*	2.2.7.	[About Resource](#aboutresource) 
+   	*	3.0.	[Data Validation](#validation)     
+    	*	3.1.	[Concurrency](#concurrency)  
+    	*	3.2.	[Error Codes](#errorcodes)
+    	*	3.3     [Versioning](#versioning)  
+    *	4.0.	[Security](#security)  
+		*	4.1.	[OAuth 1.0 Authentication Scenarios and Methods](#authdefs) 
+		*	4.2.	[OAuth 1.0 Authorization Scope](#oauthscope)
 *	[Appendix A: Example Statements](#AppendixA)  
 *	[Appendix B: Example statement objects of different types](#AppendixB)  
 *	[Appendix C: Example definitions for Activities of type "cmi.interaction"](#AppendixC)  
@@ -247,7 +258,7 @@ learning that SCORM could not enable.
 *	[Appendix F: Table of All Endpoints](#AppendixF)  
 *	[Appendix G: Cross Domain Request Example](#AppendixG)  
 
-
+<a name="partone"/>
 #Part One: About The Experience API
 
 
@@ -323,6 +334,7 @@ Whilst these recommendations cannot be MUST requirements within this version (as
 the xAPI Working Group strongly encourages adopters to implement these requirements as though they were MUST 
 requirements, whilst continuing to support other adopters that might not do so.
 
+<a name="interpret-text-table" />
 ### 2.2 Guidelines for Interpreting Descriptive Text and Tables
 As a rule of thumb, if the guideline appears technical or seems to be a requirement, interpret it 
 as such. This is especially true of longer, more, detailed explanations and of tables, each of which would 
@@ -345,7 +357,8 @@ Where the specification does not include requirements relating to a particular f
 sensible approach. This specification tries to avoid vagueness and will usually give a rationale even if there no 
 requirement in a given area.
 
-## 4.0 Serialization and JavaScript Object Notation (JSON)
+<a name="json" />
+## 3.0 Serialization and JavaScript Object Notation (JSON)
 
 Serialization is the process of translating data objects and structures into a format for storage or transmission, such that the original data object can be recreated from the resulting serialization. In some cases it might be possible to serialize a piece of data in more than one way, for example a boolean property with a value of true might be represented as ```true``` or ```1``` depending on the serialization used. 
 
@@ -358,18 +371,9 @@ JSON allows for objects to have properties that contain empty objects. This is n
 ###### Requirements
 * Statements and other objects SHOULD NOT include properties with a value of an empty object. 
 
-<a name="encoding"/> 
-
-### Encoding
-
-###### Requirements
-* All strings MUST be encoded and interpreted as UTF-8. 
-
-## 5.0 xAPI Implements REST
-
 <a name="definitions"/>
  
-## 6.0 Definitions  
+## 4.0 Definitions  
 
 * [Activity](#def-activity)
 * [Activity Provider (AP)](#def-activity-provider)
@@ -537,8 +541,9 @@ informal references to the Experience API.
 
 __Verb__: Defines the action being done by the Actor within the Activity within a Statement. 
 
-## 7.0 xAPI Components
+<a name="xapi-components" />
 
+## 5.0 xAPI Components
 
 This section explains and shows graphically how different pieces of xAPI can fit together.  
 
@@ -571,7 +576,9 @@ different personas of the same user. The LRS can aggregate all of the informatio
 "Person" Object and send it through the Agents Resource.  
 
 
-## 8.0 Extending xAPI
+<a name="extending-xapi" />
+
+## 6.0 Extending xAPI
 
 xAPI can be extended in a few ways. The most notable is Statement Extensions, which allow great flexibility within Statements.  It is recommended that profiles or Communities or Practice agree on how to use  
 extensions for their particular use cases. Implementation details are covered in a [later section](#miscext)
@@ -583,7 +590,7 @@ those listed in this specification can be implemented and co-exist with the Reso
 
 <a name="COPs" />
 
-## 9.0 Profiles and Communities of Practice
+## 7.0 Profiles and Communities of Practice
 
 xAPI strictly defines the structure of statements communicated between the client and an LRS but is very flexible as to the content of that statement structure. For example, the specification requires that all statements have a verb property, but does not restrict the values of that property; any verb can be used. This flexibility enables xAPI to be used in any context, including future use cases not envisaged by the specification authors.
 
@@ -617,10 +624,11 @@ Activity Providers might wish to use a different Verb for the same meaning.
 accessible at the IRI.
 
 
+<a name="parttwo" />
 #Part Two: Experience API (xAPI) Data
 
 
-<a name="docapis" />
+<a name="documents" />
 ## 1.0 Documents
 
 ### Document
@@ -687,6 +695,7 @@ the resulting document stored in the LRS is:
 The Statement is the core of the xAPI. All learning events are stored as Statements.
 A Statement is akin to a sentence of the form "I did this".
 
+<a name="statement-purpose"/> 
 ### 2.1 Purpose
 
 Statements are the evidence for any sort of experience or event which is to be tracked in xAPI. 
@@ -757,10 +766,9 @@ non-format-following rejection requirement.
 * Additional properties SHOULD* NOT be added to Statements and other objects unless explicitly allowed by this specification and the 
 LRS SHOULD* reject Statements containing such additional properties.
 
-<a name="stmtprops"/>
+<a name="lifecycle"/>
 
-
-### 2.2 Statement Lifecycle
+### 2.3 Statement Lifecycle
 
 Statements are information about a tracked learning experience. Typically, the information represented in the 
 Statement has already happened. Thus, the natural language used in "display" or in the human-readable portion of 
@@ -772,7 +780,7 @@ Statement is to be disregarded.
 
 <a name="statement-immutablity-and-exceptions" />
 
-#### 2.2.1 Statement Immutability
+#### 2.3.1 Statement Immutability
 
 Statements are immutable (they cannot be changed). The following are exceptions or areas not covered by this rule:
 
@@ -822,7 +830,7 @@ compared to see if they match. In this scenarios, the following rules apply:
 
 <a name="voided"/>
 
-#### 2.2.2 Voiding
+#### 2.3.2 Voiding
 
 ###### Rationale
 
@@ -878,8 +886,8 @@ This example Statement voids a previous Statement which it identifies with the S
 	}
 }
 ```  
-
-### 2.3 Statement Properties  
+<a name="statement-properties"/> 
+### 2.4 Statement Properties  
 
 ###### Details
 The details of each property of a statement are described in the table below.  
@@ -955,7 +963,7 @@ See [Appendix A: Example Statements](#AppendixA) for more examples.
 
 <a name="stmtid"/> 
 
-#### 2.3.1 ID 
+#### 2.4.1 ID 
 
 ###### Description 
 
@@ -968,14 +976,14 @@ A UUID (all versions of variant 2 in [RFC 4122](http://www.ietf.org/rfc/rfc4122.
 
 <a name="actor"/>
 
-#### 2.3.2 Actor  
+#### 2.4.2 Actor  
 
 ###### Description 
 A mandatory Agent or Group Object.
 
 <a name="agent"/>
 
-##### 2.3.2.1 When the Actor ObjectType is Agent
+##### 2.4.2.1 When the Actor ObjectType is Agent
 ###### Description
 An Agent (an individual) is a persona or system.
 
@@ -1002,7 +1010,7 @@ The table below lists the properties of Agent Objects.
 
 <a name="group"/>
 
-##### 2.3.2.2 When the Actor ObjectType is Group
+##### 2.4.2.2 When the Actor ObjectType is Group
 ###### Description
 
 A Group represents a collection of Agents and can be used in most of the same situations an Agent 
@@ -1063,7 +1071,7 @@ or store and retrieve documents relating to a group.
 
 <a name="inversefunctional">
 
-##### 2.3.2.3 Inverse Functional Identifier
+##### 2.4.2.3 Inverse Functional Identifier
 ###### Description 
 An Inverse Functional Identifier (IFI) is a value of an Agent or Identified
 Group that is guaranteed to only ever refer to that Agent or Identified Group.
@@ -1093,7 +1101,7 @@ for the "mbox_sha1sum" property.
 
 <a name="agentaccount"/>
 
-##### 2.3.2.4 Account Object
+##### 2.4.2.4 Account Object
 
 ###### Description 
 
@@ -1135,7 +1143,7 @@ This example shows an Agent identified by an opaque account:
 
 <a name="verb"/>
 
-#### 2.3.3 Verb
+#### 2.4.3 Verb
 
 ###### Description
 The Verb defines the action between Actor and Activity. 
@@ -1229,7 +1237,7 @@ The Verb in the example above is included for illustrative purposes only. This i
 a Verb with this meaning has been defined with this id. This applies to all example verbs given in this 
 specification document, with the exception of the reserved Verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>. 
 			
-##### 2.3.3.1 Use in Language and Semantics of Verbs
+##### 2.4.3.1 Use in Language and Semantics of Verbs
 
 ###### Details
 _Semantics_
@@ -1260,7 +1268,7 @@ or the Verb IRI http://example.com/فعل/خواندن might denote the action o
 
 <a name="object"/>
 
-####2.3.4 Object
+####2.4.4 Object
 
 ###### Description
 
@@ -1285,7 +1293,7 @@ The properties of an Object change according to the objectType.
 
 <a name="activity"/>
 
-##### 2.3.4.1 When the ObjectType is Activity
+##### 2.4.4.1 When the ObjectType is Activity
 
 ###### Details
 
@@ -1665,7 +1673,7 @@ See [Appendix C](#AppendixC) for examples of Activity Definitions for each of th
 
 <a name="agentasobj"/>
 
-##### 2.3.4.2 When the "Object" is an Agent or a Group
+##### 2.4.4.2 When the "Object" is an Agent or a Group
 
 ###### Requirements
 
@@ -1675,7 +1683,7 @@ See [Section 4.1.2 Actor](#actor) for details regarding Agents.
 
 <a name="stmtasobj"/>
 
-##### 2.3.4.3 When the "Object" is a Statement
+##### 2.4.4.3 When the "Object" is a Statement
 
 ###### Rationale
 
@@ -1799,7 +1807,7 @@ action. The concrete example that follows logically states that
 
 <a name="result"/>
 
-#### 2.3.5 Result
+#### 2.4.5 Result
 
 ###### Description
 An optional property that represents a measured outcome related to the Statement in which it is included.
@@ -1863,7 +1871,7 @@ truncate the Duration property to 0.01 second precision.
 
 <a name="Score"/>
 
-##### 2.3.5.1 Score
+##### 2.4.5.1 Score
 
 ###### Description
 An optional property that represents the outcome of a graded Activity achieved by an Agent.
@@ -1916,7 +1924,7 @@ from an extension profile instead.
 
 <a name="context"/>
 
-#### 2.3.6 Context
+#### 2.4.6 Context
 
 ###### Description 
 An optional property that provides a place to add contextual information to a Statement. All properties are optional.
@@ -2008,7 +2016,7 @@ so that it is available for systems interpreting and displaying data.
 
 <a name="Registration"/>
 
-##### 2.3.6.1 Registration Property
+##### 2.4.6.1 Registration Property
 
 ###### Description
 An instance of a learner undertaking a particular learning activity.
@@ -2021,7 +2029,7 @@ completing an Activity ends a registration. Nor is a registration necessarily co
 
 <a name="contextActivities"/>
 
-##### 2.3.6.2 ContextActivities Property
+##### 2.4.6.2 ContextActivities Property
 
 ###### Description
 A map of the types of learning activity context that this Statement is related to.
@@ -2098,7 +2106,7 @@ useful when the Object of the Statement is an Agent, not an Activity.
 
 <a name="timestamp"/>
 
-#### 2.3.7 Timestamp
+#### 2.4.7 Timestamp
 
 ###### Description
 The time at which the experience occurred.
@@ -2134,7 +2142,7 @@ so long as the point in time referenced is not affected. The LRS SHOULD* return 
 
 <a name="stored"/> 
 
-#### 2.3.8 Stored
+#### 2.4.8 Stored
 
 ###### Description 
 The time at which a Statement is stored by the LRS. This can be any time between when the LRS receives the Statement and when it is written
@@ -2158,7 +2166,7 @@ for seconds (millisecond precision MUST be preserved).
 
 <a name="authority"/> 
 
-#### 2.3.9 Authority
+#### 2.4.9 Authority
 
 ###### Description
 The authority property provides information about whom or what has asserted that 
@@ -2233,7 +2241,7 @@ The pairing of an OAuth consumer and a user.
 
 <a name="version"/> 
 
-#### 2.3.10 Version
+#### 2.4.10 Version
 ###### Description
 Version information in Statements helps systems that process data from an LRS get their bearings. Since
 the Statement data model is guaranteed consistent through all 1.0.x versions, in order to support data
@@ -2255,7 +2263,7 @@ lack a version, the version MUST be set to 1.0.0.
 
 
 <a name="attachments"/>
-#### 2.3.11 Attachments
+#### 2.4.11 Attachments
 
 ###### Description
 A digital artifact providing evidence of a learning experience.
@@ -2474,7 +2482,9 @@ X-Experience-API-Hash:495395e777cd98da653df9615d09c0fd6bb2f8d4788394cd53c56a3bfd
 here is a simple attachment
 --abcABC0123'()+_,-./:=?--
 ```
-### 2.4 Retrieval of Statements
+
+<a name="retrieval"/> 
+### 2.5 Retrieval of Statements
 
 ###### Description
 A collection of Statements can be retrieved by performing a query on the "statements" 
@@ -2518,7 +2528,7 @@ returned matches those statements that would have been returned when the origina
 * The consumer SHOULD NOT attempt to interpret any meaning from the IRL returned from the more property.
 
 <a name="signature"/>
-### 2.5 Signed Statements
+### 2.6 Signed Statements
 
 ##### Description
 A Statement can include a <a href="https://en.wikipedia.org/wiki/Digital_signature">
@@ -2573,15 +2583,16 @@ the scope of this specification.
 ##### Example
 See <a href="#AppendixE">Appendix E: Example Signed Statement</a> for an example.
 
-<a name="miscext"/> 
 
-<a name="misclangmap"/>
+
+<a name="metadata"/>
 
 ## 3.0 Metadata
 
 Metadata is additional information about the resource. It enables decision making, search, and discoverability  within systems.  In xAPI, metadata can be utilized in a variety of locations. The most common is within 
 [Activity Definitions](#actdef).
 
+<a name="iri-requirements"/>
 ### 3.1 IRI Requirements
 
 xAPI uses IRIs for identifiers. Using IRIs ensures uniqueness and promotes resolvability. The LRS and Activity 
@@ -2659,11 +2670,14 @@ Metadata Consumer does not trust it. Other sources of information MAY
 include metadata in other formats stored at the IRI of an identifier, particularly if that
 identifier was not coined for use with this specification.
 
+
+<a name="special-data"/>
+
 ## 4.0 Special Data Types and Rules
 
 The following are data types requiring additional rules that are found commonly in this specification.
 
-<a name="miscext"/> 
+<a name="extensions"/> 
 
 ### 4.1 Extensions
 
@@ -2695,6 +2709,8 @@ of the intended meaning of the extension supported by the IRL accessible at the 
 __Note:__ A Statement defined entirely by its extensions becomes meaningless as no other system 
 can make sense of it.  
 
+<a name="lang-maps"/> 
+
 ### 4.2 Language Maps
 
 ##### Description
@@ -2705,6 +2721,8 @@ such as HTML tags or markdown will not be rendered, but will be displayed as cod
 displayed to an end user. An important exception to this is if language map object is used in an extension and 
 the owner of that extension IRI explicitly states that a particular form of code will be rendered.
 
+<a name="iris"/>
+
 ### 4.3 IRIs
 
 Internationalized Resource Identifiers, or IRIs, are unique identifiers which could also be resolvable. Because 
@@ -2712,11 +2730,15 @@ resolving is not a requirement, IRIs/URIs are used instead of IRLs/URLs. In orde
 in the characters used in an identifier, IRIs are used instead of URIs as IRIs can contain some characters outside 
 of the ASCII character set. 
 
+<a name="uuids"/>
+
 ### 4.4 UUIDs
 
 Universally Unique Identifiers, or UUIDs, are 128-bit values that are globally unique.  Unlike IRIs, there is 
 no expectation of resolvability as UUIDs take on a completely different format.  UUIDs MUST be in the standard 
 string form.  It is recommended variant 2 in [RFC 4122](http://tools.ietf.org/html/rfc4122) is used.
+
+<a name="timestamps"/>
 
 ### 4.5 ISO 8601 Timestamps
 
@@ -2732,6 +2754,8 @@ seconds).
 the timestamp in UTC timezone. 
 * A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
 * An LRS MUST NOT reject a timestamp for being from the future, to prevent issues due to clock errors.
+
+<a name="durations"/>
 
 ### 4.6 ISO 8601 Durations
 
@@ -2750,10 +2774,11 @@ truncate the Duration property to 0.01 second precision.
 * When comparing Statements, any precision beyond 0.01 second precision SHOULD* NOT be included in the comparison.
 
 
-
+<a name="partthree"/>
 
 # Part Three: Data Processing, Validation, and Security 
 
+<a name="requests"/>
 
 ## 1.0 Requests
 
@@ -2783,6 +2808,7 @@ identical HTTP GET request except:
     * The Content-Length header MAY be omitted, in order to avoid wasting LRS resources.
 
 <a name="header-parameters"/> 
+
 ### 1.2 Headers
 
 ##### Header Parameters
@@ -2899,6 +2925,8 @@ See [Appendix G: Cross Domain Request Example](#AppendixG) for an example.
 
 This section contains implementation details and requirements surrounding how an LRS receives and responds to requests for data.  As mentioned in the previous section, this communication is done through HTTP 
 Requests to specific Resources, all of which have Endpoints. 
+
+<a name="doctransfer"/>
 
 ### 2.1 Documents 
 
@@ -3063,7 +3091,7 @@ are under development for a range of technologies (including JavaScript) which h
 this part of the specification. It therefore might not be necessary for content developers 
 to fully understand every detail of this part of the specification.
 
-<a name="stmtapi"/> 
+<a name="stmtres"/> 
 
 #### 2.2.1 Statement Resource
 
@@ -3072,7 +3100,7 @@ to fully understand every detail of this part of the specification.
 The basic communication mechanism of the Experience API.  
 
 
-<a name="stmtapiput"/>
+<a name="stmtresput"/>
 
 #####2.2.1.1 PUT Statements
 
@@ -3112,7 +3140,7 @@ do not match. See [Statement comparision requirements](statement-comparision-req
 * Where provided, the "id" property of the Statement MUST match the "statementId" parameter of the request. 
 
 
-<a name="stmtapipost"/>
+<a name="stmtrespost"/>
 
 #####2.2.1.2 POST Statements
 
@@ -3152,7 +3180,7 @@ have limits. See Section [7.9 Alternate Request Syntax](#alt-request-syntax) for
 * The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
 parameters passed. See Section [7.9 Alternate Request Syntax](#alt-request-syntax) for more details.
 
-<a name="stmtapiget"/>
+<a name="stmtresget"/>
 
 #####2.2.1.3 GET Statements
 
@@ -3436,7 +3464,7 @@ Statement, following the process and conditions described in
 [the section on filter conditions for StatementRefs](#queryStatementRef). This includes the
 voiding Statement, which cannot be voided. 
 
-<a name="stateapi"/> 
+<a name="stateres"/> 
 
 ### 2.2.2 State Resource
 
@@ -3563,6 +3591,8 @@ specified\]).
 	</tr>
 </table>
 
+<a name="agentsres"/>
+
 ### 2.2.3 Agents Resource
 
 The Agent Profile API also includes a method to retrieve a special Object with 
@@ -3664,7 +3694,9 @@ See also: [Section 4.1.2.1 Agent](#agent).
 same definition as the similarly named property from Agent Objects.  
 
 * Additional properties not listed here SHOULD* NOT be added to this object and each 
-property MUST occur only once.  
+property MUST occur only once. 
+
+<a name="activitiesres"/> 
 
 ### 2.2.4 Activities Resource
 
@@ -3690,6 +3722,7 @@ Loads the complete Activity Object specified.
 	</td>
 </table>
 
+<a name="agentprofres"/>
 
 ### 2.2.5 Agent Profile Resource
 
@@ -3761,7 +3794,7 @@ timestamp (exclusive).
 	</tr>
 </table>  
 
-<a name="actprofapi"/> 
+<a name="actprofres"/> 
 
 ### 2.2.6 Activity Profile Resource
 
@@ -4110,7 +4143,7 @@ This set of credentials SHOULD* be used for conformance testing but MAY be delet
 
 * The LRS MUST be configurable to accept requests at any reasonable rate. 
 
-<a name="apiversioning"/> 
+<a name="versioning"/> 
 
 ### 3.3 Versioning
 
