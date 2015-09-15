@@ -193,8 +193,8 @@ learning that SCORM could not enable.
 	 	*	2.2.	[Guidelines for Interpreting Descriptive Text and Tables](#interpret-text-table)  
 	*	3.0.	[Serialization and JavaScript Object Notation](#json)
 	*	4.0.	[Definitions](#definitions) 
-	*	5.0.	[xAPI Components](#extending-xapi) 
-	*	6.0.	[Extending xAPI](#roleofxapi) 
+	*	5.0.	[xAPI Components](#xapi-components) 
+	*	6.0.	[Extending xAPI](#extending-xapi) 
 	*	7.0.	[Profiles and Communities of Practice](#COPs)  
 *	Part Two:	[Experience API (xAPI) Data](#parttwo)  
 	*	1.0.	[Documents](#documents) 
@@ -204,7 +204,7 @@ learning that SCORM could not enable.
 	 	*	2.3.	[Statement Lifecycle](#lifecycle) 
 		 	*	2.3.1.	[Statement Immutability](#statement-immutablity-and-exceptions) 
 		 	*	2.3.2.	[Voiding](#voided) 
-   		*	2.4.	[Statement Properties](#stmtprops)  
+   		*	2.4.	[Statement Properties](#statement-properties)  
 	        *	2.4.1.	[ID](#stmtid)  
 	        *	2.4.2.	[Actor](#actor)  
 	        *	2.4.3.	[Verb](#verb)  
@@ -250,13 +250,14 @@ learning that SCORM could not enable.
     *	4.0.	[Security](#security)  
 		*	4.1.	[OAuth 1.0 Authentication Scenarios and Methods](#authdefs) 
 		*	4.2.	[OAuth 1.0 Authorization Scope](#oauthscope)
-*	[Appendix A: Example Statements](#AppendixA)  
-*	[Appendix B: Example statement objects of different types](#AppendixB)  
-*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](#AppendixC)  
-*	[Appendix D: Converting Statements to 1.0.0](#AppendixD)  
-*	[Appendix E: Example Signed Statement](#AppendixE)  
-*	[Appendix F: Table of All Endpoints](#AppendixF)  
-*	[Appendix G: Cross Domain Request Example](#AppendixG)  
+*		[Appendices](#append)  
+	*	[Appendix A: Example Statements](#AppendixA)  
+	*	[Appendix B: Example statement objects of different types](#AppendixB)  
+	*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](#AppendixC)  	
+	*	[Appendix D: Converting Statements to 1.0.0](#AppendixD)  
+	*	[Appendix E: Example Signed Statement](#AppendixE)  
+	*	[Appendix F: Table of All Endpoints](#AppendixF)  
+	*	[Appendix G: Cross Domain Request Example](#AppendixG)  
 
 <a name="partone"/>
 #Part One: About The Experience API
@@ -766,7 +767,7 @@ non-format-following rejection requirement.
 * Additional properties SHOULD* NOT be added to Statements and other objects unless explicitly allowed by this specification and the 
 LRS SHOULD* reject Statements containing such additional properties.
 
-<a name="lifecycle"/>
+<a name="lifecycle" />
 
 ### 2.3 Statement Lifecycle
 
@@ -775,7 +776,7 @@ Statement has already happened. Thus, the natural language used in "display" or 
 the verb id will usually use the past tense.
 
 Statements are expected to be permanent. The only way to undo a Statement within this specification is to 
-<a name="voided">"void" it</a>. Voiding does not destroy a Statement, rather indicates the evidence in the 
+[void it](#voided). Voiding does not destroy a Statement, rather indicates the evidence in the 
 Statement is to be disregarded.
 
 <a name="statement-immutablity-and-exceptions" />
@@ -4442,7 +4443,7 @@ will be granted.
 
 
 
-
+<a name="append"/>
 # Appendices
 
 
