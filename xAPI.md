@@ -198,7 +198,7 @@ learning that SCORM could not enable.
 	*	7.0.	[Profiles and Communities of Practice](#COPs)  
 *	Part Two:	[Experience API (xAPI) Data](#parttwo)  
 	*	1.0.	[Documents](#documents) 
-	*	2.0.	[Statements](#statement)  
+	*	2.0.	[Statements](#statements)  
 		*	2.1.	[Purpose](#statement-purpose)  
 	 	*	2.2.	[Formatting Requirements](#dataconstraints) 
 	 	*	2.3.	[Statement Lifecycle](#lifecycle) 
@@ -688,7 +688,7 @@ the resulting document stored in the LRS is:
 }
 ```
 
-<a name="statement"/> 
+<a name="statements" /> 
 
 ## 2.0 Statements  
 
