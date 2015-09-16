@@ -1564,7 +1564,8 @@ Run-Time Environment. See [Appendix C](#AppendixC) for examples of each format.
 	</tr>
 </table>
 
-Note that the Correct Response Pattern contains an array of response patterns. A learner's response will be considered correct if it matches
+###### Correct Responses Pattern
+The Correct Responses Pattern contains an array of response patterns. A learner's response will be considered correct if it matches
 **any** of the response patterns in that array. Where a response pattern is a delimited list, the learner's response is only considered correct
 if **all** of the items in that list match the learner's response. For example, consider the Correct Response Pattern with a value of:
 
@@ -1576,6 +1577,10 @@ if **all** of the items in that list match the learner's response. For example, 
 ``` 
 
 In this example, ```foo[,]bar``` and  ```foo``` are correct learner responses; ```bar``` is not.
+
+The Correct Responses Pattern, if used, is intended to be an exhaustive list of possible correct responses. Where the criteria for a question are complex and correct responses cannot be exhaustively listed, Activity Providers are discouraged from using the "correct responses pattern" property.
+
+The Activity Provider is allowed to mark questions as correct where the response does not match the correct responses pattern. Systems reading statements cannot infer success based on comparison of the Response with the Correct Responses Pattern, nor can they rely on the Correct Responses Pattern always being exhaustive. 
 
 ###### Characterstring parameters
 Some of the values within the responses described above can be prepended with certain additional parameters. These were originally based on the characterstring
