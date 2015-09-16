@@ -2774,6 +2774,36 @@ be in months or years.
 truncate the Duration property to 0.01 second precision. 
 * When comparing Statements, any precision beyond 0.01 second precision SHOULD* NOT be included in the comparison.
 
+###### Examples
+The table below provides some example ISO 8601 durations. This list is not intended to be exhaustive. 
+
+<table>
+	<tr><th>Example</th><th>Explanation</th></tr>
+	<tr>
+		<td>PT4H35M59.14S</td>
+		<td>Four hours, thirty five minutes and 59.14 seconds.</td>
+	</tr>
+	<tr>
+		<td>P16559.14S</td>
+		<td>The same time peroid as above represented in seconds. 
+		(Note: if the time peroid in question contained a leap second, this conversion would be inaccurate)</td>
+	</tr>
+	<tr>
+		<td>P3Y1M29DT4H35M59.14S</td>
+		<td>A duration also including years, months and days.</td>
+	</tr>
+	<tr>
+		<td>P3Y</td>
+		<td>Aproximately three years e.g. completion of a qualification.</td>
+	</tr>
+	<tr>
+		<td>P4W</td>
+		<td>Four weeks. Not that weeks cannot be combined with other time peroids. 'P4W1D' is not valid.</td>
+	</tr>
+</table>
+
+Duration are expected to be presented in the format in which they are recorded. For example if a duration is tracked
+in seconds (or fractions of a second) there is no need to convert this to hours, minutes and seconds. 
 
 <a name="partthree"/>
 
