@@ -2794,15 +2794,15 @@ The table below provides some example ISO 8601 durations. This list is not inten
 	</tr>
 	<tr>
 		<td>P3Y</td>
-		<td>Aproximately three years e.g. completion of a qualification.</td>
+		<td>Approximately three years e.g. completion of a qualification.</td>
 	</tr>
 	<tr>
 		<td>P4W</td>
-		<td>Four weeks. Not that weeks cannot be combined with other time peroids. 'P4W1D' is not valid.</td>
+		<td>Four weeks. Note that weeks cannot be combined with other time peroids. 'P4W1D' is not valid.</td>
 	</tr>
 </table>
 
-Duration are expected to be presented in the format in which they are recorded. For example if a duration is tracked
+Durations are expected to be presented in the format in which they are recorded. For example if a duration is tracked
 in seconds (or fractions of a second) there is no need to convert this to hours, minutes and seconds. 
 
 <a name="partthree"/>
