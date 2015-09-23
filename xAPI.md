@@ -186,8 +186,8 @@ learning that SCORM could not enable.
 >send all feedback and inquiries to helpdesk@adlnet.gov  
 
 ## Table of Contents
-*	Part One:	[Summary of the Experience API](#partone)  
-	*	1.0.	[Role of the Experience API](#roleofxapi) 
+*	Part One:	[About the Experience API](#partone)  
+	*	1.0.	[Introduction](#part_one_introduction) 
 	*	2.0.	[How To Use This Document](#readingguidelines)  
 		*	2.1.	[MUST / SHOULD / MAY](#def-must-should-may)  
 	 	*	2.2.	[Guidelines for Interpreting Descriptive Text and Tables](#interpret-text-table)  
@@ -263,46 +263,31 @@ learning that SCORM could not enable.
 #Part One: About The Experience API
 
 
-<a name="roleofxapi"/>
-## 1.0 Summary of the Experience API
+<a name="partone"/>
+#Part One: About The Experience API
 
-The Experience API (xAPI) is an Application Programming Interface (API) specification that 
-facilitates communication about experiences between a Learning Record Store and a client, 
-typically an Activity Provider. This specification was developed with learning experiences in mind, 
-but many other kinds of experiences could be tracked using xAPI. 
+<a name="part_one_introduction"/>
+## 1.0 Introduction
 
-This specification does not attempt to standardize how the Activity Provider facilitates and tracks the learning experience, 
-nor how the Learning Store stores and procesess that data. The scope of this specification is limited to the requests and responses
-between Learning Record Store and client. 
+The Experience API (xAPI) is a technical specification that aims to facilitate the documentation and communication of learning experiences.  It does so by setting out a protocol that specifies how learning experiences should be described and an Application Programming Interface that sets out how information about these experiences should be formatted and exchanged electronically.  
 
-The purpose of the xAPI and the goals of this document are:
-* To maximize interoperability of systems which create, gather and store information  
-about learning experiences.
-* To provide a guide to those who want to build applications that conform to and implement this 
-specification.
+The xAPI is an initiative of the Advanced Distributed Learning (ADL), established in 1997 to standardize and modernize training and education management and delivery in the US. Among the many outcomes of this initiative was SCORM - the Shareable Content Object Reference Model. SCORM has become an internationally recongized framework that has been a major factor contributing to the economy and effectiveness of online learning around the world.
+  
+While SCORM has been a great success, there is a growing realization of need and to track learning experiences of individuals beyond formal, structured computer-based training.  In assessing candidates' suitability for positions or their capability form performing various tasks, there is a need to consider a wide range of formal and informal learning experiences, both on and offline.  That information, more often than not is scattered across a wide variety of sources.
+
+Out of this perceived need, the xAPI initiative and specification was born.  xAPI assumes that:
+  * There is a need to be able to analyze information about learning experiences distributed across a wide variety of sources.
+  * Developing a commonly-accepted framework for gathering, storing and exchanging this information represents the best way of achieving this.
+
+The goals of the xAPI are:
+
+* To make it easier to understand and compare learning experiences recorded in a wide variety of places.
+* To maximize interoperability of systems which create, gather, store and process information about learning experiences.
+* To provide a guide to those who want to build applications that conform to and implement this specification.
 * To provide criteria against which conformance to this specification can be tested.
 
-There are two main ways that the xAPI promotes interoperability between systems that 
-implement the specification. The first is by requiring that systems implementing the specification
-follow a consistent data structure. To that end, this specification defines a data model for various data
-objects that are transferred between systems. The most significant object within the xAPI data model is the Statement object. This
-specification defines the properties of the Statement object (including "Actor", "Verb", "Object", "Result", and "Context")
-and the rules of syntax for the values of those properties and how they are represented.
+The document that follows sets out the xAPI framework which is designed to achieve these goals. 
 
-The second way that the xAPI promotes interoperability is by setting out the transfer methods that must 
-be used when communicating information about learning experiences between programs that adhere to the 
-specification. As part of this, it sets out the format of requests and the expected responses. Note that the 
-systems storing or retrieving records need not be Activity Providers. LRSs can communicate with other LRSs, or systems. 
-xAPI follows the guidelines of the REST software architecture style, and as such data is tranferred via HTTP requests and
-responses. xAPI also defines security methods allowing for the trusted exchange of information between
-the Learning Record Store and trusted sources. 
-
-The Experience API is the first of many envisioned technologies that will enable
-a richer architecture of online learning and training. Authentication
-services, querying services, visualization services, and personal data services 
-are some examples of additional technologies which the Experience API is designed
-to support. While the implementation details of these services are not specified here,
-the Experience API is designed with this larger architectural vision in mind.
 
 <a name="readingguidelines"/> 
 
