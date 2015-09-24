@@ -186,7 +186,7 @@ learning that SCORM could not enable.
 >send all feedback and inquiries to helpdesk@adlnet.gov  
 
 ## Table of Contents
-*	Part One:	[About the API](#partone)  
+*	Part One:	[About the Experience API](#partone)  
 	*	1.0.	[Introduction](#roleofxapi) 
 	*	2.0.	[How To Use This Document](#part_one_introduction)  
 		*	2.1.	[MUST / SHOULD / MAY](#def-must-should-may)  
