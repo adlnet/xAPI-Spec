@@ -193,9 +193,10 @@ learning that SCORM could not enable.
 	 	*	2.2.	[Guidelines for Interpreting Descriptive Text and Tables](#interpret-text-table)  
 	*	3.0.	[Serialization and JavaScript Object Notation](#json)
 	*	4.0.	[Definitions](#definitions) 
-	*	5.0.	[xAPI Components](#xapi-components) 
+	*	5.0.	[The xAPI Ecosystem](#xapi_ecosystem) 
+		*	5.1 [Handling Statements](#handling_statements) 
+		*	5.2 [Communities of Practice](#COPs)
 	*	6.0.	[Extending xAPI](#extending-xapi) 
-	*	7.0.	[Profiles and Communities of Practice](#COPs)  
 *	Part Two:	[Experience API (xAPI) Data](#parttwo)  
 	*	1.0.	[Documents](#documents) 
 	*	2.0.	[Statements](#statements)  
@@ -414,7 +415,7 @@ examples of activities include a book, an e-learning course, a hike or a meeting
 __Activity Provider (AP)__: The software object that is communicating with 
 the LRS to record information about a learning experience. May be similar to a SCORM 
 package in that it is possible to bundle learning assets with the software object that performs this 
-communication, but an Activity Provider could also be separate from the experience it is reporting about.
+communication, but an Activity Provider could also be separate from the experience it is reporting about. This term is deprecated and will be replaced by ["Statement Provider"](#def_statement_provider) in future editions of the xAPI.
 
 <a name="def-actor" />
 
@@ -533,6 +534,13 @@ __Statement__: A simple construct consisting of ```<actor (learner)>``` ```<verb
 with ```<result>```, in ```<context>``` to track an aspect of a learning experience. A set of 
 several Statements might be used to track complete details about a learning experience.
 
+<a name="def_statement_provider"/>
+__Statement Provider__:  The entity responsible for generating, formatting and sending statements about learning experiences to an [LRS](#def-learning-record-store).  It replaces the term ["Activity Provider"](#def-activity-provider) which suggests that this functional component of the system also is responsible for launching or generating activities which it is not.  A Statement Provider can be separate from the experience it is reporting about.
+
+<a name="def_Statement_Processor"/>
+__Statement Processor__:  The entity - software responsible for  acquiring information from one or more [Learning Record Stores](#def-learning-record-store) and analyzing that 
+information and generating reports required by its users.  
+
 <a name="def-tcapi"/>
 
 __Tin Can API (TCAPI)__: The previous name of the API defined in this document, often used in 
@@ -544,9 +552,22 @@ __Verb__: Defines the action being done by the Actor within the Activity within 
 
 <a name="xapi-components" />
 
-## 5.0 xAPI Components
+<a name="xapi_ecosystem"/>
+## 5.0 The xAPI Ecosystem
+<a name=handling_statements"/>
+### 5.1 Handling Statements<a name="handling_statements"/>
+xAPI is based on the assumption that information about learning experiences will be scattered across a multitude of entities that create, store and analyze it.   These different entities form a sort of ecosystem has three major players or components:
 
-This section explains and shows graphically how different pieces of xAPI can fit together.  
+1. [Statement Providers](#def_statement_provider) which are responsible for gathering and formatting the raw data about learning experiences and providing that data to Learning Record Stores;
+2. [Learning Record Stores](#def-learning-record-store) (LRS) which are responsible for storing and providing the data about the learning experiences.  In the xAPI specification, statements of learning experience are considered 
+to be evidence about what the learner has done or achieved.  It is the responsibility of the LRS to ensure that these statements are stored and provided back to consumers with exactly the same data that was provided.
+3. [Statement Processors](#def_statement_processor) which are responsible for gathering and formatting the information from the record stores and making it available to final users in a way that is meaningful and useful to them
+
+These "players" in the system are not actually programs but rather represent areas of functionality.  It is possible for example that a [Learning Management System](#def_learning_management_system) might contain include all three functions within it.  The [LMS](#def_learning_management_system) might enable users to launch online lessons, gather and store information about their progress and then provide reports to users about the different learners' experiences in the system.  For the most part, these LMSs are restricted to performing these functions on a relatively group of people involving only one type of learning experience.  With the xAPI specification, it is envisaged Statement Processors will be able to gather and process information from a large number of Learning Record stores containing information about vastly different learning experiences. 
+
+The Figure below illustrates what a small part of such an ecosystem might look like.
+
+![xAPI EcoSystem](/xAPI_EcoSystem.png) 
 
 ##### Tracking Experiences Through Systems
 
