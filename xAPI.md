@@ -610,19 +610,17 @@ field is the [Medbiquitous xAPI Interest Group](http://groups.medbiq.org/medbiq/
 
 ###### Description
 
-Communities of practice will, at some point in time, need to establish new Verbs to meet the needs of their constituency.
+Communities of practice could find the need to establish new Verbs, Activities, Extensions, etc. to meet the needs of their constituency.
 
 Therefore, it is expected that xAPI communities of practice generate profiles, lists, and repositories that become 
-centered on Verb vocabularies.  ADL is creating a companion document containing Verbs for xAPI to serve the ADL Community.
-
-In fulfillment of the requirements below, a collection of IRIs of recommended Verbs exists.  There are times when 
-Activity Providers might wish to use a different Verb for the same meaning.
+centered on vocabularies.  Verbs are likely to be the most common of these vocabularies, as many profiles begin by defining
+them.  There are times when Activity Providers might wish to use a different Verb for the same meaning.
 
 ###### Requirements for Communities of Practice
 
-* Anyone establishing a new Verb MUST own the IRI, or MUST have permission from the owner to use it to denote an xAPI Verb;
-* Anyone establishing a new Verb SHOULD make a human-readable description of the intended usage of the Verb 
-accessible at the IRI.
+* Anyone establishing a new vocabulary entry MUST own the IRI, or MUST have permission from the owner to use it to denote an xAPI Verb, Activity, Extension, etc.;  (This MUST cannot be enforced by an LRS, rather is meant to show the gravity of 
+coining new entries without control)
+* Anyone establishing a new vocabulary entry SHOULD make a human-readable description of the intended usage accessible at the IRI.
 
 
 <a name="parttwo" />
