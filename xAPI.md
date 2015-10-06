@@ -795,7 +795,7 @@ JSON will change if the referenced Activities change (see the
 * Verbs referenced by a Statement. The Display property of the Verb is not considered 
 part of the Statement itself (see the [Statement API's](#stmtapi) "format" parameter for details). 
 
-* Serialization of timestamp data. This is not considered part of the immutable statement 
+* Serialization of Timestamp data. This is not considered part of the immutable statement 
 itself. For example, the timestamp and stored properties of a statement can be returned
 in a different timezone to the one with which they were stored so long as the point in time
 referenced is not affected. See [4.1.7 Timestamp](#timestamp) and [4.1.8 Stored](#stored) for details. 
@@ -914,11 +914,11 @@ The details of each property of a statement are described in the table below.
 	<td>Context that gives the Statement more meaning. Examples: a team the Actor is 
 	working with, altitude at which a scenario was attempted in a flight simulator.</td>
 	<td>Optional</td></tr>
-	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td>
+	<tr><td><a href="#timestamp">timestamp</a></td><td>Timestamp</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
 	of when the events described within this Statement occurred. Set by the LRS if not provided.</td>
 	<td>Optional</td></tr>
-	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td>
+	<tr><td><a href="#stored">stored</a></td><td>Timestamp</td>
 	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
 	of when this Statement was recorded. Set by LRS.</td>
 	<td>Set by LRS</td></tr>
@@ -2112,56 +2112,47 @@ The time at which the experience occurred.
 
 ###### Details
 
-A timestamp is formatted according to the normal format of ISO 8601 and corresponds to the time of when the events 
-described within this Statement occurred. If it is not included in the Statement when it is submitted to the LRS,
-the LRS populates it with the same value it would use with [Stored](#stored).
+The timestamp property is of type Timestamp. It is formatted according to the normal format of ISO 8601 and corresponds to 
+the time of when the events described within this Statement occurred. If it is not included in the Statement when it is 
+submitted to the LRS, the LRS populates it with the same value it would use with [Stored](#stored).
 
-A timestamp in a Statement can differ from 
-[Stored](#stored) (the time at which the statement is stored). Namely, there can be delays between the occurrence of the 
-experience and the reception of the corresponding Statement by the LRS. 
+The timestamp property in a Statement can differ from the [stored property](#stored) (the time at which the statement is 
+stored). Namely, there can be delays between the occurrence of the experience and the reception of the corresponding 
+Statement by the LRS. 
 
-Where the experience occurs over a period of time, the timestamp can represent the start, end or any point of time 
+Where the experience occurs over a period of time, the timestamp property can represent the start, end or any point of time 
 during the experience. It is expected that communities of practice will define an appropriate point to record the 
-timestamp for different experiences. For example when recording the experience of eating at a restaurant, it might 
-be most appropriate to record the timestamp of the start of the experience; when recording the experience of 
-completing a qualification, it might be most appropriate to record the timestamp of the end of the experience.
+Timestamp for different experiences. For example when recording the experience of eating at a restaurant, it might 
+be most appropriate to record the Timestamp of the start of the experience; when recording the experience of 
+completing a qualification, it might be most appropriate to record the Timestamp of the end of the experience.
 These examples are for illustrative purposes only and are not meant to be prescriptive.
 
 ###### Requirements
-* A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
-* The timestamp property SHOULD* be set by the LRS to the value of [Stored](#stored) if not provided.
-* A timestamp SHOULD* include the time zone.
-* If the timestamp includes a time zone, the LRS MAY be return the timestamp using a different timezone to the one originally used in the statement
-so long as the point in time referenced is not affected. The LRS SHOULD* return the timestamp in UTC timezone. 
-* A timestamp MAY represent any point during an experience, not necessarily the beginning or end. 
-* A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
-* An AP MUST NOT use a future time for a timestamp in a Statement.
-* An LRS MUST NOT reject a timestamp for being from the future, to prevent issues due to clock errors.
-* A SubStatement MAY have a timestamp that is in the future.
+
+* For requirements pertaining to the Timestamp data type, click [here](#timestamps).
+* The timestamp property SHOULD* be set by the LRS to the value of the [stored property](#stored) if not provided.
+* A timestamp property MAY represent any point during an experience, not necessarily the beginning or end. 
+* An AP MUST NOT use a future time for a timestamp property in a Statement.
+* A SubStatement MAY have a timestamp property that is in the future.
 
 <a name="stored"/> 
 
 #### 2.4.8 Stored
 
 ###### Description 
-The time at which a Statement is stored by the LRS. This can be any time between when the LRS receives the Statement and when it is written
-to storage. 
+The time at which a Statement is stored by the LRS. This can be any time between when the LRS receives the Statement and 
+when it is written to storage. 
 
 ###### Details 
-The stored property is the literal time the Statement was stored.  The LRS will use [Timestamp](#timestamp) 
+The stored property is the literal time the Statement was stored.  The LRS will use the [timestamp property](#timestamps) 
 to record the time at which the experience described in the Statement.
 
 ###### Requirements
 
-* The stored property MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
+* For requirements pertaining to the Timestamp data type, click [here](#timestamps).
 * The stored property MUST be set by the LRS; An LRS MUST validate and then overwrite any value currently in the 
 stored property of a Statement it receives.
-* The stored property SHOULD include the time zone.
-* If the stored property includes a time zone, the LRS MAY be return the stored property using a different timezone to the one originally used in the statement.
-so long as the point in time referenced is not affected. The LRS SHOULD* return the stored property in UTC timezone. 
 * The stored property SHOULD be the current or a past time.
-* The stored property MAY be truncated or rounded to a precision of at least 3 decimal digits
-for seconds (millisecond precision MUST be preserved). 
 
 <a name="authority"/> 
 
@@ -2747,12 +2738,12 @@ expected (a MUST requirement on the LRS) to keep precision to at least milliseco
 seconds).  
 
 ###### Requirements
-* A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
-* A timestamp SHOULD* include the time zone.
-* If the timestamp includes a time zone, the LRS MAY be return the timestamp using a different timezone to the one originally used in the statement so long as the point in time referenced is not affected. The LRS SHOULD* return 
-the timestamp in UTC timezone. 
-* A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
-* An LRS MUST NOT reject a timestamp for being from the future, to prevent issues due to clock errors.
+* A Timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
+* A Timestamp SHOULD* include the time zone.
+* If the Timestamp includes a time zone, the LRS MAY be return the Timestamp using a different timezone to the one originally used in the statement so long as the point in time referenced is not affected. 
+* The LRS SHOULD* return the Timestamp in UTC timezone. 
+* A Timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
+* An LRS MUST NOT reject a Timestamp for being from the future, to prevent issues due to clock errors.
 
 <a name="durations"/>
 
@@ -3299,14 +3290,14 @@ Object.
 		<td>since</td>
 		<td>Timestamp</td>
 		<td> </td>
-		<td>Only Statements stored since the specified timestamp (exclusive) are returned.</td>
+		<td>Only Statements stored since the specified Timestamp (exclusive) are returned.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>until</td>
 		<td>Timestamp</td>
 		<td> </td>
-		<td>Only Statements stored at or before the specified timestamp are returned.</td>
+		<td>Only Statements stored at or before the specified Timestamp are returned.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
@@ -3375,7 +3366,7 @@ an empty array.
 * The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
 <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601
 combined date and time</a> format, on all responses to Statements requests, with a value of the 
-timestamp for which all Statements that have or will have a "stored" property before that time 
+Timestamp for which all Statements that have or will have a "stored" property before that time 
 are known with reasonable certainty to be available for retrieval. This time SHOULD take into 
 account any temporary condition, such as excessive load, which might cause a delay in Statements 
 becoming available for retrieval.
@@ -3386,7 +3377,7 @@ multipart response format and include all attachments as described in <a href="#
 * If the attachment property of a GET statement is used and is set to <code>false</code>, the LRS MUST NOT
 include attachment raw data and MUST report application/json.
 
-* The LRS SHOULD* include a "Last-Modified" header which matches the Stored timestamp of the Statement. 
+* The LRS SHOULD* include a "Last-Modified" header which matches the value of the stored property of the Statement. 
 
 <a name="queryStatementRef" />
 
@@ -3525,7 +3516,7 @@ Example endpoint: http://example.com/xAPI/activities/state
 Fetches State Ids of all state data for this context (Activity + Agent \[ + 
 registration if specified\]). If "since" parameter is specified, this 
 is limited to entries that have been stored or updated since the specified 
-timestamp (exclusive).  
+Timestamp (exclusive).  
 
 **Content:** None.
 
@@ -3554,7 +3545,7 @@ timestamp (exclusive).
 	<tr>
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of states stored since the specified timestamp (exclusive) are returned.</td>
+		<td>Only ids of states stored since the specified Timestamp (exclusive) are returned.</td>
 		<td>Optional</td>
 	</tr>
 </table>
@@ -3770,7 +3761,7 @@ Example endpoint: http://example.com/xAPI/agents/profile
 
 Fetches Profile Ids of all profile entries for an Agent. If "since" parameter is specified, 
 this is limited to entries that have been stored or updated since the specified 
-timestamp (exclusive).  
+Timestamp (exclusive).  
 
 **Content:** None.
 
@@ -3787,7 +3778,7 @@ timestamp (exclusive).
 	<tr>
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of profiles stored since the specified timestamp 
+		<td>Only ids of profiles stored since the specified Timestamp 
 			(exclusive) are returned.</td>
 		<td>Optional</td>
 	</tr>
@@ -3840,7 +3831,7 @@ Example endpoint: http://example.com/xAPI/activities/profile
 
 Fetches Profile Ids of all profile entries for an Activity. If "since" parameter is 
 specified, this is limited to entries that have been stored or updated since 
-the specified timestamp (exclusive).  
+the specified Timestamp (exclusive).  
 
 **Content:** None.
 
@@ -3857,7 +3848,7 @@ the specified timestamp (exclusive).
 	<tr>
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of profiles stored since the specified timestamp (exclusive) 
+		<td>Only ids of profiles stored since the specified Timestamp (exclusive) 
 		are returned.</td>
 		<td>Optional</td>
 	</tr>
