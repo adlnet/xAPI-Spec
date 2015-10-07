@@ -1580,7 +1580,7 @@ In this example, ```foo[,]bar``` and  ```foo``` are correct learner responses; `
 
 The Correct Responses Pattern, if used, is intended to be an exhaustive list of possible correct responses. Where the criteria for a question are complex and correct responses cannot be exhaustively listed, Activity Providers are discouraged from using the "correct responses pattern" property.
 
-The Activity Provider is allowed to mark questions as correct where the response does not match the correct responses pattern. Systems reading statements cannot infer success based on comparison of the Response with the Correct Responses Pattern, nor can they rely on the Correct Responses Pattern always being exhaustive. 
+Systems reading statements cannot infer success based on comparison of the Response with the Correct Responses Pattern, nor can they rely on the Correct Responses Pattern always being exhaustive. The Activity Provider is allowed to mark questions as correct where the response does not match the correct responses pattern, though this is discouraged except in exceptional circumstances.
 
 ###### Characterstring parameters
 Some of the values within the responses described above can be prepended with certain additional parameters. These were originally based on the characterstring
