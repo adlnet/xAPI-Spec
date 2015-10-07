@@ -914,13 +914,11 @@ The details of each property of a statement are described in the table below.
 	<td>Context that gives the Statement more meaning. Examples: a team the Actor is 
 	working with, altitude at which a scenario was attempted in a flight simulator.</td>
 	<td>Optional</td></tr>
-	<tr><td><a href="#timestamp">timestamp</a></td><td>Timestamp</td>
-	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
-	of when the events described within this Statement occurred. Set by the LRS if not provided.</td>
+	<tr><td><a href="#timestamp">timestamp</a></td><td>[Timestamp](#timestamps)</td>
+	<td>Timestamp of when the events described within this Statement occurred. Set by the LRS if not provided.</td>
 	<td>Optional</td></tr>
-	<tr><td><a href="#stored">stored</a></td><td>Timestamp</td>
-	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
-	of when this Statement was recorded. Set by LRS.</td>
+	<tr><td><a href="#stored">stored</a></td><td>[Timestamp](#timestamps)</td>
+	<td>Timestamp of when this Statement was recorded. Set by LRS.</td>
 	<td>Set by LRS</td></tr>
 	<tr><td><a href="#authority">authority</a></td><td>Object</td>
 	<td>Agent or Group who is asserting this Statement is true. Verified by the LRS based on 
