@@ -734,7 +734,7 @@ Complete IRI validation is extremely difficult, so much of the burden for ensuri
 * Lowercase SHOULD be used to send case insensitive data.
 * Additional properties SHOULD* NOT be added to Statements unless explicitly allowed by this specification. 
 
-Note: The LRS is recommended to reject Statements containing additional properties. Additional properties in 
+__Note:__ The LRS is recommended to reject Statements containing additional properties. Additional properties in 
 Statements would mean that the Statement would not be interoperable with all LRS. 
 
 ###### LRS Requirements
@@ -3332,7 +3332,7 @@ Object.
 	</tr>
 </table>
 
-__Note:__The values of Boolean parameters are represented as ```true``` or ```false``` as in JSON. 
+__Note:__ The values of Boolean parameters are represented as ```true``` or ```false``` as in JSON. 
 
 ###### Requirements
 
@@ -3395,7 +3395,7 @@ with an Actor filter of "Ben" or an Activity filter of "explosives training", bo
 Statements match and will be returned so long as they fall into the time or sequence
 being fetched.
 
-__Note:__StatementRefs used as a value of the Statement property within Context do not affect how
+__Note:__ StatementRefs used as a value of the Statement property within Context do not affect how
 Statements are filtered.
 
 <a name="queryLangFiltering" />
