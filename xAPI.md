@@ -1842,8 +1842,7 @@ The following table contains the properties of the Results Object.
 </tr>
 <tr>
 	<td>duration</td>
-	<td>Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>
-	with a precision of 0.01 seconds</td>
+	<td>[Duration](#durations)</td>
 	<td>Period of time over which the Statement occurred.</td>
 	<td>Optional</td>
 </tr>
@@ -1855,18 +1854,6 @@ The following table contains the properties of the Results Object.
 	<td>Optional</td>
 </tr>
 </table> 
-
-###### Duration Requirements
-
-* The Duration property MUST be expressed using the format for duration in ISO 8601:2004(E) section 4.4.3.2.
-The alternative format (in conformity with the format used for time points and described in ISO 8601:2004(E) 
-section 4.4.3.3) MUST NOT be used.
-* Clients SHOULD provide a maximum precision of 0.01 seconds. 
-* Clients MAY provide less precision, for example in the case of reading a University Degree precision might 
-be in months or years. 
-* On receiving a Duration with more that 0.01 second precision, the LRS SHOULD* NOT reject the request but MAY 
-truncate the Duration property to 0.01 second precision. 
-* When comparing Statements, any precision beyond 0.01 second precision SHOULD* NOT be included in the comparison. 
 
 <a name="Score"/>
 
@@ -2402,7 +2389,7 @@ is not included with the Statement.
 * The owner of the attachment MAY stop providing the attachment data at this IRL at any time. 
 * Security restrictions MAY be applied to clients attempting to access the attachment data at this IRL. 
 
-The duration an attachment is made available for, and the security restrictions applied to
+The period of time an attachment is made available for, and the security restrictions applied to
 hosted attachments, are out of scope of this specification. 
 
 ###### Example
@@ -2753,7 +2740,7 @@ Durations are strings representing the amount of time something took.  A duratio
 
 ###### Requirements
 
-* The Duration property MUST be expressed using the format for duration in ISO 8601:2004(E) section 4.4.3.2.
+* A Duration MUST be expressed using the format for duration in ISO 8601:2004(E) section 4.4.3.2.
 The alternative format (in conformity with the format used for time points and described in ISO 8601:2004(E) 
 section 4.4.3.3) MUST NOT be used.
 * Clients SHOULD provide a maximum precision of 0.01 seconds. 
@@ -2761,7 +2748,7 @@ section 4.4.3.3) MUST NOT be used.
 be in months or years. 
 * On receiving a Duration with more that 0.01 second precision, the LRS SHOULD* NOT reject the request but MAY 
 truncate the Duration property to 0.01 second precision. 
-* When comparing Statements, any precision beyond 0.01 second precision SHOULD* NOT be included in the comparison.
+* When comparing Durations, any precision beyond 0.01 second precision SHOULD* NOT be included in the comparison.
 
 
 <a name="partthree"/>
