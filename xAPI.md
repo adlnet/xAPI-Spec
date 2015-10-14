@@ -3723,6 +3723,10 @@ Loads the complete Activity Object specified.
 	</td>
 </table>
 
+###### Requirements
+
+* If an LRS does not have a canonical definition of the Activity to return, the LRS SHOULD* still return an Activity Object when queried.
+
 <a name="agentprofres"/>
 
 ### 2.2.5 Agent Profile Resource
