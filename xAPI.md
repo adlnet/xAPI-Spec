@@ -2357,7 +2357,7 @@ following criteria:
 
 * It MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for Statement 
 results when the attachments filter is false.
-* It MUST conform to the definition of multipart/mixed in [RFC 1341](http://www.w3.org/Protocols/rfc1341/7_2_Multipart.html) and:
+* It MUST conform to the definition of multipart/mixed in [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt) and:
     * The first part of the multipart document MUST contain the Statements themselves, with type "application/json".
     * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
     capability will be available when issuing PUT or POST against the Statement resource.
@@ -2424,7 +2424,7 @@ Below is an example of a very simple Statement with an attachment. Please note t
 * The selected boundary does not appear in any of the parts;
 * For readability the sample attachment is text/plain. Even if it had been a 'binary' type
 like 'image/jpeg' no encoding would be done, the raw octets would be included;
-* Per RFC 1341, the boundary is <CRLF> followed by -- followed by the boundary string declared in the header.
+* Per RFC 2046, the boundary is <CRLF> followed by -- followed by the boundary string declared in the header.
 
 Don't forget the ```<CRLF>```  when building or parsing these messages.
 
