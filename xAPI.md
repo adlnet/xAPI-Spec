@@ -3609,11 +3609,13 @@ Example endpoint: http://example.com/xAPI/agents
 Return a special, Person Object for a specified Agent. The Person Object is 
 very similar to an Agent Object, but instead of each attribute having a single 
 value, each attribute has an array value, and it is legal to include multiple 
-identifying properties. Note that the parameter is still a normal Agent Object 
-with a single identifier and no arrays. Note that this is different from the 
+identifying properties. This is different from the 
 FOAF concept of person, person is being used here to indicate a person-centric 
 view of the LRS Agent data, but Agents just refer to one persona (a person in 
 one context).  
+
+The 'agent' parameter is a normal Agent Object with a single identifier and no arrays. 
+It is not a Person Object, nor is it a Group. 
 
 **Content:** None.
 
