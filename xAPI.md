@@ -1584,15 +1584,17 @@ See [the long-fill-in example within Appendix C](#long-fill-in).
 
 The following parameters are valid at the start of the string representing the list of items for the listed interaction types:
 <table>
-	<tr><th>Parameter</th><th>Description</th><th>Value</th><th>Interaction types</th></tr>
+	<tr><th>Parameter</th><th>Default</th><th>Description</th><th>Value</th><th>Interaction types</th></tr>
 	<tr>
 		<td>case_matters</td>
+		<td>false</td>
 		<td>Whether or not the case of items in the list matters.</td>
 		<td><code>true</code> or <code>false</code></td>
 		<td>fill-in, long-fill-in</td>
 	</tr>
 	<tr>
 		<td>order_matters</td>
+		<td>true</td>
 		<td>Whether or not the order of items in the list matters.</td>
 		<td><code>true</code> or <code>false</code></td>
 		<td>fill-in, long-fill-in, performance</td>
