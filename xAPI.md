@@ -3769,6 +3769,9 @@ specified Agent.
 	</tr>
 </table>  
 
+__Note:__ The agent parameter is an Agent Object and not a Group. Activity Providers wishing to store data
+against an Identified Group can use the Identified Group's identifier within an Agent Object. 
+
 ###### Multiple Document GET 
 Example endpoint: http://example.com/xAPI/agents/profile
 
