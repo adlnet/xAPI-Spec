@@ -2172,7 +2172,7 @@ the Statement data model is guaranteed consistent through all 1.0.x versions, in
 flow among such LRSs the LRS is given some flexibility on Statement versions that are accepted.
 
 ###### Requirements
-* Version MUST be formatted as laid out for the API version header in [API Versioning](#apiversioning)
+* Version MUST be formatted as laid out for the API version header in [Versioning](#versioning)
 
 ###### LRS Requirements
 * An LRS MUST accept all Statements where their version starts with "1.0." if they otherwise validate.
@@ -2601,7 +2601,7 @@ identifier was not coined for use with this specification.
 
 The following are data types requiring additional rules that are found commonly in this specification.
 
-<a name="extensions"/> 
+<a name="miscext"/> 
 
 ### 4.1 Extensions
 
@@ -3841,7 +3841,7 @@ the latest minor and patch version the LRS conforms to, for each major version.
 property MUST occur only once.  
 * An LRS SHOULD allow unauthenticated access to this resource
 * An LRS MUST NOT reject requests based on their version header as would otherwise be 
-required by <a href="#apiversioning"/>6.2 API Versioning</a>.
+required by <a href="#versioning"/>Versioning</a>.
 
 
 <a name="validation"/> 
