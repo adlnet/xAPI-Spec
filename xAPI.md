@@ -618,8 +618,9 @@ them.  There are times when Activity Providers might wish to use a different Ver
 
 ###### Requirements for Communities of Practice
 
-* Anyone establishing a new vocabulary entry MUST own the IRI, or MUST have permission from the owner to use it to denote an xAPI Verb, Activity, Extension, etc.;  (This MUST cannot be enforced by an LRS, rather is meant to show the gravity of 
-coining new entries without control)
+* Anyone establishing a new vocabulary entry MUST own the IRI, or MUST have permission from the owner to use it to denote an
+xAPI Verb, Activity, Extension, etc.;  (This requirement cannot be enforced by an LRS, rather is meant to show the gravity 
+of coining new entries without control)
 * Anyone establishing a new vocabulary entry SHOULD make a human-readable description of the intended usage accessible at the IRI.
 
 
@@ -863,10 +864,10 @@ The details of each property of a statement are described in the table below.
 	<td>Context that gives the Statement more meaning. Examples: a team the Actor is 
 	working with, altitude at which a scenario was attempted in a flight simulator.</td>
 	<td>Optional</td></tr>
-	<tr><td><a href="#timestamp">timestamp</a></td><td>[Timestamp](#timestamps)</td>
+	<tr><td><a href="#timestamp">timestamp</a></td><td><a href="#timestamps">Timestamp</a></td>
 	<td>Timestamp of when the events described within this Statement occurred. Set by the LRS if not provided.</td>
 	<td>Optional</td></tr>
-	<tr><td><a href="#stored">stored</a></td><td>[Timestamp](#timestamps)</td>
+	<tr><td><a href="#stored">stored</a></td><td><a href="#timestamps">Timestamp</a></td>
 	<td>Timestamp of when this Statement was recorded. Set by LRS.</td>
 	<td>Set by LRS</td></tr>
 	<tr><td><a href="#authority">authority</a></td><td>Object</td>
@@ -1789,7 +1790,7 @@ The following table contains the properties of the Results Object.
 </tr>
 <tr>
 	<td>duration</td>
-	<td>[Duration](#durations)</td>
+	<td><a href="#durations">Duration</a></td>
 	<td>Period of time over which the Statement occurred.</td>
 	<td>Optional</td>
 </tr>
@@ -2046,9 +2047,9 @@ The time at which the experience occurred.
 
 ###### Details
 
-The timestamp property is of type Timestamp. It is formatted according to the normal format of ISO 8601 and corresponds to 
-the time of when the events described within this Statement occurred. If it is not included in the Statement when it is 
-submitted to the LRS, the LRS populates it with the same value it would use with [Stored](#stored).
+The timestamp property is of type [Timestamp](#timestamps). It is formatted according to the normal format of ISO 8601 and 
+corresponds to the time of when the events described within this Statement occurred. If it is not included in the Statement 
+when it is submitted to the LRS, the LRS populates it with the same value it would use with [Stored](#stored).
 
 The timestamp property in a Statement can differ from the [stored property](#stored) (the time at which the statement is 
 stored). Namely, there can be delays between the occurrence of the experience and the reception of the corresponding 
@@ -2063,7 +2064,7 @@ These examples are for illustrative purposes only and are not meant to be prescr
 
 ###### Requirements
 
-* For requirements pertaining to the Timestamp data type, click [here](#timestamps).
+* For requirements pertaining to the Timestamp data type, see [Part 3: Timestamps](#timestamps).
 * The timestamp property SHOULD* be set by the LRS to the value of the [stored property](#stored) if not provided.
 * A timestamp property MAY represent any point during an experience, not necessarily the beginning or end. 
 * An AP MUST NOT use a future time for a timestamp property in a Statement.
@@ -2078,8 +2079,8 @@ The time at which a Statement is stored by the LRS. This can be any time between
 when it is written to storage. 
 
 ###### Details 
-The stored property is the literal time the Statement was stored.  The LRS will use the [timestamp property](#timestamps) 
-to record the time at which the experience described in the Statement.
+The stored property is of type [Timestamp](#timestamps).The stored property is the literal time the Statement was stored. 
+Used to record the time at which the experience described in the Statement.
 
 ###### Requirements
 
@@ -2666,24 +2667,25 @@ string form.  It is recommended variant 2 in [RFC 4122](http://tools.ietf.org/ht
 
 ### 4.5 ISO 8601 Timestamps
 
-Timestamps are a format type (and also a Statement property of type Timestamp) which are strings which represent 
-a specific time.  They are formatted according to ISO 8601's normal format.  Statements sent to an LRS can be 
-expected (a MUST requirement on the LRS) to keep precision to at least milliseconds (3 decimal points beyond 
-seconds).  
+Timestamps are a format type which represent a specific time.  They are formatted according to ISO 8601's normal format. 
+Statements sent to an LRS can be expected to keep precision to at least milliseconds 
 
 ###### Requirements
 * A Timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
+* A Timestamp MUST preserve precision to at least milliseconds (3 decimal points beyond seconds).  
 * A Timestamp SHOULD* include the time zone.
-* If the Timestamp includes a time zone, the LRS MAY be return the Timestamp using a different timezone to the one originally used in the statement so long as the point in time referenced is not affected. 
+* If the Timestamp includes a time zone, the LRS MAY be return the Timestamp using a different timezone to the one 
+* originally used in the statement so long as the point in time referenced is not affected. 
 * The LRS SHOULD* return the Timestamp in UTC timezone. 
-* A Timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
-* An LRS MUST NOT reject a Timestamp for being from the future, to prevent issues due to clock errors.
+* A Timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds. 
+* An LRS SHOULD* NOT reject a Timestamp for having a greater value than the current time, to prevent issues due to clock 
+* errors.
 
 <a name="durations"/>
 
 ### 4.6 ISO 8601 Durations
 
-Durations are strings representing the amount of time something took.  A duration is a property of a Result Object.
+Durations are strings representing the amount of time something took.
 
 ###### Requirements
 
