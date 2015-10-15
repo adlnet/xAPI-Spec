@@ -632,59 +632,8 @@ coining new entries without control)
 
 ### Document
 
-##### Description
-The Experience API provides a facility for Activity Providers to save arbitrary data in 
-the form of documents, perhaps related to an Activity, Agent, or combination of both.  
-
-##### Details
-Note that the following table shows generic properties, not a JSON Object as many other tables 
-in this specification do. The id is stored in the IRL, "updated" is HTTP header information, and 
-"contents" is the HTTP document itself (as opposed to an Object).
-<table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>id</td><td>String</td><td>Set by AP, unique within the scope of the agent or activity.</td></tr>
-	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
-	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
-</table>
-
-The following process walks through that process and the process requirements.  
-For example, a document contains: 
-
-```
-{
-	"x" : "foo",
-	"y" : "bar"
-}
-```  
-When an LRS receives a POST request with content type application/json for an existing document also of
-content type application/json, it MUST merge the posted document with the existing document. 
-In this context merge is defined as:
-* de-serialize the Objects represented by each document
-* for each property directly defined on the Object being posted, set the corresponding
-property on the existing Object equal to the value from the posted Object.    
-* store any valid json serialization of the existing Object as the document referenced in the request
-
-Note that only top-level properties are merged, even if a top-level property is an Object.
-The entire contents of each original property are replaced with the entire contents of
-each new property.
-
-For example, this document is POSTed with the same id as the existing 
-document above:
-
-```
-{
-	"x" : "bash",
-	"z" : "faz"
-}
-```  
-the resulting document stored in the LRS is:
-```
-{
-	"x" : "bash",
-	"y" : "bar",
-	"z" : "faz"
-}
-```
+The Experience API provides a facility for Activity Providers to save arbitrary data in the form of documents.  This data 
+is largely unstructured, which allows for flexibility.  Specifics on document behaviors can be found in [Part 3](#doctransfer) 
 
 <a name="statements" /> 
 
