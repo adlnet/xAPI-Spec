@@ -1564,7 +1564,8 @@ Run-Time Environment. See [Appendix C](#AppendixC) for examples of each format.
 	</tr>
 </table>
 
-Note that the Correct Response Pattern contains an array of response patterns. A learner's response will be considered correct if it matches
+###### Correct Responses Pattern
+The Correct Responses Pattern contains an array of response patterns. A learner's response will be considered correct if it matches
 **any** of the response patterns in that array. Where a response pattern is a delimited list, the learner's response is only considered correct
 if **all** of the items in that list match the learner's response. For example, consider the Correct Response Pattern with a value of:
 
@@ -1576,6 +1577,10 @@ if **all** of the items in that list match the learner's response. For example, 
 ``` 
 
 In this example, ```foo[,]bar``` and  ```foo``` are correct learner responses; ```bar``` is not.
+
+The Correct Responses Pattern, if used, is intended to be an exhaustive list of possible correct responses. Where the criteria for a question are complex and correct responses cannot be exhaustively listed, Activity Providers are discouraged from using the "correct responses pattern" property.
+
+Systems reading statements cannot infer success based on comparison of the Response with the Correct Responses Pattern, nor can they rely on the Correct Responses Pattern always being exhaustive. The Activity Provider is allowed to mark questions as correct where the response does not match the correct responses pattern, though this is discouraged except in exceptional circumstances.
 
 Where the Correct Response Pattern contains an empty array, the meaning of this is that there is no correct
 answer; all answers are incorrect. Where any answer is correct (e.g. in a survey), the Correct Response Pattern property
@@ -2778,6 +2783,36 @@ be in months or years.
 truncate the Duration property to 0.01 second precision. 
 * When comparing Statements, any precision beyond 0.01 second precision SHOULD* NOT be included in the comparison.
 
+###### Examples
+The table below provides some example ISO 8601 durations. This list is not intended to be exhaustive. 
+
+<table>
+	<tr><th>Example</th><th>Explanation</th></tr>
+	<tr>
+		<td>PT4H35M59.14S</td>
+		<td>Four hours, thirty five minutes and 59.14 seconds.</td>
+	</tr>
+	<tr>
+		<td>P16559.14S</td>
+		<td>The same time peroid as above represented in seconds. 
+		(Note: if the time peroid in question contained a leap second, this conversion would be inaccurate)</td>
+	</tr>
+	<tr>
+		<td>P3Y1M29DT4H35M59.14S</td>
+		<td>A duration also including years, months and days.</td>
+	</tr>
+	<tr>
+		<td>P3Y</td>
+		<td>Approximately three years e.g. completion of a qualification.</td>
+	</tr>
+	<tr>
+		<td>P4W</td>
+		<td>Four weeks. Note that weeks cannot be combined with other time peroids. 'P4W1D' is not valid.</td>
+	</tr>
+</table>
+
+Durations are expected to be presented in the format in which they are recorded. For example if a duration is tracked
+in seconds (or fractions of a second) there is no need to convert this to hours, minutes and seconds. 
 
 <a name="partthree"/>
 
@@ -3726,6 +3761,10 @@ Loads the complete Activity Object specified.
 		<td>Required</td>
 	</td>
 </table>
+
+###### Requirements
+
+* If an LRS does not have a canonical definition of the Activity to return, the LRS SHOULD* still return an Activity Object when queried.
 
 <a name="agentprofres"/>
 
