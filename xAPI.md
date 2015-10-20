@@ -2069,6 +2069,8 @@ These examples are for illustrative purposes only and are not meant to be prescr
 * A timestamp property MAY represent any point during an experience, not necessarily the beginning or end. 
 * An AP MUST NOT use a future time for a timestamp property in a Statement.
 * A SubStatement MAY have a timestamp property that is in the future.
+* An LRS SHOULD* NOT reject a timestamp for having a greater value than the current time, to prevent issues due to 
+clock errors.
 
 <a name="stored"/> 
 
@@ -2678,8 +2680,6 @@ Statements sent to an LRS can be expected to keep precision to at least millisec
 * originally used in the statement so long as the point in time referenced is not affected. 
 * The LRS SHOULD* return the Timestamp in UTC timezone. 
 * A Timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds. 
-* An LRS SHOULD* NOT reject a Timestamp for having a greater value than the current time, to prevent issues due to clock 
-* errors.
 
 <a name="durations"/>
 
