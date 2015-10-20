@@ -612,9 +612,7 @@ field is the [Medbiquitous xAPI Interest Group](http://groups.medbiq.org/medbiq/
 
 Communities of practice could find the need to establish new Verbs, Activities, Extensions, etc. to meet the needs of their constituency.
 
-Therefore, it is expected that xAPI communities of practice generate profiles, lists, and repositories that become 
-centered on vocabularies.  Verbs are likely to be the most common of these vocabularies, as many profiles begin by defining
-them.  There are times when Activity Providers might wish to use a different Verb for the same meaning.
+Therefore, it is expected that xAPI communities of practice generate profiles, lists, and repositories.
 
 ###### Requirements for Communities of Practice
 
