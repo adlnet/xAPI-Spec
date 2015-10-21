@@ -3705,16 +3705,8 @@ Note that only top-level properties are merged, even if a top-level property is 
 The entire contents of each original property are replaced with the entire contents of
 each new property.
 
-<<<<<<< HEAD
 For example, this document is POSTed with the same id as the existing 
 document above:
-=======
-###### Requirements
-
-* If an LRS does not have a canonical definition of the Activity to return, the LRS SHOULD* still return an Activity Object when queried.
-
-<a name="agentprofres"/>
->>>>>>> adlnet/1.0.3-Restructure
 
 ```
 {
