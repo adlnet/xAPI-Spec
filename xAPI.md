@@ -1582,6 +1582,10 @@ The Correct Responses Pattern, if used, is intended to be an exhaustive list of 
 
 Systems reading statements cannot infer success based on comparison of the Response with the Correct Responses Pattern, nor can they rely on the Correct Responses Pattern always being exhaustive. The Activity Provider is allowed to mark questions as correct where the response does not match the correct responses pattern, though this is discouraged except in exceptional circumstances.
 
+Where the Correct Response Pattern contains an empty array, the meaning of this is that there is no correct
+answer; all answers are incorrect. Where any answer is correct (e.g. in a survey), the Correct Response Pattern property
+is ommitted. 
+
 ###### Characterstring parameters
 Some of the values within the responses described above can be prepended with certain additional parameters. These were originally based on the characterstring
 delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These parameters are represented by the format ```{parameter=value}```.
