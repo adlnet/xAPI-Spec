@@ -465,53 +465,60 @@ accessible at the IRI.
 ## Appendices
 
 <a name="Appendix1A"/>
->### Apeendix A: Revision History
->###### 0.8 (Project Tin Can API Deliverable) to 0.9 (March 31, 2012)  
+### Appendix A: Revision History
+###### 0.8 (Project Tin Can API Deliverable) to 0.9 (March 31, 2012)  
   
->Rustici Software, who delivered the Project Tin Can API, made modifications to the 
->API prior to the April 2012 Kickoff Meeting. It was voted in this meeting to 
->move those changes into the current specification and revision to 0.9.
+Rustici Software, who delivered the Project Tin Can API, made modifications to the 
+API prior to the April 2012 Kickoff Meeting. It was voted in this meeting to 
+move those changes into the current specification and revision to 0.9.
 
->###### 0.90 to 0.95 (August 31, 2012)  
+###### 0.90 to 0.95 (August 31, 2012)  
 
->"Core" Verbs and Activity types were removed from the specification. References 
->to these verbs in results, context, interactions, and Activity Definitions were 
->also  removed. It was recommended that implementers prefer community defined 
->verbs to creating their own verbs.
->- Verbs, Activity types, and extension keys are now URIs
->- Restructured and added language around some of the other implementation 
->details and scope.
->- Changed from using a person-centric view of Agents to a persona-centric 
->view.
->- Friend of a Friend (FOAF) Agent merging requirement was removed.
->- Agent Objects now have exactly 1 uniquely identifying property, instead 
->of at least one.
+"Core" Verbs and Activity types were removed from the specification. References 
+to these verbs in results, context, interactions, and Activity Definitions were 
+also  removed. It was recommended that implementers prefer community defined 
+verbs to creating their own verbs.
+- Verbs, Activity types, and extension keys are now URIs
+- Restructured and added language around some of the other implementation 
+details and scope.
+- Changed from using a person-centric view of Agents to a persona-centric 
+view.
+- Friend of a Friend (FOAF) Agent merging requirement was removed.
+- Agent Objects now have exactly 1 uniquely identifying property, instead 
+of at least one.
 
->###### 0.95 to 1.0.0 (April 26, 2013) 
->Various refinements and clarifications including:
-.- Adding attachments
->- Activity metadata is now stored as JSON rather than XML
->- Changes to voiding Statements
->- Clarification and naming of the Document APIs
->- Changes to querying the Statement API
->- Signed Statements
+###### 0.95 to 1.0.0 (April 26, 2013) 
+Various refinements and clarifications including:
+- Adding attachments
+- Activity metadata is now stored as JSON rather than XML
+- Changes to voiding Statements
+- Clarification and naming of the Document APIs
+- Changes to querying the Statement API
+- Signed Statements
 
->[0.95...1.0.0](https://github.com/adlnet/xAPI-Spec/compare/0.95-spec...1.0.0)
+[0.95...1.0.0](https://github.com/adlnet/xAPI-Spec/compare/0.95-spec...1.0.0)
 
->###### 1.0.0 to 1.0.1 (October 1, 2013)
->Clarifications and additional examples including:
->- Fixed various typos
->- Added additional examples in the appendices
+###### 1.0.0 to 1.0.1 (October 1, 2013)
+Clarifications and additional examples including:
+- Fixed various typos
+- Added additional examples in the appendices
 
->[1.0.0...1.0.1](https://github.com/adlnet/xAPI-Spec/compare/1.0.0...1.0.1)
+[1.0.0...1.0.1](https://github.com/adlnet/xAPI-Spec/compare/1.0.0...1.0.1)
 
->###### 1.0.1 to 1.0.2 (October 1, 2014)
->- Added optional/required to tables
->- Added missing table heading on Interaction components
->- Change yes/no to required/optional in attachments
->- Clarified intent of 'moreInfo' property
+###### 1.0.1 to 1.0.2 (October 1, 2014)
+- Added optional/required to tables
+- Added missing table heading on Interaction components
+- Change yes/no to required/optional in attachments
+- Clarified intent of 'moreInfo' property
 
->[1.0.1...1.0.2](https://github.com/adlnet/xAPI-Spec/compare/1.0.1...1.0.2)
+[1.0.1...1.0.2](https://github.com/adlnet/xAPI-Spec/compare/1.0.1...1.0.2)
+
+###### 1.0.2 to 1.0.3 (TBC)
+- Complete reorganization of the document into three parts
+- Many, many clarifications
+- Removed back-references to SCORM
+- Addiitional explanitory text and diagrams
+[1.0.2...1.0.3](https://github.com/adlnet/xAPI-Spec/compare/1.0.2...1.0.3)
 
 <a name="parttwo" />
 #Part Two: Experience API (xAPI) Data
@@ -5134,7 +5141,7 @@ will be granted.
 
 <a name="Appendix3A"/>
 
-### Appendix 3A: Converting Statements to 1.0.0
+### Appendix A: Converting Statements to 1.0.0
 
 ######Rationale
 This is a 1.0.0 specification, and as such implementers do not have to consider prior
