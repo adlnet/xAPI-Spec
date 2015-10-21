@@ -111,7 +111,7 @@ Experience API specification.
 
 <a name="adlrole"/>
 
-## ADL's Role in the Experience API  
+#### ADL's Role in the Experience API  
 The Advanced Distributed Learning (ADL) Initiative has taken on the roles of steward and facilitator 
 in the development of the Experience API.  The Experience API is seen as one piece of the ADL Training 
 and Learning Architecture, which facilitates learning anytime and anywhere. ADL views the Experience API 
