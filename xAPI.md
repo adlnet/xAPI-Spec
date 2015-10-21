@@ -846,7 +846,7 @@ An example of the simplest possible Statement using all properties that MUST or 
     }
 }
 ```  
-See [Appendix A: Example Statements](#AppendixA) for more examples. 
+See [Appendix A: Example Statements](#Appendix2A) for more examples. 
 
 
 
@@ -1340,7 +1340,7 @@ The table below lists the properties for Interaction Activities.
 ###### Interaction Types
 The table below describes the kinds of interactions represented by each of the interactionTypes. These types of interactions were originally 
 based on the types of interactions allowed for "cmi.interactions.n.type" in the SCORM 2004 4th Edition Run-Time Environment.
-See [Appendix C](#AppendixC) for examples definitions for each interaction type. 
+See [Appendix C](#Appendix2C) for examples definitions for each interaction type. 
 
 <table>
 	<tr><th>interactionType</th><th>Description</th></tr>
@@ -1398,7 +1398,7 @@ See [Appendix C](#AppendixC) for examples definitions for each interaction type.
 The table below outlines the format of the strings within correctResponsesPattern property for each interaction type. 
 This format is also used to represent the learner's response within the result object. These formats were originally based on the 
 requirements relating to "cmi.interactions.n.correct_responses.n.pattern" as defined in the SCORM 2004 4th Edition 
-Run-Time Environment. See [Appendix C](#AppendixC) for examples of each format. 
+Run-Time Environment. See [Appendix C](#Appendix2C) for examples of each format. 
 
 <table>
 	<tr><th>interactionType</th><th>Format</th></tr>
@@ -1558,7 +1558,7 @@ shows the supported interaction component list(s) for an Interaction Activity wi
 
 ###### Examples
 
-See [Appendix C](#AppendixC) for examples of Activity Definitions for each of the cmi.interaction types.
+See [Appendix C](#Appendix2C) for examples of Activity Definitions for each of the cmi.interaction types.
 
 <a name="agentasobj"/>
 
@@ -2470,7 +2470,7 @@ the scope of this specification.
 * Clients MUST NOT assume a signature is valid simply because an LRS has accepted it.
 
 ##### Example
-See <a href="#AppendixE">Appendix E: Example Signed Statement</a> for an example.
+See <a href="#Appendix2D">Appendix D: Example Signed Statement</a> for an example.
 
 
 
@@ -3561,7 +3561,7 @@ Statements to the target LRS.
 * The LRS and the Client SHOULD consider the security risks before making the 
 decision to use this scheme.
 
-See [Appendix G: Cross Domain Request Example](#AppendixG) for an example. 
+See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example. 
 
 <a name="datatransfer"/> 
 
@@ -3717,7 +3717,7 @@ Such a system is not considered to be an LRS or 'partial LRS'; it is simply not 
 __Note:__ In all of the example endpoints given in the specification, 
 "http://example.com/xAPI/" is the example base endpoint of the LRS. All other IRI 
 syntax after this represents the particular endpoint used. A full list of endpoints
-is included in [Appendix F: Table of All Endpoints](#AppendixF).
+is included in [Appendix B: Table of All Endpoints](#Appendix3B).
 
 ###### Requirements
 
@@ -4832,7 +4832,7 @@ of the problem.
 
 * Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
 * Systems MAY convert Statements of older versions into a newer version only by following the methods described in
-<a href="#AppendixD">Appendix D: Converting Statements to 1.0.0</a>.
+<a href="#Appendix3A">Appendix A: Converting Statements to 1.0.0</a>.
 
 
 <a name="security"/>
