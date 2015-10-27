@@ -1591,6 +1591,8 @@ Some of the values within the responses described above can be prepended with ce
 delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These parameters are represented by the format ```{parameter=value}```.
 See [the long-fill-in example within Appendix C](#long-fill-in). 
 
+Characterstring parameters are not validated by the LRS. Systems interpreting statement data can use their best judgement in interpreting (or ignoring) invalid characterstring parameters and values.
+
 The following parameters are valid at the start of the string representing the list of items for the listed interaction types:
 <table>
 	<tr><th>Parameter</th><th>Description</th><th>Value</th><th>Interaction types</th></tr>
