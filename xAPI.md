@@ -959,7 +959,7 @@ A UUID (all versions of variant 2 in [RFC 4122](http://www.ietf.org/rfc/rfc4122.
 #### 2.4.2 Actor  
 
 ###### Description 
-A mandatory Agent or Group Object.
+The Actor defines who performed the action. The Actor of a Statement can be an Agent or a Group. 
 
 <a name="agent"/>
 
