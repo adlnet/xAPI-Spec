@@ -941,7 +941,7 @@ The details of each property of a statement are described in the table below.
 ###### Example
 
 An example of the simplest possible Statement using all properties that MUST or SHOULD be used.
-It is recommended to also populate optional properties as they are relevant. 
+It is recommended to also populate optional properties where relevant. 
 When this Statement is returned from the LRS it will include some additional properties added by the LRS.  
 ```
 {
