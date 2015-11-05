@@ -1355,7 +1355,7 @@ The table below lists the properties for Interaction Activities.
 		<td>String</td>
 		<td>The type of interaction. Possible values are: “true-false”, “choice”, “fill-in”, “long-fill-in”,
 		“matching”, “performance”, “sequencing”, “likert”, “numeric” or “other”. </td>
-		<td>Optional</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>correctResponsesPattern</td>
