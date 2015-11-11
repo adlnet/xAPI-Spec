@@ -20,8 +20,8 @@
 >send all feedback and inquiries to helpdesk@adlnet.gov  
 
 ## Table of Contents
-*	Part One:	[Summary of the Experience API](#partone)  
-	*	1.0.	[Role of the Experience API](#roleofxapi) 
+*	Part One:	[About the Experience API](#partone)  
+	*	1.0.	[Introduction](#introduction-partone) 
 	*	2.0.	[How To Use This Document](#readingguidelines)  
 		*	2.1.	[MUST / SHOULD / MAY](#def-must-should-may)  
 	 	*	2.2.	[Guidelines for Interpreting Descriptive Text and Tables](#interpret-text-table)  
@@ -99,48 +99,27 @@
 <a name="partone"/>
 #Part One: About The Experience API
 
+<a name="introduction-partone"/>
+## 1.0 Introduction
 
-<a name="roleofxapi"/>
-## 1.0 Summary of the Experience API
+The Experience API (xAPI) is a technical specification that aims to facilitate the documentation and communication of learning experiences. It does so by specifiing how learning experiences should be described and an Application Programming Interface that sets out how information about these experiences should be formatted and exchanged electronically.  
 
-The Experience API (xAPI) is an Application Programming Interface (API) specification that 
-facilitates communication about experiences between a Learning Record Store and a client, 
-typically an Activity Provider. This specification was developed with learning experiences in mind, 
-but many other kinds of experiences could be tracked using xAPI. 
+The xAPI is an initiative of the Advanced Distributed Learning (ADL), established in 1997 to standardize and modernize training and education management and delivery in the US. Among the many outcomes of this initiative was SCORM - the Shareable Content Object Reference Model. SCORM has become an internationally recongized framework that has been a major factor contributing to the economy and effectiveness of online learning around the world.
+  
+While SCORM has been a great success, there is a growing realization of the need to track learning experiences of individuals beyond formal, structured computer-based training. In assessing candidates' suitability for positions or their capability for performing various tasks, there is a need to consider a wide range of formal and informal learning experiences, both on and offline.  That information, more often than not is scattered across a wide variety of sources.
 
-This specification does not attempt to standardize how the Activity Provider facilitates and tracks the learning experience, 
-nor how the Learning Store stores and procesess that data. The scope of this specification is limited to the requests and responses
-between Learning Record Store and client. 
+Out of this perceived need, the xAPI initiative and specification were born. xAPI assumes that:
+  * There is a need to be able to analyze information about learning experiences and their outcomes distributed across a wide variety of sources, platforms and technologies.
+  * Developing a commonly-accepted framework for gathering, storing and exchanging this information represents the best way of achieving this.
 
-The purpose of the xAPI and the goals of this document are:
-* To maximize interoperability of systems which create, gather and store information  
-about learning experiences.
-* To provide a guide to those who want to build applications that conform to and implement this 
-specification.
+The goals of the xAPI are:
+
+* To make it easier to understand and compare learning experiences and their outcomes recorded in a wide variety of places, platforms and technologies.
+* To maximize interoperability of systems which create, gather, store and process information about learning experiences.
+* To provide a guide to those who want to build applications that conform to and implement this specification.
 * To provide criteria against which conformance to this specification can be tested.
 
-There are two main ways that the xAPI promotes interoperability between systems that 
-implement the specification. The first is by requiring that systems implementing the specification
-follow a consistent data structure. To that end, this specification defines a data model for various data
-objects that are transferred between systems. The most significant object within the xAPI data model is the Statement object. This
-specification defines the properties of the Statement object (including "Actor", "Verb", "Object", "Result", and "Context")
-and the rules of syntax for the values of those properties and how they are represented.
-
-The second way that the xAPI promotes interoperability is by setting out the transfer methods that must 
-be used when communicating information about learning experiences between programs that adhere to the 
-specification. As part of this, it sets out the format of requests and the expected responses. Note that the 
-systems storing or retrieving records need not be Activity Providers. LRSs can communicate with other LRSs, or systems. 
-xAPI follows the guidelines of the REST software architecture style, and as such data is tranferred via HTTP requests and
-responses. xAPI also defines security methods allowing for the trusted exchange of information between
-the Learning Record Store and trusted sources. 
-
-The Experience API is the first of many envisioned technologies that will enable
-a richer architecture of online learning and training. Authentication
-services, querying services, visualization services, and personal data services 
-are some examples of additional technologies which the Experience API is designed
-to support. While the implementation details of these services are not specified here,
-the Experience API is designed with this larger architectural vision in mind.
-
+The document that follows sets out the xAPI framework which is designed to achieve these goals. 
 <a name="readingguidelines"/> 
 
 ## 2.0 How to Use This Document
@@ -447,19 +426,16 @@ field is the [Medbiquitous xAPI Interest Group](http://groups.medbiq.org/medbiq/
 
 ###### Description
 
-Communities of practice will, at some point in time, need to establish new Verbs to meet the needs of their constituency.
+Communities of practice could find the need to establish new Verbs, Activities, Extensions, etc. to meet the needs of their constituency.
 
-Therefore, it is expected that xAPI communities of practice generate profiles, lists, and repositories that become 
-centered on Verb vocabularies.  ADL is creating a companion document containing Verbs for xAPI to serve the ADL Community.
-
-In fulfillment of the requirements below, a collection of IRIs of recommended Verbs exists.  There are times when 
-Activity Providers might wish to use a different Verb for the same meaning.
+Therefore, it is expected that xAPI communities of practice generate profiles, lists, and repositories.
 
 ###### Requirements for Communities of Practice
 
-* Anyone establishing a new Verb MUST own the IRI, or MUST have permission from the owner to use it to denote an xAPI Verb;
-* Anyone establishing a new Verb SHOULD make a human-readable description of the intended usage of the Verb 
-accessible at the IRI.
+* Anyone establishing a new vocabulary entry MUST own the IRI, or MUST have permission from the owner to use it to denote an
+xAPI Verb, Activity, Extension, etc.;  (This requirement cannot be enforced by an LRS, rather is meant to show the gravity 
+of coining new entries without control)
+* Anyone establishing a new vocabulary entry SHOULD make a human-readable description of the intended usage accessible at the IRI.
 
 <a name="append1"/>
 ## Appendices
@@ -529,59 +505,8 @@ Clarifications and additional examples including:
 
 ### Document
 
-##### Description
-The Experience API provides a facility for Activity Providers to save arbitrary data in 
-the form of documents, perhaps related to an Activity, Agent, or combination of both.  
-
-##### Details
-Note that the following table shows generic properties, not a JSON Object as many other tables 
-in this specification do. The id is stored in the IRL, "updated" is HTTP header information, and 
-"contents" is the HTTP document itself (as opposed to an Object).
-<table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>id</td><td>String</td><td>Set by AP, unique within the scope of the agent or activity.</td></tr>
-	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
-	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
-</table>
-
-The following process walks through that process and the process requirements.  
-For example, a document contains: 
-
-```
-{
-	"x" : "foo",
-	"y" : "bar"
-}
-```  
-When an LRS receives a POST request with content type application/json for an existing document also of
-content type application/json, it MUST merge the posted document with the existing document. 
-In this context merge is defined as:
-* de-serialize the Objects represented by each document
-* for each property directly defined on the Object being posted, set the corresponding
-property on the existing Object equal to the value from the posted Object.    
-* store any valid json serialization of the existing Object as the document referenced in the request
-
-Note that only top-level properties are merged, even if a top-level property is an Object.
-The entire contents of each original property are replaced with the entire contents of
-each new property.
-
-For example, this document is POSTed with the same id as the existing 
-document above:
-
-```
-{
-	"x" : "bash",
-	"z" : "faz"
-}
-```  
-the resulting document stored in the LRS is:
-```
-{
-	"x" : "bash",
-	"y" : "bar",
-	"z" : "faz"
-}
-```
+The Experience API provides a facility for Activity Providers to save arbitrary data in the form of documents.  This data 
+is largely unstructured, which allows for flexibility.  Specifics on document behaviors can be found in [Part 3](#doctransfer) 
 
 <a name="statements" /> 
 
@@ -631,7 +556,7 @@ Complete IRI validation is extremely difficult, so much of the burden for ensuri
 * Lowercase SHOULD be used to send case insensitive data.
 * Additional properties SHOULD* NOT be added to Statements unless explicitly allowed by this specification. 
 
-Note: The LRS is recommended to reject Statements containing additional properties. Additional properties in 
+__Note:__ The LRS is recommended to reject Statements containing additional properties. Additional properties in 
 Statements would mean that the Statement would not be interoperable with all LRS. 
 
 ###### LRS Requirements
@@ -692,7 +617,7 @@ JSON will change if the referenced Activities change (see the
 * Verbs referenced by a Statement. The Display property of the Verb is not considered 
 part of the Statement itself (see the [Statement API's](#stmtapi) "format" parameter for details). 
 
-* Serialization of timestamp data. This is not considered part of the immutable statement 
+* Serialization of Timestamp data. This is not considered part of the immutable statement 
 itself. For example, the timestamp and stored properties of a statement can be returned
 in a different timezone to the one with which they were stored so long as the point in time
 referenced is not affected. See [4.1.7 Timestamp](#timestamp) and [4.1.8 Stored](#stored) for details. 
@@ -811,13 +736,11 @@ The details of each property of a statement are described in the table below.
 	<td>Context that gives the Statement more meaning. Examples: a team the Actor is 
 	working with, altitude at which a scenario was attempted in a flight simulator.</td>
 	<td>Optional</td></tr>
-	<tr><td><a href="#timestamp">timestamp</a></td><td>Date/Time</td>
-	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
-	of when the events described within this Statement occurred. Set by the LRS if not provided.</td>
+	<tr><td><a href="#timestamp">timestamp</a></td><td><a href="#timestamps">Timestamp</a></td>
+	<td>Timestamp of when the events described within this Statement occurred. Set by the LRS if not provided.</td>
 	<td>Optional</td></tr>
-	<tr><td><a href="#stored">stored</a></td><td>Date/Time</td>
-	<td>Timestamp (Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601</a>) 
-	of when this Statement was recorded. Set by LRS.</td>
+	<tr><td><a href="#stored">stored</a></td><td><a href="#timestamps">Timestamp</a></td>
+	<td>Timestamp of when this Statement was recorded. Set by LRS.</td>
 	<td>Set by LRS</td></tr>
 	<tr><td><a href="#authority">authority</a></td><td>Object</td>
 	<td>Agent or Group who is asserting this Statement is true. Verified by the LRS based on 
@@ -835,7 +758,9 @@ The details of each property of a statement are described in the table below.
 
 ###### Example
 
-An example of the simplest possible Statement using all properties that MUST or SHOULD be used:  
+An example of the simplest possible Statement using all properties that MUST or SHOULD be used.
+It is recommended to also populate optional properties where relevant. 
+When this Statement is returned from the LRS it will include some additional properties added by the LRS.  
 ```
 {
     "id": "12345678-1234-5678-1234-567812345678",
@@ -875,7 +800,7 @@ A UUID (all versions of variant 2 in [RFC 4122](http://www.ietf.org/rfc/rfc4122.
 #### 2.4.2 Actor  
 
 ###### Description 
-A mandatory Agent or Group Object.
+The Actor defines who performed the action. The Actor of a Statement can be an Agent or a Group. 
 
 <a name="agent"/>
 
@@ -1327,7 +1252,7 @@ The table below lists the properties for Interaction Activities.
 		<td>String</td>
 		<td>The type of interaction. Possible values are: “true-false”, “choice”, “fill-in”, “long-fill-in”,
 		“matching”, “performance”, “sequencing”, “likert”, “numeric” or “other”. </td>
-		<td>Optional</td>
+		<td>Required</td>
 	</tr>
 	<tr>
 		<td>correctResponsesPattern</td>
@@ -1486,17 +1411,21 @@ Some of the values within the responses described above can be prepended with ce
 delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These parameters are represented by the format ```{parameter=value}```.
 See [the long-fill-in example within Appendix C](#long-fill-in). 
 
+Characterstring parameters are not validated by the LRS. Systems interpreting statement data can use their best judgement in interpreting (or ignoring) invalid characterstring parameters and values.
+
 The following parameters are valid at the start of the string representing the list of items for the listed interaction types:
 <table>
-	<tr><th>Parameter</th><th>Description</th><th>Value</th><th>Interaction types</th></tr>
+	<tr><th>Parameter</th><th>Default</th><th>Description</th><th>Value</th><th>Interaction types</th></tr>
 	<tr>
 		<td>case_matters</td>
+		<td>false</td>
 		<td>Whether or not the case of items in the list matters.</td>
 		<td><code>true</code> or <code>false</code></td>
 		<td>fill-in, long-fill-in</td>
 	</tr>
 	<tr>
 		<td>order_matters</td>
+		<td>true</td>
 		<td>Whether or not the order of items in the list matters.</td>
 		<td><code>true</code> or <code>false</code></td>
 		<td>fill-in, long-fill-in, performance</td>
@@ -1748,8 +1677,7 @@ The following table contains the properties of the Results Object.
 </tr>
 <tr>
 	<td>duration</td>
-	<td>Formatted according to <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>
-	with a precision of 0.01 seconds</td>
+	<td><a href="#durations">Duration</a></td>
 	<td>Period of time over which the Statement occurred.</td>
 	<td>Optional</td>
 </tr>
@@ -1761,18 +1689,6 @@ The following table contains the properties of the Results Object.
 	<td>Optional</td>
 </tr>
 </table> 
-
-###### Duration Requirements
-
-* The Duration property MUST be expressed using the format for duration in ISO 8601:2004(E) section 4.4.3.2.
-The alternative format (in conformity with the format used for time points and described in ISO 8601:2004(E) 
-section 4.4.3.3) MUST NOT be used.
-* Clients SHOULD provide a maximum precision of 0.01 seconds. 
-* Clients MAY provide less precision, for example in the case of reading a University Degree precision might 
-be in months or years. 
-* On receiving a Duration with more that 0.01 second precision, the LRS SHOULD* NOT reject the request but MAY 
-truncate the Duration property to 0.01 second precision. 
-* When comparing Statements, any precision beyond 0.01 second precision SHOULD* NOT be included in the comparison. 
 
 <a name="Score"/>
 
@@ -2018,56 +1934,49 @@ The time at which the experience occurred.
 
 ###### Details
 
-A timestamp is formatted according to the normal format of ISO 8601 and corresponds to the time of when the events 
-described within this Statement occurred. If it is not included in the Statement when it is submitted to the LRS,
-the LRS populates it with the same value it would use with [Stored](#stored).
+The timestamp property is of type [Timestamp](#timestamps). It is formatted according to the normal format of ISO 8601 and 
+corresponds to the time of when the events described within this Statement occurred. If it is not included in the Statement 
+when it is submitted to the LRS, the LRS populates it with the same value it would use with [Stored](#stored).
 
-A timestamp in a Statement can differ from 
-[Stored](#stored) (the time at which the statement is stored). Namely, there can be delays between the occurrence of the 
-experience and the reception of the corresponding Statement by the LRS. 
+The timestamp property in a Statement can differ from the [stored property](#stored) (the time at which the statement is 
+stored). Namely, there can be delays between the occurrence of the experience and the reception of the corresponding 
+Statement by the LRS. 
 
-Where the experience occurs over a period of time, the timestamp can represent the start, end or any point of time 
+Where the experience occurs over a period of time, the timestamp property can represent the start, end or any point of time 
 during the experience. It is expected that communities of practice will define an appropriate point to record the 
-timestamp for different experiences. For example when recording the experience of eating at a restaurant, it might 
-be most appropriate to record the timestamp of the start of the experience; when recording the experience of 
-completing a qualification, it might be most appropriate to record the timestamp of the end of the experience.
+Timestamp for different experiences. For example when recording the experience of eating at a restaurant, it might 
+be most appropriate to record the Timestamp of the start of the experience; when recording the experience of 
+completing a qualification, it might be most appropriate to record the Timestamp of the end of the experience.
 These examples are for illustrative purposes only and are not meant to be prescriptive.
 
 ###### Requirements
-* A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
-* The timestamp property SHOULD* be set by the LRS to the value of [Stored](#stored) if not provided.
-* A timestamp SHOULD* include the time zone.
-* If the timestamp includes a time zone, the LRS MAY be return the timestamp using a different timezone to the one originally used in the statement
-so long as the point in time referenced is not affected. The LRS SHOULD* return the timestamp in UTC timezone. 
-* A timestamp MAY represent any point during an experience, not necessarily the beginning or end. 
-* A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
-* An AP MUST NOT use a future time for a timestamp in a Statement.
-* An LRS MUST NOT reject a timestamp for being from the future, to prevent issues due to clock errors.
-* A SubStatement MAY have a timestamp that is in the future.
+
+* For requirements pertaining to the Timestamp data type, see [Part 3: Timestamps](#timestamps).
+* The timestamp property SHOULD* be set by the LRS to the value of the [stored property](#stored) if not provided.
+* A timestamp property MAY represent any point during an experience, not necessarily the beginning or end. 
+* An AP MUST NOT use a future time for a timestamp property in a Statement.
+* A SubStatement MAY have a timestamp property that is in the future.
+* An LRS SHOULD* NOT reject a timestamp for having a greater value than the current time, to prevent issues due to 
+clock errors.
 
 <a name="stored"/> 
 
 #### 2.4.8 Stored
 
 ###### Description 
-The time at which a Statement is stored by the LRS. This can be any time between when the LRS receives the Statement and when it is written
-to storage. 
+The time at which a Statement is stored by the LRS. This can be any time between when the LRS receives the Statement and 
+when it is written to storage. 
 
 ###### Details 
-The stored property is the literal time the Statement was stored.  The LRS will use [Timestamp](#timestamp) 
-to record the time at which the experience described in the Statement.
+The stored property is of type [Timestamp](#timestamps).The stored property is the literal time the Statement was stored. 
+Used to record the time at which the experience described in the Statement.
 
 ###### Requirements
 
-* The stored property MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
+* For requirements pertaining to the Timestamp data type, click [here](#timestamps).
 * The stored property MUST be set by the LRS; An LRS MUST validate and then overwrite any value currently in the 
 stored property of a Statement it receives.
-* The stored property SHOULD include the time zone.
-* If the stored property includes a time zone, the LRS MAY be return the stored property using a different timezone to the one originally used in the statement.
-so long as the point in time referenced is not affected. The LRS SHOULD* return the stored property in UTC timezone. 
 * The stored property SHOULD be the current or a past time.
-* The stored property MAY be truncated or rounded to a precision of at least 3 decimal digits
-for seconds (millisecond precision MUST be preserved). 
 
 <a name="authority"/> 
 
@@ -2153,7 +2062,7 @@ the Statement data model is guaranteed consistent through all 1.0.x versions, in
 flow among such LRSs the LRS is given some flexibility on Statement versions that are accepted.
 
 ###### Requirements
-* Version MUST be formatted as laid out for the API version header in [API Versioning](#apiversioning)
+* Version MUST be formatted as laid out for the API version header in [Versioning](#versioning)
 
 ###### LRS Requirements
 * An LRS MUST accept all Statements where their version starts with "1.0." if they otherwise validate.
@@ -2261,7 +2170,7 @@ following criteria:
 
 * It MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for Statement 
 results when the attachments filter is false.
-* It MUST conform to the definition of multipart/mixed in [RFC 1341](http://www.w3.org/Protocols/rfc1341/7_2_Multipart.html) and:
+* It MUST conform to the definition of multipart/mixed in [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt) and:
     * The first part of the multipart document MUST contain the Statements themselves, with type "application/json".
     * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
     capability will be available when issuing PUT or POST against the Statement resource.
@@ -2317,7 +2226,7 @@ is not included with the Statement.
 * The owner of the attachment MAY stop providing the attachment data at this IRL at any time. 
 * Security restrictions MAY be applied to clients attempting to access the attachment data at this IRL. 
 
-The duration an attachment is made available for, and the security restrictions applied to
+The period of time an attachment is made available for, and the security restrictions applied to
 hosted attachments, are out of scope of this specification. 
 
 ###### Example
@@ -2328,7 +2237,7 @@ Below is an example of a very simple Statement with an attachment. Please note t
 * The selected boundary does not appear in any of the parts;
 * For readability the sample attachment is text/plain. Even if it had been a 'binary' type
 like 'image/jpeg' no encoding would be done, the raw octets would be included;
-* Per RFC 1341, the boundary is <CRLF> followed by -- followed by the boundary string declared in the header.
+* Per RFC 2046, the boundary is <CRLF> followed by -- followed by the boundary string declared in the header.
 
 Don't forget the ```<CRLF>```  when building or parsing these messages.
 
@@ -2582,7 +2491,7 @@ identifier was not coined for use with this specification.
 
 The following are data types requiring additional rules that are found commonly in this specification.
 
-<a name="extensions"/> 
+<a name="miscext"/> 
 
 ### 4.1 Extensions
 
@@ -2647,28 +2556,27 @@ string form.  It is recommended variant 2 in [RFC 4122](http://tools.ietf.org/ht
 
 ### 4.5 ISO 8601 Timestamps
 
-Timestamps are a format type (and also a Statement property of type Timestamp) which are strings which represent 
-a specific time.  They are formatted according to ISO 8601's normal format.  Statements sent to an LRS can be 
-expected (a MUST requirement on the LRS) to keep precision to at least milliseconds (3 decimal points beyond 
-seconds).  
+Timestamps are a format type which represent a specific time.  They are formatted according to ISO 8601's normal format. 
+Statements sent to an LRS can be expected to keep precision to at least milliseconds 
 
 ###### Requirements
-* A timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
-* A timestamp SHOULD* include the time zone.
-* If the timestamp includes a time zone, the LRS MAY be return the timestamp using a different timezone to the one originally used in the statement so long as the point in time referenced is not affected. The LRS SHOULD* return 
-the timestamp in UTC timezone. 
-* A timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds (millisecond precision MUST be preserved). 
-* An LRS MUST NOT reject a timestamp for being from the future, to prevent issues due to clock errors.
+* A Timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
+* A Timestamp MUST preserve precision to at least milliseconds (3 decimal points beyond seconds).  
+* A Timestamp SHOULD* include the time zone.
+* If the Timestamp includes a time zone, the LRS MAY be return the Timestamp using a different timezone to the one 
+* originally used in the statement so long as the point in time referenced is not affected. 
+* The LRS SHOULD* return the Timestamp in UTC timezone. 
+* A Timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds. 
 
 <a name="durations"/>
 
 ### 4.6 ISO 8601 Durations
 
-Durations are strings representing the amount of time something took.  A duration is a property of a Result Object.
+Durations are strings representing the amount of time something took.
 
 ###### Requirements
 
-* The Duration property MUST be expressed using the format for duration in ISO 8601:2004(E) section 4.4.3.2.
+* A Duration MUST be expressed using the format for duration in ISO 8601:2004(E) section 4.4.3.2.
 The alternative format (in conformity with the format used for time points and described in ISO 8601:2004(E) 
 section 4.4.3.3) MUST NOT be used.
 * Clients SHOULD provide a maximum precision of 0.01 seconds. 
@@ -2676,7 +2584,7 @@ section 4.4.3.3) MUST NOT be used.
 be in months or years. 
 * On receiving a Duration with more that 0.01 second precision, the LRS SHOULD* NOT reject the request but MAY 
 truncate the Duration property to 0.01 second precision. 
-* When comparing Statements, any precision beyond 0.01 second precision SHOULD* NOT be included in the comparison.
+* When comparing Durations, any precision beyond 0.01 second precision SHOULD* NOT be included in the comparison.
 
 ###### Examples
 The table below provides some example ISO 8601 durations. This list is not intended to be exhaustive. 
@@ -3707,6 +3615,7 @@ In this context merge is defined as:
 * for each property directly defined on the Object being posted, set the corresponding
 property on the existing Object equal to the value from the posted Object.    
 * store any valid json serialization of the existing Object as the document referenced in the request
+* The LRS SHOULD* include a "Last-Modified" header which matches the value of the stored property of the Statement. 
 
 Note that only top-level properties are merged, even if a top-level property is an Object.
 The entire contents of each original property are replaced with the entire contents of
@@ -3818,7 +3727,7 @@ with a statementID that it already has a Statement for. Whether it responds with
 Object.
 
 * If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
-verify the received Statement matches the existing one and return ```409 Conflict``` if they
+verify the received Statement matches the existing one and SHOULD return ```409 Conflict``` if they
 do not match. See [Statement comparision requirements](statement-comparision-requirements).
 
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
@@ -3828,7 +3737,6 @@ do not match. See [Statement comparision requirements](statement-comparision-req
 * Activity Providers SHOULD POST Statements including the Statement "id" property instead of using PUT. 
 * When PUTing statements, the "id" property of the Statement SHOULD be used. 
 * Where provided, the "id" property of the Statement MUST match the "statementId" parameter of the request. 
-
 
 <a name="stmtrespost"/>
 
@@ -3961,7 +3869,7 @@ Object.
 		<td>Optional</td>
 	</tr>
 	<tr>
-		<td>related_activities</td>
+	<td>related_activities</td>
 		<td>Boolean</td>
 		<td>false</td>
 		<td>
@@ -3990,14 +3898,14 @@ Object.
 		<td>since</td>
 		<td>Timestamp</td>
 		<td> </td>
-		<td>Only Statements stored since the specified timestamp (exclusive) are returned.</td>
+		<td>Only Statements stored since the specified Timestamp (exclusive) are returned.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>until</td>
 		<td>Timestamp</td>
 		<td> </td>
-		<td>Only Statements stored at or before the specified timestamp are returned.</td>
+		<td>Only Statements stored at or before the specified Timestamp are returned.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
@@ -4045,8 +3953,7 @@ Object.
 	</tr>
 </table>
 
-__Note:__The values of Boolean parameters are represented as ```true``` or ```false``` as in JSON. 
-
+__Note:__ The values of Boolean parameters are represented as ```true``` or ```false``` as in JSON.
 ###### Requirements
 
 * The LRS MUST reject with an ```HTTP 400``` error any requests to this resource 
@@ -4066,7 +3973,7 @@ an empty array.
 * The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
 <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601
 combined date and time</a> format, on all responses to Statements requests, with a value of the 
-timestamp for which all Statements that have or will have a "stored" property before that time 
+Timestamp for which all Statements that have or will have a "stored" property before that time 
 are known with reasonable certainty to be available for retrieval. This time SHOULD take into 
 account any temporary condition, such as excessive load, which might cause a delay in Statements 
 becoming available for retrieval.
@@ -4108,7 +4015,7 @@ with an Actor filter of "Ben" or an Activity filter of "explosives training", bo
 Statements match and will be returned so long as they fall into the time or sequence
 being fetched.
 
-__Note:__StatementRefs used as a value of the Statement property within Context do not affect how
+__Note:__ StatementRefs used as a value of the Statement property within Context do not affect how
 Statements are filtered.
 
 <a name="queryLangFiltering" />
@@ -4216,7 +4123,7 @@ Example endpoint: http://example.com/xAPI/activities/state
 Fetches State Ids of all state data for this context (Activity + Agent \[ + 
 registration if specified\]). If "since" parameter is specified, this 
 is limited to entries that have been stored or updated since the specified 
-timestamp (exclusive).  
+Timestamp (exclusive). 
 
 **Content:** None.
 
@@ -4245,7 +4152,7 @@ timestamp (exclusive).
 	<tr>
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of states stored since the specified timestamp (exclusive) are returned.</td>
+		<td>Only ids of states stored since the specified Timestamp (exclusive) are returned.</td>
 		<td>Optional</td>
 	</tr>
 </table>
@@ -4298,11 +4205,13 @@ Example endpoint: http://example.com/xAPI/agents
 Return a special, Person Object for a specified Agent. The Person Object is 
 very similar to an Agent Object, but instead of each attribute having a single 
 value, each attribute has an array value, and it is legal to include multiple 
-identifying properties. Note that the parameter is still a normal Agent Object 
-with a single identifier and no arrays. Note that this is different from the 
+identifying properties. This is different from the 
 FOAF concept of person, person is being used here to indicate a person-centric 
 view of the LRS Agent data, but Agents just refer to one persona (a person in 
 one context).  
+
+The 'agent' parameter is a normal Agent Object with a single identifier and no arrays. 
+It is not a Person Object, nor is it a Group. 
 
 **Content:** None.
 
@@ -4460,12 +4369,15 @@ specified Agent.
 	</tr>
 </table>  
 
+__Note:__ The agent parameter is an Agent Object and not a Group. Activity Providers wishing to store data
+against an Identified Group can use the Identified Group's identifier within an Agent Object. 
+
 ###### Multiple Document GET 
 Example endpoint: http://example.com/xAPI/agents/profile
 
 Fetches Profile Ids of all profile entries for an Agent. If "since" parameter is specified, 
 this is limited to entries that have been stored or updated since the specified 
-timestamp (exclusive).  
+Timestamp (exclusive).  
 
 **Content:** None.
 
@@ -4482,7 +4394,7 @@ timestamp (exclusive).
 	<tr>
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of profiles stored since the specified timestamp 
+		<td>Only ids of profiles stored since the specified Timestamp 
 			(exclusive) are returned.</td>
 		<td>Optional</td>
 	</tr>
@@ -4535,7 +4447,7 @@ Example endpoint: http://example.com/xAPI/activities/profile
 
 Fetches Profile Ids of all profile entries for an Activity. If "since" parameter is 
 specified, this is limited to entries that have been stored or updated since 
-the specified timestamp (exclusive).  
+the specified Timestamp (exclusive).  
 
 **Content:** None.
 
@@ -4552,7 +4464,7 @@ the specified timestamp (exclusive).
 	<tr>
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of profiles stored since the specified timestamp (exclusive) 
+		<td>Only ids of profiles stored since the specified Timestamp (exclusive) 
 		are returned.</td>
 		<td>Optional</td>
 	</tr>
@@ -4611,7 +4523,7 @@ the latest minor and patch version the LRS conforms to, for each major version.
 property MUST occur only once.  
 * An LRS SHOULD allow unauthenticated access to this resource
 * An LRS MUST NOT reject requests based on their version header as would otherwise be 
-required by <a href="#apiversioning"/>6.2 API Versioning</a>.
+required by <a href="#versioning"/>Versioning</a>.
 
 
 <a name="validation"/> 
