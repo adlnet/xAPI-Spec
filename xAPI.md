@@ -430,7 +430,9 @@ and share best practices. The CoP will define these identifiers in a profile. Th
 vocabularies to implemented in addition to xAPI for the particular use case being addressed.
 
 It is recommended that a profile use a unique "category" within a Statement's context to refer to any Statement  
-which follows the profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current/blob/quartz/cmi5_runtime.md#ContextActivities"), which is designed for the traditional single learner, single online learning use case.
+which follows the profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current/blob/quartz/cmi5_runtime.md#ContextActivities"), 
+which is designed for the traditional single learner, single online learning use case.  An example cmi5 Statement can 
+be found in [Appendix B: cmi5 Example](#Appendix1B).
 
 CoPs are highly recommended to avoid duplication of effort, as creating too many ways to solve the same problem 
 will cause fragmentation in similar domains and will hurt interoperability.  An example of a CoP for the medical 
@@ -509,6 +511,63 @@ Clarifications and additional examples including:
 - Removed back-references to SCORM
 - Addiitional explanitory text and diagrams
 [1.0.2...1.0.3](https://github.com/adlnet/xAPI-Spec/compare/1.0.2...1.0.3)
+
+
+<a name="Appendix1B"/>
+### Appendix B: cmi5 Example 
+
+The following example from the cmi5 Community of Practice demonstrates Extensions, "category", etc.
+
+```
+{
+  "actor": {
+    "objectType": "Agent",
+    "account": {
+      "homePage": "http://www.example.com",
+      "name": "1625378"
+    }
+  },
+  "verb": {
+    "id": "http://adlnet.gov/expapi/verbs/launched",
+    "display": {
+      "en-US": "Launched"
+    }
+  },
+  "object": {
+    "id":"https://mydomain.com/AUidentifier",
+    "objectType": "Activity"
+  },
+  "result": {
+  "score": {
+  "scaled": 0.65,
+  "raw": 65,
+  "min": 0,
+  "max": 100
+  },
+  "success": false,
+  "completion": false,
+  "duration": "PT30M",
+  "extensions": {
+    "http://purl.org/xapi/cmi5/result/extensions/progress": 100
+  }
+  },
+  "context": {
+     "registration": "https://mydomain.com/the_registration_value_provided_by_LMS",
+     "contextActivities": {
+        "category": [
+          {"id": "http://purl.org/xapi/cmi5/context/categories/moveon"},
+          {"id": "http://purl.org/xapi/cmi5/context/categories/cmi5"}
+        ]
+     },
+     "extensions": {
+       "http://purl.org/xapi/cmi5/context/extensions/sessionid": "<the value of session ID provided by the LMS>",
+       "http://purl.org/xapi/cmi5/context/extensions/reason": "<reason for waived verb, if statement is waived statement only>"
+      }
+   },
+    "timestamp": "2012-06-01T19:09:13.245Z"
+}
+```
+
 
 <a name="parttwo" />
 #Part Two: Experience API (xAPI) Data
