@@ -1,6 +1,7 @@
 xAPI-Spec
 =========
 
+<<<<<<< HEAD
 <a name="contributors"/> 
 
 ##Contributors
@@ -122,13 +123,20 @@ learning that SCORM could not enable.
 ##How to Contribute
 
 This document outlines various ways of contributing to the specification:
+=======
+This document outlines various ways con contributing to the specification:
+>>>>>>> refs/remotes/adlnet/master
 
 * [Reviewing open Pull Requests](#review-pr)
 * [Suggesting solutions to issues](#suggest-solution)
 * [Making a Pull Request to address an issue](#make-pr)
 
 <a name='review-pr'/>
+<<<<<<< HEAD
 ### Review a Pull Request (PR)
+=======
+# Review a Pull Request (PR)
+>>>>>>> refs/remotes/adlnet/master
 The most helpful **and** easiest way to contribute to the specification is to review an existing PR. You can find a 
 [list of open PRs here](https://github.com/adlnet/xAPI-Spec/pulls). To review a PR you should:
 
@@ -158,7 +166,11 @@ When reviewing a PR please don't:
 * Make vague critisisms without suggesting the changes to the PR that would meet those critisisms. 
 
 <a name='suggest-solution'/>
+<<<<<<< HEAD
 ### Suggest a solution
+=======
+# Suggest a solution
+>>>>>>> refs/remotes/adlnet/master
 The second most helpful and second easiest way to contribute to the specification is to suggest a solution to an issue that has been raised. 
 Ideally the person who raises the issue will propose a solution, but this does not always happen and you may be able to improve a suggestion. 
 
@@ -177,7 +189,11 @@ including proposed wording for the changes you've suggested.
 Good and detailed suggested solutions for issues maake it much easier to write PRa and helps to ensure those PRs are merged faster. 
 
 <a name='make-pr'/>
+<<<<<<< HEAD
 ### Make a Pull Request (PR)
+=======
+# Make a Pull Request (PR)
+>>>>>>> refs/remotes/adlnet/master
 The hardest way of driectly contributing to the specification is to make Pull Requests and the xAPI Working Group recommends only getting involved in
 this way if you are already used to Github and markdown and/or have previously contributed to reviewing PRs and suggesting solutions to issues. 
 
@@ -197,6 +213,7 @@ When making a PR, you should include a description that explains:
 * If you have moved sections, have you made any changes to content within those moved sections?
 * What decisions did you make in writting the change? Why did you make those decisions? 
 
+<<<<<<< HEAD
 #### Edit on GitHub.com
 To edit the specification on GitHub.com, first open the [development version](https://github.com/adlnet/xAPI-Spec/blob/1.0.3/xAPI.md) 
 of the specification, then [follow the instructions here](https://help.github.com/articles/editing-files-in-another-user-s-repository/). 
@@ -208,12 +225,29 @@ If you are not currently working with GitHub and git, follow these set up steps
 first. GitHub provides excellent help at [https://help.github.com/articles/set-up-git](https://help.github.com/articles/set-up-git)
 
 ##### Fork the ADL repository
+=======
+## Edit on GitHub.com
+To edit the specification on GitHub.com, first open the [development version](https://github.com/adlnet/xAPI-Spec/blob/1.0.3/xAPI.md) 
+of the specification, then [follow the instructions here](https://help.github.com/articles/editing-files-in-another-user-s-repository/). 
+
+## Edit Locally
+
+### Set up
+If you are not currently working with GitHub and git, follow these set up steps 
+first. GitHub provides excellent help at [https://help.github.com/articles/set-up-git](https://help.github.com/articles/set-up-git)
+
+#### Fork the ADL repository
+>>>>>>> refs/remotes/adlnet/master
 Go to the Experience API repository. Fork the repository to your own account using 
 the "Fork" button on the top right of Experience API repository page. This makes a 
 copy of the Experience API repository. This fork gives you the ability to edit your 
 version of the document without impacting the master copy.
 
+<<<<<<< HEAD
 ##### Install Git (use cmd line) or Install Windows/Mac GitHub client
+=======
+#### Install Git (use cmd line) or Install Windows/Mac GitHub client
+>>>>>>> refs/remotes/adlnet/master
 You need to install Git to work with a GitHub repository. If you are on a Windows machine, 
 you can download the GitHub client app. If you use a Mac you can download the GitHub client app 
 but will also have to download git to add a remote to the master repository. Otherwise install git from the 
@@ -233,7 +267,11 @@ __Mac:__ http://mac.github.com/
 __Windows:__ http://windows.github.com/
 
 
+<<<<<<< HEAD
 ##### Clone your GitHub fork to your machine
+=======
+#### Clone your GitHub fork to your machine
+>>>>>>> refs/remotes/adlnet/master
 To make edits and work on the files in the repository, clone your repository to 
 your local machine using Git. The url is provided on the home page of your 
 repository (ex. ```https://github.com/<your username>/xAPI-Spec/```)  
@@ -246,7 +284,11 @@ On the home screen of the client app, select your account under 'github' and
 choose the repository you want to clone. Selecting the repository from the list 
 gives you an option to clone it. 
 
+<<<<<<< HEAD
 ##### Add ADL repository as upstream remote
+=======
+### Add ADL repository as upstream remote
+>>>>>>> refs/remotes/adlnet/master
 Add a remote repository to git to reference the master repository. This will make 
 synchronizing with the master respository a bit easier.  
 
@@ -265,9 +307,15 @@ In the shell, enter..
 ```git remote add upstream https://github.com/adlnet/xAPI-Spec```  
 
 
+<<<<<<< HEAD
 #### Workflow
 
 ##### Sync up with ADL Repository development
+=======
+### Workflow
+
+### Sync up with ADL Repository development
+>>>>>>> refs/remotes/adlnet/master
 Pull down changes from the development repository. This automatically does a 
 fetch of the repository and a merge into your local repository. Currently
 the development version of the spec is 1.0.3.
@@ -275,7 +323,11 @@ the development version of the spec is 1.0.3.
 __Git and GitHub Client__  
 ```git pull upstream 1.0.3```
 
+<<<<<<< HEAD
 ##### Make Changes Locally
+=======
+### Make Changes Locally
+>>>>>>> refs/remotes/adlnet/master
 Edit the local copy of the file, save and commit. Rule of thumb: Use commits 
 like save points. Commit to indicate logical groups of edits, and places 
 where the edits could be safely rolled back.  
@@ -288,7 +340,11 @@ The GitHub client will detect saved changes to the documents in your
 local repository and present a button to commit your edits at the top 
 right of the repository screen.  
 
+<<<<<<< HEAD
 ##### Push Changes to Your Repository (Origin)
+=======
+### Push Changes to Your Repository (Origin)
+>>>>>>> refs/remotes/adlnet/master
 Pushing your changes to your remote GitHub repository stages the files 
 so that you can then make requests to the master repository to merge in 
 your changes.
@@ -300,7 +356,11 @@ __GitHub Client__
 The GitHub client has a 'sync' button at the top of the repository screen. 
 This will synchronize your local and remote (origin) repository.  
 
+<<<<<<< HEAD
 ##### Submit a Pull Request to Master ADL Repository (Upstream)
+=======
+### Submit a Pull Request to Master ADL Repository (Upstream)
+>>>>>>> refs/remotes/adlnet/master
 When you forked from the Experience API repository, a link back to the master 
 repository is remembered. To send your changes back the the master repository, 
 click the "Pull Request" button at the top of your repository page. This will 

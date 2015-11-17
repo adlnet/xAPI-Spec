@@ -14,7 +14,11 @@ If when implementing the specification you find something is unclear or unhelpfu
 section unclear and that it has been fixed in the 
 [development version of the specification (1.0.3)](https://github.com/adlnet/xAPI-Spec/blob/1.0.3/xAPI.md) which is being developed by the 
 xAPI Working Group. You can and should look at the development version of the specification for reference, but be aware that this version has
+<<<<<<< HEAD
 not been published; it could contain errors and might be changed before it is released. 
+=======
+not been published, could contain errors and might be changed before it is released. 
+>>>>>>> refs/remotes/adlnet/master
 
 If your confusions and concerns have not been addressed in the [development version)](https://github.com/adlnet/xAPI-Spec/blob/1.0.3/xAPI.md), 
 you can help to improve the specification by [raising an issue here](https://github.com/adlnet/xAPI-Spec/issues). When raising an issue, 
