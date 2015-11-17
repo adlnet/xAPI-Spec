@@ -1,172 +1,6 @@
 # Experience API
 ## Advanced Distributed Learning (ADL) Co-Laboratories
 
->#### Revision History
->###### 0.8 (Project Tin Can API Deliverable) to 0.9 (March 31, 2012)  
-  
->Rustici Software, who delivered the Project Tin Can API, made modifications to the 
->API prior to the April 2012 Kickoff Meeting. It was voted in this meeting to 
->move those changes into the current specification and revision to 0.9.
-
->###### 0.90 to 0.95 (August 31, 2012)  
-
->"Core" Verbs and Activity types were removed from the specification. References 
->to these verbs in results, context, interactions, and Activity Definitions were 
->also  removed. It was recommended that implementers prefer community defined 
->verbs to creating their own verbs.
->- Verbs, Activity types, and extension keys are now URIs
->- Restructured and added language around some of the other implementation 
->details and scope.
->- Changed from using a person-centric view of Agents to a persona-centric 
->view.
->- Friend of a Friend (FOAF) Agent merging requirement was removed.
->- Agent Objects now have exactly 1 uniquely identifying property, instead 
->of at least one.
-
->###### 0.95 to 1.0.0 (April 26, 2013) 
->Various refinements and clarifications including:
-.- Adding attachments
->- Activity metadata is now stored as JSON rather than XML
->- Changes to voiding Statements
->- Clarification and naming of the Document APIs
->- Changes to querying the Statement API
->- Signed Statements
-
->[0.95...1.0.0](https://github.com/adlnet/xAPI-Spec/compare/0.95-spec...1.0.0)
-
->###### 1.0.0 to 1.0.1 (October 1, 2013)
->Clarifications and additional examples including:
->- Fixed various typos
->- Added additional examples in the appendices
-
->[1.0.0...1.0.1](https://github.com/adlnet/xAPI-Spec/compare/1.0.0...1.0.1)
-
->###### 1.0.1 to 1.0.2 (October 1, 2014)
->- Added optional/required to tables
->- Added missing table heading on Interaction components
->- Change yes/no to required/optional in attachments
->- Clarified intent of 'moreInfo' property
-
->[1.0.1...1.0.2](https://github.com/adlnet/xAPI-Spec/compare/1.0.1...1.0.2)
- 
-<a name="contributors"/> 
-
->####Contributions
-
->###### Message To Contributors
-> _"My thanks to everyone who contributed to the Experience API project. Many of 
-you have called into the weekly meetings and helped to shape the specification 
-into something that is useful for the entire distributed learning community. 
-Many of you assisted in releasing code samples, products, and documentation to 
-aid those who are creating and adopting the specification.  I'd also like to 
-thank all of those who were involved in supplying useful, honest information 
-about your organization's use of SCORM and other learning best practices. 
-Through the use-cases, shared experiences, and knowledge you have shared, ADL 
-and the community clearly identified the first step in creating the Training 
-and Learning Architecture--the Experience API.  You are truly the community 
-leaders on which we depend to make our training and education the very best."_ 
-
->Kristy S. Murray, Ed.D.  
->Director, ADL Initiative  
->OSD, Training Readiness & Strategy (TRS)  
-
-<a name="wg"/>
-
->###### Working Group Contributors  
->  <table>
-	<tr><th>Name</th><th>Organization</th></tr>
-	<tr><td>Aaron Silvers</td><td>ADL</td></tr>
-	<tr><td>Al Bejcek</td><td>NetDimensions</td></tr>
-	<tr><td>Ali Shahrazad</td><td>SaLTBOX</td></tr>
-	<tr><td>Andrew Downes</td><td>Rustici Software</td></tr>
-	<tr><td>Andy Johnson</td><td>ADL</td></tr>
-	<tr><td>Andy Whitaker</td><td>Rustici Software</td></tr>
-	<tr><td>Anthony Altieri</td><td>American Red Cross</td></tr>
-	<tr><td>Anto Valan</td><td>Omnivera Learning Solutions</td></tr>
-	<tr><td>Avron Barr</td><td>Aldo Ventures, Inc.</td></tr>
-	<tr><td>Ben Clark</td><td>Rustici Software</td></tr>
-	<tr><td>Bill McDonald</td><td>Boeing</td></tr>
-	<tr><td>Brian J. Miller</td><td>Rustici Software</td></tr>
-	<tr><td>Chad Udell</td><td>Float Mobile Learning</td></tr>
-	<tr><td>Chris Handorf</td><td>Pearson</td></tr>
-	<tr><td>Chris Sawwa</td><td>Meridian Knowledge Solutions</td></tr>
-	<tr><td>Dan Allen</td><td>Litmos</td></tr>
-	<tr><td>Dan Kuemmel</td><td>Sentry Insurance</td></tr>
-	<tr><td>Dave Mozealous</td><td>Articulate</td></tr>
-	<tr><td>David Ells</td><td>Rustici Software</td></tr>
-	<tr><td>David N. Johnson</td><td>Clear Learning Systems</td></tr>
-	<tr><td>Doug Hagy</td><td>Twin Lakes Consulting Corporation</td></tr>
-	<tr><td>Eric Johnson</td><td>Planning and Learning Technologies, Inc.</td></tr>
-	<tr><td>Fiona Leteney</td><td>Feenix e-learning</td></tr>
-	<tr><td>Greg Tatka</td><td>Menco Social Learning</td></tr>
-	<tr><td>Ingo Dahn</td><td>University Koblenz-Landau</td></tr>
-	<tr><td>Jason Haag</td><td>ADL</td></tr>
-	<tr><td>Jeff Place</td><td>Questionmark</td></tr>
-	<tr><td>Jennifer Cameron</td><td>Sencia Corporate Web Solutions</td></tr>
-	<tr><td>Jeremy Brockman</td><td> </td></tr>
-	<tr><td>Jhorlin De Armas</td><td>Riptide Software</td></tr>
-	<tr><td>Joe Gorup</td><td>CourseAvenue</td></tr>
-	<tr><td>John Kleeman</td><td>Questionmark</td></tr>
-	<tr><td>Jonathan Archibald</td><td>Brightwave</td></tr>
-	<tr><td>Jonathan Poltrack</td><td>ADL</td></tr>
-	<tr><td>Kris Miller</td><td>edcetra Training</td></tr>
-	<tr><td>Kris Rockwell</td><td>Hybrid Learning Systems</td></tr>
-	<tr><td>Lang Holloman</td><td> </td></tr>
-	<tr><td>Lou Wolford</td><td>ADL</td></tr>
-	<tr><td>Luke Hickey</td><td>dominKnow</td></tr>
-	<tr><td>Marcus Birtwhistle</td><td>ADL</td></tr>
-	<tr><td>Mark Davis</td><td>Exambuilder</td></tr>
-	<tr><td>Matteo Scaramuccia</td><td> </td></tr>
-	<tr><td>Megan Bowe</td><td>Rustici Software</td></tr>
-	<tr><td>Melanie VanHorn</td><td>ADL</td></tr>
-	<tr><td>Michael Flores</td><td>Here Everything's Better</td></tr>
-	<tr><td>Michael Roberts</td><td>vTrainingRoom</td></tr>
-	<tr><td>Mike Palmer</td><td>OnPoint Digital</td></tr>
-	<tr><td>Mike Rustici</td><td>Rustici Software</td></tr>
-	<tr><td>Nick Washburn</td><td>Riptide Software</td></tr>
-	<tr><td>Nikolaus Hruska</td><td>ADL</td></tr>
-	<tr><td>Pankaj Agrawal</td><td>Next Software Solutions</td></tr>
-	<tr><td>Patrick Kedziora</td><td>Kedzoh</td></tr>
-	<tr><td>Paul Esch</td><td>Nine Set</td></tr>
-	<tr><td>Paul Roberts</td><td>Questionmark</td></tr>
-	<tr><td>Rich Chetwynd</td><td>Litmos</td></tr>
-	<tr><td>Richard Fouchaux</td><td>Ontario Human Rights  Commission</td></tr>
-	<tr><td>Richard Lenz</td><td>Organizational Strategies, Inc.</td></tr>
-	<tr><td>Rick Raymer</td><td></td></tr>
-	<tr><td>Rob Chadwick</td><td>ADL</td></tr>
-	<tr><td>Robert Lowe</td><td>NetDimensions</td></tr>
-	<tr><td>Russell Duhon</td><td>SaLTBOX</td></tr>
-	<tr><td>Stephen Trevorrow</td><td>Problem Solutions, LLC.</td></tr>
-	<tr><td>Steve Baumgartner</td><td></td></tr>
-	<tr><td>Steve Flowers</td><td>XPConcept</td></tr>
-	<tr><td>Thomas Ho</td><td></td></tr>
-	<tr><td>Tim Martin</td><td>Rustici Software</td></tr>
-	<tr><td>Tom Creighton</td><td>ADL</td></tr>
-	<tr><td>Walt Grata</td><td>ADL</td></tr>
-</table> 
-
-><a name="reqparticipants"/> 
-
-
->###### Historical Contributors  
-> In collection of requirements for the Experience API, many people and 
-organizations provided invaluable feedback to the SCORM, distributed learning efforts, and learning technology
-efforts in general.  While not an exhaustive listing, the white papers gathered 
-in 2008 by the Learning Education and Training Standards Interoperability (LETSI) 
-group, the Rustici Software UserVoice website, one-on-one interviews and various
-blogs were important sources from which requirements were gathered for the 
-Experience API specification.
-
-><a name="adlrole"/>
-
->#### ADL's Role in the Experience API  
->The Advanced Distributed Learning (ADL) Initiative has taken on the roles of steward and facilitator 
-in the development of the Experience API.  The Experience API is seen as one piece of the ADL Training 
-and Learning Architecture, which facilitates learning anytime and anywhere. ADL views the Experience API 
-as an evolved version of Sharable Content Object Reference Model (SCORM) that can support similar use cases, 
-but can also support many of the use cases gathered by ADL and submitted by those involved in distributed 
-learning that SCORM could not enable.  
-
 >#### License
 
 >"Copyright 2013 Advanced Distributed Learning (ADL) Initiative, U.S. Department of Defense
@@ -181,7 +15,7 @@ learning that SCORM could not enable.
 >the License."
 
 >This document was authored by members of the Experience API Working Group (see 
->list on pp. 7-8) in support of the Office of the Deputy Assistant Secretary of 
+>list in [CONTRIBUTING.md](CONTRIBUTING.md#contributors)) in support of the Office of the Deputy Assistant Secretary of 
 >Defense (Readiness) Advanced Distributed Learning (ADL) Initiative. Please 
 >send all feedback and inquiries to helpdesk@adlnet.gov  
 
@@ -196,6 +30,8 @@ learning that SCORM could not enable.
 	*	5.0.	[xAPI Components](#xapi-components) 
 	*	6.0.	[Extending xAPI](#extending-xapi) 
 	*	7.0.	[Profiles and Communities of Practice](#COPs)  
+	*	[Appendices](#append1)  
+		*	[Appendix A: Revision History](#Appendix1A)  
 *	Part Two:	[Experience API (xAPI) Data](#parttwo)  
 	*	1.0.	[Documents](#documents) 
 	*	2.0.	[Statements](#statements)  
@@ -228,6 +64,11 @@ learning that SCORM could not enable.
 		*	4.4.	[UUIDs](#uuids)
 		*	4.5.	[ISO 8601 Timestamps](#timestamps)
 		*	4.6.	[ISO 8601 Durations](#durations)
+	*	[Appendices](#append2)  
+		*	[Appendix A: Example Statements](#Appendix2A)  
+		*	[Appendix B: Example statement objects of different types](#Appendix2B)  
+		*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](#Appendix2C)  	
+		*	[Appendix D: Example Signed Statement](#Appendix2D)  
 *	Part Three:	[Data Processing, Validation, and Security](#partthree)  
 	*	1.0.	[Requests](#requests)
 		*	1.1.	[HEAD Request Implementation](#httphead)  
@@ -250,14 +91,10 @@ learning that SCORM could not enable.
     *	4.0.	[Security](#security)  
 		*	4.1.	[OAuth 1.0 Authentication Scenarios and Methods](#authdefs) 
 		*	4.2.	[OAuth 1.0 Authorization Scope](#oauthscope)
-*		[Appendices](#append)  
-	*	[Appendix A: Example Statements](#AppendixA)  
-	*	[Appendix B: Example statement objects of different types](#AppendixB)  
-	*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](#AppendixC)  	
-	*	[Appendix D: Converting Statements to 1.0.0](#AppendixD)  
-	*	[Appendix E: Example Signed Statement](#AppendixE)  
-	*	[Appendix F: Table of All Endpoints](#AppendixF)  
-	*	[Appendix G: Cross Domain Request Example](#AppendixG)  
+	*	[Appendices](#append3)  
+		*	[Appendix A: Converting Statements to 1.0.0](#Appendix3A)  
+		*	[Appendix B: Table of All Endpoints](#Appendix3B)  
+		*	[Appendix C: Cross Domain Request Example](#Appendix3C)  
 
 <a name="partone"/>
 #Part One: About The Experience API
@@ -600,6 +437,64 @@ xAPI Verb, Activity, Extension, etc.;  (This requirement cannot be enforced by a
 of coining new entries without control)
 * Anyone establishing a new vocabulary entry SHOULD make a human-readable description of the intended usage accessible at the IRI.
 
+<a name="append1"/>
+## Appendices
+
+<a name="Appendix1A"/>
+### Appendix A: Revision History
+###### 0.8 (Project Tin Can API Deliverable) to 0.9 (March 31, 2012)  
+  
+Rustici Software, who delivered the Project Tin Can API, made modifications to the 
+API prior to the April 2012 Kickoff Meeting. It was voted in this meeting to 
+move those changes into the current specification and revision to 0.9.
+
+###### 0.90 to 0.95 (August 31, 2012)  
+
+"Core" Verbs and Activity types were removed from the specification. References 
+to these verbs in results, context, interactions, and Activity Definitions were 
+also  removed. It was recommended that implementers prefer community defined 
+verbs to creating their own verbs.
+- Verbs, Activity types, and extension keys are now URIs
+- Restructured and added language around some of the other implementation 
+details and scope.
+- Changed from using a person-centric view of Agents to a persona-centric 
+view.
+- Friend of a Friend (FOAF) Agent merging requirement was removed.
+- Agent Objects now have exactly 1 uniquely identifying property, instead 
+of at least one.
+
+###### 0.95 to 1.0.0 (April 26, 2013) 
+Various refinements and clarifications including:
+- Adding attachments
+- Activity metadata is now stored as JSON rather than XML
+- Changes to voiding Statements
+- Clarification and naming of the Document APIs
+- Changes to querying the Statement API
+- Signed Statements
+
+[0.95...1.0.0](https://github.com/adlnet/xAPI-Spec/compare/0.95-spec...1.0.0)
+
+###### 1.0.0 to 1.0.1 (October 1, 2013)
+Clarifications and additional examples including:
+- Fixed various typos
+- Added additional examples in the appendices
+
+[1.0.0...1.0.1](https://github.com/adlnet/xAPI-Spec/compare/1.0.0...1.0.1)
+
+###### 1.0.1 to 1.0.2 (October 1, 2014)
+- Added optional/required to tables
+- Added missing table heading on Interaction components
+- Change yes/no to required/optional in attachments
+- Clarified intent of 'moreInfo' property
+
+[1.0.1...1.0.2](https://github.com/adlnet/xAPI-Spec/compare/1.0.1...1.0.2)
+
+###### 1.0.2 to 1.0.3 (TBC)
+- Complete reorganization of the document into three parts
+- Many, many clarifications
+- Removed back-references to SCORM
+- Addiitional explanitory text and diagrams
+[1.0.2...1.0.3](https://github.com/adlnet/xAPI-Spec/compare/1.0.2...1.0.3)
 
 <a name="parttwo" />
 #Part Two: Experience API (xAPI) Data
@@ -883,7 +778,7 @@ When this Statement is returned from the LRS it will include some additional pro
     }
 }
 ```  
-See [Appendix A: Example Statements](#AppendixA) for more examples. 
+See [Appendix A: Example Statements](#Appendix2A) for more examples. 
 
 
 
@@ -1377,7 +1272,7 @@ The table below lists the properties for Interaction Activities.
 ###### Interaction Types
 The table below describes the kinds of interactions represented by each of the interactionTypes. These types of interactions were originally 
 based on the types of interactions allowed for "cmi.interactions.n.type" in the SCORM 2004 4th Edition Run-Time Environment.
-See [Appendix C](#AppendixC) for examples definitions for each interaction type. 
+See [Appendix C](#Appendix2C) for examples definitions for each interaction type. 
 
 <table>
 	<tr><th>interactionType</th><th>Description</th></tr>
@@ -1435,7 +1330,7 @@ See [Appendix C](#AppendixC) for examples definitions for each interaction type.
 The table below outlines the format of the strings within correctResponsesPattern property for each interaction type. 
 This format is also used to represent the learner's response within the result object. These formats were originally based on the 
 requirements relating to "cmi.interactions.n.correct_responses.n.pattern" as defined in the SCORM 2004 4th Edition 
-Run-Time Environment. See [Appendix C](#AppendixC) for examples of each format. 
+Run-Time Environment. See [Appendix C](#Appendix2C) for examples of each format. 
 
 <table>
 	<tr><th>interactionType</th><th>Format</th></tr>
@@ -1608,7 +1503,7 @@ shows the supported interaction component list(s) for an Interaction Activity wi
 
 ###### Examples
 
-See [Appendix C](#AppendixC) for examples of Activity Definitions for each of the cmi.interaction types.
+See [Appendix C](#Appendix2C) for examples of Activity Definitions for each of the cmi.interaction types.
 
 <a name="agentasobj"/>
 
@@ -2500,7 +2395,7 @@ the scope of this specification.
 * Clients MUST NOT assume a signature is valid simply because an LRS has accepted it.
 
 ##### Example
-See <a href="#AppendixE">Appendix E: Example Signed Statement</a> for an example.
+See <a href="#Appendix2D">Appendix D: Example Signed Statement</a> for an example.
 
 
 
@@ -2722,6 +2617,761 @@ The table below provides some example ISO 8601 durations. This list is not inten
 Durations are expected to be presented in the format in which they are recorded. For example if a duration is tracked
 in seconds (or fractions of a second) there is no need to convert this to hours, minutes and seconds. 
 
+<a name="append2"/>
+## Appendices
+<a name="Appendix2A"/>  
+ 
+### Appendix A: Example statements
+
+Example of a simple statement (line breaks are for display purposes only):  
+```
+{
+	"id":"fd41c918-b88b-4b20-a0a5-a4c32391aaa0",
+	"actor":{
+		"objectType": "Agent",
+		"name":"Project Tin Can API",
+		"mbox":"mailto:user@example.com"
+	},
+	"verb":{
+		"id":"http://example.com/xapi/verbs#sent-a-statement",
+		"display":{ 
+			"en-US":"sent" 
+		}
+	},
+	"object":{
+		"id":"http://example.com/xapi/activity/simplestatement",
+		"definition":{
+			"name":{ 
+				"en-US":"simple statement" 
+			},
+			"description":{ 
+				"en-US":"A simple Experience API statement. Note that the LRS 
+				does not need to have any prior information about the Actor (learner), the 
+				verb, or the Activity/object." 
+			}
+		}
+	}
+}
+```   
+Completion with verb "attempted" and duration expressed in seconds (not converted to minutes and seconds):  
+```
+{
+	"actor":{
+        "objectType": "Agent",
+		"name":"Example Learner",
+		"mbox":"mailto:example.learner@adlnet.gov"
+	},
+	"verb":{
+		"id":"http://adlnet.gov/expapi/verbs/attempted",
+		"display":{
+			"en-US":"attempted"
+		}
+	},
+	"object":{
+		"id":"http://example.adlnet.gov/xapi/example/simpleCBT",
+		"definition":{
+			"name":{
+				"en-US":"simple CBT course"
+			},
+			"description":{
+				"en-US":"A fictitious example CBT course."
+			}
+		}
+	},
+	"result":{
+		"score":{
+			"scaled":0.95
+		},
+		"success":true,
+		"completion":true,
+		"duration": "PT1234S"
+	}
+}
+```  
+A long example statement showcasing most of the properties available. This example shows
+a statement returned by an LRS including the authority and stored properties set by the LRS:  
+```
+{
+    "id": "6690e6c9-3ef0-4ed3-8b37-7f3964730bee",
+    "actor": {
+        "name": "Team PB",
+        "mbox": "mailto:teampb@example.com",
+        "member": [
+            {
+                "name": "Andrew Downes",
+                "account": {
+                    "homePage": "http://www.example.com",
+                    "name": "13936749"
+                },
+                "objectType": "Agent"
+            },
+            {
+                "name": "Toby Nichols",
+                "openid": "http://toby.openid.example.org/",
+                "objectType": "Agent"
+            },
+            {
+                "name": "Ena Hills",
+                "mbox_sha1sum": "ebd31e95054c018b10727ccffd2ef2ec3a016ee9",
+                "objectType": "Agent"
+            }
+        ],
+        "objectType": "Group"
+    },
+    "verb": {
+        "id": "http://adlnet.gov/expapi/verbs/attended",
+        "display": {
+            "en-GB": "attended",
+            "en-US": "attended"
+        }
+    },
+    "result": {
+        "extensions": {
+            "http://example.com/profiles/meetings/resultextensions/minuteslocation": "X:\\meetings\\minutes\\examplemeeting.one"
+        },
+        "success": true,
+        "completion": true,
+        "response": "We agreed on some example actions.",
+        "duration": "PT1H0M0S"
+    },
+    "context": {
+        "registration": "ec531277-b57b-4c15-8d91-d292c5b2b8f7",
+        "contextActivities": {
+            "parent": [
+                {
+                    "id": "http://www.example.com/meetings/series/267",
+                    "objectType": "Activity"
+                }
+            ],
+            "category": [
+                {
+                    "id": "http://www.example.com/meetings/categories/teammeeting",
+                    "objectType": "Activity",
+                    "definition": {
+			            "name": {
+			                "en": "team meeting"
+			            },
+			            "description": {
+			                "en": "A category of meeting used for regular team meetings."
+			            },
+			            "type": "http://example.com/expapi/activities/meetingcategory"
+			        }
+                }
+            ],
+            "other": [
+                {
+                    "id": "http://www.example.com/meetings/occurances/34257",
+                    "objectType": "Activity"
+                },
+                {
+                    "id": "http://www.example.com/meetings/occurances/3425567",
+                    "objectType": "Activity"
+                }
+            ]
+        },
+        "instructor" :
+        {
+        	"name": "Andrew Downes",
+            "account": {
+                "homePage": "http://www.example.com",
+                "name": "13936749"
+            },
+            "objectType": "Agent"
+        },
+        "team":
+        {
+        	"name": "Team PB",
+        	"mbox": "mailto:teampb@example.com",
+        	"objectType": "Group"
+        }, 
+        "platform" : "Example virtual meeting software",
+        "language" : "tlh",
+        "statement" : {
+        	"objectType":"StatementRef",
+        	"id" :"6690e6c9-3ef0-4ed3-8b37-7f3964730bee"
+        }
+        
+    },
+    "timestamp": "2013-05-18T05:32:34.804Z",
+    "stored": "2013-05-18T05:32:34.804Z",
+    "authority": {
+        "account": {
+            "homePage": "http://cloud.scorm.com/",
+            "name": "anonymous"
+        },
+        "objectType": "Agent"
+    },
+    "version": "1.0.0",
+    "object": {
+        "id": "http://www.example.com/meetings/occurances/34534",
+        "definition": {
+            "extensions": {
+                "http://example.com/profiles/meetings/activitydefinitionextensions/room": {"name": "Kilby", "id" : "http://example.com/rooms/342"}
+            },
+            "name": {
+                "en-GB": "example meeting",
+                "en-US": "example meeting"
+            },
+            "description": {
+                "en-GB": "An example meeting that happened on a specific occasion with certain people present.",
+                "en-US": "An example meeting that happened on a specific occasion with certain people present."
+            },
+            "type": "http://adlnet.gov/expapi/activities/meeting",
+            "moreInfo": "http://virtualmeeting.example.com/345256"
+        },
+        "objectType": "Activity"
+    }
+}
+```  
+<a name="Appendix2B"/>  
+
+### Appendix B: Example statement objects of different types
+
+The object of a statement can be an activity, agent, group or statement. 
+This appendix provides one example of each. 
+
+###### Activity
+```
+{
+    "id": "http://www.example.co.uk/exampleactivity",
+    "definition": {
+        "name": {
+            "en-GB": "example activity",
+            "en-US": "example activity"
+        },
+        "description": {
+            "en-GB": "An example of an activity",
+            "en-US": "An example of an activity"
+        },
+        "type": "http://www.example.co.uk/types/exampleactivitytype"
+    },
+    "objectType": "Activity"
+}
+```
+
+###### Agent
+```
+{
+    "name": "Andrew Downes",
+    "mbox": "mailto:andrew@example.co.uk",
+    "objectType": "Agent"
+}
+```
+
+###### Group
+This example shows an identified group with members. 
+```
+{
+    "name": "Example Group",
+    "account" : {
+    	"homePage" : "http://example.com/homePage",
+    	"name" : "GroupAccount"
+    },
+    "objectType": "Group",
+    "member": [
+        {
+            "name": "Andrew Downes",
+            "mbox": "mailto:andrew@example.com",
+            "objectType": "Agent"
+        },
+        {
+            "name": "Aaron Silvers",
+            "openid": "http://aaron.openid.example.org",
+            "objectType": "Agent"
+        }
+    ]
+}
+```
+
+
+###### Statement
+This example shows a SubStatement object whose object is a Statement Reference.
+
+```
+{
+    "objectType": "SubStatement",
+    "actor" : {
+        "objectType": "Agent", 
+        "mbox":"mailto:agent@example.com" 
+    },
+    "verb" : { 
+        "id":"http://example.com/confirmed", 
+        "display":{
+            "en":"confirmed"
+        } 
+    },
+    "object": {
+        "objectType":"StatementRef",
+		"id" :"9e13cefd-53d3-4eac-b5ed-2cf6693903bb"
+    }
+}
+```
+
+<a name="Appendix2C"/>  
+
+### Appendix C: Example definitions for Activities of type "cmi.interaction"
+
+###### true-false  
+
+```
+"definition": {
+	"description": {
+		"en-US": "Does the xAPI include the concept of statements?"
+	},
+	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+	"interactionType": "true-false",
+	"correctResponsesPattern": [
+		"true"
+	]
+}
+```
+
+###### choice  
+```
+"definition": {
+	"description": {
+		"en-US": "Which of these prototypes are available at the beta site?"
+	},
+	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+	"interactionType": "choice",
+	"correctResponsesPattern": [
+		"golf[,]tetris"
+	],
+	"choices": [
+		{
+			"id": "golf", 
+			"description": {
+				"en-US": "Golf Example"
+			}
+		},
+		{
+			"id": "facebook", 
+			"description": {
+				"en-US": "Facebook App"
+			}
+		},
+		{
+			"id": "tetris", 
+			"description": {
+				"en-US": "Tetris Example"
+			}
+		},
+		{
+			"id": "scrabble", 
+			"description": {
+				"en-US": "Scrabble Example"
+			}
+		}
+	]
+}
+```
+
+###### fill-in  
+```
+"definition": {
+	"description": {
+		"en-US": "Ben is often heard saying: "
+	},
+	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+	"interactionType": "fill-in",
+	"correctResponsesPattern": [
+		"Bob's your uncle"
+	]
+}
+```
+
+###### long-fill-in  
+```
+"definition": {
+	"description": {
+		"en-US": "What is the purpose of the xAPI?"
+	},
+	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+	"interactionType": "long-fill-in",
+	"correctResponsesPattern": [
+		"{case_matters=false}{lang=en}To store and provide access to learning experiences."
+	]
+}
+```
+
+###### likert  
+```
+"definition": {
+	"description": {
+		"en-US": "How awesome is Experience API?"
+	},
+	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+	"interactionType": "likert",
+	"correctResponsesPattern": [
+		"likert_3"
+	],
+	"scale": [
+		{
+			"id": "likert_0", 
+			"description": {
+				"en-US": "It's OK"
+			}
+		},
+		{
+			"id": "likert_1", 
+			"description": {
+				"en-US": "It's Pretty Cool"
+			}
+		},
+		{
+			"id": "likert_2", 
+			"description": {
+				"en-US": "It's Damn Cool"
+			}
+		},
+		{
+			"id": "likert_3", 
+			"description": {
+				"en-US": "It's Gonna Change the World"
+			}
+		}
+	]
+}
+```
+
+###### matching  
+```
+"definition": {
+	"description": {
+		"en-US": "Match these people to their kickball team:"
+	},
+	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+	"interactionType": "matching",
+	"correctResponsesPattern": [
+		"ben[.]3[,]chris[.]2[,]troy[.]4[,]freddie[.]1"
+	],
+	"source": [
+		{
+			"id": "ben",
+			"description": {
+				"en-US": "Ben"
+			}
+		},
+		{
+			"id": "chris",
+			"description": {
+				"en-US": "Chris"
+			}
+		},
+		{
+			"id": "troy",
+			"description": {
+				"en-US": "Troy"
+			}
+		},
+		{
+			"id": "freddie",
+			"description": {
+				"en-US": "Freddie"
+			}
+		}
+	],
+	"target": [
+		{
+			"id": "1",
+			"description": {
+				"en-US": "Swift Kick in the Grass"
+			}
+		},
+		{
+			"id": "2",
+			"description": {
+				"en-US": "We got Runs"
+			}
+		},
+		{
+			"id": "3",
+			"description": {
+				"en-US": "Duck"
+			}
+		},
+		{
+			"id": "4",
+			"description": {
+				"en-US": "Van Delay Industries"
+			}
+		}
+	]
+}
+```
+
+###### performance  
+```
+"definition": {
+	"description": {
+		"en-US": "This interaction measures performance over a day of RS sports:"
+	},
+	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+	"interactionType": "performance",
+	"correctResponsesPattern": [
+		"pong[.]1:[,]dg[.]:10[,]lunch[.]"
+	],
+	"steps": [
+		{
+			"id": "pong", 
+			"description": {
+				"en-US": "Net pong matches won"
+			}
+		},
+		{
+			"id": "dg", 
+			"description": {
+				"en-US": "Strokes over par in disc golf at Liberty"
+				}
+			},
+		{
+			"id": "lunch", 
+			"description": {
+				"en-US": "Lunch having been eaten"
+			}
+		}
+	]
+}
+```
+
+###### sequencing  
+```
+"definition": {
+	"description": {
+		"en-US": "Order players by their pong ladder position:"
+	},
+	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+	"interactionType": "sequencing",
+	"correctResponsesPattern": [
+		"tim[,]mike[,]ells[,]ben"
+	],
+	"choices": [
+		{
+			"id": "tim", 
+			"description": {
+				"en-US": "Tim"
+			}
+		},
+		{
+			"id": "ben", "description": {
+				"en-US": "Ben"
+			}
+		},
+		{
+			"id": "ells", 
+			"description": {
+				"en-US": "Ells"
+			}
+		},
+		{
+			"id": "mike", 
+			"description": {
+				"en-US": "Mike"
+			}
+		}
+	]
+}
+```
+
+###### numeric  
+```
+"definition": {
+	"description": {
+		"en-US": "How many jokes is Chris the butt of each day?"
+	},
+	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+	"interactionType": "numeric",
+	"correctResponsesPattern": [
+		"4[:]"
+	]
+}
+```
+
+In this example the minimum correct answer is 4 and there is no maximum. 5, 6 or 976 would all be correct answers. 
+
+###### other  
+```
+"definition": {
+	"description": {
+		"en-US": "On this map, please mark Franklin, TN"
+	},
+	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+	"interactionType": "other",
+	"correctResponsesPattern": [
+		"(35.937432,-86.868896)"
+	]
+}
+```
+
+<a name="Appendix2D"/>
+
+### Appendix D: Example Signed Statement
+
+An example signed Statement, as described in: <a href="#signature">4.4 Signed Statements</a>.
+
+The original Statement serialization to be signed. New lines in this example are included
+via CR+LF (0x0D + 0x0A).
+
+```
+{
+    "version": "1.0.0",
+    "id": "33cff416-e331-4c9d-969e-5373a1756120",
+    "actor": {
+        "mbox": "mailto:example@example.com",
+        "name": "Example Learner",
+        "objectType": "Agent"
+    },
+    "verb": {
+        "id": "http://adlnet.gov/expapi/verbs/experienced",
+        "display": {
+            "en-US": "experienced"
+        }
+    },
+    "object": {
+        "id": "https://www.youtube.com/watch?v=xh4kIiH3Sm8",
+        "objectType": "Activity",
+        "definition": {
+            "name": {
+                "en-US": "Tax Tips & Information : How to File a Tax Return "
+            },
+            "description": {
+                "en-US": "Filing a tax return will require filling out either a 1040, 1040A or 1040EZ form"
+            }
+        }
+    },
+    "timestamp": "2013-04-01T12:00:00Z"
+}
+```
+
+Example private key for X.509 certificate that will be used for signing:
+```
+-----BEGIN RSA PRIVATE KEY-----
+MIICXAIBAAKBgQDjxvZXF30WL4oKjZYXgR0ZyaX+u3y6+JqTqiNkFa/VTnet6Ly2
+OT6ZmmcJEPnq3UnewpHoOQ+GfhhTkW13j06j5iNn4obcCVWTL9yXNvJH+Ko+xu4Y
+l/ySPRrIPyTjtHdG0M2XzIlmmLqm+CAS+KCbJeH4tf543kIWC5pC5p3cVQIDAQAB
+AoGAOejdvGq2XKuddu1kWXl0Aphn4YmdPpPyCNTaxplU6PBYMRjY0aNgLQE6bO2p
+/HJiU4Y4PkgzkEgCu0xf/mOq5DnSkX32ICoQS6jChABAe20ErPfm5t8h9YKsTfn9
+40lAouuwD9ePRteizd4YvHtiMMwmh5PtUoCbqLefawNApAECQQD1mdBW3zL0okUx
+2pc4tttn2qArCG4CsEZMLlGRDd3FwPWJz3ZPNEEgZWXGSpA9F1QTZ6JYXIfejjRo
+UuvRMWeBAkEA7WvzDBNcv4N+xeUKvH8ILti/BM58LraTtqJlzjQSovek0srxtmDg
+5of+xrxN6IM4p7yvQa+7YOUOukrVXjG+1QJBAI2mBrjzxgm9xTa5odn97JD7UMFA
+/WHjlMe/Nx/35V52qaav1sZbluw+TvKMcqApYj5G2SUpSNudHLDGkmd2nQECQFfc
+lBRK8g7ZncekbGW3aRLVGVOxClnLLTzwOlamBKOUm8V6XxsMHQ6TE2D+fKJoNUY1
+2HGpk+FWwy2D1hRGuoUCQAXfaLSxtaWdPtlZTPVueF7ZikQDsVg+vtTFgpuHloR2
+6EVc1RbHHZm32yvGDY8IkcoMfJQqLONDdLfS/05yoNU=
+-----END RSA PRIVATE KEY-----
+```
+
+Example public X.509 certificate
+```
+-----BEGIN CERTIFICATE-----
+MIIDATCCAmqgAwIBAgIJAMB1csNuA6+kMA0GCSqGSIb3DQEBBQUAMHExCzAJBgNV
+BAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUxGDAWBgNVBAoTD0V4YW1wbGUgQ29t
+cGFueTEQMA4GA1UEAxMHRXhhbXBsZTEiMCAGCSqGSIb3DQEJARYTZXhhbXBsZUBl
+eGFtcGxlLmNvbTAeFw0xMzA0MDQxNTI4MzBaFw0xNDA0MDQxNTI4MzBaMIGWMQsw
+CQYDVQQGEwJVUzESMBAGA1UECBMJVGVubmVzc2VlMREwDwYDVQQHEwhGcmFua2xp
+bjEYMBYGA1UEChMPRXhhbXBsZSBDb21wYW55MRAwDgYDVQQLEwdFeGFtcGxlMRAw
+DgYDVQQDEwdFeGFtcGxlMSIwIAYJKoZIhvcNAQkBFhNleGFtcGxlQGV4YW1wbGUu
+Y29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDjxvZXF30WL4oKjZYXgR0Z
+yaX+u3y6+JqTqiNkFa/VTnet6Ly2OT6ZmmcJEPnq3UnewpHoOQ+GfhhTkW13j06j
+5iNn4obcCVWTL9yXNvJH+Ko+xu4Yl/ySPRrIPyTjtHdG0M2XzIlmmLqm+CAS+KCb
+JeH4tf543kIWC5pC5p3cVQIDAQABo3sweTAJBgNVHRMEAjAAMCwGCWCGSAGG+EIB
+DQQfFh1PcGVuU1NMIEdlbmVyYXRlZCBDZXJ0aWZpY2F0ZTAdBgNVHQ4EFgQUVs3v
+5afEdOeoYeVajAQE4v0WS1QwHwYDVR0jBBgwFoAUyVIc3yvra4EBz20I4BF39IAi
+xBkwDQYJKoZIhvcNAQEFBQADgYEAgS/FF5D0Hnj44rvT6kgn3kJAvv2lj/fyjztK
+IrYS33ljXGn6gGyA4qtbXA23PrO4uc/wYCSDICDpPobh62xTCd9qObKhgwWOi05P
+SBLqUu3mwfAe15LJBJBqPVZ4K0kppePBU8m6aIZoH57L/9t4OoaL8yKs/qjKFeI1
+OFWZxvA=
+-----END CERTIFICATE-----
+```
+
+Example certificate authority certificate
+```
+-----BEGIN CERTIFICATE-----
+MIIDNzCCAqCgAwIBAgIJAMB1csNuA6+jMA0GCSqGSIb3DQEBBQUAMHExCzAJBgNV
+BAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUxGDAWBgNVBAoTD0V4YW1wbGUgQ29t
+cGFueTEQMA4GA1UEAxMHRXhhbXBsZTEiMCAGCSqGSIb3DQEJARYTZXhhbXBsZUBl
+eGFtcGxlLmNvbTAeFw0xMzA0MDQxNTI1NTNaFw0yMzA0MDIxNTI1NTNaMHExCzAJ
+BgNVBAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUxGDAWBgNVBAoTD0V4YW1wbGUg
+Q29tcGFueTEQMA4GA1UEAxMHRXhhbXBsZTEiMCAGCSqGSIb3DQEJARYTZXhhbXBs
+ZUBleGFtcGxlLmNvbTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA1sBnBWPZ
+0f7WJUFTJy5+01SlS5Z6DDD6Uye9vK9AycgV5B3+WC8HC5u5h91MujAC1ARPVUOt
+svPRs45qKNFIgIGRXKPAwZjawEI2sCJRSKV47i6B8bDv4WkuGvQaveZGI0qlmN5R
+1Eim2gUItRj1hgcC9rQavjlnFKDY2rlXGukCAwEAAaOB1jCB0zAdBgNVHQ4EFgQU
+yVIc3yvra4EBz20I4BF39IAixBkwgaMGA1UdIwSBmzCBmIAUyVIc3yvra4EBz20I
+4BF39IAixBmhdaRzMHExCzAJBgNVBAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUx
+GDAWBgNVBAoTD0V4YW1wbGUgQ29tcGFueTEQMA4GA1UEAxMHRXhhbXBsZTEiMCAG
+CSqGSIb3DQEJARYTZXhhbXBsZUBleGFtcGxlLmNvbYIJAMB1csNuA6+jMAwGA1Ud
+EwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADgYEADhwTebGk735yKhm8DqCxvNnEZ0Nx
+sYEYOjgRG1yXTlW5pE691fSH5AZ+T6fpwpZcWY5QYkoN6DnwjOxGkSfQC3/yGmcU
+DKBPwiZ5O2s9C+fE1kUEnrX2Xea4agVngMzR8DQ6oOauLWqehDB+g2ENWRLoVgS+
+ma5/Ycs0GTyrECY=
+-----END CERTIFICATE-----
+```
+
+JWS Header. Note that along with specifying the algorithm, the certificate chain for
+the signing certificate has been included.
+```
+{
+    "alg": "RS256",
+    "x5c": [
+        "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"
+    ]
+}
+```
+
+JWS signature
+```
+ew0KICAgICJhbGciOiAiUlMyNTYiLA0KICAgICJ4NWMiOiBbDQogICAgICAgICJNSUlEQVRDQ0FtcWdBd0lCQWdJSkFNQjFjc051QTYra01BMEdDU3FHU0liM0RRRUJCUVVBTUhFeEN6QUpCZ05WQkFZVEFsVlRNUkl3RUFZRFZRUUlFd2xVWlc1dVpYTnpaV1V4R0RBV0JnTlZCQW9URDBWNFlXMXdiR1VnUTI5dGNHRnVlVEVRTUE0R0ExVUVBeE1IUlhoaGJYQnNaVEVpTUNBR0NTcUdTSWIzRFFFSkFSWVRaWGhoYlhCc1pVQmxlR0Z0Y0d4bExtTnZiVEFlRncweE16QTBNRFF4TlRJNE16QmFGdzB4TkRBME1EUXhOVEk0TXpCYU1JR1dNUXN3Q1FZRFZRUUdFd0pWVXpFU01CQUdBMVVFQ0JNSlZHVnVibVZ6YzJWbE1SRXdEd1lEVlFRSEV3aEdjbUZ1YTJ4cGJqRVlNQllHQTFVRUNoTVBSWGhoYlhCc1pTQkRiMjF3WVc1NU1SQXdEZ1lEVlFRTEV3ZEZlR0Z0Y0d4bE1SQXdEZ1lEVlFRREV3ZEZlR0Z0Y0d4bE1TSXdJQVlKS29aSWh2Y05BUWtCRmhObGVHRnRjR3hsUUdWNFlXMXdiR1V1WTI5dE1JR2ZNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0R05BRENCaVFLQmdRRGp4dlpYRjMwV0w0b0tqWllYZ1IwWnlhWCt1M3k2K0pxVHFpTmtGYS9WVG5ldDZMeTJPVDZabW1jSkVQbnEzVW5ld3BIb09RK0dmaGhUa1cxM2owNmo1aU5uNG9iY0NWV1RMOXlYTnZKSCtLbyt4dTRZbC95U1BScklQeVRqdEhkRzBNMlh6SWxtbUxxbStDQVMrS0NiSmVINHRmNTQza0lXQzVwQzVwM2NWUUlEQVFBQm8zc3dlVEFKQmdOVkhSTUVBakFBTUN3R0NXQ0dTQUdHK0VJQkRRUWZGaDFQY0dWdVUxTk1JRWRsYm1WeVlYUmxaQ0JEWlhKMGFXWnBZMkYwWlRBZEJnTlZIUTRFRmdRVVZzM3Y1YWZFZE9lb1llVmFqQVFFNHYwV1MxUXdId1lEVlIwakJCZ3dGb0FVeVZJYzN5dnJhNEVCejIwSTRCRjM5SUFpeEJrd0RRWUpLb1pJaHZjTkFRRUZCUUFEZ1lFQWdTL0ZGNUQwSG5qNDRydlQ2a2duM2tKQXZ2MmxqL2Z5anp0S0lyWVMzM2xqWEduNmdHeUE0cXRiWEEyM1ByTzR1Yy93WUNTRElDRHBQb2JoNjJ4VENkOXFPYktoZ3dXT2kwNVBTQkxxVXUzbXdmQWUxNUxKQkpCcVBWWjRLMGtwcGVQQlU4bTZhSVpvSDU3TC85dDRPb2FMOHlLcy9xaktGZUkxT0ZXWnh2QT0iLA0KICAgICAgICAiTUlJRE56Q0NBcUNnQXdJQkFnSUpBTUIxY3NOdUE2K2pNQTBHQ1NxR1NJYjNEUUVCQlFVQU1IRXhDekFKQmdOVkJBWVRBbFZUTVJJd0VBWURWUVFJRXdsVVpXNXVaWE56WldVeEdEQVdCZ05WQkFvVEQwVjRZVzF3YkdVZ1EyOXRjR0Z1ZVRFUU1BNEdBMVVFQXhNSFJYaGhiWEJzWlRFaU1DQUdDU3FHU0liM0RRRUpBUllUWlhoaGJYQnNaVUJsZUdGdGNHeGxMbU52YlRBZUZ3MHhNekEwTURReE5USTFOVE5hRncweU16QTBNREl4TlRJMU5UTmFNSEV4Q3pBSkJnTlZCQVlUQWxWVE1SSXdFQVlEVlFRSUV3bFVaVzV1WlhOelpXVXhHREFXQmdOVkJBb1REMFY0WVcxd2JHVWdRMjl0Y0dGdWVURVFNQTRHQTFVRUF4TUhSWGhoYlhCc1pURWlNQ0FHQ1NxR1NJYjNEUUVKQVJZVFpYaGhiWEJzWlVCbGVHRnRjR3hsTG1OdmJUQ0JuekFOQmdrcWhraUc5dzBCQVFFRkFBT0JqUUF3Z1lrQ2dZRUExc0JuQldQWjBmN1dKVUZUSnk1KzAxU2xTNVo2RERENlV5ZTl2SzlBeWNnVjVCMytXQzhIQzV1NWg5MU11akFDMUFSUFZVT3RzdlBSczQ1cUtORklnSUdSWEtQQXdaamF3RUkyc0NKUlNLVjQ3aTZCOGJEdjRXa3VHdlFhdmVaR0kwcWxtTjVSMUVpbTJnVUl0UmoxaGdjQzlyUWF2amxuRktEWTJybFhHdWtDQXdFQUFhT0IxakNCMHpBZEJnTlZIUTRFRmdRVXlWSWMzeXZyYTRFQnoyMEk0QkYzOUlBaXhCa3dnYU1HQTFVZEl3U0JtekNCbUlBVXlWSWMzeXZyYTRFQnoyMEk0QkYzOUlBaXhCbWhkYVJ6TUhFeEN6QUpCZ05WQkFZVEFsVlRNUkl3RUFZRFZRUUlFd2xVWlc1dVpYTnpaV1V4R0RBV0JnTlZCQW9URDBWNFlXMXdiR1VnUTI5dGNHRnVlVEVRTUE0R0ExVUVBeE1IUlhoaGJYQnNaVEVpTUNBR0NTcUdTSWIzRFFFSkFSWVRaWGhoYlhCc1pVQmxlR0Z0Y0d4bExtTnZiWUlKQU1CMWNzTnVBNitqTUF3R0ExVWRFd1FGTUFNQkFmOHdEUVlKS29aSWh2Y05BUUVGQlFBRGdZRUFEaHdUZWJHazczNXlLaG04RHFDeHZObkVaME54c1lFWU9qZ1JHMXlYVGxXNXBFNjkxZlNINUFaK1Q2ZnB3cFpjV1k1UVlrb042RG53ak94R2tTZlFDMy95R21jVURLQlB3aVo1TzJzOUMrZkUxa1VFbnJYMlhlYTRhZ1ZuZ016UjhEUTZvT2F1TFdxZWhEQitnMkVOV1JMb1ZnUyttYTUvWWNzMEdUeXJFQ1k9Ig0KICAgIF0NCn0.ew0KICAgICJ2ZXJzaW9uIjogIjEuMC4wIiwNCiAgICAiaWQiOiAiMzNjZmY0MTYtZTMzMS00YzlkLTk2OWUtNTM3M2ExNzU2MTIwIiwNCiAgICAiYWN0b3IiOiB7DQogICAgICAgICJtYm94IjogIm1haWx0bzpleGFtcGxlQGV4YW1wbGUuY29tIiwNCiAgICAgICAgIm5hbWUiOiAiRXhhbXBsZSBMZWFybmVyIiwNCiAgICAgICAgIm9iamVjdFR5cGUiOiAiQWdlbnQiDQogICAgfSwNCiAgICAidmVyYiI6IHsNCiAgICAgICAgImlkIjogImh0dHA6Ly9hZGxuZXQuZ292L2V4cGFwaS92ZXJicy9leHBlcmllbmNlZCIsDQogICAgICAgICJkaXNwbGF5Ijogew0KICAgICAgICAgICAgImVuLVVTIjogImV4cGVyaWVuY2VkIg0KICAgICAgICB9DQogICAgfSwNCiAgICAib2JqZWN0Ijogew0KICAgICAgICAiaWQiOiAiaHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g_dj14aDRrSWlIM1NtOCIsDQogICAgICAgICJvYmplY3RUeXBlIjogIkFjdGl2aXR5IiwNCiAgICAgICAgImRlZmluaXRpb24iOiB7DQogICAgICAgICAgICAibmFtZSI6IHsNCiAgICAgICAgICAgICAgICAiZW4tVVMiOiAiVGF4IFRpcHMgJiBJbmZvcm1hdGlvbiA6IEhvdyB0byBGaWxlIGEgVGF4IFJldHVybiAiDQogICAgICAgICAgICB9LA0KICAgICAgICAgICAgImRlc2NyaXB0aW9uIjogew0KICAgICAgICAgICAgICAgICJlbi1VUyI6ICJGaWxpbmcgYSB0YXggcmV0dXJuIHdpbGwgcmVxdWlyZSBmaWxsaW5nIG91dCBlaXRoZXIgYSAxMDQwLCAxMDQwQSBvciAxMDQwRVogZm9ybSINCiAgICAgICAgICAgIH0NCiAgICAgICAgfQ0KICAgIH0sDQogICAgInRpbWVzdGFtcCI6ICIyMDEzLTA0LTAxVDEyOjAwOjAwWiINCn0.FWuwaPhwUbkk7h9sKW5zSvjsYNugvxJ-TrVaEgt_DCUT0bmKhQScRrjMB6P9O50uznPwT66oF1NnU_G0HVhRzS5voiXE-y7tT3z0M3-8A6YK009Bk_digVUul-HA4Fpd5IjoBBGe3yzaQ2ZvzarvRuipvNEQCI0onpfuZZJQ0d8
+```
+
+Signed Statement
+```
+{
+    "version": "1.0.0",
+    "id": "33cff416-e331-4c9d-969e-5373a1756120",
+    "actor": {
+        "mbox": "mailto:example@example.com",
+        "name": "Example Learner",
+        "objectType": "Agent"
+    },
+    "verb": {
+        "id": "http://adlnet.gov/expapi/verbs/experienced",
+        "display": {
+            "en-US": "experienced"
+        }
+    },
+    "object": {
+        "id": "https://www.youtube.com/watch?v=xh4kIiH3Sm8",
+        "objectType": "Activity",
+        "definition": {
+            "name": {
+                "en-US": "Tax Tips & Information : How to File a Tax Return "
+            },
+            "description": {
+                "en-US": "Filing a tax return will require filling out either a 1040, 1040A or 1040EZ form"
+            }
+        }
+    },
+    "timestamp": "2013-04-01T12:00:00Z",
+    "attachments": [
+        {
+            "usageType": "http://adlnet.gov/expapi/attachments/signature",
+            "display": { "en-US": "Signature" },
+            "description": { "en-US": "A test signature" },
+            "contentType": "application/octet-stream",
+            "length": 4235,
+            "sha2": "672fa5fa658017f1b72d65036f13379c6ab05d4ab3b6664908d8acf0b6a0c634"
+        }
+    ]
+}
+```
+
+__Note:__ Attached signature not shown, see <a href="#attachments"> attachments</a> for
+attachment message format.
+
+
 <a name="partthree"/>
 
 # Part Three: Data Processing, Validation, and Security 
@@ -2865,7 +3515,7 @@ Statements to the target LRS.
 * The LRS and the Client SHOULD consider the security risks before making the 
 decision to use this scheme.
 
-See [Appendix G: Cross Domain Request Example](#AppendixG) for an example. 
+See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example. 
 
 <a name="datatransfer"/> 
 
@@ -2965,6 +3615,7 @@ In this context merge is defined as:
 * for each property directly defined on the Object being posted, set the corresponding
 property on the existing Object equal to the value from the posted Object.    
 * store any valid json serialization of the existing Object as the document referenced in the request
+* The LRS SHOULD* include a "Last-Modified" header which matches the value of the stored property of the Statement. 
 
 Note that only top-level properties are merged, even if a top-level property is an Object.
 The entire contents of each original property are replaced with the entire contents of
@@ -3021,7 +3672,7 @@ Such a system is not considered to be an LRS or 'partial LRS'; it is simply not 
 __Note:__ In all of the example endpoints given in the specification, 
 "http://example.com/xAPI/" is the example base endpoint of the LRS. All other IRI 
 syntax after this represents the particular endpoint used. A full list of endpoints
-is included in [Appendix F: Table of All Endpoints](#AppendixF).
+is included in [Appendix B: Table of All Endpoints](#Appendix3B).
 
 ###### Requirements
 
@@ -3086,7 +3737,6 @@ do not match. See [Statement comparision requirements](statement-comparision-req
 * Activity Providers SHOULD POST Statements including the Statement "id" property instead of using PUT. 
 * When PUTing statements, the "id" property of the Statement SHOULD be used. 
 * Where provided, the "id" property of the Statement MUST match the "statementId" parameter of the request. 
-
 
 <a name="stmtrespost"/>
 
@@ -3219,7 +3869,7 @@ Object.
 		<td>Optional</td>
 	</tr>
 	<tr>
-		<td>related_activities</td>
+	<td>related_activities</td>
 		<td>Boolean</td>
 		<td>false</td>
 		<td>
@@ -3303,8 +3953,7 @@ Object.
 	</tr>
 </table>
 
-__Note:__ The values of Boolean parameters are represented as ```true``` or ```false``` as in JSON. 
-
+__Note:__ The values of Boolean parameters are represented as ```true``` or ```false``` as in JSON.
 ###### Requirements
 
 * The LRS MUST reject with an ```HTTP 400``` error any requests to this resource 
@@ -3335,7 +3984,7 @@ multipart response format and include all attachments as described in <a href="#
 * If the attachment property of a GET statement is used and is set to <code>false</code>, the LRS MUST NOT
 include attachment raw data and MUST report application/json.
 
-* The LRS SHOULD* include a "Last-Modified" header which matches the value of the stored property of the Statement. 
+* The LRS SHOULD* include a "Last-Modified" header which matches the Stored timestamp of the Statement. 
 
 <a name="queryStatementRef" />
 
@@ -3474,7 +4123,7 @@ Example endpoint: http://example.com/xAPI/activities/state
 Fetches State Ids of all state data for this context (Activity + Agent \[ + 
 registration if specified\]). If "since" parameter is specified, this 
 is limited to entries that have been stored or updated since the specified 
-Timestamp (exclusive).  
+Timestamp (exclusive). 
 
 **Content:** None.
 
@@ -4145,7 +4794,7 @@ of the problem.
 
 * Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
 * Systems MAY convert Statements of older versions into a newer version only by following the methods described in
-<a href="#AppendixD">Appendix D: Converting Statements to 1.0.0</a>.
+<a href="#Appendix3A">Appendix A: Converting Statements to 1.0.0</a>.
 
 
 <a name="security"/>
@@ -4399,597 +5048,12 @@ will be granted.
 
 
 
-<a name="append"/>
-# Appendices
+<a name="append3"/>
+## Appendices
 
+<a name="Appendix3A"/>
 
-<a name="AppendixA"/>  
- 
-## Appendix A: Example statements
-
-Example of a simple statement (line breaks are for display purposes only):  
-```
-{
-	"id":"fd41c918-b88b-4b20-a0a5-a4c32391aaa0",
-	"actor":{
-		"objectType": "Agent",
-		"name":"Project Tin Can API",
-		"mbox":"mailto:user@example.com"
-	},
-	"verb":{
-		"id":"http://example.com/xapi/verbs#sent-a-statement",
-		"display":{ 
-			"en-US":"sent" 
-		}
-	},
-	"object":{
-		"id":"http://example.com/xapi/activity/simplestatement",
-		"definition":{
-			"name":{ 
-				"en-US":"simple statement" 
-			},
-			"description":{ 
-				"en-US":"A simple Experience API statement. Note that the LRS 
-				does not need to have any prior information about the Actor (learner), the 
-				verb, or the Activity/object." 
-			}
-		}
-	}
-}
-```   
-Completion with verb "attempted" and duration expressed in seconds (not converted to minutes and seconds):  
-```
-{
-	"actor":{
-        "objectType": "Agent",
-		"name":"Example Learner",
-		"mbox":"mailto:example.learner@adlnet.gov"
-	},
-	"verb":{
-		"id":"http://adlnet.gov/expapi/verbs/attempted",
-		"display":{
-			"en-US":"attempted"
-		}
-	},
-	"object":{
-		"id":"http://example.adlnet.gov/xapi/example/simpleCBT",
-		"definition":{
-			"name":{
-				"en-US":"simple CBT course"
-			},
-			"description":{
-				"en-US":"A fictitious example CBT course."
-			}
-		}
-	},
-	"result":{
-		"score":{
-			"scaled":0.95
-		},
-		"success":true,
-		"completion":true,
-		"duration": "PT1234S"
-	}
-}
-```  
-A long example statement showcasing most of the properties available. This example shows
-a statement returned by an LRS including the authority and stored properties set by the LRS:  
-```
-{
-    "id": "6690e6c9-3ef0-4ed3-8b37-7f3964730bee",
-    "actor": {
-        "name": "Team PB",
-        "mbox": "mailto:teampb@example.com",
-        "member": [
-            {
-                "name": "Andrew Downes",
-                "account": {
-                    "homePage": "http://www.example.com",
-                    "name": "13936749"
-                },
-                "objectType": "Agent"
-            },
-            {
-                "name": "Toby Nichols",
-                "openid": "http://toby.openid.example.org/",
-                "objectType": "Agent"
-            },
-            {
-                "name": "Ena Hills",
-                "mbox_sha1sum": "ebd31e95054c018b10727ccffd2ef2ec3a016ee9",
-                "objectType": "Agent"
-            }
-        ],
-        "objectType": "Group"
-    },
-    "verb": {
-        "id": "http://adlnet.gov/expapi/verbs/attended",
-        "display": {
-            "en-GB": "attended",
-            "en-US": "attended"
-        }
-    },
-    "result": {
-        "extensions": {
-            "http://example.com/profiles/meetings/resultextensions/minuteslocation": "X:\\meetings\\minutes\\examplemeeting.one"
-        },
-        "success": true,
-        "completion": true,
-        "response": "We agreed on some example actions.",
-        "duration": "PT1H0M0S"
-    },
-    "context": {
-        "registration": "ec531277-b57b-4c15-8d91-d292c5b2b8f7",
-        "contextActivities": {
-            "parent": [
-                {
-                    "id": "http://www.example.com/meetings/series/267",
-                    "objectType": "Activity"
-                }
-            ],
-            "category": [
-                {
-                    "id": "http://www.example.com/meetings/categories/teammeeting",
-                    "objectType": "Activity",
-                    "definition": {
-			            "name": {
-			                "en": "team meeting"
-			            },
-			            "description": {
-			                "en": "A category of meeting used for regular team meetings."
-			            },
-			            "type": "http://example.com/expapi/activities/meetingcategory"
-			        }
-                }
-            ],
-            "other": [
-                {
-                    "id": "http://www.example.com/meetings/occurances/34257",
-                    "objectType": "Activity"
-                },
-                {
-                    "id": "http://www.example.com/meetings/occurances/3425567",
-                    "objectType": "Activity"
-                }
-            ]
-        },
-        "instructor" :
-        {
-        	"name": "Andrew Downes",
-            "account": {
-                "homePage": "http://www.example.com",
-                "name": "13936749"
-            },
-            "objectType": "Agent"
-        },
-        "team":
-        {
-        	"name": "Team PB",
-        	"mbox": "mailto:teampb@example.com",
-        	"objectType": "Group"
-        }, 
-        "platform" : "Example virtual meeting software",
-        "language" : "tlh",
-        "statement" : {
-        	"objectType":"StatementRef",
-        	"id" :"6690e6c9-3ef0-4ed3-8b37-7f3964730bee"
-        }
-        
-    },
-    "timestamp": "2013-05-18T05:32:34.804Z",
-    "stored": "2013-05-18T05:32:34.804Z",
-    "authority": {
-        "account": {
-            "homePage": "http://cloud.scorm.com/",
-            "name": "anonymous"
-        },
-        "objectType": "Agent"
-    },
-    "version": "1.0.0",
-    "object": {
-        "id": "http://www.example.com/meetings/occurances/34534",
-        "definition": {
-            "extensions": {
-                "http://example.com/profiles/meetings/activitydefinitionextensions/room": {"name": "Kilby", "id" : "http://example.com/rooms/342"}
-            },
-            "name": {
-                "en-GB": "example meeting",
-                "en-US": "example meeting"
-            },
-            "description": {
-                "en-GB": "An example meeting that happened on a specific occasion with certain people present.",
-                "en-US": "An example meeting that happened on a specific occasion with certain people present."
-            },
-            "type": "http://adlnet.gov/expapi/activities/meeting",
-            "moreInfo": "http://virtualmeeting.example.com/345256"
-        },
-        "objectType": "Activity"
-    }
-}
-```  
-<a name="AppendixB"/>  
-
-## Appendix B: Example statement objects of different types
-
-The object of a statement can be an activity, agent, group or statement. 
-This appendix provides one example of each. 
-
-###### Activity
-```
-{
-    "id": "http://www.example.co.uk/exampleactivity",
-    "definition": {
-        "name": {
-            "en-GB": "example activity",
-            "en-US": "example activity"
-        },
-        "description": {
-            "en-GB": "An example of an activity",
-            "en-US": "An example of an activity"
-        },
-        "type": "http://www.example.co.uk/types/exampleactivitytype"
-    },
-    "objectType": "Activity"
-}
-```
-
-###### Agent
-```
-{
-    "name": "Andrew Downes",
-    "mbox": "mailto:andrew@example.co.uk",
-    "objectType": "Agent"
-}
-```
-
-###### Group
-This example shows an identified group with members. 
-```
-{
-    "name": "Example Group",
-    "account" : {
-    	"homePage" : "http://example.com/homePage",
-    	"name" : "GroupAccount"
-    },
-    "objectType": "Group",
-    "member": [
-        {
-            "name": "Andrew Downes",
-            "mbox": "mailto:andrew@example.com",
-            "objectType": "Agent"
-        },
-        {
-            "name": "Aaron Silvers",
-            "openid": "http://aaron.openid.example.org",
-            "objectType": "Agent"
-        }
-    ]
-}
-```
-
-
-###### Statement
-This example shows a SubStatement object whose object is a Statement Reference.
-
-```
-{
-    "objectType": "SubStatement",
-    "actor" : {
-        "objectType": "Agent", 
-        "mbox":"mailto:agent@example.com" 
-    },
-    "verb" : { 
-        "id":"http://example.com/confirmed", 
-        "display":{
-            "en":"confirmed"
-        } 
-    },
-    "object": {
-        "objectType":"StatementRef",
-		"id" :"9e13cefd-53d3-4eac-b5ed-2cf6693903bb"
-    }
-}
-```
-
-<a name="AppendixC"/>  
-
-## Appendix C: Example definitions for Activities of type "cmi.interaction"
-
-###### true-false  
-
-```
-"definition": {
-	"description": {
-		"en-US": "Does the xAPI include the concept of statements?"
-	},
-	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
-	"interactionType": "true-false",
-	"correctResponsesPattern": [
-		"true"
-	]
-}
-```
-
-###### choice  
-```
-"definition": {
-	"description": {
-		"en-US": "Which of these prototypes are available at the beta site?"
-	},
-	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
-	"interactionType": "choice",
-	"correctResponsesPattern": [
-		"golf[,]tetris"
-	],
-	"choices": [
-		{
-			"id": "golf", 
-			"description": {
-				"en-US": "Golf Example"
-			}
-		},
-		{
-			"id": "facebook", 
-			"description": {
-				"en-US": "Facebook App"
-			}
-		},
-		{
-			"id": "tetris", 
-			"description": {
-				"en-US": "Tetris Example"
-			}
-		},
-		{
-			"id": "scrabble", 
-			"description": {
-				"en-US": "Scrabble Example"
-			}
-		}
-	]
-}
-```
-
-###### fill-in  
-```
-"definition": {
-	"description": {
-		"en-US": "Ben is often heard saying: "
-	},
-	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
-	"interactionType": "fill-in",
-	"correctResponsesPattern": [
-		"Bob's your uncle"
-	]
-}
-```
-
-###### long-fill-in  
-```
-"definition": {
-	"description": {
-		"en-US": "What is the purpose of the xAPI?"
-	},
-	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
-	"interactionType": "long-fill-in",
-	"correctResponsesPattern": [
-		"{case_matters=false}{lang=en}To store and provide access to learning experiences."
-	]
-}
-```
-
-###### likert  
-```
-"definition": {
-	"description": {
-		"en-US": "How awesome is Experience API?"
-	},
-	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
-	"interactionType": "likert",
-	"correctResponsesPattern": [
-		"likert_3"
-	],
-	"scale": [
-		{
-			"id": "likert_0", 
-			"description": {
-				"en-US": "It's OK"
-			}
-		},
-		{
-			"id": "likert_1", 
-			"description": {
-				"en-US": "It's Pretty Cool"
-			}
-		},
-		{
-			"id": "likert_2", 
-			"description": {
-				"en-US": "It's Damn Cool"
-			}
-		},
-		{
-			"id": "likert_3", 
-			"description": {
-				"en-US": "It's Gonna Change the World"
-			}
-		}
-	]
-}
-```
-
-###### matching  
-```
-"definition": {
-	"description": {
-		"en-US": "Match these people to their kickball team:"
-	},
-	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
-	"interactionType": "matching",
-	"correctResponsesPattern": [
-		"ben[.]3[,]chris[.]2[,]troy[.]4[,]freddie[.]1"
-	],
-	"source": [
-		{
-			"id": "ben",
-			"description": {
-				"en-US": "Ben"
-			}
-		},
-		{
-			"id": "chris",
-			"description": {
-				"en-US": "Chris"
-			}
-		},
-		{
-			"id": "troy",
-			"description": {
-				"en-US": "Troy"
-			}
-		},
-		{
-			"id": "freddie",
-			"description": {
-				"en-US": "Freddie"
-			}
-		}
-	],
-	"target": [
-		{
-			"id": "1",
-			"description": {
-				"en-US": "Swift Kick in the Grass"
-			}
-		},
-		{
-			"id": "2",
-			"description": {
-				"en-US": "We got Runs"
-			}
-		},
-		{
-			"id": "3",
-			"description": {
-				"en-US": "Duck"
-			}
-		},
-		{
-			"id": "4",
-			"description": {
-				"en-US": "Van Delay Industries"
-			}
-		}
-	]
-}
-```
-
-###### performance  
-```
-"definition": {
-	"description": {
-		"en-US": "This interaction measures performance over a day of RS sports:"
-	},
-	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
-	"interactionType": "performance",
-	"correctResponsesPattern": [
-		"pong[.]1:[,]dg[.]:10[,]lunch[.]"
-	],
-	"steps": [
-		{
-			"id": "pong", 
-			"description": {
-				"en-US": "Net pong matches won"
-			}
-		},
-		{
-			"id": "dg", 
-			"description": {
-				"en-US": "Strokes over par in disc golf at Liberty"
-				}
-			},
-		{
-			"id": "lunch", 
-			"description": {
-				"en-US": "Lunch having been eaten"
-			}
-		}
-	]
-}
-```
-
-###### sequencing  
-```
-"definition": {
-	"description": {
-		"en-US": "Order players by their pong ladder position:"
-	},
-	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
-	"interactionType": "sequencing",
-	"correctResponsesPattern": [
-		"tim[,]mike[,]ells[,]ben"
-	],
-	"choices": [
-		{
-			"id": "tim", 
-			"description": {
-				"en-US": "Tim"
-			}
-		},
-		{
-			"id": "ben", "description": {
-				"en-US": "Ben"
-			}
-		},
-		{
-			"id": "ells", 
-			"description": {
-				"en-US": "Ells"
-			}
-		},
-		{
-			"id": "mike", 
-			"description": {
-				"en-US": "Mike"
-			}
-		}
-	]
-}
-```
-
-###### numeric  
-```
-"definition": {
-	"description": {
-		"en-US": "How many jokes is Chris the butt of each day?"
-	},
-	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
-	"interactionType": "numeric",
-	"correctResponsesPattern": [
-		"4[:]"
-	]
-}
-```
-
-In this example the minimum correct answer is 4 and there is no maximum. 5, 6 or 976 would all be correct answers. 
-
-###### other  
-```
-"definition": {
-	"description": {
-		"en-US": "On this map, please mark Franklin, TN"
-	},
-	"type": "http://adlnet.gov/expapi/activities/cmi.interaction",
-	"interactionType": "other",
-	"correctResponsesPattern": [
-		"(35.937432,-86.868896)"
-	]
-}
-```
-
-<a name="AppendixD"/>
-
-## Appendix D: Converting Statements to 1.0.0
+### Appendix A: Converting Statements to 1.0.0
 
 ######Rationale
 This is a 1.0.0 specification, and as such implementers do not have to consider prior
@@ -5171,178 +5235,10 @@ Converted to 1.0.0:
 }
 ```
 
-<a name="AppendixE"/>
 
-## Appendix E: Example Signed Statement
+<a name="Appendix3B"/>
 
-An example signed Statement, as described in: <a href="#signature">4.4 Signed Statements</a>.
-
-The original Statement serialization to be signed. New lines in this example are included
-via CR+LF (0x0D + 0x0A).
-
-```
-{
-    "version": "1.0.0",
-    "id": "33cff416-e331-4c9d-969e-5373a1756120",
-    "actor": {
-        "mbox": "mailto:example@example.com",
-        "name": "Example Learner",
-        "objectType": "Agent"
-    },
-    "verb": {
-        "id": "http://adlnet.gov/expapi/verbs/experienced",
-        "display": {
-            "en-US": "experienced"
-        }
-    },
-    "object": {
-        "id": "https://www.youtube.com/watch?v=xh4kIiH3Sm8",
-        "objectType": "Activity",
-        "definition": {
-            "name": {
-                "en-US": "Tax Tips & Information : How to File a Tax Return "
-            },
-            "description": {
-                "en-US": "Filing a tax return will require filling out either a 1040, 1040A or 1040EZ form"
-            }
-        }
-    },
-    "timestamp": "2013-04-01T12:00:00Z"
-}
-```
-
-Example private key for X.509 certificate that will be used for signing:
-```
------BEGIN RSA PRIVATE KEY-----
-MIICXAIBAAKBgQDjxvZXF30WL4oKjZYXgR0ZyaX+u3y6+JqTqiNkFa/VTnet6Ly2
-OT6ZmmcJEPnq3UnewpHoOQ+GfhhTkW13j06j5iNn4obcCVWTL9yXNvJH+Ko+xu4Y
-l/ySPRrIPyTjtHdG0M2XzIlmmLqm+CAS+KCbJeH4tf543kIWC5pC5p3cVQIDAQAB
-AoGAOejdvGq2XKuddu1kWXl0Aphn4YmdPpPyCNTaxplU6PBYMRjY0aNgLQE6bO2p
-/HJiU4Y4PkgzkEgCu0xf/mOq5DnSkX32ICoQS6jChABAe20ErPfm5t8h9YKsTfn9
-40lAouuwD9ePRteizd4YvHtiMMwmh5PtUoCbqLefawNApAECQQD1mdBW3zL0okUx
-2pc4tttn2qArCG4CsEZMLlGRDd3FwPWJz3ZPNEEgZWXGSpA9F1QTZ6JYXIfejjRo
-UuvRMWeBAkEA7WvzDBNcv4N+xeUKvH8ILti/BM58LraTtqJlzjQSovek0srxtmDg
-5of+xrxN6IM4p7yvQa+7YOUOukrVXjG+1QJBAI2mBrjzxgm9xTa5odn97JD7UMFA
-/WHjlMe/Nx/35V52qaav1sZbluw+TvKMcqApYj5G2SUpSNudHLDGkmd2nQECQFfc
-lBRK8g7ZncekbGW3aRLVGVOxClnLLTzwOlamBKOUm8V6XxsMHQ6TE2D+fKJoNUY1
-2HGpk+FWwy2D1hRGuoUCQAXfaLSxtaWdPtlZTPVueF7ZikQDsVg+vtTFgpuHloR2
-6EVc1RbHHZm32yvGDY8IkcoMfJQqLONDdLfS/05yoNU=
------END RSA PRIVATE KEY-----
-```
-
-Example public X.509 certificate
-```
------BEGIN CERTIFICATE-----
-MIIDATCCAmqgAwIBAgIJAMB1csNuA6+kMA0GCSqGSIb3DQEBBQUAMHExCzAJBgNV
-BAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUxGDAWBgNVBAoTD0V4YW1wbGUgQ29t
-cGFueTEQMA4GA1UEAxMHRXhhbXBsZTEiMCAGCSqGSIb3DQEJARYTZXhhbXBsZUBl
-eGFtcGxlLmNvbTAeFw0xMzA0MDQxNTI4MzBaFw0xNDA0MDQxNTI4MzBaMIGWMQsw
-CQYDVQQGEwJVUzESMBAGA1UECBMJVGVubmVzc2VlMREwDwYDVQQHEwhGcmFua2xp
-bjEYMBYGA1UEChMPRXhhbXBsZSBDb21wYW55MRAwDgYDVQQLEwdFeGFtcGxlMRAw
-DgYDVQQDEwdFeGFtcGxlMSIwIAYJKoZIhvcNAQkBFhNleGFtcGxlQGV4YW1wbGUu
-Y29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDjxvZXF30WL4oKjZYXgR0Z
-yaX+u3y6+JqTqiNkFa/VTnet6Ly2OT6ZmmcJEPnq3UnewpHoOQ+GfhhTkW13j06j
-5iNn4obcCVWTL9yXNvJH+Ko+xu4Yl/ySPRrIPyTjtHdG0M2XzIlmmLqm+CAS+KCb
-JeH4tf543kIWC5pC5p3cVQIDAQABo3sweTAJBgNVHRMEAjAAMCwGCWCGSAGG+EIB
-DQQfFh1PcGVuU1NMIEdlbmVyYXRlZCBDZXJ0aWZpY2F0ZTAdBgNVHQ4EFgQUVs3v
-5afEdOeoYeVajAQE4v0WS1QwHwYDVR0jBBgwFoAUyVIc3yvra4EBz20I4BF39IAi
-xBkwDQYJKoZIhvcNAQEFBQADgYEAgS/FF5D0Hnj44rvT6kgn3kJAvv2lj/fyjztK
-IrYS33ljXGn6gGyA4qtbXA23PrO4uc/wYCSDICDpPobh62xTCd9qObKhgwWOi05P
-SBLqUu3mwfAe15LJBJBqPVZ4K0kppePBU8m6aIZoH57L/9t4OoaL8yKs/qjKFeI1
-OFWZxvA=
------END CERTIFICATE-----
-```
-
-Example certificate authority certificate
-```
------BEGIN CERTIFICATE-----
-MIIDNzCCAqCgAwIBAgIJAMB1csNuA6+jMA0GCSqGSIb3DQEBBQUAMHExCzAJBgNV
-BAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUxGDAWBgNVBAoTD0V4YW1wbGUgQ29t
-cGFueTEQMA4GA1UEAxMHRXhhbXBsZTEiMCAGCSqGSIb3DQEJARYTZXhhbXBsZUBl
-eGFtcGxlLmNvbTAeFw0xMzA0MDQxNTI1NTNaFw0yMzA0MDIxNTI1NTNaMHExCzAJ
-BgNVBAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUxGDAWBgNVBAoTD0V4YW1wbGUg
-Q29tcGFueTEQMA4GA1UEAxMHRXhhbXBsZTEiMCAGCSqGSIb3DQEJARYTZXhhbXBs
-ZUBleGFtcGxlLmNvbTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA1sBnBWPZ
-0f7WJUFTJy5+01SlS5Z6DDD6Uye9vK9AycgV5B3+WC8HC5u5h91MujAC1ARPVUOt
-svPRs45qKNFIgIGRXKPAwZjawEI2sCJRSKV47i6B8bDv4WkuGvQaveZGI0qlmN5R
-1Eim2gUItRj1hgcC9rQavjlnFKDY2rlXGukCAwEAAaOB1jCB0zAdBgNVHQ4EFgQU
-yVIc3yvra4EBz20I4BF39IAixBkwgaMGA1UdIwSBmzCBmIAUyVIc3yvra4EBz20I
-4BF39IAixBmhdaRzMHExCzAJBgNVBAYTAlVTMRIwEAYDVQQIEwlUZW5uZXNzZWUx
-GDAWBgNVBAoTD0V4YW1wbGUgQ29tcGFueTEQMA4GA1UEAxMHRXhhbXBsZTEiMCAG
-CSqGSIb3DQEJARYTZXhhbXBsZUBleGFtcGxlLmNvbYIJAMB1csNuA6+jMAwGA1Ud
-EwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADgYEADhwTebGk735yKhm8DqCxvNnEZ0Nx
-sYEYOjgRG1yXTlW5pE691fSH5AZ+T6fpwpZcWY5QYkoN6DnwjOxGkSfQC3/yGmcU
-DKBPwiZ5O2s9C+fE1kUEnrX2Xea4agVngMzR8DQ6oOauLWqehDB+g2ENWRLoVgS+
-ma5/Ycs0GTyrECY=
------END CERTIFICATE-----
-```
-
-JWS Header. Note that along with specifying the algorithm, the certificate chain for
-the signing certificate has been included.
-```
-{
-    "alg": "RS256",
-    "x5c": [
-        "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"
-    ]
-}
-```
-
-JWS signature
-```
-ew0KICAgICJhbGciOiAiUlMyNTYiLA0KICAgICJ4NWMiOiBbDQogICAgICAgICJNSUlEQVRDQ0FtcWdBd0lCQWdJSkFNQjFjc051QTYra01BMEdDU3FHU0liM0RRRUJCUVVBTUhFeEN6QUpCZ05WQkFZVEFsVlRNUkl3RUFZRFZRUUlFd2xVWlc1dVpYTnpaV1V4R0RBV0JnTlZCQW9URDBWNFlXMXdiR1VnUTI5dGNHRnVlVEVRTUE0R0ExVUVBeE1IUlhoaGJYQnNaVEVpTUNBR0NTcUdTSWIzRFFFSkFSWVRaWGhoYlhCc1pVQmxlR0Z0Y0d4bExtTnZiVEFlRncweE16QTBNRFF4TlRJNE16QmFGdzB4TkRBME1EUXhOVEk0TXpCYU1JR1dNUXN3Q1FZRFZRUUdFd0pWVXpFU01CQUdBMVVFQ0JNSlZHVnVibVZ6YzJWbE1SRXdEd1lEVlFRSEV3aEdjbUZ1YTJ4cGJqRVlNQllHQTFVRUNoTVBSWGhoYlhCc1pTQkRiMjF3WVc1NU1SQXdEZ1lEVlFRTEV3ZEZlR0Z0Y0d4bE1SQXdEZ1lEVlFRREV3ZEZlR0Z0Y0d4bE1TSXdJQVlKS29aSWh2Y05BUWtCRmhObGVHRnRjR3hsUUdWNFlXMXdiR1V1WTI5dE1JR2ZNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0R05BRENCaVFLQmdRRGp4dlpYRjMwV0w0b0tqWllYZ1IwWnlhWCt1M3k2K0pxVHFpTmtGYS9WVG5ldDZMeTJPVDZabW1jSkVQbnEzVW5ld3BIb09RK0dmaGhUa1cxM2owNmo1aU5uNG9iY0NWV1RMOXlYTnZKSCtLbyt4dTRZbC95U1BScklQeVRqdEhkRzBNMlh6SWxtbUxxbStDQVMrS0NiSmVINHRmNTQza0lXQzVwQzVwM2NWUUlEQVFBQm8zc3dlVEFKQmdOVkhSTUVBakFBTUN3R0NXQ0dTQUdHK0VJQkRRUWZGaDFQY0dWdVUxTk1JRWRsYm1WeVlYUmxaQ0JEWlhKMGFXWnBZMkYwWlRBZEJnTlZIUTRFRmdRVVZzM3Y1YWZFZE9lb1llVmFqQVFFNHYwV1MxUXdId1lEVlIwakJCZ3dGb0FVeVZJYzN5dnJhNEVCejIwSTRCRjM5SUFpeEJrd0RRWUpLb1pJaHZjTkFRRUZCUUFEZ1lFQWdTL0ZGNUQwSG5qNDRydlQ2a2duM2tKQXZ2MmxqL2Z5anp0S0lyWVMzM2xqWEduNmdHeUE0cXRiWEEyM1ByTzR1Yy93WUNTRElDRHBQb2JoNjJ4VENkOXFPYktoZ3dXT2kwNVBTQkxxVXUzbXdmQWUxNUxKQkpCcVBWWjRLMGtwcGVQQlU4bTZhSVpvSDU3TC85dDRPb2FMOHlLcy9xaktGZUkxT0ZXWnh2QT0iLA0KICAgICAgICAiTUlJRE56Q0NBcUNnQXdJQkFnSUpBTUIxY3NOdUE2K2pNQTBHQ1NxR1NJYjNEUUVCQlFVQU1IRXhDekFKQmdOVkJBWVRBbFZUTVJJd0VBWURWUVFJRXdsVVpXNXVaWE56WldVeEdEQVdCZ05WQkFvVEQwVjRZVzF3YkdVZ1EyOXRjR0Z1ZVRFUU1BNEdBMVVFQXhNSFJYaGhiWEJzWlRFaU1DQUdDU3FHU0liM0RRRUpBUllUWlhoaGJYQnNaVUJsZUdGdGNHeGxMbU52YlRBZUZ3MHhNekEwTURReE5USTFOVE5hRncweU16QTBNREl4TlRJMU5UTmFNSEV4Q3pBSkJnTlZCQVlUQWxWVE1SSXdFQVlEVlFRSUV3bFVaVzV1WlhOelpXVXhHREFXQmdOVkJBb1REMFY0WVcxd2JHVWdRMjl0Y0dGdWVURVFNQTRHQTFVRUF4TUhSWGhoYlhCc1pURWlNQ0FHQ1NxR1NJYjNEUUVKQVJZVFpYaGhiWEJzWlVCbGVHRnRjR3hsTG1OdmJUQ0JuekFOQmdrcWhraUc5dzBCQVFFRkFBT0JqUUF3Z1lrQ2dZRUExc0JuQldQWjBmN1dKVUZUSnk1KzAxU2xTNVo2RERENlV5ZTl2SzlBeWNnVjVCMytXQzhIQzV1NWg5MU11akFDMUFSUFZVT3RzdlBSczQ1cUtORklnSUdSWEtQQXdaamF3RUkyc0NKUlNLVjQ3aTZCOGJEdjRXa3VHdlFhdmVaR0kwcWxtTjVSMUVpbTJnVUl0UmoxaGdjQzlyUWF2amxuRktEWTJybFhHdWtDQXdFQUFhT0IxakNCMHpBZEJnTlZIUTRFRmdRVXlWSWMzeXZyYTRFQnoyMEk0QkYzOUlBaXhCa3dnYU1HQTFVZEl3U0JtekNCbUlBVXlWSWMzeXZyYTRFQnoyMEk0QkYzOUlBaXhCbWhkYVJ6TUhFeEN6QUpCZ05WQkFZVEFsVlRNUkl3RUFZRFZRUUlFd2xVWlc1dVpYTnpaV1V4R0RBV0JnTlZCQW9URDBWNFlXMXdiR1VnUTI5dGNHRnVlVEVRTUE0R0ExVUVBeE1IUlhoaGJYQnNaVEVpTUNBR0NTcUdTSWIzRFFFSkFSWVRaWGhoYlhCc1pVQmxlR0Z0Y0d4bExtTnZiWUlKQU1CMWNzTnVBNitqTUF3R0ExVWRFd1FGTUFNQkFmOHdEUVlKS29aSWh2Y05BUUVGQlFBRGdZRUFEaHdUZWJHazczNXlLaG04RHFDeHZObkVaME54c1lFWU9qZ1JHMXlYVGxXNXBFNjkxZlNINUFaK1Q2ZnB3cFpjV1k1UVlrb042RG53ak94R2tTZlFDMy95R21jVURLQlB3aVo1TzJzOUMrZkUxa1VFbnJYMlhlYTRhZ1ZuZ016UjhEUTZvT2F1TFdxZWhEQitnMkVOV1JMb1ZnUyttYTUvWWNzMEdUeXJFQ1k9Ig0KICAgIF0NCn0.ew0KICAgICJ2ZXJzaW9uIjogIjEuMC4wIiwNCiAgICAiaWQiOiAiMzNjZmY0MTYtZTMzMS00YzlkLTk2OWUtNTM3M2ExNzU2MTIwIiwNCiAgICAiYWN0b3IiOiB7DQogICAgICAgICJtYm94IjogIm1haWx0bzpleGFtcGxlQGV4YW1wbGUuY29tIiwNCiAgICAgICAgIm5hbWUiOiAiRXhhbXBsZSBMZWFybmVyIiwNCiAgICAgICAgIm9iamVjdFR5cGUiOiAiQWdlbnQiDQogICAgfSwNCiAgICAidmVyYiI6IHsNCiAgICAgICAgImlkIjogImh0dHA6Ly9hZGxuZXQuZ292L2V4cGFwaS92ZXJicy9leHBlcmllbmNlZCIsDQogICAgICAgICJkaXNwbGF5Ijogew0KICAgICAgICAgICAgImVuLVVTIjogImV4cGVyaWVuY2VkIg0KICAgICAgICB9DQogICAgfSwNCiAgICAib2JqZWN0Ijogew0KICAgICAgICAiaWQiOiAiaHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g_dj14aDRrSWlIM1NtOCIsDQogICAgICAgICJvYmplY3RUeXBlIjogIkFjdGl2aXR5IiwNCiAgICAgICAgImRlZmluaXRpb24iOiB7DQogICAgICAgICAgICAibmFtZSI6IHsNCiAgICAgICAgICAgICAgICAiZW4tVVMiOiAiVGF4IFRpcHMgJiBJbmZvcm1hdGlvbiA6IEhvdyB0byBGaWxlIGEgVGF4IFJldHVybiAiDQogICAgICAgICAgICB9LA0KICAgICAgICAgICAgImRlc2NyaXB0aW9uIjogew0KICAgICAgICAgICAgICAgICJlbi1VUyI6ICJGaWxpbmcgYSB0YXggcmV0dXJuIHdpbGwgcmVxdWlyZSBmaWxsaW5nIG91dCBlaXRoZXIgYSAxMDQwLCAxMDQwQSBvciAxMDQwRVogZm9ybSINCiAgICAgICAgICAgIH0NCiAgICAgICAgfQ0KICAgIH0sDQogICAgInRpbWVzdGFtcCI6ICIyMDEzLTA0LTAxVDEyOjAwOjAwWiINCn0.FWuwaPhwUbkk7h9sKW5zSvjsYNugvxJ-TrVaEgt_DCUT0bmKhQScRrjMB6P9O50uznPwT66oF1NnU_G0HVhRzS5voiXE-y7tT3z0M3-8A6YK009Bk_digVUul-HA4Fpd5IjoBBGe3yzaQ2ZvzarvRuipvNEQCI0onpfuZZJQ0d8
-```
-
-Signed Statement
-```
-{
-    "version": "1.0.0",
-    "id": "33cff416-e331-4c9d-969e-5373a1756120",
-    "actor": {
-        "mbox": "mailto:example@example.com",
-        "name": "Example Learner",
-        "objectType": "Agent"
-    },
-    "verb": {
-        "id": "http://adlnet.gov/expapi/verbs/experienced",
-        "display": {
-            "en-US": "experienced"
-        }
-    },
-    "object": {
-        "id": "https://www.youtube.com/watch?v=xh4kIiH3Sm8",
-        "objectType": "Activity",
-        "definition": {
-            "name": {
-                "en-US": "Tax Tips & Information : How to File a Tax Return "
-            },
-            "description": {
-                "en-US": "Filing a tax return will require filling out either a 1040, 1040A or 1040EZ form"
-            }
-        }
-    },
-    "timestamp": "2013-04-01T12:00:00Z",
-    "attachments": [
-        {
-            "usageType": "http://adlnet.gov/expapi/attachments/signature",
-            "display": { "en-US": "Signature" },
-            "description": { "en-US": "A test signature" },
-            "contentType": "application/octet-stream",
-            "length": 4235,
-            "sha2": "672fa5fa658017f1b72d65036f13379c6ab05d4ab3b6664908d8acf0b6a0c634"
-        }
-    ]
-}
-```
-
-__Note:__ Attached signature not shown, see <a href="#attachments"> attachments</a> for
-attachment message format.
-
-
-<a name="AppendixF"/>
-
-## Appendix F: Table of All Endpoints
+### Appendix B: Table of All Endpoints
 
 ### Required Endpoints
 <table>
@@ -5400,9 +5296,9 @@ attachment message format.
 	</tr>
 </table>
 
-<a name="AppendixG"/>
+<a name="Appendix3C"/>
 
-# Appendix G: Cross Domain Request example
+### Appendix C: Cross Domain Request example
 
 Section [7.9 Alternate Request Syntax](#alt-request-syntax) outlines alternative syntax for use 
 when the normal syntax cannot be used due to browser or querystring length restrictions. This appendix provides an example of a
