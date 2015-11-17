@@ -552,7 +552,7 @@ The following example from the cmi5 Community of Practice demonstrates Extension
   }
   },
   "context": {
-     "registration": "https://mydomain.com/the_registration_value_provided_by_LMS",
+     "registration": "ec231277-b27b-4c15-8291-d29225b2b8f7",
      "contextActivities": {
         "category": [
           {"id": "http://purl.org/xapi/cmi5/context/categories/moveon"},
