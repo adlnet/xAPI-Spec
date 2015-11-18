@@ -132,7 +132,7 @@ This document outlines various ways of contributing to the specification:
 The most helpful **and** easiest way to contribute to the specification is to review an existing PR. You can find a 
 [list of open PRs here](https://github.com/adlnet/xAPI-Spec/pulls). To review a PR you should:
 
-* Read any issues linked to from the PR description and make sure you understand the issue the PR is desigend to address. 
+* Read any issues linked to from the PR description and make sure you understand the issue the PR is designed to address. 
 * Read any comments on both the issues and the PR to understand if the goals of the original issue have changed and if
 any solutions have been agreed. 
 * Read the relevant sections in the [development version](https://github.com/adlnet/xAPI-Spec/blob/1.0.3/xAPI.md) of the specification. 
@@ -141,21 +141,21 @@ the changes better. Check to see if what's been changed matches the solution you
 * Look for problems such as typos, unintended changes to behaviour and any text that's unclear. 
 * Check that anything that's been removed has either been replaced or the removal was intentional (based on reading the issue 
 and comments).
-* Check that the [Stle Guide](#style-guide) has been followed.
+* Check that the [Style Guide](#style-guide) has been followed.
 * If you spot any issues with the PR, add a comment describing these problems as best you can and suggesting how they can
 be resolved. 
 * If the PR looks good to you, add a comment saying "+1".
 * If you are unsure about the PR or have questions, ask questions in the PR comments. 
 * If you feel that the PR should never be merged, even with changes, add a comment starting with "-1" and explaining your
 reasons. If your comments run contrary to what's already been agreed in the issues, there might be some resistance, but that's ok
-if you have a strong arguement! 
+if you have a strong argument! 
 
 When reviewing a PR please don't:
 
 * Review and leave no comment; always let us know you've had a look!
 * Suggest additional changes outside of what the PR was intended to achieve. 
 [Raise a separate issue](https://github.com/adlnet/xAPI-Spec/issues/new) for additional changes. 
-* Make vague critisisms without suggesting the changes to the PR that would meet those critisisms. 
+* Make vague criticisms without suggesting the changes to the PR that would meet those criticisms. 
 
 <a name='suggest-solution'/>
 ### Suggest a solution
@@ -174,11 +174,11 @@ To suggest a solution to an issue you should:
 Once your suggestion has been discussed and agreed, add another comment summarising your understanding of the outcome of the discussion and
 including proposed wording for the changes you've suggested. 
 
-Good and detailed suggested solutions for issues maake it much easier to write PRa and helps to ensure those PRs are merged faster. 
+Good and detailed suggested solutions for issues make it much easier to write PRa and helps to ensure those PRs are merged faster. 
 
 <a name='make-pr'/>
 ### Make a Pull Request (PR)
-The hardest way of driectly contributing to the specification is to make Pull Requests and the xAPI Working Group recommends only getting involved in
+The hardest way of directly contributing to the specification is to make Pull Requests and the xAPI Working Group recommends only getting involved in
 this way if you are already used to Github and markdown and/or have previously contributed to reviewing PRs and suggesting solutions to issues. 
 
 Before making a PR you should:
@@ -195,7 +195,7 @@ When making a PR, you should include a description that explains:
 * What issue numbers of any issues you are addressing (normally just one issue)?
 * How does your PR relate to any proposed solutions to the issue?
 * If you have moved sections, have you made any changes to content within those moved sections?
-* What decisions did you make in writting the change? Why did you make those decisions? 
+* What decisions did you make in writing the change? Why did you make those decisions? 
 
 #### Edit on GitHub.com
 To edit the specification on GitHub.com, first open the [development version](https://github.com/adlnet/xAPI-Spec/blob/1.0.3/xAPI.md) 
@@ -248,7 +248,7 @@ gives you an option to clone it.
 
 ##### Add ADL repository as upstream remote
 Add a remote repository to git to reference the master repository. This will make 
-synchronizing with the master respository a bit easier.  
+synchronizing with the master repository a bit easier.  
 
 __Git__  
 ```git remote add upstream https://github.com/adlnet/xAPI-Spec```  
@@ -323,7 +323,7 @@ And
 
 ### Property and object names
 
-When refering to a property, parameter or object, but not specifically calling it out as property, parameter, or object 
+When referring to a property, parameter or object, but not specifically calling it out as property, parameter, or object 
 the name should be capitalized. No formatting or quotes should be used. 
 
 For example:
@@ -338,7 +338,7 @@ For example:
 
 And
 
-    The "member" property is an un-ordered list!
+    The "member" property is an unordered list!
 
 When a value is expected or described within plain text, but isn't specifically code, single quotes should be used.
 In situations where it is important to group text to be specific to the concept, single quotes should also be used.
