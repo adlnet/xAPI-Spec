@@ -3695,7 +3695,7 @@ is included in [Appendix B: Table of All Endpoints](#Appendix3B).
 described in [Section 6.4.2 OAuth Authorization Scope](#oauthscope).
 * The LRS MAY support additional endpoints not described in this specification. 
 * Past, current and future versions of this specification do not and will not define endpoints 
-with path segements starting 'extensions/'. LRSs supporting additional endpoints not defined 
+with path segments starting 'extensions/'. LRSs supporting additional endpoints not defined 
 in this specification SHOULD define those endpoints with path segments starting 'extensions/'.
 
 Sections 6 and 7 detail the more technical side of the Experience API, dealing with 
@@ -3715,7 +3715,7 @@ The basic communication mechanism of the Experience API.
 
 <a name="stmtresput"/>
 
-#####2.2.1.1 PUT Statements
+#####2.2.1.1 PUT Statements
 
 ###### Details
 
@@ -3754,7 +3754,7 @@ do not match. See [Statement comparision requirements](statement-comparision-req
 
 <a name="stmtrespost"/>
 
-#####2.2.1.2 POST Statements
+#####2.2.1.2 POST Statements
 
 ###### Details
 
@@ -3794,7 +3794,7 @@ parameters passed. See Section [7.9 Alternate Request Syntax](#alt-request-synta
 
 <a name="stmtresget"/>
 
-#####2.2.1.3 GET Statements
+#####2.2.1.3 GET Statements
 
 ###### Details
 
@@ -4043,13 +4043,13 @@ The LRS MUST return only one language in each of these maps.
 language maps. This includes the language map stored in the Verb Display property and potentially some 
 language maps used within extensions. 
 
-* If the LRS maintains a canonical version of a language map, it SHOULD* return this cannonical langauge map
+* If the LRS maintains a canonical version of a language map, it SHOULD* return this canonical language map
  when canonical format is used to retrieve Statements. 
 
 * The LRS SHOULD* return only one language within each language map for which it returns a canonical map. 
 
 * In order to choose the most relevant language, the LRS MUST apply the Accept-Language header as 
-described in <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a> 
+described in <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a> 
 (HTTP 1.1), except that this logic MUST be applied to each language map individually to select 
 which language entry to include, rather than to the resource (list of Statements) as a whole.
 
@@ -4057,7 +4057,7 @@ which language entry to include, rather than to the resource (list of Statements
 
 ##### 2.2.1.4 Voided Statements
 [Section 4.3 Voided](#voided) describes the process by which statements can be voided. This section
-desribes how voided statements are handled by the LRS when queried. 
+describes how voided statements are handled by the LRS when queried. 
 
 Clients can identify the presence and statementId of any voided Statements by the target of the voiding Statement. 
 Aside from debugging tools, many Clients will not want to display voiding statements to their
@@ -4829,7 +4829,7 @@ this specification.
 - [HTTP Basic Authentication](http://tools.ietf.org/html/rfc7235)
 - Common Access Cards
 
-Whislt Common Access Cards are defined as an authentication option within this specification,
+Whilst Common Access Cards are defined as an authentication option within this specification,
 the implementation details of this authentication method are not defined. The xAPI Working Group
 encourages LRS developers implementing Common Access Cards as an authentication method to collaborate
 in defining the details of this authentication method in a future version of this specification. 
