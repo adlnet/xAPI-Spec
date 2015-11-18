@@ -30,9 +30,11 @@ leaders on which we depend to make our training and education the very best."_
     <tr><td>Aaron Silvers</td><td>ADL</td></tr>
     <tr><td>Al Bejcek</td><td>NetDimensions</td></tr>
     <tr><td>Ali Shahrazad</td><td>SaLTBOX</td></tr>
-    <tr><td>Andrew Downes</td><td>Rustici Software</td></tr>
+    <tr><td>Andrew Downes</td><td>Watershed</td></tr>
+    <tr><td>Andriy Drozdyuk</td><td></td></tr>
     <tr><td>Andy Johnson</td><td>ADL</td></tr>
-    <tr><td>Andy Whitaker</td><td>Rustici Software</td></tr>
+    <tr><td>Andy Whitaker</td><td>Watershed</td></tr>
+    <tr><td>Ángel Serrano</td><td>eUCM</td></tr>
     <tr><td>Anthony Altieri</td><td>American Red Cross</td></tr>
     <tr><td>Anto Valan</td><td>Omnivera Learning Solutions</td></tr>
     <tr><td>Avron Barr</td><td>Aldo Ventures, Inc.</td></tr>
@@ -40,6 +42,7 @@ leaders on which we depend to make our training and education the very best."_
     <tr><td>Bill McDonald</td><td>Boeing</td></tr>
     <tr><td>Brian J. Miller</td><td>Rustici Software</td></tr>
     <tr><td>Chad Udell</td><td>Float Mobile Learning</td></tr>
+    <tr><td>Chaim-Leib Halbert</td><td>Rustici Software</td></tr>
     <tr><td>Chris Handorf</td><td>Pearson</td></tr>
     <tr><td>Chris Sawwa</td><td>Meridian Knowledge Solutions</td></tr>
     <tr><td>Dan Allen</td><td>Litmos</td></tr>
@@ -47,6 +50,7 @@ leaders on which we depend to make our training and education the very best."_
     <tr><td>Dave Mozealous</td><td>Articulate</td></tr>
     <tr><td>David Ells</td><td>Rustici Software</td></tr>
     <tr><td>David N. Johnson</td><td>Clear Learning Systems</td></tr>
+    <tr><td>David Pate</td><td>Riptide Software</td></tr>
     <tr><td>Doug Hagy</td><td>Twin Lakes Consulting Corporation</td></tr>
     <tr><td>Eric Johnson</td><td>Planning and Learning Technologies, Inc.</td></tr>
     <tr><td>Fiona Leteney</td><td>Feenix e-learning</td></tr>
@@ -58,12 +62,15 @@ leaders on which we depend to make our training and education the very best."_
     <tr><td>Jeremy Brockman</td><td> </td></tr>
     <tr><td>Jhorlin De Armas</td><td>Riptide Software</td></tr>
     <tr><td>Joe Gorup</td><td>CourseAvenue</td></tr>
+    <tr><td>Joerg Boeselt</td><td>Brightcookie</td></tr>
     <tr><td>John Kleeman</td><td>Questionmark</td></tr>
     <tr><td>Jonathan Archibald</td><td>Brightwave</td></tr>
     <tr><td>Jonathan Poltrack</td><td>ADL</td></tr>
     <tr><td>Kris Miller</td><td>edcetra Training</td></tr>
     <tr><td>Kris Rockwell</td><td>Hybrid Learning Systems</td></tr>
     <tr><td>Lang Holloman</td><td> </td></tr>
+    <tr><td>Lewis Cowper</td><td> </td></tr>
+    <tr><td>Loic Jeannin</td><td>CrossKnowledge</td></tr>
     <tr><td>Lou Wolford</td><td>ADL</td></tr>
     <tr><td>Luke Hickey</td><td>dominKnow</td></tr>
     <tr><td>Marcus Birtwhistle</td><td>ADL</td></tr>
@@ -73,8 +80,9 @@ leaders on which we depend to make our training and education the very best."_
     <tr><td>Melanie VanHorn</td><td>ADL</td></tr>
     <tr><td>Michael Flores</td><td>Here Everything's Better</td></tr>
     <tr><td>Michael Roberts</td><td>vTrainingRoom</td></tr>
+    <tr><td>Michael Wheeler</td><td></td></tr>
     <tr><td>Mike Palmer</td><td>OnPoint Digital</td></tr>
-    <tr><td>Mike Rustici</td><td>Rustici Software</td></tr>
+    <tr><td>Mike Rustici</td><td>Watershed</td></tr>
     <tr><td>Nick Washburn</td><td>Riptide Software</td></tr>
     <tr><td>Nikolaus Hruska</td><td>ADL</td></tr>
     <tr><td>Pankaj Agrawal</td><td>Next Software Solutions</td></tr>
@@ -85,16 +93,22 @@ leaders on which we depend to make our training and education the very best."_
     <tr><td>Richard Fouchaux</td><td>Ontario Human Rights  Commission</td></tr>
     <tr><td>Richard Lenz</td><td>Organizational Strategies, Inc.</td></tr>
     <tr><td>Rick Raymer</td><td></td></tr>
+    <tr><td>RJ Zaworski</td><td></td></tr>
     <tr><td>Rob Chadwick</td><td>ADL</td></tr>
     <tr><td>Robert Lowe</td><td>NetDimensions</td></tr>
+    <tr><td>Roger Swetnam</td><td></td></tr>
     <tr><td>Russell Duhon</td><td>SaLTBOX</td></tr>
+    <tr><td>Ryan Smith</td><td>HT2</td></tr>
     <tr><td>Stephen Trevorrow</td><td>Problem Solutions, LLC.</td></tr>
     <tr><td>Steve Baumgartner</td><td></td></tr>
     <tr><td>Steve Flowers</td><td>XPConcept</td></tr>
     <tr><td>Thomas Ho</td><td></td></tr>
     <tr><td>Tim Martin</td><td>Rustici Software</td></tr>
     <tr><td>Tom Creighton</td><td>ADL</td></tr>
+    <tr><td>Tyler Mulligan</td><td>ADL</td></tr>
     <tr><td>Walt Grata</td><td>ADL</td></tr>
+    <tr><td>Yannick Warnier</td><td>Chamilo</td></tr>
+    <tr><td>Zach Lowry</td><td>Watershed</td></tr>
 </table> 
 
 ><a name="reqparticipants"/> 
