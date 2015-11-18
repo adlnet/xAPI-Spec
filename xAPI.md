@@ -733,7 +733,7 @@ The details of each property of a statement are described in the table below.
 	<td>UUID assigned by LRS if not set by the Activity Provider.</td>
 	<td>Recommended</td></tr>
 	<tr><td><a href="#actor">actor</a></td><td>Object</td>
-	<td>Who the Statement is about, as an <a href="#agent">Agent</a> or 
+	<td>Whom the Statement is about, as an <a href="#agent">Agent</a> or 
 		<a href="#group">Group</a> Object. Represents the "I" in "I Did This".</td>
 	<td>Required</td></tr>
 	<tr><td><a href="#verb">verb</a></td><td>Object</td>
@@ -863,7 +863,7 @@ The table below lists all properties of an Anonymous Group.
 	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>Required</td></tr>
 	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>Optional</td></tr>
 	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td>
-	<td>The members of this Group. This is an un-ordered list.</td>
+	<td>The members of this Group. This is an unordered list.</td>
 	<td>Required</td></tr>
 </table>
 
@@ -876,7 +876,7 @@ The table below lists all properties of an Identified Group.
 	<tr><td>objectType</td><td>String</td><td>"Group". </td><td>Required</td></tr>
 	<tr><td>name</td><td>String</td><td>Name of the group.</td><td>Optional</td></tr>
 	<tr><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td>
-	<td>The members of this Group. This is an un-ordered list.</td>
+	<td>The members of this Group. This is an unordered list.</td>
 	<td>Optional</td></tr>
 	<tr><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
 	    <td>An Inverse Functional Identifier unique to the Group.</td><td>Required</td></tr>	
@@ -1014,7 +1014,7 @@ The table below lists all properties of the Verb Object.
 		<td>The human readable representation of the 
 			Verb in one or more languages. This does not have any impact on the 
 			meaning of the Statement, but serves to give a human-readable 
-			display of the meaning already determined by the chosen Verb.</td>
+			display of the meaning already determined by the chosen Verb.</td>
 		<td>Recommended</td>
 	</tr>
 </table>
@@ -1039,7 +1039,7 @@ exactly as included (or omitted) within the Statement.
 * When queried for Statements with a Format of "canonical", the LRS SHOULD* return a canonical Display 
 for that Verb. 
 * The LRS may determine its canonical Display based on the Verb Display property included within 
-Statements it recieves, the Name property included in the metadata as described in 
+Statements it receives, the Name property included in the metadata as described in 
 [section 5.4 Identifier metadata](#miscmeta), or the Verb Display as defined in some other location.
 
 ###### Verb Display Client Requirements
@@ -1304,13 +1304,13 @@ See [Appendix C](#Appendix2C) for examples definitions for each interaction type
 		<td>fill-in</td>
 		<td>An interaction which requires the learner to supply a short response in the form of one or more 
 			strings of characters. Typically, the correct response consists of part of a word, one word or a few words. 
-			'Short' means that the corect responses pattern and learner response strings will normally be 250 characters or less;
+			'Short' means that the correct responses pattern and learner response strings will normally be 250 characters or less;
 		</td>
 	</tr>
 	<tr>
 		<td>long-fill-in</td>
 		<td>An interaction which requires the learner to supply a response in the form of a long string of characters.
-			'Long' means that the corect responses pattern and learner response strings will normally be more than 250 characters.
+			'Long' means that the correct responses pattern and learner response strings will normally be more than 250 characters.
 		</td>
 	</tr>
 	<tr>
@@ -1418,7 +1418,7 @@ Systems reading statements cannot infer success based on comparison of the Respo
 
 Where the Correct Response Pattern contains an empty array, the meaning of this is that there is no correct
 answer; all answers are incorrect. Where any answer is correct (e.g. in a survey), the Correct Response Pattern property
-is ommitted. 
+is omitted. 
 
 ###### Characterstring parameters
 Some of the values within the responses described above can be prepended with certain additional parameters. These were originally based on the characterstring
@@ -2230,7 +2230,7 @@ Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" f
 ###### File URL
 The File URL is intended to provide a location from which the LRS or another system can retrieve the
 attachment. There are, however, no requirements for the owner of the attachment to make the 
-attachment data available at the location indefinately or to make the attachment publically
+attachment data available at the location indefinitely or to make the attachment publically
 available without security restrictions. When determining attachment hosting arrangements, 
 designers of systems that will send Statements using the "fileUrl" property are encouraged to 
 consider the needs of end recipient(s) of the Statement especially if the attachment content 
@@ -2542,7 +2542,7 @@ can make sense of it.
 ### 4.2 Language Maps
 
 ##### Description
-A language map is a dictionary where the key is a [RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the value is a string in the language specified in the tag. This map SHOULD be populated as fully as possible based on the knowledge of the string in question in different languages.  
+A language map is a dictionary where the key is a [RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the value is a string in the language specified in the tag. This map SHOULD be populated as fully as possible based on the knowledge of the string in question in different languages.  
 
 The content of strings within a language map is plain text. It's expected that any formatting code 
 such as HTML tags or markdown will not be rendered, but will be displayed as code when this string is 
@@ -2574,7 +2574,7 @@ Timestamps are a format type which represent a specific time.  They are formatte
 Statements sent to an LRS can be expected to keep precision to at least milliseconds 
 
 ###### Requirements
-* A Timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
+* A Timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
 * A Timestamp MUST preserve precision to at least milliseconds (3 decimal points beyond seconds).  
 * A Timestamp SHOULD* include the time zone.
 * If the Timestamp includes a time zone, the LRS MAY be return the Timestamp using a different timezone to the one 
@@ -2596,7 +2596,7 @@ section 4.4.3.3) MUST NOT be used.
 * Clients SHOULD provide a maximum precision of 0.01 seconds. 
 * Clients MAY provide less precision, for example in the case of reading a University Degree precision might 
 be in months or years. 
-* On receiving a Duration with more that 0.01 second precision, the LRS SHOULD* NOT reject the request but MAY 
+* On receiving a Duration with more than 0.01 second precision, the LRS SHOULD* NOT reject the request but MAY 
 truncate the Duration property to 0.01 second precision. 
 * When comparing Durations, any precision beyond 0.01 second precision SHOULD* NOT be included in the comparison.
 
@@ -2611,8 +2611,8 @@ The table below provides some example ISO 8601 durations. This list is not inten
 	</tr>
 	<tr>
 		<td>P16559.14S</td>
-		<td>The same time peroid as above represented in seconds. 
-		(Note: if the time peroid in question contained a leap second, this conversion would be inaccurate)</td>
+		<td>The same time period as above represented in seconds. 
+		(Note: if the time period in question contained a leap second, this conversion would be inaccurate)</td>
 	</tr>
 	<tr>
 		<td>P3Y1M29DT4H35M59.14S</td>
@@ -2624,7 +2624,7 @@ The table below provides some example ISO 8601 durations. This list is not inten
 	</tr>
 	<tr>
 		<td>P4W</td>
-		<td>Four weeks. Note that weeks cannot be combined with other time peroids. 'P4W1D' is not valid.</td>
+		<td>Four weeks. Note that weeks cannot be combined with other time periods. 'P4W1D' is not valid.</td>
 	</tr>
 </table>
 
