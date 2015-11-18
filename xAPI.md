@@ -521,6 +521,7 @@ The following example from the cmi5 Community of Practice demonstrates Extension
 
 ```
 {
+  "id":"2a41c918-b88b-4220-20a5-a4c32391a240",
   "actor": {
     "objectType": "Agent",
     "account": {
@@ -564,7 +565,7 @@ The following example from the cmi5 Community of Practice demonstrates Extension
        "http://w3id.org/xapi/cmi5/context/extensions/sessionid": "458240298378231",
       }
    },
-    "timestamp": "2012-06-01T19:09:13.245Z"
+    "timestamp": "2012-06-01T19:09:13.245+00:00"
 }
 ```
 
