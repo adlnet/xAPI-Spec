@@ -1779,38 +1779,38 @@ The following table contains the properties of the Context Object.
 	<td>registration</td>
 	<td>UUID</td>
 	<td>The registration that the Statement is associated with.</td>
-	<td>optional</td>
+	<td>Optional</td>
 </tr>
 <tr>
 	<td>instructor</td>
 	<td>Agent (MAY be a Group)</td>
 	<td>Instructor that the Statement relates to, if not included as the Actor of the Statement.</td>
-	<td>optional</td>
+	<td>Optional</td>
 </tr>
 <tr>
 	<td>team</td>
 	<td>Group</td>
 	<td>Team that this Statement relates to, if not included as the Actor of the Statement.</td>
-	<td>optional</td>
+	<td>Optional</td>
 </tr>
 <tr>
 	<td>contextActivities</td>
 	<td>contextActivities Object</td>
 	<td>A map of the types of learning activity context that this Statement is related to.
 	Valid context types are: "parent", "grouping", "category" and "other".</td> 
-	<td>optional</td>
+	<td>Optional</td>
 </tr>
 <tr>
 	<td>revision</td>
 	<td>String</td>
 	<td>Revision of the learning activity associated with this Statement. Format is free.
-	<td>optional</td>
+	<td>Optional</td>
 </tr>
 <tr>
 	<td>platform</td>
 	<td>String</td>
 	<td>Platform used in the experience of this learning activity. </td>
-	<td>optional</td>
+	<td>Optional</td>
 </tr>
 <tr>
 	<td>language</td>
@@ -1818,13 +1818,13 @@ The following table contains the properties of the Context Object.
 	<td>Code representing the language in which the experience being recorded in this 
 	Statement (mainly) occurred in, if applicable and known.
 	</td>
-	<td>optional</td>
+	<td>Optional</td>
 </tr>
 <tr>
 	<td>statement</td>
 	<td><a href="#stmtref">Statement Reference</a></td>
 	<td>Another Statement to be considered as context for this Statement. </td>
-	<td>optional</td>
+	<td>Optional</td>
 </tr>
 <tr>
 	<td>extensions</td>
@@ -1832,7 +1832,7 @@ The following table contains the properties of the Context Object.
 	<td>A map of any other domain-specific context relevant to this Statement. For example, 
 	in a flight simulator altitude, airspeed, wind, attitude, GPS coordinates might all be 
 	relevant (<a href="#miscext">See Extensions</a>)</td>
-	<td>optional</td>
+	<td>Optional</td>
 </tr>
 
 </table>
