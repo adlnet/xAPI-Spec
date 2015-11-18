@@ -102,9 +102,9 @@
 <a name="introduction-partone"/>
 ## 1.0 Introduction
 
-The Experience API (xAPI) is a technical specification that aims to facilitate the documentation and communication of learning experiences. It does so by specifiing how learning experiences should be described and an Application Programming Interface that sets out how information about these experiences should be formatted and exchanged electronically.  
+The Experience API (xAPI) is a technical specification that aims to facilitate the documentation and communication of learning experiences. It does so by specifying how learning experiences should be described and an Application Programming Interface that sets out how information about these experiences should be formatted and exchanged electronically.  
 
-The xAPI is an initiative of the Advanced Distributed Learning (ADL), established in 1997 to standardize and modernize training and education management and delivery in the US. Among the many outcomes of this initiative was SCORM - the Shareable Content Object Reference Model. SCORM has become an internationally recongized framework that has been a major factor contributing to the economy and effectiveness of online learning around the world.
+The xAPI is an initiative of the Advanced Distributed Learning (ADL), established in 1997 to standardize and modernize training and education management and delivery in the US. Among the many outcomes of this initiative was SCORM - the Sharable Content Object Reference Model. SCORM has become an internationally recognized framework that has been a major factor contributing to the economy and effectiveness of online learning around the world.
   
 While SCORM has been a great success, there is a growing realization of the need to track learning experiences of individuals beyond formal, structured computer-based training. In assessing candidates' suitability for positions or their capability for performing various tasks, there is a need to consider a wide range of formal and informal learning experiences, both on and offline.  That information, more often than not is scattered across a wide variety of sources.
 
@@ -244,7 +244,7 @@ allows interactions between the two "trusted" parties.
 
 <a name="def-authorization" />
 
-__Authorization__: The affordance of permissions based on a user or system's role; 
+__Authorization__: The affordance of permissions based on a user's or system's role; 
 the process of making one user or system "trusted" by another.
 
 <a name="def-baseendpoint" />
@@ -393,7 +393,7 @@ different personas of the same user. The LRS can aggregate all of the informatio
 "Person" Object and send it through the Agents Resource.  
 
 
-### 5.1 Interoperbility Between Components
+### 5.1 Interoperability Between Components
 There are two main ways that the xAPI promotes interoperability between systems that implement the specification. The first is by 
 requiring that systems implementing the specification follow a consistent data structure. To that end, this specification defines 
 a data model for various data objects that are transferred between systems. The most significant object within the xAPI data model 
@@ -404,7 +404,7 @@ The second way that the xAPI promotes interoperability is by setting out the tra
 information about learning experiences between programs that adhere to the specification. As part of this, it sets out the format 
 of requests and the expected responses. Note that the systems storing or retrieving records need not be Activity Providers. LRSs 
 can communicate with other LRSs, or systems. xAPI follows the guidelines of the REST software architecture style, and as such data 
-is tranferred via HTTP requests and responses. xAPI also defines security methods allowing for the trusted exchange of information 
+is transferred via HTTP requests and responses. xAPI also defines security methods allowing for the trusted exchange of information 
 between the Learning Record Store and trusted sources.
 
 <a name="extending-xapi" />
@@ -507,7 +507,7 @@ Clarifications and additional examples including:
 - Complete reorganization of the document into three parts
 - Many, many clarifications
 - Removed back-references to SCORM
-- Addiitional explanitory text and diagrams
+- Additional explanatory text and diagrams
 [1.0.2...1.0.3](https://github.com/adlnet/xAPI-Spec/compare/1.0.2...1.0.3)
 
 <a name="parttwo" />
