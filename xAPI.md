@@ -32,6 +32,7 @@
 	*	7.0.	[Profiles and Communities of Practice](#COPs)  
 	*	[Appendices](#append1)  
 		*	[Appendix A: Revision History](#Appendix1A)  
+		*	[Appendix B: cmi5 Example](#Appendix1B)  
 *	Part Two:	[Experience API (xAPI) Data](#parttwo)  
 	*	1.0.	[Documents](#documents) 
 	*	2.0.	[Statements](#statements)  
@@ -523,18 +524,18 @@ The following example from the cmi5 Community of Practice demonstrates Extension
   "actor": {
     "objectType": "Agent",
     "account": {
-      "homePage": "http://www.example.com",
+      "homePage": "http://www.adlnet.gov",
       "name": "1625378"
     }
   },
   "verb": {
-    "id": "http://adlnet.gov/expapi/verbs/launched",
+    "id": "http://example.adlnet.gov/expapi/verbs/failed",
     "display": {
-      "en-US": "Launched"
+      "en-US": "Failed"
     }
   },
   "object": {
-    "id":"https://mydomain.com/AUidentifier",
+    "id":"https://mydomain.adlnet.com/AUidentifier",
     "objectType": "Activity"
   },
   "result": {
@@ -548,20 +549,19 @@ The following example from the cmi5 Community of Practice demonstrates Extension
   "completion": false,
   "duration": "PT30M",
   "extensions": {
-    "http://purl.org/xapi/cmi5/result/extensions/progress": 100
+    "http://w3id.org/xapi/cmi5/result/extensions/progress": 100
   }
   },
   "context": {
      "registration": "ec231277-b27b-4c15-8291-d29225b2b8f7",
      "contextActivities": {
         "category": [
-          {"id": "http://purl.org/xapi/cmi5/context/categories/moveon"},
-          {"id": "http://purl.org/xapi/cmi5/context/categories/cmi5"}
+          {"id": "http://w3id.org/xapi/cmi5/context/categories/moveon"},
+          {"id": "http://w3id.org/xapi/cmi5/context/categories/cmi5"}
         ]
      },
      "extensions": {
-       "http://purl.org/xapi/cmi5/context/extensions/sessionid": "<the value of session ID provided by the LMS>",
-       "http://purl.org/xapi/cmi5/context/extensions/reason": "<reason for waived verb, if statement is waived statement only>"
+       "http://w3id.org/xapi/cmi5/context/extensions/sessionid": "458240298378231",
       }
    },
     "timestamp": "2012-06-01T19:09:13.245Z"
