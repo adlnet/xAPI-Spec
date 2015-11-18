@@ -431,7 +431,7 @@ and share best practices. The CoP will define these identifiers in a profile. Th
 vocabularies to implemented in addition to xAPI for the particular use case being addressed.
 
 It is recommended that a profile use a unique "category" within a Statement's context to refer to any Statement  
-which follows the profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current/blob/quartz/cmi5_runtime.md#ContextActivities"), 
+which follows the profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current"), 
 which is designed for the traditional single learner, single online learning use case.  An example cmi5 Statement can 
 be found in [Appendix B: cmi5 Example](#Appendix1B).
 
@@ -524,12 +524,12 @@ The following example from the cmi5 Community of Practice demonstrates Extension
   "actor": {
     "objectType": "Agent",
     "account": {
-      "homePage": "http://www.adlnet.gov",
+      "homePage": "http://example.adlnet.gov",
       "name": "1625378"
     }
   },
   "verb": {
-    "id": "http://example.adlnet.gov/expapi/verbs/failed",
+    "id": "http://w3id.org/xapi/verbs/failed",
     "display": {
       "en-US": "Failed"
     }
