@@ -57,6 +57,7 @@ leaders on which we depend to make our training and education the very best."_
     <tr><td>Greg Tatka</td><td>Menco Social Learning</td></tr>
     <tr><td>Ingo Dahn</td><td>University Koblenz-Landau</td></tr>
     <tr><td>Jason Haag</td><td>ADL</td></tr>
+    <tr><td>Jason Lewis</td><td>Yet Analytics</td></tr>
     <tr><td>Jeff Place</td><td>Questionmark</td></tr>
     <tr><td>Jennifer Cameron</td><td>Sencia Corporate Web Solutions</td></tr>
     <tr><td>Jeremy Brockman</td><td> </td></tr>
