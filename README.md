@@ -1,7 +1,7 @@
 xAPI-Spec
 =========
 
-This Github repository contains the xAPI Specification. xAPI is a learning technologies interoperbility specification that describes communication 
+This Github repository contains the xAPI Specification. xAPI is a learning technologies interoperability specification that describes communication 
 about learner activity and experiences between technologies. You can [read the latest release of the specification here](xAPI.md).  The group meets the first, second, and third Wednesdays of each month on GoToWebinar.  You can register [at https://attendee.gotowebinar.com/register/279276321478091778](https://attendee.gotowebinar.com/register/279276321478091778)
 
 ## Specification versions
@@ -22,11 +22,11 @@ please give as much detail as you can in regards to:
 
 * Which part/parts of the specification you are reading.
 * Your understanding of what these parts mean.
-* The product and feature you are implmenting xAPI in; what's the use case you are trying to achieve?
+* The product and feature you are implementing xAPI in; what's the use case you are trying to achieve?
 * How you would like the specification to be improved. Suggest some specific new wording if you like!
 
 You'll need to [sign up for a GitHub account](https://github.com/signup/free) if you do not already have one in order
-to raise and comment on isues. 
+to raise and comment on issues. 
 
 You can discuss any issues before or after raising them on the [specification Google Group](https://groups.google.com/a/adlnet.gov/forum/#!forum/xapi-spec)
 and at our [weekly specification calls](https://attendee.gotowebinar.com/register/100000000063672381). 
