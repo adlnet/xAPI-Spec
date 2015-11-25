@@ -4782,7 +4782,7 @@ Using Semantic Versioning will allow Clients and LRSs to reliably know compatibi
 
 Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html).  Every request from a Client and every response from the LRS includes an HTTP header with the name 
 “X-Experience-API-Version" and the version as the value. For example, ``X-Experience-API-Version : 1.0.3`` for version 1.0.3; 
-see the [Revision History](#revhistory) for the current version of this specification. 
+see the [Revision History](#Appendix1A) for the current version of this specification. 
 
 ###### LRS Requirements
 
