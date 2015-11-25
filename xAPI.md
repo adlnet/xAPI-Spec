@@ -436,14 +436,6 @@ CoPs are highly recommended to avoid duplication of effort, as creating too many
 will cause fragmentation in similar domains and will hurt interoperability.  An example of a CoP for the medical 
 field is the [Medbiquitous xAPI Interest Group](http://groups.medbiq.org/medbiq/display/XIG/XAPI+Interest+Group+Home).
 
-##### Use in Communities of Practice
-
-###### Description
-
-Communities of practice could find the need to establish new Verbs, Activities, Extensions, etc. to meet the needs of their constituency.
-
-Therefore, it is expected that xAPI communities of practice generate profiles, lists, and repositories.
-
 ###### Requirements for Communities of Practice
 
 * Anyone establishing a new vocabulary entry MUST own the IRI, or MUST have permission from the owner to use it to denote an
