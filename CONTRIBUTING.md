@@ -47,6 +47,7 @@ leaders on which we depend to make our training and education the very best."_
     <tr><td>Chris Sawwa</td><td>Meridian Knowledge Solutions</td></tr>
     <tr><td>Dan Allen</td><td>Litmos</td></tr>
     <tr><td>Dan Kuemmel</td><td>Sentry Insurance</td></tr>
+    <tr><td>Danny Pham</td><td></td></tr>
     <tr><td>Dave Mozealous</td><td>Articulate</td></tr>
     <tr><td>David Ells</td><td>Rustici Software</td></tr>
     <tr><td>David N. Johnson</td><td>Clear Learning Systems</td></tr>
