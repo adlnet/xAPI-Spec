@@ -412,7 +412,7 @@ between the Learning Record Store and trusted sources.
 ## 6.0 Extending xAPI
 
 xAPI can be extended in a few ways. The most notable is Statement Extensions, which allow great flexibility within Statements.  It is recommended that profiles or Communities or Practice agree on how to use  
-extensions for their particular use cases. Implementation details are covered in a [4.1 Extensions](#miscext).
+extensions for their particular use cases. Implementation details are covered in [4.1 Extensions](#miscext).
 
 The About Resource is another place xAPI supports Extensions.  The LRS may find it useful to communicate features or behaviors beyond this specification to activity provider. The LRS can use extensions to the About Resource to communicate these features and behaviours.
 
