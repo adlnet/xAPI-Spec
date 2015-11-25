@@ -1862,6 +1862,10 @@ The Experience API applies the concept of registration more broadly.  A registra
 considered to be an attempt, a session, or could span multiple Activities. There is no expectation that 
 completing an Activity ends a registration. Nor is a registration necessarily confined to a single Agent.
 
+The Registration id is also used when storing documents within the State resource, e.g. for 
+bookmarking. Normally the same registration id is used for requests to both the Statement and 
+State resources relating to the same learning experience. 
+
 <a name="contextActivities"/>
 
 ##### 2.4.6.2 ContextActivities Property
