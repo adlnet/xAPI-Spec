@@ -571,7 +571,7 @@ Complete IRI validation is extremely difficult, so much of the burden for ensuri
 * Additional properties SHOULD* NOT be added to Statements unless explicitly allowed by this specification. 
 
 __Note:__ The LRS is recommended to reject Statements containing additional properties. Additional properties in 
-Statements would mean that the Statement would not be interoperable with all LRS. 
+Statements would mean that the Statement would not be interoperable with all LRSs. 
 
 ###### LRS Requirements
 
@@ -586,7 +586,7 @@ Statements would mean that the Statement would not be interoperable with all LRS
       an enumerated value given in this specification exactly.
     * where a key or value is not allowed by this specification.
     * where a key occurs multiple times within an object. 
-* The LRS MUST reject Statements containing IRL or IRI values without a scheme.
+    * containing IRL or IRI values without a scheme.
 * The LRS MUST at least validate that the sequence of token lengths for language map keys
 matches the [RFC 5646](http://tools.ietf.org/html/rfc5646) standard.
 * The LRS MUST process and store numbers with at least the precision of IEEE 754 32-bit
@@ -622,10 +622,10 @@ Statements are immutable (they cannot be changed). The following are exceptions 
 * Potential or required assignments of properties during LRS 
 processing ("id", "authority", "stored", "timestamp", "version"). 
 
-* Activities referenced by a Statement. The content of 
-Activities that are referenced in Statements is not considered part of the 
+* Activity Definitions referenced by a Statement. The content of 
+Activity Definitions that are referenced in Statements is not considered part of the 
 Statement itself. This means a deep serialization of a Statement into 
-JSON will change if the referenced Activities change (see the
+JSON will change if the referenced Activity Definition changes (see the
 [Statement API's](#stmtapi) "format" parameter for details).  
 
 * Verbs referenced by a Statement. The Display property of the Verb is not considered 
@@ -656,7 +656,7 @@ Result Duration is considered a string for purposes of statement comparison.
 <a name="statement-comparision-requirements" />
 ###### Statement Comparision Requirements
 There are a number of scenarios outlined in this specification which require statements to be
-compared to see if they match. In this scenarios, the following rules apply:
+compared to see if they match. In these scenarios, the following rules apply:
 
 * Differences which could have been caused by 
 [exceptions to Statement immutability](#statement-immutablity-and-exceptions) MUST be ignored.
@@ -693,7 +693,7 @@ definitions which were introduced by the Statement that was just voided.
 * An Activity Provider that wants to "unvoid" a previously voided Statement SHOULD issue that Statement 
 again under a new id.
 
-__Note:__ See ["Statement References"](#stmtref) in [Section 4.1.4.3 When the "Object" is a Statement](#stmtasobj) 
+__Note:__ See ["Statement References"](#stmtref) in [When the "Object" is a Statement](#stmtasobj) 
 for details about making references to other Statements.  To see how voided statements behave when queried, 
 See [StatementRef](#queryStatementRef) in 7.3 Statement API).
 
@@ -1094,12 +1094,6 @@ A Verb in the Experience API is an IRI, and denotes a specific meaning not tied 
 For example, a particular Verb IRI such as http://example.org/firearms#fire might denote the action of firing a gun, 
 or the Verb IRI http://example.com/فعل/خواندن might denote the action of reading a book. 
 
-###### Requirements for Activity Providers
-
-* Activity Providers SHOULD use a corresponding existing Verb whenever possible.
-* Activity Providers MAY create and use a Verb if no suitable Verb exists.
-
-
 
 <a name="object"/>
 
@@ -1141,7 +1135,7 @@ properties in this case.
 		<td>objectType</td>
 		<td>String</td>
 		<td>MUST be "Activity" when present</td>
-		<td>Optional in all cases</td>
+		<td>Optional</td>
 	</tr>
 	<tr>
 		<td><a href="#acturi">id</a></td><td>IRI</td>
@@ -1159,7 +1153,7 @@ properties in this case.
 If it were possible to use the same id for two different Activities, the validity of Statements about 
 these Activities could be questioned. This means an LRS can't ever treat (references to) the same 
 Activity id as belonging to two different Activities, even if it thinks this was intended. Namely, 
-when a conflict with another system occurs, it’s not possible to determine the intentions. 
+when a conflict with another system occurs, it’s not possible to determine which activity is intended. 
 
 
 ###### <a name="actdef" />Activity Definition
@@ -1253,7 +1247,7 @@ for recording interaction data. Since 1.0.3, direct references to the SCORM data
 associated requirements included directly in this document.
 
 These interaction definitions are simple to use, and consequently limited. It is expected that communities of practice
-requiring richer interactions definitions will do so through the use of extensions to an Activity's type and definition. 
+requiring richer interactions definitions will do so through the use of Activity Types and Activity Definition Extensions. 
 
 ###### Details
 
@@ -1462,8 +1456,8 @@ The following parameters are valid at the start of each item in the list for the
 
 * Interaction Activities MUST have a valid interactionType.
 * Interaction Activities SHOULD have the Activity type "http://adlnet.gov/expapi/activities/cmi.interaction".
-* An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as specified in the table 
-below and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction Activity.
+* An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as specified for Interaction Activities 
+and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction Activity.
 * The LRS SHOULD* NOT enforce character limits relating to response patterns. 
 * The LRS SHOULD* NOT limit the length of the correctResponsesPattern array for any interactionType. 
 
@@ -1527,7 +1521,7 @@ See [Appendix C](#Appendix2C) for examples of Activity Definitions for each of t
 
 * Statements that specify an Agent or Group as an Object MUST specify an 'objectType' property. 
 
-See [Section 4.1.2 Actor](#actor) for details regarding Agents.  
+See [Actor](#actor) for details regarding Agents.  
 
 <a name="stmtasobj"/>
 
@@ -1539,8 +1533,7 @@ There are two possibilities for using a Statement as an Object.  First, an Objec
 of a Statement that already exists by using a Statement Reference. A common use case for 
 Statement References is grading or commenting on an experience that could be tracked as an 
 independent event.  The special case of voiding a Statement would also use a Statement Reference.
-Second, an Object can be a brand new Statement by using a SubStatement.  A common use case for 
-SubStatements would be any experience that would be misleading as its own Statement. Each type is defined below.
+Second, an Object can be a brand new Statement by using a SubStatement. Each type is defined below.
 
 <a name="stmtref"/>
 
@@ -1604,7 +1597,7 @@ A SubStatement is like a Statement included as part of a containing Statement, b
 * A SubStatement MUST specify an "objectType" property with the value "SubStatement".
 * A SubStatement MUST be validated as a Statement in addition to other SubStatement requirements.
 * A SubStatement MUST NOT have the "id", "stored", "version" or "authority" properties.
-* A SubStatement MUST NOT contain a SubStatement of their own, i.e., cannot be nested.
+* A SubStatement MUST NOT contain a SubStatement of its own, i.e., cannot be nested.
 
 ###### Example
 
@@ -1893,8 +1886,8 @@ the qualification relates to the class as the grouping.
 "Tags" would be a synonym. Category SHOULD be used to indicate
 a "profile" of xAPI behaviors, as well as other categorizations.
 For example: Anna attempts a biology exam, and the Statement is
-tracked using the CMI-5 profile. The Statement's Activity refers
-to the exam, and the category is the CMI-5 profile.
+tracked using the cmi5 profile. The Statement's Activity refers
+to the exam, and the category is the cmi5 profile.
 
 5. __Other__: a context Activity that doesn't fit one of the other properties.
 For example: Anna studies a textbook for a biology exam. The Statement's
@@ -1982,7 +1975,7 @@ The time at which a Statement is stored by the LRS. This can be any time between
 when it is written to storage. 
 
 ###### Details 
-The stored property is of type [Timestamp](#timestamps).The stored property is the literal time the Statement was stored. 
+The stored property is of type [Timestamp](#timestamps). The stored property is the literal time the Statement was stored. 
 Used to record the time at which the experience described in the Statement.
 
 ###### Requirements
@@ -2086,8 +2079,8 @@ lack a version, the version MUST be set to 1.0.0.
 
 
 ###### Client Requirements
-* If Clients set the Statement version, they MUST set it to 1.0.0
-* Clients SHOULD NOT set the Statement version;
+* If Clients set the Statement version, they MUST set it to 1.0.0.
+* Clients SHOULD NOT set the Statement version.
 
 
 <a name="attachments"/>
@@ -2316,7 +2309,7 @@ here is a simple attachment
 
 ###### Description
 A collection of Statements can be retrieved by performing a query on the "statements" 
-endpoint, see Section [7.3 "Statement API"](#stmtapi) for details. 
+endpoint, see [Statement API](#stmtapi) for details. 
 
 ###### Details
 The following table shows the data structure for the results of queries on the Statement API.
@@ -4653,12 +4646,12 @@ section [6.4.2](#oauthscope).
 Permissions can also affect the response returned by an LRS to GET requests. For example, 
 a set of credentials might have permission only to view statements about a particular actor, in which case
 the LRS will filter any returned statements to exclude any statements not relating to that actor. See 
-[Section 7.3.3 GET Statements](#stmtapiget) for details. 
+[GET Statements](#stmtapiget) for details. 
 
 In cases explicitly allowed by this specification, the credentials used can also affect the LRS behaviour in 
 handling a request, for example the LRS will normally overwrite the Authority property of a Statement, but can 
 sometimes accept a submitted authority if it has a strong trust relationship associated with the credentials 
-used to submit the statement. See [Section 4.1.9 Authority](#authority) for details. 
+used to submit the statement. See [Authority](#authority) for details. 
 
 Permissions set by an LRS could cause a technically conformant LRS to fail conformance testing. 
 This could occur where requests made by the test suite are rejected on the basis of permissions. For this reason
