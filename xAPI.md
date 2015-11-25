@@ -84,6 +84,7 @@
 		 	*	2.2.5.	[Agent Profile Resource](#agentprofres) 
 		 	*	2.2.6.	[Activity Profile Resource](#actprofres) 
 		 	*	2.2.7.	[About Resource](#aboutresource) 
+		*	2.3.	[Encoding](#encoding) 
    	*	3.0.	[Data Validation](#validation)     
     	*	3.1.	[Concurrency](#concurrency)  
     	*	3.2.	[Error Codes](#errorcodes)
@@ -4538,6 +4539,13 @@ property MUST occur only once.
 * An LRS SHOULD allow unauthenticated access to this resource
 * An LRS MUST NOT reject requests based on their version header as would otherwise be 
 required by <a href="#versioning"/>Versioning</a>.
+
+<a name="encoding"/> 
+
+### 2.3 Encoding
+
+###### Requirement
+* All strings MUST be encoded and interpreted as UTF-8. 
 
 
 <a name="validation"/> 
