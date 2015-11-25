@@ -2472,7 +2472,7 @@ identifiers other than Activity id.
 * For any of the identifier IRIs above the Metadata Provider make a human-readable description of the intended usage accessible at the IRI.
 * For any of the identifier IRIs above the Metadata Provider SHOULD ensure that this JSON metadata available at that 
 IRI when the IRI is requested and a Content-Type of "application/json" is requested.
-* An Activity with an IRL identifier MAY host metadata using the <a href="#actdef">
+* Where the IRI represents an Activity, the Metadata Provider MAY host metadata using the <a href="#actdef">
 Activity Definition</a> JSON format which is used in Statements, with a Content-Type of "application/json".
 * Where a suitable identifier already exists, the Metadata Provider SHOULD NOT create a new identifier.
 * The Metadata Provider MAY create their own identifiers where a suitable identifier does not already exist.
