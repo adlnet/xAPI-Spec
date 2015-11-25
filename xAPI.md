@@ -249,7 +249,7 @@ the process of making one user or system "trusted" by another.
 
 <a name="def-baseendpoint" />
 
-__Base Endpoint__: The maximal path under all Experience API endpoints, including a slash. E.g. an LRS with a statements endpoint of http://example.com/xAPI/statements would have a Base Endpoint of http://example.com/xAPI/"
+__Base Endpoint__: The maximal path under all Experience API endpoints, including a slash. E.g. an LRS with a statements endpoint of http://example.com/xAPI/statements has a Base Endpoint of http://example.com/xAPI/"
 
 <a name="def-client" />
 
