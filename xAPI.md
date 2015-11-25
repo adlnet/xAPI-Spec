@@ -64,6 +64,7 @@
 		*	4.4.	[UUIDs](#uuids)
 		*	4.5.	[ISO 8601 Timestamps](#timestamps)
 		*	4.6.	[ISO 8601 Durations](#durations)
+	*	5.0.	[Documents](#documents) 		
 	*	[Appendices](#append2)  
 		*	[Appendix A: Example Statements](#Appendix2A)  
 		*	[Appendix B: Example statement objects of different types](#Appendix2B)  
@@ -244,6 +245,8 @@ Finally, the set of Resources implemented is not expected to be constrained by t
 those listed in this specification can be implemented and co-exist with the Resources defined in this specification.
 
 
+<a name="parttwo" ></a>
+#Part Two: The Application Programming Interface
 
 <a name="introduction-parttwo"></a>
 ## 1.0 Introduction
@@ -265,19 +268,10 @@ JSON allows for objects to have properties that contain empty objects. This is n
 
 
 <a name="documents" ></a>
-## 1.0 Documents
 
-
-### Document
-
-The Experience API provides a facility for Activity Providers to save arbitrary data in the form of documents.  This data 
-is largely unstructured, which allows for flexibility.  Specifics on document behaviors can be found in [Part 3](#doctransfer) 
-
-<a name="statements" ></a> 
 
 ## 2.0 Statements  
 
-### 5.1 Interoperbility Between Components
 There are two main ways that the xAPI promotes interoperability between systems that implement the specification. The first is by 
 requiring that systems implementing the specification follow a consistent data structure. To that end, this specification defines 
 a data model for various data objects that are transferred between systems. The most significant object within the xAPI data model 
@@ -2417,6 +2411,17 @@ The table below provides some example ISO 8601 durations. This list is not inten
 
 Durations are expected to be presented in the format in which they are recorded. For example if a duration is tracked
 in seconds (or fractions of a second) there is no need to convert this to hours, minutes and seconds. 
+
+<a name="documents" ></a> 
+## 5.0 Documents
+
+
+### Document
+
+The Experience API provides a facility for Activity Providers to save arbitrary data in the form of documents.  This data 
+is largely unstructured, which allows for flexibility.  Specifics on document behaviors can be found in [Part 3](#doctransfer) 
+
+<a name="statements" ></a> 
 
 <a name="append2"></a>
 ## Appendices
@@ -5381,5 +5386,3 @@ Clarifications and additional examples including:
 - Addiitional explanitory text and diagrams
 [1.0.2...1.0.3](https://github.com/adlnet/xAPI-Spec/compare/1.0.2...1.0.3)
 
-<a name="parttwo" ></a>
-#Part Two: The Application Programming Interface
