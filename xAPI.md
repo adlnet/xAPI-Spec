@@ -444,13 +444,6 @@ Communities of practice could find the need to establish new Verbs, Activities, 
 
 Therefore, it is expected that xAPI communities of practice generate profiles, lists, and repositories.
 
-###### Requirements for Communities of Practice
-
-* Anyone establishing a new vocabulary entry MUST own the IRI, or MUST have permission from the owner to use it to denote an
-xAPI Verb, Activity, Extension, etc.;  (This requirement cannot be enforced by an LRS, rather is meant to show the gravity 
-of coining new entries without control)
-* Anyone establishing a new vocabulary entry SHOULD make a human-readable description of the intended usage accessible at the IRI.
-
 <a name="append1"/>
 ## Appendices
 
@@ -2476,6 +2469,7 @@ identifiers other than Activity id.
 * Metadata MAY be provided with an identifier.
 * If metadata is provided, both name and description SHOULD be included.
 * IRIs SHOULD be defined within a domain controlled by the [Metadata Provider](#def-metadata-provider) creating the IRI.
+* For any of the identifier IRIs above the Metadata Provider make a human-readable description of the intended usage accessible at the IRI.
 * For any of the identifier IRIs above the Metadata Provider SHOULD ensure that this JSON metadata available at that 
 IRI when the IRI is requested and a Content-Type of "application/json" is requested.
 * Where a suitable identifier already exists, the Metadata Provider SHOULD NOT create a new identifier.
