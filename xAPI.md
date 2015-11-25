@@ -3403,6 +3403,8 @@ recommended that those implementing xAPI use current industry best practices.
 ### 1.1 HEAD Request Implementation
 
 ###### Description
+The behaviour of the LRS in response to PUT, POST, GET and DELETE requests is outlined in [Resources](#resources) below. 
+All resources that support GET requests also support HEAD.
 The LRS will respond to HEAD requests by returning the meta information only, using the HTTP headers, and 
 not the actual document.  
 
