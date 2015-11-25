@@ -2472,6 +2472,8 @@ identifiers other than Activity id.
 * For any of the identifier IRIs above the Metadata Provider make a human-readable description of the intended usage accessible at the IRI.
 * For any of the identifier IRIs above the Metadata Provider SHOULD ensure that this JSON metadata available at that 
 IRI when the IRI is requested and a Content-Type of "application/json" is requested.
+* An Activity with an IRL identifier MAY host metadata using the <a href="#actdef">
+Activity Definition</a> JSON format which is used in Statements, with a Content-Type of "application/json".
 * Where a suitable identifier already exists, the Metadata Provider SHOULD NOT create a new identifier.
 * The Metadata Provider MAY create their own identifiers where a suitable identifier does not already exist.
 * When defining identifiers, the Metadata Provider MAY use IRIs containing anchors so that a single page can contain 
@@ -2482,6 +2484,15 @@ definitions for multiple identifiers. E.g. http://example.com/xapi/verbs#defenes
 
 ##### LRS Requirements
 * The LRS MAY act as a [Metadata Consumer](#def-metadata-consumer) and attempt to resolve identifier IRIs.
+* If an Activity IRI is an IRL, an LRS SHOULD attempt to GET that IRL, and include in HTTP
+headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
+first encounters the Activity id.
+* Upon loading JSON which is a valid Activity Definition from an IRL used as an Activity id,
+ an LRS SHOULD incorporate the loaded definition into its internal definition for that Activity,
+while preserving names or definitions not included in the loaded definition.
+* Upon loading any document from which the LRS can parse an Activity Definition
+from an IRL used as an Activity id, an LRS MAY consider this definition when determining
+its internal representation of that Activity's definition.
 
 ##### Metadata Consumer Requirements
 * If a Metadata Consumer obtains metadata from an IRI, it SHOULD make a strong presumption that the 
