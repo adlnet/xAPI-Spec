@@ -266,10 +266,6 @@ Even within the rules of JSON there are possible variations of how data can be s
 
 JSON allows for objects to have properties that contain empty objects. This is not recommended within xAPI; if the statement is not intended to contain data about a property then it is expected that the property will not be used at all. All required properties are required to contain values. 
 
-
-<a name="documents" ></a>
-
-
 ## 2.0 Statements  
 
 There are two main ways that the xAPI promotes interoperability between systems that implement the specification. The first is by 
