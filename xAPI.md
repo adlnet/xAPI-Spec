@@ -301,7 +301,7 @@ __Inverse Functional Identifier__: An identifier which is unique to a particular
 <a name="def-learning-management-system" />
 
 __Learning Management System (LMS)__: "A software package used to administer one or more courses to one or more learners. An LMS is typically a web-based 
-system that allows learners to authenticate themselves, register for courses, complete courses and take  
+system that allows learners to authenticate themselves, register for courses, complete courses and take 
 assessments" (Learning Systems Architecture Lab definition). In this document the term will be used in the context of 
 existing systems implementing learning standards.
 
