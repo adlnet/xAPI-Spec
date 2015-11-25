@@ -503,11 +503,12 @@ Clarifications and additional examples including:
 
 [1.0.1...1.0.2](https://github.com/adlnet/xAPI-Spec/compare/1.0.1...1.0.2)
 
-###### 1.0.2 to 1.0.3 (TBC)
+###### 1.0.2 to 1.0.3 (TBC, 2016)
 - Complete reorganization of the document into three parts
 - Many, many clarifications
 - Removed back-references to SCORM
 - Additional explanatory text and diagrams
+
 [1.0.2...1.0.3](https://github.com/adlnet/xAPI-Spec/compare/1.0.2...1.0.3)
 
 <a name="parttwo" />
