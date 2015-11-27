@@ -88,7 +88,7 @@
     	*	3.1.	[Concurrency](#concurrency)  
     	*	3.2.	[Error Codes](#errorcodes)
     	*	3.3     [Versioning](#versioning)  
-    *	4.0.	[Authenitcation](#authentication)  
+    *	4.0.	[Authentication](#authentication)  
 		*	4.1.	[OAuth 1.0 Authentication Scenarios and Methods](#authdefs) 
 		*	4.2.	[OAuth 1.0 Authorization Scope](#oauthscope)
     *	5.0	[Security](#security)
