@@ -547,13 +547,13 @@ and "category" Context Activities.
       "raw": 65,
       "min": 0,
       "max": 100
-  },
-  "success": false,
-  "completion": false,
-  "duration": "PT30M",
-  "extensions": {
+    },
+    "success": false,
+    "completion": false,
+    "duration": "PT30M",
+    "extensions": {
     "http://w3id.org/xapi/cmi5/result/extensions/progress": 100
-  }
+    }
   },
   "context": {
      "registration": "ec231277-b27b-4c15-8291-d29225b2b8f7",
