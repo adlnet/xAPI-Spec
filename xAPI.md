@@ -534,7 +534,7 @@ and "category" Context Activities.
   "verb": {
     "id": "http://w3id.org/xapi/verbs/failed",
     "display": {
-      "en-US": "Failed"
+      "en-US": "failed"
     }
   },
   "object": {
