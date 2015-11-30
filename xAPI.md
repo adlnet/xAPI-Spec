@@ -2641,6 +2641,7 @@ Example of a simple statement (line breaks are for display purposes only):
 ```
 {
 	"id":"fd41c918-b88b-4b20-a0a5-a4c32391aaa0",
+	"timestamp": "2015-11-18T12:17:00+00:00",
 	"actor":{
 		"objectType": "Agent",
 		"name":"Project Tin Can API",
@@ -2670,6 +2671,8 @@ Example of a simple statement (line breaks are for display purposes only):
 Completion with verb "attempted" and duration expressed in seconds (not converted to minutes and seconds):  
 ```
 {
+	"id":"7ccd3322-e1a5-411a-a67d-6a735c76f119",
+	"timestamp": "2015-12-18T12:17:00+00:00",
 	"actor":{
         "objectType": "Agent",
 		"name":"Example Learner",
@@ -2806,8 +2809,8 @@ a statement returned by an LRS including the authority and stored properties set
         }
         
     },
-    "timestamp": "2013-05-18T05:32:34.804Z",
-    "stored": "2013-05-18T05:32:34.804Z",
+    "timestamp": "2013-05-18T05:32:34.804Z+00:00",
+    "stored": "2013-05-18T05:32:34.804Z+00:00",
     "authority": {
         "account": {
             "homePage": "http://cloud.scorm.com/",
