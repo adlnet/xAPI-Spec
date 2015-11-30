@@ -517,7 +517,8 @@ Clarifications and additional examples including:
 <a name="Appendix1B"/>
 ### Appendix B: cmi5 Example 
 
-The following example from the cmi5 Community of Practice demonstrates Extensions, "category", etc.
+The following example illustrates a statement following the cmi5 Community of Practice. It demonstrates use of Extensions 
+and "category" Context Activities.
 
 ```
 {
@@ -536,15 +537,15 @@ The following example from the cmi5 Community of Practice demonstrates Extension
     }
   },
   "object": {
-    "id":"https://mydomain.adlnet.com/AUidentifier",
+    "id":"https://example.adlnet.gov/AUidentifier",
     "objectType": "Activity"
   },
   "result": {
-  "score": {
-  "scaled": 0.65,
-  "raw": 65,
-  "min": 0,
-  "max": 100
+    "score": {
+      "scaled": 0.65,
+      "raw": 65,
+      "min": 0,
+      "max": 100
   },
   "success": false,
   "completion": false,
@@ -557,15 +558,19 @@ The following example from the cmi5 Community of Practice demonstrates Extension
      "registration": "ec231277-b27b-4c15-8291-d29225b2b8f7",
      "contextActivities": {
         "category": [
-          {"id": "http://w3id.org/xapi/cmi5/context/categories/moveon"},
-          {"id": "http://w3id.org/xapi/cmi5/context/categories/cmi5"}
+          {
+          "id": "http://w3id.org/xapi/cmi5/context/categories/moveon"
+          },
+          {
+          "id": "http://w3id.org/xapi/cmi5/context/categories/cmi5"
+          }
         ]
      },
      "extensions": {
        "http://w3id.org/xapi/cmi5/context/extensions/sessionid": "458240298378231",
       }
    },
-    "timestamp": "2012-06-01T19:09:13.245+00:00"
+  "timestamp": "2012-06-01T19:09:13.245+00:00"
 }
 ```
 
