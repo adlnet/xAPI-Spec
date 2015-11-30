@@ -525,6 +525,7 @@ and "category" Context Activities.
   "id":"2a41c918-b88b-4220-20a5-a4c32391a240",
   "actor": {
     "objectType": "Agent",
+    "name": "Gert Frobe",
     "account": {
       "homePage": "http://example.adlnet.gov",
       "name": "1625378"
