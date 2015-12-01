@@ -3790,10 +3790,10 @@ do not match. See [Statement comparision requirements]statement-comparision-requ
 
 * GET Statements MAY be called using POST and form parameters if necessary as query strings 
 
-have limits. See Section [7.9 Alternate Request Syntax](#alt-request-syntax) for more details.
+have limits. See [Alternate Request Syntax](#alt-request-syntax) for more details.
 
 * The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
-parameters passed. See Section [7.9 Alternate Request Syntax](#alt-request-syntax) for more details.
+parameters passed. See [Alternate Request Syntax](#alt-request-syntax) for more details.
 
 <a name="stmtresget"/>
 
@@ -5317,7 +5317,7 @@ Converted to 1.0.0:
 
 ### Appendix C: Cross Domain Request example
 
-Section [7.9 Alternate Request Syntax](#alt-request-syntax) outlines alternative syntax for use 
+[Alternate Request Syntax](#alt-request-syntax) outlines alternative syntax for use 
 when the normal syntax cannot be used due to browser or querystring length restrictions. This appendix provides an example of a
 PUT statements request following this format. 
 
