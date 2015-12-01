@@ -550,7 +550,7 @@ constrain the behavior of systems processing Statements. For clarity, certain ke
 requirements are documented here, emphasizing where compliant systems have a responsibility
 to act in certain ways.
 
-###### Requirements (Came from previous 4.1 Immutability)
+###### Requirements
 
 * A Statement MUST use each property no more than one time.
 * A Statement MUST use “actor”, “verb”, and “object”.
