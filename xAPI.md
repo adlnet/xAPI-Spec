@@ -99,10 +99,10 @@
 		*	[Appendix C: Cross Domain Request Example](#Appendix3C) 
 		*	[Appendix D: Definitions](#definitios)   
 
-<a name="partone"/>
+<a name="partone"></a>
 #Part One: Overview The Experience API
 
-<a name="introduction-partone"/>
+<a name="introduction-partone"></a>
 ## 1.0 Introduction
 
 The Experience API (xAPI) is a technical specification that aims to facilitate the documentation and communication of learning experiences. It does so by specifying how learning experiences should be described and an Application Programming Interface that sets out how information about these experiences should be formatted and exchanged electronically.  
@@ -124,44 +124,40 @@ The goals of the xAPI are:
 
 The document that follows sets out the xAPI framework which is designed to achieve these goals. 
 
-<a name="ecosystem"/> 
+<a name="ecosystem"></a> 
 
 ## 2.0 The xAPI Eccosystem
-The xAPI environment in which learning experiences are described and communicated can be thought of as an ecosystem - a large system that is made up of a number of components - each of which is a system itself.  The major components of xAPI ecosystem can be broken down into two main groups:
-* The Players which are software programs that generate, exchange, store and analyze information about learning experiences.  
-* The Referees which are organizations and software programs that are responsible for setting, updating and determining compliance to the rules by which this handling of information takes place in the ecosystem.
+The xAPI environment in which learning experiences are described and communicated can be thought of as an ecosystem - a large system that is made up of a number of components - each of which is a system itself.  The major components of xAPI ecosystem are:
 
-
-<a name="xapi-players"/> 
-### 2.1 xAPI Players
-The xAPI Ecosystem has three major types of players handling information about learning experiences.  They are:
-
- * [Activity Providers](#def_statement_provider) which are software programs responsible for gathering and formatting the raw data about learning experiences and sending that data to Learning Record Stores.  An activity provider may be a stand-alone piece of software into which data is manually entered describing, for example, what a person learned in a sailing lesson in the harbour.  When the person presses the submit button in this software, that information could be sent to one or more Learning Record Stores.  An Activity Provier could also be a software component that is embedded in a larger system such as a <a name="def-learning-management-system">Learning Management System (LMS)</a> so that when the person completes an online lesson, information about that learning experience could also be sent to one ore more Learning Record Stores.
+ * [Activity Providers](#def_statement_provider) which are software programs responsible for gathering and formatting the raw data about learning experiences and sending that data to Learning Record Stores.  
  
- * [Learning Record Stores](#def-learning-record-store) (LRS) which are responsible for receiving, storing and providing access to data about the learning experiences.  In the xAPI specification, statements of learning experience are considered to be evidence about what the learner has done or achieved.  For that reason, there are a number of rules around how that data is to be handled.  This is discussed in Section...  It is the responsibility of the LRS to ensure that these statements are stored and provided back to consumers with exactly the same data that was provided.
- * [Data Analysis Tools](#def_statement_processor) which are software objects are responsible for gathering information from the record stores and making it available to final users in a way that is meaningful and useful to them.  As with Learning Record Stores and Activity Providers, Data Analysis tools may be stand-alone software programs or they may be part of larger programs such as an LMS or a larger tracking system.   
+ * [Learning Record Stores](#def-learning-record-store) (LRS) which are responsible for receiving, storing and providing access to data about the learning experiences.
  
- The following diagram provides an overview of a sample xAPI ecosystem.
+ * [LRS Consumers](#def_statement_processor) which are software objects are responsible for gathering information from the record stores and making it available to users.
+ * [Communities of Practice](#def-community-of-practice) which set out the meaning of terms and norms of practice for different learning communities that are referenced by the software players in the ecosystem.
+     
+* The **xAPI Specification** which sets out the overall rules about how information must be formatted and communicated in the system;
+
+* **Conformance Testers** which are organizations or software that test software programs operating in the ecosystem to determine if they do in fact conform to the rules of the specification
+
+Figure 1 below shows a sample xAPI ecosystem containing examples of each of these components.  In the sections that follow, we describe these components in more detail.
 
 ![Data Flow in xAPI](/xAPIEcosystem.jpg)
- 
-<a name="xapi-referees"/>
-### 2.2 xAPI Referees
-For the xAPI system to function effectively, there must be a set of rules that all the players in the system agree to follow. Those rules must be set up and maintained over time.  That is the function of the Referee components in the xAPI ecosystem and are denoted by the figure icons with striped jerseys in figure above. Referees in the xAPI system are organizations, documents and software that are responsible for maintaining the the rules by which the player components handle information. There are three major referee components in the xAPI ecosystem:  
-* The **xAPI Specification** itself - this document that sets out the rules about how learning experiences must be formatted and communicated electronically;
-* **Conformance Testers** which are organizations or software that test software programs operating in the ecosystem to determine if they do in fact conform to the rules of the specification
-* **Communities of Practice** which set out the meaning of terms and norms of practice for different learning communities that are referenced by the software players in the ecosystem.
-  
-<a name="specification"/>
-#### 2.2.1 xAPI Specification
-This document, the Experience API is intended to be a definative statement of rules for operating in the xAPI ecosystem in general and specifically regarding the application programing interface rules by which independent software programs in this domain communicate with each other. These rules have been developed by the community under the stewardship of the ADL Initiatve which as been been acting as a facilitor for it.  This document is evolving and will continue to evolve as needs and experience dictate.  The version history for the Experience API can be seen in [Appendix A](#Appendix1A)
+<a name="activity-providers-component"></a>
+###2.1 Activity Providers
+An activity provider may be a stand-alone piece of software into which data is manually entered describing, for example, what a person learned in a sailing lesson in the harbour.  When the person presses the submit button in this software, that information could be sent to one or more Learning Record Stores.  An Activity Provier could also be a software component that is embedded in a larger system such as a <a name="def-learning-management-system">Learning Management System (LMS)</a> so that when the person completes an online lesson, information about that learning experience could also be sent to one ore more Learning Record Stores.
 
-<a name="conformance"/>
-#### 2.2.2 Conformance Testers
-The Experience API involves a extensive set of rules that software programs must follow if they are to communicate effectively with each other.  In order to help developers ensure that their programs conform to these rules, the ADL has worked with a number of software developers in the community to set up testing protocols and tests for determining whether or not software conforms to the specification.
-  
-<a name="COPs" />
-#### 2.2.3 Communities of Practice
+<a name="lrs-component"></a>
+### 2.2 Learning Record Stores
+In the xAPI specification, statements of learning experience are considered to be evidence about what the learner has done or achieved.  For that reason, there are a number of rules around how that data is to be handled.  This is discussed in Section...  It is the responsibility of the LRS to ensure that these statements are stored and provided back to consumers with exactly the same data that was provided.
+
+<a name="lrs-consumer-component" ></a>
+### 2.3 LRS Consumers
+
+LRS consumers are software objects are responsible for gathering information from the record stores and making it available to final users in a way that is meaningful and useful to them. As with Learning Record Stores and Activity Providers, Data Analysis tools may be stand-alone software programs or they may be part of larger programs such as an LMS or a larger tracking system.
+
+<a name="COP-component" ></a>
+### 2.4 Communities of Practice
 While the xAPI specification has a great deal to say about how statements of learning experiences should be formatted and exchanged, it has nothing to say about the meaning of terms used in those statements.  Because different terms can have very different meanings in different contexts, this could be a significant barrier to promoting interoperability and communication amongst the different players in the xAPI ecosystem.  For a doctor learning techniques for treating different types of burns, the term "fire" would have have a very different meaning than to a person taking a course in human resources.  Analyzing statements using the term "fire" would probably provide unsatisfactory results unless users in the ecosystem had a common understanding of the term fire.
 
 For that reason, the xAPI specification has made accomodation for and expects different learning communities to define terms and practices that are common to their communities and to have these terms and practices referred to in the software that handles the learning statements.  This is to be done through the mechanism of Communities of Practice and their associated web sites.  The term Community of Practice (COP) was coined by John Lave and Etienne Wenger in 1991 to signify a group of people who share a common concern, craft or professon and who meet regularly with the goal of sharing information and increasing knowledge and learning in their profession.  
@@ -170,7 +166,17 @@ With the enormous growth of the Internet since the term was coined, most of the 
 
 CoPs are highly recommended to avoid duplication of effort, as creating too many ways to solve the same problem will cause fragmentation in similar domains and will hurt interoperability.  Communities of practice could find the need to establish new Verbs, Activities, Extensions, etc. to meet the needs of their constituency.
 
-<a name="readingguidelines"/> 
+<a name="specification"></a>
+### 2.5 xAPI Specification
+This document, the Experience API is intended to be a definative statement of rules for operating in the xAPI ecosystem in general and specifically regarding the application programing interface rules by which independent software programs in this domain communicate with each other. These rules have been developed by the community under the stewardship of the ADL Initiatve which as been been acting as a facilitor for it.  This document is evolving and will continue to evolve as needs and experience dictate.  The version history for the Experience API can be seen in [Appendix A](#Appendix1A)
+
+<a name="conformance"></a>
+### 2.6 Conformance Testers
+The Experience API involves a extensive set of rules that software programs must follow if they are to communicate effectively with each other.  In order to help developers ensure that their programs conform to these rules, the ADL has worked with a number of software developers in the community to set up testing protocols and tests for determining whether or not software conforms to the specification.
+  
+
+
+<a name="readingguidelines"></a> 
 
 ## 3.0 How to Use This Document
 
@@ -186,7 +192,7 @@ are based on the specification set described below. For this reason, sections th
 _high-level overview_ of a given facet of the Experience API are labeled **description** or 
 **rationale**. Items in this document labeled as **requirements**, **details** or **examples** are more technical.
 
-<a name="def-must-should-may" />
+<a name="def-must-should-may" ></a>
 ### 3.1 MUST / SHOULD / MAY 
 There are three levels of obligation with regards to conformance to the xAPI specification identified by the terms 
 MUST, SHOULD and MAY. A system that fails to implement a MUST (or a MUST NOT) requirement is non-conformant. 
@@ -201,7 +207,7 @@ Whilst these recommendations cannot be MUST requirements within this version (as
 the xAPI Working Group strongly encourages adopters to implement these requirements as though they were MUST 
 requirements, whilst continuing to support other adopters that might not do so.
 
-<a name="interpret-text-table" />
+<a name="interpret-text-table" ></a>
 ### 3.2 Guidelines for Interpreting Descriptive Text and Tables
 As a rule of thumb, if the guideline appears technical or seems to be a requirement, interpret it 
 as such. This is especially true of longer, more, detailed explanations and of tables, each of which would 
@@ -234,10 +240,10 @@ The About Resource is another place xAPI supports Extensions.  The LRS may find 
 Finally, the set of Resources implemented is not expected to be constrained by this document. Resources beyond 
 those listed in this specification can be implemented and co-exist with the Resources defined in this specification.
 
-<a name="append1"/>
+<a name="append1"></a>
 ## Appendices
 
-<a name="Appendix1A"/>
+<a name="Appendix1A"></a>
 ### Appendix A: Revision History
 ###### 0.8 (Project Tin Can API Deliverable) to 0.9 (March 31, 2012)  
   
@@ -293,17 +299,17 @@ Clarifications and additional examples including:
 - Additional explanatory text and diagrams
 [1.0.2...1.0.3](https://github.com/adlnet/xAPI-Spec/compare/1.0.2...1.0.3)
 
-<a name="parttwo" />
+<a name="parttwo" ></a>
 #Part Two: The Application Programming Interface
 
-<a name="introduction-parttwo"/>
+<a name="introduction-parttwo"></a>
 ## 1.0 Introduction  
 
 An Application Programming Interface or API is a set of rules the conformance to which allow different computer programs to communicate with each other.  Part Two of this document sets out those rules for the Experience API.  Those rules follow into the following categories:
 - Common Language for Exchanging Data (JSON) 
 - How the Data is Structured and Formatted - Statements, MetaData and Special Types and Rules  
 
-<a name="json" />
+<a name="json" ></a>
 ### 1.1 Serialization and JavaScript Object Notation (JSON)
 
 Serialization is the process of translating data objects and structures into a format for storage or transmission, such that the original data object can be recreated from the resulting serialization. In some cases it might be possible to serialize a piece of data in more than one way, for example a boolean property with a value of true might be represented as ```true``` or ```1``` depending on the serialization used. 
@@ -318,7 +324,7 @@ JSON allows for objects to have properties that contain empty objects. This is n
 * Statements and other objects SHOULD NOT include properties with a value of an empty object. 
 
 
-<a name="statements" /> 
+<a name="statements" ></a> 
 
 ## 2.0 Statements  
 
@@ -326,7 +332,7 @@ JSON allows for objects to have properties that contain empty objects. This is n
 The Statement is the core of the xAPI. All learning events are stored as Statements.
 A Statement is akin to a sentence of the form "I did this".
 
-<a name="statement-purpose"/> 
+<a name="statement-purpose"></a> 
 ### 2.1 Purpose
 
 Statements are the evidence for any sort of experience or event which is to be tracked in xAPI. 
@@ -335,7 +341,7 @@ using natural language. This can be extremely useful for the design process. Sta
 meant to be aggregated and analyzed to provide larger meaning for the overall experience than 
 just the sum of its parts.
 
-<a name="dataconstraints"/>
+<a name="dataconstraints"></a>
 ### 2.2 Formatting Requirements
 
 ###### Details
@@ -397,7 +403,7 @@ non-format-following rejection requirement.
 * Additional properties SHOULD* NOT be added to Statements and other objects unless explicitly allowed by this specification and the 
 LRS SHOULD* reject Statements containing such additional properties.
 
-<a name="lifecycle" />
+<a name="lifecycle" ></a>
 
 ### 2.3 Statement Lifecycle
 
@@ -409,7 +415,7 @@ Statements are expected to be permanent. The only way to undo a Statement within
 [void it](#voided). Voiding does not destroy a Statement, rather indicates the evidence in the 
 Statement is to be disregarded.
 
-<a name="statement-immutablity-and-exceptions" />
+<a name="statement-immutablity-and-exceptions" ></a>
 
 #### 2.3.1 Statement Immutability
 
@@ -449,7 +455,7 @@ timestamp property as representing either the start, middle or end of the experi
 an LRS to accurately deserialize the Result Duration and convert between units of time. For this reason, the 
 Result Duration is considered a string for purposes of statement comparison. 
 
-<a name="statement-comparision-requirements" />
+<a name="statement-comparision-requirements" ></a>
 ###### Statement Comparision Requirements
 There are a number of scenarios outlined in this specification which require statements to be
 compared to see if they match. In this scenarios, the following rules apply:
@@ -459,7 +465,7 @@ compared to see if they match. In this scenarios, the following rules apply:
 * Differences relating to a different serialisation of any properties not
 [listed as exceptions](#statement-immutablity-and-exceptions) MUST not be ignored. 
 
-<a name="voided"/>
+<a name="voided"></a>
 
 #### 2.3.2 Voiding
 
@@ -517,7 +523,7 @@ This example Statement voids a previous Statement which it identifies with the S
 	}
 }
 ```  
-<a name="statement-properties"/> 
+<a name="statement-properties"></a> 
 ### 2.4 Statement Properties  
 
 ###### Details
@@ -589,7 +595,7 @@ When this Statement is returned from the LRS it will include some additional pro
 }
 ```  
 
-<a name="documents" />
+<a name="documents" ></a>
 ## 5.0 Documents
 
 ### Document
@@ -601,7 +607,7 @@ See [Appendix A: Example Statements](#Appendix2A) for more examples.
 
 
 
-<a name="stmtid"/> 
+<a name="stmtid"></a> 
 
 #### 2.4.1 ID 
 
@@ -614,14 +620,14 @@ A UUID (all versions of variant 2 in [RFC 4122](http://www.ietf.org/rfc/rfc4122.
 * Ids MUST be generated by the LRS if a Statement is received without an id.
 * Ids SHOULD be generated by the Activity Provider.
 
-<a name="actor"/>
+<a name="actor"></a>
 
 #### 2.4.2 Actor  
 
 ###### Description 
 The Actor defines who performed the action. The Actor of a Statement can be an Agent or a Group. 
 
-<a name="agent"/>
+<a name="agent"></a>
 
 ##### 2.4.2.1 When the Actor ObjectType is Agent
 ###### Description
@@ -648,7 +654,7 @@ The table below lists the properties of Agent Objects.
 </table>
 
 
-<a name="group"/>
+<a name="group"></a>
 
 ##### 2.4.2.2 When the Actor ObjectType is Group
 ###### Description
@@ -739,7 +745,7 @@ but no others, SHOULD be used for this property and mbox_sha1sum.</td></tr>
 * The domain portions of email addresses are case insensitive. Clients SHOULD uses lowercase for the domain portion of the email address when calculating the SHA1 hash
 for the "mbox_sha1sum" property. 
 
-<a name="agentaccount"/>
+<a name="agentaccount"></a>
 
 ##### 2.4.2.4 Account Object
 
@@ -781,7 +787,7 @@ This example shows an Agent identified by an opaque account:
 }
 ``` 
 
-<a name="verb"/>
+<a name="verb"></a>
 
 #### 2.4.3 Verb
 
@@ -906,7 +912,7 @@ or the Verb IRI http://example.com/فعل/خواندن might denote the action o
 
 
 
-<a name="object"/>
+<a name="object"></a>
 
 ####2.4.4 Object
 
@@ -931,7 +937,7 @@ property. If not specified, the objectType is assumed to be "Activity". Other va
 are: <a href="#agentasobj">Agent</a>, <a href="#agentasobj">Group</a>, <a href="#substmt">SubStatement</a> or [StatementRef](#stmtref)</a>.
 The properties of an Object change according to the objectType.
 
-<a name="activity"/>
+<a name="activity"></a>
 
 ##### 2.4.4.1 When the ObjectType is Activity
 
@@ -967,7 +973,7 @@ Activity id as belonging to two different Activities, even if it thinks this was
 when a conflict with another system occurs, it’s not possible to determine the intentions. 
 
 
-###### <a name="actdef" />Activity Definition
+###### <a name="actdef" ></a>Activity Definition
 The table below lists the properties of the Activity Definition Object:
 
 <table>
@@ -985,7 +991,7 @@ The table below lists the properties of the Activity Definition Object:
 		<td>Recommended</td>
 	</tr>
 	<tr>
-		<a name="acttype"/>
+		<a name="acttype"></a>
 		<td>type</td>
 		<td>IRI</td>
 		<td>The type of Activity.</td>
@@ -1014,7 +1020,7 @@ __Note:__ IRI fragments (sometimes called relative IRLs) are not valid IRIs. As 
 Activity Providers look for and use established, widely adopted, Activity types.
 
 
-###### <a name="acturi" />Activity Id Requirements
+###### <a name="acturi" ></a>Activity Id Requirements
 
 * An Activity id MUST be unique.
 * An Activity id MUST always reference the same Activity.
@@ -1045,7 +1051,7 @@ to break compatibility.
 
 
 
-<a name="interactionacts"/>
+<a name="interactionacts"></a>
 
 ##### Interaction Activities  
 
@@ -1295,7 +1301,7 @@ Interaction components are defined as follows:
 	</tr>
 </table>
 
-<a name="#interactionComponentLists"/>
+<a name="#interactionComponentLists"></a>
 
 Depending on Interaction Type, Interaction Activities can take additional properties, each containing a 
 list of interaction components. These additional properties are called ‘interaction component lists’. The following table
@@ -1324,7 +1330,7 @@ shows the supported interaction component list(s) for an Interaction Activity wi
 
 See [Appendix C](#Appendix2C) for examples of Activity Definitions for each of the cmi.interaction types.
 
-<a name="agentasobj"/>
+<a name="agentasobj"></a>
 
 ##### 2.4.4.2 When the "Object" is an Agent or a Group
 
@@ -1334,7 +1340,7 @@ See [Appendix C](#Appendix2C) for examples of Activity Definitions for each of t
 
 See [Section 4.1.2 Actor](#actor) for details regarding Agents.  
 
-<a name="stmtasobj"/>
+<a name="stmtasobj"></a>
 
 ##### 2.4.4.3 When the "Object" is a Statement
 
@@ -1347,7 +1353,7 @@ independent event.  The special case of voiding a Statement would also use a Sta
 Second, an Object can be a brand new Statement by using a SubStatement.  A common use case for 
 SubStatements would be any experience that would be misleading as its own Statement. Each type is defined below.
 
-<a name="stmtref"/>
+<a name="stmtref"></a>
 
 ##### Statement References
 
@@ -1397,7 +1403,7 @@ comment could be issued on the original Statement, using a new Statement:
 }
 ``` 
 
-<a name="substmt"/>
+<a name="substmt"></a>
 
 ##### SubStatements
 
@@ -1458,7 +1464,7 @@ action. The concrete example that follows logically states that
 }
 ```
 
-<a name="result"/>
+<a name="result"></a>
 
 #### 2.4.5 Result
 
@@ -1509,7 +1515,7 @@ The following table contains the properties of the Results Object.
 </tr>
 </table> 
 
-<a name="Score"/>
+<a name="Score"></a>
 
 ##### 2.4.5.1 Score
 
@@ -1562,7 +1568,7 @@ outside the scope of this specification.
 from an extension profile instead.
 
 
-<a name="context"/>
+<a name="context"></a>
 
 #### 2.4.6 Context
 
@@ -1654,7 +1660,7 @@ or assets of an Activity. (Use a new Activity id instead).
 __Note:__ Revision has no behavioral implications within the scope of xAPI. It is simply stored
 so that it is available for systems interpreting and displaying data.
 
-<a name="Registration"/>
+<a name="Registration"></a>
 
 ##### 2.4.6.1 Registration Property
 
@@ -1667,7 +1673,7 @@ The Experience API applies the concept of registration more broadly.  A registra
 considered to be an attempt, a session, or could span multiple Activities. There is no expectation that 
 completing an Activity ends a registration. Nor is a registration necessarily confined to a single Agent.
 
-<a name="contextActivities"/>
+<a name="contextActivities"></a>
 
 ##### 2.4.6.2 ContextActivities Property
 
@@ -1744,7 +1750,7 @@ useful when the Object of the Statement is an Agent, not an Activity.
 }
 ```
 
-<a name="timestamp"/>
+<a name="timestamp"></a>
 
 #### 2.4.7 Timestamp
 
@@ -1778,7 +1784,7 @@ These examples are for illustrative purposes only and are not meant to be prescr
 * An LRS SHOULD* NOT reject a timestamp for having a greater value than the current time, to prevent issues due to 
 clock errors.
 
-<a name="stored"/> 
+<a name="stored"></a> 
 
 #### 2.4.8 Stored
 
@@ -1797,7 +1803,7 @@ Used to record the time at which the experience described in the Statement.
 stored property of a Statement it receives.
 * The stored property SHOULD be the current or a past time.
 
-<a name="authority"/> 
+<a name="authority"></a> 
 
 #### 2.4.9 Authority
 
@@ -1872,7 +1878,7 @@ The pairing of an OAuth consumer and a user.
 }
 ```
 
-<a name="version"/> 
+<a name="version"></a> 
 
 #### 2.4.10 Version
 ###### Description
@@ -1895,7 +1901,7 @@ lack a version, the version MUST be set to 1.0.0.
 * Clients SHOULD NOT set the Statement version;
 
 
-<a name="attachments"/>
+<a name="attachments"></a>
 #### 2.4.11 Attachments
 
 ###### Description
@@ -1912,7 +1918,7 @@ The table below lists all properties of the Attachment object.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th><th>Corresponding request parameter</th></tr>
 	<tr>
-		<a name="attachmentUsage" />
+		<a name="attachmentUsage" ></a>
 
 		<td>usageType</td>
 		<td>IRI</td>
@@ -1953,7 +1959,7 @@ The table below lists all properties of the Attachment object.
 	<tr>
 		<td>sha2</td>
 		<td>String</td>
-		<td>The SHA-2 hash of the attachment data. <br/>
+		<td>The SHA-2 hash of the attachment data. <br></a>
 		This property is always required, even if "fileURL" is also specified. 
 		</td>
 		<td>Required</td>
@@ -2116,7 +2122,7 @@ here is a simple attachment
 --abcABC0123'()+_,-./:=?--
 ```
 
-<a name="retrieval"/> 
+<a name="retrieval"></a> 
 ### 2.5 Retrieval of Statements
 
 ###### Description
@@ -2160,7 +2166,7 @@ returned matches those statements that would have been returned when the origina
 * An LRS MAY remove voided statements from the cached list of statements if using this method. 
 * The consumer SHOULD NOT attempt to interpret any meaning from the IRL returned from the more property.
 
-<a name="signature"/>
+<a name="signature"></a>
 ### 2.6 Signed Statements
 
 ##### Description
@@ -2218,20 +2224,20 @@ See <a href="#Appendix2D">Appendix D: Example Signed Statement</a> for an exampl
 
 
 
-<a name="metadata"/>
+<a name="metadata"></a>
 
 ## 3.0 Metadata
 
 Metadata is additional information about the resource. It enables decision making, search, and discoverability  within systems.  In xAPI, metadata can be utilized in a variety of locations. The most common is within 
 [Activity Definitions](#actdef).
 
-<a name="iri-requirements"/>
+<a name="iri-requirements"></a>
 ### 3.1 IRI Requirements
 
 xAPI uses IRIs for identifiers. Using IRIs ensures uniqueness and promotes resolvability. The LRS and Activity 
 Provider each have responsibilities in regard to each IRI as outlined below. Activity Definitions have additional  rules which can be found in [this section](#actdef).
 
-<a name="miscmeta"/>
+<a name="miscmeta"></a>
 
 ### 3.2 Hosted Metadata
 
@@ -2304,13 +2310,13 @@ include metadata in other formats stored at the IRI of an identifier, particular
 identifier was not coined for use with this specification.
 
 
-<a name="special-data"/>
+<a name="special-data"></a>
 
 ## 4.0 Special Data Types and Rules
 
 The following are data types requiring additional rules that are found commonly in this specification.
 
-<a name="miscext"/> 
+<a name="miscext"></a> 
 
 ### 4.1 Extensions
 
@@ -2342,7 +2348,7 @@ of the intended meaning of the extension supported by the IRL accessible at the 
 __Note:__ A Statement defined entirely by its extensions becomes meaningless as no other system 
 can make sense of it.  
 
-<a name="lang-maps"/> 
+<a name="lang-maps"></a> 
 
 ### 4.2 Language Maps
 
@@ -2354,7 +2360,7 @@ such as HTML tags or markdown will not be rendered, but will be displayed as cod
 displayed to an end user. An important exception to this is if language map object is used in an extension and 
 the owner of that extension IRI explicitly states that a particular form of code will be rendered.
 
-<a name="iris"/>
+<a name="iris"></a>
 
 ### 4.3 IRIs
 
@@ -2363,7 +2369,7 @@ resolving is not a requirement, IRIs/URIs are used instead of IRLs/URLs. In orde
 in the characters used in an identifier, IRIs are used instead of URIs as IRIs can contain some characters outside 
 of the ASCII character set. 
 
-<a name="uuids"/>
+<a name="uuids"></a>
 
 ### 4.4 UUIDs
 
@@ -2371,7 +2377,7 @@ Universally Unique Identifiers, or UUIDs, are 128-bit values that are globally u
 no expectation of resolvability as UUIDs take on a completely different format.  UUIDs MUST be in the standard 
 string form.  It is recommended variant 2 in [RFC 4122](http://tools.ietf.org/html/rfc4122) is used.
 
-<a name="timestamps"/>
+<a name="timestamps"></a>
 
 ### 4.5 ISO 8601 Timestamps
 
@@ -2387,7 +2393,7 @@ Statements sent to an LRS can be expected to keep precision to at least millisec
 * The LRS SHOULD* return the Timestamp in UTC timezone. 
 * A Timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds. 
 
-<a name="durations"/>
+<a name="durations"></a>
 
 ### 4.6 ISO 8601 Durations
 
@@ -2436,9 +2442,9 @@ The table below provides some example ISO 8601 durations. This list is not inten
 Durations are expected to be presented in the format in which they are recorded. For example if a duration is tracked
 in seconds (or fractions of a second) there is no need to convert this to hours, minutes and seconds. 
 
-<a name="append2"/>
+<a name="append2"></a>
 ## Appendices
-<a name="Appendix2A"/>  
+<a name="Appendix2A"></a>  
  
 ### Appendix A: Example statements
 
@@ -2645,7 +2651,7 @@ a statement returned by an LRS including the authority and stored properties set
     }
 }
 ```  
-<a name="Appendix2B"/>  
+<a name="Appendix2B"></a>  
 
 ### Appendix B: Example statement objects of different types
 
@@ -2729,7 +2735,7 @@ This example shows a SubStatement object whose object is a Statement Reference.
 }
 ```
 
-<a name="Appendix2C"/>  
+<a name="Appendix2C"></a>  
 
 ### Appendix C: Example definitions for Activities of type "cmi.interaction"
 
@@ -3025,7 +3031,7 @@ In this example the minimum correct answer is 4 and there is no maximum. 5, 6 or
 }
 ```
 
-<a name="Appendix2D"/>
+<a name="Appendix2D"></a>
 
 ### Appendix D: Example Signed Statement
 
@@ -3194,11 +3200,11 @@ __Note:__ Attached signature not shown, see <a href="#attachments"> attachments<
 attachment message format.
 
 
-<a name="partthree"/>
+<a name="partthree"></a>
 
 # Part Three: Data Processing, Validation, and Security 
 
-<a name="requests"/>
+<a name="requests"></a>
 
 ## 1.0 Requests
 
@@ -3206,7 +3212,7 @@ xAPI tracking is done via HTTP Requests from the Activity Provider (client) to t
 specification offers guidance in some aspects of this communication.  Where no guidance is offered, it is 
 recommended that those implementing xAPI use current industry best practices.
 
-<a name="httphead"/>
+<a name="httphead"></a>
 
 ### 1.1 HEAD Request Implementation
 
@@ -3227,7 +3233,7 @@ identical HTTP GET request except:
     * The message-body MUST be omitted.
     * The Content-Length header MAY be omitted, in order to avoid wasting LRS resources.
 
-<a name="header-parameters"/> 
+<a name="header-parameters"></a> 
 
 ### 1.2 Headers
 
@@ -3261,7 +3267,7 @@ to every type of request and/or situations:
 
 The lists above are not intended to be exhaustive. See requirements throughout this document for more details.
 
-<a name="alt-request-syntax"/>
+<a name="alt-request-syntax"></a>
 
 ### 1.3 Alternate Request Syntax
 
@@ -3339,14 +3345,14 @@ decision to use this scheme.
 
 See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example. 
 
-<a name="datatransfer"/> 
+<a name="datatransfer"></a> 
 
 ## 2.0 Data Storage and Retrieval
 
 This section contains implementation details and requirements surrounding how an LRS receives and responds to requests for data.  As mentioned in the previous section, this communication is done through HTTP 
 Requests to specific Resources, all of which have Endpoints. 
 
-<a name="doctransfer"/>
+<a name="doctransfer"></a>
 
 ### 2.1 Documents 
 
@@ -3474,7 +3480,7 @@ status code ```204 No Content```.
 * If an AP needs to delete
 a property, it SHOULD use a PUT request to replace the whole document as described below. 
 
-<a name="resources"/>
+<a name="resources"></a>
 
 ### 2.2 Resources
 
@@ -3512,7 +3518,7 @@ are under development for a range of technologies (including JavaScript) which h
 this part of the specification. It therefore might not be necessary for content developers 
 to fully understand every detail of this part of the specification.
 
-<a name="stmtres"/> 
+<a name="stmtres"></a> 
 
 #### 2.2.1 Statement Resource
 
@@ -3521,7 +3527,7 @@ to fully understand every detail of this part of the specification.
 The basic communication mechanism of the Experience API.  
 
 
-<a name="stmtresput"/>
+<a name="stmtresput"></a>
 
 #####2.2.1.1 PUT Statements
 
@@ -3560,7 +3566,7 @@ do not match. See [Statement comparision requirements](statement-comparision-req
 * When PUTing statements, the "id" property of the Statement SHOULD be used. 
 * Where provided, the "id" property of the Statement MUST match the "statementId" parameter of the request. 
 
-<a name="stmtrespost"/>
+<a name="stmtrespost"></a>
 
 #####2.2.1.2 POST Statements
 
@@ -3600,7 +3606,7 @@ have limits. See Section [7.9 Alternate Request Syntax](#alt-request-syntax) for
 * The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
 parameters passed. See Section [7.9 Alternate Request Syntax](#alt-request-syntax) for more details.
 
-<a name="stmtresget"/>
+<a name="stmtresget"></a>
 
 #####2.2.1.3 GET Statements
 
@@ -3747,11 +3753,11 @@ Object.
 		<td>If 'ids', only include minimum information necessary in Agent, Activity, Verb 
 			and Group Objects to identify them. For anonymous groups this means including 
 			the minimum information needed to identify each member. 
-			<br/><br/>
+			<br></a><br></a>
 			If 'exact', return Agent, Activity, Verb and Group Objects populated exactly as they 
 			were when the Statement was received. An LRS requesting Statements for the purpose 
 			of importing them would use a format of 'exact'.  
-			<br/><br/>
+			<br></a><br></a>
 			If 'canonical', return Activity Objects and Verbs populated with the canonical
 			definition of the Activity Objects and Display of the Verbs as determined by the LRS, after
 			applying the <a href="#queryLangFiltering">language filtering process defined below</a>,
@@ -3808,7 +3814,7 @@ include attachment raw data and MUST report application/json.
 
 * The LRS SHOULD* include a "Last-Modified" header which matches the Stored timestamp of the Statement. 
 
-<a name="queryStatementRef" />
+<a name="queryStatementRef" ></a>
 
 ###### Filter Conditions for StatementRefs 
 
@@ -3840,7 +3846,7 @@ being fetched.
 __Note:__ StatementRefs used as a value of the Statement property within Context do not affect how
 Statements are filtered.
 
-<a name="queryLangFiltering" />
+<a name="queryLangFiltering" ></a>
 
 ###### Language filtering requirements for canonical format statements
 
@@ -3861,7 +3867,7 @@ described in <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> R
 (HTTP 1.1), except that this logic MUST be applied to each language map individually to select 
 which language entry to include, rather than to the resource (list of Statements) as a whole.
 
-<a name="voidedStatements" />
+<a name="voidedStatements" ></a>
 
 ##### 2.2.1.4 Voided Statements
 [Section 4.3 Voided](#voided) describes the process by which statements can be voided. This section
@@ -3883,7 +3889,7 @@ Statement, following the process and conditions described in
 [the section on filter conditions for StatementRefs](#queryStatementRef). This includes the
 voiding Statement, which cannot be voided. 
 
-<a name="stateres"/> 
+<a name="stateres"></a> 
 
 ### 2.2.2 State Resource
 
@@ -4010,7 +4016,7 @@ specified\]).
 	</tr>
 </table>
 
-<a name="agentsres"/>
+<a name="agentsres"></a>
 
 ### 2.2.3 Agents Resource
 
@@ -4117,7 +4123,7 @@ same definition as the similarly named property from Agent Objects.
 * Additional properties not listed here SHOULD* NOT be added to this object and each 
 property MUST occur only once. 
 
-<a name="activitiesres"/> 
+<a name="activitiesres"></a> 
 
 ### 2.2.4 Activities Resource
 
@@ -4147,7 +4153,7 @@ Loads the complete Activity Object specified.
 
 * If an LRS does not have a canonical definition of the Activity to return, the LRS SHOULD* still return an Activity Object when queried.
 
-<a name="agentprofres"/>
+<a name="agentprofres"></a>
 
 ### 2.2.5 Agent Profile Resource
 
@@ -4222,7 +4228,7 @@ Timestamp (exclusive).
 	</tr>
 </table>  
 
-<a name="actprofres"/> 
+<a name="actprofres"></a> 
 
 ### 2.2.6 Activity Profile Resource
 
@@ -4293,7 +4299,7 @@ the specified Timestamp (exclusive).
 </table>
 
 
-<a name="aboutresource"/> 
+<a name="aboutresource"></a> 
 
 ### 2.2.7 About Resource
 
@@ -4345,10 +4351,10 @@ the latest minor and patch version the LRS conforms to, for each major version.
 property MUST occur only once.  
 * An LRS SHOULD allow unauthenticated access to this resource
 * An LRS MUST NOT reject requests based on their version header as would otherwise be 
-required by <a href="#versioning"/>Versioning</a>.
+required by <a href="#versioning"></a>Versioning</a>.
 
 
-<a name="validation"/> 
+<a name="validation"></a> 
 
 ## 3.0 Data Validation
 
@@ -4366,7 +4372,7 @@ responsibility of the Activity Provider sending the Statement.
 * The LRS SHOULD enforce rules regarding structure. 
 * The LRS SHOULD NOT enforce rules regarding meaning.  
 
-<a name="concurrency"/>
+<a name="concurrency"></a>
 
 ### 3.1 Concurrency
 
@@ -4437,7 +4443,7 @@ If a PUT request is received without either header for a resource that already e
 	- set the "If-Match" header with the current ETag to resolve the conflict.
 * MUST NOT make a modification to the resource.
 
-<a name="errorcodes" /> 
+<a name="errorcodes" ></a> 
 
 ### 3.2 Error Codes
 
@@ -4571,7 +4577,7 @@ This set of credentials SHOULD* be used for conformance testing but MAY be delet
 
 * The LRS MUST be configurable to accept requests at any reasonable rate. 
 
-<a name="versioning"/> 
+<a name="versioning"></a> 
 
 ### 3.3 Versioning
 
@@ -4619,7 +4625,7 @@ of the problem.
 <a href="#Appendix3A">Appendix A: Converting Statements to 1.0.0</a>.
 
 
-<a name="security"/>
+<a name="security"></a>
 
 ## 4.0 Security
 
@@ -4653,7 +4659,7 @@ specification.
 - The LRS MUST handle making, or delegating, decisions on the validity of Statements,
  and determining what operations might be performed based on the credentials used.
 
-<a name="authdefs"/>
+<a name="authdefs"></a>
 
 ### 4.1 OAuth 1.0 Authentication Scenarios and Methods
 
@@ -4763,7 +4769,7 @@ This results in the string ```Basic Og==```.
 This is in order to distinguish an explicitly unauthenticated request from a request that needs to be given a HTTP Basic Authentication 
 challenge.
 
-<a name="oauthscope"/> 
+<a name="oauthscope"></a> 
 
 ### 4.2 OAuth 1.0 Authorization Scope
 
@@ -4870,10 +4876,10 @@ will be granted.
 
 
 
-<a name="append3"/>
+<a name="append3"></a>
 ## Appendices
 
-<a name="Appendix3A"/>
+<a name="Appendix3A"></a>
 
 ### Appendix A: Converting Statements to 1.0.0
 
@@ -5058,7 +5064,7 @@ Converted to 1.0.0:
 ```
 
 
-<a name="Appendix3B"/>
+<a name="Appendix3B"></a>
 
 ### Appendix B: Table of All Endpoints
 
@@ -5118,7 +5124,7 @@ Converted to 1.0.0:
 	</tr>
 </table>
 
-<a name="Appendix3C"/>
+<a name="Appendix3C"></a>
 
 ### Appendix C: Cross Domain Request example
 
@@ -5172,7 +5178,7 @@ Content (with added line breaks and not URL encoded for readability):
 ```
 Appendix D
 
-<a name="definitions"/>
+<a name="definitions"></a>
  
 ### Appendix D: Definitions  
 
@@ -5200,7 +5206,7 @@ Appendix D
 * [Tin Can API (TCAPI)](#def-tcapi)
 * [Verb](#def-verb)
 
-<a name="def-activity" />
+<a name="def-activity" ></a>
 
 __Activity__: An Activity is a type of Object making up the “this” in I did “this”; it is something 
 with which an Actor interacted. It can be a unit of instruction, experience, or performance that is 
@@ -5209,57 +5215,57 @@ Activities can even be tangible objects such as a chair (real or virtual). In th
 tried a cake recipe", the recipe constitutes the Activity in terms of the xAPI statement. Other 
 examples of activities include a book, an e-learning course, a hike or a meeting.
 
-<a name="def-activity-provider" />
+<a name="def-activity-provider" ></a>
 
 __Activity Provider (AP)__: The software object that is communicating with 
 the LRS to record information about a learning experience. May be similar to a SCORM 
 package in that it is possible to bundle learning assets with the software object that performs this 
 communication, but an Activity Provider could also be separate from the experience it is reporting about.
 
-<a name="def-actor" />
+<a name="def-actor" ></a>
 
 __Actor__: An identity or persona of an individual or group tracked using Statements as doing an 
 action (Verb) within an Activity.
 
-<a name="def-authentication" />
+<a name="def-authentication" ></a>
 
 __Authentication__: The concept of verifying the identity of a user or system. Authentication 
 allows interactions between the two "trusted" parties.
 
-<a name="def-authorization" />
+<a name="def-authorization" ></a>
 
 __Authorization__: The affordance of permissions based on a user's or system's role; 
 the process of making one user or system "trusted" by another.
 
-<a name="def-baseendpoint" />
+<a name="def-baseendpoint" ></a>
 
 __Base Endpoint__: The maximal path under all Experience API endpoints, including a slash. E.g. an LRS with a statements endpoint of http://example.com/xAPI/statements would have a Base Endpoint of http://example.com/xAPI/"
 
-<a name="def-client" />
+<a name="def-client" ></a>
 
 __Client__: - Refers to any entity that might interact with an LRS. A Client can be (for example) an 
 Activity Provider, an LMS, or another LRS.
 
-<a name="def-community-of-practice" />
+<a name="def-community-of-practice" ></a>
 
 __Community of Practice__: A group, usually connected by a common cause, role or 
 purpose, which operates in a common modality.
 
-<a name="def-experience-api" />
+<a name="def-experience-api" ></a>
 
 __Experience API (xAPI)__: The API defined in this document, the product of 
 "Project Tin Can". A simple, lightweight way for any permitted Actor to store 
 and retrieve extensible learning records, learner and learning experience profiles, 
 regardless of platform.  
 
-<a name ="def-immutable" />
+<a name ="def-immutable" ></a>
 
 __Immutable__:  Adjective used to describe things which cannot be changed. With 
 some exceptions, Statements in the xAPI are immutable. This ensures that when 
 Statements are shared between LRSs, multiple copies of the Statement remain
 the same.
 
-<a name="def-iri" />
+<a name="def-iri" ></a>
 
 __Internationalized Resource Identifier  (IRI)__: A unique identifier which could be an IRL. 
 Used to identify an object such as a verb, activity or activity type. Unlike URIs, IRIs 
@@ -5270,74 +5276,74 @@ IRIs always include a scheme. This is not a requirement of this standard, but pa
 definition of IRIs, per [RFC 3987](http://www.ietf.org/rfc/rfc3987.txt). What are sometimes 
 called 'relative IRIs' are not IRIs.
 
-<a name="def-irl" />
+<a name="def-irl" ></a>
 
 __Internationalized Resource Locator (IRL)__:  In the context of this document, 
 an IRL is an IRI that when translated into a URI (per the IRI to URI rules), is a URL. 
 Some communities of practice simply use URL even if they use IRIs, which isn't as 
 technically correct within xAPI.
 
-<a name="def-inverse-functional-identifier" />
+<a name="def-inverse-functional-identifier" ></a>
 
 __Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
  Used to identify Agents and Groups.
 
-<a name="def-learning-management-system" />
+<a name="def-learning-management-system" ></a>
 
 __Learning Management System (LMS)__: "A software package used to administer one or more courses to one or more learners. An LMS is typically a web-based 
 system that allows learners to authenticate themselves, register for courses, complete courses and take  
 assessments" (Learning Systems Architecture Lab definition). In this document the term will be used in the context of 
 existing systems implementing learning standards.
 
-<a name="def-learning-record-store" />
+<a name="def-learning-record-store" ></a>
 
 __Learning Record Store (LRS)__: A system that stores learning information. Prior to the xAPI 
 most LRSs were Learning Management Systems (LMSs); however this document uses the term 
 LRS to be clear that a full LMS is not necessary to implement the xAPI. The xAPI 
 is dependent on an LRS to function.
 
-<a name="def-metadata-consumer" />
+<a name="def-metadata-consumer" ></a>
 
 __Metadata Consumer__: A person, organization, software program or other thing that seeks to determine the meaning represented
 by an IRI used within this specification and/or retrieves metadata about an IRI. An LRS might or
 might not be a metadata consumer. 
 
-<a name="def-metadata-provider" />
+<a name="def-metadata-provider" ></a>
 
 __Metadata Provider__: A person, organization, software program or other thing that coins IRIs to be used within this specification and/or
 hosts metadata about an IRI. 
 
-<a name="def-profile" />
+<a name="def-profile" ></a>
 
 __Profile__: A construct where information about the learner or activity is kept, 
 typically in name/document pairs that have meaning to an instructional system component.
 
-<a name="def-registration" />
+<a name="def-registration" ></a>
 
 __Registration__: An instance of a learner experiencing a particular Activity.
 
-<a name="def-rest" />
+<a name="def-rest" ></a>
 
 __Representational State Transfer (REST)__: An architecture for designing networked web Services.
 It relies on HTTP methods and uses current web best practices.
 
-<a name="def-service" />
+<a name="def-service" ></a>
 
 __Service__: A software component responsible for one or more aspects of the distributed 
 learning process. An LMS typically combines many services to design a complete learning 
 experience.
 
-<a name="def-statement" />
+<a name="def-statement" ></a>
 
 __Statement__: A simple construct consisting of ```<actor (learner)>``` ```<verb>``` ```<object>```, 
 with ```<result>```, in ```<context>``` to track an aspect of a learning experience. A set of 
 several Statements might be used to track complete details about a learning experience.
 
-<a name="def-tcapi"/>
+<a name="def-tcapi"></a>
 
 __Tin Can API (TCAPI)__: The previous name of the API defined in this document, often used in 
 informal references to the Experience API.  
 
-<a name="def-verb" />
+<a name="def-verb" ></a>
 
 __Verb__: Defines the action being done by the Actor within the Activity within a Statement. 
