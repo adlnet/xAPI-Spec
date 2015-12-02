@@ -137,7 +137,7 @@ _high-level overview_ of a given facet of the Experience API are labeled **descr
 **rationale**. Items in this document labeled as **requirements**, **details** or **examples** are more technical.
 
 This specification is split into three parts. Part one is this introduction. It offers some background, 
-high level summaries and direction on how to read the rest of the specification. 
+high-level summaries and direction on how to read the rest of the specification. 
 
 Part two of this specification defines 
 a data model for various data objects that are transferred between systems. The most significant object within the xAPI data model 
