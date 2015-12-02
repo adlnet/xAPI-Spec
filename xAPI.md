@@ -3791,13 +3791,7 @@ verify the received Statement matches the existing one and return ```409 Conflic
 do not match. See [Statement comparision requirements]statement-comparision-requirements).
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 * GET Statements MAY be called using POST and form parameters if necessary as query strings 
-<<<<<<< HEAD
-have limits. See Section [7.9 Alternate Request Syntax](#alt-request-syntax) for more details.
-=======
-
 have limits. See [Alternate Request Syntax](#alt-request-syntax) for more details.
-
->>>>>>> adlnet/1.0.3-Restructure
 * The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
 parameters passed. See [Alternate Request Syntax](#alt-request-syntax) for more details.
 
