@@ -1226,8 +1226,8 @@ authors and/or organizations.
 * Upon receiving a Statement with an Activity Definition that differs from the one stored, an LRS
 SHOULD decide whether it considers the Activity Provider to have the authority to change the definition and
 SHOULD update the stored Activity Definition accordingly if that decision is positive.
-* An LRS MAY make small corrections to the Activity’s definition when recieving a new definition e.g. to fix a spelling.
-* An LRS SHOULD NOT make significant changes to the Activity’s definition based on an updated definition 
+* An LRS MAY make small corrections to its canonical definition for the Activity when receiving a new definition e.g. to fix a spelling.
+* An LRS SHOULD NOT make significant changes to its canonical definition for the Activity based on an updated definition 
 e.g. changes to correct responses.
 
 
