@@ -2468,7 +2468,7 @@ identifiers other than Activity id.
 
 * Metadata MAY be provided with an identifier.
 * If metadata is provided, both name and description SHOULD be included.
-* IRIs SHOULD be defined within a domain controlled by the [Metadata Provider](#def-metadata-provider) creating the IRI or granting permission
+* IRIs SHOULD* be defined within a domain controlled by the [Metadata Provider](#def-metadata-provider) creating the IRI or granting permission
 for the IRI to be created.
 * Verb IRIs MUST be defined within a domain controlled by the [Metadata Provider](#def-metadata-provider) creating the IRI or granting permission
 for the IRI to be created.
