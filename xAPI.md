@@ -23,8 +23,12 @@
 *	Part One:	[Overview - The Experience API](#partone)  
 	*	1.0.	[Introduction](#introduction-partone) 
 	*   2.0.	[xAPI Ecosystem](#ecosystem) 	
-		*	2.1.	[Players](#xapi-players) 
-		* 	2.2.	[Referees](#xapi-referees) 
+		*	2.1.	[Activity Providers](#"activity-providers-component) 
+		* 	2.2.	[Learning Record Stores](#lrs-component)
+		*   2.3		[LRS Consumers](#lrs-consumer-component)
+		* 	2.4		[Communities of Practice](#COP-component)
+		*	2.5		[xAPI Specification](#xapi-component)
+		*	2.6		[Conformance Testers](#conformance-component)
 	*	3.0.	[How To Use This Document](#readingguidelines)  
 		*	3.1.	[MUST / SHOULD / MAY](#def-must-should-may)  
 	 	*	3.2.	[Guidelines for Interpreting Descriptive Text and Tables](#interpret-text-table)  
@@ -126,55 +130,58 @@ The document that follows sets out the xAPI framework which is designed to achie
 
 <a name="ecosystem"></a> 
 
-## 2.0 The xAPI Eccosystem
-The xAPI environment in which learning experiences are described and communicated can be thought of as an ecosystem - a large system that is made up of a number of components - each of which is a system itself.  The major components of xAPI ecosystem are:
+## 2.0 The xAPI Ecosystem
+The xAPI environment in which learning experiences are described and communicated can be thought of as an ecosystem - a large system that is made up of a number of components - each of which is a system itself. The major components of this ecosystem are:
 
- * [Activity Providers](#def_statement_provider) which are software programs responsible for gathering and formatting the raw data about learning experiences and sending that data to Learning Record Stores.  
+ * [Activity Providers](#activity-providers-component) - software programs orcomponent responsible for gathering and formatting the raw data about learning experiences and sending it to Learning Record Stores.  
  
- * [Learning Record Stores](#def-learning-record-store) (LRS) which are responsible for receiving, storing and providing access to data about the learning experiences.
+ * [Learning Record Stores](#lrs-component) (LRS) - software programs or components responsible for receiving, storing and providing access to data about the learning experiences.
  
- * [LRS Consumers](#def_statement_processor) which are software objects are responsible for gathering information from the record stores and making it available to users.
- * [Communities of Practice](#def-community-of-practice) which set out the meaning of terms and norms of practice for different learning communities that are referenced by the software players in the ecosystem.
+ * [LRS Consumers](#lrs-consumer-componentr) - software programs or components that are responsible for gathering information from the record stores and making it available to users.
+ 
+ * [Communities of Practice](#def-community-of-practice) - groups of people sharing a common craft or profession who set out the meaning of terms and norms of practice that are referenced by the software programs in the ecosystem.
      
-* The **xAPI Specification** which sets out the overall rules about how information must be formatted and communicated in the system;
+ * [The Experienct API](#xapi-component) - this document which sets out the overall rules about how information must be formatted and communicated in the system.
 
-* **Conformance Testers** which are organizations or software that test software programs operating in the ecosystem to determine if they do in fact conform to the rules of the specification
+ * [Conformance Testers](#conformance-component) which are organizations or software that test software programs to determine the extent to which they conform to the xAPI Specification.
 
-Figure 1 below shows a sample xAPI ecosystem containing examples of each of these components.  In the sections that follow, we describe these components in more detail.
+Figure 1 below shows a sample xAPI ecosystem containing examples of each of these components.  In the sections that follow, these components are described in more detail.
 
 ![Data Flow in xAPI](/xAPIEcosystem.jpg)
 <a name="activity-providers-component"></a>
-###2.1 Activity Providers
-An activity provider may be a stand-alone piece of software into which data is manually entered describing, for example, what a person learned in a sailing lesson in the harbour.  When the person presses the submit button in this software, that information could be sent to one or more Learning Record Stores.  An Activity Provier could also be a software component that is embedded in a larger system such as a <a name="def-learning-management-system">Learning Management System (LMS)</a> so that when the person completes an online lesson, information about that learning experience could also be sent to one ore more Learning Record Stores.
+###2.1 Activity Provider
+An Activity Provider is software program or component of a larger program that is responsible for gathering and formatting the raw data about learning experiences and sending that data to one or more Learning Record Stores. 
+Examples of an Activity Provider shown in the Figure above are:
+* Captain Ahab's Activity Provider which is a stand-alone program in which a user types in descriptions of learning experiences that students had such as reading Moby Dick or taking a Whale Watching Trip.  The Activity Provider software formats this data and in this example sends it to two different Learning Record Stores - the Western Boating Association LRS, the Fawlty Towers LRS and the Learning Record Store which is a component of the Starship Enterprise LMS.
+* In the case of the Starship Enterprise the Activity Provider is a component of a larger <a name="def-learning-management-system">Learning Management System (LMS)</a> that automatically generates statements of learning experience when students take SCORM-compliant online courses or take part in activities on the Holodeck.
 
 <a name="lrs-component"></a>
-### 2.2 Learning Record Stores
-In the xAPI specification, statements of learning experience are considered to be evidence about what the learner has done or achieved.  For that reason, there are a number of rules around how that data is to be handled.  This is discussed in Section...  It is the responsibility of the LRS to ensure that these statements are stored and provided back to consumers with exactly the same data that was provided.
+### 2.2 Learning Record Store
+A Learning Record Store (LRS) is a software program or component of a program that is responsible for receiving, storing and providing access to data about the learning experiences. The details of how LRS' are required to do this are discussed extensively in Part Two.  An important aspect of the LRS derives from the fact that in the xAPI specification statements of learning experience (generated by Activity Providers) are considered to be evidence about what the learner has done or achieved.  Because of this, the Specification has a number of requirements that an LRS must follow regarding the handling and distribution of this evidence.  These requirements are discussed in Part Two.
 
 <a name="lrs-consumer-component" ></a>
-### 2.3 LRS Consumers
+### 2.3 LRS Consumer
 
-LRS consumers are software objects are responsible for gathering information from the record stores and making it available to final users in a way that is meaningful and useful to them. As with Learning Record Stores and Activity Providers, Data Analysis tools may be stand-alone software programs or they may be part of larger programs such as an LMS or a larger tracking system.
+An LRS Consumer is a software program or component of a program which is able to access data from Learning Record Stores, process that data and make it available to users or other programs.  In the examples above the Human Resource Consumers access one or more LRS' and sift through the data to find job candidates that match certain learning and experience requirements while the Marine Safety System is used primarily to provide evidence that particular students have received required certifications.
+
+<a name="xapi-component"></a>
+### 2.4 xAPI Specification
+In the xAPI ecosystem, this document - the Experience API plays a key role in setting out common rules and practices that must be followed if the independent software programs in this domain are to communicate effectively with each about learning experiences.  These rules pertain to how data about learning experience is to be structured and exchanged.  This is discussed extensively in Parts Two and Three.  
+
+The Experience API is not a static document but one that has evolved and will continue to evolved as experience is gained and new requirements identified. These rules have been developed by the community under the stewardship of the ADL Initiatve which as been been acting as a facilitor for it. The version history for the Experience API can be seen in [Appendix A](#Appendix1A)
 
 <a name="COP-component" ></a>
-### 2.4 Communities of Practice
-While the xAPI specification has a great deal to say about how statements of learning experiences should be formatted and exchanged, it has nothing to say about the meaning of terms used in those statements.  Because different terms can have very different meanings in different contexts, this could be a significant barrier to promoting interoperability and communication amongst the different players in the xAPI ecosystem.  For a doctor learning techniques for treating different types of burns, the term "fire" would have have a very different meaning than to a person taking a course in human resources.  Analyzing statements using the term "fire" would probably provide unsatisfactory results unless users in the ecosystem had a common understanding of the term fire.
+### 2.5 Communities of Practice
+ The term Community of Practice (COP) was coined by John Lave and Etienne Wenger in 1991 to signify a group of people who share a common concern, craft or professon and who meet regularly with the goal of sharing information and increasing knowledge and learning in their domain of interest.  With the enormous growth of the Internet since the term was coined, most of the meetings of these communities are online and most have a web presence.  
 
-For that reason, the xAPI specification has made accomodation for and expects different learning communities to define terms and practices that are common to their communities and to have these terms and practices referred to in the software that handles the learning statements.  This is to be done through the mechanism of Communities of Practice and their associated web sites.  The term Community of Practice (COP) was coined by John Lave and Etienne Wenger in 1991 to signify a group of people who share a common concern, craft or professon and who meet regularly with the goal of sharing information and increasing knowledge and learning in their profession.  
+While the Experience API has a great deal to say about how statements of learning experience should be formatted and exchanged, it has nothing to say about the meaning of terms used in those statements.  Having a shared understanding of what terms mean is crucial for enabling communication and interoperability. The Experience API is, however not in a postion to define how different terms are used in different contexts.  
 
-With the enormous growth of the Internet since the term was coined, most of the meetings of these communities are online and most have a web presence.  The xAPI specification anticipates these COPs are in the best position to define common terms used in their domain and that these definitions can be referenced at internet domains owned and controlled by these groups.  Thus for example, when an Activity Provider uses the term "fire" in a statement that describes the learning experience of someone taking a Human Resources course, that term would be linked to a an online definition provided by a Human Resources Community of Practice. 
+That that role is to be taken up by Communities of Practice. The xAPI specification anticipates Communities of Practice are in the best position to define common terms and practices used in their domain.  The Specification anticipates that these COPs will make these definitions and practices available online at internet domains owned they control where they can be referenced by software programs in the ecosystem.  Thus for example, when an Activity Provider uses the term "fire" in a statement that describes the learning experience of someone taking a Human Resources course, that term would be linked to a an online definition provided by a Human Resources Community of Practice. The details of how these definitions are to be linked to data about learning experiences is set out in Part Two. 
 
-CoPs are highly recommended to avoid duplication of effort, as creating too many ways to solve the same problem will cause fragmentation in similar domains and will hurt interoperability.  Communities of practice could find the need to establish new Verbs, Activities, Extensions, etc. to meet the needs of their constituency.
-
-<a name="specification"></a>
-### 2.5 xAPI Specification
-This document, the Experience API is intended to be a definative statement of rules for operating in the xAPI ecosystem in general and specifically regarding the application programing interface rules by which independent software programs in this domain communicate with each other. These rules have been developed by the community under the stewardship of the ADL Initiatve which as been been acting as a facilitor for it.  This document is evolving and will continue to evolve as needs and experience dictate.  The version history for the Experience API can be seen in [Appendix A](#Appendix1A)
-
-<a name="conformance"></a>
-### 2.6 Conformance Testers
+<a name="conformance-component"></a>
+### 2.6 Conformance Tester
+A Conformance Tester is an organization or software that tests software programs to determine the extent to which they conform to the xAPI Specification.
 The Experience API involves a extensive set of rules that software programs must follow if they are to communicate effectively with each other.  In order to help developers ensure that their programs conform to these rules, the ADL has worked with a number of software developers in the community to set up testing protocols and tests for determining whether or not software conforms to the specification.
-  
-
 
 <a name="readingguidelines"></a> 
 
