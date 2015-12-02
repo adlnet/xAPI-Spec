@@ -136,7 +136,7 @@ are based on the specification set described below. For this reason, sections th
 _high-level overview_ of a given facet of the Experience API are labeled **description** or 
 **rationale**. Items in this document labeled as **requirements**, **details** or **examples** are more technical.
 
-This specification is split into three parts. Part one is the introduction you're reading now. It offers some background, 
+This specification is split into three parts. Part one is this introduction. It offers some background, 
 high level summaries and direction on how to read the rest of the specification. 
 
 Part two of this specification defines 
