@@ -2468,10 +2468,8 @@ identifiers other than Activity id.
 
 * Metadata MAY be provided with an identifier.
 * If metadata is provided, both name and description SHOULD be included.
-* IRIs SHOULD* be defined within a domain controlled by the [Metadata Provider](#def-metadata-provider) creating the IRI or granting permission
-for the IRI to be created.
-* Verb IRIs MUST be defined within a domain controlled by the [Metadata Provider](#def-metadata-provider) creating the IRI or granting permission
-for the IRI to be created.
+* [Metadata Providers](#def-metadata-provider) defining new IRIs SHOULD* only use IRIs they control or have permission from the controller to use.
+* [Metadata Providers](#def-metadata-provider) defining new Verb IRIs MUST only use IRIs they control or have permission from the controller to use.
 * For any of the identifier IRIs above the Metadata Provider SHOULD make a human-readable description of the intended usage accessible at the IRI.
 * For any of the identifier IRIs above the Metadata Provider SHOULD ensure that this JSON metadata available at that 
 IRI when the IRI is requested and a Content-Type of "application/json" is requested.
@@ -2487,15 +2485,15 @@ definitions for multiple identifiers. E.g. http://example.com/xapi/verbs#defenes
 
 ##### LRS Requirements
 * The LRS MAY act as a [Metadata Consumer](#def-metadata-consumer) and attempt to resolve identifier IRIs.
-* If an Activity IRI is an IRL, an LRS SHOULD attempt to GET that IRL, and include in HTTP
+* If an Activity IRI is a URL, an LRS SHOULD attempt to GET that URL, and include in HTTP
 headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
 first encounters the Activity id.
-* Upon loading JSON which is a valid Activity Definition from an IRL used as an Activity id,
- an LRS SHOULD incorporate the loaded definition into its internal definition for that Activity,
+* Upon loading JSON which is a valid Activity Definition from a URL used as an Activity id,
+ an LRS SHOULD incorporate the loaded definition into its canonical definition for that Activity,
 while preserving names or definitions not included in the loaded definition.
 * Upon loading any document from which the LRS can parse an Activity Definition
-from an IRL used as an Activity id, an LRS MAY consider this definition when determining
-its internal representation of that Activity's definition.
+from a URL used as an Activity id, an LRS MAY consider this definition when determining
+its canonical representation of that Activity's definition.
 
 ##### Metadata Consumer Requirements
 * If a Metadata Consumer obtains metadata from an IRI, it SHOULD make a strong presumption that the 
@@ -5006,7 +5004,7 @@ The following table lists xAPI scope values:
 		<td>(re)Define Activities and Actors. If storing a Statement 
 			when this is not granted, ids will be saved and the LRS 
 			MAY save the original Statement for audit purposes, but 
-			SHOULD NOT update its internal representation of any 
+			SHOULD NOT update its canonical representation of any 
 			Actors or Activities.
 		</td>
 	</tr>
