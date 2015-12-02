@@ -58,7 +58,7 @@
 		*	3.1.	[IRI Requirements](#iri-requirements)  
 		*	3.2.	[Hosted Metadata](#miscmeta)  
     *	4.0.	[Special Data Types and Rules](#special-data)  
-		*	4.1.	[Extensions](#extensions) 
+		*	4.1.	[Extensions](#miscext) 
 		*	4.2.	[Language Maps](#lang-maps)
 		*	4.3.	[IRIs](#iris)
 		*	4.4.	[UUIDs](#uuids)
@@ -249,7 +249,7 @@ the process of making one user or system "trusted" by another.
 
 <a name="def-baseendpoint" />
 
-__Base Endpoint__: The maximal path under all Experience API endpoints, including a slash. E.g. an LRS with a statements endpoint of http://example.com/xAPI/statements would have a Base Endpoint of http://example.com/xAPI/"
+__Base Endpoint__: The maximal path under all Experience API endpoints, including a slash. E.g. an LRS with a statements endpoint of http://example.com/xAPI/statements has a Base Endpoint of http://example.com/xAPI/"
 
 <a name="def-client" />
 
@@ -301,7 +301,7 @@ __Inverse Functional Identifier__: An identifier which is unique to a particular
 <a name="def-learning-management-system" />
 
 __Learning Management System (LMS)__: "A software package used to administer one or more courses to one or more learners. An LMS is typically a web-based 
-system that allows learners to authenticate themselves, register for courses, complete courses and take  
+system that allows learners to authenticate themselves, register for courses, complete courses and take 
 assessments" (Learning Systems Architecture Lab definition). In this document the term will be used in the context of 
 existing systems implementing learning standards.
 
@@ -412,7 +412,7 @@ between the Learning Record Store and trusted sources.
 ## 6.0 Extending xAPI
 
 xAPI can be extended in a few ways. The most notable is Statement Extensions, which allow great flexibility within Statements.  It is recommended that profiles or Communities or Practice agree on how to use  
-extensions for their particular use cases. Implementation details are covered in a [later section](#miscext)
+extensions for their particular use cases. Implementation details are covered in [4.1 Extensions](#miscext).
 
 The About Resource is another place xAPI supports Extensions.  The LRS may find it useful to communicate features or behaviors beyond this specification to activity provider. The LRS can use extensions to the About Resource to communicate these features and behaviours.
 
@@ -503,11 +503,12 @@ Clarifications and additional examples including:
 
 [1.0.1...1.0.2](https://github.com/adlnet/xAPI-Spec/compare/1.0.1...1.0.2)
 
-###### 1.0.2 to 1.0.3 (TBC)
+###### 1.0.2 to 1.0.3 (TBC, 2016)
 - Complete reorganization of the document into three parts
 - Many, many clarifications
 - Removed back-references to SCORM
 - Additional explanatory text and diagrams
+
 [1.0.2...1.0.3](https://github.com/adlnet/xAPI-Spec/compare/1.0.2...1.0.3)
 
 <a name="parttwo" />
@@ -549,7 +550,7 @@ constrain the behavior of systems processing Statements. For clarity, certain ke
 requirements are documented here, emphasizing where compliant systems have a responsibility
 to act in certain ways.
 
-###### Requirements (Came from previous 4.1 Immutability)
+###### Requirements
 
 * A Statement MUST use each property no more than one time.
 * A Statement MUST use “actor”, “verb”, and “object”.
@@ -1931,10 +1932,14 @@ useful when the Object of the Statement is an Agent, not an Activity.
 ```
 {
     "parent" : [
-        {"id" : "http://example.adlnet.gov/xapi/example/test1"}
+        {
+            "id" : "http://example.adlnet.gov/xapi/example/test1"
+        }
     ],
     "grouping" : [
-        {"id" : "http://example.adlnet.gov/xapi/example/Algebra1"}
+        {
+            "id" : "http://example.adlnet.gov/xapi/example/Algebra1"
+        }
     ]
 }
 ```
@@ -1987,7 +1992,7 @@ Used to record the time at which the experience described in the Statement.
 
 ###### Requirements
 
-* For requirements pertaining to the Timestamp data type, click [here](#timestamps).
+* For requirements pertaining to the Timestamp data type, see [ISO 8601 Timestamps](#timestamps) below.
 * The stored property MUST be set by the LRS; An LRS MUST validate and then overwrite any value currently in the 
 stored property of a Statement it receives.
 * The stored property SHOULD be the current or a past time.
@@ -2641,6 +2646,7 @@ Example of a simple statement (line breaks are for display purposes only):
 ```
 {
 	"id":"fd41c918-b88b-4b20-a0a5-a4c32391aaa0",
+	"timestamp": "2015-11-18T12:17:00+00:00",
 	"actor":{
 		"objectType": "Agent",
 		"name":"Project Tin Can API",
@@ -2670,6 +2676,8 @@ Example of a simple statement (line breaks are for display purposes only):
 Completion with verb "attempted" and duration expressed in seconds (not converted to minutes and seconds):  
 ```
 {
+	"id":"7ccd3322-e1a5-411a-a67d-6a735c76f119",
+	"timestamp": "2015-12-18T12:17:00+00:00",
 	"actor":{
         "objectType": "Agent",
 		"name":"Example Learner",
@@ -2806,8 +2814,8 @@ a statement returned by an LRS including the authority and stored properties set
         }
         
     },
-    "timestamp": "2013-05-18T05:32:34.804Z",
-    "stored": "2013-05-18T05:32:34.804Z",
+    "timestamp": "2013-05-18T05:32:34.804Z+00:00",
+    "stored": "2013-05-18T05:32:34.804Z+00:00",
     "authority": {
         "account": {
             "homePage": "http://cloud.scorm.com/",
@@ -3783,9 +3791,15 @@ verify the received Statement matches the existing one and return ```409 Conflic
 do not match. See [Statement comparision requirements]statement-comparision-requirements).
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 * GET Statements MAY be called using POST and form parameters if necessary as query strings 
+<<<<<<< HEAD
 have limits. See Section [7.9 Alternate Request Syntax](#alt-request-syntax) for more details.
+=======
+
+have limits. See [Alternate Request Syntax](#alt-request-syntax) for more details.
+
+>>>>>>> adlnet/1.0.3-Restructure
 * The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
-parameters passed. See Section [7.9 Alternate Request Syntax](#alt-request-syntax) for more details.
+parameters passed. See [Alternate Request Syntax](#alt-request-syntax) for more details.
 
 <a name="stmtresget"/>
 
@@ -4777,7 +4791,7 @@ Using Semantic Versioning will allow Clients and LRSs to reliably know compatibi
 
 Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html).  Every request from a Client and every response from the LRS includes an HTTP header with the name 
 “X-Experience-API-Version" and the version as the value. For example, ``X-Experience-API-Version : 1.0.3`` for version 1.0.3; 
-see the [Revision History](#revhistory) for the current version of this specification. 
+see the [Revision History](#Appendix1A) for the current version of this specification. 
 
 ###### LRS Requirements
 
@@ -5309,7 +5323,7 @@ Converted to 1.0.0:
 
 ### Appendix C: Cross Domain Request example
 
-Section [7.9 Alternate Request Syntax](#alt-request-syntax) outlines alternative syntax for use 
+[Alternate Request Syntax](#alt-request-syntax) outlines alternative syntax for use 
 when the normal syntax cannot be used due to browser or querystring length restrictions. This appendix provides an example of a
 PUT statements request following this format. 
 
