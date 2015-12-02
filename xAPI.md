@@ -3786,17 +3786,12 @@ that provide a lot of data to the LRS.
 with a statementID that it already has a Statement for. Whether it responds with
 ```409 Conflict``` or ```200 OK```, it MUST NOT modify the Statement or any other
 Object.
-
 * If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
 verify the received Statement matches the existing one and return ```409 Conflict``` if they
 do not match. See [Statement comparision requirements]statement-comparision-requirements).
-
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
-
 * GET Statements MAY be called using POST and form parameters if necessary as query strings 
-
 have limits. See [Alternate Request Syntax](#alt-request-syntax) for more details.
-
 * The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
 parameters passed. See [Alternate Request Syntax](#alt-request-syntax) for more details.
 
