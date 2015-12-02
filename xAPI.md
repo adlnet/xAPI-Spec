@@ -532,7 +532,7 @@ and "category" Context Activities.
     }
   },
   "verb": {
-    "id": "http://w3id.org/xapi/verbs/failed",
+    "id": "http://adlnet.gov/expapi/verbs/failed",
     "display": {
       "en-US": "failed"
     }
@@ -549,7 +549,6 @@ and "category" Context Activities.
       "max": 100
     },
     "success": false,
-    "completion": false,
     "duration": "PT30M",
     "extensions": {
     "http://w3id.org/xapi/cmi5/result/extensions/progress": 100
