@@ -2468,8 +2468,11 @@ identifiers other than Activity id.
 
 * Metadata MAY be provided with an identifier.
 * If metadata is provided, both name and description SHOULD be included.
-* IRIs SHOULD be defined within a domain controlled by the [Metadata Provider](#def-metadata-provider) creating the IRI.
-* For any of the identifier IRIs above the Metadata Provider make a human-readable description of the intended usage accessible at the IRI.
+* IRIs SHOULD be defined within a domain controlled by the [Metadata Provider](#def-metadata-provider) creating the IRI or granting permission
+for the IRI to be created.
+* Verb IRIs MUST be defined within a domain controlled by the [Metadata Provider](#def-metadata-provider) creating the IRI or granting permission
+for the IRI to be created.
+* For any of the identifier IRIs above the Metadata Provider SHOULD make a human-readable description of the intended usage accessible at the IRI.
 * For any of the identifier IRIs above the Metadata Provider SHOULD ensure that this JSON metadata available at that 
 IRI when the IRI is requested and a Content-Type of "application/json" is requested.
 * Where the IRI represents an Activity, the Metadata Provider MAY host metadata using the <a href="#actdef">
