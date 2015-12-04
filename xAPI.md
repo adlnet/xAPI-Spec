@@ -290,8 +290,6 @@ called 'relative IRIs' are not IRIs.
 
 __Internationalized Resource Locator (IRL)__:  In the context of this document, 
 an IRL is an IRI that when translated into a URI (per the IRI to URI rules), is a URL. 
-Some communities of practice simply use URL even if they use IRIs, which isn't as 
-technically correct within xAPI.
 
 <a name="def-inverse-functional-identifier" />
 
