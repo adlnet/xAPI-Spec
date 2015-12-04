@@ -1864,7 +1864,7 @@ completing an Activity ends a registration. Nor is a registration necessarily co
 
 The Registration is also used when storing documents within the State resource, e.g. for 
 bookmarking. Normally the same Registration is used for requests to both the Statement and 
-State resources relating to the same learning experience. 
+State resources relating to the same learning experience so that all data recorded for the experience is consistent. 
 
 <a name="contextActivities"/>
 
