@@ -1862,8 +1862,8 @@ The Experience API applies the concept of registration more broadly.  A registra
 considered to be an attempt, a session, or could span multiple Activities. There is no expectation that 
 completing an Activity ends a registration. Nor is a registration necessarily confined to a single Agent.
 
-The Registration id is also used when storing documents within the State resource, e.g. for 
-bookmarking. Normally the same registration id is used for requests to both the Statement and 
+The Registration is also used when storing documents within the State resource, e.g. for 
+bookmarking. Normally the same Registration is used for requests to both the Statement and 
 State resources relating to the same learning experience. 
 
 <a name="contextActivities"/>
@@ -3879,7 +3879,7 @@ Object.
 		<td> </td>
 		<td>
 			Filter, only return Statements matching the specified registration 
-			id. Note that although frequently a unique registration id will be used 
+			id. Note that although frequently a unique Registration will be used 
 			for one Actor assigned to one Activity, this cannot be assumed. 
 			If only Statements for a certain Actor or Activity are required, 
 			those parameters also need to be specified.
@@ -4124,7 +4124,7 @@ exists in the context of the specified Activity, Agent, and registration (if spe
 	<tr>
 		<td>registration</td>
 		<td>UUID</td>
-		<td>The registration id associated with this state.</td>
+		<td>The Registration associated with this state.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
@@ -4164,7 +4164,7 @@ Timestamp (exclusive).
 	<tr>
 		<td>registration</td>
 		<td>UUID</td>
-		<td>The registration id associated with these states.</td>
+		<td>The Registration associated with these states.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
@@ -4201,7 +4201,7 @@ specified\]).
 	<tr>
 		<td>registration</td>
 		<td>UUID</td>
-		<td>The registration id associated with this state.</td>
+		<td>The Registration associated with this state.</td>
 		<td>Optional</td>
 	</tr>
 </table>
