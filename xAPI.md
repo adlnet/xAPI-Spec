@@ -23,12 +23,12 @@
 *	Part One:	[About the Experience API](#partone)  
 	*	1.0.	[Introduction](#introduction-partone) 
 	*   2.0.	[xAPI Ecosystem](#ecosystem) 	
-		*	2.1.	[Activity Providers](#"activity-providers-component) 
-		* 	2.2.	[Learning Record Stores](#lrs-component)
-		*   2.3		[LRS Consumers](#lrs-consumer-component)
-		* 	2.4		[Communities of Practice](#COP-component)
-		*	2.5		[xAPI Specification](#xapi-component)
-		*	2.6		[Conformance Testers](#conformance-component)
+		*	2.1.	[Learning Experience](#def-learning-experience)
+		*	2.2.	[Learning Record](#def-learning-record) 
+		*	2.3.	[Learning Record Producer](#def-learning-record-producer)
+		*	2.4.	[Community of Practice Store](#def-community-of-practice-store)
+		* 	2.5.	[Learning Record Store](#lrs-component)
+		*   2.6.	[Learning Record Consumer](#def-learning-record-consumer)
 	*	3.0.	[How To Use This Document](#readingguidelines)  
 		*	3.1.	[MUST / SHOULD / MAY](#def-must-should-may)  
 	 	*	3.2.	[Guidelines for Interpreting Descriptive Text and Tables](#interpret-text-table)  
@@ -131,58 +131,54 @@ The document that follows sets out the xAPI framework which is designed to achie
 <a name="ecosystem"></a> 
 
 ## 2.0 The xAPI Ecosystem
-The xAPI environment in which learning experiences are described and communicated can be thought of as an ecosystem - a large system that is made up of a number of components - each of which is a system itself. The major components of this ecosystem are:
+The xAPI environment in which learning experiences are described and communicated can be thought of as an ecosystem - a large system that is made up of a number of components - each of which is a system itself. The major component types of this ecosystem are:
 
- * [Activity Providers](#activity-providers-component) - software programs orcomponent responsible for gathering and formatting the raw data about learning experiences and sending it to Learning Record Stores.  
+ * [Learning Experience](#def-learning-experience) - Any activty by an individual or group associated with the acquistion of knowledge.
  
- * [Learning Record Stores](#lrs-component) (LRS) - software programs or components responsible for receiving, storing and providing access to data about the learning experiences.
+ * [Learning Record](#def-learning-record) - a digital representation [recording] of a Learning Experience.
  
- * [Clients](#lrs-consumer-componentr) - software programs or components that are able access data from Learning Record Stores.
+ * [Community of Practice Store](#def-community-of-practice-store) - software component that provides definitions and explanations of term and norms of practice used by a particular Community of Practice - a group of people sharing a common interest who meet from time to time to discuss and document their shared interest.
  
- * [Communities of Practice](#def-community-of-practice) - groups of people sharing a common craft or profession who set out the meaning of terms and norms of practice that are referenced by the software programs in the ecosystem.
-     
- * [The Experienct API](#xapi-component) - this document which sets out the overall rules about how information must be formatted and communicated in the system.
+ * [Learning Record Producer](#def-learning-record-producer) - software component responsible for gathering data about learning experiences, formatting that data into digital records and sending those records to one or more Learning Record Stores.  
+ 
+ * [Learning Record Store](#lrs-component) (LRS) - software component responsible for receiving, storing and providing access to learning records.
+ 
+ * [Learning Record Consumer](#def-learning-record-consumer) - software component that accesses data from Learning Record Stores.
+ 
+ Figure 1 below shows a sample xAPI ecosystem containing examples of each of these components.  In the sections that follow, these components are described in more detail.
 
- * [Conformance Testers](#conformance-component) - organizations or software that test software programs to determine the extent to which they conform to the xAPI Specification.
+![xAPIEcosystemTypes](/xAPIEcosystemTypes.jpg)
+<a name="def-learning-experience"></a>
+###2.1 Learning Experience 
+A Learning Experience is the xAPI is considered to be any activity associated with the acquisition of knowledge.  It could be anything from reading a book, particiating in an online course, going on a field trip, engaging in self-directed research or receiving a certificate for a course completed.
 
-Figure 1 below shows a sample xAPI ecosystem containing examples of each of these components.  In the sections that follow, these components are described in more detail.
+<a name="def-learning-record"></a>
+###2.2 Learning Record (LR)
+A Learning Records is a digital representation of a Learning Experience.  The xAPI has numerous requirements about how these records must be structured and formatted.  
 
-![Data Flow in xAPI](/xAPIEcosystem.jpg)
-<a name="activity-providers-component"></a>
-###2.1 Activity Provider
-An Activity Provider is software program or component of a larger program that is responsible for gathering and formatting the raw data about learning experiences and sending that data to one or more Learning Record Stores. 
-Examples of an Activity Provider shown in the Figure above are:
-* Captain Ahab's Activity Provider which is a stand-alone program in which a user types in descriptions of learning experiences that students had such as reading Moby Dick or taking a Whale Watching Trip.  The Activity Provider software formats this data and in this example sends it to two different Learning Record Stores - the Western Boating Association LRS, the Fawlty Towers LRS and the Learning Record Store which is a component of the Starship Enterprise LMS.
-* In the case of the Starship Enterprise the Activity Provider is a component of a larger <a name="def-learning-management-system">Learning Management System (LMS)</a> that automatically generates statements of learning experience when students take SCORM-compliant online courses or take part in activities on the Holodeck.
-
-<a name="lrs-component"></a>
-### 2.2 Learning Record Store
-A Learning Record Store (LRS) is a software program or component of a program that is responsible for receiving, storing and providing access to data about the learning experiences. An important aspect of the LRS derives from the fact that in the xAPI specification statements of learning experience (generated by Activity Providers) are considered to be evidence about what the learner has done or achieved.  Because of this, the Specification has a number of requirements that an LRS must follow regarding the handling and distribution of this evidence.  These requirements are discussed in Part Two.
-
-<a name="lrs-consumer-component" ></a>
-### 2.3 Client
-
-A Client is a software program or component of a program which is able to access data from Learning Record Stores, process that data and make it available to users or other programs.  In the examples above the Human Resource Consumers access one or more LRS' and sift through the data to find job candidates that match certain learning and experience requirements while the Marine Safety System is used primarily to provide evidence that particular students have received required certifications.
-
-<a name="xapi-component"></a>
-### 2.4 xAPI Specification
-In the xAPI ecosystem, this document - the Experience API plays a key role in setting out common rules and practices that must be followed if the independent software programs in this domain are to communicate effectively with each other about learning experiences.  These rules pertain to how data about learning experience is to be structured and exchanged.  This is discussed extensively in Parts Two and Three.  
-
-The Experience API is not a static document but one that has evolved and will continue to evolved as experience is gained and new requirements identified. These rules have been developed by the community under the stewardship of the ADL Initiatve which as been been acting as a facilitor for it. The version history for the Experience API can be seen in [Appendix A](#Appendix1A)
+<a name="def-learning-record-producer"></a>
+###2.3 Learning Record Producer (LRP)
+An Learning Record Producer is software component that is responsible for gathering and formatting the raw data about learning experiences and sending that data to one or more Learning Record Stores. 
 
 <a name="COP-component" ></a>
-### 2.5 Communities of Practice
+### 2.4 Community of Practice Store (COPS)
  The term Community of Practice (COP) was coined by John Lave and Etienne Wenger in 1991 to signify a group of people who share a common concern, craft or professon and who meet regularly with the goal of sharing information and increasing knowledge and learning in their domain of interest.  With the enormous growth of the Internet since the term was coined, most of the meetings of these communities are online and most have a web presence.  
 
-While the Experience API has a great deal to say about how statements of learning experience should be formatted and exchanged, it has nothing to say about the meaning of terms used in those statements.  Having a shared understanding of what terms mean is crucial for enabling communication and interoperability. The Experience API is, however not in a postion to define how different terms are used in different contexts.  
+While the Experience API has a great deal to say about how records of learning experience should be formatted and exchanged, it has nothing to say about the meaning of terms used in those records.  Having a shared understanding of what terms mean is crucial for effective communication. The Experience API is, however not in a postion to define how different terms are used in different communities.  
 
-That that role is to be taken up by Communities of Practice. The xAPI specification anticipates Communities of Practice are in the best position to define common terms and practices used in their domain.  The Specification anticipates that these COPs will make these definitions and practices available online at internet domains owned they control where they can be referenced by software programs in the ecosystem.  Thus for example, when an Activity Provider uses the term "fire" in a statement that describes the learning experience of someone taking a Human Resources course, that term would be linked to a an online definition provided by a Human Resources Community of Practice. The details of how these definitions are to be linked to data about learning experiences is set out in Part Two. 
+That role is to be taken up by Communities of Practice. The xAPI specification anticipates Communities of Practice which in the best position to define common terms and practices used in their domain will make definitions and explanations about them available online at internet domains they own and control called Community of Practice Stores.  
 
-<a name="conformance-component"></a>
-### 2.6 Conformance Tester
-A Conformance Tester is an organization or software that tests software programs to determine the extent to which they conform to the xAPI Specification.
-The Experience API involves a extensive set of rules that software programs must follow if they are to communicate effectively with each other.  In order to help developers ensure that their programs conform to these rules, the ADL has worked with a number of software developers in the community to set up testing protocols and tests for determining whether or not software conforms to the specification.
- 
+When Learning Record Producers create Learning Records, they may embed links in these records to the COP stores that can be used by any software that uses these records. For example, an LRP may include a link to the term "fire" in a human resources Community of Practice Store to denote the activity of removing a person from a position and differentiate it from a form of combustion. The details of how these definitions are to be linked to data about learning experiences is set out in Part Two. 
+
+<a name="lrs-component"></a>
+### 2.4 Learning Record Store (LRS)
+A Learning Record Store (LRS) is a software component that is responsible for receiving, storing and providing access to learning experience records. The xAPI specification Learning Records are considered to be evidence about what the learner has done or achieved.  Because of this, the Specification has a number of requirements that an LRS must follow regarding the handling and distribution of this evidence.  These requirements are discussed in Part Two.
+
+<a name="lrs-consumer-component" ></a>
+### 2.3 Learning Record Consumer (LRC)
+
+A Learning Record Consumer is a software component which is able to access data from Learning Record Stores, process that data and make it available to users or other programs.  
+
 <a name="readingguidelines"></a> 
 
 ## 3.0 How to Use This Document
