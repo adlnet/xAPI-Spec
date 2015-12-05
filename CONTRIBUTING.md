@@ -1,6 +1,7 @@
 xAPI-Spec
 =========
 
+<<<<<<< HEAD
 <a name="contributors"/> 
 
 ##Contributors
@@ -138,17 +139,28 @@ learning that SCORM could not enable.
 ##How to Contribute
 
 This document outlines various ways of contributing to the specification:
+=======
+This document outlines various ways con contributing to the specification:
+>>>>>>> refs/remotes/origin/master
 
 * [Reviewing open Pull Requests](#review-pr)
 * [Suggesting solutions to issues](#suggest-solution)
 * [Making a Pull Request to address an issue](#make-pr)
 
 <a name='review-pr'/>
+<<<<<<< HEAD
 ### Review a Pull Request (PR)
 The most helpful **and** easiest way to contribute to the specification is to review an existing PR. You can find a 
 [list of open PRs here](https://github.com/adlnet/xAPI-Spec/pulls). To review a PR you should:
 
 * Read any issues linked to from the PR description and make sure you understand the issue the PR is designed to address. 
+=======
+# Review a Pull Request (PR)
+The most helpful **and** easiest way to contribute to the specification is to review an existing PR. You can find a 
+[list of open PRs here](https://github.com/adlnet/xAPI-Spec/pulls). To review a PR you should:
+
+* Read any issues linked to from the PR description and make sure you understand the issue the PR is desigend to address. 
+>>>>>>> refs/remotes/origin/master
 * Read any comments on both the issues and the PR to understand if the goals of the original issue have changed and if
 any solutions have been agreed. 
 * Read the relevant sections in the [development version](https://github.com/adlnet/xAPI-Spec/blob/1.0.3/xAPI.md) of the specification. 
@@ -157,24 +169,39 @@ the changes better. Check to see if what's been changed matches the solution you
 * Look for problems such as typos, unintended changes to behaviour and any text that's unclear. 
 * Check that anything that's been removed has either been replaced or the removal was intentional (based on reading the issue 
 and comments).
+<<<<<<< HEAD
 * Check that the [Style Guide](#style-guide) has been followed.
+=======
+* Check that the [Stle Guide](#style-guide) has been followed.
+>>>>>>> refs/remotes/origin/master
 * If you spot any issues with the PR, add a comment describing these problems as best you can and suggesting how they can
 be resolved. 
 * If the PR looks good to you, add a comment saying "+1".
 * If you are unsure about the PR or have questions, ask questions in the PR comments. 
 * If you feel that the PR should never be merged, even with changes, add a comment starting with "-1" and explaining your
 reasons. If your comments run contrary to what's already been agreed in the issues, there might be some resistance, but that's ok
+<<<<<<< HEAD
 if you have a strong argument! 
+=======
+if you have a strong arguement! 
+>>>>>>> refs/remotes/origin/master
 
 When reviewing a PR please don't:
 
 * Review and leave no comment; always let us know you've had a look!
 * Suggest additional changes outside of what the PR was intended to achieve. 
 [Raise a separate issue](https://github.com/adlnet/xAPI-Spec/issues/new) for additional changes. 
+<<<<<<< HEAD
 * Make vague criticisms without suggesting the changes to the PR that would meet those criticisms. 
 
 <a name='suggest-solution'/>
 ### Suggest a solution
+=======
+* Make vague critisisms without suggesting the changes to the PR that would meet those critisisms. 
+
+<a name='suggest-solution'/>
+# Suggest a solution
+>>>>>>> refs/remotes/origin/master
 The second most helpful and second easiest way to contribute to the specification is to suggest a solution to an issue that has been raised. 
 Ideally the person who raises the issue will propose a solution, but this does not always happen and you may be able to improve a suggestion. 
 
@@ -190,11 +217,19 @@ To suggest a solution to an issue you should:
 Once your suggestion has been discussed and agreed, add another comment summarising your understanding of the outcome of the discussion and
 including proposed wording for the changes you've suggested. 
 
+<<<<<<< HEAD
 Good and detailed suggested solutions for issues make it much easier to write PRa and helps to ensure those PRs are merged faster. 
 
 <a name='make-pr'/>
 ### Make a Pull Request (PR)
 The hardest way of directly contributing to the specification is to make Pull Requests and the xAPI Working Group recommends only getting involved in
+=======
+Good and detailed suggested solutions for issues maake it much easier to write PRa and helps to ensure those PRs are merged faster. 
+
+<a name='make-pr'/>
+# Make a Pull Request (PR)
+The hardest way of driectly contributing to the specification is to make Pull Requests and the xAPI Working Group recommends only getting involved in
+>>>>>>> refs/remotes/origin/master
 this way if you are already used to Github and markdown and/or have previously contributed to reviewing PRs and suggesting solutions to issues. 
 
 Before making a PR you should:
@@ -211,6 +246,7 @@ When making a PR, you should include a description that explains:
 * What issue numbers of any issues you are addressing (normally just one issue)?
 * How does your PR relate to any proposed solutions to the issue?
 * If you have moved sections, have you made any changes to content within those moved sections?
+<<<<<<< HEAD
 * What decisions did you make in writing the change? Why did you make those decisions? 
 
 #### Edit on GitHub.com
@@ -224,12 +260,31 @@ If you are not currently working with GitHub and git, follow these set up steps
 first. GitHub provides excellent help at [https://help.github.com/articles/set-up-git](https://help.github.com/articles/set-up-git)
 
 ##### Fork the ADL repository
+=======
+* What decisions did you make in writting the change? Why did you make those decisions? 
+
+## Edit on GitHub.com
+To edit the specification on GitHub.com, first open the [development version](https://github.com/adlnet/xAPI-Spec/blob/1.0.3/xAPI.md) 
+of the specification, then [follow the instructions here](https://help.github.com/articles/editing-files-in-another-user-s-repository/). 
+
+## Edit Locally
+
+### Set up
+If you are not currently working with GitHub and git, follow these set up steps 
+first. GitHub provides excellent help at [https://help.github.com/articles/set-up-git](https://help.github.com/articles/set-up-git)
+
+#### Fork the ADL repository
+>>>>>>> refs/remotes/origin/master
 Go to the Experience API repository. Fork the repository to your own account using 
 the "Fork" button on the top right of Experience API repository page. This makes a 
 copy of the Experience API repository. This fork gives you the ability to edit your 
 version of the document without impacting the master copy.
 
+<<<<<<< HEAD
 ##### Install Git (use cmd line) or Install Windows/Mac GitHub client
+=======
+#### Install Git (use cmd line) or Install Windows/Mac GitHub client
+>>>>>>> refs/remotes/origin/master
 You need to install Git to work with a GitHub repository. If you are on a Windows machine, 
 you can download the GitHub client app. If you use a Mac you can download the GitHub client app 
 but will also have to download git to add a remote to the master repository. Otherwise install git from the 
@@ -249,7 +304,11 @@ __Mac:__ http://mac.github.com/
 __Windows:__ http://windows.github.com/
 
 
+<<<<<<< HEAD
 ##### Clone your GitHub fork to your machine
+=======
+#### Clone your GitHub fork to your machine
+>>>>>>> refs/remotes/origin/master
 To make edits and work on the files in the repository, clone your repository to 
 your local machine using Git. The url is provided on the home page of your 
 repository (ex. ```https://github.com/<your username>/xAPI-Spec/```)  
@@ -262,9 +321,15 @@ On the home screen of the client app, select your account under 'github' and
 choose the repository you want to clone. Selecting the repository from the list 
 gives you an option to clone it. 
 
+<<<<<<< HEAD
 ##### Add ADL repository as upstream remote
 Add a remote repository to git to reference the master repository. This will make 
 synchronizing with the master repository a bit easier.  
+=======
+### Add ADL repository as upstream remote
+Add a remote repository to git to reference the master repository. This will make 
+synchronizing with the master respository a bit easier.  
+>>>>>>> refs/remotes/origin/master
 
 __Git__  
 ```git remote add upstream https://github.com/adlnet/xAPI-Spec```  
@@ -281,9 +346,15 @@ In the shell, enter..
 ```git remote add upstream https://github.com/adlnet/xAPI-Spec```  
 
 
+<<<<<<< HEAD
 #### Workflow
 
 ##### Sync up with ADL Repository development
+=======
+### Workflow
+
+### Sync up with ADL Repository development
+>>>>>>> refs/remotes/origin/master
 Pull down changes from the development repository. This automatically does a 
 fetch of the repository and a merge into your local repository. Currently
 the development version of the spec is 1.0.3.
@@ -291,7 +362,11 @@ the development version of the spec is 1.0.3.
 __Git and GitHub Client__  
 ```git pull upstream 1.0.3```
 
+<<<<<<< HEAD
 ##### Make Changes Locally
+=======
+### Make Changes Locally
+>>>>>>> refs/remotes/origin/master
 Edit the local copy of the file, save and commit. Rule of thumb: Use commits 
 like save points. Commit to indicate logical groups of edits, and places 
 where the edits could be safely rolled back.  
@@ -304,7 +379,11 @@ The GitHub client will detect saved changes to the documents in your
 local repository and present a button to commit your edits at the top 
 right of the repository screen.  
 
+<<<<<<< HEAD
 ##### Push Changes to Your Repository (Origin)
+=======
+### Push Changes to Your Repository (Origin)
+>>>>>>> refs/remotes/origin/master
 Pushing your changes to your remote GitHub repository stages the files 
 so that you can then make requests to the master repository to merge in 
 your changes.
@@ -316,7 +395,11 @@ __GitHub Client__
 The GitHub client has a 'sync' button at the top of the repository screen. 
 This will synchronize your local and remote (origin) repository.  
 
+<<<<<<< HEAD
 ##### Submit a Pull Request to Master ADL Repository (Upstream)
+=======
+### Submit a Pull Request to Master ADL Repository (Upstream)
+>>>>>>> refs/remotes/origin/master
 When you forked from the Experience API repository, a link back to the master 
 repository is remembered. To send your changes back the the master repository, 
 click the "Pull Request" button at the top of your repository page. This will 
@@ -339,7 +422,11 @@ And
 
 ### Property and object names
 
+<<<<<<< HEAD
 When referring to a property, parameter or object, but not specifically calling it out as property, parameter, or object 
+=======
+When refering to a property, parameter or object, but not specifically calling it out as property, parameter, or object 
+>>>>>>> refs/remotes/origin/master
 the name should be capitalized. No formatting or quotes should be used. 
 
 For example:
@@ -354,7 +441,11 @@ For example:
 
 And
 
+<<<<<<< HEAD
     The "member" property is an unordered list!
+=======
+    The "member" property is an un-ordered list!
+>>>>>>> refs/remotes/origin/master
 
 When a value is expected or described within plain text, but isn't specifically code, single quotes should be used.
 In situations where it is important to group text to be specific to the concept, single quotes should also be used.
