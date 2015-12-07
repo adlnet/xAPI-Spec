@@ -137,6 +137,22 @@ are based on the specification set described below. For this reason, sections th
 _high-level overview_ of a given facet of the Experience API are labeled **description** or 
 **rationale**. Items in this document labeled as **requirements**, **details** or **examples** are more technical.
 
+This specification is split into three parts. Part one is this introduction. It offers some background, 
+high-level summaries and direction on how to read the rest of the specification. 
+
+Part two of this specification defines 
+a data model for various data objects that are transferred between systems. The most significant object within the xAPI data model 
+is the Statement object. This specification defines the properties of the Statement object (including "Actor", "Verb", "Object", 
+"Result", and "Context") and the rules of syntax for the values of those properties and how they are represented. 
+This part helps to ensure that systems implementing the specification follow a consistent data structure.
+
+Part three of this specification sets out the transfer methods that must be used when communicating 
+information about learning experiences between programs that adhere to the specification. This includes the format 
+of requests and the expected responses. Note that the systems storing or retrieving records need not be Activity Providers. LRSs 
+can communicate with other LRSs, or systems. xAPI follows the guidelines of the REST software architecture style, and as such data 
+is transferred via HTTP requests and responses. Part three also defines security methods allowing for the trusted exchange of information 
+between the Learning Record Store and trusted sources.
+
 <a name="def-must-should-may" />
 ### 2.1 MUST / SHOULD / MAY 
 There are three levels of obligation with regards to conformance to the xAPI specification identified by the terms 
@@ -390,21 +406,6 @@ logically the subject of the Statement. A user sending records to an LRS could h
 social, etc.  Each of these Services send data to the LRS. Within the LRS now, there are Statements from three 
 different personas of the same user. The LRS can aggregate all of the information of each of the personas into one 
 "Person" Object and send it through the Agents Resource.  
-
-
-### 5.1 Interoperability Between Components
-There are two main ways that the xAPI promotes interoperability between systems that implement the specification. The first is by 
-requiring that systems implementing the specification follow a consistent data structure. To that end, this specification defines 
-a data model for various data objects that are transferred between systems. The most significant object within the xAPI data model 
-is the Statement object. This specification defines the properties of the Statement object (including "Actor", "Verb", "Object", 
-"Result", and "Context") and the rules of syntax for the values of those properties and how they are represented.
-
-The second way that the xAPI promotes interoperability is by setting out the transfer methods that must be used when communicating 
-information about learning experiences between programs that adhere to the specification. As part of this, it sets out the format 
-of requests and the expected responses. Note that the systems storing or retrieving records need not be Activity Providers. LRSs 
-can communicate with other LRSs, or systems. xAPI follows the guidelines of the REST software architecture style, and as such data 
-is transferred via HTTP requests and responses. xAPI also defines security methods allowing for the trusted exchange of information 
-between the Learning Record Store and trusted sources.
 
 <a name="extending-xapi" />
 
