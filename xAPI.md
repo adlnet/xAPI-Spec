@@ -3397,6 +3397,12 @@ attachment message format.
 
 # Part Three: Data Processing, Validation, and Security 
 
+This third part details the more technical side of the Experience API, dealing with 
+how Statements are transferred between Activity Provider and LRS. A number of libraries 
+are available for a range of technologies (including JavaScript) which handle 
+this part of the specification. It therefore might not be necessary for Activity Provider developers 
+to fully understand every detail of this part of the specification.
+
 <a name="requests"/>
 
 ## 1.0 Requests
@@ -3704,12 +3710,6 @@ described in [Section 6.4.2 OAuth Authorization Scope](#oauthscope).
 * Past, current and future versions of this specification do not and will not define endpoints 
 with path segments starting 'extensions/'. LRSs supporting additional endpoints not defined 
 in this specification SHOULD define those endpoints with path segments starting 'extensions/'.
-
-Sections 6 and 7 detail the more technical side of the Experience API, dealing with 
-how Statements are transferred between Activity Provider and LRS. A number of libraries 
-are under development for a range of technologies (including JavaScript) which handle 
-this part of the specification. It therefore might not be necessary for content developers 
-to fully understand every detail of this part of the specification.
 
 <a name="stmtres"/> 
 
