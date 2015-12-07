@@ -3627,11 +3627,10 @@ For example, a document contains:
 When an LRS receives a POST request with content type application/json for an existing document also of
 content type application/json, it MUST merge the posted document with the existing document. 
 In this context merge is defined as:
-* de-serialize the Objects represented by each document
+* de-serialize the Objects represented by each document.
 * for each property directly defined on the Object being posted, set the corresponding
 property on the existing Object equal to the value from the posted Object.    
-* store any valid json serialization of the existing Object as the document referenced in the request
-* The LRS SHOULD* include a "Last-Modified" header which matches the value of the stored property of the Statement. 
+* store any valid json serialization of the existing Object as the document referenced in the request.
 
 Note that only top-level properties are merged, even if a top-level property is an Object.
 The entire contents of each original property are replaced with the entire contents of
