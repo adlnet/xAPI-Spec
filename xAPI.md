@@ -147,7 +147,7 @@ The xAPI environment in which learning experiences are described and communicate
  
  Figure 1 below shows a sample xAPI ecosystem containing examples of each of these components.  In the sections that follow, these components are described in more detail.
 
-![xAPIEcosystemTypes](/xAPIEcosystemTypes.jpg)
+![xAPIEcosystemTypes](/xAPIEcosystemTypes-Simple.jpg)
 <a name="def-learning-experience"></a>
 ###2.1 Learning Experience 
 A Learning Experience is the xAPI is considered to be any activity associated with the acquisition of knowledge.  It could be anything from reading a book, particiating in an online course, going on a field trip, engaging in self-directed research or receiving a certificate for a course completed.
