@@ -5069,7 +5069,10 @@ authorization scopes) is beyond the current scope of this document and left to
 the individual LRS provider as an implementation detail. Implementors are
 encouraged to follow industry best practices, e.g., [The HTTPS-Only Standard](https://https.cio.gov) from the office of the White House CIO.
 
-While other security concerns are beyond the scope of this specification, the xAPI Community remains dedicated to determining security best practices. This effort has begun at https://github.com/xapisec/xapisec. Participation is highly encouraged.
+While other security concerns are beyond the scope of this specification, 
+the xAPI Community remains dedicated to determining security best practices. 
+This effort has begun at [xAPIsec](https://github.com/xapisec/xapisec). 
+Participation is highly encouraged.
 
 <a name="append3"/>
 ## Appendices
