@@ -26,7 +26,7 @@
 		*	2.1.	[Learning Experience](#def-learning-experience)
 		*	2.2.	[Learning Record](#def-learning-record) 
 		*	2.3.	[Learning Record Producer](#def-learning-record-producer)
-		*	2.4.	[Community of Practice Store](#def-community-of-practice-store)
+
 		* 	2.5.	[Learning Record Store](#lrs-component)
 		*   2.6.	[Learning Record Consumer](#def-learning-record-consumer)
 	*	3.0.	[How To Use This Document](#readingguidelines)  
