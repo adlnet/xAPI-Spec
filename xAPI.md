@@ -26,9 +26,8 @@
 		*	2.1.	[Learning Experience](#def-learning-experience)
 		*	2.2.	[Learning Record](#def-learning-record) 
 		*	2.3.	[Learning Record Producer](#def-learning-record-producer)
-
-		* 	2.5.	[Learning Record Store](#lrs-component)
-		*   2.6.	[Learning Record Consumer](#def-learning-record-consumer)
+		* 	2.4.	[Learning Record Store](#lrs-component)
+		*   2.5.	[Learning Record Consumer](#def-learning-record-consumer)
 	*	3.0.	[How To Use This Document](#readingguidelines)  
 		*	3.1.	[MUST / SHOULD / MAY](#def-must-should-may)  
 	 	*	3.2.	[Guidelines for Interpreting Descriptive Text and Tables](#interpret-text-table)  
@@ -137,8 +136,6 @@ The xAPI environment in which learning experiences are described and communicate
  
  * [Learning Record](#def-learning-record) - a digital representation [recording] of a Learning Experience.
  
- * [Community of Practice Store](#def-community-of-practice-store) - software component that provides definitions and explanations of term and norms of practice used by a particular Community of Practice - a group of people sharing a common interest who meet from time to time to discuss and document their shared interest.
- 
  * [Learning Record Producer](#def-learning-record-producer) - software component responsible for gathering data about learning experiences, formatting that data into digital records and sending those records to one or more Learning Record Stores.  
  
  * [Learning Record Store](#lrs-component) (LRS) - software component responsible for receiving, storing and providing access to learning records.
@@ -160,22 +157,12 @@ A Learning Records is a digital representation of a Learning Experience.  The xA
 ###2.3 Learning Record Producer (LRP)
 An Learning Record Producer is software component that is responsible for gathering and formatting the raw data about learning experiences and sending that data to one or more Learning Record Stores. 
 
-<a name="COP-component" ></a>
-### 2.4 Community of Practice Store (COPS)
- The term Community of Practice (COP) was coined by John Lave and Etienne Wenger in 1991 to signify a group of people who share a common concern, craft or professon and who meet regularly with the goal of sharing information and increasing knowledge and learning in their domain of interest.  With the enormous growth of the Internet since the term was coined, most of the meetings of these communities are online and most have a web presence.  
-
-While the Experience API has a great deal to say about how records of learning experience should be formatted and exchanged, it has nothing to say about the meaning of terms used in those records.  Having a shared understanding of what terms mean is crucial for effective communication. The Experience API is, however not in a postion to define how different terms are used in different communities.  
-
-That role is to be taken up by Communities of Practice. The xAPI specification anticipates Communities of Practice which in the best position to define common terms and practices used in their domain will make definitions and explanations about them available online at internet domains they own and control called Community of Practice Stores.  
-
-When Learning Record Producers create Learning Records, they may embed links in these records to the COP stores that can be used by any software that uses these records. For example, an LRP may include a link to the term "fire" in a human resources Community of Practice Store to denote the activity of removing a person from a position and differentiate it from a form of combustion. The details of how these definitions are to be linked to data about learning experiences is set out in Part Two. 
-
 <a name="lrs-component"></a>
 ### 2.4 Learning Record Store (LRS)
 A Learning Record Store (LRS) is a software component that is responsible for receiving, storing and providing access to learning experience records. The xAPI specification Learning Records are considered to be evidence about what the learner has done or achieved.  Because of this, the Specification has a number of requirements that an LRS must follow regarding the handling and distribution of this evidence.  These requirements are discussed in Part Two.
 
 <a name="lrs-consumer-component" ></a>
-### 2.3 Learning Record Consumer (LRC)
+### 2.5 Learning Record Consumer (LRC)
 
 A Learning Record Consumer is a software component which is able to access data from Learning Record Stores, process that data and make it available to users or other programs.  
 
