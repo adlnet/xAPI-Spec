@@ -20,99 +20,101 @@
 > leaders on which we depend to make our training and education the very best."
 >
 > _Kristy S. Murray, Ed.D._
+>
 > _Director, ADL Initiative_
+>
 > _OSD, Training Readiness & Strategy (TRS)_
 
 <a name="wg"/>
 
 ### Working Group Contributors
-  <table>
-    <tr><th>Name</th><th>Organization</th></tr>
-    <tr><td>Aaron Silvers</td><td>ADL</td></tr>
-    <tr><td>Al Bejcek</td><td>NetDimensions</td></tr>
-    <tr><td>Ali Shahrazad</td><td>SaLTBOX</td></tr>
-    <tr><td>Andrew Downes</td><td>Watershed</td></tr>
-    <tr><td>Andriy Drozdyuk</td><td></td></tr>
-    <tr><td>Andy Johnson</td><td>ADL</td></tr>
-    <tr><td>Andy Whitaker</td><td>Watershed</td></tr>
-    <tr><td>Ángel Serrano</td><td>eUCM</td></tr>
-    <tr><td>Anthony Altieri</td><td>American Red Cross</td></tr>
-    <tr><td>Anto Valan</td><td>Omnivera Learning Solutions</td></tr>
-    <tr><td>Avron Barr</td><td>Aldo Ventures, Inc.</td></tr>
-    <tr><td>Ben Clark</td><td>Rustici Software</td></tr>
-    <tr><td>Bill McDonald</td><td>Boeing</td></tr>
-    <tr><td>Brian J. Miller</td><td>Rustici Software</td></tr>
-    <tr><td>Chad Udell</td><td>Float Mobile Learning</td></tr>
-    <tr><td>Chaim-Leib Halbert</td><td>Rustici Software</td></tr>
-    <tr><td>Chris Handorf</td><td>Pearson</td></tr>
-    <tr><td>Chris Sawwa</td><td>Meridian Knowledge Solutions</td></tr>
-    <tr><td>Dan Allen</td><td>Litmos</td></tr>
-    <tr><td>Dan Kuemmel</td><td>Sentry Insurance</td></tr>
-    <tr><td>Danny Pham</td><td></td></tr>
-    <tr><td>Dave Mozealous</td><td>Articulate</td></tr>
-    <tr><td>David Ells</td><td>Rustici Software</td></tr>
-    <tr><td>David N. Johnson</td><td>Clear Learning Systems</td></tr>
-    <tr><td>David Pate</td><td>Riptide Software</td></tr>
-    <tr><td>Doug Hagy</td><td>Twin Lakes Consulting Corporation</td></tr>
-    <tr><td>Eric Johnson</td><td>Planning and Learning Technologies, Inc.</td></tr>
-    <tr><td>Fiona Leteney</td><td>Feenix e-learning</td></tr>
-    <tr><td>Greg Tatka</td><td>Menco Social Learning</td></tr>
-    <tr><td>Ingo Dahn</td><td>University Koblenz-Landau</td></tr>
-    <tr><td>Jason Haag</td><td>ADL</td></tr>
-    <tr><td>Jason Lewis</td><td>Yet Analytics</td></tr>
-    <tr><td>Jeff Place</td><td>Questionmark</td></tr>
-    <tr><td>Jennifer Cameron</td><td>Sencia Corporate Web Solutions</td></tr>
-    <tr><td>Jeremy Brockman</td><td> </td></tr>
-    <tr><td>Jhorlin De Armas</td><td>Riptide Software</td></tr>
-    <tr><td>Joe Gorup</td><td>CourseAvenue</td></tr>
-    <tr><td>Joerg Boeselt</td><td>Brightcookie</td></tr>
-    <tr><td>John Kleeman</td><td>Questionmark</td></tr>
-    <tr><td>Jonathan Archibald</td><td>Brightwave</td></tr>
-    <tr><td>Jonathan Poltrack</td><td>ADL</td></tr>
-    <tr><td>Kris Miller</td><td>edcetra Training</td></tr>
-    <tr><td>Kris Rockwell</td><td>Hybrid Learning Systems</td></tr>
-    <tr><td>Lang Holloman</td><td> </td></tr>
-    <tr><td>Lewis Cowper</td><td> </td></tr>
-    <tr><td>Loic Jeannin</td><td>CrossKnowledge</td></tr>
-    <tr><td>Lou Wolford</td><td>ADL</td></tr>
-    <tr><td>Luke Hickey</td><td>dominKnow</td></tr>
-    <tr><td>Marcus Birtwhistle</td><td>ADL</td></tr>
-    <tr><td>Mark Davis</td><td>Exambuilder</td></tr>
-    <tr><td>Matteo Scaramuccia</td><td> </td></tr>
-    <tr><td>Megan Bowe</td><td>Rustici Software</td></tr>
-    <tr><td>Melanie VanHorn</td><td>ADL</td></tr>
-    <tr><td>Michael Flores</td><td>Here Everything's Better</td></tr>
-    <tr><td>Michael Roberts</td><td>vTrainingRoom</td></tr>
-    <tr><td>Michael Wheeler</td><td></td></tr>
-    <tr><td>Mike Palmer</td><td>OnPoint Digital</td></tr>
-    <tr><td>Mike Rustici</td><td>Watershed</td></tr>
-    <tr><td>Nick Washburn</td><td>Riptide Software</td></tr>
-    <tr><td>Nikolaus Hruska</td><td>ADL</td></tr>
-    <tr><td>Pankaj Agrawal</td><td>Next Software Solutions</td></tr>
-    <tr><td>Patrick Kedziora</td><td>Kedzoh</td></tr>
-    <tr><td>Paul Esch</td><td>Nine Set</td></tr>
-    <tr><td>Paul Roberts</td><td>Questionmark</td></tr>
-    <tr><td>Rich Chetwynd</td><td>Litmos</td></tr>
-    <tr><td>Richard Fouchaux</td><td>Ontario Human Rights  Commission</td></tr>
-    <tr><td>Richard Lenz</td><td>Organizational Strategies, Inc.</td></tr>
-    <tr><td>Rick Raymer</td><td></td></tr>
-    <tr><td>RJ Zaworski</td><td></td></tr>
-    <tr><td>Rob Chadwick</td><td>ADL</td></tr>
-    <tr><td>Robert Lowe</td><td>NetDimensions</td></tr>
-    <tr><td>Roger Swetnam</td><td></td></tr>
-    <tr><td>Russell Duhon</td><td>SaLTBOX</td></tr>
-    <tr><td>Ryan Smith</td><td>HT2</td></tr>
-    <tr><td>Stephen Trevorrow</td><td>Problem Solutions, LLC.</td></tr>
-    <tr><td>Steve Baumgartner</td><td></td></tr>
-    <tr><td>Steve Flowers</td><td>XPConcept</td></tr>
-    <tr><td>Thomas Ho</td><td></td></tr>
-    <tr><td>Tim Martin</td><td>Rustici Software</td></tr>
-    <tr><td>Tom Creighton</td><td>ADL</td></tr>
-    <tr><td>Tyler Mulligan</td><td>ADL</td></tr>
-    <tr><td>Walt Grata</td><td>ADL</td></tr>
-    <tr><td>Yannick Warnier</td><td>Chamilo</td></tr>
-    <tr><td>Zach Lowry</td><td>Watershed</td></tr>
-</table>
+|Name                |   Organization             |
+|--------------------|----------------------------|
+| Aaron Silvers      | ADL                        |
+| Al Bejcek          | NetDimensions              |
+| Ali Shahrazad      | SaLTBOX                    |
+| Andrew Downes      | Watershed                  |
+| Andriy Drozdyuk    |                            |
+| Andy Johnson       | ADL                        |
+| Andy Whitaker      | Watershed                  |
+| Angel Serrano      | eUCM                       |
+| Anthony Altieri    | American Red Cross         |
+| Anto Valan         | Omnivera Learning Solutions |
+| Avron Barr         | Aldo Ventures, Inc. |
+| Ben Clark          | Rustici Software |
+| Bill McDonald      | Boeing |
+| Brian J. Miller    | Rustici Software |
+| Chad Udell         | Float Mobile Learning |
+| Chaim-Leib Halbert | Rustici Software |
+| Chris Handorf      | Pearson |
+| Chris Sawwa        | Meridian Knowledge Solutions |
+| Dan Allen          | Litmos |
+| Dan Kuemmel        | Sentry Insurance |
+| Danny Pham         |
+| Dave Mozealous     | Articulate |
+| David Ells         | Rustici Software |
+| David N. Johnson   | Clear Learning Systems |
+| David Pate         | Riptide Software |
+| Doug Hagy          | Twin Lakes Consulting Corporation |
+| Eric Johnson       | Planning and Learning Technologies, Inc. |
+| Fiona Leteney      | Feenix e-learning |
+| Greg Tatka         | Menco Social Learning |
+| Ingo Dahn          | University Koblenz-Landau |
+| Jason Haag         | ADL |
+| Jason Lewis        | Yet Analytics |
+| Jeff Place         | Questionmark |
+| Jennifer Cameron   | Sencia Corporate Web Solutions |
+| Jeremy Brockman    |
+| Jhorlin De Armas   | Riptide Software |
+| Joe Gorup          | CourseAvenue |
+| Joerg Boeselt      | Brightcookie |
+| John Kleeman       | Questionmark |
+| Jonathan Archibald | Brightwave |
+| Jonathan Poltrack  | ADL |
+| Kris Miller        | edcetra Training |
+| Kris Rockwell      | Hybrid Learning Systems |
+| Lang Holloman      |
+| Lewis Cowper       |
+| Loic Jeannin       | CrossKnowledge |
+| Lou Wolford        | ADL |
+| Luke Hickey        | dominKnow |
+| Marcus Birtwhistle | ADL |
+| Mark Davis         | Exambuilder |
+| Matteo Scaramuccia |
+| Megan Bowe         | Rustici Software |
+| Melanie VanHorn    | ADL |
+| Michael Flores     | Here Everything's Better |
+| Michael Roberts    | vTrainingRoom |
+| Michael Wheeler    |
+| Mike Palmer        | OnPoint Digital |
+| Mike Rustici       | Watershed |
+| Nick Washburn      | Riptide Software |
+| Nikolaus Hruska    | ADL |
+| Pankaj Agrawal     | Next Software Solutions |
+| Patrick Kedziora   | Kedzoh |
+| Paul Esch          | Nine Set |
+| Paul Roberts       | Questionmark |
+| Rich Chetwynd      | Litmos |
+| Richard Fouchaux   | Ontario Human Rights Commission |
+| Richard Lenz       | Organizational Strategies, Inc. |
+| Rick Raymer        |
+| RJ Zaworski        |
+| Rob Chadwick       | ADL |
+| Robert Lowe        | NetDimensions |
+| Roger Swetnam      |
+| Russell Duhon      | SaLTBOX |
+| Ryan Smith         | HT2 |
+| Stephen Trevorrow  | Problem Solutions, LLC. |
+| Steve Baumgartner  |
+| Steve Flowers      | XPConcept |
+| Thomas Ho          |
+| Tim Martin         | Rustici Software |
+| Tom Creighton      | ADL |
+| Tyler Mulligan     | ADL |
+| Walt Grata         | ADL |
+| Yannick Warnier    | Chamilo |
+| Zach Lowry         | Watershed |
+
 
 ><a name="reqparticipants"/>
 
