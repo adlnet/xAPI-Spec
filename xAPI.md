@@ -501,6 +501,7 @@ Clarifications and additional examples including:
 - Many, many clarifications
 - Removed back-references to SCORM
 - Additional explanatory text and diagrams
+- Rename Statement API and Document APIs to Statement Resource and Document Resources
 
 [1.0.2...1.0.3](https://github.com/adlnet/xAPI-Spec/compare/1.0.2...1.0.3)
 
@@ -2191,7 +2192,7 @@ results when the attachments filter is false.
 ###### LRS Requirements
 
 * An LRS MUST include attachments in the Transmission Format described above
-when requested by the Client (see Section [7.3 "Statement API"](#stmtapi)).
+when requested by the Client (see Section [7.3 "Statement Resource"](#stmtapi)).
 * An LRS MUST NOT pull Statements from another LRS without requesting attachments.
 * An LRS MUST NOT push Statements into another LRS without including attachment data
 received, if any, for those attachments.
@@ -2308,10 +2309,10 @@ here is a simple attachment
 
 ###### Description
 A collection of Statements can be retrieved by performing a query on the "statements" 
-endpoint, see [Statement API](#stmtapi) for details. 
+endpoint, see [Statement Resource](#stmtapi) for details. 
 
 ###### Details
-The following table shows the data structure for the results of queries on the Statement API.
+The following table shows the data structure for the results of queries on the Statement Resource.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr><td>statements</td><td>Array of Statements</td>
@@ -3560,33 +3561,33 @@ in this specification do. The id is stored in the IRL, "updated" is HTTP header 
 	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
 
-The three Document APIs provide [document](#miscdocument) storage for learning activity 
-providers and Agents. The details of each API are found in the following sections, and the 
-information in this section applies to all three APIs.
+The three Document Resources provide [document](#miscdocument) storage for learning activity 
+providers and Agents. The details of each Resource are found in the following sections, and the 
+information in this section applies to all three Resources.
 
 ###### Details
 
 <table>
 	<tr>
-		<th>API</th>
+		<th>Resource</th>
 		<th>Method</th>
 		<th>Endpoint</th>
 		<th>Example</th>
 	</tr>
 	<tr>
-		<td>State API</td>
+		<td>State Resource</td>
 		<td>POST</td>
 		<td>activities/state</td>
 		<td>http://example.com/xAPI/activities/state</td>
 	</tr>
 	<tr>
-		<td>Activity Profile API</td>
+		<td>Activity Profile Resource</td>
 		<td>POST</td>
 		<td>activities/profile</td>
 		<td>http://example.com/xAPI/activities/profile</td>
 	</tr>
 	<tr>
-		<td>Agent Profile API</td>
+		<td>Agent Profile Resource</td>
 		<td>POST</td>
 		<td>agents/profile</td>
 		<td>http://example.com/xAPI/agents/profile</td>
@@ -3595,7 +3596,7 @@ information in this section applies to all three APIs.
 
 ###### Requirements
 
-* An Activity Provider MAY send documents to any of the document APIs for Activities and 
+* An Activity Provider MAY send documents to any of the Document Resources for Activities and 
 Agents that the LRS does not have prior knowledge of. 
 
 * The LRS MUST NOT reject documents on the basis of not having prior knowledge of the 
@@ -3674,14 +3675,13 @@ a property, it SHOULD use a PUT request to replace the whole document as describ
 
 ###### Description
 
-This section describes that the xAPI consists of 4 sub-APIs: Statement, State, 
-Agent, and Activity Profile. These four sub-APIs of the Experience API are 
-handled via RESTful HTTP methods. The Statement API can be used by itself to 
-track learning records. 
+The LRS is interacted with via RESTful HTTP methods to the resources outlined in this section.
+The Statement Resource can be used by itself to track learning records. Other resources provide
+additional functionality. 
 
-An LRS will support all of the endpoints described in this section. It's also possible
+An LRS will support all of the resources described in this section. It's also possible
 for a tool which is not an LRS to choose to follow the LRS requirements of one or 
-more of the endpoints and methods described in this section. For example a tool might
+more of the resources and methods described in this section. For example a tool might
 implement POST Statements for the purposes of receiving incoming Statements forwarded by an LRS.
 Such a system is not considered to be an LRS or 'partial LRS'; it is simply not an LRS. 
 
@@ -3692,13 +3692,13 @@ is included in [Appendix B: Table of All Endpoints](#Appendix3B).
 
 ###### Requirements
 
-* The LRS MUST support all of the endpoints described in [this section](#datatransfer). 
-* If the LRS implements OAuth 1.0, the LRS MUST also support all of the OAuth endpoints 
+* The LRS MUST support all of the resources described in [this section](#datatransfer). 
+* If the LRS implements OAuth 1.0, the LRS MUST also support all of the OAuth resources 
 described in [Section 6.4.2 OAuth Authorization Scope](#oauthscope).
-* The LRS MAY support additional endpoints not described in this specification. 
-* Past, current and future versions of this specification do not and will not define endpoints 
-with path segments starting 'extensions/'. LRSs supporting additional endpoints not defined 
-in this specification SHOULD define those endpoints with path segments starting 'extensions/'.
+* The LRS MAY support additional resources not described in this specification. 
+* Past, current and future versions of this specification do not and will not define resource endpoints 
+with path segments starting 'extensions/'. LRSs supporting additional resources not defined 
+in this specification SHOULD define their endpoints with path segments starting 'extensions/'.
 
 <a name="stmtres"/> 
 
@@ -4080,7 +4080,7 @@ own internal storage, or need to persist state across devices.
 The semantics of the call are driven by the stateId parameter. If it is included, 
 the GET and DELETE methods will act upon a single defined state document 
 identified by "stateId". Otherwise, GET will return the available ids, and DELETE 
-will delete all state in the context given through the other parameters. This API has
+will delete all state in the context given through the other parameters. This Resource has
 [Concurrency](#concurrency) controls associated with it.
 
 ###### Single Document (PUT | POST | GET | DELETE)
@@ -4197,9 +4197,9 @@ specified\]).
 
 ### 2.2.3 Agents Resource
 
-The Agent Profile API also includes a method to retrieve a special Object with 
+The Agents Resource provides a method to retrieve a special Object with 
 combined information about an Agent derived from an outside service, such as a 
-directory service. This API has [Concurrency](#concurrency) controls associated 
+directory service. This Resource has [Concurrency](#concurrency) controls associated 
 with it.
 
 ###### Combined Information GET 
@@ -4304,8 +4304,8 @@ property MUST occur only once.
 
 ### 2.2.4 Activities Resource
 
-The Activity Profile API also includes a method to retrieve a full description 
-of an Activity from the LRS. This API has [Concurrency](#concurrency) controls 
+The Activities Resource provides a method to retrieve a full description 
+of an Activity from the LRS. This Resource has [Concurrency](#concurrency) controls 
 associated with it.
 
 ###### Full Activity Object GET
@@ -4336,7 +4336,7 @@ Loads the complete Activity Object specified.
 
 ###### Description
 
-The Agent Profile API is much like the State API, allowing for arbitrary key / 
+The Agent Profile Resource is much like the State Resource, allowing for arbitrary key / 
 document pairs to be saved which are related to an Agent. 
 
 ###### Details
@@ -4411,7 +4411,7 @@ Timestamp (exclusive).
 
 ###### Description
 
-The Activity Profile API is much like the State API, allowing for arbitrary key 
+The Activity Profile Resource is much like the State Resource, allowing for arbitrary key 
 / document pairs to be saved which are related to an Activity. 
 
 ###### Details
@@ -4561,7 +4561,7 @@ responsibility of the Activity Provider sending the Statement.
 ### 3.1 Concurrency
 
 ##### Description
-Concurrency control makes certain that an API consumer does not PUT, POST or DELETE documents based on old
+Concurrency control makes certain that a client does not PUT, POST or DELETE documents based on old
 data into an LRS.
 
 ##### Details
@@ -4569,23 +4569,23 @@ xAPI will use HTTP 1.1 entity tags ([ETags](http://www.w3.org/Protocols/rfc2616/
 to implement optimistic concurrency control in the portions of the API where PUT, POST or DELETE might
 overwrite or remove existing data, being:
 
-* State API
-* Agent Profile API 
-* Activity Profile API
+* State Resource
+* Agent Profile Resource 
+* Activity Profile Resource
 
 ##### Client Requirements
-The State API will permit PUT, POST and DELETE requests without concurrency headers, since state conflicts
-are unlikely. The requirements below only apply to Agent Profile API and Activity Profile API.
+The State Resource will permit PUT, POST and DELETE requests without concurrency headers, since state conflicts
+are unlikely. The requirements below only apply to Agent Profile Resource and Activity Profile Resource.
 
-* A Client making a PUT request to either the Agent Profile API or Activity Profile API MUST include the 
+* A Client making a PUT request to either the Agent Profile Resource or Activity Profile Resource MUST include the 
 [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the 
 [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header.
 
-* A Client making a POST request to either the Agent Profile API or Activity Profile API SHOULD* include the 
+* A Client making a POST request to either the Agent Profile Resource or Activity Profile Resource SHOULD* include the 
 [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the 
 [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header.
 
-* A Client making a DELETE request to either the Agent Profile API or Activity Profile API SHOULD* include the 
+* A Client making a DELETE request to either the Agent Profile Resource or Activity Profile Resource SHOULD* include the 
 [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header.
 
 * Clients SHOULD use the ETag value provided by the LRS rather than calculating it themselves. 
@@ -4593,7 +4593,7 @@ are unlikely. The requirements below only apply to Agent Profile API and Activit
 ##### LRS Requirements
 
 * An LRS responding to a GET request MUST add an ETag HTTP header to the response. (The reason for 
-specifying the LRS ETag format is to allow API consumers that can't read the ETag header to calculate 
+specifying the LRS ETag format is to allow clients that can't read the ETag header to calculate 
 it themselves.)
 * An LRS responding to a PUT or POST request SHOULD* add the ETag HTTP header for the entity just created or modified to the response.
 * An LRS responding to a GET request MUST calculate the value of this header to be a hexidecimal string 
@@ -4692,11 +4692,11 @@ is not allowed to perform the given action.
 
 * ```404 Not Found``` - Indicates the requested resource was not found. May be 
 returned by any method that returns a uniquely identified resource, for 
-instance, any State or Agent Profile or Activity Profile API call targeting a specific document, 
+instance, any State or Agent Profile or Activity Profile Resource call targeting a specific document, 
 or the method to retrieve a single Statement.
 
 * ```409 Conflict``` - Indicates an error condition due to a conflict with the 
-current state of a resource, in the case of State API, Agent Profile or Activity Profile API
+current state of a resource, in the case of State Resource, Agent Profile or Activity Profile Resource
 calls, or in the Statement PUT or POST calls. See Section [6.3 Concurrency](#concurrency) for more details.
 
 * ```412 Precondition Failed``` - Indicates an error condition due to a failure of 
@@ -4725,13 +4725,13 @@ unexpected exception in processing on the server.
 
 * An AP SHOULD send an Accept header with requests to enable content negotiation.
 
-* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
-of these APIs that use any parameters which the LRS does not recognize in their 
+* The LRS MUST reject with ```HTTP 400 Bad Request``` status any requests 
+that use any parameters which the LRS does not recognize in their 
 intended context in this specification ( __Note:__ LRSs MAY recognize and act on 
 parameters not in this specification).
 
-* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
-of these APIs that use any parameters matching parameters described in this 
+* The LRS MUST reject with ```HTTP 400 Bad Request``` status any requests 
+that use any parameters matching parameters described in this 
 specification in all but case.
 
 * The LRS MUST reject a batch of statements if any statement within that 
@@ -5279,7 +5279,7 @@ Converted to 1.0.0:
 	</tr>
 	<tr>
 		<td>agents/profile</td>
-		<td>Agent Profile API</td>
+		<td>Agent Profile Resource</td>
 	</tr>
 	<tr>
 		<td>activities</td>
@@ -5287,11 +5287,11 @@ Converted to 1.0.0:
 	</tr>
 	<tr>
 		<td>activities/profile</td>
-		<td>Activity Profile API</td>
+		<td>Activity Profile Resource</td>
 	</tr>
 	<tr>
 		<td>activities/state</td>
-		<td>State API</td>
+		<td>State Resource</td>
 	</tr>
 	<tr>
 		<td>about</td>
