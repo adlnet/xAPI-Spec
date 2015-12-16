@@ -412,7 +412,7 @@ different personas of the same user. The LRS can aggregate all of the informatio
 
 ## 6.0 Extending xAPI
 
-xAPI can be extended in a few ways. The most notable is Statement Extensions, which allow great flexibility within Statements.  It is recommended that profiles or Communities or Practice agree on how to use  
+xAPI can be extended in a few ways. The most notable is Statement Extensions, which allow great flexibility within Statements.  It is recommended that profiles or Communities of Practice agree on how to use  
 extensions for their particular use cases. Implementation details are covered in [4.1 Extensions](#miscext).
 
 The About Resource is another place xAPI supports Extensions.  The LRS may find it useful to communicate features or behaviors beyond this specification to activity provider. The LRS can use extensions to the About Resource to communicate these features and behaviours.
@@ -436,13 +436,6 @@ which follows the profile.  An example profile is [cmi5](https://github.com/AICC
 CoPs are highly recommended to avoid duplication of effort, as creating too many ways to solve the same problem 
 will cause fragmentation in similar domains and will hurt interoperability.  An example of a CoP for the medical 
 field is the [Medbiquitous xAPI Interest Group](http://groups.medbiq.org/medbiq/display/XIG/XAPI+Interest+Group+Home).
-
-###### Requirements for Communities of Practice
-
-* Anyone establishing a new vocabulary entry MUST own the IRI, or MUST have permission from the owner to use it to denote an
-xAPI Verb, Activity, Extension, etc.;  (This requirement cannot be enforced by an LRS, rather is meant to show the gravity 
-of coining new entries without control)
-* Anyone establishing a new vocabulary entry SHOULD make a human-readable description of the intended usage accessible at the IRI.
 
 <a name="append1"/>
 ## Appendices
@@ -1851,6 +1844,10 @@ The Experience API applies the concept of registration more broadly.  A registra
 considered to be an attempt, a session, or could span multiple Activities. There is no expectation that 
 completing an Activity ends a registration. Nor is a registration necessarily confined to a single Agent.
 
+The Registration is also used when storing documents within the State resource, e.g. for 
+bookmarking. Normally the same Registration is used for requests to both the Statement and 
+State resources relating to the same learning experience so that all data recorded for the experience is consistent. 
+
 <a name="contextActivities"/>
 
 ##### 2.4.6.2 ContextActivities Property
@@ -2468,9 +2465,13 @@ identifiers other than Activity id.
 
 * Metadata MAY be provided with an identifier.
 * If metadata is provided, both name and description SHOULD be included.
-* IRIs SHOULD be defined within a domain controlled by the [Metadata Provider](#def-metadata-provider) creating the IRI.
+* [Metadata Providers](#def-metadata-provider) defining new IRIs SHOULD* only use IRIs they control or have permission from the controller to use.
+* [Metadata Providers](#def-metadata-provider) defining new Verb IRIs MUST only use IRIs they control or have permission from the controller to use.
+* For any of the identifier IRIs above the Metadata Provider SHOULD make a human-readable description of the intended usage accessible at the IRI.
 * For any of the identifier IRIs above the Metadata Provider SHOULD ensure that this JSON metadata available at that 
 IRI when the IRI is requested and a Content-Type of "application/json" is requested.
+* Where the IRI represents an Activity, the Metadata Provider MAY host metadata using the <a href="#actdef">
+Activity Definition</a> JSON format which is used in Statements, with a Content-Type of "application/json".
 * Where a suitable identifier already exists, the Metadata Provider SHOULD NOT create a new identifier.
 * The Metadata Provider MAY create their own identifiers where a suitable identifier does not already exist.
 * When defining identifiers, the Metadata Provider MAY use IRIs containing anchors so that a single page can contain 
@@ -2481,6 +2482,15 @@ definitions for multiple identifiers. E.g. http://example.com/xapi/verbs#defenes
 
 ##### LRS Requirements
 * The LRS MAY act as a [Metadata Consumer](#def-metadata-consumer) and attempt to resolve identifier IRIs.
+* If an Activity IRI is a URL, an LRS SHOULD attempt to GET that URL, and include in HTTP
+headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
+first encounters the Activity id.
+* Upon loading JSON which is a valid Activity Definition from a URL used as an Activity id,
+ an LRS SHOULD incorporate the loaded definition into its canonical definition for that Activity,
+while preserving names or definitions not included in the loaded definition.
+* Upon loading any document from which the LRS can parse an Activity Definition
+from a URL used as an Activity id, an LRS MAY consider this definition when determining
+its canonical representation of that Activity's definition.
 
 ##### Metadata Consumer Requirements
 * If a Metadata Consumer obtains metadata from an IRI, it SHOULD make a strong presumption that the 
@@ -3866,7 +3876,7 @@ Object.
 		<td> </td>
 		<td>
 			Filter, only return Statements matching the specified registration 
-			id. Note that although frequently a unique registration id will be used 
+			id. Note that although frequently a unique Registration will be used 
 			for one Actor assigned to one Activity, this cannot be assumed. 
 			If only Statements for a certain Actor or Activity are required, 
 			those parameters also need to be specified.
@@ -4111,7 +4121,7 @@ exists in the context of the specified Activity, Agent, and registration (if spe
 	<tr>
 		<td>registration</td>
 		<td>UUID</td>
-		<td>The registration id associated with this state.</td>
+		<td>The Registration associated with this state.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
@@ -4151,7 +4161,7 @@ Timestamp (exclusive).
 	<tr>
 		<td>registration</td>
 		<td>UUID</td>
-		<td>The registration id associated with these states.</td>
+		<td>The Registration associated with these states.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
@@ -4188,7 +4198,7 @@ specified\]).
 	<tr>
 		<td>registration</td>
 		<td>UUID</td>
-		<td>The registration id associated with this state.</td>
+		<td>The Registration associated with this state.</td>
 		<td>Optional</td>
 	</tr>
 </table>
@@ -4588,17 +4598,15 @@ are unlikely. The requirements below only apply to Agent Profile Resource and Ac
 * A Client making a DELETE request to either the Agent Profile Resource or Activity Profile Resource SHOULD* include the 
 [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header.
 
-* Clients SHOULD use the ETag value provided by the LRS rather than calculating it themselves. 
+* Clients SHOULD* use the ETag value provided by the LRS rather than calculating it themselves. 
 
 ##### LRS Requirements
 
-* An LRS responding to a GET request MUST add an ETag HTTP header to the response. (The reason for 
-specifying the LRS ETag format is to allow clients that can't read the ETag header to calculate 
-it themselves.)
-* An LRS responding to a PUT or POST request SHOULD* add the ETag HTTP header for the entity just created or modified to the response.
-* An LRS responding to a GET request MUST calculate the value of this header to be a hexidecimal string 
-of the SHA-1 digest of the contents. This hexidecimal string SHOULD* be rendered using numbers and lowercase 
-characters only; uppercase characters SHOULD* NOT be used. 
+* An LRS responding to a GET request MUST add an ETag HTTP header to the response.
+* An LRS responding to a GET request without using a transfer encoding or using the identity transfer encoding MUST calculate the value of the ETag header to be a hexadecimal string
+of the SHA-1 digest of the contents. This hexidecimal string SHOULD be rendered using numbers and lowercase 
+characters only; uppercase characters SHOULD NOT be used. The requirement to calculate the ETag this way will be removed in a future version of the specification.
+* An LRS responding to a GET request using any non-identity transfer encoding MUST NOT calculate the included ETag as above, due to the interpretation of ETags by existing web infrastructure.
 * As defined in [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19), an LRS responding to a GET request MUST enclose the header in quotes.  
 * An LRS responding to a PUT request MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
 modifications made after the consumer last fetched the document.
@@ -4996,7 +5004,7 @@ The following table lists xAPI scope values:
 		<td>(re)Define Activities and Actors. If storing a Statement 
 			when this is not granted, ids will be saved and the LRS 
 			MAY save the original Statement for audit purposes, but 
-			SHOULD NOT update its internal representation of any 
+			SHOULD NOT update its canonical representation of any 
 			Actors or Activities.
 		</td>
 	</tr>
