@@ -2560,6 +2560,8 @@ resolving is not a requirement, IRIs/URIs are used instead of IRLs/URLs. In orde
 in the characters used in an identifier, IRIs are used instead of URIs as IRIs can contain some characters outside 
 of the ASCII character set. 
 
+See [Metadata](#metadata). 
+
 <a name="uuids"/>
 
 ### 4.4 UUIDs
