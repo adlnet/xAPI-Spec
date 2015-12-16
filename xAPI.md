@@ -3738,7 +3738,7 @@ Object.
 
 * If the LRS receives a Statement with an id it already has a Statement for, or receives a batch 
 containing multiple statements with the same id, it SHOULD verify the Statements match and SHOULD 
-return 409 Conflict if not. See [Statement comparision requirements](statement-comparision-requirements).
+return 409 Conflict if they do not. See [Statement comparision requirements](statement-comparision-requirements).
 
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 
