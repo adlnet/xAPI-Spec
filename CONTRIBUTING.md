@@ -37,7 +37,7 @@
 | Andriy Drozdyuk    |                            |
 | Andy Johnson       | ADL                        |
 | Andy Whitaker      | Watershed                  |
-| Angel Serrano      | eUCM                       |
+| Ángel Serrano      | eUCM                       |
 | Anthony Altieri    | American Red Cross         |
 | Anto Valan         | Omnivera Learning Solutions |
 | Avron Barr         | Aldo Ventures, Inc. |
