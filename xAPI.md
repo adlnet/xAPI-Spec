@@ -437,13 +437,6 @@ CoPs are highly recommended to avoid duplication of effort, as creating too many
 will cause fragmentation in similar domains and will hurt interoperability.  An example of a CoP for the medical 
 field is the [Medbiquitous xAPI Interest Group](http://groups.medbiq.org/medbiq/display/XIG/XAPI+Interest+Group+Home).
 
-###### Requirements for Communities of Practice
-
-* Anyone establishing a new vocabulary entry MUST own the IRI, or MUST have permission from the owner to use it to denote an
-xAPI Verb, Activity, Extension, etc.;  (This requirement cannot be enforced by an LRS, rather is meant to show the gravity 
-of coining new entries without control)
-* Anyone establishing a new vocabulary entry SHOULD make a human-readable description of the intended usage accessible at the IRI.
-
 <a name="append1"/>
 ## Appendices
 
@@ -2467,9 +2460,13 @@ identifiers other than Activity id.
 
 * Metadata MAY be provided with an identifier.
 * If metadata is provided, both name and description SHOULD be included.
-* IRIs SHOULD be defined within a domain controlled by the [Metadata Provider](#def-metadata-provider) creating the IRI.
+* [Metadata Providers](#def-metadata-provider) defining new IRIs SHOULD* only use IRIs they control or have permission from the controller to use.
+* [Metadata Providers](#def-metadata-provider) defining new Verb IRIs MUST only use IRIs they control or have permission from the controller to use.
+* For any of the identifier IRIs above the Metadata Provider SHOULD make a human-readable description of the intended usage accessible at the IRI.
 * For any of the identifier IRIs above the Metadata Provider SHOULD ensure that this JSON metadata available at that 
 IRI when the IRI is requested and a Content-Type of "application/json" is requested.
+* Where the IRI represents an Activity, the Metadata Provider MAY host metadata using the <a href="#actdef">
+Activity Definition</a> JSON format which is used in Statements, with a Content-Type of "application/json".
 * Where a suitable identifier already exists, the Metadata Provider SHOULD NOT create a new identifier.
 * The Metadata Provider MAY create their own identifiers where a suitable identifier does not already exist.
 * When defining identifiers, the Metadata Provider MAY use IRIs containing anchors so that a single page can contain 
@@ -2480,6 +2477,15 @@ definitions for multiple identifiers. E.g. http://example.com/xapi/verbs#defenes
 
 ##### LRS Requirements
 * The LRS MAY act as a [Metadata Consumer](#def-metadata-consumer) and attempt to resolve identifier IRIs.
+* If an Activity IRI is a URL, an LRS SHOULD attempt to GET that URL, and include in HTTP
+headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
+first encounters the Activity id.
+* Upon loading JSON which is a valid Activity Definition from a URL used as an Activity id,
+ an LRS SHOULD incorporate the loaded definition into its canonical definition for that Activity,
+while preserving names or definitions not included in the loaded definition.
+* Upon loading any document from which the LRS can parse an Activity Definition
+from a URL used as an Activity id, an LRS MAY consider this definition when determining
+its canonical representation of that Activity's definition.
 
 ##### Metadata Consumer Requirements
 * If a Metadata Consumer obtains metadata from an IRI, it SHOULD make a strong presumption that the 
@@ -4996,7 +5002,7 @@ The following table lists xAPI scope values:
 		<td>(re)Define Activities and Actors. If storing a Statement 
 			when this is not granted, ids will be saved and the LRS 
 			MAY save the original Statement for audit purposes, but 
-			SHOULD NOT update its internal representation of any 
+			SHOULD NOT update its canonical representation of any 
 			Actors or Activities.
 		</td>
 	</tr>
