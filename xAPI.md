@@ -105,7 +105,7 @@
 ## 1.0 Introduction
 
 The Experience API (xAPI) is a technical specification that aims to facilitate the documentation and communication of learning experiences. It specifies 
-a structure to describe learning experiences and an Application Programming Interface that defines how these descriptions can be exchanged electronically.  
+a structure to describe learning experiences and defines how these descriptions can be exchanged electronically.  
 
 The xAPI is an initiative of the Advanced Distributed Learning (ADL), established in 1997 to standardize and modernize training and education management and delivery in the US. Among the many outcomes of ADL was SCORM - the Sharable Content Object Reference Model. SCORM has become an internationally recognized framework that has been a major factor contributing to the economy and effectiveness of online learning around the world.
   
