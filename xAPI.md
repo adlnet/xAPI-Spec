@@ -521,7 +521,7 @@ A Statement is akin to a sentence of the form "I did this".
 ### 2.1 Purpose
 
 Statements are the evidence for any sort of experience or event which is to be tracked in xAPI. 
-Whilst Statements follow a machine readable JSON format, they can also easily be described
+While Statements follow a machine readable JSON format, they can also easily be described
 using natural language. This can be extremely useful for the design process. Statements are 
 meant to be aggregated and analyzed to provide larger meaning for the overall experience than 
 just the sum of its parts.
@@ -4837,7 +4837,7 @@ this specification.
 - [HTTP Basic Authentication](http://tools.ietf.org/html/rfc7235)
 - Common Access Cards
 
-Whilst Common Access Cards are defined as an authentication option within this specification,
+While Common Access Cards are defined as an authentication option within this specification,
 the implementation details of this authentication method are not defined. The xAPI Working Group
 encourages LRS developers implementing Common Access Cards as an authentication method to collaborate
 in defining the details of this authentication method in a future version of this specification. 
