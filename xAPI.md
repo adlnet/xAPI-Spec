@@ -1044,13 +1044,13 @@ Verb Display as defined in some other location.
 MAY alter the wording and tense displayed for the purposes of human-readability. 
 
 ###### Example
-This example shows a Verb with the recommended properties set.
+This example shows a Verb with the recommended properties set and using US English and Spanish languages. 
 ```
 {
-    "id":"http://www.adlnet.gov/XAPIprofile/ran(travelled_a_distance)", 
+    "id":"http://example.com/xapi/verbs#defenestrated", 
     "display":{
-        "en-US":"ran",
-        "es" : "corrió" 
+        "en-US":"defenestrated",
+        "es" : "defenestrado" 
     } 
 }
 ``` 
