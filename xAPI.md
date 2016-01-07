@@ -594,7 +594,7 @@ LRS SHOULD* reject Statements containing such additional properties.
 
 Statements are information about a tracked learning experience. Typically, the information represented in the 
 Statement has already happened. Thus, the natural language used in "display" or in the human-readable portion of 
-the verb id will usually use the past tense.
+the Verb Id will usually use the past tense.
 
 Statements are expected to be permanent. The only way to undo a Statement within this specification is to 
 [void it](#voided). Voiding does not destroy a Statement, rather indicates the evidence in the 
@@ -1064,15 +1064,15 @@ specification document, with the exception of the reserved Verb <a href="#voided
 ###### Details
 _Semantics_
 
-The IRI represented by the Verb id identifies the particular semantics of a word, not the word itself. 
+The IRI represented by the Verb Id identifies the particular semantics of a word, not the word itself. 
 
 For example, the English word "fired" could mean different things depending on context, such as 
 "fired(a weapon)", "fired(a kiln)", or "fired(an employee)". In this case, an IRI identifies one of 
 these specific meanings. 
 
-The display property has some flexibility in tense. While the Verb IRIs are expected to remain in the 
-past tense, if conjugating verbs to another tense (using the same Verb) within the Activity makes sense, 
-it is allowed.
+The display property has some flexibility in tense. While the human-readable portion of the Verb Id will 
+usually use the past tense, if conjugating verbs to another tense within the display property makes most
+sense for the statement as a whole, it is allowed.
 
 _Language_
 
