@@ -3752,9 +3752,9 @@ with a statementID that it already has a Statement for. Whether it responds with
 ```409 Conflict``` or ```204 No Content```, it MUST NOT modify the Statement or any other
 Object.
 
-* If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
-verify the received Statement matches the existing one and SHOULD return ```409 Conflict``` if they
-do not match. See [Statement comparision requirements](statement-comparision-requirements).
+* If the LRS receives a Statement with an id it already has a Statement for, or receives a batch 
+containing multiple statements with the same id, it SHOULD verify the Statements match and SHOULD 
+return 409 Conflict if they do not. See [Statement comparision requirements](statement-comparision-requirements).
 
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 
