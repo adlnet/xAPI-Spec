@@ -351,7 +351,8 @@ takes on many forms, including Statements, documents, and their parts.  This def
 
 <a name="def-learning-record-consumer" />
 
-__Learning Record Consumer__: An xAPI Client that accesses data from Learning Record Store(s).
+__Learning Record Consumer__: An xAPI Client that accesses data from Learning Record Store(s) with the intent of doing 
+something with the data, including interpretation, analysis, translation, dissemination, and aggregation.
 
 <a name="def-learning-record-provider" />
 
