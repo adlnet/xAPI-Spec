@@ -214,11 +214,13 @@ JSON allows for objects to have properties that contain empty objects. This is n
 * [Activity](#def-activity)
 * [Activity Provider (AP)](#def-activity-provider)
 * [Actor](#def-actor)
+* [Application Programming Interface (API)](#def-api)
 * [Authentication](#def-authentication)
 * [Authorization](#def-authorization)
 * [Base Resource Path](#def-baseresourcepath)
 * [Community of Practice](#def-community-of-practice)
-* [Experience Application Programming Interface (xAPI)](#def-experience-api)
+* [Endpoint](#endpoint)
+* [Experience API (xAPI)](#def-experience-api)
 * [Immutable](#def-immutable)
 * [Internationalized Resource Identifier (IRI)](#def-iri)
 * [Internationalized Resource Locator (IRL)](#def-irl)
@@ -249,10 +251,20 @@ Activities can even be tangible objects such as a chair (real or virtual). In th
 tried a cake recipe", the recipe constitutes the Activity in terms of the xAPI statement. Other 
 examples of activities include a book, an e-learning course, a hike or a meeting.
 
+<a name="def-activity-provider" />
+
+__Activity Provider (AP)__: Now referred to as a Learning Record Provider. This change differentiates that 
+the activity itself is not always the responsibility of software, rather just the tracking portion is. 
+
 <a name="def-actor" />
 
 __Actor__: An Agent (individual representation) or Group (multiple representation) tracked using Statements 
 as doing an action (Verb) within an Activity.  Is the "I" in "I did this".
+
+<a name="def-api" />
+
+__Application Programming Interface (API)__: A set of rules and standards created to allow access into 
+a software application or tool.  
 
 <a name="def-authentication" />
 
@@ -273,18 +285,24 @@ http://example.com/xAPI/"
 <a name="def-client" />
 
 __Client__: - Refers to any entity that might interact through requests. Some examples could be a 
-Learning Record Provider, a Learning Record Consumer, a Learning Management System, or a Learning Record Store.
+Learning Record Provider, a Learning Record Consumer, a Learning Record Store (LRS), or a Learning 
+Management System (LMS).
 
 <a name="def-community-of-practice" />
 
 __Community of Practice__: A group, usually connected by a common cause, role or 
 purpose, which operates in a common modality.
 
+<a name="def-endpoint" />
+
+__Endpoint__: An entry point in a service-oriented-architecture.  xAPI mirrors this approach with Resources 
+and their associated paths.
+
 <a name="def-experience-api" />
 
-__Experience Application Programming Interface (xAPI)__: Also called Experience API or xAPI, the collection 
-of rules articulated in this document which determines how learning experiences are defined, formatted, and 
-exchanged so that independent software programs can exchange and make use of this information.
+__Experience API (xAPI)__: The collection of rules articulated in this document which determines how learning 
+experiences are defined, formatted, and exchanged so that independent software programs can exchange and make 
+use of this information.
 
 <a name ="def-immutable" />
 
@@ -315,16 +333,16 @@ __Inverse Functional Identifier__: An identifier which is unique to a particular
 
 <a name="def-learning-experience" />
 
-__Learning Experience__: An event associated with the acquisition of knowledge.  It is highly diverse 
-as far as what it can be.  Examples include reading a book, taking an online course, going on a field trip, 
-engaging in self-directed research, or receiving a certificate for a completed course.
+__Learning Experience__: An event associated with learning.  It is highly diverse as far as what it can be.  
+Examples include reading a book, taking an online course, going on a field trip, engaging in self-directed 
+research, or receiving a certificate for a completed course.
 
 <a name="def-learning-management-system" />
 
 __Learning Management System (LMS)__: "A software package used to administer one or more courses to one or more learners. 
 An LMS is typically a web-based system that allows learners to authenticate themselves, register for courses, complete 
-courses and take assessments" (Learning Systems Architecture Lab definition). In this document the term will be used in 
-the context of existing systems implementing learning standards.
+courses and take assessments" (Learning Systems Architecture Lab definition). An LMS in this document is used as an 
+example of how a user is identified as trusted within a system and able to access its Learning Experiences.
 
 <a name="def-learning-record" />
 
@@ -364,8 +382,8 @@ having a "home email" and a "work email".  Both are the same person, but have di
 <a name="def-profile" />
 
 __Profile__: A construct where information about the learner or activity is kept, typically in name/document pairs 
-that have meaning to an instructional system component.  Note that "profile" is also used to describe sub-specifications 
-of xAPI that Communies of Practice may develop.
+that have meaning to an instructional system component.  Note that "profile" is also used to describe specifications
+building on xAPI that Communies of Practice may develop.
 
 <a name="def-registration" />
 
