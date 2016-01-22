@@ -3557,18 +3557,9 @@ See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example.
 ###### Requirement
 * All strings MUST be encoded and interpreted as UTF-8. 
 
-<a name="datatransfer"/> 
+<a name="datatransfer"/> <a name="resources"/>
 
-## 2.0 Data Storage and Retrieval
-
-This section contains implementation details and requirements surrounding how an LRS receives and responds to requests for data.  As mentioned in the previous section, this communication is done through HTTP 
-Requests to specific Resources, all of which have Endpoints. 
-
-<a name="resources"/>
-
-### 2.2 Resources
-
-###### Description
+## 2.0 Resources
 
 The LRS is interacted with via RESTful HTTP methods to the resources outlined in this section.
 The Statement Resource can be used by itself to track learning records. Other resources provide
