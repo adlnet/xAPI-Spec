@@ -3966,7 +3966,7 @@ Object.
 		<td>attachments</td><td>Boolean</td><td>false</td>
 		<td>If <code>true</code>, the LRS uses the multipart response format and includes all attachments as 
 		described previously.  If <code>false</code>, the LRS sends the prescribed response with Content-Type 
-		application/json and does not send the contents of attachments.</td>
+		application/json and does not send attachment data.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
