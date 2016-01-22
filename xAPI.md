@@ -3588,7 +3588,7 @@ in this specification SHOULD define their endpoints with path segments starting 
 
 <a name="stmtres"/> 
 
-#### 2.2.1 Statement Resource
+#### 2.1 Statement Resource
 
 ###### Description
 
@@ -3597,7 +3597,7 @@ The basic communication mechanism of the Experience API.
 
 <a name="stmtresput"/>
 
-#####2.2.1.1 PUT Statements
+#####2.1.1 PUT Statements
 
 ###### Details
 
@@ -3640,7 +3640,7 @@ do not match. See [Statement comparision requirements](statement-comparision-req
 
 <a name="stmtrespost"/>
 
-#####2.2.1.2 POST Statements
+#####2.1.2 POST Statements
 
 ###### Details
 
@@ -3675,7 +3675,7 @@ parameters passed. See [Alternate Request Syntax](#alt-request-syntax) for more 
 
 <a name="stmtresget"/>
 
-#####2.2.1.3 GET Statements
+#####2.1.3 GET Statements
 
 ###### Details
 
@@ -3936,7 +3936,7 @@ which language entry to include, rather than to the resource (list of Statements
 
 <a name="voidedStatements" />
 
-##### 2.2.1.4 Voided Statements
+##### 2.1.4 Voided Statements
 [Section 4.3 Voided](#voided) describes the process by which statements can be voided. This section
 describes how voided statements are handled by the LRS when queried. 
 
@@ -3958,7 +3958,7 @@ voiding Statement, which cannot be voided.
 
 <a name="doctransfer"/>
 
-### 2.1 Document Resources 
+### 2.2 Document Resources 
 
 ##### Description
 The Experience API provides a facility for Activity Providers to save arbitrary data in 
@@ -4085,7 +4085,7 @@ a property, it SHOULD use a PUT request to replace the whole document as describ
 
 <a name="stateres"/> 
 
-### 2.2.2 State Resource
+### 2.3 State Resource
 
 ##### Description
 
@@ -4212,7 +4212,7 @@ specified\]).
 
 <a name="agentsres"/>
 
-### 2.2.3 Agents Resource
+### 2.4 Agents Resource
 
 The Agents Resource provides a method to retrieve a special Object with 
 combined information about an Agent derived from an outside service, such as a 
@@ -4307,7 +4307,7 @@ about the Agent it received in the request.
 	</tr>
 </table> 
 
-See also: [Section 4.1.2.1 Agent](#agent).
+See also: [Agent](#agent).
 
 ###### Requirements
 
@@ -4319,7 +4319,7 @@ property MUST occur only once.
 
 <a name="activitiesres"/> 
 
-### 2.2.4 Activities Resource
+### 2.5 Activities Resource
 
 The Activities Resource provides a method to retrieve a full description 
 of an Activity from the LRS. This Resource has [Concurrency](#concurrency) controls 
@@ -4349,7 +4349,7 @@ Loads the complete Activity Object specified.
 
 <a name="agentprofres"/>
 
-### 2.2.5 Agent Profile Resource
+### 2.6 Agent Profile Resource
 
 ###### Description
 
@@ -4424,7 +4424,7 @@ Timestamp (exclusive).
 
 <a name="actprofres"/> 
 
-### 2.2.6 Activity Profile Resource
+### 2.7 Activity Profile Resource
 
 ###### Description
 
@@ -4495,7 +4495,7 @@ the specified Timestamp (exclusive).
 
 <a name="aboutresource"/> 
 
-### 2.2.7 About Resource
+### 2.8 About Resource
 
 ###### Description
 
