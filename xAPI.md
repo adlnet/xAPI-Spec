@@ -217,7 +217,6 @@ JSON allows for objects to have properties that contain empty objects. This is n
 * [Application Programming Interface (API)](#def-api)
 * [Authentication](#def-authentication)
 * [Authorization](#def-authorization)
-* [Base Resource Path](#def-baseresourcepath)
 * [Community of Practice](#def-community-of-practice)
 * [Endpoint](#endpoint)
 * [Experience API (xAPI)](#def-experience-api)
@@ -258,8 +257,8 @@ the activity itself is not always the responsibility of software, rather just th
 
 <a name="def-actor" />
 
-__Actor__: An Agent (individual representation) or Group (multiple representation) tracked using Statements 
-as doing an action (Verb) within an Activity.  Is the "I" in "I did this".
+__Actor__: An individual or group representation tracked using Statements performing an action within 
+an Activity.  Is the "I" in "I did this".
 
 <a name="def-api" />
 
@@ -276,12 +275,6 @@ __Authentication__: The concept of verifying identity. Authentication allows int
 __Authorization__: The affordance of permissions based on role; the process of making one party 
 "trusted" by another.
 
-<a name="def-baseresourcepath" />
-
-__Base Resource Path__: The maximal path under all Experience API resources, including a slash. E.g. 
-an LRS with a Statements Resource of http://example.com/xAPI/statements has a Base Resource Path of 
-http://example.com/xAPI/"
-
 <a name="def-client" />
 
 __Client__: - Refers to any entity that might interact through requests. Some examples could be a 
@@ -296,7 +289,7 @@ purpose, which operates in a common modality.
 <a name="def-endpoint" />
 
 __Endpoint__: An entry point in a service-oriented-architecture.  xAPI mirrors this approach with Resources 
-and their associated paths.
+by defining the IRI from which communication takes place as an Endpoint.
 
 <a name="def-experience-api" />
 
@@ -396,15 +389,14 @@ It relies on HTTP methods and uses current web best practices.
 
 <a name="def-service" />
 
-__Service__: A software component responsible for one or more aspects of the distributed 
-learning process. An LMS typically combines many services to design a complete learning 
-experience.
+__Service__: A software component responsible for one or more aspects of the distributed learning process. 
+An LMS typically combines many services to design a complete learning experience.
 
 <a name="def-statement" />
 
-__Statement__: A simple construct consisting of ```<actor (learner)>``` ```<verb>``` ```<object>```, 
-with ```<result>```, in ```<context>``` to track an aspect of a learning experience. A set of 
-several Statements might be used to track complete details about a learning experience.
+__Statement__: A data sctructure showing evidence for any sort of experience or event which is to be tracked 
+in xAPI as a Learning Record.  A set of several Statements, each representing an event in time, might be used 
+to track complete details about a learning experience.  
 
 <a name="def-tcapi"/>
 
@@ -413,7 +405,7 @@ informal references to the Experience API.
 
 <a name="def-verb" />
 
-__Verb__: Defines the action being done by the Actor within the Activity within a Statement. 
+__Verb__: Is the action being done by the Actor within the Activity within a Statement. 
 A Verb represents the "did" in "I did this".
 
 <a name="xapi-components" />
