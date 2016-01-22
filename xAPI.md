@@ -3597,7 +3597,7 @@ The basic communication mechanism of the Experience API.
 
 <a name="stmtresput"/>
 
-#####2.1.1 PUT Statements
+####2.1.1 PUT Statements
 
 ###### Details
 
@@ -3640,7 +3640,7 @@ do not match. See [Statement comparision requirements](statement-comparision-req
 
 <a name="stmtrespost"/>
 
-#####2.1.2 POST Statements
+####2.1.2 POST Statements
 
 ###### Details
 
@@ -3675,7 +3675,7 @@ parameters passed. See [Alternate Request Syntax](#alt-request-syntax) for more 
 
 <a name="stmtresget"/>
 
-#####2.1.3 GET Statements
+####2.1.3 GET Statements
 
 ###### Details
 
