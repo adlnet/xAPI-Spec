@@ -74,7 +74,7 @@
 		*	1.1.	[HEAD Request Implementation](#httphead)  
 	 	*	1.2.	[Headers](#header-parameters) 
 	 	*	1.3.	[Alternate Request Syntax](#alt-request-syntax) 
-	 	*	2.9.	[Encoding](#encoding) 
+	 	*	1.4.	[Encoding](#encoding) 
 	*	2.0.	[Resources](#datatransfer)   
 	 	*	2.1.	[Statement Resource](#stmtres) 
 	 	*	2.2.	[Documents Resources](#doctransfer) 
@@ -3550,139 +3550,19 @@ decision to use this scheme.
 
 See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example. 
 
+<a name="encoding"/> 
+
+### 1.4 Encoding
+
+###### Requirement
+* All strings MUST be encoded and interpreted as UTF-8. 
+
 <a name="datatransfer"/> 
 
 ## 2.0 Data Storage and Retrieval
 
 This section contains implementation details and requirements surrounding how an LRS receives and responds to requests for data.  As mentioned in the previous section, this communication is done through HTTP 
 Requests to specific Resources, all of which have Endpoints. 
-
-<a name="doctransfer"/>
-
-### 2.1 Documents 
-
-##### Description
-The Experience API provides a facility for Activity Providers to save arbitrary data in 
-the form of documents, perhaps related to an Activity, Agent, or combination of both.
-
-##### Details
-Note that the following table shows generic properties, not a JSON Object as many other tables 
-in this specification do. The id is stored in the IRL, "updated" is HTTP header information, and 
-"contents" is the HTTP document itself (as opposed to an Object).
-<table>
-	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>id</td><td>String</td><td>Set by AP, unique within the scope of the agent or activity.</td></tr>
-	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
-	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
-</table>
-
-The three Document Resources provide [document](#miscdocument) storage for learning activity 
-providers and Agents. The details of each Resource are found in the following sections, and the 
-information in this section applies to all three Resources.
-
-###### Details
-
-<table>
-	<tr>
-		<th>Resource</th>
-		<th>Method</th>
-		<th>Endpoint</th>
-		<th>Example</th>
-	</tr>
-	<tr>
-		<td>State Resource</td>
-		<td>POST</td>
-		<td>activities/state</td>
-		<td>http://example.com/xAPI/activities/state</td>
-	</tr>
-	<tr>
-		<td>Activity Profile Resource</td>
-		<td>POST</td>
-		<td>activities/profile</td>
-		<td>http://example.com/xAPI/activities/profile</td>
-	</tr>
-	<tr>
-		<td>Agent Profile Resource</td>
-		<td>POST</td>
-		<td>agents/profile</td>
-		<td>http://example.com/xAPI/agents/profile</td>
-	</tr>
-</table>
-
-###### Requirements
-
-* An Activity Provider MAY send documents to any of the Document Resources for Activities and 
-Agents that the LRS does not have prior knowledge of. 
-
-* The LRS MUST NOT reject documents on the basis of not having prior knowledge of the 
-Activity and/or Agent.
-
-##### Last Modified
-The "Last Modified" header is set by the LRS when returning single or multiple documents in response
-to a GET request. 
-
-###### Requirements
-* When returning a single document, the LRS SHOULD* include a "Last-Modified" header indicating when
-the document was last modified. 
-* When returning multiple documents, the LRS SHOULD* include a "Last-Modified" header indicating when
-the most recently modified document was last modified. 
-
-###### JSON Procedure with Requirements
-
-If an Activity Provider stores variables as JSON Objects in a document with 
-content type application/json, they can manipulate them as sets of variables using POST.
-
-The following process walks through that process and the process requirements.  
-For example, a document contains: 
-
-```
-{
-	"x" : "foo",
-	"y" : "bar"
-}
-```  
-When an LRS receives a POST request with content type application/json for an existing document also of
-content type application/json, it MUST merge the posted document with the existing document. 
-In this context merge is defined as:
-* de-serialize the Objects represented by each document.
-* for each property directly defined on the Object being posted, set the corresponding
-property on the existing Object equal to the value from the posted Object.    
-* store any valid json serialization of the existing Object as the document referenced in the request.
-
-Note that only top-level properties are merged, even if a top-level property is an Object.
-The entire contents of each original property are replaced with the entire contents of
-each new property.
-
-For example, this document is POSTed with the same id as the existing 
-document above:
-
-```
-{
-	"x" : "bash",
-	"z" : "faz"
-}
-```  
-the resulting document stored in the LRS is:
-```
-{
-	"x" : "bash",
-	"y" : "bar",
-	"z" : "faz"
-}
-```
-
-###### Requirements
-
-* If the document being posted or any existing document does not have a Content-Type
-of "application/json", or if either document cannot be parsed as a JSON Object, the LRS MUST
-respond with HTTP status code ```400 Bad Request```, and MUST NOT update the target document
-as a result of the request.
-
-* If the merge is successful, the LRS MUST respond with HTTP 
-status code ```204 No Content```.
-
-* If an AP needs to delete
-a property, it SHOULD use a PUT request to replace the whole document as described below. 
 
 <a name="resources"/>
 
@@ -4084,6 +3964,133 @@ requirement. Clients wishing to retrieve voided Statements request these individ
 Statement, following the process and conditions described in
 [the section on filter conditions for StatementRefs](#queryStatementRef). This includes the
 voiding Statement, which cannot be voided. 
+
+<a name="doctransfer"/>
+
+### 2.1 Document Resources 
+
+##### Description
+The Experience API provides a facility for Activity Providers to save arbitrary data in 
+the form of documents, perhaps related to an Activity, Agent, or combination of both.
+
+##### Details
+Note that the following table shows generic properties, not a JSON Object as many other tables 
+in this specification do. The id is stored in the IRL, "updated" is HTTP header information, and 
+"contents" is the HTTP document itself (as opposed to an Object).
+<table>
+	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
+	<tr><td>id</td><td>String</td><td>Set by AP, unique within the scope of the agent or activity.</td></tr>
+	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
+	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
+</table>
+
+The three Document Resources provide [document](#miscdocument) storage for learning activity 
+providers and Agents. The details of each Resource are found in the following sections, and the 
+information in this section applies to all three Resources.
+
+###### Details
+
+<table>
+	<tr>
+		<th>Resource</th>
+		<th>Method</th>
+		<th>Endpoint</th>
+		<th>Example</th>
+	</tr>
+	<tr>
+		<td>State Resource</td>
+		<td>POST</td>
+		<td>activities/state</td>
+		<td>http://example.com/xAPI/activities/state</td>
+	</tr>
+	<tr>
+		<td>Activity Profile Resource</td>
+		<td>POST</td>
+		<td>activities/profile</td>
+		<td>http://example.com/xAPI/activities/profile</td>
+	</tr>
+	<tr>
+		<td>Agent Profile Resource</td>
+		<td>POST</td>
+		<td>agents/profile</td>
+		<td>http://example.com/xAPI/agents/profile</td>
+	</tr>
+</table>
+
+###### Requirements
+
+* An Activity Provider MAY send documents to any of the Document Resources for Activities and 
+Agents that the LRS does not have prior knowledge of. 
+
+* The LRS MUST NOT reject documents on the basis of not having prior knowledge of the 
+Activity and/or Agent.
+
+##### Last Modified
+The "Last Modified" header is set by the LRS when returning single or multiple documents in response
+to a GET request. 
+
+###### Requirements
+* When returning a single document, the LRS SHOULD* include a "Last-Modified" header indicating when
+the document was last modified. 
+* When returning multiple documents, the LRS SHOULD* include a "Last-Modified" header indicating when
+the most recently modified document was last modified. 
+
+###### JSON Procedure with Requirements
+
+If an Activity Provider stores variables as JSON Objects in a document with 
+content type application/json, they can manipulate them as sets of variables using POST.
+
+The following process walks through that process and the process requirements.  
+For example, a document contains: 
+
+```
+{
+	"x" : "foo",
+	"y" : "bar"
+}
+```  
+When an LRS receives a POST request with content type application/json for an existing document also of
+content type application/json, it MUST merge the posted document with the existing document. 
+In this context merge is defined as:
+* de-serialize the Objects represented by each document.
+* for each property directly defined on the Object being posted, set the corresponding
+property on the existing Object equal to the value from the posted Object.    
+* store any valid json serialization of the existing Object as the document referenced in the request.
+
+Note that only top-level properties are merged, even if a top-level property is an Object.
+The entire contents of each original property are replaced with the entire contents of
+each new property.
+
+For example, this document is POSTed with the same id as the existing 
+document above:
+
+```
+{
+	"x" : "bash",
+	"z" : "faz"
+}
+```  
+the resulting document stored in the LRS is:
+```
+{
+	"x" : "bash",
+	"y" : "bar",
+	"z" : "faz"
+}
+```
+
+###### Requirements
+
+* If the document being posted or any existing document does not have a Content-Type
+of "application/json", or if either document cannot be parsed as a JSON Object, the LRS MUST
+respond with HTTP status code ```400 Bad Request```, and MUST NOT update the target document
+as a result of the request.
+
+* If the merge is successful, the LRS MUST respond with HTTP 
+status code ```204 No Content```.
+
+* If an AP needs to delete
+a property, it SHOULD use a PUT request to replace the whole document as described below. 
 
 <a name="stateres"/> 
 
@@ -4548,14 +4555,6 @@ property MUST occur only once.
 * An LRS SHOULD allow unauthenticated access to this resource
 * An LRS MUST NOT reject requests based on their version header as would otherwise be 
 required by <a href="#versioning"/>Versioning</a>.
-
-<a name="encoding"/> 
-
-### 2.3 Encoding
-
-###### Requirement
-* All strings MUST be encoded and interpreted as UTF-8. 
-
 
 <a name="validation"/> 
 
