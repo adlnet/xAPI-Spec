@@ -20,7 +20,19 @@
 >send all feedback and inquiries to helpdesk@adlnet.gov  
 
 ## Table of Contents
-
+*	Part One:	[About the Experience API](#partone)  
+	*	1.0.	[Introduction](#introduction-partone) 
+	*	2.0.	[How To Use This Document](#readingguidelines)  
+		*	2.1.	[MUST / SHOULD / MAY](#def-must-should-may)  
+	 	*	2.2.	[Guidelines for Interpreting Descriptive Text and Tables](#interpret-text-table)  
+	*	3.0.	[Serialization and JavaScript Object Notation](#json)
+	*	4.0.	[Definitions](#definitions) 
+	*	5.0.	[xAPI Components](#xapi-components) 
+	*	6.0.	[Extending xAPI](#extending-xapi) 
+	*	7.0.	[Profiles and Communities of Practice](#COPs)  
+	*	[Appendices](#append1)  
+		*	[Appendix A: Revision History](#Appendix1A)  
+		*	[Appendix B: cmi5 Example](#Appendix1B)  
 *	Part Two:	[Experience API (xAPI) Data](#parttwo)  
 	*	1.0.	[Documents](#documents) 
 	*	2.0.	[Statements](#statements)  
@@ -58,8 +70,35 @@
 		*	[Appendix B: Example statement objects of different types](#Appendix2B)  
 		*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](#Appendix2C)  	
 		*	[Appendix D: Example Signed Statement](#Appendix2D)  
-		
-		
+*	Part Three:	[Data Processing, Validation, and Security](#partthree)  
+	*	1.0.	[Requests](#requests)
+		*	1.1.	[HEAD Request Implementation](#httphead)  
+	 	*	1.2.	[Headers](#header-parameters) 
+	 	*	1.3.	[Alternate Request Syntax](#alt-request-syntax) 
+	 	*	1.4.	[Encoding](#encoding) 
+	*	2.0.	[Resources](#datatransfer)   
+	 	*	2.1.	[Statement Resource](#stmtres) 
+	 	*	2.2.	[Documents Resources](#doctransfer) 
+	 	*	2.3.	[State Resource](#stateres) 
+	 	*	2.4.	[Agents Resource](#agentsres) 
+	 	*	2.5.	[Activities Resource](#activitiesres) 
+	 	*	2.6.	[Agent Profile Resource](#agentprofres) 
+	 	*	2.7.	[Activity Profile Resource](#actprofres) 
+	 	*	2.8.	[About Resource](#aboutresource) 
+   	*	3.0.	[Data Validation](#validation)     
+    	*	3.1.	[Concurrency](#concurrency)  
+    	*	3.2.	[Error Codes](#errorcodes)
+    	*	3.3     [Versioning](#versioning)  
+    *	4.0.	[Authentication](#authentication)  
+		*	4.1.	[OAuth 1.0 Authentication Scenarios and Methods](#authdefs) 
+		*	4.2.	[OAuth 1.0 Authorization Scope](#oauthscope)
+    *	5.0	[Security](#security)
+	*	[Appendices](#append3)  
+		*	[Appendix A: Converting Statements to 1.0.0](#Appendix3A)  
+		*	[Appendix B: Table of All Endpoints](#Appendix3B)  
+		*	[Appendix C: Cross Domain Request Example](#Appendix3C)  
+
+
 		<a name="parttwo" />
 #Part Two: Experience API (xAPI) Data
 
