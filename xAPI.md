@@ -32,6 +32,7 @@
 	*	7.0.	[Profiles and Communities of Practice](#COPs)  
 	*	[Appendices](#append1)  
 		*	[Appendix A: Revision History](#Appendix1A)  
+		*	[Appendix B: cmi5 Example](#Appendix1B)  
 *	Part Two:	[Experience API (xAPI) Data](#parttwo)  
 	*	1.0.	[Documents](#documents) 
 	*	2.0.	[Statements](#statements)  
@@ -464,7 +465,9 @@ and share best practices. The CoP will define these identifiers in a profile. Th
 vocabularies to implemented in addition to xAPI for the particular use case being addressed.
 
 It is recommended that a profile use a unique "category" within a Statement's context to refer to any Statement  
-which follows the profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current/blob/quartz/cmi5_runtime.md#ContextActivities"), which is designed for the traditional single learner, single online learning use case.
+which follows the profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current"), 
+which is designed for the traditional single learner, single online learning use case.  An example cmi5 Statement can 
+be found in [Appendix B: cmi5 Example](#Appendix1B).
 
 CoPs are highly recommended to avoid duplication of effort, as creating too many ways to solve the same problem 
 will cause fragmentation in similar domains and will hurt interoperability.  An example of a CoP for the medical 
@@ -530,6 +533,68 @@ Clarifications and additional examples including:
 - Rename Statement API and Document APIs to Statement Resource and Document Resources
 
 [1.0.2...1.0.3](https://github.com/adlnet/xAPI-Spec/compare/1.0.2...1.0.3)
+
+
+<a name="Appendix1B"/>
+### Appendix B: cmi5 Example 
+
+The following example illustrates a statement following the cmi5 Community of Practice. It demonstrates use of Extensions 
+and "category" Context Activities.
+
+```
+{
+  "id":"2a41c918-b88b-4220-20a5-a4c32391a240",
+  "actor": {
+    "objectType": "Agent",
+    "name": "Gert Frobe",
+    "account": {
+      "homePage": "http://example.adlnet.gov",
+      "name": "1625378"
+    }
+  },
+  "verb": {
+    "id": "http://adlnet.gov/expapi/verbs/failed",
+    "display": {
+      "en-US": "failed"
+    }
+  },
+  "object": {
+    "id":"https://example.adlnet.gov/AUidentifier",
+    "objectType": "Activity"
+  },
+  "result": {
+    "score": {
+      "scaled": 0.65,
+      "raw": 65,
+      "min": 0,
+      "max": 100
+    },
+    "success": false,
+    "duration": "PT30M",
+    "extensions": {
+    "http://w3id.org/xapi/cmi5/result/extensions/progress": 100
+    }
+  },
+  "context": {
+     "registration": "ec231277-b27b-4c15-8291-d29225b2b8f7",
+     "contextActivities": {
+        "category": [
+          {
+          "id": "http://w3id.org/xapi/cmi5/context/categories/moveon"
+          },
+          {
+          "id": "http://w3id.org/xapi/cmi5/context/categories/cmi5"
+          }
+        ]
+     },
+     "extensions": {
+       "http://w3id.org/xapi/cmi5/context/extensions/sessionid": "458240298378231",
+      }
+   },
+  "timestamp": "2012-06-01T19:09:13.245+00:00"
+}
+```
+
 
 <a name="parttwo" />
 #Part Two: Experience API (xAPI) Data
