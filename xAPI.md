@@ -2249,7 +2249,7 @@ Don't forget the ```<CRLF>```  when building or parsing these messages.
 Headers:
 
 ``` 
-Content-Type: multipart/mixed; boundary=abcABC0123'()+_,-./:=?
+Content-Type: multipart/mixed; boundary="abcABC0123'()+_,-./:=?"
 X-Experience-API-Version:1.0.0
 ```
 Content:
