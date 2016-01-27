@@ -99,9 +99,8 @@
 		*	[Appendix C: Cross Domain Request Example](#Appendix3C)  
 
 
-		<a name="parttwo" />
+<a name="parttwo" />
 #Part Two: Experience API (xAPI) Data
-
 
 <a name="documents" />
 ## 1.0 Documents
