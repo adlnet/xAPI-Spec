@@ -101,20 +101,27 @@
 <a name="introduction-partone"></a>
 ## 1.0 Introduction
 
-The Experience API (xAPI) is a technical specification that aims to facilitate the documentation and communication of learning experiences. It specifies 
-a structure to describe learning experiences and defines how these descriptions can be exchanged electronically.  
+The Experience API (xAPI) is a technical specification that aims to facilitate the documentation and communication of 
+learning experiences. It specifies a structure to describe learning experiences and defines how these descriptions can 
+be exchanged electronically.  
 
-The xAPI is an initiative of the Advanced Distributed Learning (ADL), established in 1997 to standardize and modernize training and education management and delivery in the US. Among the many outcomes of ADL was SCORM - the Sharable Content Object Reference Model. SCORM has become an internationally recognized framework that has been a major factor contributing to the economy and effectiveness of online learning around the world.
-  
-While SCORM has been a great success, there is a growing realization of the need to track learning experiences of individuals beyond formal, structured computer-based training. In assessing candidates' suitability for positions or their capability for performing various tasks, there is a need to consider a wide range of formal and informal learning experiences, both on and offline.  That information, more often than not is scattered across a wide variety of sources.
+The xAPI is an effort of the Advanced Distributed Learning (ADL) Initiative.  ADL was established in 1997 to 
+standardize and modernize training and education management and delivery in the US. Since that time, there has been a 
+growing realization of the need to track learning experiences of individuals beyond formal, structured computer-based training. 
+In assessing candidates' suitability for positions or their capability for performing various tasks, there is a need 
+to consider a wide range of formal and informal learning experiences, both on and offline.  That information, 
+more often than not is scattered across a wide variety of sources.
 
-Out of this perceived need, the xAPI initiative and specification were born. xAPI assumes that:
-  * There is a need to be able to analyze information about learning experiences and their outcomes distributed across a wide variety of sources, platforms and technologies.
-  * Developing a commonly-accepted framework for gathering, storing and exchanging this information represents the best way of achieving this.
+Out of this perceived need, the xAPI community and specification were born. xAPI assumes that:
+  * There is a need to be able to analyze information about learning experiences and their outcomes distributed across 
+  a wide variety of sources, platforms and technologies.
+  * Developing a commonly-accepted framework for gathering, storing and exchanging this information represents the 
+  best way of achieving this.
 
 The goals of the xAPI are:
 
-* To make it easier to understand and compare learning experiences and their outcomes recorded across a wide variety of contexts, platforms and technologies.
+* To make it easier to understand and compare learning experiences and their outcomes recorded across a wide 
+variety of contexts, platforms and technologies.
 * To maximize interoperability of systems which create, gather, store and process information about learning experiences.
 * To provide a guide to those who want to build applications that conform to and implement this specification.
 * To provide criteria against which conformance to this specification can be tested.
