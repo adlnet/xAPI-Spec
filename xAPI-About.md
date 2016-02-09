@@ -203,13 +203,24 @@ even if there no requirement in a given area.
 <a name="json"></a>
 ## 3.0 Serialization and JavaScript Object Notation (JSON)
 
-Serialization is the process of translating data objects and structures into a format for storage or transmission, such that the original data object can be recreated from the resulting serialization. In some cases it might be possible to serialize a piece of data in more than one way, for example a boolean property with a value of true might be represented as ```true``` or ```1``` depending on the serialization used. 
+Serialization is the process of translating data objects and structures into a format for storage or transmission, such that the 
+original data object can be recreated from the resulting serialization. In some cases it might be possible to serialize a piece 
+of data in more than one way. For example, a boolean property with a value corresponding to true might be represented 
+as ```true``` or ```1``` depending on the serialization used. 
 
-xAPI follows the rules of JSON for serializations (so boolean values are represented as ```true``` or ```false```). It might also be possible to represent the objects defined in this specification using other serializations, such as XML. This is out of scope of this specification and use of anything other than JSON to represent the objects defined in this specification is not conformant. 
+xAPI follows the rules of JSON for serializations (so boolean values are represented as ```true``` or ```false```). It might 
+also be possible to represent the objects defined in this specification using other serializations, such as XML. This is out 
+of scope of this specification and use of anything other than JSON to represent the objects defined in this specification 
+is not conformant. 
 
-Even within the rules of JSON there are possible variations of how data can be serialized, especially in relation to data about time. This is significant as a number of features of xAPI rely on systems being able to determine whether two Statements are equivalent. See <a href="#statement-immutability-and-exceptions"> Immutability and exceptions</a> for more details about the properties of the Statement affected by this. 
+Even within the rules of JSON there are possible variations of how data can be serialized, especially in relation to data 
+about time. This is significant as a number of features of xAPI rely on systems being able to determine whether two 
+Statements are equivalent. See <a href="./xAPI-Data.md#statement-immutability-and-exceptions"> Immutability and exceptions</a> 
+for more details about the properties of the Statement affected by this. 
 
-JSON allows for objects to have properties that contain empty objects. This is not recommended within xAPI; if the statement is not intended to contain data about a property then it is expected that the property will not be used at all. All required properties are required to contain values. 
+JSON allows for objects to have properties that contain empty objects. This is not recommended within xAPI; if the Statement 
+is not intended to contain data about a property then it is expected that the property will not be used at all. 
+All required properties are required to contain values. 
 
 ###### Requirements
 * Statements and other objects SHOULD NOT include properties with a value of an empty object. 
@@ -351,7 +362,8 @@ takes on many forms, including Statements, documents, and their parts.  This def
 
 <a name="def-learning-record-consumer" ></a>
 
-__Learning Record Consumer__: An xAPI Client that accesses data from Learning Record Store(s) with the intent of processing the data, including interpretation, analysis, translation, dissemination, and aggregation.
+__Learning Record Consumer__: An xAPI Client that accesses data from Learning Record Store(s) with the intent of processing 
+the data, including interpretation, analysis, translation, dissemination, and aggregation.
 
 <a name="def-learning-record-provider" ></a>
 
