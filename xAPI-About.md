@@ -131,11 +131,10 @@ The document that follows sets out the xAPI specification which is designed to a
 
 ## 2.0 How to Use This Document
 
-This is a definitive document which describes how the Experience API is to be implemented
-across a variety of systems. It is a technical document authored specifically for individuals 
-and organizations implementing this technology with the intent of such individuals 
-developing interoperable tools, systems and services that are independent of each other 
-and interoperable with each other. 
+This is a definitive document which describes how the Experience API is to be implemented.
+It is a technical document authored specifically for individuals and organizations implementing this 
+technology with the intent of such individuals developing interoperable tools, systems and services that 
+are independent of each other and interoperable with each other. 
 
 Whenever possible, the language and formatting used in this document is intended to be 
 _considerate_ of non-technical readers because various tools, systems and services 
@@ -146,18 +145,19 @@ _high-level overview_ of a given facet of the Experience API are labeled **descr
 This specification is split into three parts. Part one is this introduction. It offers some background, 
 high-level summaries and direction on how to read the rest of the specification. 
 
-Part two of this specification defines 
-a data model for various data objects that are transferred between systems. The most significant object within the xAPI data model 
-is the Statement object. This specification defines the properties of the Statement object (including "Actor", "Verb", "Object", 
-"Result", and "Context") and the rules of syntax for the values of those properties and how they are represented. 
-This part helps to ensure that systems implementing the specification follow a consistent data structure.
+Part two of this specification defines a data model for various data objects that are used in this specification. 
+The most significant object within the xAPI data model is the Statement object. This specification defines the properties 
+of the Statement object (including "Actor", "Verb", "Object", "Result", and "Context") and the rules of syntax for the 
+values of those properties and how they are represented. This part helps to ensure that services implementing the 
+specification follow a consistent data structure.
 
 Part three of this specification sets out the transfer methods that must be used when communicating 
-information about learning experiences between programs that adhere to the specification. This includes the format 
-of requests and the expected responses. Note that the systems storing or retrieving records need not be Activity Providers. LRSs 
-can communicate with other LRSs, or systems. xAPI follows the guidelines of the REST software architecture style, and as such data 
-is transferred via HTTP requests and responses. Part three also defines security methods allowing for the trusted exchange of information 
-between the Learning Record Store and trusted sources.
+information about learning experiences between services that adhere to the specification. This includes the format 
+of requests and the expected responses. Note that communication in xAPI is not restricted to an LRS receiving data from 
+"content". LRSs can communicate with services ranging from Learning Record Producers to Learning Record Consumers to 
+other LRSs. xAPI follows the guidelines of the REST software architecture style, and as such data is transferred via HTTP 
+requests and responses. Part three also defines security methods allowing for the trusted exchange of information 
+between the Learning Record Store and trusted services.
 
 <a name="def-must-should-may"></a>
 ### 2.1 MUST / SHOULD / MAY 
