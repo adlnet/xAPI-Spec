@@ -555,6 +555,7 @@ Clarifications and additional examples including:
 ###### 1.0.2 to 1.0.3 (TBC, 2016)
 - Complete reorganization of the document into three parts
 - Many, many clarifications
+- Definitions slightly modified and greatly clarified
 - Removed back-references to SCORM
 - Additional explanatory text and diagrams
 - Rename Statement API and Document APIs to Statement Resource and Document Resources
