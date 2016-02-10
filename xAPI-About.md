@@ -295,7 +295,7 @@ __Authorization__: The affordance of permissions based on role; the process of m
 
 <a name="def-client" ></a>
 
-__Client__: - Refers to any entity that might interact through requests. Some examples could be a 
+__Client__: Refers to any entity that might interact through requests. Some examples could be a 
 Learning Record Provider, a Learning Record Consumer, a Learning Record Store (LRS), or a Learning 
 Management System (LMS).
 
@@ -437,7 +437,9 @@ This section explains and shows graphically how different pieces of xAPI can fit
 
 ![Data Flow in xAPI](/xAPIDataFlow.jpg)
 
-Figure 1 shows the tracking of experiences through the data flow of xAPI. While a learner experiences a learning activity, data about that experience is tracked to a Learning Record Store (LRS). Authentication with the LRS may use the learner's credentials, the activity provider's credentials, or a combination. A Data Analysis Tool, acting as a Service with permission, can request the data from the LRS and use it to display meaningful reports or visualizations. In the case of more structured learning, a user may be dependent on an Activity Provider to deliver and/or authorize use of content to them. Once this triangle of authorization and access is complete, a registration exists for that user in that content tracked by that LRS and experience tracking may proceed.
+Figure 1 shows the tracking of experiences through the data flow of xAPI. Within an Activity, data about the learning 
+experiences that take place is tracked to a Learning Record Store (LRS). Authentication with the LRS may use the learner's 
+credentials, the activity provider's credentials, or a combination. A Data Analysis Tool, acting as a Service with permission, can request the data from the LRS and use it to display meaningful reports or visualizations. In the case of more structured learning, a user may be dependent on an Activity Provider to deliver and/or authorize use of content to them. Once this triangle of authorization and access is complete, a registration exists for that user in that content tracked by that LRS and experience tracking may proceed.
 
 ##### Activity Data and Metadata
 
@@ -465,10 +467,12 @@ different personas of the same user. The LRS can aggregate all of the informatio
 
 ## 6.0 Extending xAPI
 
-xAPI can be extended in a few ways. The most notable is Statement Extensions, which allow great flexibility within Statements.  It is recommended that profiles or Communities of Practice agree on how to use  
-extensions for their particular use cases. Implementation details are covered in [4.1 Extensions](#miscext).
+xAPI can be extended in a few ways. The most notable is Statement Extensions, which allow great flexibility within Statements. 
+It is recommended that Communities of Practice agree on how to use extensions for their particular use cases and utilize 
+Profiles whenever possible. Implementation details are covered in [4.1 Extensions](#miscext).
 
-The About Resource is another place xAPI supports Extensions.  The LRS may find it useful to communicate features or behaviors beyond this specification to activity provider. The LRS can use extensions to the About Resource to communicate these features and behaviours.
+The About Resource is another location where xAPI supports Extensions.  The LRS may find it useful to communicate features or 
+behaviors beyond this specification. The LRS can use extensions to the About Resource to facilitate this communication.
 
 Finally, the set of Resources implemented is not expected to be constrained by this document. Resources beyond 
 those listed in this specification can be implemented and co-exist with the Resources defined in this specification.
@@ -477,14 +481,18 @@ those listed in this specification can be implemented and co-exist with the Reso
 
 ## 7.0 Profiles and Communities of Practice
 
-xAPI strictly defines the structure of statements communicated between the client and an LRS but is very flexible as to the content of that statement structure. For example, the specification requires that all statements have a verb property, but does not restrict the values of that property; any verb can be used. This flexibility enables xAPI to be used in any context, including future use cases not envisaged by the specification authors.
+xAPI strictly defines the structure of Statements, but is very flexible as to the contents of that structure. For example, the 
+specification requires that all Statements have a Verb property, but does not restrict the values of that property; any Verb 
+can be used. This flexibility enables xAPI to be used in any context, including future use cases not envisaged by the 
+specification authors.
 
-It is intended that Communities of Practice (CoPs) will define the identifiers (verbs, activity types, contextual relationships, extensions, etc.) to be used in their use cases. It is very important that such communities exist  
-and share best practices. The CoP will define these identifiers in a profile. This is a set of rules and/or 
-vocabularies to implemented in addition to xAPI for the particular use case being addressed.
+It is intended that Communities of Practice (CoPs) will define Verbs, Activity types, contextual relationships, Extensions, etc. 
+to be used in their use cases by providing unique identifiers wherever applicable. The CoP will define these identifiers in a 
+Profile. A Profile is a set of rules and/or vocabularies to implemented in addition to xAPI for the particular use case being 
+addressed. It is very important that such communities exist and share best practices. 
 
-It is recommended that a profile use a unique "category" within a Statement's context to refer to any Statement  
-which follows the profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current"), 
+It is recommended that a Profile use a unique "category" within a Statement's context to refer to any Statement  
+which implements the Profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current"), 
 which is designed for the traditional single learner, single online learning use case.  An example cmi5 Statement can 
 be found in [Appendix B: cmi5 Example](#Appendix1B).
 
