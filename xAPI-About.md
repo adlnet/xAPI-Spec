@@ -433,35 +433,50 @@ A Verb represents the "did" in "I did this".
 
 This section explains and shows graphically how different pieces of xAPI can fit together.  
 
-##### Tracking Experiences Through Systems
+##### Tracking Experiences
 
 ![Data Flow in xAPI](/xAPIDataFlow.jpg)
 
-Figure 1 shows the tracking of experiences through the data flow of xAPI. Within an Activity, data about the learning 
-experiences that take place is tracked to a Learning Record Store (LRS). Authentication with the LRS may use the learner's 
-credentials, the activity provider's credentials, or a combination. A Data Analysis Tool, acting as a Service with permission, can request the data from the LRS and use it to display meaningful reports or visualizations. In the case of more structured learning, a user may be dependent on an Activity Provider to deliver and/or authorize use of content to them. Once this triangle of authorization and access is complete, a registration exists for that user in that content tracked by that LRS and experience tracking may proceed.
+Figure 1 shows the tracking of learning experiences. A learner has a Learning Experience. This experience could take place in an 
+online course, it could be on the job or it could be part of recreation. It really could be anything. This experience is tracked, 
+on the learner’s behalf, by a trusted Learning Record Provider. The Learning Record Provider may also be responsible for the 
+trusted relationship between the experience and the learner, and perhaps even launching “content” for the learner and digital 
+rights associated with the content…but it doesn’t have to be.  
+
+The Learning Record Provider creates Learning Records and sends them to one or more Learning Record Stores (LRS). The Learner has 
+an account on the LRS and can manage access to their own records. The Learning Record Store has authentication and authorization 
+responsibilities with each party. A Learning Record Consumer can access Learning Records it is authorized to do so from the LRS. 
+Components that interact with the LRS in a request-response manner are referred to as Clients.
 
 ##### Activity Data and Metadata
 
 ![xAPI Activity Data and Metadata](/xAPIMetadata.jpg)
 
-Understanding how a single activity (as uniquely identified by its IRI) is produced, populated, updated, and 
-consumed is a key concept in xAPI. Figure 2 shows this process. xAPI Statements with the Activity objects have 
-metadata properties that may be populated. This is done through the  Activity Definition object. The Id of each 
-Activity is an IRI which also could have metadata located at where it resolves to. Any metadata where the IRI resolves is under the control of the Metadata Provider. Any metadata at the IRI is the authoritative source of metadata, and could be used to populate the LRS's canonical version of the Activity's metadata (Activity 
-Definition) as a preference to what it receives from Statements. A Metadata Consumer can access Metadata directly from the authority or can query the Activities Resource.  
+Understanding how a single Activity (as uniquely identified by its IRI) is defined and described is a key concept in xAPI. 
+Figure 2 shows this process. An Activity (as a part of a Statement) has metadata properties that may be populated within the 
+Statement itself. This is done in the Statement's Activity Definition. The Id of each Activity is an IRI which also could have 
+metadata located at where it resolves to. Any metadata where the IRI resolves is under the control of the Metadata Provider. 
+The Metadata Provider is also responsible for making sure the IRI is permanent and resolves correctly.
+
+Any metadata located at where the IRI resolves is the authoritative source of metadata, and could be used to populate the LRS's 
+canonical version of the Activity's metadata (LRS's Activity Definition) as a preference to what it receives from Statements. 
+A Metadata Consumer can access metadata via the IRI for the authoritative version or can query the Activities Resource for the 
+canonical version.
 
 
 ##### Agent and Profile Management
 
-![xAPI Activity Data and Metadata](/xAPIAgentsAndEndpoints.jpg)
+![xAPI Activity Data and Metadata](/xAPIPersonas.jpg)
 
-xAPI grants the framework for allowing selective access to one's personal data. This is done through the 
-management of what are called personas. In xAPI, each persona represents the "I" in "I did this" and is 
-logically the subject of the Statement. A user sending records to an LRS could have multiple personas associated with him or her. In Figure 3, a single user can access multiple Services(or apps, etc.), each of which could have a different persona. More likely is that personas exist for a particular purpose, such as work, home, school, 
-social, etc.  Each of these Services send data to the LRS. Within the LRS now, there are Statements from three 
-different personas of the same user. The LRS can aggregate all of the information of each of the personas into one 
-"Person" Object and send it through the Agents Resource.  
+xAPI grants the framework for allowing selective access to one's personal data. This is done through the management of what are 
+called personas. In xAPI, each persona represents the "I" in "I did this" and is logically the subject of the Statement. Each 
+Agent or Group in xAPI corresponds to a persona. A learner sending records to an LRS could have multiple personas (Agents) 
+associated with him or her. 
+
+In Figure 3, a learner accesses multiple Services. Some of these Services are used at work, others at home.  Some are used for 
+social purposes and others are used for educational or professional puproses.  Thus, there are multiple personas at work 
+collectively within these Services.  Each of these Services send data to the LRS. Afterwards, there are Statements from three 
+different personas of the same learner. The LRS can aggregate all of the information of each of the personas into one "Person" Object.
 
 <a name="extending-xapi" ></a>
 
