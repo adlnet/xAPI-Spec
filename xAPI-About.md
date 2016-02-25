@@ -154,10 +154,10 @@ specification follow a consistent data structure.
 Part three of this specification sets out the transfer methods that must be used when communicating 
 information about learning experiences between services that adhere to the specification. This includes the format 
 of requests and the expected responses. Note that communication in xAPI is not restricted to an LRS receiving data from 
-"content". LRSs can communicate with services ranging from Learning Record Producers to Learning Record Consumers to 
+"content". LRSs can communicate with services ranging from Learning Record Providers to Learning Record Consumers to 
 other LRSs. xAPI follows the guidelines of the REST software architecture style, and as such data is transferred via HTTP 
 requests and responses. Part three also defines security methods allowing for the trusted exchange of information 
-between the Learning Record Store and trusted services.
+between the Learning Record Store and trusted clients.
 
 <a name="def-must-should-may"></a>
 ### 2.1 MUST / SHOULD / MAY 
@@ -441,12 +441,12 @@ Figure 1 shows the tracking of learning experiences. A learner has a Learning Ex
 online course, it could be on the job or it could be part of recreation. It really could be anything. This experience is tracked, 
 on the learner’s behalf, by a trusted Learning Record Provider. The Learning Record Provider may also be responsible for the 
 trusted relationship between the experience and the learner, and perhaps even launching “content” for the learner and digital 
-rights associated with the content…but it doesn’t have to be.  
+rights associated with the content, but shouldn't be viewed as boundaries or even "the norm".  
 
 The Learning Record Provider creates Learning Records and sends them to one or more Learning Record Stores (LRS). The Learner has 
-an account on the LRS and can manage access to their own records. The Learning Record Store has authentication and authorization 
-responsibilities with each party. A Learning Record Consumer can access Learning Records it is authorized to do so from the LRS. 
-Components that interact with the LRS in a request-response manner are referred to as Clients.
+an account on the LRS/LRSs. The Learning Record Store has authentication and authorization responsibilities with each party. A 
+Learning Record Consumer can access Learning Records it is authorized to do so from the LRS. Components that interact with the LRS 
+in a request-response manner are referred to as Clients.
 
 ##### Activity Data and Metadata
 
@@ -455,8 +455,8 @@ Components that interact with the LRS in a request-response manner are referred 
 Understanding how a single Activity (as uniquely identified by its IRI) is defined and described is a key concept in xAPI. 
 Figure 2 shows this process. An Activity (as a part of a Statement) has metadata properties that may be populated within the 
 Statement itself. This is done in the Statement's Activity Definition. The Id of each Activity is an IRI which also could have 
-metadata located at where it resolves to. Any metadata where the IRI resolves is under the control of the Metadata Provider. 
-The Metadata Provider is also responsible for making sure the IRI is permanent and resolves correctly.
+metadata located at the resolution location of the IRI. Any metadata where the IRI resolves is under the control of the Metadata 
+Provider. The Metadata Provider is also responsible for making sure the IRI is permanent and resolves correctly.
 
 Any metadata located at where the IRI resolves is the authoritative source of metadata, and could be used to populate the LRS's 
 canonical version of the Activity's metadata (LRS's Activity Definition) as a preference to what it receives from Statements. 
