@@ -153,11 +153,11 @@ specification follow a consistent data structure.
 
 Part three of this specification sets out the transfer methods that must be used when communicating 
 information about learning experiences between services that adhere to the specification. This includes the format 
-of requests and the expected responses. Note that communication in xAPI is not restricted to an LRS receiving data from 
-"content". LRSs can communicate with services ranging from Learning Record Providers to Learning Record Consumers to 
-other LRSs. xAPI follows the guidelines of the REST software architecture style, and as such data is transferred via HTTP 
-requests and responses. Part three also defines security methods allowing for the trusted exchange of information 
-between the Learning Record Store and trusted clients.
+of requests and the expected responses. Note that communication in xAPI is not restricted to a Learning Record Store (LRS) 
+receiving data from "content". LRSs can communicate with services ranging from Learning Record Providers to 
+Learning Record Consumers to other LRSs. xAPI follows the guidelines of the REST software architecture style, and as such 
+data is transferred via HTTP requests and responses. Part three also defines security methods allowing for the trusted 
+exchange of information between the LRS and trusted clients.
 
 <a name="def-must-should-may"></a>
 ### 2.1 MUST / SHOULD / MAY 
