@@ -105,18 +105,12 @@
 <a name="documents" />
 ## 1.0 Documents
 
-### Document
-
-The Experience API provides a facility for Activity Providers to save arbitrary data in the form of documents.  This data 
+The Experience API provides a facility for Learning Record Providers to save arbitrary data in the form of documents.  This data 
 is largely unstructured, which allows for flexibility.  Specifics on document behaviors can be found in [Part 3](#doctransfer) 
 
 <a name="statements" /> 
 
 ## 2.0 Statements  
-
-###### Description 
-The Statement is the core of the xAPI. All learning events are stored as Statements.
-A Statement is akin to a sentence of the form "I did this".
 
 <a name="statement-purpose"/> 
 ### 2.1 Purpose
@@ -132,10 +126,9 @@ just the sum of its parts.
 
 ###### Details
 
-All the properties used in Statements are restricted to certain types, and those types
-constrain the behavior of systems processing Statements. For clarity, certain key
-requirements are documented here, emphasizing where compliant systems have a responsibility
-to act in certain ways.
+All of the properties used in Statements are restricted to certain data types. For clarity, key requirements are 
+documented here, emphasizing where Clients (especially Learning Record Stores (LRSs)) have a responsibility to act 
+in certain ways to be considered conformant to this specification.
 
 ###### Requirements
 
@@ -147,9 +140,9 @@ to act in certain ways.
 
 ###### Client Requirements
 
-The following requirements reiterate especially important requirements already 
-included elsewhere, to emphasize, clarify, and provide implementation guidance.  
-Complete IRI validation is extremely difficult, so much of the burden for ensuring data portability is on the Client.
+The following requirements reiterate especially important requirements already included elsewhere, to emphasize,
+clarify, and provide implementation guidance.  Complete IRI validation is extremely difficult, so much of the burden 
+for ensuring data portability is on the Client.
 
 * Values requiring IRIs MUST be sent with valid IRIs. 
 * Keys of language maps MUST be sent with valid [RFC 5646](http://tools.ietf.org/html/rfc5646) language tags, for similar reasons.
@@ -207,31 +200,28 @@ Statement is to be disregarded.
 
 Statements are immutable (they cannot be changed). The following are exceptions or areas not covered by this rule:
 
-* Potential or required assignments of properties during LRS 
-processing ("id", "authority", "stored", "timestamp", "version"). 
+* Potential or required assignments of properties during LRS processing ("id", "authority", "stored", "timestamp", "version"). 
 
-* Activity Definitions referenced by a Statement. The content of 
-Activity Definitions that are referenced in Statements is not considered part of the 
-Statement itself. This means a deep serialization of a Statement into 
-JSON will change if the referenced Activity Definition changes (see the
-[Statement API's](#stmtapi) "format" parameter for details).  
+* Activity Definitions referenced by a Statement. The content of Activity Definitions that are referenced in Statements 
+is not considered part of the Statement itself. This means a deep serialization of a Statement into JSON will change if 
+the referenced Activity Definition changes (see the [Statement API's](#stmtapi) "format" parameter for details).  
 
 * Verbs referenced by a Statement. The Display property of the Verb is not considered 
 part of the Statement itself (see the [Statement API's](#stmtapi) "format" parameter for details). 
 
-* Serialization of Timestamp data. This is not considered part of the immutable statement 
-itself. For example, the timestamp and stored properties of a statement can be returned
-in a different timezone to the one with which they were stored so long as the point in time
-referenced is not affected. See [4.1.7 Timestamp](#timestamp) and [4.1.8 Stored](#stored) for details. 
+* Serialization of Timestamp data. This is not considered part of the immutable Statement itself. For example, 
+the timestamp and stored properties of a statement can be returned in a different timezone to the one with 
+which they were stored so long as the point in time referenced is not affected. 
+See [4.1.7 Timestamp](#timestamp) and [4.1.8 Stored](#stored) for details. 
 
-* Serialization of un-ordered lists. The list of Agents in a Group is not considered to be an ordered list
-and so the LRS can return this list of agents in any order. See [4.1.2.2 Groups](#group).
+* Serialization of un-ordered lists. The list of Agents in a Group is not considered to be an ordered list.  Thus, 
+the LRS can return this list of agents in any order. See [4.1.2.2 Groups](#group).
 
-* Attachments. These are not part of statements and an LRS will return statements without attachments when the client
-requests this (see the [Statement API's](#stmtapi) "attachments" parameter for details).
+* Attachments. These are not part of Statements and an LRS will return Statements without attachments when a Client
+requests them (see the [Statement API's](#stmtapi) "attachments" parameter for details).
 
 * Case sensitivity. Some properties are case insensitive and changes in case therefore do not affect immutability. 
-For example the domain portion an e-mail address is case insensitive. It is recommended to use lowercase for any case 
+For example, the domain portion an e-mail address is case insensitive. It is recommended to use lowercase for any case 
 insensitive text. 
 
 The following explicitly are **not** exceptions and **are** covered by this rule:
@@ -243,7 +233,7 @@ Result Duration is considered a string for purposes of statement comparison.
 
 <a name="statement-comparision-requirements" />
 ###### Statement Comparision Requirements
-There are a number of scenarios outlined in this specification which require statements to be
+There are a number of scenarios outlined in this specification which require Statements to be
 compared to see if they match. In these scenarios, the following rules apply:
 
 * Differences which could have been caused by 
@@ -261,8 +251,9 @@ The certainty that an LRS has an accurate and complete collection of data is gua
 cannot be logically changed or deleted. This immutability of Statements is a key factor in enabling the distributed 
 nature of Experience API.
 
-However, not all Statements are perpetually valid once they have been issued. Mistakes or other factors could require that a previously made Statement is marked as invalid. This is called "voiding a Statement" and the
-reserved Verb “http://adlnet.gov/expapi/verbs/voided" is used for this purpose. Any Statement that voids another
+However, not all Statements are perpetually valid once they have been issued. Mistakes or other factors could dictate 
+that a previously made Statement is marked as invalid. This is called "voiding a Statement" and the reserved 
+Verb “http://adlnet.gov/expapi/verbs/voided" is used for this purpose. Any Statement that voids another
 cannot itself be voided.
 
 ###### Requirements
@@ -271,14 +262,15 @@ cannot itself be voided.
 property set to "StatementRef".
 * When issuing a Statement that voids another, the Object of that voiding Statement MUST specify the id 
 of the statement-to-be-voided by its "id" property.
-* an LRS MUST consider a Statement it contains "voided" if and only if the Statement is not itself a voiding Statement and the LRS also contains a voiding Statement referring to the first Statement.
+* an LRS MUST consider a Statement it contains "voided" if and only if the Statement is not itself a voiding 
+Statement and the LRS also contains a voiding Statement referring to the first Statement.
 * Upon receiving a Statement that voids another, the LRS SHOULD reject the entire request which includes the 
 voiding Statement with HTTP 403 'Forbidden' if the request is not from a source authorized to void Statements.
 * Upon receiving a Statement that voids another, the LRS SHOULD NOT* reject the request on the grounds of the 
 Object of that voiding Statement not being present. 
 * Upon receiving a Statement that voids another, the LRS MAY roll back any changes to Activity or Agent 
 definitions which were introduced by the Statement that was just voided.
-* An Activity Provider that wants to "unvoid" a previously voided Statement SHOULD issue that Statement 
+* A Learning Record Provider that wants to "unvoid" a previously voided Statement SHOULD issue that Statement 
 again under a new id.
 
 __Note:__ See ["Statement References"](#stmtref) in [When the "Object" is a Statement](#stmtasobj) 
