@@ -2,17 +2,19 @@
 
 This Github repository contains the xAPI Specification. xAPI is a learning
 technologies interoperability specification that describes communication
-about learner activity and experiences between technologies. You can
-[read the latest release of the specification here](xAPI.md).  The group meets
-the first, second, and third Wednesdays of each month on GoToWebinar.  You can
-register [at https://attendee.gotowebinar.com/register/279276321478091778](https://attendee.gotowebinar.com/register/279276321478091778)
+about learner activity and experiences between technologies. The specification is
+divided into three documents:
+
+*   Part One:   [About the Experience API](./xAPI-About.md#partone)
+*   Part Two:   [Experience API (xAPI) Data](./xAPI-Data.md#parttwo)
+*   Part Three: [Data Processing, Validation, and Security](./xAPI-Communication.md#partthree)
 
 ## Specification versions
 
 The current version of the specification is
-[1.0.2](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI.md).
-[1.0.3](https://github.com/adlnet/xAPI-Spec/blob/1.0.3/xAPI.md) is currently
-being developed by the specification working group.
+[1.0.3](https://github.com/adlnet/xAPI-Spec/blob/master/).
+
+The next version of the specification has not been planned. 
 
 ## What to do if the spec is unclear
 
@@ -50,10 +52,7 @@ and at our
 You'll need to [sign up for a GitHub account](https://github.com/signup/free) if
 you do not already have one in order to contribute to the specification.
 
-In addition to raising and discussing issues, you can contribute by:
+The xAPI Spec Working Group meets
+the first, second, and third Wednesdays of each month on GoToWebinar. See the [xAPI spec Google Group](https://groups.google.com/a/adlnet.gov/forum/#!forum/xapi-spec) for the latest webinar registration link and news about meetings. 
 
-* [Reviewing open Pull Requests](CONTRIBUTING.md#review-pr)
-* [Suggesting solutions to issues](CONTRIBUTING.md#suggest-solution)
-* [Making a Pull Request to address an issue](CONTRIBUTING.md#make-pr)
-
-Click the links above to find out how to do each of these things.
+Please refer to the [Contribution guidelines](CONTRIBUTING.md) for further direction and a list of contributors. 
