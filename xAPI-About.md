@@ -255,6 +255,7 @@ All required properties are required to contain values.
 * [Metadata Consumer](#def-metadata-consumer)
 * [Persona](#def-persona)
 * [Profile](#def-profile)
+* [Recipe](#def-recipe)
 * [Registration](#def-registration)
 * [Representational State Transfer (REST)](#def-rest)
 * [Service](#def-service)
@@ -398,9 +399,9 @@ having a "home email" and a "work email".  Both are the same person, but have di
 
 __Profile__: A profile is a specific set of rules and documentation for implementing xAPI in a particular context. Profiles generally provide a particular vocabulary of terms, some created specifically for the profile, and some are referenced from other vocabularies. Sometimes a profile might provide multiple vocabularies for different situations, and sometimes someone might curate a vocabulary from multiple sources without creating a profile.
 
-<a name="def-recipes" ></a>
+<a name="def-recipe" ></a>
 
-__Recipes__: Refer to a way of expressing how a common type of learning activity could be syntactically represented in the form of a sample xAPI Statement. A recipe is intended to be reusable by other developers or CoPs. It can specify the statement structure, objects and properties, the required values associated with each object and property, and the object identifiers.
+__Recipe__: Refers to a way of expressing how a common type of learning activity could be syntactically represented in the form of a sample xAPI Statement. A recipe is intended to be reusable by other developers or CoPs. It can specify the statement structure, objects and properties, the required values associated with each object and property, and the object identifiers.
 
 
 <a name="def-registration" ></a>
