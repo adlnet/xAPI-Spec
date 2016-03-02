@@ -2417,8 +2417,8 @@ a statement returned by an LRS including the authority and stored properties set
         }
         
     },
-    "timestamp": "2013-05-18T05:32:34.804Z+00:00",
-    "stored": "2013-05-18T05:32:34.804Z+00:00",
+    "timestamp": "2013-05-18T05:32:34.804+00:00",
+    "stored": "2013-05-18T05:32:34.804+00:00",
     "authority": {
         "account": {
             "homePage": "http://cloud.scorm.com/",
