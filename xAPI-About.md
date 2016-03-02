@@ -77,6 +77,8 @@
 	 	*	1.3.	[Alternate Request Syntax](./xAPI-Communication.md#alt-request-syntax) 
 	 	*	1.4.	[Encoding](./xAPI-Communication.md#encoding) 
 	 	*	1.5.	[Content Types](./xAPI-Communication.md#content-types) 
+	        *	1.5.1.	[Application/JSON](./xAPI-Communication.md#applicationjson) 
+	        *	1.5.1.	[Multipart/Mixed](./xAPI-Communication.md#multipartmixed)
 	*	2.0.	[Resources](./xAPI-Communication.md#datatransfer)   
 	 	*	2.1.	[Statement Resource](./xAPI-Communication.md#stmtres) 
 	 	*	2.2.	[Documents Resources](./xAPI-Communication.md#doctransfer) 
