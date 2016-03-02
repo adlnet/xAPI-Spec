@@ -261,29 +261,43 @@ See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example.
 
 <a name="content-types"/> 
 ### 1.5 Content Types
+Requests within this specification normally use an application/json content type. Exceptions to this are:
+
+* Documents can have any content type. 
+* Statement requests that may sometimes include attachments use the multipart/mixed content type. 
 
 <a name="applicationjson"/> 
 #### 1.5.1 Application/JSON
+Requests within this specification normally use an application/json content type. 
+
+###### LRS Requirements
+* When receiving a PUT or POST with a document type of "application/json”, an LRS MUST accept batches 
+of Statements which contain no attachment Objects.
+* When receiving a PUT or POST with a document type of "application/json”, an LRS MUST accept batches 
+of Statements which contain only attachment Objects with a populated fileUrl.
 
 <a name="multipartmixed"/> 
 #### 1.5.2 Multipart/Mixed
 
-_Procedure for the exchange of attachments_
+The multipart/mixed content type is used for requests that *could* include attachments. This does not mean that all multipart/mixed
+requests neccesarily do include attachments.
 
-1. A Statement including an attachment is construed according to the Transmission Format described below.
+##### Procedure for the exchange of attachments
+
+1. A Statement request including zero or more attachments is construed as described below.
 
 2. The Statement is sent to the receiving system using a Content-Type of
-"multipart/mixed". The attachments are placed at the end of such transmissions.
+"multipart/mixed". Any attachments are placed at the end of such transmissions.
 
 3. The receiving system decides whether to accept or reject the Statement based on the information in the first part.
 
-4. If it accepts the attachment, it can match the raw data of an attachment
-with the attachment header in a Statement by comparing the SHA-2 of the raw
+4. If it accepts the request, it can match the raw data of an attachment(s)
+with the attachment header by comparing the SHA-2 of the raw
 data to the SHA-2 declared in the header. It MUST not do so any other way.
 
 ###### Requirements for Attachment Statement Batches
 
-A Statement batch, Statement results, or single Statement that includes attachments MUST satisfy one of the 
+A request transmitting a Statement batch, Statement results, or single Statement that includes attachments MUST satisfy one of the 
 following criteria:
 
 * It MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for Statement 
@@ -303,14 +317,10 @@ results when the attachments filter is false.
 ###### LRS Requirements
 
 * An LRS MUST include attachments in the Transmission Format described above
-when requested by the Client (see Section [7.3 "Statement Resource"](#stmtapi)).
+when requested by the Client (see ["Statement Resource"](#stmtapi)).
 * An LRS MUST NOT pull Statements from another LRS without requesting attachments.
 * An LRS MUST NOT push Statements into another LRS without including attachment data
 received, if any, for those attachments.
-* When receiving a PUT or POST with a document type of "application/json”, an LRS MUST accept batches 
-of Statements which contain no attachment Objects.
-* When receiving a PUT or POST with a document type of "application/json”, an LRS MUST accept batches 
-of Statements which contain only attachment Objects with a populated fileUrl.
 * When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST accept batches of 
 Statements that contain attachments in the Transmission Format described above.
 * When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST reject batches of 
@@ -318,7 +328,10 @@ Statements having attachments that neither contain a fileUrl nor match a receive
 * When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS SHOULD assume a 
 Content-Transfer-Encoding of binary for attachment parts.
 * An LRS MAY reject (batches of) Statements that are larger than the LRS is configured to allow.
-
+* When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS SHOULD* accept batches 
+of Statements which contain no attachment Objects.
+* When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS SHOULD* accept batches 
+of Statements which contain only attachment Objects with a populated fileUrl.
 
 __Note:__ There is no requirement that Statement batches using the mime/multipart format
 contain attachments.
