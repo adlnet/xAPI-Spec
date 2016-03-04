@@ -3113,7 +3113,7 @@ Returns: ```204 No Content```
 	</tr>
 	<tr>
 		<td>agent</td>
-		<td>JSON<</td>
+		<td>JSON</td>
 		<td>The Agent associated with this state.</td>
 		<td>Required</td>
 	</tr>
