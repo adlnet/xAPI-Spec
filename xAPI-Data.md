@@ -127,8 +127,8 @@ just the sum of its parts.
 ###### Details
 
 All of the properties used in Statements are restricted to certain data types. For clarity, key requirements are 
-documented here, emphasizing where Clients (especially Learning Record Stores (LRSs)) have a responsibility to act 
-in certain ways to be considered conformant to this specification.
+documented here, emphasizing where xAPI components have a responsibility to act in certain ways to be considered 
+conformant to this specification.
 
 ###### Requirements
 
