@@ -12,7 +12,7 @@ divided into three documents:
 ## Specification versions
 
 The current version of the specification is
-[1.0.3](https://github.com/adlnet/xAPI-Spec/blob/master/).
+[1.0.3](https://github.com/adlnet/xAPI-Spec/).
 
 The next version of the specification has not been planned. 
 
