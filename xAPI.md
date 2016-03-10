@@ -428,8 +428,8 @@ experience.
 
 <a name="def-statement" />
 
-__Statement__: A simple construct consisting of ```<actor (learner)>``` ```<verb>``` ```<object>```, 
-with ```<result>```, in ```<context>``` to track an aspect of a learning experience. A set of 
+__Statement__: A simple construct consisting of `<actor (learner)>` `<verb>` `<object>`, 
+with `<result>`, in `<context>` to track an aspect of a learning experience. A set of 
 several Statements may be used to track complete details about a learning experience.
 
 <a name="def-tcapi"/>
@@ -1182,7 +1182,7 @@ A Sub-Statement is a new Statement included as part of a parent Statement.
 
 One interesting use of Sub-Statements is in creating Statements of intention. 
 For example, using Sub-Statements we can create Statements of the form 
-```"<I> <planned> (<I> <did> <this>)"```  to indicate that we've planned to take some 
+`"<I> <planned> (<I> <did> <this>)"`  to indicate that we've planned to take some 
 action. The concrete example that follows logically states that 
 "I planned to visit 'Some Awesome Website'". 
  
@@ -1792,7 +1792,7 @@ Below is an example of a very simple Statement with an attachment. Please note t
 like 'image/jpeg' no encoding would be done, the raw octets would be included;
 * Per RFC 1341, the boundary is <CRLF> followed by -- followed by the boundary string declared in the header.
 
-Don't forget the ```<CRLF>```  when building or parsing these messages.
+Don't forget the `<CRLF>`  when building or parsing these messages.
 
 Headers:
 
@@ -2512,12 +2512,12 @@ syntax after this represents the particular endpoint used.
 
 ###### Requirements
 
-* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
+* The LRS MUST reject with `HTTP 400 Bad Request` status any request to any 
 of these APIs that use any parameters which the LRS does not recognize in their 
 intended context in this specification ( __Note:__ LRSs may recognize and act on 
 parameters not in this specification).
 
-* The LRS MUST reject with ```HTTP 400 Bad Request``` status any request to any 
+* The LRS MUST reject with `HTTP 400 Bad Request` status any request to any 
 of these APIs that use any parameters matching parameters described in this 
 specification in all but case.
 
@@ -2535,38 +2535,38 @@ be returned from various methods in the API.
 
 ##### Details 
 
-* ```400 Bad Request``` - Indicates
+* `400 Bad Request` - Indicates
 an error condition caused by an invalid or missing argument. The term 
 "invalid arguments" includes malformed JSON or invalid Object structures.
 
-* ```401 Unauthorized``` - Indicates that authentication is required, or in the 
+* `401 Unauthorized` - Indicates that authentication is required, or in the 
 case authentication has been posted in the request, that the given credentials 
 have been refused.
 
-* ```403 Forbidden``` - Indicates that the request is unauthorized for the given 
+* `403 Forbidden` - Indicates that the request is unauthorized for the given 
 credentials. Note this is different than refusing the credentials given. In 
 this case, the credentials have been validated, but the authenticated Client 
 is not allowed to perform the given action.
 
-* ```404 Not Found``` - Indicates the requested resource was not found. May be 
+* `404 Not Found` - Indicates the requested resource was not found. May be 
 returned by any method that returns a uniquely identified resource, for 
 instance, any State or Agent Profile or Activity Profile API call targeting a specific document, 
 or the method to retrieve a single Statement.
 
-* ```409 Conflict``` - Indicates an error condition due to a conflict with the 
+* `409 Conflict` - Indicates an error condition due to a conflict with the 
 current state of a resource, in the case of State API, Agent Profile or Activity Profile API
 calls, or in the Statement PUT or POST calls. See Section [6.3 Concurrency](#concurrency) for more details.
 
-* ```412 Precondition Failed``` - Indicates an error condition due to a failure of 
+* `412 Precondition Failed` - Indicates an error condition due to a failure of 
 a precondition posted with the request, in the case of State or Agent Profile or Activity Profile 
 API calls. See Section [6.3 Concurrency](#concurrency) for more details.
 
-* ```413 Request Entity Too Large``` - Indicates that the LRS has rejected the Statement or 
+* `413 Request Entity Too Large` - Indicates that the LRS has rejected the Statement or 
 document because its size is larger than the maximum allowed by the LRS. The LRS is free to
 choose any limit and MAY vary this limit on any basis, e.g., per authority, but
 MUST be configurable to accept Statements of any size.
 
-* ```500 Internal Server Error``` - Indicates a general error condition, typically an 
+* `500 Internal Server Error` - Indicates a general error condition, typically an 
 unexpected exception in processing on the server.
 
 ##### Requirements
@@ -2590,11 +2590,11 @@ The basic communication mechanism of the Experience API.
 
 ###### Details
 
-Example endpoint: ```http://example.com/xAPI/statements```
+Example endpoint: `http://example.com/xAPI/statements`
 
 Stores Statement with the given id.
 
-Returns: ```204 No Content```  
+Returns: `204 No Content`  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th><th>Required</th></tr>
@@ -2606,11 +2606,11 @@ Returns: ```204 No Content```
 
 * An LRS MUST NOT make any modifications to its state based on receiving a Statement
 with a statementID that it already has a Statement for. Whether it responds with
-```409 Conflict``` or ```204 No Content```, it MUST NOT modify the Statement or any other
+`409 Conflict` or `204 No Content`, it MUST NOT modify the Statement or any other
 Object.
 
 * If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
-verify the received Statement matches the existing one and return ```409 Conflict``` if they
+verify the received Statement matches the existing one and return `409 Conflict` if they
 do not match.
 
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
@@ -2621,7 +2621,7 @@ do not match.
 
 ###### Details
 
-Example endpoint: ```http://example.com/xAPI/statements```
+Example endpoint: `http://example.com/xAPI/statements`
 
 Stores a Statement, or a set of Statements. Since the PUT method targets a specific 
 Statement id, POST must be used rather than PUT to save multiple Statements, or to 
@@ -2631,17 +2631,17 @@ on the AP, and have the LRS query that API for the list of updated (or new)
 Statements periodically. This will likely only be a realistic option for systems 
 that provide a lot of data to the LRS.  
 
-Returns: ```200 OK```, Statement id(s) (UUID).  
+Returns: `200 OK`, Statement id(s) (UUID).  
 
 ###### Requirements
 
 * An LRS MUST NOT make any modifications to its state based on a receiving a Statement
 with a statementID that it already has a Statement for. Whether it responds with
-```409 Conflict``` or ```200 OK```, it MUST NOT modify the Statement or any other
+`409 Conflict` or `200 OK`, it MUST NOT modify the Statement or any other
 Object.
 
 * If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
-verify the received Statement matches the existing one and return ```409 Conflict``` if they
+verify the received Statement matches the existing one and return `409 Conflict` if they
 do not match.
 
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
@@ -2658,7 +2658,7 @@ parameters passed. See Section [7.8 Cross Origin Requests](#78-cross-origin-requ
 
 ###### Details
 
-Example endpoint: ```http://example.com/xAPI/statements```
+Example endpoint: `http://example.com/xAPI/statements`
 
 This method may be called to fetch a single Statement or multiple Statements. If the
 statementId or voidedStatementId parameter is specified a single Statement is returned.
@@ -2669,7 +2669,7 @@ subject to permissions and maximum list length. If additional results are
 available, an IRL to retrieve them will be included in the StatementResult 
 Object.
 
-Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 4.2](#retstmts) for details)
+Returns: `200 OK`, Statement or [Statement Result](#retstmts) (See [Section 4.2](#retstmts) for details)
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th><th>Required</th></tr>
@@ -2839,10 +2839,10 @@ Returns: ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 
 
 ###### Requirements
 
-* The LRS MUST reject with an ```HTTP 400``` error any requests to this resource 
+* The LRS MUST reject with an `HTTP 400` error any requests to this resource 
 which contain both statementId and voidedStatementId parameters
 
-* The LRS MUST reject with an ```HTTP 400``` error any requests to this resource 
+* The LRS MUST reject with an `HTTP 400` error any requests to this resource 
 which contain statementId or voidedStatementId parameters, and also contain any 
 other parameter besides "attachments" or "format".
 
@@ -2995,14 +2995,14 @@ the resulting document stored in the LRS is:
 If the original document exists, and the original document or the document being posted
 do not have a Content-Type:
 of "application/json", or if either document cannot be parsed as JSON Objects, the LRS MUST
-respond with HTTP status code ```400 Bad Request```, and MUST NOT update the target document
+respond with HTTP status code `400 Bad Request`, and MUST NOT update the target document
 as a result of the request.
 
 If the original document does not exist, the LRS MUST treat the request the same as it 
 would a PUT request and store the document being posted.
 
 If the merge is successful, the LRS MUST respond with HTTP 
-status code ```204 No Content```.
+status code `204 No Content`.
 
 If an AP needs to delete
 a property, it SHOULD use a PUT request to replace the whole document as described below. 
@@ -3029,8 +3029,8 @@ Example endpoint: http://example.com/xAPI/activities/state
 Stores, fetches, or deletes the document specified by the given stateId that 
 exists in the context of the specified Activity, Agent, and registration (if specified).  
 
-Returns (PUT | POST | DELETE): ```204 No Content```  
-Returns (GET): ```200 OK```, State Content  
+Returns (PUT | POST | DELETE): `204 No Content`  
+Returns (GET): `200 OK`, State Content  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -3067,7 +3067,7 @@ registration if specified\]). If "since" parameter is specified, this
 is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
 
-Returns: ```200 OK```, Array of ids  
+Returns: `200 OK`, Array of ids  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -3102,7 +3102,7 @@ Example endpoint: http://example.com/xAPI/activities/state
 Deletes all state data for this context (Activity + Agent \[+ registration if 
 specified\]).  
 
-Returns: ```204 No Content```  
+Returns: `204 No Content`  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -3150,7 +3150,7 @@ Example endpoint: http://example.com/xAPI/activities
 
 Loads the complete Activity Object specified.  
 
-Returns: ```200 OK```, Content 
+Returns: `200 OK`, Content 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -3167,8 +3167,8 @@ Example endpoint: http://example.com/xAPI/activities/profile
 Saves/retrieves/deletes the specified profile document in the context of the 
 specified Activity.  
 
-Returns (PUT | POST | DELETE): ```204 No Content```  
-Returns (GET): ```200 OK```, Profile Content  
+Returns (PUT | POST | DELETE): `204 No Content`  
+Returns (GET): `200 OK`, Profile Content  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -3192,7 +3192,7 @@ Loads ids of all profile entries for an Activity. If "since" parameter is
 specified, this is limited to entries that have been stored or updated since 
 the specified timestamp (exclusive).  
 
-Returns: ```200 OK```, List of ids  
+Returns: `200 OK`, List of ids  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
 	<tr>
@@ -3299,7 +3299,7 @@ include the information associated with the requested Agent.
 
 See also: [Section 4.1.2.1 Agent](#agent).
 
-Returns: ```200 OK```, Expanded Agent Object
+Returns: `200 OK`, Expanded Agent Object
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -3323,8 +3323,8 @@ Example endpoint: http://example.com/xAPI/agents/profile
 Saves/retrieves/deletes the specified profile document in the context of the 
 specified Agent.  
 
-Returns (PUT | POST | DELETE): ```204 No Content```  
-Returns (GET): ```200 OK```, Profile Content  
+Returns (PUT | POST | DELETE): `204 No Content`  
+Returns (GET): `200 OK`, Profile Content  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -3349,7 +3349,7 @@ Loads ids of all profile entries for an Agent. If "since" parameter is specified
 this is limited to entries that have been stored or updated since the specified 
 timestamp (exclusive).  
 
-Returns: ```200 OK```, List of ids  
+Returns: `200 OK`, List of ids  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -3388,7 +3388,7 @@ allow other uses to emerge.
 
 Example endpoint: http://example.com/xAPI/about
 
-Returns: ```200 OK```, Single 'about' JSON document.
+Returns: `200 OK`, Single 'about' JSON document.
 <table border="1">
 	<tr><th>property</th><th>type</th><th>description</th><th>Required</th></tr>
 	<tr>
