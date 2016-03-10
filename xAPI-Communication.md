@@ -523,7 +523,7 @@ Object.
 			If 'exact', return Agent, Activity, Verb and Group Objects populated exactly as they 
 			were when the Statement was received. An LRS requesting Statements for the purpose 
 			of importing them would use a format of 'exact' in order to maintain 
-			<a href="./xAPI-Data.md#statement-immutablity-and-exceptions">Statement Immutability</a>a>.  
+			<a href="./xAPI-Data.md#statement-immutablity-and-exceptions">Statement Immutability</a>.  
 			<br/><br/>
 			If 'canonical', return Activity Objects and Verbs populated with the canonical
 			definition of the Activity Objects and Display of the Verbs as determined by the LRS, after
