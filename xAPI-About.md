@@ -479,7 +479,12 @@ associated with him or her.
 In Figure 3, a learner accesses multiple Services. Some of these Services are used at work, others at home.  Some are used for 
 social purposes and others are used for educational or professional puproses.  Thus, there are multiple personas at work 
 collectively within these Services.  Each of these Services send data to the LRS. Afterwards, there are Statements from three 
-different personas of the same learner. The LRS can aggregate all of the information of each of the personas into one "Person" Object.
+different personas of the same learner. 
+
+The LRS can aggregate all of the information of each of the personas into one "Person" Object. This object can be retrieved from 
+The LRS via the [Agents Resource](./xAPI-Communication.md#agentsres). How the LRS knows that these 
+multiple personas belong to a single person is out of scope of this specification and there are several different approaches
+that an LRS can take. It's also possible that some LRSs will have no mechanism for associating personas. 
 
 <a name="extending-xapi" ></a>
 
