@@ -196,9 +196,9 @@ requirement in a given area.
 <a name="json" />
 ## 3.0 Serialization and JavaScript Object Notation (JSON)
 
-Serialization is the process of translating data objects and structures into a format for storage or transmission, such that the original data object can be recreated from the resulting serialization. In some cases it might be possible to serialize a piece of data in more than one way, for example a boolean property with a value of true might be represented as `true` or `1` depending on the serialization used. 
+Serialization is the process of translating data objects and structures into a format for storage or transmission, such that the original data object can be recreated from the resulting serialization. In some cases it might be possible to serialize a piece of data in more than one way, for example a boolean property with a value of true might be represented as ```true``` or ```1``` depending on the serialization used. 
 
-xAPI follows the rules of JSON for serializations (so boolean values are represented as `true` or `false`). It might also be possible to represent the objects defined in this specification using other serializations, such as XML. This is out of scope of this specification and use of anything other than JSON to represent the objects defined in this specification is not conformant. 
+xAPI follows the rules of JSON for serializations (so boolean values are represented as ```true``` or ```false```). It might also be possible to represent the objects defined in this specification using other serializations, such as XML. This is out of scope of this specification and use of anything other than JSON to represent the objects defined in this specification is not conformant. 
 
 Even within the rules of JSON there are possible variations of how data can be serialized, especially in relation to data about time. This is significant as a number of features of xAPI rely on systems being able to determine whether two Statements are equivalent. See <a href="#statement-immutability-and-exceptions"> Immutability and exceptions</a> for more details about the properties of the Statement affected by this. 
 
@@ -1468,7 +1468,7 @@ Run-Time Environment. See [Appendix C](#Appendix2C) for examples of each format.
 		<td>numeric</td>
 		<td>A range of numbers represented by a minimum and a maximum delimited by <code>[:]</code>. 
 			Where the range does not have a maximum or does not have a minimum, that number is omitted but the delimiter is
-			still used. E.g. `"[:]4"` indicates a maximum for 4 and no minimum. 
+			still used. E.g. ```"[:]4"``` indicates a maximum for 4 and no minimum. 
 			Where the correct response or learner's response is a single number rather than a range, the single number
 			with no delimiter MAY be used. 
 		</td>
@@ -1491,7 +1491,7 @@ if **all** of the items in that list match the learner's response. For example, 
 ]
 ``` 
 
-In this example, `foo[,]bar` and  `foo` are correct learner responses; `bar` is not.
+In this example, ```foo[,]bar``` and  ```foo``` are correct learner responses; ```bar``` is not.
 
 The Correct Responses Pattern, if used, is intended to be an exhaustive list of possible correct responses. Where the criteria for a question are complex and correct responses cannot be exhaustively listed, Activity Providers are discouraged from using the "correct responses pattern" property.
 
@@ -1503,7 +1503,7 @@ is omitted.
 
 ###### Characterstring parameters
 Some of the values within the responses described above can be prepended with certain additional parameters. These were originally based on the characterstring
-delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These parameters are represented by the format `{parameter=value}`.
+delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These parameters are represented by the format ```{parameter=value}```.
 See [the long-fill-in example within Appendix C](#long-fill-in). 
 
 Characterstring parameters are not validated by the LRS. Systems interpreting statement data can use their best judgement in interpreting (or ignoring) invalid characterstring parameters and values.
@@ -1690,7 +1690,7 @@ A SubStatement is like a Statement included as part of a containing Statement, b
 
 One interesting use of SubStatements is in creating Statements of intention. 
 For example, using SubStatements we can create Statements of the form 
-`"<I> <planned> (<I> <did> <this>)"`  to indicate that we've planned to take some 
+```"<I> <planned> (<I> <did> <this>)"```  to indicate that we've planned to take some 
 action. The concrete example that follows logically states that 
 "I planned to visit 'Some Awesome Website'". 
  
@@ -2341,7 +2341,7 @@ Below is an example of a very simple Statement with an attachment. Please note t
 like 'image/jpeg' no encoding would be done, the raw octets would be included;
 * Per RFC 2046, the boundary is <CRLF> followed by -- followed by the boundary string declared in the header.
 
-Don't forget the `<CRLF>`  when building or parsing these messages.
+Don't forget the ```<CRLF>```  when building or parsing these messages.
 
 Headers:
 
@@ -3699,13 +3699,13 @@ The basic communication mechanism of the Experience API.
 
 ###### Details
 
-Example endpoint: `http://example.com/xAPI/statements`
+Example endpoint: ```http://example.com/xAPI/statements```
 
 Stores a single Statement with the given id. POST can also be used to store single Statements.
 
 **Content:** The Statement object to be stored. 
 
-**Returns:** `204 No Content`  
+**Returns:** ```204 No Content```  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th><th>Required</th></tr>
@@ -3717,15 +3717,15 @@ Stores a single Statement with the given id. POST can also be used to store sing
 
 * An LRS MUST NOT make any modifications to its state based on receiving a Statement
 with a statementID that it already has a Statement for. Whether it responds with
-`409 Conflict` or `204 No Content`, it MUST NOT modify the Statement or any other
+```409 Conflict``` or ```204 No Content```, it MUST NOT modify the Statement or any other
 Object.
 
 * If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
-verify the received Statement matches the existing one and SHOULD return `409 Conflict` if they
+verify the received Statement matches the existing one and SHOULD return ```409 Conflict``` if they
 do not match. See [Statement comparision requirements](statement-comparision-requirements).
 
 * If the LRS receives a Statement with an id it already has a Statement for **in the same batch**, it SHOULD*
-verify the received Statement matches the existing one and SHOULD return `400 Bad Request` if they
+verify the received Statement matches the existing one and SHOULD return ```400 Bad Request``` if they
 do not match. See [Statement comparision requirements](statement-comparision-requirements).
 
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
@@ -3742,7 +3742,7 @@ do not match. See [Statement comparision requirements](statement-comparision-req
 
 ###### Details
 
-Example endpoint: `http://example.com/xAPI/statements`
+Example endpoint: ```http://example.com/xAPI/statements```
 
 Stores a Statement, or a set of Statements. 
 
@@ -3754,16 +3754,16 @@ that provide a lot of data to the LRS.
 
 **Content:** An array of Statements or a single Statement to be stored. 
 
-**Returns:** `200 OK`, Array of Statement id(s) (UUID).  
+**Returns:** ```200 OK```, Array of Statement id(s) (UUID).  
 
 ###### Requirements
 
 * An LRS MUST NOT make any modifications to its state based on a receiving a Statement
 with a statementID that it already has a Statement for. Whether it responds with
-`409 Conflict` or `200 OK`, it MUST NOT modify the Statement or any other
+```409 Conflict``` or ```200 OK```, it MUST NOT modify the Statement or any other
 Object.
 * If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
-verify the received Statement matches the existing one and return `409 Conflict` if they
+verify the received Statement matches the existing one and return ```409 Conflict``` if they
 do not match. See [Statement comparision requirements]statement-comparision-requirements).
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 * GET Statements MAY be called using POST and form parameters if necessary as query strings 
@@ -3777,7 +3777,7 @@ parameters passed. See [Alternate Request Syntax](#alt-request-syntax) for more 
 
 ###### Details
 
-Example endpoint: `http://example.com/xAPI/statements`
+Example endpoint: ```http://example.com/xAPI/statements```
 
 This method is called to fetch a single Statement or multiple Statements. If the
 statementId or voidedStatementId parameter is specified a single Statement is returned.
@@ -3790,7 +3790,7 @@ Object.
 
 **Content:** None.
 
-**Returns:** `200 OK`, Statement or [Statement Result](#retstmts) (See [Section 4.2](#retstmts) for details)
+**Returns:** ```200 OK```, Statement or [Statement Result](#retstmts) (See [Section 4.2](#retstmts) for details)
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th><th>Required</th></tr>
@@ -3946,13 +3946,13 @@ Object.
 	</tr>
 </table>
 
-__Note:__ The values of Boolean parameters are represented as `true` or `false` as in JSON.
+__Note:__ The values of Boolean parameters are represented as ```true``` or ```false``` as in JSON.
 ###### Requirements
 
-* The LRS MUST reject with an `HTTP 400` error any requests to this resource 
+* The LRS MUST reject with an ```HTTP 400``` error any requests to this resource 
 which contain both statementId and voidedStatementId parameters
 
-* The LRS MUST reject with an `HTTP 400` error any requests to this resource 
+* The LRS MUST reject with an ```HTTP 400``` error any requests to this resource 
 which contain statementId or voidedStatementId parameters, and also contain any 
 other parameter besides "attachments" or "format".
 
@@ -3960,7 +3960,7 @@ other parameter besides "attachments" or "format".
 with the credentials used. 
 
 * In the event that no statements are found matching the query filter criteria, the LRS MUST still return 
-`HTTP 200` and a [StatementResult](#retstmts) Object. In this case, the statements property will contain
+```HTTP 200``` and a [StatementResult](#retstmts) Object. In this case, the statements property will contain
 an empty array.
 
 * The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
@@ -4172,11 +4172,11 @@ the resulting document stored in the LRS is:
 
 * If the document being posted or any existing document does not have a Content-Type
 of "application/json", or if either document cannot be parsed as a JSON Object, the LRS MUST
-respond with HTTP status code `400 Bad Request`, and MUST NOT update the target document
+respond with HTTP status code ```400 Bad Request```, and MUST NOT update the target document
 as a result of the request.
 
 * If the merge is successful, the LRS MUST respond with HTTP 
-status code `204 No Content`.
+status code ```204 No Content```.
 
 * If an AP needs to delete
 a property, it SHOULD use a PUT request to replace the whole document as described below. 
@@ -4207,8 +4207,8 @@ exists in the context of the specified Activity, Agent, and registration (if spe
 **Content (PUT | POST):** The document to be stored or updated.  
 **Content (GET | DELETE):** None.  
 
-**Returns (PUT | POST | DELETE):** `204 No Content`  
-**Returns (GET):** `200 OK`, the State document 
+**Returns (PUT | POST | DELETE):** ```204 No Content```  
+**Returns (GET):** ```200 OK```, the State document 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -4247,7 +4247,7 @@ Timestamp (exclusive).
 
 **Content:** None.
 
-**Returns:** `200 OK`, Array of State Ids  
+**Returns:** ```200 OK```, Array of State Ids  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -4285,7 +4285,7 @@ specified\]).
 
 **Content:** None.
 
-**Returns**: `204 No Content`  
+**Returns**: ```204 No Content```  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -4335,7 +4335,7 @@ It is not a Person Object, nor is it a Group.
 
 **Content:** None.
 
-**Returns:** `200 OK`, Person Object
+**Returns:** ```200 OK```, Person Object
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -4430,7 +4430,7 @@ Loads the complete Activity Object specified.
 
 **Content:** None.
 
-**Returns:** `200 OK`, Content 
+**Returns:** ```200 OK```, Content 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -4470,8 +4470,8 @@ specified Agent.
 **Content (PUT | POST):** The document to be stored or updated.  
 **Content (GET | DELETE):** None.  
 
-**Returns (PUT | POST | DELETE):** `204 No Content`  
-**Returns (GET):** `200 OK`, the Profile document  
+**Returns (PUT | POST | DELETE):** ```204 No Content```  
+**Returns (GET):** ```200 OK```, the Profile document  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -4501,7 +4501,7 @@ Timestamp (exclusive).
 
 **Content:** None.
 
-**Returns:** `200 OK`, Array of Profile Ids  
+**Returns:** ```200 OK```, Array of Profile Ids  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -4544,8 +4544,8 @@ specified Activity.
 **Content (PUT | POST):** The document to be stored or updated.  
 **Content (GET | DELETE):** None.  
 
-**Returns (PUT | POST | DELETE)** `204 No Content`  
-**Returns (GET):** `200 OK`, the Profile document  
+**Returns (PUT | POST | DELETE)** ```204 No Content```  
+**Returns (GET):** ```200 OK```, the Profile document  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
@@ -4571,7 +4571,7 @@ the specified Timestamp (exclusive).
 
 **Content:** None.
 
-**Returns:** `200 OK`, Array of Profile Ids  
+**Returns:** ```200 OK```, Array of Profile Ids  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
@@ -4614,7 +4614,7 @@ Example endpoint: http://example.com/xAPI/about
 
 **Content:** None.
 
-**Returns:** `200 OK`, JSON object containing basic metadata about this LRS
+**Returns:** ```200 OK```, JSON object containing basic metadata about this LRS
 <table border="1">
 	<tr><th>property</th><th>type</th><th>description</th><th>Required</th></tr>
 	<tr>
@@ -4782,40 +4782,40 @@ will be sufficiently high such that the rate of requests made during conformance
 The list below offers some general guidance on HTTP error codes that could
 be returned from various methods in the API. 
 
-* `400 Bad Request` - Indicates
+* ```400 Bad Request``` - Indicates
 an error condition caused by an invalid or missing argument. The term 
 "invalid arguments" includes malformed JSON or invalid Object structures.
 
-* `401 Unauthorized` - Indicates that authentication is required, or in the 
+* ```401 Unauthorized``` - Indicates that authentication is required, or in the 
 case authentication has been posted in the request, that the given credentials 
 have been refused.
 
-* `403 Forbidden` - Indicates that the request is unauthorized for the given 
+* ```403 Forbidden``` - Indicates that the request is unauthorized for the given 
 credentials. Note this is different than refusing the credentials given. In 
 this case, the credentials have been validated, but the authenticated Client 
 is not allowed to perform the given action.
 
-* `404 Not Found` - Indicates the requested resource was not found. May be 
+* ```404 Not Found``` - Indicates the requested resource was not found. May be 
 returned by any method that returns a uniquely identified resource, for 
 instance, any State or Agent Profile or Activity Profile Resource call targeting a specific document, 
 or the method to retrieve a single Statement.
 
-* `409 Conflict` - Indicates an error condition due to a conflict with the 
+* ```409 Conflict``` - Indicates an error condition due to a conflict with the 
 current state of a resource, in the case of State Resource, Agent Profile or Activity Profile Resource
 calls, or in the Statement PUT or POST calls. See Section [6.3 Concurrency](#concurrency) for more details.
 
-* `412 Precondition Failed` - Indicates an error condition due to a failure of 
+* ```412 Precondition Failed``` - Indicates an error condition due to a failure of 
 a precondition posted with the request, in the case of State or Agent Profile or Activity Profile 
 API calls. See Section [6.3 Concurrency](#concurrency) for more details.
 
-* `413 Request Entity Too Large` - Indicates that the LRS has rejected the Statement or 
+* ```413 Request Entity Too Large``` - Indicates that the LRS has rejected the Statement or 
 document because its size (or the size of an Attachment included in the request) is larger than 
 the maximum allowed by the LRS. 
 
-* `429 Too Many Requests` - Indicates that the LRS has rejected the request because it has received 
+* ```429 Too Many Requests``` - Indicates that the LRS has rejected the request because it has received 
 too many requests from the client or set of credentials in a given amount of time. 
 
-* `500 Internal Server Error` - Indicates a general error condition, typically an 
+* ```500 Internal Server Error``` - Indicates a general error condition, typically an 
 unexpected exception in processing on the server.
 
 ##### Requirements
@@ -4830,27 +4830,27 @@ unexpected exception in processing on the server.
 
 * An AP SHOULD send an Accept header with requests to enable content negotiation.
 
-* The LRS MUST reject with `HTTP 400 Bad Request` status any requests 
+* The LRS MUST reject with ```HTTP 400 Bad Request``` status any requests 
 that use any parameters which the LRS does not recognize in their 
 intended context in this specification ( __Note:__ LRSs MAY recognize and act on 
 parameters not in this specification).
 
-* The LRS MUST reject with `HTTP 400 Bad Request` status any requests 
+* The LRS MUST reject with ```HTTP 400 Bad Request``` status any requests 
 that use any parameters matching parameters described in this 
 specification in all but case.
 
 * The LRS MUST reject a batch of statements if any statement within that 
 batch is rejected.
 
-* The LRS MUST reject with `HTTP 403 Forbidden` status any request rejected by the
+* The LRS MUST reject with ```HTTP 403 Forbidden``` status any request rejected by the
 LRS where the credentials associated with the request do not have permission to make that request. 
 
-* The LRS MUST reject with `HTTP 413 Request Entity Too Large` status any request rejected by the
+* The LRS MUST reject with ```HTTP 413 Request Entity Too Large``` status any request rejected by the
 LRS where the size of the Attachment, Statement or document is larger than the maximum allowed by the LRS.
 
 * The LRS MAY choose any Attachment, Statement and document size limits and MAY vary this limit on any basis, e.g., per authority.
 
-* The LRS MUST reject with `429 Too Many Requests` status any request rejected by the
+* The LRS MUST reject with ```429 Too Many Requests``` status any request rejected by the
 LRS where the request is rejected due to too many requests being received by a particular client 
 or set of credentials in a given amount of time. 
 
@@ -5052,8 +5052,8 @@ record the authority as the Agent representing the known user.
 * Requests MUST include headers for HTTP Basic Authentication based on a username and password containing zero or
 more space characters. 
 * Requests SHOULD* include headers for HTTP Basic Authentication based on a username and password each consisting of 
-an empty string. In this case the HTTP Basic Authentication header will be `Basic ` followed by a base64 encoded version of the string `:`.
-This results in the string `Basic Og==`.
+an empty string. In this case the HTTP Basic Authentication header will be ```Basic ``` followed by a base64 encoded version of the string ```:```.
+This results in the string ```Basic Og==```.
 
 This is in order to distinguish an explicitly unauthenticated request from a request that needs to be given a HTTP Basic Authentication 
 challenge.
