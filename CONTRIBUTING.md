@@ -255,10 +255,10 @@ __Windows:__ http://windows.github.com/
 ##### Clone your GitHub fork to your machine
 To make edits and work on the files in the repository, clone your repository to
 your local machine using Git. The url is provided on the home page of your
-repository (ex. ```https://github.com/<your username>/xAPI-Spec/```)
+repository (ex. `https://github.com/<your username>/xAPI-Spec/`)
 
 __Git__
-```git clone https://github.com/<your username>/xAPI-Spec/>```
+`git clone https://github.com/<your username>/xAPI-Spec/>`
 
 __GitHub Client__
 On the home screen of the client app, select your account under 'github' and
@@ -270,7 +270,7 @@ Add a remote repository to git to reference the master repository. This will mak
 synchronizing with the master repository a bit easier.
 
 __Git__
-```git remote add upstream https://github.com/adlnet/xAPI-Spec```
+`git remote add upstream https://github.com/adlnet/xAPI-Spec`
 
 __GitHub Client__
 Currently the GitHub clients don't have a way to synchronize with the master
@@ -278,10 +278,10 @@ repository. In order to do this, open your repository on the GitHub client
 app home screen. On the repository screen select 'tools' and 'open a shell
 here'. Alternatively use the 'Git Shell' shortcut if it was created during
 installation. **NOTE:** If you're using a Mac there is no shell shortcut so
-navigate to ```/your/repo/path/xAPI-Spec``` then follow the shell instructions.
+navigate to `/your/repo/path/xAPI-Spec` then follow the shell instructions.
 
 In the shell, enter..
-```git remote add upstream https://github.com/adlnet/xAPI-Spec```
+`git remote add upstream https://github.com/adlnet/xAPI-Spec`
 
 
 #### Workflow
@@ -292,7 +292,7 @@ fetch of the repository and a merge into your local repository. Currently
 the development version of the spec is 1.0.3.
 
 __Git and GitHub Client__
-```git pull upstream 1.0.3```
+`git pull upstream 1.0.3`
 
 ##### Make Changes Locally
 Edit the local copy of the file, save and commit. Rule of thumb: Use commits
@@ -300,7 +300,7 @@ like save points. Commit to indicate logical groups of edits, and places
 where the edits could be safely rolled back.
 
 __Git__
-```git commit -a -m "<commit message>"```
+`git commit -a -m "<commit message>"`
 
 __GitHub Client__
 The GitHub client will detect saved changes to the documents in your
@@ -313,7 +313,7 @@ so that you can then make requests to the master repository to merge in
 your changes.
 
 __Git__
-```git push origin```
+`git push origin`
 
 __GitHub Client__
 The GitHub client has a 'sync' button at the top of the repository screen.
@@ -330,15 +330,15 @@ master repository to merge in the changes you committed.
 ##Style Guide
 ### Expected Values
 
-If a specific data format and value are to be used, the ```code``` style should be used to denote this.
+If a specific data format and value are to be used, the `code` style should be used to denote this.
 
 For example:
 
-    A list of item ids is delimited by ```[,]```
+    A list of item ids is delimited by `[,]`
 
 And
 
-    The value returned must be ```false```.
+    The value returned must be `false`.
 
 ### Property and object names
 
