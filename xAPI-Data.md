@@ -1089,7 +1089,7 @@ shows the supported interaction component list(s) for an Interaction Activity wi
 	<td>Lists of sources and targets to be matched.</td></tr>
 	<tr><td>performance</td><td>steps</td>
 	<td>A list of the elements making up the performance interaction.</td></tr>
-	<tr><td>true-false, fill-in, long-fill-in, numeric, other</td><td>[No component lists defined]</td><td></td></tr>
+	<tr><td>true-false, fill-in, long-fill-in, numeric, other</td><td>[No component lists supported]</td><td></td></tr>
 </table>
 
 
