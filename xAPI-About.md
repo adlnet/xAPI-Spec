@@ -209,9 +209,9 @@ even if there no requirement in a given area.
 Serialization is the process of translating data objects and structures into a format for storage or transmission, such that the 
 original data object can be recreated from the resulting serialization. In some cases it might be possible to serialize a piece 
 of data in more than one way. For example, a boolean property with a value corresponding to true might be represented 
-as ```true``` or ```1``` depending on the serialization used. 
+as `true` or `1` depending on the serialization used. 
 
-xAPI follows the rules of JSON for serializations (so boolean values are represented as ```true``` or ```false```). It might 
+xAPI follows the rules of JSON for serializations (so boolean values are represented as `true` or `false`). It might 
 also be possible to represent the objects defined in this specification using other serializations, such as XML. This is out 
 of scope of this specification and use of anything other than JSON to represent the objects defined in this specification 
 is not conformant. 
