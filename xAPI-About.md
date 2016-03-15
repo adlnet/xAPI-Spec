@@ -101,6 +101,9 @@
 		*	[Appendix B: Table of All Endpoints](./xAPI-Communication.md#Appendix3B)  
 		*	[Appendix C: Cross Domain Request Example](./xAPI-Communication.md#Appendix3C)  
 
+<a name="partone" />
+#Part One: About the Experience API
+
 <a name="introduction-partone"></a>
 ## 1.0 Introduction
 
@@ -209,9 +212,9 @@ even if there no requirement in a given area.
 Serialization is the process of translating data objects and structures into a format for storage or transmission, such that the 
 original data object can be recreated from the resulting serialization. In some cases it might be possible to serialize a piece 
 of data in more than one way. For example, a boolean property with a value corresponding to true might be represented 
-as ```true``` or ```1``` depending on the serialization used. 
+as `true` or `1` depending on the serialization used. 
 
-xAPI follows the rules of JSON for serializations (so boolean values are represented as ```true``` or ```false```). It might 
+xAPI follows the rules of JSON for serializations (so boolean values are represented as `true` or `false`). It might 
 also be possible to represent the objects defined in this specification using other serializations, such as XML. This is out 
 of scope of this specification and use of anything other than JSON to represent the objects defined in this specification 
 is not conformant. 
@@ -479,7 +482,12 @@ associated with him or her.
 In Figure 3, a learner accesses multiple Services. Some of these Services are used at work, others at home.  Some are used for 
 social purposes and others are used for educational or professional puproses.  Thus, there are multiple personas at work 
 collectively within these Services.  Each of these Services send data to the LRS. Afterwards, there are Statements from three 
-different personas of the same learner. The LRS can aggregate all of the information of each of the personas into one "Person" Object.
+different personas of the same learner. 
+
+The LRS can aggregate all of the information of each of the personas into one "Person" Object. This object can be retrieved from 
+The LRS via the [Agents Resource](./xAPI-Communication.md#agentsres). How the LRS knows that these 
+multiple personas belong to a single person is out of scope of this specification and there are several different approaches
+that an LRS can take. It's also possible that some LRSs will have no mechanism for associating personas. 
 
 <a name="extending-xapi" ></a>
 

@@ -973,7 +973,7 @@ Run-Time Environment. See [Appendix C](#Appendix2C) for examples of each format.
 		<td>numeric</td>
 		<td>A range of numbers represented by a minimum and a maximum delimited by <code>[:]</code>. 
 			Where the range does not have a maximum or does not have a minimum, that number is omitted but the delimiter is
-			still used. E.g. ```"[:]4"``` indicates a maximum for 4 and no minimum. 
+			still used. E.g. <code>[:]4</code> indicates a maximum for 4 and no minimum. 
 			Where the correct response or learner's response is a single number rather than a range, the single number
 			with no delimiter MAY be used. 
 		</td>
@@ -996,7 +996,7 @@ if **all** of the items in that list match the learner's response. For example, 
 ]
 ``` 
 
-In this example, ```foo[,]bar``` and  ```foo``` are correct learner responses; ```bar``` is not.
+In this example, `foo[,]bar` and  `foo` are correct learner responses; `bar` is not.
 
 The Correct Responses Pattern, if used, is intended to be an exhaustive list of possible correct responses. Where the criteria for a question are complex and correct responses cannot be exhaustively listed, Activity Providers are discouraged from using the "correct responses pattern" property.
 
@@ -1008,7 +1008,7 @@ is omitted.
 
 ###### Characterstring parameters
 Some of the values within the responses described above can be prepended with certain additional parameters. These were originally based on the characterstring
-delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These parameters are represented by the format ```{parameter=value}```.
+delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These parameters are represented by the format `{parameter=value}`.
 See [the long-fill-in example within Appendix C](#long-fill-in). 
 
 Characterstring parameters are not validated by the LRS. Systems interpreting statement data can use their best judgement in interpreting (or ignoring) invalid characterstring parameters and values.
@@ -1092,7 +1092,7 @@ shows the supported interaction component list(s) for an Interaction Activity wi
 	<td>Lists of sources and targets to be matched.</td></tr>
 	<tr><td>performance</td><td>steps</td>
 	<td>A list of the elements making up the performance interaction.</td></tr>
-	<tr><td>true-false, fill-in, long-fill-in, numeric, other</td><td>[No component lists defined]</td><td></td></tr>
+	<tr><td>true-false, fill-in, long-fill-in, numeric, other</td><td>[No component lists supported]</td><td></td></tr>
 </table>
 
 
@@ -1195,7 +1195,7 @@ A SubStatement is like a Statement included as part of a containing Statement, b
 
 One interesting use of SubStatements is in creating Statements of intention. 
 For example, using SubStatements we can create Statements of the form 
-```"<I> <planned> (<I> <did> <this>)"```  to indicate that we've planned to take some 
+`"<I> <planned> (<I> <did> <this>)"`  to indicate that we've planned to take some 
 action. The concrete example that follows logically states that 
 "I planned to visit 'Some Awesome Website'". 
  
@@ -2273,8 +2273,8 @@ a statement returned by an LRS including the authority and stored properties set
         }
         
     },
-    "timestamp": "2013-05-18T05:32:34.804Z+00:00",
-    "stored": "2013-05-18T05:32:34.804Z+00:00",
+    "timestamp": "2013-05-18T05:32:34.804+00:00",
+    "stored": "2013-05-18T05:32:34.804+00:00",
     "authority": {
         "account": {
             "homePage": "http://cloud.scorm.com/",
