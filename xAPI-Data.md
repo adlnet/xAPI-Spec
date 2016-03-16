@@ -985,7 +985,7 @@ if **all** of the items in that list match the learner's response. For example, 
 ]
 ``` 
 
-In this example, `foo[,]bar` and  `foo` are correct learner responses; `bar` is not.
+In this example, either "foo" and "bar", *or* just "foo" are correct learner responses; "bar" on it's own is not.
 
 The Correct Responses Pattern, if used, is intended to be an exhaustive list of possible correct responses. Where the criteria for a question are complex and correct responses cannot be exhaustively listed, Activity Providers are discouraged from using the "correct responses pattern" property.
 
