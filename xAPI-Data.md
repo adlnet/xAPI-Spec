@@ -2202,7 +2202,6 @@ Durations are strings representing the amount of time something took.
 * A Duration MUST be expressed using the format for duration in ISO 8601:2004(E) section 4.4.3.2.
 The alternative format (in conformity with the format used for time points and described in ISO 8601:2004(E) 
 section 4.4.3.3) MUST NOT be used.
-* A Duration SHOULD* be expressed using the format described in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt), which is a profile of ISO 8601. 
 * Clients SHOULD provide a maximum precision of 0.01 seconds. 
 * Clients MAY provide less precision, for example in the case of reading a University Degree precision might 
 be in months or years. 
