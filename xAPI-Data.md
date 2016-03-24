@@ -1183,7 +1183,10 @@ comment could be issued on the original Statement, using a new Statement:
 ##### SubStatements
 
 ###### Description
-A SubStatement is like a Statement included as part of a containing Statement, but does not represent an event that has occurred (unlike a Statement). It can be used to describe, for example, a pattern of a potential future Statement, or the behavior a teacher looked for when evaluating a student (without representing the student actually doing that behavior). 
+A SubStatement is like a StatementRef in that it is included as part of a containing Statement, but unlike a StatementRef, it 
+does not represent an event that has occurred. It can be used to describe, for example, a predication of a potential future 
+Statement or the behavior a teacher looked for when evaluating a student (without representing the student actually doing that 
+behavior). 
 
 ###### Requirements
 
@@ -1194,11 +1197,9 @@ A SubStatement is like a Statement included as part of a containing Statement, b
 
 ###### Example
 
-One interesting use of SubStatements is in creating Statements of intention. 
-For example, using SubStatements we can create Statements of the form 
-`"<I> <planned> (<I> <did> <this>)"`  to indicate that we've planned to take some 
-action. The concrete example that follows logically states that 
-"I planned to visit 'Some Awesome Website'". 
+One interesting use of SubStatements is in creating Statements of intention. For example, using SubStatements we can create 
+Statements of the form `"<I> <planned> (<I> <did> <this>)"`  to indicate that we've planned to take some action. The concrete 
+example that follows logically states that "I planned to visit 'Some Awesome Website'". 
  
 
 
@@ -1313,42 +1314,41 @@ The table below defines the Score Object.
 	<tr>
 		<td>raw</td>
 		<td>Decimal number between min and max (if present, otherwise unrestricted), inclusive</td>
-		<td>The score achieved by the actor in the experience described by the statement. This is not modified by
+		<td>The score achieved by the Actor in the experience described by the Statement. This is not modified by
 		any scaling or normalization.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>min</td>
 		<td>Decimal number less than max (if present)</td>
-		<td>The lowest possible score for the experience described by the statement.</td>
+		<td>The lowest possible score for the experience described by the Statement.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
 		<td>max</td>
 		<td>Decimal number greater than min (if present)</td>
-		<td>The highest possible score for the experience described by the statement.</td>
+		<td>The highest possible score for the experience described by the Statement.</td>
 		<td>Optional</td>
 	</tr>
 </table>
 
 The properties of the Score Object are based on the corresponding properties of cmi.score as defined in SCORM 2004 
 4th Edition. The "scaled" and "raw" properties do not necessarily relate directly as scaling and normalization can
-be applied differently by Activity Providers within different Communities of Practice. Scaling and normalization are 
-outside the scope of this specification.
+be applied differently by Learning Record Producers within different Communities of Practice. Scaling and normalization 
+are outside the scope of this specification.
 
 ###### Requirements
 
 * The Score Object SHOULD include 'scaled' if a logical percent based score is known.
 * The Score Object SHOULD NOT be used for scores relating to progress or completion.  Consider using an extension
-from an extension profile instead.
-
+(preferrably from an established Community of Practice) instead.
 
 <a name="context"/>
 
 #### 2.4.6 Context
 
 ###### Description 
-An optional property that provides a place to add contextual information to a Statement. All properties are optional.
+An optional property that provides a place to add contextual information to a Statement. All context properties are optional.
 
 ###### Rationale 
 The Context property provides a place to add some contextual information to a Statement. It can store information such 
@@ -1433,16 +1433,13 @@ The following table contains the properties of the Context Object.
 or assets of an Activity. (Use a new Activity id instead).
 
 __Note:__ Revision has no behavioral implications within the scope of xAPI. It is simply stored
-so that it is available for systems interpreting and displaying data.
+so that it is available (e.g. for interpreting and displaying data).
 
 <a name="Registration"/>
 
 ##### 2.4.6.1 Registration Property
 
-###### Description
-An instance of a learner undertaking a particular learning activity.
-
-###### Details
+###### Rationale/Details
 When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration. 
 The Experience API applies the concept of registration more broadly.  A registration could be 
 considered to be an attempt, a session, or could span multiple Activities. There is no expectation that 
@@ -1460,52 +1457,41 @@ State resources relating to the same learning experience so that all data record
 A map of the types of learning activity context that this Statement is related to.
 
 ###### Rationale
-Many Statements do not just involve one Object Activity that is the focus,
-but relate to other contextually relevant Activities. "Context Activities" allow for 
-these related Activities to be represented in a structured manner.
+Many Statements do not just involve one (Object) Activity that is the focus, but relate to other contextually relevant 
+Activities. "Context Activities" allow for these related Activities to be represented in a structured manner.
 
 ###### Details
 There are four valid context types. All, any or none of these MAY be used in a given Statement:
 
-1. __Parent__: an Activity with a direct relation to the Activity
-which is the Object of the Statement. In almost all cases there
-is only one sensible parent or none, not multiple.
-For example: a Statement about a quiz question would have the quiz
+1. __Parent__: an Activity with a direct relation to the Activity which is the Object of the Statement. In almost all cases 
+there is only one sensible parent or none, not multiple. For example: a Statement about a quiz question would have the quiz 
 as its parent Activity.
  
-2. __Grouping__: an Activity with an indirect relation to the Activity
-which is the Object of the Statement.
-For example: a course that is part of a qualification. The course
-has several classes. The course relates to a class as the parent,
+2. __Grouping__: an Activity with an indirect relation to the Activity which is the Object of the Statement. For example: 
+a course that is part of a qualification. The course has several classes. The course relates to a class as the parent, 
 the qualification relates to the class as the grouping.
 
-3. __Category__: an Activity used to categorize the Statement.
-"Tags" would be a synonym. Category SHOULD be used to indicate
-a "profile" of xAPI behaviors, as well as other categorizations.
-For example: Anna attempts a biology exam, and the Statement is
-tracked using the cmi5 profile. The Statement's Activity refers
-to the exam, and the category is the cmi5 profile.
+3. __Category__: an Activity used to categorize the Statement.  "Tags" would be a synonym. Category SHOULD be used to 
+indicate a profile of xAPI behaviors, as well as other categorizations. For example: Anna attempts a biology exam, and 
+the Statement is tracked using the cmi5 profile. The Statement's Activity refers to the exam, and the category is the cmi5 
+profile.
 
-5. __Other__: a context Activity that doesn't fit one of the other properties.
-For example: Anna studies a textbook for a biology exam. The Statement's
-Activity refers to the textbook, and the exam is a context Activity of type "other".
+4. __Other__: a context Activity that doesn't fit one of the other properties. For example: Anna studies a textbook for 
+a biology exam. The Statement's Activity refers to the textbook, and the exam is a context Activity of type "other".
 
 Single Activity Objects are allowed as values so that 0.95 Statements will be compatible with 1.0.0.
 
-__Note:__ The values in this section are not for expressing all the relationships the Statement Object has.
-Instead, they are for expressing relationships appropriate for the specific Statement
-(though the nature of the Object will often be important in determining that).
-For instance, it is appropriate in a Statement about a test to include the course
-the test is part of as parent, but not to include every possible degree
-program the course could be part of in the grouping value.
+__Note:__ The values in this section are not for expressing all the relationships the Statement Object has.  Instead, they 
+are for expressing relationships appropriate for the specific Statement (though the nature of the Object will often be 
+important in determining that). For instance, it is appropriate in a Statement about a test to include the course the test 
+is part of as "parent", but not to include every possible degree program the course could be part of in the grouping value.
 
 ###### Requirements
 * Every key in the contextActivities Object MUST be one of parent, grouping, category, or other.
 * Every value in the contextActivities Object MUST be either a single Activity Object or an array of Activity Objects.
-* The LRS MUST return every value in the contextActivities Object as an array, even if it arrived
-as a single Activity Object.
+* The LRS MUST return every value in the contextActivities Object as an array, even if it arrived as a single Activity Object.
 * The LRS MUST return single Activity Objects as an array of length one containing the same Activity.
-* The Client SHOULD ensure that every value in the contextActivities Object is an array of Activity Objects 
+* The Learning Record Provider SHOULD ensure that every value in the contextActivities Object is an array of Activity Objects 
 instead of a single Activity Object.
 
 ###### Example
@@ -1546,13 +1532,13 @@ The timestamp property is of type [Timestamp](#timestamps). It is formatted acco
 corresponds to the time of when the events described within this Statement occurred. If it is not included in the Statement 
 when it is submitted to the LRS, the LRS populates it with the same value it would use with [Stored](#stored).
 
-The timestamp property in a Statement can differ from the [stored property](#stored) (the time at which the statement is 
+The timestamp property in a Statement can differ from the [stored property](#stored) (the time at which the Statement is 
 stored). Namely, there can be delays between the occurrence of the experience and the reception of the corresponding 
 Statement by the LRS. 
 
 Where the experience occurs over a period of time, the timestamp property can represent the start, end or any point of time 
-during the experience. It is expected that communities of practice will define an appropriate point to record the 
-Timestamp for different experiences. For example when recording the experience of eating at a restaurant, it might 
+during the experience. It is expected that Communities of Practice will define an appropriate point to record the 
+Timestamp for different experiences. For example, when recording the experience of eating at a restaurant, it might 
 be most appropriate to record the Timestamp of the start of the experience; when recording the experience of 
 completing a qualification, it might be most appropriate to record the Timestamp of the end of the experience.
 These examples are for illustrative purposes only and are not meant to be prescriptive.
@@ -1591,8 +1577,7 @@ stored property of a Statement it receives.
 #### 2.4.9 Authority
 
 ###### Description
-The authority property provides information about whom or what has asserted that 
-this Statement is true. 
+The authority property provides information about whom or what has asserted that this Statement is true. 
 
 ###### Details
 The asserting authority represents the authenticating user or some system or application.
@@ -1665,7 +1650,7 @@ The pairing of an OAuth consumer and a user.
 
 #### 2.4.10 Version
 ###### Description
-Version information in Statements helps systems that process data from an LRS get their bearings. Since
+Version information in Statements helps Learning Record Consumers get their bearings. Since
 the Statement data model is guaranteed consistent through all 1.0.x versions, in order to support data
 flow among such LRSs the LRS is given some flexibility on Statement versions that are accepted.
 
@@ -1679,25 +1664,22 @@ flow among such LRSs the LRS is given some flexibility on Statement versions tha
 lack a version, the version MUST be set to 1.0.0.
 
 
-###### Client Requirements
-* If Clients set the Statement version, they MUST set it to 1.0.0.
-* Clients SHOULD NOT set the Statement version.
+###### Learning Record Producer Requirements
+* If Learning Record Producers set the Statement version, they MUST set it to 1.0.0.
+* Learning Record Producers SHOULD NOT set the Statement version.
 
 
 <a name="attachments"/>
 #### 2.4.11 Attachments
 
-###### Description
-A digital artifact providing evidence of a learning experience.
-
 ###### Rationale 
-In some cases an attachment is logically an important part of a learning record. Think of a simulated 
-communication with ATC, an essay, a video, etc. Another example of such an attachment is (the image of) a 
-certificate that was granted as a result of an experience. It is useful to have a way to store these attachments 
-in and retrieve them from an LRS. In the case of wanting to include an attachment(s) for a SubStatement, we strongly recommend including the attachment(s) in the Statement Attachment object and including the payloads as you would normally for a Statement.
+In some cases an attachment is logically an important part of a learning record. It could be an essay, a video, etc. 
+Another example of such an attachment is (the image of) a certificate that was granted as a result of an experience. 
+It is useful to have a way to store these attachments in and retrieve them from an LRS. 
 
 ###### Details
 The table below lists all properties of the Attachment object.
+
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th><th>Corresponding request parameter</th></tr>
 	<tr>
@@ -1757,6 +1739,9 @@ The table below lists all properties of the Attachment object.
 		<td></td>
 	</tr>
 </table>
+
+In the case of wanting to include an attachment(s) for a SubStatement, it is strongly recommended to include the 
+attachment(s) in the Statement Attachment object and to include the payloads as normally done for a Statement.
 
 <a name="retrieval"/> 
 ### 2.5 Retrieval of Statements
