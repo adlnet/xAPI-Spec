@@ -1747,20 +1747,20 @@ attachment(s) in the Statement Attachment object and to include the payloads as 
 ### 2.5 Retrieval of Statements
 
 ###### Description
-A collection of Statements can be retrieved by performing a query on the "statements" 
-endpoint, see [Statement Resource](#stmtapi) for details. 
+A collection of Statements can be retrieved by performing a query on the Statements 
+Resource, see [Statement Resource](#stmtapi) for details. 
 
 ###### Details
 The following table shows the data structure for the results of queries on the Statement Resource.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr><td>statements</td><td>Array of Statements</td>
+	<tr><td>Statements</td><td>Array of Statements</td>
 		<td>List of Statements. If the list returned has been limited (due to pagination), 
-			and there are more results, they will be located at the "statements" property 
-			within the container located at the IRL provided by the "more" element of 
+			and there are more results, they will be located at the statements property 
+			within the container located at the IRL provided by the more property of 
 			this Statement result Object.
 			
-			Where no matching statements are found, this property will contain an empty array.
+			Where no matching Statements are found, this property will contain an empty array.
 		</td>
 		<td>Required</td>
 	</tr>
@@ -1780,12 +1780,12 @@ The following table shows the data structure for the results of queries on the S
 need to store IRLs and associated query data.
 * An LRS SHOULD NOT generate extremely long IRLs within the more property.
 * An LRS MAY re-run the query at the point in time that the IRL retrieved from the more property is accessed such
-that the batch retrieved includes statements which would have been included in that batch if present in the LRS at 
-the time the original query was run and excludes statements from that batch which have since been voided. 
-* Alternatively, an LRS MAY cache a list of statements to be returned at the more property such that the batch of statements
-returned matches those statements that would have been returned when the original query was run. 
-* An LRS MAY remove voided statements from the cached list of statements if using this method. 
-* The consumer SHOULD NOT attempt to interpret any meaning from the IRL returned from the more property.
+that the batch retrieved includes Statements which would have been included in that batch if present in the LRS at 
+the time the original query was run and excludes Statements from that batch which have since been voided. 
+* Alternatively, an LRS MAY cache a list of Statements to be returned at the more property such that the batch of Statements
+returned matches those Statements that would have been returned when the original query was run. 
+* An LRS MAY remove voided Statements from the cached list of Statements if using this method. 
+* A Learning Record Consumer SHOULD NOT attempt to interpret any meaning from the IRL returned from the more property.
 
 <a name="signature"/>
 ### 2.6 Signed Statements
@@ -1798,9 +1798,8 @@ integrity of the Statement.
 ##### Rationale
 Some Statements will have regulatory or legal significance, or otherwise require strong
 and durable evidence of their authenticity and integrity. It might be necessary to verify
-these Statements without trusting the system they were first recorded in, or perhaps
-without access to that system. Digital signatures will enable a third-party system
-to validate such Statements.
+these Statements without trusting the environment they were first recorded in, or perhaps
+without access to that environment. Digital signatures will enable a third-party to validate such Statements.
 
 ##### Details
 Signed Statements include a JSON web signature (JWS) as an attachment. This allows
@@ -1852,14 +1851,15 @@ See <a href="#Appendix2D">Appendix D: Example Signed Statement</a> for an exampl
 
 ## 3.0 Metadata
 
-Metadata is additional information about the resource. It enables decision making, search, and discoverability  within systems.  In xAPI, metadata can be utilized in a variety of locations. The most common is within 
-[Activity Definitions](#actdef).
+Metadata is additional information about the resource. It enables decision making, search, and discoverability. 
+In xAPI, metadata can be utilized in a variety of locations. The most common is within [Activity Definitions](#actdef).
 
 <a name="iri-requirements"/>
 ### 3.1 IRI Requirements
 
-xAPI uses IRIs for identifiers. Using IRIs ensures uniqueness and promotes resolvability. The LRS and Activity 
-Provider each have responsibilities in regard to each IRI as outlined below. Activity Definitions have additional  rules which can be found in [this section](#actdef).
+xAPI uses IRIs for identifiers. Using IRIs ensures uniqueness and promotes resolvability. The LRS and Learning Record 
+Provider each have responsibilities in regard to each IRI as outlined below. Activity Definitions have additional rules 
+which can be found later in [this section](#actdef).
 
 <a name="miscmeta"/>
 
@@ -1889,7 +1889,7 @@ For the structure of hosted metadata about all other identifiers, see the format
 	<tr>
 		<td>name</td>
 		<td><a href="#misclangmap">Language Map</a></td>
-		<td>The human readable/visual name. For Verbs, this is equivalent to the Display property in a statement.</td>
+		<td>The human readable/visual name. For Verbs, this is equivalent to the display property in a Statement.</td>
 		<td>Optional</td>
 	</tr>
 	<tr>
@@ -1900,19 +1900,20 @@ For the structure of hosted metadata about all other identifiers, see the format
 	</tr>
 </table>
 
-Hosted metadata consists of a document containing a JSON object as described above. 
-If this hosted metadata is provided, it is the canonical source of information about the 
-identifier it describes.  We recommend that 
-Activity Providers look for and use established, widely adopted identifiers for all types of IRI 
-identifiers other than Activity id.
+Hosted metadata consists of a document containing a JSON object as described above. If this hosted metadata is provided, 
+it is the canonical source of information about the identifier it describes.  It is recommended that those implementing xAPI
+look for and use established, widely adopted identifiers for all types of IRI identifiers other than Activity id.
 
 ##### Metadata Provider Requirements
 
 * Metadata MAY be provided with an identifier.
 * If metadata is provided, both name and description SHOULD be included.
-* [Metadata Providers](#def-metadata-provider) defining new IRIs SHOULD* only use IRIs they control or have permission from the controller to use.
-* [Metadata Providers](#def-metadata-provider) defining new Verb IRIs MUST only use IRIs they control or have permission from the controller to use.
-* For any of the identifier IRIs above the Metadata Provider SHOULD make a human-readable description of the intended usage accessible at the IRI.
+* [Metadata Providers](#def-metadata-provider) defining new IRIs SHOULD* only use IRIs they control or have 
+permission from the controller to use.
+* [Metadata Providers](#def-metadata-provider) defining new Verb IRIs MUST only use IRIs they control or have 
+permission from the controller to use.
+* For any of the identifier IRIs above the Metadata Provider SHOULD make a human-readable description of the 
+intended usage accessible at the IRI.
 * For any of the identifier IRIs above the Metadata Provider SHOULD ensure that this JSON metadata available at that 
 IRI when the IRI is requested and a Content-Type of "application/json" is requested.
 * Where the IRI represents an Activity, the Metadata Provider MAY host metadata using the <a href="#actdef">
@@ -1922,8 +1923,8 @@ Activity Definition</a> JSON format which is used in Statements, with a Content-
 * When defining identifiers, the Metadata Provider MAY use IRIs containing anchors so that a single page can contain 
 definitions for multiple identifiers. E.g. http://example.com/xapi/verbs#defenestrated
 
-##### Activity Provider Requirements
-* Where a suitable identifier already exists, the Activity Provider SHOULD use the corresponding existing identifier.
+##### Learning Record Provider Requirements
+* Where a suitable identifier already exists, the Learning Record Provider SHOULD use the corresponding existing identifier.
 
 ##### LRS Requirements
 * The LRS MAY act as a [Metadata Consumer](#def-metadata-consumer) and attempt to resolve identifier IRIs.
@@ -1942,9 +1943,8 @@ its canonical representation of that Activity's definition.
 metadata found at that IRI is authoritative in regards to the properties and languages included in that metadata. 
 * The Metadata Consumer MAY use other sources of information to fill in missing details, 
 such as translations, or take the place of the hosted metadata entirely if it was not provided, cannot be loaded or the 
-Metadata Consumer does not trust it. Other sources of information MAY
-include metadata in other formats stored at the IRI of an identifier, particularly if that
-identifier was not coined for use with this specification.
+Metadata Consumer does not trust it. Other sources of information MAY include metadata in other formats stored at the 
+IRI of an identifier, particularly if that identifier was not coined for use with this specification.
 
 
 <a name="special-data"/>
@@ -1958,41 +1958,41 @@ The following are data types requiring additional rules that are found commonly 
 ### 4.1 Extensions
 
 ##### Description
-Extensions are available as part of Activity Definitions, as part of Statement context, 
-or as part of a Statement result. In each case, they're intended to provide a natural 
-way to extend those elements for some specialized use. The contents of these extensions might 
-be something valuable to just one application, or it might be a convention used by an entire 
-Community of Practice.
+Extensions are available as part of Activity Definitions, as part of Statement context, or as part of a Statement result. 
+In each case, extensions intended to provide a natural way to extend those properties for some specialized use. The 
+contents of these extensions might be something valuable to just one application, or it might be a convention used by 
+an entire Community of Practice.
 
 ##### Details
 Extensions are defined by a map and logically relate to the part of the Statement where they are 
 present. The values of an extension can be any JSON value or data structure. Extensions in Statement 
 context provide context to the core experience, while those in the result provide elements related to 
 some outcome. For Activities, extensions provide additional information that helps define an Activity 
-within some custom application or community. The meaning and structure of extension values under an 
+within some custom application or Community of Practice. The meaning and structure of extension values under an 
 IRI key are defined by the person who controls the IRI.
 
 ##### Requirements
 
 * The keys of an extensions map MUST be IRIs.
 * An LRS MUST NOT reject a Statement based on the values of the extensions map.
-* Clients SHOULD always strive to map as much information as possible into the built-in 
+* Learning Record Producers SHOULD always strive to map as much information as possible into the built-in 
 elements in order to leverage interoperability among Experience API conformant tools.
 * All extension IRIs SHOULD have controllers.
-* The controller of an IRL extension key SHOULD make a human-readable description
-of the intended meaning of the extension supported by the IRL accessible at the IRL.
+* The controller of an IRL extension key SHOULD make a human-readable description of the intended meaning of 
+the extension supported by the IRL accessible at the IRL.
 
-__Note:__ A Statement defined entirely by its extensions becomes meaningless as no other system 
-can make sense of it.  
+__Note:__ A Statement defined entirely by its extensions becomes meaningless as no other system can make sense of it.  
 
 <a name="lang-maps"/> 
 
 ### 4.2 Language Maps
 
 ##### Description
-A language map is a dictionary where the key is a [RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the value is a string in the language specified in the tag. This map SHOULD be populated as fully as possible based on the knowledge of the string in question in different languages.  
+A language map is a dictionary where the key is a [RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the 
+value is a string in the language specified in the tag. This map SHOULD be populated as fully as possible based on the 
+knowledge of the string in question in different languages.  
 
-The content of strings within a language map is plain text. It's expected that any formatting code 
+The content of strings within a language map is plain text. It is expected that any formatting code 
 such as HTML tags or markdown will not be rendered, but will be displayed as code when this string is 
 displayed to an end user. An important exception to this is if language map object is used in an extension and 
 the owner of that extension IRI explicitly states that a particular form of code will be rendered.
@@ -2043,9 +2043,9 @@ Durations are strings representing the amount of time something took.
 * A Duration MUST be expressed using the format for duration in ISO 8601:2004(E) section 4.4.3.2.
 The alternative format (in conformity with the format used for time points and described in ISO 8601:2004(E) 
 section 4.4.3.3) MUST NOT be used.
-* Clients SHOULD provide a maximum precision of 0.01 seconds. 
-* Clients MAY provide less precision, for example in the case of reading a University Degree precision might 
-be in months or years. 
+* Learning Record Producers SHOULD provide a maximum precision of 0.01 seconds. 
+* Learning Record Producers MAY provide less precision, for example in the case of reading a University Degree 
+precision might be in months or years. 
 * On receiving a Duration with more than 0.01 second precision, the LRS SHOULD* NOT reject the request but MAY 
 truncate the Duration property to 0.01 second precision. 
 * When comparing Durations, any precision beyond 0.01 second precision SHOULD* NOT be included in the comparison.
@@ -2292,9 +2292,9 @@ a statement returned by an LRS including the authority and stored properties set
 ```  
 <a name="Appendix2B"/>  
 
-### Appendix B: Example statement objects of different types
+### Appendix B: Example Statement objects of different types
 
-The object of a statement can be an activity, agent, group or statement. 
+The Object of a Statement can be an Activity, an Agent, a Group or a Statement. 
 This appendix provides one example of each. 
 
 ###### Activity
@@ -2326,7 +2326,7 @@ This appendix provides one example of each.
 ```
 
 ###### Group
-This example shows an identified group with members. 
+This example shows an Identified Group with members. 
 ```
 {
     "name": "Example Group",
@@ -2352,7 +2352,7 @@ This example shows an identified group with members.
 
 
 ###### Statement
-This example shows a SubStatement object whose object is a Statement Reference.
+This example shows a SubStatement Object whose Object is a Statement Reference.
 
 ```
 {
