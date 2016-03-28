@@ -409,7 +409,7 @@ An Agent (an individual) is a persona or system.
 ###### Details
 
 * An Agent MUST be identified by one (1) of the four types of Inverse Functional Identifiers (see
-<a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a>);
+ [4.1.2.3 Inverse Functional Identifier](#inversefunctional));
 * An Agent MUST NOT include more than one (1) Inverse Functional Identifier;
 * An Agent SHOULD NOT use Inverse Functional Identifiers that are also used as a Group identifier.
 
@@ -499,7 +499,7 @@ Group that is guaranteed to only ever refer to that Agent or Identified Group.
 ###### Rationale
 Agents and Groups need to be uniquely identifiable in order for data to be stored and retrieved against them. 
 In an xAPI Statement this is accomplished using Inverse Functional Identifiers which are loosely inspired 
-on the widely accepted FOAF principle (see: <a href="http://xmlns.com/foaf/spec/#term_Agent"> Friend Of A Friend</a>).
+on the widely accepted FOAF principle (see: [Friend Of A Friend](http://xmlns.com/foaf/spec/#term_Agent)).
 
 ###### Details
 
@@ -572,7 +572,7 @@ The Verb defines the action between Actor and Activity.
 
 The Verb in an xAPI Statement describes the action performed during the learning experience. The 
 xAPI does not specify any particular Verbs. (With one exception, namely the reserved 
-Verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>). Instead, it defines how to create Verbs so that 
+Verb [http://adlnet.gov/expapi/verbs/voided](#voided)). Instead, it defines how to create Verbs so that 
 communities of practice can establish Verbs meaningful to their members and make them available 
 for use by anyone. A predefined list of Verbs would be limited by definition and might not be able to 
 effectively capture all possible future learning experiences. 
@@ -654,7 +654,7 @@ This example shows a Verb with the recommended properties set and using US Engli
 
 The Verb in the example above is included for illustrative purposes only. This is not intended to imply that
 a Verb with this meaning has been defined with this id. This applies to all example verbs given in this 
-specification document, with the exception of the reserved Verb <a href="#voided">'http://adlnet.gov/expapi/verbs/voided'</a>. 
+specification document, with the exception of the reserved Verb [http://adlnet.gov/expapi/verbs/voided](#voided)).
 			
 ##### 2.4.3.1 Use in Language and Semantics of Verbs
 
@@ -701,7 +701,7 @@ Some examples:
 
 Objects which are provided as a value for this property SHOULD include an "objectType" 
 property. If not specified, the objectType is assumed to be "Activity". Other valid values 
-are: <a href="#agentasobj">Agent</a>, <a href="#agentasobj">Group</a>, <a href="#substmt">SubStatement</a> or [StatementRef](#stmtref)</a>.
+are: [Agent](#agentasobj), [Group](#agentasobj), [SubStatement](#substmt) or [StatementRef](#stmtref).
 The properties of an Object change according to the objectType.
 
 <a name="activity"/>
@@ -1791,9 +1791,8 @@ returned matches those Statements that would have been returned when the origina
 ### 2.6 Signed Statements
 
 ##### Description
-A Statement can include a <a href="https://en.wikipedia.org/wiki/Digital_signature">
-digital signature</a> to provide strong and durable evidence of the authenticity and
-integrity of the Statement.
+A Statement can include a [digital signature](https://en.wikipedia.org/wiki/Digital_signature) 
+to provide strong and durable evidence of the authenticity and integrity of the Statement.
 
 ##### Rationale
 Some Statements will have regulatory or legal significance, or otherwise require strong
@@ -1843,7 +1842,7 @@ the scope of this specification.
 * Clients MUST NOT assume a signature is valid simply because an LRS has accepted it.
 
 ##### Example
-See <a href="#Appendix2D">Appendix D: Example Signed Statement</a> for an example.
+See [Appendix D: Example Signed Statement](#Appendix2D) for an example.
 
 
 
@@ -1874,13 +1873,13 @@ that IRI.
 
 ##### Details
 There are several types of IRI identifiers used in this specification:
-* <a href="#verb">Verb</a>
-* <a href="#acturi">Activity id</a>
-* <a href="#acttype">Activity type</a>
-* <a href="#miscext">extension key</a>
-* <a href="#attachmentUsage">attachment usage type</a>
+* [Verb](#verb)
+* [Activity id](#acturi)
+* [Activity type](#acttype)
+* [extension key](#miscext)
+* [attachment usage type](#attachmentUsage)
 
-For the structure of hosted metadata about Activity ids, see <a href="#activity"> the Activity Definition Object</a>.
+For the structure of hosted metadata about Activity ids, see [Activity Definition Object](#activity).
 
 For the structure of hosted metadata about all other identifiers, see the format below:
 
@@ -1916,8 +1915,8 @@ permission from the controller to use.
 intended usage accessible at the IRI.
 * For any of the identifier IRIs above the Metadata Provider SHOULD ensure that this JSON metadata available at that 
 IRI when the IRI is requested and a Content-Type of "application/json" is requested.
-* Where the IRI represents an Activity, the Metadata Provider MAY host metadata using the <a href="#actdef">
-Activity Definition</a> JSON format which is used in Statements, with a Content-Type of "application/json".
+* Where the IRI represents an Activity, the Metadata Provider MAY host metadata using the [Activity Definition](#actdef") 
+JSON format which is used in Statements, with a Content-Type of "application/json".
 * Where a suitable identifier already exists, the Metadata Provider SHOULD NOT create a new identifier.
 * The Metadata Provider MAY create their own identifiers where a suitable identifier does not already exist.
 * When defining identifiers, the Metadata Provider MAY use IRIs containing anchors so that a single page can contain 
@@ -2674,7 +2673,7 @@ In this example the minimum correct answer is 4 and there is no maximum. 5, 6 or
 
 ### Appendix D: Example Signed Statement
 
-An example signed Statement, as described in: <a href="#signature">4.4 Signed Statements</a>.
+An example signed Statement, as described in: [4.4 Signed Statements](#signature).
 
 The original Statement serialization to be signed. New lines in this example are included
 via CR+LF (0x0D + 0x0A).
@@ -2835,6 +2834,5 @@ Signed Statement
 }
 ```
 
-__Note:__ Attached signature not shown, see <a href="#attachments"> attachments</a> for
-attachment message format.
+__Note:__ Attached signature not shown, see [Attachments](#attachments) for attachment message format.
 
