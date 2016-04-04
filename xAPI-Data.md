@@ -327,7 +327,7 @@ The details of each property of a statement are described in the table below.
 	</td>
 	<td>Required</td></tr>
 	<tr><td><a href="#result">result</a></td><td>Object</td>
-	<td>Result Object, further details representing a measured outcome relevant to the specified Verb and Activity.</td>
+	<td>Result Object, further details representing a measured outcome.</td>
 	<td>Optional</td></tr>
 	<tr><td><a href="#context">context</a></td><td>Object</td>
 	<td>Context that gives the Statement more meaning. Examples: a team the Actor is 
@@ -341,7 +341,7 @@ The details of each property of a statement are described in the table below.
 	<td>Set by LRS</td></tr>
 	<tr><td><a href="#authority">authority</a></td><td>Object</td>
 	<td>Agent or Group who is asserting this Statement is true. Verified by the LRS based on 
-	authentication. Set by LRS if not provided or if a strong trust relationship between the Learning Record Producer 
+	authentication. Set by LRS if not provided or if a strong trust relationship between the Learning Record Provider 
 	and LRS has not been established.</td>
 	<td>Optional</td></tr>
 	<tr><td><a href="#version">version</a></td><td>Version</td>
@@ -627,18 +627,18 @@ for that Verb.
 Statements it receives, the Name property included in the metadata as described in 
 [section 5.4 Identifier metadata](#miscmeta), or the Verb Display as defined in some other location.
 
-###### Verb Display Client Requirements
-The requirements below relate to the display property as displayed to a user by a Client. 
+###### Verb Display Learning Record Consumer Requirements
+The requirements below relate to the display property as displayed to a user by a Learning Record Consumer. 
 
 * The Display property MUST NOT be used to alter the meaning of a Verb.
-* A Client MUST NOT use the Display property to infer any meaning from the Statement.
-* A Client MUST NOT use the Display property for any purpose other than display to a human.
+* A Learning Record Consumer MUST NOT use the Display property to infer any meaning from the Statement.
+* A Learning Record Consumer MUST NOT use the Display property for any purpose other than display to a human.
 Using the Display property for aggregation or categorization of Statements is an example of violating this requirement. 
-* A Client displaying a Statement's Verb in a user interface MAY choose to render the Verb Display property included within the 
-Statement, the Name property included in the metadata as described in [section 5.4 Identifier metadata](#miscmeta), or the 
-Verb Display as defined in some other location.
-* Clients displaying a Statement's Verb MUST NOT display a word that differs from the meaning of the Verb but 
-MAY alter the wording and tense displayed for the purposes of human-readability. 
+* A Learning Record Consumer displaying a Statement's Verb in a user interface MAY choose to render the Verb Display 
+property included within the Statement, the Name property included in the metadata as described in 
+[section 5.4 Identifier metadata](#miscmeta), or the Verb Display as defined in some other location.
+* Learning Record Consumers displaying a Statement's Verb MUST NOT display a word that differs from the meaning of the 
+Verb but MAY alter the wording and tense displayed for the purposes of human-readability. 
 
 ###### Example
 This example shows a Verb with the recommended properties set and using US English and Spanish languages. 
@@ -833,8 +833,7 @@ for recording interaction data. Since 1.0.3, direct references to the SCORM data
 associated requirements included directly in this document.
 
 These interaction definitions are simple to use, and consequently limited. It is expected that Communities of Practice
-requiring richer in	
-teractions definitions will do so through the use of Activity Types and Activity Definition Extensions. 
+requiring richer interactions definitions will do so through the use of Activity Types and Activity Definition Extensions. 
 
 ###### Details
 
@@ -998,9 +997,10 @@ The Correct Responses Pattern, if used, is intended to be an exhaustive list of 
 for a question are complex and correct responses cannot be exhaustively listed, Learning Record are discouraged from using 
 the "correct responses pattern" property.
 
-Clients cannot infer success based on comparison of the Response with the Correct Responses Pattern, nor can they rely on the 
-Correct Responses Pattern always being exhaustive. The Learning Record Provider is allowed to mark questions as correct where 
-the response does not match the correct responses pattern, though this is discouraged except in exceptional circumstances.
+Learning Record Consumers cannot infer success based on comparison of the Response with the Correct Responses Pattern, 
+nor can they rely on the Correct Responses Pattern always being exhaustive. The Learning Record Provider is allowed to mark 
+questions as correct where the response does not match the correct responses pattern, though this is discouraged except in 
+exceptional circumstances.
 
 Where the Correct Response Pattern contains an empty array, the meaning of this is that there is no correct
 answer; all answers are incorrect. Where any answer is correct (e.g. in a survey), the Correct Response Pattern property
@@ -1122,10 +1122,10 @@ See [Actor](#actor) for details regarding Agents.
 
 ###### Rationale
 
-There are two possibilities for using a Statement as an Object.  First, an Object can take on the form 
+There are two possibilities for using a Statement as an Object. First, an Object can take on the form 
 of a Statement that already exists by using a Statement Reference. A common use case for 
 Statement References is grading or commenting on an experience that could be tracked as an 
-independent event.  The special case of voiding a Statement would also use a Statement Reference.
+independent event. The special case of voiding a Statement would also use a Statement Reference.
 Second, an Object can be a brand new Statement by using a SubStatement. Each type is defined below.
 
 <a name="stmtref"/>
@@ -1198,7 +1198,7 @@ behavior).
 ###### Example
 
 One interesting use of SubStatements is in creating Statements of intention. For example, using SubStatements we can create 
-Statements of the form `"<I> <planned> (<I> <did> <this>)"`  to indicate that we've planned to take some action. The concrete 
+Statements of the form `"<I> <planned> (<I> <did> <this>)"` to indicate that we've planned to take some action. The concrete 
 example that follows logically states that "I planned to visit 'Some Awesome Website'". 
  
 
@@ -1334,13 +1334,13 @@ The table below defines the Score Object.
 
 The properties of the Score Object are based on the corresponding properties of cmi.score as defined in SCORM 2004 
 4th Edition. The "scaled" and "raw" properties do not necessarily relate directly as scaling and normalization can
-be applied differently by Learning Record Producers within different Communities of Practice. Scaling and normalization 
+be applied differently by Learning Record Providers within different Communities of Practice. Scaling and normalization 
 are outside the scope of this specification.
 
 ###### Requirements
 
 * The Score Object SHOULD include 'scaled' if a logical percent based score is known.
-* The Score Object SHOULD NOT be used for scores relating to progress or completion.  Consider using an extension
+* The Score Object SHOULD NOT be used for scores relating to progress or completion. Consider using an extension
 (preferrably from an established Community of Practice) instead.
 
 <a name="context"/>
@@ -1441,7 +1441,7 @@ so that it is available (e.g. for interpreting and displaying data).
 
 ###### Rationale/Details
 When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration. 
-The Experience API applies the concept of registration more broadly.  A registration could be 
+The Experience API applies the concept of registration more broadly. A registration could be 
 considered to be an attempt, a session, or could span multiple Activities. There is no expectation that 
 completing an Activity ends a registration. Nor is a registration necessarily confined to a single Agent.
 
@@ -1471,7 +1471,7 @@ as its parent Activity.
 a course that is part of a qualification. The course has several classes. The course relates to a class as the parent, 
 the qualification relates to the class as the grouping.
 
-3. __Category__: an Activity used to categorize the Statement.  "Tags" would be a synonym. Category SHOULD be used to 
+3. __Category__: an Activity used to categorize the Statement. "Tags" would be a synonym. Category SHOULD be used to 
 indicate a profile of xAPI behaviors, as well as other categorizations. For example: Anna attempts a biology exam, and 
 the Statement is tracked using the cmi5 profile. The Statement's Activity refers to the exam, and the category is the cmi5 
 profile.
@@ -1481,7 +1481,7 @@ a biology exam. The Statement's Activity refers to the textbook, and the exam is
 
 Single Activity Objects are allowed as values so that 0.95 Statements will be compatible with 1.0.0.
 
-__Note:__ The values in this section are not for expressing all the relationships the Statement Object has.  Instead, they 
+__Note:__ The values in this section are not for expressing all the relationships the Statement Object has. Instead, they 
 are for expressing relationships appropriate for the specific Statement (though the nature of the Object will often be 
 important in determining that). For instance, it is appropriate in a Statement about a test to include the course the test 
 is part of as "parent", but not to include every possible degree program the course could be part of in the grouping value.
@@ -1599,7 +1599,7 @@ a user connects directly (using HTTP Basic Authentication) or a part of 3-legged
 ##### OAuth Credentials as Authority 
 
 ###### Description
-This is a workflow for use of OAuth.  2-legged and 3-legged OAuth are both supported.
+This is a workflow for use of OAuth. 2-legged and 3-legged OAuth are both supported.
 
 ###### Details
 This workflow assumes a Statement is stored using a validated OAuth connection and the LRS 
@@ -1617,7 +1617,7 @@ as part of a group in the case of 3-legged OAuth.
 * The Agent representing the OAuth consumer MUST use the consumer key as the value of the Account "name” property.
 * If the Agent representing the OAuth consumer is a registered application, the token request endpoint 
 MUST be used as the account homePage.
-* If the Agent representing the OAuth consumer is not a registered application, the temporary  
+* If the Agent representing the OAuth consumer is not a registered application, the temporary 
 credentials endpoint MUST be used as the Account "homePage".
 * An LRS MUST NOT trust the application portion of the authority in the event the account name is from 
 the same source as the unregistered application. (Multiple unregistered applications could choose the same consumer key. 
@@ -1664,9 +1664,9 @@ flow among such LRSs the LRS is given some flexibility on Statement versions tha
 lack a version, the version MUST be set to 1.0.0.
 
 
-###### Learning Record Producer Requirements
-* If Learning Record Producers set the Statement version, they MUST set it to 1.0.0.
-* Learning Record Producers SHOULD NOT set the Statement version.
+###### Learning Record Provider Requirements
+* If Learning Record Providers set the Statement version, they MUST set it to 1.0.0.
+* Learning Record Providers SHOULD NOT set the Statement version.
 
 
 <a name="attachments"/>
@@ -1900,7 +1900,7 @@ For the structure of hosted metadata about all other identifiers, see the format
 </table>
 
 Hosted metadata consists of a document containing a JSON object as described above. If this hosted metadata is provided, 
-it is the canonical source of information about the identifier it describes.  It is recommended that those implementing xAPI
+it is the canonical source of information about the identifier it describes. It is recommended that those implementing xAPI
 look for and use established, widely adopted identifiers for all types of IRI identifiers other than Activity id.
 
 ##### Metadata Provider Requirements
@@ -1974,13 +1974,13 @@ IRI key are defined by the person who controls the IRI.
 
 * The keys of an extensions map MUST be IRIs.
 * An LRS MUST NOT reject a Statement based on the values of the extensions map.
-* Learning Record Producers SHOULD always strive to map as much information as possible into the built-in 
+* Learning Record Providers SHOULD always strive to map as much information as possible into the built-in 
 elements in order to leverage interoperability among Experience API conformant tools.
 * All extension IRIs SHOULD have controllers.
 * The controller of an IRL extension key SHOULD make a human-readable description of the intended meaning of 
 the extension supported by the IRL accessible at the IRL.
 
-__Note:__ A Statement defined entirely by its extensions becomes meaningless as no other system can make sense of it.  
+__Note:__ A Statement defined entirely by its extensions becomes meaningless as no other system can make sense of it. 
 
 <a name="lang-maps"/> 
 
@@ -1989,7 +1989,7 @@ __Note:__ A Statement defined entirely by its extensions becomes meaningless as 
 ##### Description
 A language map is a dictionary where the key is a [RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the 
 value is a string in the language specified in the tag. This map SHOULD be populated as fully as possible based on the 
-knowledge of the string in question in different languages.  
+knowledge of the string in question in different languages. 
 
 The content of strings within a language map is plain text. It is expected that any formatting code 
 such as HTML tags or markdown will not be rendered, but will be displayed as code when this string is 
@@ -2011,7 +2011,7 @@ See [Metadata](#metadata).
 
 ### 4.4 UUIDs
 
-Universally Unique Identifiers, or UUIDs, are 128-bit values that are globally unique.  Unlike IRIs, there is 
+Universally Unique Identifiers, or UUIDs, are 128-bit values that are globally unique. Unlike IRIs, there is 
 no expectation of resolvability as UUIDs take on a completely different format.  UUIDs MUST be in the standard 
 string form.  It is recommended variant 2 in [RFC 4122](http://tools.ietf.org/html/rfc4122) is used.
 
@@ -2019,12 +2019,12 @@ string form.  It is recommended variant 2 in [RFC 4122](http://tools.ietf.org/ht
 
 ### 4.5 ISO 8601 Timestamps
 
-Timestamps are a format type which represent a specific time.  They are formatted according to ISO 8601's normal format. 
+Timestamps are a format type which represent a specific time. They are formatted according to ISO 8601's normal format. 
 Statements sent to an LRS can be expected to keep precision to at least milliseconds 
 
 ###### Requirements
 * A Timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
-* A Timestamp MUST preserve precision to at least milliseconds (3 decimal points beyond seconds).  
+* A Timestamp MUST preserve precision to at least milliseconds (3 decimal points beyond seconds). 
 * A Timestamp SHOULD* include the time zone.
 * If the Timestamp includes a time zone, the LRS MAY be return the Timestamp using a different timezone to the one 
 * originally used in the statement so long as the point in time referenced is not affected. 
@@ -2042,8 +2042,8 @@ Durations are strings representing the amount of time something took.
 * A Duration MUST be expressed using the format for duration in ISO 8601:2004(E) section 4.4.3.2.
 The alternative format (in conformity with the format used for time points and described in ISO 8601:2004(E) 
 section 4.4.3.3) MUST NOT be used.
-* Learning Record Producers SHOULD provide a maximum precision of 0.01 seconds. 
-* Learning Record Producers MAY provide less precision, for example in the case of reading a University Degree 
+* Learning Record Providers SHOULD provide a maximum precision of 0.01 seconds. 
+* Learning Record Providers MAY provide less precision, for example in the case of reading a University Degree 
 precision might be in months or years. 
 * On receiving a Duration with more than 0.01 second precision, the LRS SHOULD* NOT reject the request but MAY 
 truncate the Duration property to 0.01 second precision. 
@@ -2351,7 +2351,7 @@ This example shows an Identified Group with members.
 
 
 ###### Statement
-This example shows a SubStatement Object whose Object is a Statement Reference.
+This example shows a SubStatement Object whose object is a Statement Reference.
 
 ```
 {
