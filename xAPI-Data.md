@@ -685,8 +685,8 @@ or the Verb IRI http://example.com/فعل/خواندن might denote the action o
 
 ###### Description
 
-The Object of a Statement can be an Activity, Agent/Group, SubStatement, or Statement Reference. It is the "this" part of the 
-Statement, i.e. "I did this". 
+The object defines the thing that was acted on.  The Object of a Statement can be an Activity, Agent/Group, 
+SubStatement, or Statement Reference.
 
 Some examples:
 
