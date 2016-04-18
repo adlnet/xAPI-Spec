@@ -629,7 +629,10 @@ and "category" Context Activities.
      "contextActivities": {
         "category": [
           {
-          "id": "https://w3id.org/xapi/cmi5"
+          "id": "https://w3id.org/xapi/cmi5/context/categories/moveon"
+          },		
+          {		
+          "id": "https://w3id.org/xapi/cmi5/context/categories/cmi5"
           }
         ]
      },
