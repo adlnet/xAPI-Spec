@@ -20,24 +20,24 @@
 >send all feedback and inquiries to helpdesk@adlnet.gov  
 
 ## Table of Contents
-*	Part One:	[About the Experience API](#partone)  
-	*	1.0.	[Introduction](#introduction-partone) 
-	*	2.0.	[How To Use This Document](#readingguidelines)  
-		*	2.1.	[MUST / SHOULD / MAY](#def-must-should-may)  
-	 	*	2.2.	[Guidelines for Interpreting Descriptive Text and Tables](#interpret-text-table)  
-	*	3.0.	[Serialization and JavaScript Object Notation](#json)
-	*	4.0.	[Definitions](#definitions) 
-	*	5.0.	[xAPI Components](#xapi-components) 
-	*	6.0.	[Extending xAPI](#extending-xapi) 
-	*	7.0.	[Profiles and Communities of Practice](#COPs)  
-	*	[Appendices](#append1)  
-		*	[Appendix A: Revision History](#Appendix1A)  
-		*	[Appendix B: cmi5 Example](#Appendix1B)  
+*	Part One:	[About the Experience API](./xAPI-About.md#partone)  
+	*	1.0.	[Introduction](./xAPI-About.md#introduction-partone) 
+	*	2.0.	[How To Use This Document](./xAPI-About.md#readingguidelines)  
+		*	2.1.	[MUST / SHOULD / MAY](./xAPI-About.md#def-must-should-may)  
+	 	*	2.2.	[Guidelines for Interpreting Descriptive Text and Tables](./xAPI-About.md#interpret-text-table)  
+	*	3.0.	[Serialization and JavaScript Object Notation](./xAPI-About.md#json)
+	*	4.0.	[Definitions](./xAPI-About.md#definitions) 
+	*	5.0.	[xAPI Components](./xAPI-About.md#xapi-components) 
+	*	6.0.	[Extending xAPI](./xAPI-About.md#extending-xapi) 
+	*	7.0.	[Profiles and Communities of Practice](./xAPI-About.md#COPs)  
+	*	[Appendices](./xAPI-About.md#append1)  
+		*	[Appendix A: Revision History](./xAPI-About.md#Appendix1A)  
+		*	[Appendix B: cmi5 Example](./xAPI-About.md#Appendix1B)  
 *	Part Two:	[Experience API (xAPI) Data](./xAPI-Data.md#parttwo)  
 	*	1.0.	[Documents](./xAPI-Data.md#documents) 
 	*	2.0.	[Statements](./xAPI-Data.md#statements)  
 		*	2.1.	[Purpose](./xAPI-Data.md#statement-purpose)  
-	 	*	2.2.	[Formatting Requirements](#dataconstraints) 
+	 	*	2.2.	[Formatting Requirements](./xAPI-Data.md#dataconstraints) 
 	 	*	2.3.	[Statement Lifecycle](./xAPI-Data.md#lifecycle) 
 		 	*	2.3.1.	[Statement Immutability](./xAPI-Data.md#statement-immutablity-and-exceptions) 
 		 	*	2.3.2.	[Voiding](./xAPI-Data.md#voided) 
@@ -76,6 +76,9 @@
 	 	*	1.2.	[Headers](./xAPI-Communication.md#header-parameters) 
 	 	*	1.3.	[Alternate Request Syntax](./xAPI-Communication.md#alt-request-syntax) 
 	 	*	1.4.	[Encoding](./xAPI-Communication.md#encoding) 
+	 	*	1.5.	[Content Types](./xAPI-Communication.md#content-types) 
+	        *	1.5.1.	[Application/JSON](./xAPI-Communication.md#applicationjson) 
+	        *	1.5.1.	[Multipart/Mixed](./xAPI-Communication.md#multipartmixed)
 	*	2.0.	[Resources](./xAPI-Communication.md#datatransfer)   
 	 	*	2.1.	[Statement Resource](./xAPI-Communication.md#stmtres) 
 	 	*	2.2.	[Documents Resources](./xAPI-Communication.md#doctransfer) 
@@ -97,6 +100,9 @@
 		*	[Appendix A: Converting Statements to 1.0.0](./xAPI-Communication.md#Appendix3A)  
 		*	[Appendix B: Table of All Endpoints](./xAPI-Communication.md#Appendix3B)  
 		*	[Appendix C: Cross Domain Request Example](./xAPI-Communication.md#Appendix3C)  
+
+<a name="partone" />
+#Part One: About the Experience API
 
 <a name="introduction-partone"></a>
 ## 1.0 Introduction
@@ -206,9 +212,9 @@ even if there no requirement in a given area.
 Serialization is the process of translating data objects and structures into a format for storage or transmission, such that the 
 original data object can be recreated from the resulting serialization. In some cases it might be possible to serialize a piece 
 of data in more than one way. For example, a boolean property with a value corresponding to true might be represented 
-as ```true``` or ```1``` depending on the serialization used. 
+as `true` or `1` depending on the serialization used. 
 
-xAPI follows the rules of JSON for serializations (so boolean values are represented as ```true``` or ```false```). It might 
+xAPI follows the rules of JSON for serializations (so boolean values are represented as `true` or `false`). It might 
 also be possible to represent the objects defined in this specification using other serializations, such as XML. This is out 
 of scope of this specification and use of anything other than JSON to represent the objects defined in this specification 
 is not conformant. 
@@ -476,7 +482,12 @@ associated with him or her.
 In Figure 3, a learner accesses multiple Services. Some of these Services are used at work, others at home.  Some are used for 
 social purposes and others are used for educational or professional puproses.  Thus, there are multiple personas at work 
 collectively within these Services.  Each of these Services send data to the LRS. Afterwards, there are Statements from three 
-different personas of the same learner. The LRS can aggregate all of the information of each of the personas into one "Person" Object.
+different personas of the same learner. 
+
+The LRS can aggregate all of the information of each of the personas into one "Person" Object. This object can be retrieved from 
+The LRS via the [Agents Resource](./xAPI-Communication.md#agentsres). How the LRS knows that these 
+multiple personas belong to a single person is out of scope of this specification and there are several different approaches
+that an LRS can take. It's also possible that some LRSs will have no mechanism for associating personas. 
 
 <a name="extending-xapi" ></a>
 

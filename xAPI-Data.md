@@ -20,83 +20,86 @@
 >send all feedback and inquiries to helpdesk@adlnet.gov  
 
 ## Table of Contents
-*	Part One:	[About the Experience API](#partone)  
-	*	1.0.	[Introduction](#introduction-partone) 
-	*	2.0.	[How To Use This Document](#readingguidelines)  
-		*	2.1.	[MUST / SHOULD / MAY](#def-must-should-may)  
-	 	*	2.2.	[Guidelines for Interpreting Descriptive Text and Tables](#interpret-text-table)  
-	*	3.0.	[Serialization and JavaScript Object Notation](#json)
-	*	4.0.	[Definitions](#definitions) 
-	*	5.0.	[xAPI Components](#xapi-components) 
-	*	6.0.	[Extending xAPI](#extending-xapi) 
-	*	7.0.	[Profiles and Communities of Practice](#COPs)  
-	*	[Appendices](#append1)  
-		*	[Appendix A: Revision History](#Appendix1A)  
-		*	[Appendix B: cmi5 Example](#Appendix1B)  
-*	Part Two:	[Experience API (xAPI) Data](#parttwo)  
-	*	1.0.	[Documents](#documents) 
-	*	2.0.	[Statements](#statements)  
-		*	2.1.	[Purpose](#statement-purpose)  
-	 	*	2.2.	[Formatting Requirements](#dataconstraints) 
-	 	*	2.3.	[Statement Lifecycle](#lifecycle) 
-		 	*	2.3.1.	[Statement Immutability](#statement-immutablity-and-exceptions) 
-		 	*	2.3.2.	[Voiding](#voided) 
-   		*	2.4.	[Statement Properties](#statement-properties)  
-	        *	2.4.1.	[ID](#stmtid)  
-	        *	2.4.2.	[Actor](#actor)  
-	        *	2.4.3.	[Verb](#verb)  
-	        *	2.4.4.	[Object](#object)  
-	        *	2.4.5.	[Result](#result)  
-	        *	2.4.6.	[Context](#context)  
-	        *	2.4.7.	[Timestamp](#timestamp)  
-	        *	2.4.8.	[Stored](#stored)  
-	        *	2.4.9.	[Authority](#authority)  
-	        *	2.4.10.	[Version](#version)  
-	        *	2.4.11.	[Attachments](#attachments)  
-    	*	2.5.	[Retrieval of Statements](#retrieval)   
-    	*	2.6.	[Signed Statements](#signature)  
-	*	3.0.	[Metadata](#metadata)
-		*	3.1.	[IRI Requirements](#iri-requirements)  
-		*	3.2.	[Hosted Metadata](#miscmeta)  
-    *	4.0.	[Special Data Types and Rules](#special-data)  
-		*	4.1.	[Extensions](#miscext) 
-		*	4.2.	[Language Maps](#lang-maps)
-		*	4.3.	[IRIs](#iris)
-		*	4.4.	[UUIDs](#uuids)
-		*	4.5.	[ISO 8601 Timestamps](#timestamps)
-		*	4.6.	[ISO 8601 Durations](#durations)
-	*	[Appendices](#append2)  
-		*	[Appendix A: Example Statements](#Appendix2A)  
-		*	[Appendix B: Example statement objects of different types](#Appendix2B)  
-		*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](#Appendix2C)  	
-		*	[Appendix D: Example Signed Statement](#Appendix2D)  
-*	Part Three:	[Data Processing, Validation, and Security](#partthree)  
-	*	1.0.	[Requests](#requests)
-		*	1.1.	[HEAD Request Implementation](#httphead)  
-	 	*	1.2.	[Headers](#header-parameters) 
-	 	*	1.3.	[Alternate Request Syntax](#alt-request-syntax) 
-	 	*	1.4.	[Encoding](#encoding) 
-	*	2.0.	[Resources](#datatransfer)   
-	 	*	2.1.	[Statement Resource](#stmtres) 
-	 	*	2.2.	[Documents Resources](#doctransfer) 
-	 	*	2.3.	[State Resource](#stateres) 
-	 	*	2.4.	[Agents Resource](#agentsres) 
-	 	*	2.5.	[Activities Resource](#activitiesres) 
-	 	*	2.6.	[Agent Profile Resource](#agentprofres) 
-	 	*	2.7.	[Activity Profile Resource](#actprofres) 
-	 	*	2.8.	[About Resource](#aboutresource) 
-   	*	3.0.	[Data Validation](#validation)     
-    	*	3.1.	[Concurrency](#concurrency)  
-    	*	3.2.	[Error Codes](#errorcodes)
-    	*	3.3     [Versioning](#versioning)  
-    *	4.0.	[Authentication](#authentication)  
-		*	4.1.	[OAuth 1.0 Authentication Scenarios and Methods](#authdefs) 
-		*	4.2.	[OAuth 1.0 Authorization Scope](#oauthscope)
-    *	5.0	[Security](#security)
-	*	[Appendices](#append3)  
-		*	[Appendix A: Converting Statements to 1.0.0](#Appendix3A)  
-		*	[Appendix B: Table of All Endpoints](#Appendix3B)  
-		*	[Appendix C: Cross Domain Request Example](#Appendix3C)  
+*	Part One:	[About the Experience API](./xAPI-About.md#partone)  
+	*	1.0.	[Introduction](./xAPI-About.md#introduction-partone) 
+	*	2.0.	[How To Use This Document](./xAPI-About.md#readingguidelines)  
+		*	2.1.	[MUST / SHOULD / MAY](./xAPI-About.md#def-must-should-may)  
+	 	*	2.2.	[Guidelines for Interpreting Descriptive Text and Tables](./xAPI-About.md#interpret-text-table)  
+	*	3.0.	[Serialization and JavaScript Object Notation](./xAPI-About.md#json)
+	*	4.0.	[Definitions](./xAPI-About.md#definitions) 
+	*	5.0.	[xAPI Components](./xAPI-About.md#xapi-components) 
+	*	6.0.	[Extending xAPI](./xAPI-About.md#extending-xapi) 
+	*	7.0.	[Profiles and Communities of Practice](./xAPI-About.md#COPs)  
+	*	[Appendices](./xAPI-About.md#append1)  
+		*	[Appendix A: Revision History](./xAPI-About.md#Appendix1A)  
+		*	[Appendix B: cmi5 Example](./xAPI-About.md#Appendix1B)  
+*	Part Two:	[Experience API (xAPI) Data](./xAPI-Data.md#parttwo)  
+	*	1.0.	[Documents](./xAPI-Data.md#documents) 
+	*	2.0.	[Statements](./xAPI-Data.md#statements)  
+		*	2.1.	[Purpose](./xAPI-Data.md#statement-purpose)  
+	 	*	2.2.	[Formatting Requirements](./xAPI-Data.md#dataconstraints) 
+	 	*	2.3.	[Statement Lifecycle](./xAPI-Data.md#lifecycle) 
+		 	*	2.3.1.	[Statement Immutability](./xAPI-Data.md#statement-immutablity-and-exceptions) 
+		 	*	2.3.2.	[Voiding](./xAPI-Data.md#voided) 
+   		*	2.4.	[Statement Properties](./xAPI-Data.md#statement-properties)  
+	        *	2.4.1.	[ID](./xAPI-Data.md#stmtid)  
+	        *	2.4.2.	[Actor](./xAPI-Data.md#actor)  
+	        *	2.4.3.	[Verb](./xAPI-Data.md#verb)  
+	        *	2.4.4.	[Object](./xAPI-Data.md#object)  
+	        *	2.4.5.	[Result](./xAPI-Data.md#result)  
+	        *	2.4.6.	[Context](./xAPI-Data.md#context)  
+	        *	2.4.7.	[Timestamp](./xAPI-Data.md#timestamp)  
+	        *	2.4.8.	[Stored](./xAPI-Data.md#stored)  
+	        *	2.4.9.	[Authority](./xAPI-Data.md#authority)  
+	        *	2.4.10.	[Version](./xAPI-Data.md#version)  
+	        *	2.4.11.	[Attachments](./xAPI-Data.md#attachments)  
+    	*	2.5.	[Retrieval of Statements](./xAPI-Data.md#retrieval)   
+    	*	2.6.	[Signed Statements](./xAPI-Data.md#signature)  
+	*	3.0.	[Metadata](./xAPI-Data.md#metadata)
+		*	3.1.	[IRI Requirements](./xAPI-Data.md#iri-requirements)  
+		*	3.2.	[Hosted Metadata](./xAPI-Data.md#miscmeta)  
+    *	4.0.	[Special Data Types and Rules](./xAPI-Data.md#special-data)  
+		*	4.1.	[Extensions](./xAPI-Data.md#miscext) 
+		*	4.2.	[Language Maps](./xAPI-Data.md#lang-maps)
+		*	4.3.	[IRIs](./xAPI-Data.md#iris)
+		*	4.4.	[UUIDs](./xAPI-Data.md#uuids)
+		*	4.5.	[ISO 8601 Timestamps](./xAPI-Data.md#timestamps)
+		*	4.6.	[ISO 8601 Durations](./xAPI-Data.md#durations)
+	*	[Appendices](./xAPI-Data.md#append2)  
+		*	[Appendix A: Example Statements](./xAPI-Data.md#Appendix2A)  
+		*	[Appendix B: Example statement objects of different types](./xAPI-Data.md#Appendix2B)  
+		*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](./xAPI-Data.md#Appendix2C)  	
+		*	[Appendix D: Example Signed Statement](./xAPI-Data.md#Appendix2D)  
+*	Part Three:	[Data Processing, Validation, and Security](./xAPI-Communication.md#partthree)  
+	*	1.0.	[Requests](./xAPI-Communication.md#requests)
+		*	1.1.	[HEAD Request Implementation](./xAPI-Communication.md#httphead)  
+	 	*	1.2.	[Headers](./xAPI-Communication.md#header-parameters) 
+	 	*	1.3.	[Alternate Request Syntax](./xAPI-Communication.md#alt-request-syntax) 
+	 	*	1.4.	[Encoding](./xAPI-Communication.md#encoding) 
+	 	*	1.5.	[Content Types](./xAPI-Communication.md#content-types) 
+	        *	1.5.1.	[Application/JSON](./xAPI-Communication.md#applicationjson) 
+	        *	1.5.1.	[Multipart/Mixed](./xAPI-Communication.md#multipartmixed)
+	*	2.0.	[Resources](./xAPI-Communication.md#datatransfer)   
+	 	*	2.1.	[Statement Resource](./xAPI-Communication.md#stmtres) 
+	 	*	2.2.	[Documents Resources](./xAPI-Communication.md#doctransfer) 
+	 	*	2.3.	[State Resource](./xAPI-Communication.md#stateres) 
+	 	*	2.4.	[Agents Resource](./xAPI-Communication.md#agentsres) 
+	 	*	2.5.	[Activities Resource](./xAPI-Communication.md#activitiesres) 
+	 	*	2.6.	[Agent Profile Resource](./xAPI-Communication.md#agentprofres) 
+	 	*	2.7.	[Activity Profile Resource](./xAPI-Communication.md#actprofres) 
+	 	*	2.8.	[About Resource](./xAPI-Communication.md#aboutresource) 
+   	*	3.0.	[Data Validation](./xAPI-Communication.md#validation)     
+    	*	3.1.	[Concurrency](./xAPI-Communication.md#concurrency)  
+    	*	3.2.	[Error Codes](./xAPI-Communication.md#errorcodes)
+    	*	3.3     [Versioning](./xAPI-Communication.md#versioning)  
+    *	4.0.	[Authentication](./xAPI-Communication.md#authentication)  
+		*	4.1.	[OAuth 1.0 Authentication Scenarios and Methods](./xAPI-Communication.md#authdefs) 
+		*	4.2.	[OAuth 1.0 Authorization Scope](./xAPI-Communication.md#oauthscope)
+    *	5.0	[Security](./xAPI-Communication.md#security)
+	*	[Appendices](./xAPI-Communication.md#append3)  
+		*	[Appendix A: Converting Statements to 1.0.0](./xAPI-Communication.md#Appendix3A)  
+		*	[Appendix B: Table of All Endpoints](./xAPI-Communication.md#Appendix3B)  
+		*	[Appendix C: Cross Domain Request Example](./xAPI-Communication.md#Appendix3C)  
 
 
 <a name="parttwo" />
@@ -105,18 +108,12 @@
 <a name="documents" />
 ## 1.0 Documents
 
-### Document
-
-The Experience API provides a facility for Activity Providers to save arbitrary data in the form of documents.  This data 
+The Experience API provides a facility for Learning Record Providers to save arbitrary data in the form of documents.  This data 
 is largely unstructured, which allows for flexibility.  Specifics on document behaviors can be found in [Part 3](#doctransfer) 
 
 <a name="statements" /> 
 
 ## 2.0 Statements  
-
-###### Description 
-The Statement is the core of the xAPI. All learning events are stored as Statements.
-A Statement is akin to a sentence of the form "I did this".
 
 <a name="statement-purpose"/> 
 ### 2.1 Purpose
@@ -132,10 +129,9 @@ just the sum of its parts.
 
 ###### Details
 
-All the properties used in Statements are restricted to certain types, and those types
-constrain the behavior of systems processing Statements. For clarity, certain key
-requirements are documented here, emphasizing where compliant systems have a responsibility
-to act in certain ways.
+All of the properties used in Statements are restricted to certain data types. For clarity, key requirements are 
+documented here, emphasizing where xAPI components have a responsibility to act in certain ways to be considered 
+conformant to this specification.
 
 ###### Requirements
 
@@ -147,9 +143,9 @@ to act in certain ways.
 
 ###### Client Requirements
 
-The following requirements reiterate especially important requirements already 
-included elsewhere, to emphasize, clarify, and provide implementation guidance.  
-Complete IRI validation is extremely difficult, so much of the burden for ensuring data portability is on the Client.
+The following requirements reiterate especially important requirements already included elsewhere, to emphasize,
+clarify, and provide implementation guidance.  Complete IRI validation is extremely difficult, so much of the burden 
+for ensuring data portability is on the Client.
 
 * Values requiring IRIs MUST be sent with valid IRIs. 
 * Keys of language maps MUST be sent with valid [RFC 5646](http://tools.ietf.org/html/rfc5646) language tags, for similar reasons.
@@ -207,31 +203,28 @@ Statement is to be disregarded.
 
 Statements are immutable (they cannot be changed). The following are exceptions or areas not covered by this rule:
 
-* Potential or required assignments of properties during LRS 
-processing ("id", "authority", "stored", "timestamp", "version"). 
+* Potential or required assignments of properties during LRS processing ("id", "authority", "stored", "timestamp", "version"). 
 
-* Activity Definitions referenced by a Statement. The content of 
-Activity Definitions that are referenced in Statements is not considered part of the 
-Statement itself. This means a deep serialization of a Statement into 
-JSON will change if the referenced Activity Definition changes (see the
-[Statement API's](#stmtapi) "format" parameter for details).  
+* Activity Definitions referenced by a Statement. The content of Activity Definitions that are referenced in Statements 
+is not considered part of the Statement itself. This means a deep serialization of a Statement into JSON will change if 
+the referenced Activity Definition changes (see the [Statement API's](#stmtapi) "format" parameter for details).  
 
 * Verbs referenced by a Statement. The Display property of the Verb is not considered 
 part of the Statement itself (see the [Statement API's](#stmtapi) "format" parameter for details). 
 
-* Serialization of Timestamp data. This is not considered part of the immutable statement 
-itself. For example, the timestamp and stored properties of a statement can be returned
-in a different timezone to the one with which they were stored so long as the point in time
-referenced is not affected. See [4.1.7 Timestamp](#timestamp) and [4.1.8 Stored](#stored) for details. 
+* Serialization of Timestamp data. This is not considered part of the immutable Statement itself. For example, 
+the timestamp and stored properties of a statement can be returned in a different timezone to the one with 
+which they were stored so long as the point in time referenced is not affected. 
+See [4.1.7 Timestamp](#timestamp) and [4.1.8 Stored](#stored) for details. 
 
-* Serialization of un-ordered lists. The list of Agents in a Group is not considered to be an ordered list
-and so the LRS can return this list of agents in any order. See [4.1.2.2 Groups](#group).
+* Serialization of un-ordered lists. The list of Agents in a Group is not considered to be an ordered list.  Thus, 
+the LRS can return this list of agents in any order. See [4.1.2.2 Groups](#group).
 
-* Attachments. These are not part of statements and an LRS will return statements without attachments when the client
-requests this (see the [Statement API's](#stmtapi) "attachments" parameter for details).
+* Attachments. These are not part of Statements and an LRS will return Statements without attachments when a Client
+requests them (see the [Statement API's](#stmtapi) "attachments" parameter for details).
 
 * Case sensitivity. Some properties are case insensitive and changes in case therefore do not affect immutability. 
-For example the domain portion an e-mail address is case insensitive. It is recommended to use lowercase for any case 
+For example, the domain portion an e-mail address is case insensitive. It is recommended to use lowercase for any case 
 insensitive text. 
 
 The following explicitly are **not** exceptions and **are** covered by this rule:
@@ -243,7 +236,7 @@ Result Duration is considered a string for purposes of statement comparison.
 
 <a name="statement-comparision-requirements" />
 ###### Statement Comparision Requirements
-There are a number of scenarios outlined in this specification which require statements to be
+There are a number of scenarios outlined in this specification which require Statements to be
 compared to see if they match. In these scenarios, the following rules apply:
 
 * Differences which could have been caused by 
@@ -261,8 +254,9 @@ The certainty that an LRS has an accurate and complete collection of data is gua
 cannot be logically changed or deleted. This immutability of Statements is a key factor in enabling the distributed 
 nature of Experience API.
 
-However, not all Statements are perpetually valid once they have been issued. Mistakes or other factors could require that a previously made Statement is marked as invalid. This is called "voiding a Statement" and the
-reserved Verb “http://adlnet.gov/expapi/verbs/voided" is used for this purpose. Any Statement that voids another
+However, not all Statements are perpetually valid once they have been issued. Mistakes or other factors could dictate 
+that a previously made Statement is marked as invalid. This is called "voiding a Statement" and the reserved 
+Verb “http://adlnet.gov/expapi/verbs/voided" is used for this purpose. Any Statement that voids another
 cannot itself be voided.
 
 ###### Requirements
@@ -271,14 +265,15 @@ cannot itself be voided.
 property set to "StatementRef".
 * When issuing a Statement that voids another, the Object of that voiding Statement MUST specify the id 
 of the statement-to-be-voided by its "id" property.
-* an LRS MUST consider a Statement it contains "voided" if and only if the Statement is not itself a voiding Statement and the LRS also contains a voiding Statement referring to the first Statement.
+* an LRS MUST consider a Statement it contains "voided" if and only if the Statement is not itself a voiding 
+Statement and the LRS also contains a voiding Statement referring to the first Statement.
 * Upon receiving a Statement that voids another, the LRS SHOULD reject the entire request which includes the 
 voiding Statement with HTTP 403 'Forbidden' if the request is not from a source authorized to void Statements.
 * Upon receiving a Statement that voids another, the LRS SHOULD NOT* reject the request on the grounds of the 
 Object of that voiding Statement not being present. 
 * Upon receiving a Statement that voids another, the LRS MAY roll back any changes to Activity or Agent 
 definitions which were introduced by the Statement that was just voided.
-* An Activity Provider that wants to "unvoid" a previously voided Statement SHOULD issue that Statement 
+* A Learning Record Provider that wants to "unvoid" a previously voided Statement SHOULD issue that Statement 
 again under a new id.
 
 __Note:__ See ["Statement References"](#stmtref) in [When the "Object" is a Statement](#stmtasobj) 
@@ -970,7 +965,7 @@ Run-Time Environment. See [Appendix C](#Appendix2C) for examples of each format.
 		<td>numeric</td>
 		<td>A range of numbers represented by a minimum and a maximum delimited by <code>[:]</code>. 
 			Where the range does not have a maximum or does not have a minimum, that number is omitted but the delimiter is
-			still used. E.g. ```"[:]4"``` indicates a maximum for 4 and no minimum. 
+			still used. E.g. <code>[:]4</code> indicates a maximum for 4 and no minimum. 
 			Where the correct response or learner's response is a single number rather than a range, the single number
 			with no delimiter MAY be used. 
 		</td>
@@ -993,7 +988,7 @@ if **all** of the items in that list match the learner's response. For example, 
 ]
 ``` 
 
-In this example, ```foo[,]bar``` and  ```foo``` are correct learner responses; ```bar``` is not.
+In this example, either "foo" and "bar", *or* just "foo" are correct learner responses; "bar" on it's own is not.
 
 The Correct Responses Pattern, if used, is intended to be an exhaustive list of possible correct responses. Where the criteria for a question are complex and correct responses cannot be exhaustively listed, Activity Providers are discouraged from using the "correct responses pattern" property.
 
@@ -1005,7 +1000,7 @@ is omitted.
 
 ###### Characterstring parameters
 Some of the values within the responses described above can be prepended with certain additional parameters. These were originally based on the characterstring
-delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These parameters are represented by the format ```{parameter=value}```.
+delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These parameters are represented by the format `{parameter=value}`.
 See [the long-fill-in example within Appendix C](#long-fill-in). 
 
 Characterstring parameters are not validated by the LRS. Systems interpreting statement data can use their best judgement in interpreting (or ignoring) invalid characterstring parameters and values.
@@ -1089,7 +1084,7 @@ shows the supported interaction component list(s) for an Interaction Activity wi
 	<td>Lists of sources and targets to be matched.</td></tr>
 	<tr><td>performance</td><td>steps</td>
 	<td>A list of the elements making up the performance interaction.</td></tr>
-	<tr><td>true-false, fill-in, long-fill-in, numeric, other</td><td>[No component lists defined]</td><td></td></tr>
+	<tr><td>true-false, fill-in, long-fill-in, numeric, other</td><td>[No component lists supported]</td><td></td></tr>
 </table>
 
 
@@ -1192,7 +1187,7 @@ A SubStatement is like a Statement included as part of a containing Statement, b
 
 One interesting use of SubStatements is in creating Statements of intention. 
 For example, using SubStatements we can create Statements of the form 
-```"<I> <planned> (<I> <did> <this>)"```  to indicate that we've planned to take some 
+`"<I> <planned> (<I> <did> <this>)"`  to indicate that we've planned to take some 
 action. The concrete example that follows logically states that 
 "I planned to visit 'Some Awesome Website'". 
  
@@ -1754,153 +1749,6 @@ The table below lists all properties of the Attachment object.
 	</tr>
 </table>
 
-_Procedure for the exchange of attachments_
-
-1. A Statement including an attachment is construed according to the Transmission Format described below.
-
-2. The Statement is sent to the receiving system using a Content-Type of
-"multipart/mixed". The attachments are placed at the end of such transmissions.
-
-3. The receiving system decides whether to accept or reject the Statement based on the information in the first part.
-
-4. If it accepts the attachment, it can match the raw data of an attachment
-with the attachment header in a Statement by comparing the SHA-2 of the raw
-data to the SHA-2 declared in the header. It MUST not do so any other way.
-
-###### Requirements for Attachment Statement Batches
-
-A Statement batch, Statement results, or single Statement that includes attachments MUST satisfy one of the 
-following criteria:
-
-* It MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for Statement 
-results when the attachments filter is false.
-* It MUST conform to the definition of multipart/mixed in [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt) and:
-    * The first part of the multipart document MUST contain the Statements themselves, with type "application/json".
-    * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
-    capability will be available when issuing PUT or POST against the Statement resource.
-    * MUST include an X-Experience-API-Hash parameter in each part's header after the first (Statements) part.
-    * MUST include a Content-Transfer-Encoding parameter with a value of "binary" in each part's header after the first (statements) part.
-    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple Statements that are sent together.
-    * SHOULD include a Content-Type parameter in each part's header. For the first part (containing the statement) this MUST be "application/json".
-   	* Where parameters have a corresponding property within the Attachment Object (outlined in the table above), and both the parameter and 
-   	property are specified for a given Attachment, the value of these parameters and properties MUST match. 
-
-
-###### LRS Requirements
-
-* An LRS MUST include attachments in the Transmission Format described above
-when requested by the Client (see Section [7.3 "Statement Resource"](#stmtapi)).
-* An LRS MUST NOT pull Statements from another LRS without requesting attachments.
-* An LRS MUST NOT push Statements into another LRS without including attachment data
-received, if any, for those attachments.
-* When receiving a PUT or POST with a document type of "application/json”, an LRS MUST accept batches 
-of Statements which contain no attachment Objects.
-* When receiving a PUT or POST with a document type of "application/json”, an LRS MUST accept batches 
-of Statements which contain only attachment Objects with a populated fileUrl.
-* When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST accept batches of 
-Statements that contain attachments in the Transmission Format described above.
-* When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST reject batches of 
-Statements having attachments that neither contain a fileUrl nor match a received attachment part based on their hash.
-* When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS SHOULD assume a 
-Content-Transfer-Encoding of binary for attachment parts.
-* An LRS MAY reject (batches of) Statements that are larger than the LRS is configured to allow.
-
-
-__Note:__ There is no requirement that Statement batches using the mime/multipart format
-contain attachments.
-
-###### Client Requirements
-
-* The Client MAY send Statements with attachments as described above.
-* The Client MAY send multiple Statements where some or all have attachments if using "POST".
-* The Client MAY send batches of type "application/json" where every attachment
-Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
-* The Client SHOULD use SHA-256, SHA-384, or SHA-512  to populate the "sha2" property.
-
-###### File URL
-The File URL is intended to provide a location from which the LRS or another system can retrieve the
-attachment. There are, however, no requirements for the owner of the attachment to make the 
-attachment data available at the location indefinitely or to make the attachment publically
-available without security restrictions. When determining attachment hosting arrangements, 
-designers of systems that will send Statements using the "fileUrl" property are encouraged to 
-consider the needs of end recipient(s) of the Statement especially if the attachment content 
-is not included with the Statement.
-
-* The attachment data SHOULD be retrievable at the URL indicated by the fileUrl.
-* The owner of the attachment MAY stop providing the attachment data at this IRL at any time. 
-* Security restrictions MAY be applied to clients attempting to access the attachment data at this IRL. 
-
-The period of time an attachment is made available for, and the security restrictions applied to
-hosted attachments, are out of scope of this specification. 
-
-###### Example
-
-Below is an example of a very simple Statement with an attachment. Please note the following:
-
-* The boundary in the sample was chosen to demonstrate valid character classes;
-* The selected boundary does not appear in any of the parts;
-* For readability the sample attachment is text/plain. Even if it had been a 'binary' type
-like 'image/jpeg' no encoding would be done, the raw octets would be included;
-* Per RFC 2046, the boundary is <CRLF> followed by -- followed by the boundary string declared in the header.
-
-Don't forget the ```<CRLF>```  when building or parsing these messages.
-
-Headers:
-
-``` 
-Content-Type: multipart/mixed; boundary="abcABC0123'()+_,-./:=?"
-X-Experience-API-Version:1.0.0
-```
-Content:
-```
-
---abcABC0123'()+_,-./:=?
-Content-Type:application/json
-
-{
-    "actor": {
-        "mbox": "mailto:sample.agent@example.com",
-        "name": "Sample Agent",
-        "objectType": "Agent"
-    },
-    "verb": {
-        "id": "http://adlnet.gov/expapi/verbs/answered",
-        "display": {
-            "en-US": "answered"
-        }
-    },
-    "object": {
-        "id": "http://www.example.com/tincan/activities/multipart",
-        "objectType": "Activity",
-        "definition": {
-            "name": {
-                "en-US": "Multi Part Activity"
-            },
-            "description": {
-                "en-US": "Multi Part Activity Description"
-            }
-        }
-    },
-    "attachments": [
-        {
-            "usageType": "http://example.com/attachment-usage/test",
-            "display": { "en-US": "A test attachment" },
-            "description": { "en-US": "A test attachment (description)" },
-            "contentType": "text/plain; charset=ascii",
-            "length": 27,
-            "sha2": "495395e777cd98da653df9615d09c0fd6bb2f8d4788394cd53c56a3bfdcd848a"
-        }
-    ]
-}
---abcABC0123'()+_,-./:=?
-Content-Type:text/plain
-Content-Transfer-Encoding:binary
-X-Experience-API-Hash:495395e777cd98da653df9615d09c0fd6bb2f8d4788394cd53c56a3bfdcd848a
-
-here is a simple attachment
---abcABC0123'()+_,-./:=?--
-```
-
 <a name="retrieval"/> 
 ### 2.5 Retrieval of Statements
 
@@ -2183,10 +2031,11 @@ Statements sent to an LRS can be expected to keep precision to at least millisec
 
 ###### Requirements
 * A Timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
+* A Timestamp SHOULD* be expressed using the format described in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt), which is a profile of ISO 8601. 
 * A Timestamp MUST preserve precision to at least milliseconds (3 decimal points beyond seconds).  
 * A Timestamp SHOULD* include the time zone.
 * If the Timestamp includes a time zone, the LRS MAY be return the Timestamp using a different timezone to the one 
-* originally used in the statement so long as the point in time referenced is not affected. 
+originally used in the statement so long as the point in time referenced is not affected. 
 * The LRS SHOULD* return the Timestamp in UTC timezone. 
 * A Timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds. 
 
@@ -2417,8 +2266,8 @@ a statement returned by an LRS including the authority and stored properties set
         }
         
     },
-    "timestamp": "2013-05-18T05:32:34.804Z+00:00",
-    "stored": "2013-05-18T05:32:34.804Z+00:00",
+    "timestamp": "2013-05-18T05:32:34.804+00:00",
+    "stored": "2013-05-18T05:32:34.804+00:00",
     "authority": {
         "account": {
             "homePage": "http://cloud.scorm.com/",
