@@ -579,7 +579,7 @@ Clarifications and additional examples including:
 - Removed back-references to SCORM
 - Additional explanatory text and diagrams
 - Rename Statement API and Document APIs to Statement Resource and Document Resources
-- Improved or addedd definitions for: communities of practice, profiles, vocabulary, recipes
+
 
 [1.0.2...1.0.3](https://github.com/adlnet/xAPI-Spec/compare/1.0.2...1.0.3)
 
