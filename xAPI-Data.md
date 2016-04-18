@@ -685,7 +685,7 @@ or the Verb IRI http://example.com/فعل/خواندن might denote the action o
 
 ###### Description
 
-The object defines the thing that was acted on.  The Object of a Statement can be an Activity, Agent/Group, 
+The object defines the thing that was acted on. The Object of a Statement can be an Activity, Agent/Group, 
 SubStatement, or Statement Reference.
 
 Some examples:
@@ -810,7 +810,7 @@ e.g. to fix a spelling.
 e.g. changes to correct responses.
 
 
-###### Activity Provider Requirements
+###### Learning Record Provider Requirements
 
 * A Learning Record Provider MUST ensure that Activity ids are not reused across multiple Activities.
 * A Learning Record Provider MUST only generate states or Statements against a certain Activity id that are compatible
@@ -994,8 +994,8 @@ Correct Response Pattern with a value of:
 In this example, either "foo" and "bar", *or* just "foo" are correct learner responses; "bar" on it's own is not.
 
 The Correct Responses Pattern, if used, is intended to be an exhaustive list of possible correct responses. Where the criteria 
-for a question are complex and correct responses cannot be exhaustively listed, Learning Record are discouraged from using 
-the "correct responses pattern" property.
+for a question are complex and correct responses cannot be exhaustively listed, Learning Record Providers are discouraged from 
+using the "correct responses pattern" property.
 
 Learning Record Consumers cannot infer success based on comparison of the Response with the Correct Responses Pattern, 
 nor can they rely on the Correct Responses Pattern always being exhaustive. The Learning Record Provider is allowed to mark 
@@ -1747,7 +1747,7 @@ attachment(s) in the Statement Attachment object and to include the payloads as 
 ### 2.5 Retrieval of Statements
 
 ###### Description
-A collection of Statements can be retrieved by performing a query on the Statements 
+A collection of Statements can be retrieved by performing a query on the Statement 
 Resource, see [Statement Resource](#stmtapi) for details. 
 
 ###### Details
