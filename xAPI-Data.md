@@ -2024,10 +2024,11 @@ Statements sent to an LRS can be expected to keep precision to at least millisec
 
 ###### Requirements
 * A Timestamp MUST be formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations).
-* A Timestamp MUST preserve precision to at least milliseconds (3 decimal points beyond seconds). 
+* A Timestamp SHOULD* be expressed using the format described in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt), which is a profile of ISO 8601. 
+* A Timestamp MUST preserve precision to at least milliseconds (3 decimal points beyond seconds).  
 * A Timestamp SHOULD* include the time zone.
 * If the Timestamp includes a time zone, the LRS MAY be return the Timestamp using a different timezone to the one 
-* originally used in the statement so long as the point in time referenced is not affected. 
+originally used in the statement so long as the point in time referenced is not affected. 
 * The LRS SHOULD* return the Timestamp in UTC timezone. 
 * A Timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds. 
 
