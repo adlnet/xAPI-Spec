@@ -255,7 +255,6 @@ All required properties are required to contain values.
 * [Metadata Consumer](#def-metadata-consumer)
 * [Persona](#def-persona)
 * [Profile](#def-profile)
-* [Recipe](#def-recipe)
 * [Registration](#def-registration)
 * [Representational State Transfer (REST)](#def-rest)
 * [Service](#def-service)
@@ -266,7 +265,7 @@ All required properties are required to contain values.
 
 <a name="def-activity" ></a>
 
-__Activity__: An Activity is a type of Object making up the “this” in “I did this”; it is something 
+__Activity__: A type of Object making up the “this” in “I did this”; it is something 
 with which an Actor interacted. It can be a unit of instruction, experience, or performance that is 
 to be tracked in meaningful combination with a Verb. Interpretation of Activity is broad, meaning that 
 Activities can even be tangible objects such as a chair (real or virtual). In the statement "Anna 
@@ -397,11 +396,7 @@ having a "home email" and a "work email".  Both are the same person, but have di
 
 <a name="def-profile" ></a>
 
-__Profile__: A profile is a specific set of rules and documentation for implementing xAPI in a particular context. Profiles generally provide a particular vocabulary of terms, some created specifically for the profile, and some are referenced from other vocabularies. Sometimes a profile might provide multiple vocabularies for different situations, and sometimes someone might curate a vocabulary from multiple sources without creating a profile.
-
-<a name="def-recipe" ></a>
-
-__Recipe__: Refers to a way of expressing how a common type of learning activity could be syntactically represented in the form of a sample xAPI Statement. A recipe is intended to be reusable by other developers or CoPs. It can specify the statement structure, objects and properties, the required values associated with each object and property, and the object identifiers.
+__Profile__: A specific set of rules and documentation for implementing xAPI in a particular context. Profiles generally provide a particular vocabulary of terms, some created specifically for the profile, and some are referenced from other vocabularies. Sometimes a profile might provide multiple vocabularies for different situations, and sometimes someone might curate a vocabulary from multiple sources without creating a profile.
 
 
 <a name="def-registration" ></a>
@@ -436,7 +431,7 @@ A Verb represents the "did" in "I did this".
 
 <a name="def-vocabulary" ></a>
 
-__Vocabulary__: Is a list or collection of the terms that are used by a COP for labeling or categorizing information in a particular domain. The use of a vocabulary ensures that everyone is using the same word to mean the same thing. For more information on vocabularies, see the [xAPI Vocabulary Companion Specification](https://github.com/adlnet/companion-specification-for-xapi-vocabularies/blob/master/SUMMARY.md).
+__Vocabulary__: A list or collection of the terms that are used by a COP for labeling or categorizing information in a particular domain. The use of a vocabulary ensures that everyone is using the same word to mean the same thing. For more information on vocabularies, see the [xAPI Vocabulary Companion Specification](https://github.com/adlnet/companion-specification-for-xapi-vocabularies/blob/master/SUMMARY.md).
 
 <a name="xapi-components" ></a>
 
