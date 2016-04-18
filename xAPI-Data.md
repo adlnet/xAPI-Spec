@@ -1330,8 +1330,7 @@ outside the scope of this specification.
 ###### Requirements
 
 * The Score Object SHOULD include 'scaled' if a logical percent based score is known.
-* The Score Object SHOULD NOT be used for scores relating to progress or completion.  Consider using an extension
-from an extension profile instead.
+* The Score Object SHOULD NOT be used for scores relating to progress or completion.  Consider using an extension instead.
 
 
 <a name="context"/>

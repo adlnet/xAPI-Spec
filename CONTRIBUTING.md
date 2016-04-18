@@ -23,7 +23,6 @@
 >
 > _Director, ADL Initiative_
 >
-> _OSD, Training Readiness & Strategy (TRS)_
 
 <a name="wg"/>
 
@@ -122,7 +121,7 @@
 ### Historical Contributors
 In collection of requirements for the Experience API, many people and
 organizations provided invaluable feedback to the SCORM, distributed learning efforts, and learning technology
-efforts in general.  While not an exhaustive listing, the white papers gathered
+efforts in general.  While not an exhaustive listing, the [white papers](http://scorm.com/tincanoverview/the-letsi-scorm-2-0-white-papers) gathered
 in 2008 by the Learning Education and Training Standards Interoperability (LETSI)
 group, the Rustici Software UserVoice website, one-on-one interviews and various
 blogs were important sources from which requirements were gathered for the
@@ -207,7 +206,7 @@ Before making a PR you should:
 
 If you would like to raise a PR that directly addresses your own concern, there is no need to raise a separate issue.
 
-To make a PR you will need to edit xAPI.md either using the GitHub.com interface, or use git on your local computer.
+To make a PR you will need to edit the appropriate .md file either using the GitHub.com interface, or use git on your local computer.
 The GitHub.com interface is simpler for new users and is ideal for smaller changes like typos. These two methods are described below.
 
 When making a PR, you should include a description that explains:
