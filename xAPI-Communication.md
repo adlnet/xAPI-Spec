@@ -103,17 +103,16 @@
 
 # Part Three: Data Processing, Validation, and Security 
 
-This third part details the more technical side of the Experience API, dealing with 
-how Statements are transferred between Activity Provider and LRS. A number of libraries 
-are available for a range of technologies (including JavaScript) which handle 
-this part of the specification. It therefore might not be necessary for Activity Provider developers 
-to fully understand every detail of this part of the specification.
+This third part details the more technical side of the Experience API, dealing with how Statements are transferred between 
+Learning Record Provider and LRS. A number of libraries are available for a range of technologies (including JavaScript) 
+which handle this part of the specification. It therefore might not be necessary for Learning Record Providers to fully 
+understand every detail of this part of the specification.
 
 <a name="requests"/>
 
 ## 1.0 Requests
 
-xAPI tracking is done via HTTP Requests from the Activity Provider (client) to the LRS (server).  This 
+xAPI tracking is done via HTTP Requests from the Learning Record Provider (client) to the LRS (server).  This 
 specification offers guidance in some aspects of this communication.  Where no guidance is offered, it is 
 recommended that those implementing xAPI use current industry best practices.
 
@@ -122,7 +121,7 @@ recommended that those implementing xAPI use current industry best practices.
 ### 1.1 HEAD Request Implementation
 
 ###### Description
-The behaviour of the LRS in response to PUT, POST, GET and DELETE requests is outlined in [Resources](#resources) below. 
+The behavior of the LRS in response to PUT, POST, GET and DELETE requests is outlined in [Resources](#resources) below. 
 All resources that support GET requests also support HEAD.
 The LRS will respond to HEAD requests by returning the meta information only, using the HTTP headers, and 
 not the actual document.  
@@ -130,8 +129,8 @@ not the actual document.
 ###### Rationale
 
 Clients accessing the LRS might need to check if a particular Statement exists, or determine
-the modification date of documents such as state or Activity or Agent profile. Particularly
-for large documents it's more efficient not to get the entire document just to check its
+the modification date of documents such as State or Activity or Agent profile. Particularly
+for large documents, it is more efficient not to retrieve the entire document just to check its
 modification date.
 
 ###### LRS Requirements
@@ -147,7 +146,7 @@ identical HTTP GET request except:
 ##### Header Parameters
 Some header parameters used within xAPI data transfer are 
 [standard HTTP headers](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields). Others are specific to this
- specification. The following request headers are expected to be used by the Activity Provider in some or all 
+ specification. The following request headers are expected to be used by the Learning Record Providers in some or all 
  of the types of request and situations described in this specification:
 
 * Accept
@@ -180,75 +179,64 @@ The lists above are not intended to be exhaustive. See requirements throughout t
 
 ###### Description
 
-One of the goals of the xAPI is to allow cross-domain tracking, and even though 
-xAPI seeks to enable tracking from applications other than browsers, browsers 
-still need to be supported. Internet Explorer 8 and 9 do not implement Cross 
-Origin Resource Sharing, but rather use their own Cross Domain Request API, 
-which cannot use all of the xAPI as described above due to only supporting "GET" 
-and "POST", and not allowing HTTP headers to be set.  
+One of the goals of the xAPI is to allow cross-domain tracking, and even though xAPI seeks to enable tracking from 
+applications other than browsers, browsers still need to be supported. For example, Internet Explorer 8 and 9 do not 
+implement Cross Origin Resource Sharing, but rather use their own Cross Domain Request API, which cannot use all of 
+the xAPI as described above due to only supporting "GET" and "POST", and not allowing HTTP headers to be set.  
 
 ###### Details/Requirements
 
-The following describes alternate syntax for consumers to use only when unable 
-to use the usual syntax for specific calls due to the restrictions mentioned 
-above. This alternate syntax can also be used to GET Statements due to limits
-on query string length.  
+The following describes alternate syntax to use only when unable to use the usual syntax for specific calls due to the 
+restrictions mentioned above. This alternate syntax can also be used to GET Statements due to limits on query string length.  
 
 __Method__:  
 * All xAPI requests issued MUST be POST. 
 * The intended xAPI method MUST be included as the value of the "method" query 
 string parameter. 
-* The AP MUST NOT include any other query string parameters on the request.
+* The Learning Record Provider MUST NOT include any other query string parameters on the request.
 
 Example: http://example.com/xAPI/statements?method=PUT  
 
 __Content__:  
-* If the xAPI call involved sending content, the AP MUST URL encode that content and 
+* If the xAPI call involved sending content, the Learning Record Provider MUST URL encode that content and 
 include it as a form parameter called "content". 
-* The LRS MUST interpret this content as a UTF-8 string. Storing binary data is not supported 
-with this syntax.  
+* The LRS MUST interpret this content as a UTF-8 string. Storing binary data is not supported with this syntax.  
 
 __Headers__:  
-* The AP MAY include any header parameters required by this specification which are 
+* The Learning Record Provider MAY include any header parameters required by this specification which are 
 expected to appear in the HTTP header as form parameters with the same names. This applies 
 to the following parameters: Authorization, X-Experience-API-Version, Content-Type, Content-Length,
 If-Match and If-None-Match. It does not apply to Content-Transfer-Encoding.
 * The LRS MUST treat the form parameters listed above as header parameters. 
-* The AP MUST include other header parameters not listed above in the HTTP header as normal. 
-* The AP SHOULD* still include a Content-Type header (in the HTTP header) for this type of 
+* The Learning Record Provider MUST include other header parameters not listed above in the HTTP header as normal. 
+* The Learning Record Provider SHOULD* still include a Content-Type header (in the HTTP header) for this type of 
 request with a value of 'application/x-www-form-urlencoded'. 
 * The Content-Type form parameter SHOULD* specify the content type of the content within the content form parameter. 
-* The AP SHOULD* still include a Content-Length header (in the HTTP header) for this type of 
+* The Learning Record Provider SHOULD* still include a Content-Length header (in the HTTP header) for this type of 
 request indicating the overall length of the request's content. 
 * The Content-Length form parameter SHOULD* specify the length of the content within the content form parameter and 
 will therefore be a lower figure than the length listed in the Content-Length header. 
 
 __Query string parameters__:  
-* Any query string parameters other than 'method'
-MUST instead be included as a form parameter with the same name. 
-* The LRS MUST treat any form parameters other than "content" or the 
-header parameters listed above as query string parameters. 
+* Any query string parameters other than 'method' MUST instead be included as a form parameter with the same name. 
+* The LRS MUST treat any form parameters other than "content" or the header parameters listed above as query string parameters. 
 
 __Attachments__: Note that due to issues relating to encoding, it is not possible to send 
 binary data attachments using this syntax. See [4.1.11. Attachments](#attachments) 
 
 * The LRS MUST support the syntax above.
 
-__Note__: Versions of Internet Explorer lower than 10 do not 
-support Cross Domain Requests between HTTP and HTTPS. This means that for IE9 and lower, 
-if the LRS is on an HTTPS domain, the Client sending the Statement must also be on HTTPS. 
-If the LRS is on HTTP, the Client must be too.  
+__Note__: Versions of Internet Explorer lower than 10 do not support Cross Domain Requests between HTTP and HTTPS. 
+This means that for IE9 and lower, if the LRS is on an HTTPS domain, the Client sending the Request is also on HTTPS. 
+If the LRS is on HTTP, the Client is too.  
 
-There might be cases where there is a requirement for the Client Activity Provider to support 
-IE8 and IE9 where the Client code is hosted on a different scheme (HTTP or HTTPS) from 
-the LRS. In these cases, proxy is needed to communicate to the LRS. Two simple solutions 
-might be to 1) set up a proxy pass through on the same scheme as the Client code to the LRS 
-or 2) to host an intermediary server-side LRS on the same scheme as the Client code to route 
-Statements to the target LRS.   
+There might be cases where there is a requirement for the Learning Record Provider to support IE8 and IE9 where the 
+Client code is hosted on a different scheme (HTTP or HTTPS) from the LRS. In these cases, proxy is needed to communicate 
+to the LRS. Two simple solutions might be to 1) set up a proxy pass through on the same scheme as the Client code to the 
+LRS or 2) to host an intermediary server-side LRS on the same scheme as the Client code to route Statements to the target LRS.   
 
 * The LRS MAY choose to provide both HTTP and HTTPS endpoints to support this use case. 
-* The LRS and the Client SHOULD consider the security risks before making the 
-decision to use this scheme.
+* The LRS and the Learning Record Provider SHOULD consider the security risks before making the decision to use this scheme.
 
 See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example. 
 
@@ -264,7 +252,7 @@ See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example.
 Requests within this specification normally use an application/json content type. Exceptions to this are:
 
 * Documents can have any content type. 
-* Statement requests that may sometimes include attachments use the multipart/mixed content type. 
+* Statement requests that can sometimes include attachments use the multipart/mixed content type. 
 
 <a name="applicationjson"/> 
 #### 1.5.1 Application/JSON
@@ -279,8 +267,8 @@ of Statements which contain only attachment Objects with a populated fileUrl.
 <a name="multipartmixed"/> 
 #### 1.5.2 Multipart/Mixed
 
-The multipart/mixed content type is used for requests that *could* include attachments. This does not mean that all multipart/mixed
-requests neccesarily do include attachments.
+The multipart/mixed content type is used for requests that *could* include attachments. This does not mean that all 
+multipart/mixed requests neccesarily do include attachments.
 
 ##### Procedure for the exchange of attachments
 
