@@ -591,56 +591,56 @@ The following example illustrates a statement following the cmi5 Community of Pr
 and "category" Context Activities.
 
 ```
-{
+{  
   "id":"2a41c918-b88b-4220-20a5-a4c32391a240",
-  "actor": {
-    "objectType": "Agent",
-    "name": "Gert Frobe",
-    "account": {
-      "homePage": "http://example.adlnet.gov",
-      "name": "1625378"
+  "actor":{  
+    "objectType":"Agent",
+    "name":"Gert Frobe",
+    "account":{  
+      "homePage":"http://example.adlnet.gov",
+      "name":"1625378"
     }
   },
-  "verb": {
-    "id": "http://adlnet.gov/expapi/verbs/failed",
-    "display": {
-      "en-US": "failed"
+  "verb":{  
+    "id":"http://adlnet.gov/expapi/verbs/failed",
+    "display":{  
+      "en-US":"failed"
     }
   },
-  "object": {
+  "object":{  
     "id":"https://example.adlnet.gov/AUidentifier",
-    "objectType": "Activity"
+    "objectType":"Activity"
   },
-  "result": {
-    "score": {
-      "scaled": 0.65,
-      "raw": 65,
-      "min": 0,
-      "max": 100
+  "result":{  
+    "score":{  
+      "scaled":0.65,
+      "raw":65,
+      "min":0,
+      "max":100
     },
-    "success": false,
-    "duration": "PT30M",
-    "extensions": {
-    "http://w3id.org/xapi/cmi5/result/extensions/progress": 100
+    "success":false,
+    "duration":"PT30M",
+    "extensions":{  
+      "https://w3id.org/xapi/cmi5/result/extensions/progress":100
     }
   },
-  "context": {
-     "registration": "ec231277-b27b-4c15-8291-d29225b2b8f7",
-     "contextActivities": {
-        "category": [
-          {
-          "id": "https://w3id.org/xapi/cmi5/context/categories/moveon"
-          },		
-          {		
-          "id": "https://w3id.org/xapi/cmi5/context/categories/cmi5"
-          }
-        ]
-     },
-     "extensions": {
-       "https://w3id.org/xapi/cmi5/context/extensions/sessionid": "458240298378231",
-      }
-   },
-  "timestamp": "2012-06-01T19:09:13.245+00:00"
+  "context":{  
+    "registration":"ec231277-b27b-4c15-8291-d29225b2b8f7",
+    "contextActivities":{  
+      "category":[  
+        {  
+       	  "id":"https://w3id.org/xapi/cmi5/context/categories/moveon"
+        },
+        {  
+          "id":"https://w3id.org/xapi/cmi5/context/categories/cmi5"
+        }
+      ]
+    },
+    "extensions":{  
+      "https://w3id.org/xapi/cmi5/context/extensions/sessionid":"458240298378231"
+    }
+  },
+  "timestamp":"2012-06-01T19:09:13.245+00:00"
 }
 ```
 
