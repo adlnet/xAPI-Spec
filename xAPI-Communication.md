@@ -20,83 +20,86 @@
 >send all feedback and inquiries to helpdesk@adlnet.gov  
 
 ## Table of Contents
-*	Part One:	[About the Experience API](#partone)  
-	*	1.0.	[Introduction](#introduction-partone) 
-	*	2.0.	[How To Use This Document](#readingguidelines)  
-		*	2.1.	[MUST / SHOULD / MAY](#def-must-should-may)  
-	 	*	2.2.	[Guidelines for Interpreting Descriptive Text and Tables](#interpret-text-table)  
-	*	3.0.	[Serialization and JavaScript Object Notation](#json)
-	*	4.0.	[Definitions](#definitions) 
-	*	5.0.	[xAPI Components](#xapi-components) 
-	*	6.0.	[Extending xAPI](#extending-xapi) 
-	*	7.0.	[Profiles and Communities of Practice](#COPs)  
-	*	[Appendices](#append1)  
-		*	[Appendix A: Revision History](#Appendix1A)  
-		*	[Appendix B: cmi5 Example](#Appendix1B)  
-*	Part Two:	[Experience API (xAPI) Data](#parttwo)  
-	*	1.0.	[Documents](#documents) 
-	*	2.0.	[Statements](#statements)  
-		*	2.1.	[Purpose](#statement-purpose)  
-	 	*	2.2.	[Formatting Requirements](#dataconstraints) 
-	 	*	2.3.	[Statement Lifecycle](#lifecycle) 
-		 	*	2.3.1.	[Statement Immutability](#statement-immutablity-and-exceptions) 
-		 	*	2.3.2.	[Voiding](#voided) 
-   		*	2.4.	[Statement Properties](#statement-properties)  
-	        *	2.4.1.	[ID](#stmtid)  
-	        *	2.4.2.	[Actor](#actor)  
-	        *	2.4.3.	[Verb](#verb)  
-	        *	2.4.4.	[Object](#object)  
-	        *	2.4.5.	[Result](#result)  
-	        *	2.4.6.	[Context](#context)  
-	        *	2.4.7.	[Timestamp](#timestamp)  
-	        *	2.4.8.	[Stored](#stored)  
-	        *	2.4.9.	[Authority](#authority)  
-	        *	2.4.10.	[Version](#version)  
-	        *	2.4.11.	[Attachments](#attachments)  
-    	*	2.5.	[Retrieval of Statements](#retrieval)   
-    	*	2.6.	[Signed Statements](#signature)  
-	*	3.0.	[Metadata](#metadata)
-		*	3.1.	[IRI Requirements](#iri-requirements)  
-		*	3.2.	[Hosted Metadata](#miscmeta)  
-    *	4.0.	[Special Data Types and Rules](#special-data)  
-		*	4.1.	[Extensions](#miscext) 
-		*	4.2.	[Language Maps](#lang-maps)
-		*	4.3.	[IRIs](#iris)
-		*	4.4.	[UUIDs](#uuids)
-		*	4.5.	[ISO 8601 Timestamps](#timestamps)
-		*	4.6.	[ISO 8601 Durations](#durations)
-	*	[Appendices](#append2)  
-		*	[Appendix A: Example Statements](#Appendix2A)  
-		*	[Appendix B: Example statement objects of different types](#Appendix2B)  
-		*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](#Appendix2C)  	
-		*	[Appendix D: Example Signed Statement](#Appendix2D)  
-*	Part Three:	[Data Processing, Validation, and Security](#partthree)  
-	*	1.0.	[Requests](#requests)
-		*	1.1.	[HEAD Request Implementation](#httphead)  
-	 	*	1.2.	[Headers](#header-parameters) 
-	 	*	1.3.	[Alternate Request Syntax](#alt-request-syntax) 
-	 	*	1.4.	[Encoding](#encoding) 
-	*	2.0.	[Resources](#datatransfer)   
-	 	*	2.1.	[Statement Resource](#stmtres) 
-	 	*	2.2.	[Documents Resources](#doctransfer) 
-	 	*	2.3.	[State Resource](#stateres) 
-	 	*	2.4.	[Agents Resource](#agentsres) 
-	 	*	2.5.	[Activities Resource](#activitiesres) 
-	 	*	2.6.	[Agent Profile Resource](#agentprofres) 
-	 	*	2.7.	[Activity Profile Resource](#actprofres) 
-	 	*	2.8.	[About Resource](#aboutresource) 
-   	*	3.0.	[Data Validation](#validation)     
-    	*	3.1.	[Concurrency](#concurrency)  
-    	*	3.2.	[Error Codes](#errorcodes)
-    	*	3.3     [Versioning](#versioning)  
-    *	4.0.	[Authentication](#authentication)  
-		*	4.1.	[OAuth 1.0 Authentication Scenarios and Methods](#authdefs) 
-		*	4.2.	[OAuth 1.0 Authorization Scope](#oauthscope)
-    *	5.0	[Security](#security)
-	*	[Appendices](#append3)  
-		*	[Appendix A: Converting Statements to 1.0.0](#Appendix3A)  
-		*	[Appendix B: Table of All Endpoints](#Appendix3B)  
-		*	[Appendix C: Cross Domain Request Example](#Appendix3C)  
+*	Part One:	[About the Experience API](./xAPI-About.md#partone)  
+	*	1.0.	[Introduction](./xAPI-About.md#introduction-partone) 
+	*	2.0.	[How To Use This Document](./xAPI-About.md#readingguidelines)  
+		*	2.1.	[MUST / SHOULD / MAY](./xAPI-About.md#def-must-should-may)  
+	 	*	2.2.	[Guidelines for Interpreting Descriptive Text and Tables](./xAPI-About.md#interpret-text-table)  
+	*	3.0.	[Serialization and JavaScript Object Notation](./xAPI-About.md#json)
+	*	4.0.	[Definitions](./xAPI-About.md#definitions) 
+	*	5.0.	[xAPI Components](./xAPI-About.md#xapi-components) 
+	*	6.0.	[Extending xAPI](./xAPI-About.md#extending-xapi) 
+	*	7.0.	[Profiles and Communities of Practice](./xAPI-About.md#COPs)  
+	*	[Appendices](./xAPI-About.md#append1)  
+		*	[Appendix A: Revision History](./xAPI-About.md#Appendix1A)  
+		*	[Appendix B: cmi5 Example](./xAPI-About.md#Appendix1B)  
+*	Part Two:	[Experience API (xAPI) Data](./xAPI-Data.md#parttwo)  
+	*	1.0.	[Documents](./xAPI-Data.md#documents) 
+	*	2.0.	[Statements](./xAPI-Data.md#statements)  
+		*	2.1.	[Purpose](./xAPI-Data.md#statement-purpose)  
+	 	*	2.2.	[Formatting Requirements](./xAPI-Data.md#dataconstraints) 
+	 	*	2.3.	[Statement Lifecycle](./xAPI-Data.md#lifecycle) 
+		 	*	2.3.1.	[Statement Immutability](./xAPI-Data.md#statement-immutablity-and-exceptions) 
+		 	*	2.3.2.	[Voiding](./xAPI-Data.md#voided) 
+   		*	2.4.	[Statement Properties](./xAPI-Data.md#statement-properties)  
+	        *	2.4.1.	[ID](./xAPI-Data.md#stmtid)  
+	        *	2.4.2.	[Actor](./xAPI-Data.md#actor)  
+	        *	2.4.3.	[Verb](./xAPI-Data.md#verb)  
+	        *	2.4.4.	[Object](./xAPI-Data.md#object)  
+	        *	2.4.5.	[Result](./xAPI-Data.md#result)  
+	        *	2.4.6.	[Context](./xAPI-Data.md#context)  
+	        *	2.4.7.	[Timestamp](./xAPI-Data.md#timestamp)  
+	        *	2.4.8.	[Stored](./xAPI-Data.md#stored)  
+	        *	2.4.9.	[Authority](./xAPI-Data.md#authority)  
+	        *	2.4.10.	[Version](./xAPI-Data.md#version)  
+	        *	2.4.11.	[Attachments](./xAPI-Data.md#attachments)  
+    	*	2.5.	[Retrieval of Statements](./xAPI-Data.md#retrieval)   
+    	*	2.6.	[Signed Statements](./xAPI-Data.md#signature)  
+	*	3.0.	[Metadata](./xAPI-Data.md#metadata)
+		*	3.1.	[IRI Requirements](./xAPI-Data.md#iri-requirements)  
+		*	3.2.	[Hosted Metadata](./xAPI-Data.md#miscmeta)  
+    *	4.0.	[Special Data Types and Rules](./xAPI-Data.md#special-data)  
+		*	4.1.	[Extensions](./xAPI-Data.md#miscext) 
+		*	4.2.	[Language Maps](./xAPI-Data.md#lang-maps)
+		*	4.3.	[IRIs](./xAPI-Data.md#iris)
+		*	4.4.	[UUIDs](./xAPI-Data.md#uuids)
+		*	4.5.	[ISO 8601 Timestamps](./xAPI-Data.md#timestamps)
+		*	4.6.	[ISO 8601 Durations](./xAPI-Data.md#durations)
+	*	[Appendices](./xAPI-Data.md#append2)  
+		*	[Appendix A: Example Statements](./xAPI-Data.md#Appendix2A)  
+		*	[Appendix B: Example statement objects of different types](./xAPI-Data.md#Appendix2B)  
+		*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](./xAPI-Data.md#Appendix2C)  	
+		*	[Appendix D: Example Signed Statement](./xAPI-Data.md#Appendix2D)  
+*	Part Three:	[Data Processing, Validation, and Security](./xAPI-Communication.md#partthree)  
+	*	1.0.	[Requests](./xAPI-Communication.md#requests)
+		*	1.1.	[HEAD Request Implementation](./xAPI-Communication.md#httphead)  
+	 	*	1.2.	[Headers](./xAPI-Communication.md#header-parameters) 
+	 	*	1.3.	[Alternate Request Syntax](./xAPI-Communication.md#alt-request-syntax) 
+	 	*	1.4.	[Encoding](./xAPI-Communication.md#encoding) 
+	 	*	1.5.	[Content Types](./xAPI-Communication.md#content-types) 
+	        *	1.5.1.	[Application/JSON](./xAPI-Communication.md#applicationjson) 
+	        *	1.5.1.	[Multipart/Mixed](./xAPI-Communication.md#multipartmixed)
+	*	2.0.	[Resources](./xAPI-Communication.md#datatransfer)   
+	 	*	2.1.	[Statement Resource](./xAPI-Communication.md#stmtres) 
+	 	*	2.2.	[Documents Resources](./xAPI-Communication.md#doctransfer) 
+	 	*	2.3.	[State Resource](./xAPI-Communication.md#stateres) 
+	 	*	2.4.	[Agents Resource](./xAPI-Communication.md#agentsres) 
+	 	*	2.5.	[Activities Resource](./xAPI-Communication.md#activitiesres) 
+	 	*	2.6.	[Agent Profile Resource](./xAPI-Communication.md#agentprofres) 
+	 	*	2.7.	[Activity Profile Resource](./xAPI-Communication.md#actprofres) 
+	 	*	2.8.	[About Resource](./xAPI-Communication.md#aboutresource) 
+   	*	3.0.	[Data Validation](./xAPI-Communication.md#validation)     
+    	*	3.1.	[Concurrency](./xAPI-Communication.md#concurrency)  
+    	*	3.2.	[Error Codes](./xAPI-Communication.md#errorcodes)
+    	*	3.3     [Versioning](./xAPI-Communication.md#versioning)  
+    *	4.0.	[Authentication](./xAPI-Communication.md#authentication)  
+		*	4.1.	[OAuth 1.0 Authentication Scenarios and Methods](./xAPI-Communication.md#authdefs) 
+		*	4.2.	[OAuth 1.0 Authorization Scope](./xAPI-Communication.md#oauthscope)
+    *	5.0	[Security](./xAPI-Communication.md#security)
+	*	[Appendices](./xAPI-Communication.md#append3)  
+		*	[Appendix A: Converting Statements to 1.0.0](./xAPI-Communication.md#Appendix3A)  
+		*	[Appendix B: Table of All Endpoints](./xAPI-Communication.md#Appendix3B)  
+		*	[Appendix C: Cross Domain Request Example](./xAPI-Communication.md#Appendix3C)  
 
 # Part Three: Data Processing, Validation, and Security 
 
@@ -256,8 +259,176 @@ See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example.
 ###### Requirement
 * All strings MUST be encoded and interpreted as UTF-8. 
 
-<a name="datatransfer"/> <a name="resources"/>
+<a name="content-types"/> 
+### 1.5 Content Types
+Requests within this specification normally use an application/json content type. Exceptions to this are:
 
+* Documents can have any content type. 
+* Statement requests that may sometimes include attachments use the multipart/mixed content type. 
+
+<a name="applicationjson"/> 
+#### 1.5.1 Application/JSON
+Requests within this specification normally use an application/json content type. 
+
+###### LRS Requirements
+* When receiving a PUT or POST with a document type of "application/json”, an LRS MUST accept batches 
+of Statements which contain no attachment Objects.
+* When receiving a PUT or POST with a document type of "application/json”, an LRS MUST accept batches 
+of Statements which contain only attachment Objects with a populated fileUrl.
+
+<a name="multipartmixed"/> 
+#### 1.5.2 Multipart/Mixed
+
+The multipart/mixed content type is used for requests that *could* include attachments. This does not mean that all multipart/mixed
+requests neccesarily do include attachments.
+
+##### Procedure for the exchange of attachments
+
+1. A Statement request including zero or more attachments is construed as described below.
+
+2. The Statement is sent to the receiving system using a Content-Type of
+"multipart/mixed". Any attachments are placed at the end of such transmissions.
+
+3. The receiving system decides whether to accept or reject the Statement based on the information in the first part.
+
+4. If it accepts the request, it can match the raw data of an attachment(s)
+with the attachment header by comparing the SHA-2 of the raw
+data to the SHA-2 declared in the header. It MUST not do so any other way.
+
+###### Requirements for Attachment Statement Batches
+
+A request transmitting a Statement batch, Statement results, or single Statement that includes attachments MUST satisfy one of the 
+following criteria:
+
+* It MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for Statement 
+results when the attachments filter is false.
+* It MUST conform to the definition of multipart/mixed in [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt) and:
+    * The first part of the multipart document MUST contain the Statements themselves, with type "application/json".
+    * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
+    capability will be available when issuing PUT or POST against the Statement resource.
+    * MUST include an X-Experience-API-Hash parameter in each part's header after the first (Statements) part.
+    * MUST include a Content-Transfer-Encoding parameter with a value of "binary" in each part's header after the first (statements) part.
+    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple Statements that are sent together.
+    * SHOULD include a Content-Type parameter in each part's header. For the first part (containing the statement) this MUST be "application/json".
+   	* Where parameters have a corresponding property within the Attachment Object (outlined in the table above), and both the parameter and 
+   	property are specified for a given Attachment, the value of these parameters and properties MUST match. 
+
+
+###### LRS Requirements
+
+* An LRS MUST include attachments in the Transmission Format described above
+when requested by the Client (see ["Statement Resource"](#stmtapi)).
+* An LRS MUST NOT pull Statements from another LRS without requesting attachments.
+* An LRS MUST NOT push Statements into another LRS without including attachment data
+received, if any, for those attachments.
+* When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST accept batches of 
+Statements that contain attachments in the Transmission Format described above.
+* When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST reject batches of 
+Statements having attachments that neither contain a fileUrl nor match a received attachment part based on their hash.
+* When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS SHOULD assume a 
+Content-Transfer-Encoding of binary for attachment parts.
+* An LRS MAY reject (batches of) Statements that are larger than the LRS is configured to allow.
+* When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS SHOULD* accept batches 
+of Statements which contain no attachment Objects.
+* When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS SHOULD* accept batches 
+of Statements which contain only attachment Objects with a populated fileUrl.
+
+__Note:__ There is no requirement that Statement batches using the mime/multipart format
+contain attachments.
+
+###### Client Requirements
+
+* The Client MAY send Statements with attachments as described above.
+* The Client MAY send multiple Statements where some or all have attachments if using "POST".
+* The Client MAY send batches of type "application/json" where every attachment
+Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
+* The Client SHOULD use SHA-256, SHA-384, or SHA-512  to populate the "sha2" property.
+
+###### File URL
+The File URL is intended to provide a location from which the LRS or another system can retrieve the
+attachment. There are, however, no requirements for the owner of the attachment to make the 
+attachment data available at the location indefinitely or to make the attachment publically
+available without security restrictions. When determining attachment hosting arrangements, 
+designers of systems that will send Statements using the "fileUrl" property are encouraged to 
+consider the needs of end recipient(s) of the Statement especially if the attachment content 
+is not included with the Statement.
+
+* The attachment data SHOULD be retrievable at the URL indicated by the fileUrl.
+* The owner of the attachment MAY stop providing the attachment data at this IRL at any time. 
+* Security restrictions MAY be applied to clients attempting to access the attachment data at this IRL. 
+
+The period of time an attachment is made available for, and the security restrictions applied to
+hosted attachments, are out of scope of this specification. 
+
+###### Example
+
+Below is an example of a very simple Statement with an attachment. Please note the following:
+
+* The boundary in the sample was chosen to demonstrate valid character classes;
+* The selected boundary does not appear in any of the parts;
+* For readability the sample attachment is text/plain. Even if it had been a 'binary' type
+like 'image/jpeg' no encoding would be done, the raw octets would be included;
+* Per RFC 2046, the boundary is <CRLF> followed by -- followed by the boundary string declared in the header.
+
+Don't forget the ```<CRLF>```  when building or parsing these messages.
+
+Headers:
+
+``` 
+Content-Type: multipart/mixed; boundary="abcABC0123'()+_,-./:=?"
+X-Experience-API-Version:1.0.0
+```
+Content:
+```
+
+--abcABC0123'()+_,-./:=?
+Content-Type:application/json
+
+{
+    "actor": {
+        "mbox": "mailto:sample.agent@example.com",
+        "name": "Sample Agent",
+        "objectType": "Agent"
+    },
+    "verb": {
+        "id": "http://adlnet.gov/expapi/verbs/answered",
+        "display": {
+            "en-US": "answered"
+        }
+    },
+    "object": {
+        "id": "http://www.example.com/tincan/activities/multipart",
+        "objectType": "Activity",
+        "definition": {
+            "name": {
+                "en-US": "Multi Part Activity"
+            },
+            "description": {
+                "en-US": "Multi Part Activity Description"
+            }
+        }
+    },
+    "attachments": [
+        {
+            "usageType": "http://example.com/attachment-usage/test",
+            "display": { "en-US": "A test attachment" },
+            "description": { "en-US": "A test attachment (description)" },
+            "contentType": "text/plain; charset=ascii",
+            "length": 27,
+            "sha2": "495395e777cd98da653df9615d09c0fd6bb2f8d4788394cd53c56a3bfdcd848a"
+        }
+    ]
+}
+--abcABC0123'()+_,-./:=?
+Content-Type:text/plain
+Content-Transfer-Encoding:binary
+X-Experience-API-Hash:495395e777cd98da653df9615d09c0fd6bb2f8d4788394cd53c56a3bfdcd848a
+
+here is a simple attachment
+--abcABC0123'()+_,-./:=?--
+```
+
+<a name="datatransfer"/> <a name="resources"/>
 ## 2.0 Resources
 
 The LRS is interacted with via RESTful HTTP methods to the resources outlined in this section.
@@ -522,7 +693,8 @@ Object.
 			<br/><br/>
 			If 'exact', return Agent, Activity, Verb and Group Objects populated exactly as they 
 			were when the Statement was received. An LRS requesting Statements for the purpose 
-			of importing them would use a format of 'exact'.  
+			of importing them would use a format of 'exact' in order to maintain 
+			<a href="./xAPI-Data.md#statement-immutablity-and-exceptions">Statement Immutability</a>.  
 			<br/><br/>
 			If 'canonical', return Activity Objects and Verbs populated with the canonical
 			definition of the Activity Objects and Display of the Verbs as determined by the LRS, after
