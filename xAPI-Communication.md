@@ -224,21 +224,15 @@ __Query string parameters__:
 __Attachments__: Note that due to issues relating to encoding, it is not possible to send 
 binary data attachments using this syntax. See [4.1.11. Attachments](#attachments) 
 
-* The LRS MUST support the syntax above.
+* The LRS MUST support the syntax above.  See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example. 
 
-__Note__: Versions of Internet Explorer lower than 10 do not support Cross Domain Requests between HTTP and HTTPS. 
-This means that for IE9 and lower, if the LRS is on an HTTPS domain, the Client sending the Request is also on HTTPS. 
-If the LRS is on HTTP, the Client is too.  
-
-There might be cases where there is a requirement for the Learning Record Provider to support IE8 and IE9 where the 
-Client code is hosted on a different scheme (HTTP or HTTPS) from the LRS. In these cases, proxy is needed to communicate 
+There might be cases where there is a requirement for the Learning Record Provider to support applications or browsers where the 
+Client code is hosted on a different scheme (HTTP or HTTPS) from the LRS. In these cases, a proxy is needed to communicate 
 to the LRS. Two simple solutions might be to 1) set up a proxy pass through on the same scheme as the Client code to the 
-LRS or 2) to host an intermediary server-side LRS on the same scheme as the Client code to route Statements to the target LRS.   
+LRS or 2) to host an intermediary server-side LRS on the same scheme as the Client code to route Statements to the target LRS.  
+Strongly consider security risks before making the decision to use implementations that use different schemes.
 
-* The LRS MAY choose to provide both HTTP and HTTPS endpoints to support this use case. 
-* The LRS and the Learning Record Provider SHOULD consider the security risks before making the decision to use this scheme.
-
-See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example. 
+__Note__: Versions of Internet Explorer lower than 10 do not support Cross Domain Requests between HTTP and HTTPS.
 
 <a name="encoding"/> 
 
@@ -274,14 +268,12 @@ multipart/mixed requests neccesarily do include attachments.
 
 1. A Statement request including zero or more attachments is construed as described below.
 
-2. The Statement is sent to the receiving system using a Content-Type of
-"multipart/mixed". Any attachments are placed at the end of such transmissions.
+2. The Statement is sent using a Content-Type of"multipart/mixed". Any attachments are placed at the end of such transmissions.
 
-3. The receiving system decides whether to accept or reject the Statement based on the information in the first part.
+3. The LRS decides whether to accept or reject the Statement based on the information in the first part.
 
-4. If it accepts the request, it can match the raw data of an attachment(s)
-with the attachment header by comparing the SHA-2 of the raw
-data to the SHA-2 declared in the header. It MUST not do so any other way.
+4. If it accepts the request, it can match the raw data of an attachment(s) with the attachment header by comparing the SHA-2 
+of the raw data to the SHA-2 declared in the header. It MUST not do so any other way.
 
 ###### Requirements for Attachment Statement Batches
 
@@ -295,12 +287,14 @@ results when the attachments filter is false.
     * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
     capability will be available when issuing PUT or POST against the Statement resource.
     * MUST include an X-Experience-API-Hash parameter in each part's header after the first (Statements) part.
-    * MUST include a Content-Transfer-Encoding parameter with a value of "binary" in each part's header after the first (statements) part.
-    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple Statements that are sent together.
-    * SHOULD include a Content-Type parameter in each part's header. For the first part (containing the statement) this MUST be "application/json".
-   	* Where parameters have a corresponding property within the Attachment Object (outlined in the table above), and both the parameter and 
-   	property are specified for a given Attachment, the value of these parameters and properties MUST match. 
-
+    * MUST include a Content-Transfer-Encoding parameter with a value of "binary" in each part's header after the first 
+     (Statements) part.
+    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple Statements that are 
+     sent together.
+    * SHOULD include a Content-Type parameter in each part's header. For the first part (containing the Statement) this 
+     MUST be "application/json".
+   	* Where parameters have a corresponding property within the Attachment Object (outlined in the table above), and both 
+   	 the parameter and property are specified for a given Attachment, the value of these parameters and properties MUST match. 
 
 ###### LRS Requirements
 
@@ -324,26 +318,25 @@ of Statements which contain only attachment Objects with a populated fileUrl.
 __Note:__ There is no requirement that Statement batches using the mime/multipart format
 contain attachments.
 
-###### Client Requirements
+###### Learning Record Producer Requirements
 
-* The Client MAY send Statements with attachments as described above.
-* The Client MAY send multiple Statements where some or all have attachments if using "POST".
-* The Client MAY send batches of type "application/json" where every attachment
+* A Learning Record Producer MAY send Statements with attachments as described above.
+* A Learning Record Producer MAY send multiple Statements where some or all have attachments if using "POST".
+* A Learning Record Producer MAY send batches of type "application/json" where every attachment
 Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
-* The Client SHOULD use SHA-256, SHA-384, or SHA-512  to populate the "sha2" property.
+* A Learning Record Producer SHOULD use SHA-256, SHA-384, or SHA-512  to populate the "sha2" property.
 
 ###### File URL
-The File URL is intended to provide a location from which the LRS or another system can retrieve the
-attachment. There are, however, no requirements for the owner of the attachment to make the 
+The File URL is intended to provide a location from which the attachment can be received.
+There are, however, no requirements for the owner of the attachment to make the 
 attachment data available at the location indefinitely or to make the attachment publically
 available without security restrictions. When determining attachment hosting arrangements, 
-designers of systems that will send Statements using the "fileUrl" property are encouraged to 
-consider the needs of end recipient(s) of the Statement especially if the attachment content 
-is not included with the Statement.
+those creating Statements using the "fileUrl" property are encouraged to consider the needs of end recipient(s) 
+of the Statement especially if the attachment content is not included with the Statement.
 
 * The attachment data SHOULD be retrievable at the URL indicated by the fileUrl.
 * The owner of the attachment MAY stop providing the attachment data at this IRL at any time. 
-* Security restrictions MAY be applied to clients attempting to access the attachment data at this IRL. 
+* Security restrictions MAY be applied to those attempting to access the attachment data at this IRL. 
 
 The period of time an attachment is made available for, and the security restrictions applied to
 hosted attachments, are out of scope of this specification. 
@@ -358,7 +351,7 @@ Below is an example of a very simple Statement with an attachment. Please note t
 like 'image/jpeg' no encoding would be done, the raw octets would be included;
 * Per RFC 2046, the boundary is <CRLF> followed by -- followed by the boundary string declared in the header.
 
-Don't forget the ```<CRLF>```  when building or parsing these messages.
+__Note:__ Don't forget the ```<CRLF>```  when building or parsing these messages.
 
 Headers:
 
@@ -429,10 +422,10 @@ more of the resources and methods described in this section. For example a tool 
 implement POST Statements for the purposes of receiving incoming Statements forwarded by an LRS.
 Such a system is not considered to be an LRS or 'partial LRS'; it is simply not an LRS. 
 
-__Note:__ In all of the example endpoints given in the specification, 
-"http://example.com/xAPI/" is the example base endpoint of the LRS. All other IRI 
-syntax after this represents the particular endpoint used. A full list of endpoints
-is included in [Appendix B: Table of All Endpoints](#Appendix3B).
+__Note:__ In all of the example locations where xAPI resources are located (endpoints) given in the specification, 
+"http://example.com/xAPI/" is the example base endpoint (resource location) of the LRS. All other IRI 
+syntax after this represents the particular Resource used. A full list of the resource endpoints is included in 
+[Appendix B: Table of All Resource Endpoints](#Appendix3B).
 
 ###### Requirements
 
@@ -442,7 +435,7 @@ described in [Section 6.4.2 OAuth Authorization Scope](#oauthscope).
 * The LRS MAY support additional resources not described in this specification. 
 * Past, current and future versions of this specification do not and will not define resource endpoints 
 with path segments starting 'extensions/'. LRSs supporting additional resources not defined 
-in this specification SHOULD define their endpoints with path segments starting 'extensions/'.
+in this specification SHOULD define their endpoints with path segments starting with 'extensions/'.
 
 <a name="stmtres"/> 
 
@@ -451,7 +444,6 @@ in this specification SHOULD define their endpoints with path segments starting 
 ###### Description
 
 The basic communication mechanism of the Experience API.  
-
 
 <a name="stmtresput"/>
 
@@ -475,6 +467,9 @@ Stores a single Statement with the given id. POST can also be used to store sing
 
 ###### LRS Requirements
 
+* While an LRS MUST NOT have duplicate Statement Ids due to the uniqueness requirement, it does not have to perform 
+checks at the time Statements are received.  The following requirements are for LRSs that do such a check:
+
 * An LRS MUST NOT make any modifications to its state based on receiving a Statement
 with a statementID that it already has a Statement for. Whether it responds with
 `409 Conflict` or `204 No Content`, it MUST NOT modify the Statement or any other
@@ -484,15 +479,14 @@ Object.
 verify the received Statement matches the existing one and SHOULD return `409 Conflict` if they
 do not match. See [Statement comparision requirements](statement-comparision-requirements).
 
-* If the LRS receives a Statement with an id it already has a Statement for **in the same batch**, it SHOULD*
-verify the received Statement matches the existing one and SHOULD return `400 Bad Request` if they
-do not match. See [Statement comparision requirements](statement-comparision-requirements).
+* If the LRS receives a Statement with an id it already has a Statement for **in the same batch**, it SHOULD* reject the 
+ batch and return `400 Bad Request`.
 
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 
-###### Activity Provider Requirements
+###### Learning Record Provider Requirements
 
-* Activity Providers SHOULD POST Statements including the Statement "id" property instead of using PUT. 
+* Learning Record Providers SHOULD POST Statements including the Statement "id" property instead of using PUT. 
 * When PUTing statements, the "id" property of the Statement SHOULD be used. 
 * Where provided, the "id" property of the Statement MUST match the "statementId" parameter of the request. 
 
