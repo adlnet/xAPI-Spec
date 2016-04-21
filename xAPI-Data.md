@@ -1860,6 +1860,26 @@ xAPI uses IRIs for identifiers. Using IRIs ensures uniqueness and promotes resol
 Provider each have responsibilities in regard to each IRI as outlined below. Activity Definitions have additional rules 
 which can be found later in [this section](#actdef).
 
+##### Metadata Provider Requirements
+These requirements also apply to Activity Providers defining new IRIs. 
+
+* [Metadata Providers](#def-metadata-provider) defining new IRIs SHOULD* only use IRIs they control or have permission from the controller to use.
+* [Metadata Providers](#def-metadata-provider) defining new Verb IRIs MUST only use IRIs they control or have permission from the controller to use.
+* Where a suitable identifier already exists, the Metadata Provider SHOULD use the corresponding existing identifier and
+SHOULD NOT create a new identifier.
+* When re-using an existing identifier, Metadata Providers SHOULD* ensure that the exact character equivelent IRI is used. 
+* The Metadata Provider MAY create their own identifiers where a suitable identifier does not already exist.
+* When defining identifiers, the Metadata Provider MAY use IRIs containing anchors so that a single page can contain 
+definitions for multiple identifiers. E.g. http://example.com/xapi/verbs#defenestrated
+* When defining identifiers, the Metadata Provider SHOULD use lowercase IRIs. 
+
+##### LRS Requirements
+* When storing or comparing IRIs, LRSs SHOULD* handle them only by using one or more of the approaches 
+described in [5.3.1 (Simple String Comparison) and 5.3.2 (Syntax-Based Normalization) of RFC 3987](https://tools.ietf.org/html/rfc3987#section-5.3), and 
+SHOULD* NOT handle them using any approaches described in [5.3.3 (Scheme-Based Normalization) or 5.3.4 (Protocol-Based Normalization) of the same RFC](https://tools.ietf.org/html/rfc3987#section-5.3), 
+or any other approaches.
+* LRSs SHOULD* apply the same IRI comparison and normalization rules with all IRIs in parameters and fields defined to contain IRIs.
+
 <a name="miscmeta"/>
 
 ### 3.2 Hosted Metadata
@@ -1907,23 +1927,12 @@ look for and use established, widely adopted identifiers for all types of IRI id
 
 * Metadata MAY be provided with an identifier.
 * If metadata is provided, both name and description SHOULD be included.
-* [Metadata Providers](#def-metadata-provider) defining new IRIs SHOULD* only use IRIs they control or have 
-permission from the controller to use.
-* [Metadata Providers](#def-metadata-provider) defining new Verb IRIs MUST only use IRIs they control or have 
-permission from the controller to use.
 * For any of the identifier IRIs above the Metadata Provider SHOULD make a human-readable description of the 
 intended usage accessible at the IRI.
 * For any of the identifier IRIs above the Metadata Provider SHOULD ensure that this JSON metadata available at that 
 IRI when the IRI is requested and a Content-Type of "application/json" is requested.
 * Where the IRI represents an Activity, the Metadata Provider MAY host metadata using the [Activity Definition](#actdef") 
 JSON format which is used in Statements, with a Content-Type of "application/json".
-* Where a suitable identifier already exists, the Metadata Provider SHOULD NOT create a new identifier.
-* The Metadata Provider MAY create their own identifiers where a suitable identifier does not already exist.
-* When defining identifiers, the Metadata Provider MAY use IRIs containing anchors so that a single page can contain 
-definitions for multiple identifiers. E.g. http://example.com/xapi/verbs#defenestrated
-
-##### Learning Record Provider Requirements
-* Where a suitable identifier already exists, the Learning Record Provider SHOULD use the corresponding existing identifier.
 
 ##### LRS Requirements
 * The LRS MAY act as a [Metadata Consumer](#def-metadata-consumer) and attempt to resolve identifier IRIs.
