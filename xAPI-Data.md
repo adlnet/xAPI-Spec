@@ -1861,7 +1861,7 @@ Provider each have responsibilities in regard to each IRI as outlined below. Act
 which can be found later in [this section](#actdef).
 
 ##### Metadata Provider Requirements
-These requirements also apply to Activity Providers defining new IRIs. 
+These requirements also apply to Learning Record Providers defining new IRIs. 
 
 * [Metadata Providers](#def-metadata-provider) defining new IRIs SHOULD* only use IRIs they control or have permission from the controller to use.
 * [Metadata Providers](#def-metadata-provider) defining new Verb IRIs MUST only use IRIs they control or have permission from the controller to use.
