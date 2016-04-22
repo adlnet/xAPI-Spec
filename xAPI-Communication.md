@@ -248,7 +248,7 @@ Statements to the target LRS.
 
 * The LRS MAY choose to provide both HTTP and HTTPS endpoints to support this use case. 
 * The LRS and the Client SHOULD consider the security risks before making the 
-decision to use this scheme.
+decision to use HTTP.
 
 See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example. 
 
