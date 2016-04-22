@@ -467,6 +467,8 @@ Stores a single Statement with the given id. POST can also be used to store sing
 
 ###### LRS Requirements
 
+* The LRS MAY respond before Statements that have been stored are available for retrieval.
+* 
 * While an LRS MUST NOT have duplicate Statement Ids due to the uniqueness requirement, it does not have to perform 
 checks at the time Statements are received.  The following requirements are for LRSs that do such a check:
 
@@ -482,7 +484,7 @@ do not match. See [Statement comparision requirements](statement-comparision-req
 * If the LRS receives a Statement with an id it already has a Statement for **in the same batch**, it SHOULD* reject the 
  batch and return `400 Bad Request`.
 
-* The LRS MAY respond before Statements that have been stored are available for retrieval.
+
 
 ###### Learning Record Provider Requirements
 
@@ -512,18 +514,22 @@ that provide a lot of data to the LRS.
 
 ###### Requirements
 
-* An LRS MUST NOT make any modifications to its state based on a receiving a Statement
-with a statementID that it already has a Statement for. Whether it responds with
-`409 Conflict` or `200 OK`, it MUST NOT modify the Statement or any other
-Object.
-* If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
-verify the received Statement matches the existing one and return `409 Conflict` if they
-do not match. See [Statement comparision requirements]statement-comparision-requirements).
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 * GET Statements MAY be called using POST and form parameters if necessary as query strings 
 have limits. See [Alternate Request Syntax](#alt-request-syntax) for more details.
 * The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
 parameters passed. See [Alternate Request Syntax](#alt-request-syntax) for more details.
+* While an LRS MUST NOT have duplicate Statement Ids due to the uniqueness requirement, it does not have to perform 
+checks at the time Statements are received.  The following requirements are for LRSs that do such a check:
+* An LRS MUST NOT make any modifications to its state based on receiving a Statement
+with a statementID that it already has a Statement for. Whether it responds with
+`409 Conflict` or `204 No Content`, it MUST NOT modify the Statement or any other
+Object.
+* If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
+verify the received Statement matches the existing one and SHOULD return `409 Conflict` if they
+do not match. See [Statement comparision requirements](statement-comparision-requirements).
+* If the LRS receives a Statement with an id it already has a Statement for **in the same batch**, it SHOULD* reject the 
+ batch and return `400 Bad Request`.
 
 <a name="stmtresget"/>
 
@@ -533,14 +539,12 @@ parameters passed. See [Alternate Request Syntax](#alt-request-syntax) for more 
 
 Example endpoint: `http://example.com/xAPI/statements`
 
-This method is called to fetch a single Statement or multiple Statements. If the
-statementId or voidedStatementId parameter is specified a single Statement is returned.
+This method is called to fetch a single Statement or multiple Statements. If the statementId or voidedStatementId parameter 
+is specified a single Statement is returned.
 
-Otherwise returns: A [StatementResult](#retstmts) Object,
-a list of Statements in reverse chronological order based on "stored" time, 
-subject to permissions and maximum list length. If additional results are 
-available, an IRL to retrieve them will be included in the StatementResult 
-Object.
+Otherwise returns: A [StatementResult](#retstmts) Object, a list of Statements in reverse chronological order based 
+on "stored" time, subject to permissions and maximum list length. If additional results are available, an IRL to 
+retrieve them will be included in the StatementResult Object.
 
 **Content:** None.
 
@@ -714,8 +718,8 @@ other parameter besides "attachments" or "format".
 * The LRS MAY apply additional query filter criteria based on permissions associated
 with the credentials used. 
 
-* In the event that no statements are found matching the query filter criteria, the LRS MUST still return 
-`HTTP 200` and a [StatementResult](#retstmts) Object. In this case, the statements property will contain
+* In the event that no Statements are found matching the query filter criteria, the LRS MUST still return 
+`HTTP 200` and a [StatementResult](#retstmts) Object. In this case, the "statements" property will contain
 an empty array.
 
 * The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
@@ -726,13 +730,13 @@ are known with reasonable certainty to be available for retrieval. This time SHO
 account any temporary condition, such as excessive load, which might cause a delay in Statements 
 becoming available for retrieval.
 
-* If the attachment property of a GET statement is used and is set to <code>true</code>, the LRS MUST use the 
+* If the "attachment" property of a GET statement is used and is set to <code>true</code>, the LRS MUST use the 
 multipart response format and include all attachments as described in <a href="#attachments">4.1.11</a>.
 
-* If the attachment property of a GET statement is used and is set to <code>false</code>, the LRS MUST NOT
+* If the "attachment" property of a GET statement is used and is set to <code>false</code>, the LRS MUST NOT
 include attachment raw data and MUST report application/json.
 
-* The LRS SHOULD* include a "Last-Modified" header which matches the Stored timestamp of the Statement. 
+* The LRS SHOULD* include a "Last-Modified" header which matches the "Stored" timestamp of the Statement. 
 
 <a name="queryStatementRef" />
 
@@ -747,14 +751,12 @@ parameters.
 Statement (the targeted Statement) as a Statement Reference as the object of the Statement. 
 
 For filter parameters which are not time or sequence based (that is, other than "since", "until", or "limit"), 
-Statements which target another Statement (by using a StatementRef
-as the Object of the Statement) will meet the filter condition if the targeted Statement meets 
-the filter condition.
+Statements which target another Statement (by using a StatementRef as the Object of the Statement) will meet the 
+filter condition if the targeted Statement meets the filter condition.
 
-The time and sequence based parameters MUST still be applied to the Statement 
-making the StatementRef in this manner. This rule applies recursively, so that "Statement a" is a 
-match when a targets b which targets c and the filter conditions described above match for 
-"Statement c".
+The time and sequence based parameters MUST still be applied to the Statement making the StatementRef in this manner. 
+This rule applies recursively, so that "Statement a" is a match when a targets b which targets c and the filter 
+conditions described above match for "Statement c".
 
 For example, consider the Statement "Ben passed explosives training", and a follow up
 Statement: "Andrew confirmed <StatementRef to original Statement\>". The follow up
@@ -768,13 +770,13 @@ Statements are filtered.
 
 <a name="queryLangFiltering" />
 
-###### Language filtering requirements for canonical format statements
+###### Language Filtering Requirements for Canonical Format Statements
 
-* Activity Objects contain Language Map Objects for name, description and interaction components. 
+* Activity Objects contain Language Map Objects within its "name", "description" and various interaction properties. 
 The LRS MUST return only one language in each of these maps. 
 
 * The LRS MAY maintain canonical versions of language maps against any IRI identifying an object containing
-language maps. This includes the language map stored in the Verb Display property and potentially some 
+language maps. This includes the language map stored in the Verb's "display" property and potentially some 
 language maps used within extensions. 
 
 * If the LRS maintains a canonical version of a language map, it SHOULD* return this canonical language map
@@ -790,31 +792,29 @@ which language entry to include, rather than to the resource (list of Statements
 <a name="voidedStatements" />
 
 ##### 2.1.4 Voided Statements
-[Section 4.3 Voided](#voided) describes the process by which statements can be voided. This section
-describes how voided statements are handled by the LRS when queried. 
+[Section 4.3 Voided](#voided) describes the process by which Statements can be voided. This section
+describes how voided Statements are handled by the LRS when queried. 
 
 Clients can identify the presence and statementId of any voided Statements by the target of the voiding Statement. 
-Aside from debugging tools, many Clients will not want to display voiding statements to their
-users and will not display these as part of activity streams and other reports. 
+Aside from debugging tools, many Clients will not want to display voiding Statements to their users and will not display 
+these as part of activity streams and other reports. 
 
 ###### Requirements
 
-* The LRS MUST not return any Statement which has been voided, unless that Statement has been
-requested by voidedStatementId. The process described in
-[the section on filter conditions for StatementRefs](#queryStatementRef) is no exception to this
-requirement. Clients wishing to retrieve voided Statements request these individually by voidedStatementId.
+* The LRS MUST not return any Statement which has been voided, unless that Statement has been requested by voidedStatementId. 
+The process described in [the section on filter conditions for StatementRefs](#queryStatementRef) is no exception to this
+requirement. The process of retrieving voiding Statements is to request each individually by voidedStatementId.
 
-* The LRS MUST still return any Statements targeting the voided 
-Statement, following the process and conditions described in
-[the section on filter conditions for StatementRefs](#queryStatementRef). This includes the
-voiding Statement, which cannot be voided. 
+* The LRS MUST still return any Statements targeting the voided Statement, following the process and conditions described in 
+[the section on filter conditions for StatementRefs](#queryStatementRef). This includes the voiding Statement, which cannot 
+be voided. 
 
 <a name="doctransfer"/>
 
 ### 2.2 Document Resources 
 
 ##### Description
-The Experience API provides a facility for Activity Providers to save arbitrary data in 
+The Experience API provides a facility for Learning Record Providers to save arbitrary data in 
 the form of documents, perhaps related to an Activity, Agent, or combination of both.
 
 ##### Details
@@ -823,14 +823,13 @@ in this specification do. The id is stored in the IRL, "updated" is HTTP header 
 "contents" is the HTTP document itself (as opposed to an Object).
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>id</td><td>String</td><td>Set by AP, unique within the scope of the agent or activity.</td></tr>
+	<tr><td>id</td><td>String</td><td>Set by Learning Record Provider, unique within the scope of the agent or activity.</td></tr>
 	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
 	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
 
-The three Document Resources provide [document](#miscdocument) storage for learning activity 
-providers and Agents. The details of each Resource are found in the following sections, and the 
-information in this section applies to all three Resources.
+The three Document Resources provide [document](#miscdocument) storage.  The details of each Resource are found in 
+the following sections, and the information in this section applies to all three Resources.
 
 ###### Details
 
@@ -863,11 +862,10 @@ information in this section applies to all three Resources.
 
 ###### Requirements
 
-* An Activity Provider MAY send documents to any of the Document Resources for Activities and 
+* A Learning Record Provider MAY send documents to any of the Document Resources for Activities and 
 Agents that the LRS does not have prior knowledge of. 
 
-* The LRS MUST NOT reject documents on the basis of not having prior knowledge of the 
-Activity and/or Agent.
+* The LRS MUST NOT reject documents on the basis of not having prior knowledge of the Activity and/or Agent.
 
 ##### Last Modified
 The "Last Modified" header is set by the LRS when returning single or multiple documents in response
@@ -881,8 +879,8 @@ the most recently modified document was last modified.
 
 ###### JSON Procedure with Requirements
 
-If an Activity Provider stores variables as JSON Objects in a document with 
-content type application/json, they can manipulate them as sets of variables using POST.
+If a Learning Record Provider stores variables as JSON Objects in a document with content type application/json, 
+they can manipulate them as sets of variables using POST.
 
 The following process walks through that process and the process requirements.  
 For example, a document contains: 
@@ -895,15 +893,14 @@ For example, a document contains:
 ```  
 When an LRS receives a POST request with content type application/json for an existing document also of
 content type application/json, it MUST merge the posted document with the existing document. 
-In this context merge is defined as:
+In this context, merge is defined as:
 * de-serialize the Objects represented by each document.
 * for each property directly defined on the Object being posted, set the corresponding
 property on the existing Object equal to the value from the posted Object.    
 * store any valid json serialization of the existing Object as the document referenced in the request.
 
-Note that only top-level properties are merged, even if a top-level property is an Object.
-The entire contents of each original property are replaced with the entire contents of
-each new property.
+Note that only top-level properties are merged, even if a top-level property is an Object. The entire contents of each 
+original property are replaced with the entire contents of each new property.
 
 For example, this document is POSTed with the same id as the existing 
 document above:
@@ -930,11 +927,10 @@ of "application/json", or if either document cannot be parsed as a JSON Object, 
 respond with HTTP status code `400 Bad Request`, and MUST NOT update the target document
 as a result of the request.
 
-* If the merge is successful, the LRS MUST respond with HTTP 
-status code `204 No Content`.
+* If the merge is successful, the LRS MUST respond with HTTP status code `204 No Content`.
 
-* If an AP needs to delete
-a property, it SHOULD use a PUT request to replace the whole document as described below. 
+* If a Learning Record Producer needs to delete a property, it SHOULD use a PUT request to replace 
+the whole document as described below. 
 
 <a name="stateres"/> 
 
@@ -942,19 +938,18 @@ a property, it SHOULD use a PUT request to replace the whole document as describ
 
 ##### Description
 
-Generally, this is a scratch area for Activity Providers that do not have their 
-own internal storage, or need to persist state across devices. 
+Generally, this is a scratch area for Learning Record Providers that do not have their own internal storage, 
+or need to persist state across devices. 
 
 ##### Details
 
-The semantics of the call are driven by the stateId parameter. If it is included, 
-the GET and DELETE methods will act upon a single defined state document 
-identified by "stateId". Otherwise, GET will return the available ids, and DELETE 
-will delete all state in the context given through the other parameters. This Resource has
+The semantics of the call are driven by the "stateId" parameter. If it is included, the GET and DELETE methods will 
+act upon a single defined state document identified by "stateId". Otherwise, GET will return the available ids, 
+and DELETE will delete all state in the context given through the other parameters. This Resource has
 [Concurrency](#concurrency) controls associated with it.
 
 ###### Single Document (PUT | POST | GET | DELETE)
-Example endpoint: http://example.com/xAPI/activities/state
+Example resource endpoint: http://example.com/xAPI/activities/state
 
 Stores, changes, fetches, or deletes the document specified by the given stateId that 
 exists in the context of the specified Activity, Agent, and registration (if specified).  
@@ -995,9 +990,8 @@ exists in the context of the specified Activity, Agent, and registration (if spe
 ###### Multiple Document GET
 Example endpoint: http://example.com/xAPI/activities/state
 
-Fetches State Ids of all state data for this context (Activity + Agent \[ + 
-registration if specified\]). If "since" parameter is specified, this 
-is limited to entries that have been stored or updated since the specified 
+Fetches State Ids of all state data for this context (Activity + Agent \[ + registration if specified\]). 
+If "since" parameter is specified, this is limited to entries that have been stored or updated since the specified 
 Timestamp (exclusive). 
 
 **Content:** None.
