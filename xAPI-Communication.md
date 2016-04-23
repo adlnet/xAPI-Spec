@@ -451,7 +451,7 @@ The basic communication mechanism of the Experience API.
 
 ###### Details
 
-Example endpoint: `http://example.com/xAPI/statements`
+Example resource endpoint: `http://example.com/xAPI/statements`
 
 Stores a single Statement with the given id. POST can also be used to store single Statements.
 
@@ -498,7 +498,7 @@ do not match. See [Statement comparision requirements](statement-comparision-req
 
 ###### Details
 
-Example endpoint: `http://example.com/xAPI/statements`
+Example resource endpoint: `http://example.com/xAPI/statements`
 
 Stores a Statement, or a set of Statements. 
 
@@ -537,7 +537,7 @@ do not match. See [Statement comparision requirements](statement-comparision-req
 
 ###### Details
 
-Example endpoint: `http://example.com/xAPI/statements`
+Example resource endpoint: `http://example.com/xAPI/statements`
 
 This method is called to fetch a single Statement or multiple Statements. If the statementId or voidedStatementId parameter 
 is specified a single Statement is returned.
@@ -988,7 +988,7 @@ exists in the context of the specified Activity, Agent, and registration (if spe
 </table>
 
 ###### Multiple Document GET
-Example endpoint: http://example.com/xAPI/activities/state
+Example resource endpoint: http://example.com/xAPI/activities/state
 
 Fetches State Ids of all state data for this context (Activity + Agent \[ + registration if specified\]). 
 If "since" parameter is specified, this is limited to entries that have been stored or updated since the specified 
@@ -1003,7 +1003,7 @@ Timestamp (exclusive).
 	<tr>
 		<td>activityId</td>
 		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with these states.</td>
+		<td>The Activity Id associated with these states.</td>
 		<td>Required</td>
 	</tr>
 	<tr>
@@ -1021,16 +1021,15 @@ Timestamp (exclusive).
 	<tr>
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of states stored since the specified Timestamp (exclusive) are returned.</td>
+		<td>Only Ids of states stored since the specified Timestamp (exclusive) are returned.</td>
 		<td>Optional</td>
 	</tr>
 </table>
 
 ###### Multiple Document DELETE
-Example endpoint: http://example.com/xAPI/activities/state
+Example resource endpoint: http://example.com/xAPI/activities/state
 
-Deletes all state data for this context (Activity + Agent \[+ registration if 
-specified\]).  
+Deletes all state data for this context (Activity + Agent \[+ registration if specified\]).  
 
 **Content:** None.
 
@@ -1039,8 +1038,8 @@ specified\]).
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>activityId</td>
-		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with this state.</td>
+		<td>Activity Id (IRI)</td>
+		<td>The Activity Id associated with this state.</td>
 		<td>Required</td>
 	</tr>
 	<tr>
@@ -1061,23 +1060,19 @@ specified\]).
 
 ### 2.4 Agents Resource
 
-The Agents Resource provides a method to retrieve a special Object with 
-combined information about an Agent derived from an outside service, such as a 
-directory service. This Resource has [Concurrency](#concurrency) controls associated 
-with it.
+The Agents Resource provides a method to retrieve a special Object with combined information about an Agent derived from 
+an outside service, such as a directory service. This Resource has [Concurrency](#concurrency) controls associated with it.
 
 ###### Combined Information GET 
 
 ###### Details
-Example endpoint: http://example.com/xAPI/agents
+Example resource endpoint: http://example.com/xAPI/agents
 
-Return a special, Person Object for a specified Agent. The Person Object is 
-very similar to an Agent Object, but instead of each attribute having a single 
-value, each attribute has an array value, and it is legal to include multiple 
-identifying properties. This is different from the 
-FOAF concept of person, person is being used here to indicate a person-centric 
-view of the LRS Agent data, but Agents just refer to one persona (a person in 
-one context).  
+Return a special, Person Object for a specified Agent. The Person Object is very similar to an Agent Object, 
+but instead of each attribute having a single value, each attribute has an array value, and it is legal to 
+include multiple identifying properties. This is different from the FOAF concept of person, person is being 
+used here to indicate a person-centric view of the LRS Agent data, but Agents just refer to one 
+persona (a person in one context).  
 
 The 'agent' parameter is a normal Agent Object with a single identifier and no arrays. 
 It is not a Person Object, nor is it a Group. 
@@ -1118,7 +1113,7 @@ about the Agent it received in the request.
 	<tr>
 		<td>objectType</td>
 		<td>String</td>
-		<td>"Person"</td>
+		<td>Person</td>
 		<td>Required</td>
 	</tr>
 	<tr>
@@ -1158,22 +1153,19 @@ See also: [Agent](#agent).
 
 ###### Requirements
 
-* All array properties MUST be populated with members with the 
-same definition as the similarly named property from Agent Objects.  
+* All array properties MUST be populated with members with the same definition as the similarly named property from Agent Objects.  
 
-* Additional properties not listed here SHOULD* NOT be added to this object and each 
-property MUST occur only once. 
+* Additional properties not listed here SHOULD* NOT be added to this object and each property MUST occur only once. 
 
 <a name="activitiesres"/> 
 
 ### 2.5 Activities Resource
 
-The Activities Resource provides a method to retrieve a full description 
-of an Activity from the LRS. This Resource has [Concurrency](#concurrency) controls 
-associated with it.
+The Activities Resource provides a method to retrieve a full description of an Activity from the LRS. 
+This Resource has [Concurrency](#concurrency) controls associated with it.
 
 ###### Full Activity Object GET
-Example endpoint: http://example.com/xAPI/activities
+Example resource endpoint: http://example.com/xAPI/activities
 
 Loads the complete Activity Object specified.  
 
@@ -1184,15 +1176,16 @@ Loads the complete Activity Object specified.
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>activityId</td>
-		<td>Activity id (IRI)</td>
-		<td>The id associated with the Activities to load.</td>
+		<td>Activity Id (IRI)</td>
+		<td>The Id associated with the Activities to load.</td>
 		<td>Required</td>
 	</td>
 </table>
 
 ###### Requirements
 
-* If an LRS does not have a canonical definition of the Activity to return, the LRS SHOULD* still return an Activity Object when queried.
+* If an LRS does not have a canonical definition of the Activity to return, the LRS SHOULD* still return an 
+Activity Object when queried.
 
 <a name="agentprofres"/>
 
@@ -1200,21 +1193,19 @@ Loads the complete Activity Object specified.
 
 ###### Description
 
-The Agent Profile Resource is much like the State Resource, allowing for arbitrary key / 
-document pairs to be saved which are related to an Agent. 
+The Agent Profile Resource is much like the State Resource, allowing for arbitrary key / document pairs to be saved 
+which are related to an Agent. 
 
 ###### Details
 
-The semantics of the call are driven by the profileId parameter. If it is included, 
-the GET method will act upon a single defined document identified by "profileId". 
-Otherwise, GET will return the available ids.  
+The semantics of the request are driven by the profileId parameter. If it is included, the GET method will act upon 
+a single defined document identified by "profileId". Otherwise, GET will return the available ids.  
 
 ###### Single Agent or Profile (PUT | POST | GET | DELETE) 
 
-Example endpoint: http://example.com/xAPI/agents/profile
+Example resource endpoint: http://example.com/xAPI/agents/profile
 
-Stores, changes, fetches, or deletes the specified profile document in the context of the 
-specified Agent.  
+Stores, changes, fetches, or deletes the specified profile document in the context of the specified Agent.  
 
 **Content (PUT | POST):** The document to be stored or updated.  
 **Content (GET | DELETE):** None.  
@@ -1233,20 +1224,19 @@ specified Agent.
 	<tr>
 		<td>profileId</td>
 		<td>String</td>
-		<td>The profile id associated with this profile.</td>
+		<td>The profile Id associated with this profile.</td>
 		<td>Required</td>
 	</tr>
 </table>  
 
-__Note:__ The agent parameter is an Agent Object and not a Group. Activity Providers wishing to store data
+__Note:__ The agent parameter is an Agent Object and not a Group. Learning Record Providers wishing to store data
 against an Identified Group can use the Identified Group's identifier within an Agent Object. 
 
 ###### Multiple Document GET 
-Example endpoint: http://example.com/xAPI/agents/profile
+Example resource endpoint: http://example.com/xAPI/agents/profile
 
-Fetches Profile Ids of all profile entries for an Agent. If "since" parameter is specified, 
-this is limited to entries that have been stored or updated since the specified 
-Timestamp (exclusive).  
+Fetches Profile Ids of all profile entries for an Agent. If "since" parameter is specified, this is limited to entries 
+that have been stored or updated since the specified Timestamp (exclusive).  
 
 **Content:** None.
 
@@ -1263,7 +1253,7 @@ Timestamp (exclusive).
 	<tr>
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of profiles stored since the specified Timestamp 
+		<td>Only Ids of profiles stored since the specified Timestamp 
 			(exclusive) are returned.</td>
 		<td>Optional</td>
 	</tr>
@@ -1285,7 +1275,7 @@ the GET method will act upon a single defined document identified by "profileId"
 Otherwise, GET will return the available ids.
 
 ###### Single Document (PUT | POST | GET | DELETE)
-Example endpoint: http://example.com/xAPI/activities/profile
+Example resource endpoint: http://example.com/xAPI/activities/profile
 
 Stores, changes, fetches, or deletes the specified profile document in the context of the 
 specified Activity.  
@@ -1312,7 +1302,7 @@ specified Activity.
 </table>
 
 ###### Multiple Document GET
-Example endpoint: http://example.com/xAPI/activities/profile
+Example resource endpoint: http://example.com/xAPI/activities/profile
 
 Fetches Profile Ids of all profile entries for an Activity. If "since" parameter is 
 specified, this is limited to entries that have been stored or updated since 
@@ -1359,7 +1349,7 @@ allow other uses to emerge.
 
 ###### Information GET
 
-Example endpoint: http://example.com/xAPI/about
+Example resource endpoint: http://example.com/xAPI/about
 
 **Content:** None.
 
