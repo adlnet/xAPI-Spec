@@ -1749,25 +1749,23 @@ and token secret.
 * If this form of authentication is used to record Statements, the LRS SHOULD record the authority as the Agent representing 
 the registered application.
 
-###### Application not registered + known user Process and Requirements
+###### Application Not Registered + Known User Process and Requirements
 **Process:**
-The AP uses a consumer secret consisting of an empty string to call the 
-Temporary Credential Request endpoint specifying the "consumer_name" and other usual parameters.
-The "consumer_name" contains a string representing the application requesting access. 
+The Learning Record Provider uses a consumer secret consisting of an empty string to call the Temporary Credential 
+Request endpoint specifying the "consumer_name" and other usual parameters.  The "consumer_name" contains a string 
+representing the application requesting access. 
 
-The AP then sends the user's browser to the Resource Owner Authorization using the 
-temporary credentials obtained from the LRS. The Resource Owner Authorization presents a 
-page displaying the "consumer_name" plus a warning that the identity of the application requesting 
-authorization cannot be verified.
+The Learning Record Provider then sends the user's browser to the Resource Owner Authorization using the temporary 
+credentials obtained from the LRS. The Resource Owner Authorization presents a page displaying the "consumer_name" 
+plus a warning that the identity of the application requesting authorization cannot be verified.
 
 Otherwise the process follows the standard OAuth workflow. 
 
 **Requirements:**
-* If this form of authentication is used to record Statements, the LRS MUST record an authority 
-that includes both that application and the authenticating user, as a group, since OAuth specifies 
-an application.
+* If this form of authentication is used to record Statements, the LRS MUST record an authority that includes both 
+that application and the authenticating user, as a group, since OAuth specifies an application.
 
-###### No application + known user Process and Requirements
+###### No Application + Known User Process and Requirements
 **Process:**
 Use a username/password combination provided by the LRS for use by the known user.
 
@@ -1775,33 +1773,31 @@ Use a username/password combination provided by the LRS for use by the known use
 * If this form of authentication is used to record Statements, the LRS SHOULD 
 record the authority as the Agent representing the known user.
 
-###### No authorization Process and Requirements
+###### No Authorization Process and Requirements
 
 * Requests MUST include headers for HTTP Basic Authentication based on a username and password containing zero or
 more space characters. 
 * Requests SHOULD* include headers for HTTP Basic Authentication based on a username and password each consisting of 
-an empty string. In this case the HTTP Basic Authentication header will be `Basic ` followed by a base64 encoded version of the string `:`.
-This results in the string `Basic Og==`.
+an empty string. In this case the HTTP Basic Authentication header will be `Basic ` followed by a base64 encoded 
+version of the string `:`.  This results in the string `Basic Og==`.
 
-This is in order to distinguish an explicitly unauthenticated request from a request that needs to be given a HTTP Basic Authentication 
-challenge.
+This is in order to distinguish an explicitly unauthenticated request from a request that needs to be given a 
+HTTP Basic Authentication challenge.
 
 <a name="oauthscope"/> 
 
 ### 4.2 OAuth 1.0 Authorization Scope
 
 ##### Description
-These are recommendations for scopes designed to enable an LRS and an application
-communicating using the xAPI to negotiate a level of access which accomplishes what the
-application needs while minimizing the potential for misuse. The limitations of each scope
-are in addition to any security limitations placed on the user account associated with the
-request.
+These are recommendations for scopes designed to enable an LRS and an application communicating using the xAPI to 
+negotiate a level of access which accomplishes what the application needs while minimizing the potential for misuse. 
+The limitations of each scope are in addition to any security limitations placed on the user account associated 
+with the request.
 
 Elements of this section draw on [OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-3.3)
 despite this section describing requirements for LRS supporting [OAuth 1.0](http://tools.ietf.org/html/rfc5849). 
 
-The requirements in this section only apply if the LRS
-supports OAuth 1.0.
+The requirements in this section only apply if the LRS supports OAuth 1.0.
 
 ##### Details
 
@@ -1827,7 +1823,7 @@ The following table lists xAPI scope values:
 	<tr>
 		<td>define</td>
 		<td>(re)Define Activities and Actors. If storing a Statement 
-			when this is not granted, ids will be saved and the LRS 
+			when this is not granted, Ids will be saved and the LRS 
 			MAY save the original Statement for audit purposes, but 
 			SHOULD NOT update its canonical representation of any 
 			Actors or Activities.
@@ -1845,9 +1841,8 @@ The following table lists xAPI scope values:
 </table>
 
 ###### OAuth Extended Parameters  
-Note that the parameters "consumer_name" and "scope" are not part of 
-OAuth 1.0, and therefore if used MUST be passed as query string or form 
-parameters, not in the OAuth header.  
+Note that the parameters "consumer_name" and "scope" are not part of OAuth 1.0, and therefore if used MUST be passed 
+as query string or form parameters, not in the OAuth header.  
 
 ###### OAuth Endpoints  
 <table>
@@ -1874,34 +1869,28 @@ parameters, not in the OAuth header.
 </table>
 
 ##### Example
-The list of scopes determines the set of permissions that is being requested. 
-For example,an instructor might grant "statements/read" to a Client, 
-but the LRS would still limit that tool to Statements that the instructor could 
-read if querying the LRS with their credentials directly (such as Statements 
-relating to their students).
+The list of scopes determines the set of permissions that is being requested. For example, an instructor might grant 
+"statements/read" to an application (Client), but the LRS would still limit that tool to Statements that the instructor could 
+read if querying the LRS with their credentials directly (such as Statements relating to their students).
 
 ##### Requirements
 
 * The LRS MUST accept a scope parameter as defined in [OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-3.3).
-* The LRS MUST assume a requested scope of "statements/write" and "statements/read/mine" if no 
-scope is specified.
+* The LRS MUST assume a requested scope of "statements/write" and "statements/read/mine" if no scope is specified.
 * The LRS MUST support the scope of "all" as a minimum.
 * The LRS MAY support other scopes.
-* The Client SHOULD request only the minimal needed scopes, to increase the chances that the request
-will be granted.
+* The Client SHOULD request only the minimal needed scopes, to increase the chances that the request will be granted.
 
 <a name="security"/>
 
 ## 5.0 Security 
 
-Security beyond authentication (including the interpretation of OAuth
-authorization scopes) is beyond the current scope of this document and left to
-the individual LRS provider as an implementation detail. Implementors are
-encouraged to follow industry best practices, e.g., [The HTTPS-Only Standard](https://https.cio.gov) from the office of the White House CIO.
+Security beyond authentication (including the interpretation of OAuth authorization scopes) is beyond the current 
+scope of this document and left to the individual LRS provider as an implementation detail. Implementors are encouraged 
+to follow industry best practices, e.g., [The HTTPS-Only Standard](https://https.cio.gov) from the office of the White House CIO.
 
-While other security concerns are beyond the scope of this specification, 
-the xAPI Community remains dedicated to determining security best practices. 
-This effort has begun at [xAPIsec](https://github.com/xapisec/xapisec). 
+While other security concerns are beyond the scope of this specification, the xAPI Community remains dedicated to determining 
+security best practices. This effort has begun at [xAPIsec](https://github.com/xapisec/xapisec). 
 Participation is highly encouraged.
 
 <a name="append3"/>
@@ -1912,17 +1901,15 @@ Participation is highly encouraged.
 ### Appendix A: Converting Statements to 1.0.0
 
 ######Rationale
-This is a 1.0.0 specification, and as such implementers do not have to consider prior
-versions of the specification. However, prior versions did see notable adoption. This data
-conversion is specified in order
-to preserve the data tracked using earlier versions, and make it available to new implementers
-in a consistent manner.
+This is a 1.0.0 specification, and as such implementers do not have to consider prior versions of the specification. 
+However, prior versions did see notable adoption. This data conversion is specified in order to preserve the data 
+tracked using earlier versions, and make it available to new implementers in a consistent manner.
 
 ######Details
 
 ######Conversion of Statements created based on version 0.9
 
-A 1.0.0 system converting a Statement created in 0.9 MUST follow the steps below:
+A 1.0.0 Client converting a Statement created in 0.9 MUST follow the steps below:
 
 * If the Statement has been voided or uses Verbs, Activity types, or properties not included in the
  0.9 specification, do not convert it.
@@ -1942,28 +1929,25 @@ A 1.0.0 system converting a Statement created in 0.9 MUST follow the steps below
 * Remove the "voided" property from the Statement, if present. Remember, if the value of the
   voided property is true, then the Statement MUST NOT be converted.
 * Add "version": "1.0.0"
-* If an authority was not previously set, set the authority to an Agent identified by
-an account with a homePage set to the home page corresponding to the
-system performing the conversion and an accountName of "unknown".
-* if the Statement property in Context was set, remove it from the Statement.
-* Preserve all other properties without modification, including "stored". Stored will still
-be updated if the Statement is passed to another system.
+* If an authority was not previously set, set the authority to an Agent identified by an account with a homePage 
+set to the home page corresponding to the system performing the conversion and an accountName of "unknown".
+* If the "statement" property in Context was set, remove it from the Statement.
+* Preserve all other properties without modification, including "stored". "stored" will still be updated if the Statement 
+is sent to an LRS.
 
 ######Conversion of Statements created based on version 0.95
 
-A 1.0.0 system converting a Statement created in 0.95 MUST follow the steps below:
+A 1.0.0 Client converting a Statement created in 0.95 MUST follow the steps below:
 
 * If the Statement is voided, do not convert it.
 * Remove the "voided" property from the Statement, if present. Remember, if the value
   of the voided property is true, then the Statement MUST NOT be converted.
 * Add "version": "1.0.0"
-* If an authority was not previously set, set the authority to an Agent identified by
-an account with a homePage set to the home page corresponding to the
-system performing the conversion and an accountName of "unknown".
-* If the Statement property in Context was set to anything other than a
-StatementRef, remove it from the Statement.
-* Preserve all other properties without modification, including "stored". Stored will still
-be updated if the Statement is passed to another system.
+* If an authority was not previously set, set the authority to an Agent identified by an account with a homePage 
+set to the home page corresponding to the system performing the conversion and an accountName of "unknown".
+* If the Statement property in Context was set to anything other than a StatementRef, remove it from the Statement.
+* Preserve all other properties without modification, including "stored". "stored" will still be updated if the Statement 
+is sent to an LRS.
 
 
 ######Example
@@ -2096,10 +2080,10 @@ Converted to 1.0.0:
 
 ### Appendix B: Table of All Endpoints
 
-### Required Endpoints
+### Required Resource Endpoints
 <table>
 	<tr>
-		<th>Endpoint (Base Endpoint of the LRS Precedes Each Endpoint)</th>
+		<th>Endpoint (Base Resource Location of the LRS Precedes Each Endpoint)</th>
 		<th>Function</th>
 	</tr>
 	<tr>
@@ -2132,10 +2116,10 @@ Converted to 1.0.0:
 	</tr>
 </table>
 
-### OAuth Endpoints
+### OAuth Resource Endpoints
 <table>
 	<tr>
-		<th>Endpoint (Base Endpoint of the LRS Precedes Each Endpoint)</th>
+		<th>Endpoint (Base Resource Location of the LRS Precedes Each Endpoint)</th>
 		<th>Function</th>
 	</tr>
 	<tr>
@@ -2154,11 +2138,11 @@ Converted to 1.0.0:
 
 <a name="Appendix3C"/>
 
-### Appendix C: Cross Domain Request example
+### Appendix C: Cross Domain Request Example
 
-[Alternate Request Syntax](#alt-request-syntax) outlines alternative syntax for use 
-when the normal syntax cannot be used due to browser or querystring length restrictions. This appendix provides an example of a
-PUT statements request following this format. 
+[Alternate Request Syntax](#alt-request-syntax) outlines alternative syntax for use when the normal syntax cannot be used due 
+to browser or querystring length restrictions. This appendix provides an example of a PUT request to the Statements Resource 
+following this format. 
 
 Request using normal syntax:
 
@@ -2183,7 +2167,7 @@ Content:
 
 ```
 
-Request using using alternative syntax:
+Request using alternative syntax:
 
 ```
 URL: http://example.com/xAPI/statements?method=PUT&statementId=c70c2b85-c294-464f-baca-cebd4fb9b348
