@@ -723,15 +723,14 @@ with the credentials used.
 an empty array.
 
 * The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
-<a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601
-combined date and time</a> format, on all responses to Statements requests, with a value of the 
-Timestamp for which all Statements that have or will have a "stored" property before that time 
-are known with reasonable certainty to be available for retrieval. This time SHOULD take into 
-account any temporary condition, such as excessive load, which might cause a delay in Statements 
+[ISO 8601 combined date and time](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations) format, 
+on all responses to Statements requests, with a value of the Timestamp for which all Statements that have or will have a 
+"stored" property before that time are known with reasonable certainty to be available for retrieval. This time SHOULD take 
+into account any temporary condition, such as excessive load, which might cause a delay in Statements 
 becoming available for retrieval.
 
 * If the "attachment" property of a GET statement is used and is set to <code>true</code>, the LRS MUST use the 
-multipart response format and include all attachments as described in <a href="#attachments">4.1.11</a>.
+multipart response format and include all attachments as described in [4.1.11](#attachments).
 
 * If the "attachment" property of a GET statement is used and is set to <code>false</code>, the LRS MUST NOT
 include attachment raw data and MUST report application/json.
@@ -785,7 +784,7 @@ language maps used within extensions.
 * The LRS SHOULD* return only one language within each language map for which it returns a canonical map. 
 
 * In order to choose the most relevant language, the LRS MUST apply the Accept-Language header as 
-described in <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a> 
+described in [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html) 
 (HTTP 1.1), except that this logic MUST be applied to each language map individually to select 
 which language entry to include, rather than to the resource (list of Statements) as a whole.
 
@@ -1265,20 +1264,19 @@ that have been stored or updated since the specified Timestamp (exclusive).
 
 ###### Description
 
-The Activity Profile Resource is much like the State Resource, allowing for arbitrary key 
-/ document pairs to be saved which are related to an Activity. 
+The Activity Profile Resource is much like the State Resource, allowing for arbitrary key / document pairs to be saved 
+which are related to an Activity. 
 
 ###### Details
 
-The semantics of the call are driven by the profileId parameter. If it is included, 
+The semantics of the request are driven by the profileId parameter. If it is included, 
 the GET method will act upon a single defined document identified by "profileId". 
-Otherwise, GET will return the available ids.
+Otherwise, GET will return the available Ids.
 
 ###### Single Document (PUT | POST | GET | DELETE)
 Example resource endpoint: http://example.com/xAPI/activities/profile
 
-Stores, changes, fetches, or deletes the specified profile document in the context of the 
-specified Activity.  
+Stores, changes, fetches, or deletes the specified profile document in the context of the specified Activity.  
 
 **Content (PUT | POST):** The document to be stored or updated.  
 **Content (GET | DELETE):** None.  
@@ -1289,14 +1287,14 @@ specified Activity.
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>activityId</td>
-		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with this profile.</td>
+		<td>Activity Id (IRI)</td>
+		<td>The Activity Id associated with this profile.</td>
 		<td>Required</td>
 	</tr>
 	<tr>
 		<td>profileId</td>
 		<td>String</td>
-		<td>The profile id associated with this profile.</td>
+		<td>The profile Id associated with this profile.</td>
 		<td>Required</td>
 	</tr>
 </table>
@@ -1304,9 +1302,8 @@ specified Activity.
 ###### Multiple Document GET
 Example resource endpoint: http://example.com/xAPI/activities/profile
 
-Fetches Profile Ids of all profile entries for an Activity. If "since" parameter is 
-specified, this is limited to entries that have been stored or updated since 
-the specified Timestamp (exclusive).  
+Fetches Profile Ids of all profile entries for an Activity. If "since" parameter is specified, this is limited to 
+entries that have been stored or updated since the specified Timestamp (exclusive).  
 
 **Content:** None.
 
@@ -1316,14 +1313,14 @@ the specified Timestamp (exclusive).
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
 	<tr>
 		<td>activityId</td>
-		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with these profiles.</td>
+		<td>Activity Id (IRI)</td>
+		<td>The Activity Id associated with these profiles.</td>
 		<td>Required</td>
 	</tr>
 	<tr>
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of profiles stored since the specified Timestamp (exclusive) 
+		<td>Only Ids of profiles stored since the specified Timestamp (exclusive) 
 		are returned.</td>
 		<td>Optional</td>
 	</tr>
@@ -1336,14 +1333,12 @@ the specified Timestamp (exclusive).
 
 ###### Description
 
-Returns JSON Object containing information about this LRS, including the xAPI version
-supported.
+Returns JSON Object containing information about this LRS, including the xAPI version supported.
 
 ###### Rationale
 
-Primarily this resource exists to allow Clients that support multiple xAPI versions to
-decide which version to use when communicating with the LRS. Extensions are included to
-allow other uses to emerge.
+Primarily this resource exists to allow Clients that support multiple xAPI versions to decide which version to 
+use when communicating with the LRS. Extensions are included to allow other uses to emerge.
 
 ###### Details
 
@@ -1355,17 +1350,17 @@ Example resource endpoint: http://example.com/xAPI/about
 
 **Returns:** `200 OK`, JSON object containing basic metadata about this LRS
 <table border="1">
-	<tr><th>property</th><th>type</th><th>description</th><th>Required</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>version</td>
-		<td>array of version strings</td>
+		<td>Array of version strings</td>
 		<td>xAPI versions this LRS supports</td>
 		<td>Required</td>
 	</tr>
 	<tr>
 		<td>extensions</td>
 		<td><a href="#miscext">Object</a></td>
-		<td>A map of other properties as needed.</td>
+		<td>A map of other properties as needed</td>
 		<td>Optional</td>
 	</tr>
 
@@ -1382,7 +1377,7 @@ the latest minor and patch version the LRS conforms to, for each major version.
 property MUST occur only once.  
 * An LRS SHOULD allow unauthenticated access to this resource
 * An LRS MUST NOT reject requests based on their version header as would otherwise be 
-required by <a href="#versioning"/>Versioning</a>.
+required by [Versioning](#versioning).
 
 <a name="validation"/> 
 
@@ -1390,12 +1385,10 @@ required by <a href="#versioning"/>Versioning</a>.
 
 ###### Description
 
-The function of the LRS within the xAPI is to store and retrieve Statements. 
-As long as it has sufficient information to perform these tasks, it is 
-expected that it does them. Validation of Statements in the Experience API is 
-focused solely on syntax, not semantics. Enforcing the rules that ensure 
-valid meaning among Verb definitions, Activity types, and extensions is the 
-responsibility of the Activity Provider sending the Statement. 
+The function of the LRS within the xAPI is to store and retrieve Statements. As long as it has sufficient information 
+to perform these tasks, it is expected that it does them. Validation of Statements in the Experience API is focused 
+solely on syntax, not semantics. Enforcing the rules that ensure valid meaning among Verb definitions, Activity types, 
+and extensions is the responsibility of the Learning Record Provider sending the Statement. 
 
 ###### Requirements
 
@@ -1439,19 +1432,24 @@ are unlikely. The requirements below only apply to Agent Profile Resource and Ac
 ##### LRS Requirements
 
 * An LRS responding to a GET request MUST add an ETag HTTP header to the response.
-* An LRS responding to a GET request without using a transfer encoding or using the identity transfer encoding MUST calculate the value of the ETag header to be a hexadecimal string
-of the SHA-1 digest of the contents. This hexidecimal string SHOULD be rendered using numbers and lowercase 
-characters only; uppercase characters SHOULD NOT be used. The requirement to calculate the ETag this way will be removed in a future version of the specification.
-* An LRS responding to a GET request using any non-identity transfer encoding MUST NOT calculate the included ETag as above, due to the interpretation of ETags by existing web infrastructure.
-* As defined in [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19), an LRS responding to a GET request MUST enclose the header in quotes.  
-* An LRS responding to a PUT request MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
-modifications made after the consumer last fetched the document.
-* An LRS responding to a PUT request MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
-when there is a resource present that the consumer is not aware of.
-* An LRS responding to a POST or DELETE request SHOULD* handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
-modifications made after the consumer last fetched the document.
-* An LRS responding to a POST request SHOULD* handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
-when there is a resource present that the consumer is not aware of.
+* An LRS responding to a GET request without using a transfer encoding or using the identity transfer encoding MUST 
+calculate the value of the ETag header to be a hexadecimal string of the SHA-1 digest of the contents. This hexidecimal 
+string SHOULD be rendered using numbers and lowercase characters only; uppercase characters SHOULD NOT be used. 
+The requirement to calculate the ETag this way will be removed in a future version of the specification.
+* An LRS responding to a GET request using any non-identity transfer encoding MUST NOT calculate the included ETag as above, 
+due to the interpretation of ETags by existing web infrastructure.
+* As defined in [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19), an LRS responding to a GET 
+request MUST enclose the header in quotes.  
+* An LRS responding to a PUT request MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) 
+header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect modifications made after the Client 
+last fetched the document.
+* An LRS responding to a PUT request MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in 
+RFC2616, HTTP 1.1 if it contains "*", in order to to detect when there is a resource present that the Client is not aware of.
+* An LRS responding to a POST or DELETE request SHOULD* handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains 
+an ETag, in order to detect modifications made after the Client last fetched the document.
+* An LRS responding to a POST request SHOULD* handle the 
+[If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it 
+contains "*", in order to to detect when there is a resource present that the Client is not aware of.
 
 If the header precondition in either of the PUT request cases above fails, the LRS:
 
@@ -1466,7 +1464,7 @@ If the header precondition in any of the POST or DELETE request cases above fail
 If a PUT request is received without either header for a resource that already exists, the LRS:
 
 * MUST return HTTP status 409 "Conflict".
-* MUST return a response explaining that the consumer SHOULD
+* MUST return a response explaining that the Client SHOULD
 	- check the current state of the resource.
 	- set the "If-Match" header with the current ETag to resolve the conflict.
 * MUST NOT make a modification to the resource.
@@ -1650,7 +1648,7 @@ of the problem.
 
 * Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
 * Systems MAY convert Statements of older versions into a newer version only by following the methods described in
-<a href="#Appendix3A">Appendix A: Converting Statements to 1.0.0</a>.
+[Appendix A: Converting Statements to 1.0.0](Appendix3A).
 
 
 <a name="authentication"/>
