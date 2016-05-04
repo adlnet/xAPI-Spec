@@ -177,6 +177,8 @@ The lists above are not intended to be exhaustive. See requirements throughout t
 
 ### 1.3 Alternate Request Syntax
 
+__Note__: Unless supporting IE9 or lower, this section is not necessary for implementations of xAPI.
+
 ###### Description
 
 One of the goals of the xAPI is to allow cross-domain tracking, and even though xAPI seeks to enable tracking from 
@@ -188,6 +190,12 @@ the xAPI as described above due to only supporting "GET" and "POST", and not all
 
 The following describes alternate syntax to use only when unable to use the usual syntax for specific calls due to the 
 restrictions mentioned above. This alternate syntax can also be used to GET Statements due to limits on query string length.  
+
+All requirements for this environment are necessary only if supporting versions of browsers requiring this type of support.
+
+See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example. 
+
+###### Requirements
 
 __Method__:  
 * All xAPI requests issued MUST be POST. 
@@ -224,7 +232,7 @@ __Query string parameters__:
 __Attachments__: Note that due to issues relating to encoding, it is not possible to send 
 binary data attachments using this syntax. See [4.1.11. Attachments](#attachments) 
 
-* The LRS MUST support the syntax above.  See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example. 
+* The LRS MUST support the syntax above.  
 
 There might be cases where there is a requirement for the Learning Record Provider to support applications or browsers where the 
 Client code is hosted on a different scheme (HTTP or HTTPS) from the LRS. In these cases, a proxy is needed to communicate 
@@ -232,13 +240,11 @@ to the LRS. Two simple solutions might be to 1) set up a proxy pass through on t
 LRS or 2) to host an intermediary server-side LRS on the same scheme as the Client code to route Statements to the target LRS.  
 Strongly consider security risks before making the decision to use implementations that use different schemes.
 
-__Note__: Versions of Internet Explorer lower than 10 do not support Cross Domain Requests between HTTP and HTTPS.
-
 <a name="encoding"/> 
 
 ### 1.4 Encoding
 
-###### Requirement
+###### Requirements
 * All strings MUST be encoded and interpreted as UTF-8. 
 
 <a name="content-types"/> 
@@ -246,7 +252,7 @@ __Note__: Versions of Internet Explorer lower than 10 do not support Cross Domai
 Requests within this specification normally use an application/json content type. Exceptions to this are:
 
 * Documents can have any content type. 
-* Statement requests that can sometimes include attachments use the multipart/mixed content type. 
+* Statement requests that can sometimes include Attachments use the multipart/mixed content type. 
 
 <a name="applicationjson"/> 
 #### 1.5.1 Application/JSON
@@ -261,54 +267,54 @@ of Statements which contain only attachment Objects with a populated fileUrl.
 <a name="multipartmixed"/> 
 #### 1.5.2 Multipart/Mixed
 
-The multipart/mixed content type is used for requests that *could* include attachments. This does not mean that all 
-multipart/mixed requests neccesarily do include attachments.
+The multipart/mixed content type is used for requests that *could* include Attachments. This does not mean that all 
+multipart/mixed requests neccesarily do include Attachments.
 
-##### Procedure for the exchange of attachments
+##### Procedure For The Exchange Of Attachments
 
-1. A Statement request including zero or more attachments is construed as described below.
+1. A Statement request including zero or more Attachments is construed as described below.
 
-2. The Statement is sent using a Content-Type of"multipart/mixed". Any attachments are placed at the end of such transmissions.
+2. The Statement is sent using a Content-Type of" multipart/mixed". Any Attachments are placed at the end of such transmissions.
 
 3. The LRS decides whether to accept or reject the Statement based on the information in the first part.
 
-4. If it accepts the request, it can match the raw data of an attachment(s) with the attachment header by comparing the SHA-2 
+4. If it accepts the request, it can match the raw data of an Attachment(s) with the Attachment header by comparing the SHA-2 
 of the raw data to the SHA-2 declared in the header. It MUST not do so any other way.
 
 ###### Requirements for Attachment Statement Batches
 
-A request transmitting a Statement batch, Statement results, or single Statement that includes attachments MUST satisfy one of the 
+A request transmitting a Statement batch, Statement results, or single Statement that includes Attachments MUST satisfy one of the 
 following criteria:
 
-* It MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for Statement 
-results when the attachments filter is false.
+* It MUST be of type "application/json" and include a fileUrl for every Attachment EXCEPT for Statement 
+results when the Attachments filter is false.
 * It MUST conform to the definition of multipart/mixed in [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt) and:
     * The first part of the multipart document MUST contain the Statements themselves, with type "application/json".
-    * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
+    * Each additional part contains the raw data for an Attachment and forms a logical part of the Statement. This 
     capability will be available when issuing PUT or POST against the Statement resource.
     * MUST include an X-Experience-API-Hash parameter in each part's header after the first (Statements) part.
     * MUST include a Content-Transfer-Encoding parameter with a value of "binary" in each part's header after the first 
      (Statements) part.
-    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple Statements that are 
+    * SHOULD only include one copy of an Attachment's data when the same Attachment is used in multiple Statements that are 
      sent together.
     * SHOULD include a Content-Type parameter in each part's header. For the first part (containing the Statement) this 
      MUST be "application/json".
-   	* Where parameters have a corresponding property within the Attachment Object (outlined in the table above), and both 
+   	* Where parameters have a corresponding property within the attachment Object (outlined in the table above), and both 
    	 the parameter and property are specified for a given Attachment, the value of these parameters and properties MUST match. 
 
 ###### LRS Requirements
 
-* An LRS MUST include attachments in the Transmission Format described above
+* An LRS MUST include Attachments in the Transmission Format described above
 when requested by the Client (see ["Statement Resource"](#stmtapi)).
-* An LRS MUST NOT pull Statements from another LRS without requesting attachments.
-* An LRS MUST NOT push Statements into another LRS without including attachment data
-received, if any, for those attachments.
+* An LRS MUST NOT pull Statements from another LRS without requesting Attachments.
+* An LRS MUST NOT push Statements into another LRS without including Attachment data
+received, if any, for those Attachments.
 * When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST accept batches of 
-Statements that contain attachments in the Transmission Format described above.
+Statements that contain Attachments in the Transmission Format described above.
 * When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST reject batches of 
-Statements having attachments that neither contain a fileUrl nor match a received attachment part based on their hash.
+Statements having Attachments that neither contain a fileUrl nor match a received Attachment part based on their hash.
 * When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS SHOULD assume a 
-Content-Transfer-Encoding of binary for attachment parts.
+Content-Transfer-Encoding of binary for Attachment parts.
 * An LRS MAY reject (batches of) Statements that are larger than the LRS is configured to allow.
 * When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS SHOULD* accept batches 
 of Statements which contain no attachment Objects.
@@ -316,15 +322,15 @@ of Statements which contain no attachment Objects.
 of Statements which contain only attachment Objects with a populated fileUrl.
 
 __Note:__ There is no requirement that Statement batches using the mime/multipart format
-contain attachments.
+contain Attachments.
 
-###### Learning Record Producer Requirements
+###### Learning Record Provider Requirements
 
-* A Learning Record Producer MAY send Statements with attachments as described above.
-* A Learning Record Producer MAY send multiple Statements where some or all have attachments if using "POST".
-* A Learning Record Producer MAY send batches of type "application/json" where every attachment
+* A Learning Record Provider MAY send Statements with Attachments as described above.
+* A Learning Record Provider MAY send multiple Statements where some or all have Attachments if using "POST".
+* A Learning Record Provider MAY send batches of type "application/json" where every attachment
 Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
-* A Learning Record Producer SHOULD use SHA-256, SHA-384, or SHA-512  to populate the "sha2" property.
+* A Learning Record Provider SHOULD use SHA-256, SHA-384, or SHA-512  to populate the "sha2" property.
 
 ###### File URL
 The File URL is intended to provide a location from which the attachment can be received.
@@ -468,9 +474,6 @@ Stores a single Statement with the given id. POST can also be used to store sing
 ###### LRS Requirements
 
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
-* 
-* While an LRS MUST NOT have duplicate Statement Ids due to the uniqueness requirement, it does not have to perform 
-checks at the time Statements are received.  The following requirements are for LRSs that do such a check:
 
 * An LRS MUST NOT make any modifications to its state based on receiving a Statement
 with a statementID that it already has a Statement for. Whether it responds with
@@ -481,7 +484,7 @@ Object.
 verify the received Statement matches the existing one and SHOULD return `409 Conflict` if they
 do not match. See [Statement comparision requirements](statement-comparision-requirements).
 
-* If the LRS receives a Statement with an id it already has a Statement for **in the same batch**, it SHOULD* reject the 
+* If the LRS receives a batch of Statements containing two or more Statements with the same id, it SHOULD* reject the 
  batch and return `400 Bad Request`.
 
 
@@ -519,8 +522,6 @@ that provide a lot of data to the LRS.
 have limits. See [Alternate Request Syntax](#alt-request-syntax) for more details.
 * The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
 parameters passed. See [Alternate Request Syntax](#alt-request-syntax) for more details.
-* While an LRS MUST NOT have duplicate Statement Ids due to the uniqueness requirement, it does not have to perform 
-checks at the time Statements are received.  The following requirements are for LRSs that do such a check:
 * An LRS MUST NOT make any modifications to its state based on receiving a Statement
 with a statementID that it already has a Statement for. Whether it responds with
 `409 Conflict` or `204 No Content`, it MUST NOT modify the Statement or any other
@@ -528,7 +529,7 @@ Object.
 * If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
 verify the received Statement matches the existing one and SHOULD return `409 Conflict` if they
 do not match. See [Statement comparision requirements](statement-comparision-requirements).
-* If the LRS receives a Statement with an id it already has a Statement for **in the same batch**, it SHOULD* reject the 
+* If the LRS receives a batch of Statements containing two or more Statements with the same id, it SHOULD* reject the 
  batch and return `400 Bad Request`.
 
 <a name="stmtresget"/>
@@ -735,7 +736,7 @@ multipart response format and include all attachments as described in [4.1.11](#
 * If the "attachment" property of a GET statement is used and is set to <code>false</code>, the LRS MUST NOT
 include attachment raw data and MUST report application/json.
 
-* The LRS SHOULD* include a "Last-Modified" header which matches the "Stored" timestamp of the Statement. 
+* The LRS SHOULD* include a "Last-Modified" header which matches the "stored" timestamp of the Statement. 
 
 <a name="queryStatementRef" />
 
@@ -771,7 +772,7 @@ Statements are filtered.
 
 ###### Language Filtering Requirements for Canonical Format Statements
 
-* Activity Objects contain Language Map Objects within its "name", "description" and various interaction properties. 
+* Activity Objects contain Language Map Objects within their "name", "description" and various interaction components. 
 The LRS MUST return only one language in each of these maps. 
 
 * The LRS MAY maintain canonical versions of language maps against any IRI identifying an object containing
@@ -795,8 +796,8 @@ which language entry to include, rather than to the resource (list of Statements
 describes how voided Statements are handled by the LRS when queried. 
 
 Clients can identify the presence and statementId of any voided Statements by the target of the voiding Statement. 
-Aside from debugging tools, many Clients will not want to display voiding Statements to their users and will not display 
-these as part of activity streams and other reports. 
+Aside from debugging tools, many Learning Record Consumers will not want to display voiding Statements to their users 
+and will not display these as part of activity streams and other reports. 
 
 ###### Requirements
 
@@ -928,7 +929,7 @@ as a result of the request.
 
 * If the merge is successful, the LRS MUST respond with HTTP status code `204 No Content`.
 
-* If a Learning Record Producer needs to delete a property, it SHOULD use a PUT request to replace 
+* If a Learning Record Provider needs to delete a property, it SHOULD use a PUT request to replace 
 the whole document as described below. 
 
 <a name="stateres"/> 
@@ -1112,7 +1113,7 @@ about the Agent it received in the request.
 	<tr>
 		<td>objectType</td>
 		<td>String</td>
-		<td>Person</td>
+		<td>"Person"</td>
 		<td>Required</td>
 	</tr>
 	<tr>
@@ -1464,7 +1465,7 @@ If the header precondition in any of the POST or DELETE request cases above fail
 If a PUT request is received without either header for a resource that already exists, the LRS:
 
 * MUST return HTTP status 409 "Conflict".
-* MUST return a response explaining that the Client SHOULD
+* MUST return a response explaining that the Learning Record Producer SHOULD
 	- check the current state of the resource.
 	- set the "If-Match" header with the current ETag to resolve the conflict.
 * MUST NOT make a modification to the resource.
@@ -1606,8 +1607,9 @@ This set of credentials SHOULD* be used for conformance testing but MAY be delet
 
 Future revisions of the specification might introduce changes such as properties added to Statements.
 
-As a result, Clients might receive responses that include Statements of different versions. The version header allows for these 
-version differences to be handled correctly, and to ascertain that no partial or mixed LRS version implementations exist.
+As a result, Learning Record Consumers might receive responses that include Statements of different versions. 
+The version header allows for these version differences to be handled correctly, and to ascertain that no partial 
+or mixed LRS version implementations exist.
 
 Using Semantic Versioning will allow Clients and LRSs to reliably know compatibility as the specification changes.
 
@@ -1909,7 +1911,7 @@ tracked using earlier versions, and make it available to new implementers in a c
 
 ######Conversion of Statements created based on version 0.9
 
-A 1.0.0 Client converting a Statement created in 0.9 MUST follow the steps below:
+A 1.0.0 Client or other system converting a Statement created in 0.9 MUST follow the steps below:
 
 * If the Statement has been voided or uses Verbs, Activity types, or properties not included in the
  0.9 specification, do not convert it.
@@ -1937,7 +1939,7 @@ is sent to an LRS.
 
 ######Conversion of Statements created based on version 0.95
 
-A 1.0.0 Client converting a Statement created in 0.95 MUST follow the steps below:
+A 1.0.0 Client or other system converting a Statement created in 0.95 MUST follow the steps below:
 
 * If the Statement is voided, do not convert it.
 * Remove the "voided" property from the Statement, if present. Remember, if the value
