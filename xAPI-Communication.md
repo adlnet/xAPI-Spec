@@ -177,7 +177,6 @@ The lists above are not intended to be exhaustive. See requirements throughout t
 
 ### 1.3 Alternate Request Syntax
 
-__Note__: Unless supporting IE9 or lower, this section is not necessary for implementations of xAPI.
 
 ###### Description
 
@@ -190,8 +189,6 @@ the xAPI as described above due to only supporting "GET" and "POST", and not all
 
 The following describes alternate syntax to use only when unable to use the usual syntax for specific calls due to the 
 restrictions mentioned above. This alternate syntax can also be used to GET Statements due to limits on query string length.  
-
-All requirements for this environment are necessary only if supporting versions of browsers requiring this type of support.
 
 See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example. 
 
@@ -1465,7 +1462,7 @@ If the header precondition in any of the POST or DELETE request cases above fail
 If a PUT request is received without either header for a resource that already exists, the LRS:
 
 * MUST return HTTP status 409 "Conflict".
-* MUST return a response explaining that the Learning Record Producer SHOULD
+* MUST return a response explaining that the Learning Record Provider SHOULD
 	- check the current state of the resource.
 	- set the "If-Match" header with the current ETag to resolve the conflict.
 * MUST NOT make a modification to the resource.
