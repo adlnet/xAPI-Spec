@@ -112,7 +112,7 @@ understand every detail of this part of the specification.
 
 ## 1.0 Requests
 
-xAPI tracking is done via HTTP Requests from the Learning Record Provider (client) to the LRS (server).  This 
+xAPI tracking is done via HTTP Requests from the Learning Record Provider (client) to the LRS (server). This 
 specification offers guidance in some aspects of this communication.  Where no guidance is offered, it is 
 recommended that those implementing xAPI use current industry best practices.
 
@@ -232,10 +232,12 @@ binary data attachments using this syntax. See [4.1.11. Attachments](#attachment
 * The LRS MUST support the syntax above.  
 
 There might be cases where there is a requirement for the Learning Record Provider to support applications or browsers where the 
-Client code is hosted on a different scheme (HTTP or HTTPS) from the LRS. In these cases, a proxy is needed to communicate 
-to the LRS. Two simple solutions might be to 1) set up a proxy pass through on the same scheme as the Client code to the 
-LRS or 2) to host an intermediary server-side LRS on the same scheme as the Client code to route Statements to the target LRS.  
-Strongly consider security risks before making the decision to use implementations that use different schemes.
+Client code is hosted on a different scheme (HTTP or HTTPS) from the LRS. A proxy is only needed IF you want to support HTTP to 
+HTTPS requests from IE 9 or lower. You can do HTTP to HTTPS (or HTTPS to HTTP!) without a proxy if you use a modern browser. 
+Two simple solutions might be to 1) set up a proxy pass through on the same scheme as the Client code to the LRS or 2) to host an 
+intermediary server-side LRS on the same scheme as the Client code to route Statements to the target LRS.
+
+Strongly consider security risks before making the decision to use implementations that use HTTP.
 
 <a name="encoding"/> 
 
@@ -271,7 +273,7 @@ multipart/mixed requests neccesarily do include Attachments.
 
 1. A Statement request including zero or more Attachments is construed as described below.
 
-2. The Statement is sent using a Content-Type of" multipart/mixed". Any Attachments are placed at the end of such transmissions.
+2. The Statement is sent using a Content-Type of "multipart/mixed". Any Attachments are placed at the end of such transmissions.
 
 3. The LRS decides whether to accept or reject the Statement based on the information in the first part.
 
@@ -327,7 +329,7 @@ contain Attachments.
 * A Learning Record Provider MAY send multiple Statements where some or all have Attachments if using "POST".
 * A Learning Record Provider MAY send batches of type "application/json" where every attachment
 Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
-* A Learning Record Provider SHOULD use SHA-256, SHA-384, or SHA-512  to populate the "sha2" property.
+* A Learning Record Provider SHOULD use SHA-256, SHA-384, or SHA-512 to populate the "sha2" property.
 
 ###### File URL
 The File URL is intended to provide a location from which the attachment can be received.
@@ -1602,13 +1604,8 @@ This set of credentials SHOULD* be used for conformance testing but MAY be delet
 
 ###### Rationale
 
-Future revisions of the specification might introduce changes such as properties added to Statements.
-
-As a result, Learning Record Consumers might receive responses that include Statements of different versions. 
-The version header allows for these version differences to be handled correctly, and to ascertain that no partial 
-or mixed LRS version implementations exist.
-
-Using Semantic Versioning will allow Clients and LRSs to reliably know compatibility as the specification changes.
+Future revisions of the specification might introduce changes such as properties added to Statements. Using Semantic 
+Versioning will allow Clients and LRSs to remain interoperable as the specification changes.
 
 ###### Details
 
