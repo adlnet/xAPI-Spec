@@ -103,17 +103,16 @@
 
 # Part Three: Data Processing, Validation, and Security 
 
-This third part details the more technical side of the Experience API, dealing with 
-how Statements are transferred between Activity Provider and LRS. A number of libraries 
-are available for a range of technologies (including JavaScript) which handle 
-this part of the specification. It therefore might not be necessary for Activity Provider developers 
-to fully understand every detail of this part of the specification.
+This third part details the more technical side of the Experience API, dealing with how Statements are transferred between 
+Learning Record Provider and LRS. A number of libraries are available for a range of technologies (including JavaScript) 
+which handle this part of the specification. It therefore might not be necessary for Learning Record Providers to fully 
+understand every detail of this part of the specification.
 
 <a name="requests"/>
 
 ## 1.0 Requests
 
-xAPI tracking is done via HTTP Requests from the Activity Provider (client) to the LRS (server).  This 
+xAPI tracking is done via HTTP Requests from the Learning Record Provider (client) to the LRS (server). This 
 specification offers guidance in some aspects of this communication.  Where no guidance is offered, it is 
 recommended that those implementing xAPI use current industry best practices.
 
@@ -122,7 +121,7 @@ recommended that those implementing xAPI use current industry best practices.
 ### 1.1 HEAD Request Implementation
 
 ###### Description
-The behaviour of the LRS in response to PUT, POST, GET and DELETE requests is outlined in [Resources](#resources) below. 
+The behavior of the LRS in response to PUT, POST, GET and DELETE requests is outlined in [Resources](#resources) below. 
 All resources that support GET requests also support HEAD.
 The LRS will respond to HEAD requests by returning the meta information only, using the HTTP headers, and 
 not the actual document.  
@@ -130,8 +129,8 @@ not the actual document.
 ###### Rationale
 
 Clients accessing the LRS might need to check if a particular Statement exists, or determine
-the modification date of documents such as state or Activity or Agent profile. Particularly
-for large documents it's more efficient not to get the entire document just to check its
+the modification date of documents such as State or Activity or Agent profile. Particularly
+for large documents, it is more efficient not to retrieve the entire document just to check its
 modification date.
 
 ###### LRS Requirements
@@ -147,7 +146,7 @@ identical HTTP GET request except:
 ##### Header Parameters
 Some header parameters used within xAPI data transfer are 
 [standard HTTP headers](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields). Others are specific to this
- specification. The following request headers are expected to be used by the Activity Provider in some or all 
+ specification. The following request headers are expected to be used by the Learning Record Providers in some or all 
  of the types of request and situations described in this specification:
 
 * Accept
@@ -178,85 +177,73 @@ The lists above are not intended to be exhaustive. See requirements throughout t
 
 ### 1.3 Alternate Request Syntax
 
+
 ###### Description
 
-One of the goals of the xAPI is to allow cross-domain tracking, and even though 
-xAPI seeks to enable tracking from applications other than browsers, browsers 
-still need to be supported. Internet Explorer 8 and 9 do not implement Cross 
-Origin Resource Sharing, but rather use their own Cross Domain Request API, 
-which cannot use all of the xAPI as described above due to only supporting "GET" 
-and "POST", and not allowing HTTP headers to be set.  
+One of the goals of the xAPI is to allow cross-domain tracking, and even though xAPI seeks to enable tracking from 
+applications other than browsers, browsers still need to be supported. For example, Internet Explorer 8 and 9 do not 
+implement Cross Origin Resource Sharing, but rather use their own Cross Domain Request API, which cannot use all of 
+the xAPI as described above due to only supporting "GET" and "POST", and not allowing HTTP headers to be set.  
 
 ###### Details/Requirements
 
-The following describes alternate syntax for consumers to use only when unable 
-to use the usual syntax for specific calls due to the restrictions mentioned 
-above. This alternate syntax can also be used to GET Statements due to limits
-on query string length.  
+The following describes alternate syntax to use only when unable to use the usual syntax for specific calls due to the 
+restrictions mentioned above. This alternate syntax can also be used to GET Statements due to limits on query string length.  
+
+See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example. 
+
+###### Requirements
 
 __Method__:  
 * All xAPI requests issued MUST be POST. 
 * The intended xAPI method MUST be included as the value of the "method" query 
 string parameter. 
-* The AP MUST NOT include any other query string parameters on the request.
+* The Learning Record Provider MUST NOT include any other query string parameters on the request.
 
 Example: http://example.com/xAPI/statements?method=PUT  
 
 __Content__:  
-* If the xAPI call involved sending content, the AP MUST URL encode that content and 
+* If the xAPI call involved sending content, the Learning Record Provider MUST URL encode that content and 
 include it as a form parameter called "content". 
-* The LRS MUST interpret this content as a UTF-8 string. Storing binary data is not supported 
-with this syntax.  
+* The LRS MUST interpret this content as a UTF-8 string. Storing binary data is not supported with this syntax.  
 
 __Headers__:  
-* The AP MAY include any header parameters required by this specification which are 
+* The Learning Record Provider MAY include any header parameters required by this specification which are 
 expected to appear in the HTTP header as form parameters with the same names. This applies 
 to the following parameters: Authorization, X-Experience-API-Version, Content-Type, Content-Length,
 If-Match and If-None-Match. It does not apply to Content-Transfer-Encoding.
 * The LRS MUST treat the form parameters listed above as header parameters. 
-* The AP MUST include other header parameters not listed above in the HTTP header as normal. 
-* The AP SHOULD* still include a Content-Type header (in the HTTP header) for this type of 
+* The Learning Record Provider MUST include other header parameters not listed above in the HTTP header as normal. 
+* The Learning Record Provider SHOULD* still include a Content-Type header (in the HTTP header) for this type of 
 request with a value of 'application/x-www-form-urlencoded'. 
 * The Content-Type form parameter SHOULD* specify the content type of the content within the content form parameter. 
-* The AP SHOULD* still include a Content-Length header (in the HTTP header) for this type of 
+* The Learning Record Provider SHOULD* still include a Content-Length header (in the HTTP header) for this type of 
 request indicating the overall length of the request's content. 
 * The Content-Length form parameter SHOULD* specify the length of the content within the content form parameter and 
 will therefore be a lower figure than the length listed in the Content-Length header. 
 
 __Query string parameters__:  
-* Any query string parameters other than 'method'
-MUST instead be included as a form parameter with the same name. 
-* The LRS MUST treat any form parameters other than "content" or the 
-header parameters listed above as query string parameters. 
+* Any query string parameters other than 'method' MUST instead be included as a form parameter with the same name. 
+* The LRS MUST treat any form parameters other than "content" or the header parameters listed above as query string parameters. 
 
 __Attachments__: Note that due to issues relating to encoding, it is not possible to send 
 binary data attachments using this syntax. See [4.1.11. Attachments](#attachments) 
 
-* The LRS MUST support the syntax above.
+* The LRS MUST support the syntax above.  
 
-__Note__: Versions of Internet Explorer lower than 10 do not 
-support Cross Domain Requests between HTTP and HTTPS. This means that for IE9 and lower, 
-if the LRS is on an HTTPS domain, the Client sending the Statement must also be on HTTPS. 
-If the LRS is on HTTP, the Client must be too.  
+There might be cases where there is a requirement for the Learning Record Provider to support applications or browsers where the 
+Client code is hosted on a different scheme (HTTP or HTTPS) from the LRS. A proxy is only needed IF you want to support HTTP to 
+HTTPS requests from IE 9 or lower. You can do HTTP to HTTPS (or HTTPS to HTTP!) without a proxy if you use a modern browser. 
+Two simple solutions might be to 1) set up a proxy pass through on the same scheme as the Client code to the LRS or 2) to host an 
+intermediary server-side LRS on the same scheme as the Client code to route Statements to the target LRS.
 
-There might be cases where there is a requirement for the Client Activity Provider to support 
-IE8 and IE9 where the Client code is hosted on a different scheme (HTTP or HTTPS) from 
-the LRS. In these cases, proxy is needed to communicate to the LRS. Two simple solutions 
-might be to 1) set up a proxy pass through on the same scheme as the Client code to the LRS 
-or 2) to host an intermediary server-side LRS on the same scheme as the Client code to route 
-Statements to the target LRS.   
-
-* The LRS MAY choose to provide both HTTP and HTTPS endpoints to support this use case. 
-* The LRS and the Client SHOULD consider the security risks before making the 
-decision to use this scheme.
-
-See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example. 
+Strongly consider security risks before making the decision to use implementations that use HTTP.
 
 <a name="encoding"/> 
 
 ### 1.4 Encoding
 
-###### Requirement
+###### Requirements
 * All strings MUST be encoded and interpreted as UTF-8. 
 
 <a name="content-types"/> 
@@ -264,7 +251,7 @@ See [Appendix C: Cross Domain Request Example](#Appendix3C) for an example.
 Requests within this specification normally use an application/json content type. Exceptions to this are:
 
 * Documents can have any content type. 
-* Statement requests that may sometimes include attachments use the multipart/mixed content type. 
+* Statement requests that can sometimes include Attachments use the multipart/mixed content type. 
 
 <a name="applicationjson"/> 
 #### 1.5.1 Application/JSON
@@ -279,54 +266,54 @@ of Statements which contain only attachment Objects with a populated fileUrl.
 <a name="multipartmixed"/> 
 #### 1.5.2 Multipart/Mixed
 
-The multipart/mixed content type is used for requests that *could* include attachments. This does not mean that all multipart/mixed
-requests neccesarily do include attachments.
+The multipart/mixed content type is used for requests that *could* include Attachments. This does not mean that all 
+multipart/mixed requests neccesarily do include Attachments.
 
-##### Procedure for the exchange of attachments
+##### Procedure For The Exchange Of Attachments
 
-1. A Statement request including zero or more attachments is construed as described below.
+1. A Statement request including zero or more Attachments is construed as described below.
 
-2. The Statement is sent to the receiving system using a Content-Type of
-"multipart/mixed". Any attachments are placed at the end of such transmissions.
+2. The Statement is sent using a Content-Type of "multipart/mixed". Any Attachments are placed at the end of such transmissions.
 
-3. The receiving system decides whether to accept or reject the Statement based on the information in the first part.
+3. The LRS decides whether to accept or reject the Statement based on the information in the first part.
 
-4. If it accepts the request, it can match the raw data of an attachment(s)
-with the attachment header by comparing the SHA-2 of the raw
-data to the SHA-2 declared in the header. It MUST not do so any other way.
+4. If it accepts the request, it can match the raw data of an Attachment(s) with the Attachment header by comparing the SHA-2 
+of the raw data to the SHA-2 declared in the header. It MUST not do so any other way.
 
 ###### Requirements for Attachment Statement Batches
 
-A request transmitting a Statement batch, Statement results, or single Statement that includes attachments MUST satisfy one of the 
+A request transmitting a Statement batch, Statement results, or single Statement that includes Attachments MUST satisfy one of the 
 following criteria:
 
-* It MUST be of type "application/json" and include a fileUrl for every attachment EXCEPT for Statement 
-results when the attachments filter is false.
+* It MUST be of type "application/json" and include a fileUrl for every Attachment EXCEPT for Statement 
+results when the Attachments filter is false.
 * It MUST conform to the definition of multipart/mixed in [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt) and:
     * The first part of the multipart document MUST contain the Statements themselves, with type "application/json".
-    * Each additional part contains the raw data for an attachment and forms a logical part of the Statement. This 
+    * Each additional part contains the raw data for an Attachment and forms a logical part of the Statement. This 
     capability will be available when issuing PUT or POST against the Statement resource.
     * MUST include an X-Experience-API-Hash parameter in each part's header after the first (Statements) part.
-    * MUST include a Content-Transfer-Encoding parameter with a value of "binary" in each part's header after the first (statements) part.
-    * SHOULD only include one copy of an attachment's data when the same attachment is used in multiple Statements that are sent together.
-    * SHOULD include a Content-Type parameter in each part's header. For the first part (containing the statement) this MUST be "application/json".
-   	* Where parameters have a corresponding property within the Attachment Object (outlined in the table above), and both the parameter and 
-   	property are specified for a given Attachment, the value of these parameters and properties MUST match. 
-
+    * MUST include a Content-Transfer-Encoding parameter with a value of "binary" in each part's header after the first 
+     (Statements) part.
+    * SHOULD only include one copy of an Attachment's data when the same Attachment is used in multiple Statements that are 
+     sent together.
+    * SHOULD include a Content-Type parameter in each part's header. For the first part (containing the Statement) this 
+     MUST be "application/json".
+   	* Where parameters have a corresponding property within the attachment Object (outlined in the table above), and both 
+   	 the parameter and property are specified for a given Attachment, the value of these parameters and properties MUST match. 
 
 ###### LRS Requirements
 
-* An LRS MUST include attachments in the Transmission Format described above
+* An LRS MUST include Attachments in the Transmission Format described above
 when requested by the Client (see ["Statement Resource"](#stmtapi)).
-* An LRS MUST NOT pull Statements from another LRS without requesting attachments.
-* An LRS MUST NOT push Statements into another LRS without including attachment data
-received, if any, for those attachments.
+* An LRS MUST NOT pull Statements from another LRS without requesting Attachments.
+* An LRS MUST NOT push Statements into another LRS without including Attachment data
+received, if any, for those Attachments.
 * When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST accept batches of 
-Statements that contain attachments in the Transmission Format described above.
+Statements that contain Attachments in the Transmission Format described above.
 * When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST reject batches of 
-Statements having attachments that neither contain a fileUrl nor match a received attachment part based on their hash.
+Statements having Attachments that neither contain a fileUrl nor match a received Attachment part based on their hash.
 * When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS SHOULD assume a 
-Content-Transfer-Encoding of binary for attachment parts.
+Content-Transfer-Encoding of binary for Attachment parts.
 * An LRS MAY reject (batches of) Statements that are larger than the LRS is configured to allow.
 * When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS SHOULD* accept batches 
 of Statements which contain no attachment Objects.
@@ -334,28 +321,27 @@ of Statements which contain no attachment Objects.
 of Statements which contain only attachment Objects with a populated fileUrl.
 
 __Note:__ There is no requirement that Statement batches using the mime/multipart format
-contain attachments.
+contain Attachments.
 
-###### Client Requirements
+###### Learning Record Provider Requirements
 
-* The Client MAY send Statements with attachments as described above.
-* The Client MAY send multiple Statements where some or all have attachments if using "POST".
-* The Client MAY send batches of type "application/json" where every attachment
+* A Learning Record Provider MAY send Statements with Attachments as described above.
+* A Learning Record Provider MAY send multiple Statements where some or all have Attachments if using "POST".
+* A Learning Record Provider MAY send batches of type "application/json" where every attachment
 Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
-* The Client SHOULD use SHA-256, SHA-384, or SHA-512  to populate the "sha2" property.
+* A Learning Record Provider SHOULD use SHA-256, SHA-384, or SHA-512 to populate the "sha2" property.
 
 ###### File URL
-The File URL is intended to provide a location from which the LRS or another system can retrieve the
-attachment. There are, however, no requirements for the owner of the attachment to make the 
+The File URL is intended to provide a location from which the attachment can be received.
+There are, however, no requirements for the owner of the attachment to make the 
 attachment data available at the location indefinitely or to make the attachment publically
 available without security restrictions. When determining attachment hosting arrangements, 
-designers of systems that will send Statements using the "fileUrl" property are encouraged to 
-consider the needs of end recipient(s) of the Statement especially if the attachment content 
-is not included with the Statement.
+those creating Statements using the "fileUrl" property are encouraged to consider the needs of end recipient(s) 
+of the Statement especially if the attachment content is not included with the Statement.
 
 * The attachment data SHOULD be retrievable at the URL indicated by the fileUrl.
 * The owner of the attachment MAY stop providing the attachment data at this IRL at any time. 
-* Security restrictions MAY be applied to clients attempting to access the attachment data at this IRL. 
+* Security restrictions MAY be applied to those attempting to access the attachment data at this IRL. 
 
 The period of time an attachment is made available for, and the security restrictions applied to
 hosted attachments, are out of scope of this specification. 
@@ -370,7 +356,7 @@ Below is an example of a very simple Statement with an attachment. Please note t
 like 'image/jpeg' no encoding would be done, the raw octets would be included;
 * Per RFC 2046, the boundary is <CRLF> followed by -- followed by the boundary string declared in the header.
 
-Don't forget the ```<CRLF>```  when building or parsing these messages.
+__Note:__ Don't forget the ```<CRLF>```  when building or parsing these messages.
 
 Headers:
 
@@ -441,10 +427,10 @@ more of the resources and methods described in this section. For example a tool 
 implement POST Statements for the purposes of receiving incoming Statements forwarded by an LRS.
 Such a system is not considered to be an LRS or 'partial LRS'; it is simply not an LRS. 
 
-__Note:__ In all of the example endpoints given in the specification, 
-"http://example.com/xAPI/" is the example base endpoint of the LRS. All other IRI 
-syntax after this represents the particular endpoint used. A full list of endpoints
-is included in [Appendix B: Table of All Endpoints](#Appendix3B).
+__Note:__ In all of the example locations where xAPI resources are located (endpoints) given in the specification, 
+"http://example.com/xAPI/" is the example base endpoint (resource location) of the LRS. All other IRI 
+syntax after this represents the particular Resource used. A full list of the resource endpoints is included in 
+[Appendix B: Table of All Resource Endpoints](#Appendix3B).
 
 ###### Requirements
 
@@ -454,7 +440,7 @@ described in [Section 6.4.2 OAuth Authorization Scope](#oauthscope).
 * The LRS MAY support additional resources not described in this specification. 
 * Past, current and future versions of this specification do not and will not define resource endpoints 
 with path segments starting 'extensions/'. LRSs supporting additional resources not defined 
-in this specification SHOULD define their endpoints with path segments starting 'extensions/'.
+in this specification SHOULD define their endpoints with path segments starting with 'extensions/'.
 
 <a name="stmtres"/> 
 
@@ -464,14 +450,13 @@ in this specification SHOULD define their endpoints with path segments starting 
 
 The basic communication mechanism of the Experience API.  
 
-
 <a name="stmtresput"/>
 
 ####2.1.1 PUT Statements
 
 ###### Details
 
-Example endpoint: `http://example.com/xAPI/statements`
+Example resource endpoint: `http://example.com/xAPI/statements`
 
 Stores a single Statement with the given id. POST can also be used to store single Statements.
 
@@ -487,6 +472,8 @@ Stores a single Statement with the given id. POST can also be used to store sing
 
 ###### LRS Requirements
 
+* The LRS MAY respond before Statements that have been stored are available for retrieval.
+
 * An LRS MUST NOT make any modifications to its state based on receiving a Statement
 with a statementID that it already has a Statement for. Whether it responds with
 `409 Conflict` or `204 No Content`, it MUST NOT modify the Statement or any other
@@ -496,15 +483,14 @@ Object.
 verify the received Statement matches the existing one and SHOULD return `409 Conflict` if they
 do not match. See [Statement comparision requirements](statement-comparision-requirements).
 
-* If the LRS receives a Statement with an id it already has a Statement for **in the same batch**, it SHOULD*
-verify the received Statement matches the existing one and SHOULD return `400 Bad Request` if they
-do not match. See [Statement comparision requirements](statement-comparision-requirements).
+* If the LRS receives a batch of Statements containing two or more Statements with the same id, it SHOULD* reject the 
+ batch and return `400 Bad Request`.
 
-* The LRS MAY respond before Statements that have been stored are available for retrieval.
 
-###### Activity Provider Requirements
 
-* Activity Providers SHOULD POST Statements including the Statement "id" property instead of using PUT. 
+###### Learning Record Provider Requirements
+
+* Learning Record Providers SHOULD POST Statements including the Statement "id" property instead of using PUT. 
 * When PUTing statements, the "id" property of the Statement SHOULD be used. 
 * Where provided, the "id" property of the Statement MUST match the "statementId" parameter of the request. 
 
@@ -514,7 +500,7 @@ do not match. See [Statement comparision requirements](statement-comparision-req
 
 ###### Details
 
-Example endpoint: `http://example.com/xAPI/statements`
+Example resource endpoint: `http://example.com/xAPI/statements`
 
 Stores a Statement, or a set of Statements. 
 
@@ -530,18 +516,20 @@ that provide a lot of data to the LRS.
 
 ###### Requirements
 
-* An LRS MUST NOT make any modifications to its state based on a receiving a Statement
-with a statementID that it already has a Statement for. Whether it responds with
-`409 Conflict` or `200 OK`, it MUST NOT modify the Statement or any other
-Object.
-* If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
-verify the received Statement matches the existing one and return `409 Conflict` if they
-do not match. See [Statement comparision requirements]statement-comparision-requirements).
 * The LRS MAY respond before Statements that have been stored are available for retrieval.
 * GET Statements MAY be called using POST and form parameters if necessary as query strings 
 have limits. See [Alternate Request Syntax](#alt-request-syntax) for more details.
 * The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
 parameters passed. See [Alternate Request Syntax](#alt-request-syntax) for more details.
+* An LRS MUST NOT make any modifications to its state based on receiving a Statement
+with a statementID that it already has a Statement for. Whether it responds with
+`409 Conflict` or `204 No Content`, it MUST NOT modify the Statement or any other
+Object.
+* If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
+verify the received Statement matches the existing one and SHOULD return `409 Conflict` if they
+do not match. See [Statement comparision requirements](statement-comparision-requirements).
+* If the LRS receives a batch of Statements containing two or more Statements with the same id, it SHOULD* reject the 
+ batch and return `400 Bad Request`.
 
 <a name="stmtresget"/>
 
@@ -549,16 +537,14 @@ parameters passed. See [Alternate Request Syntax](#alt-request-syntax) for more 
 
 ###### Details
 
-Example endpoint: `http://example.com/xAPI/statements`
+Example resource endpoint: `http://example.com/xAPI/statements`
 
-This method is called to fetch a single Statement or multiple Statements. If the
-statementId or voidedStatementId parameter is specified a single Statement is returned.
+This method is called to fetch a single Statement or multiple Statements. If the statementId or voidedStatementId parameter 
+is specified a single Statement is returned.
 
-Otherwise returns: A [StatementResult](#retstmts) Object,
-a list of Statements in reverse chronological order based on "stored" time, 
-subject to permissions and maximum list length. If additional results are 
-available, an IRL to retrieve them will be included in the StatementResult 
-Object.
+Otherwise returns: A [StatementResult](#retstmts) Object, a list of Statements in reverse chronological order based 
+on "stored" time, subject to permissions and maximum list length. If additional results are available, an IRL to 
+retrieve them will be included in the StatementResult Object.
 
 **Content:** None.
 
@@ -732,25 +718,24 @@ other parameter besides "attachments" or "format".
 * The LRS MAY apply additional query filter criteria based on permissions associated
 with the credentials used. 
 
-* In the event that no statements are found matching the query filter criteria, the LRS MUST still return 
-`HTTP 200` and a [StatementResult](#retstmts) Object. In this case, the statements property will contain
+* In the event that no Statements are found matching the query filter criteria, the LRS MUST still return 
+`HTTP 200` and a [StatementResult](#retstmts) Object. In this case, the "statements" property will contain
 an empty array.
 
 * The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
-<a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations">ISO 8601
-combined date and time</a> format, on all responses to Statements requests, with a value of the 
-Timestamp for which all Statements that have or will have a "stored" property before that time 
-are known with reasonable certainty to be available for retrieval. This time SHOULD take into 
-account any temporary condition, such as excessive load, which might cause a delay in Statements 
+[ISO 8601 combined date and time](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations) format, 
+on all responses to Statements requests, with a value of the Timestamp for which all Statements that have or will have a 
+"stored" property before that time are known with reasonable certainty to be available for retrieval. This time SHOULD take 
+into account any temporary condition, such as excessive load, which might cause a delay in Statements 
 becoming available for retrieval.
 
-* If the attachment property of a GET statement is used and is set to <code>true</code>, the LRS MUST use the 
-multipart response format and include all attachments as described in <a href="#attachments">4.1.11</a>.
+* If the "attachment" property of a GET statement is used and is set to <code>true</code>, the LRS MUST use the 
+multipart response format and include all attachments as described in [4.1.11](#attachments).
 
-* If the attachment property of a GET statement is used and is set to <code>false</code>, the LRS MUST NOT
+* If the "attachment" property of a GET statement is used and is set to <code>false</code>, the LRS MUST NOT
 include attachment raw data and MUST report application/json.
 
-* The LRS SHOULD* include a "Last-Modified" header which matches the Stored timestamp of the Statement. 
+* The LRS SHOULD* include a "Last-Modified" header which matches the "stored" timestamp of the Statement. 
 
 <a name="queryStatementRef" />
 
@@ -765,14 +750,12 @@ parameters.
 Statement (the targeted Statement) as a Statement Reference as the object of the Statement. 
 
 For filter parameters which are not time or sequence based (that is, other than "since", "until", or "limit"), 
-Statements which target another Statement (by using a StatementRef
-as the Object of the Statement) will meet the filter condition if the targeted Statement meets 
-the filter condition.
+Statements which target another Statement (by using a StatementRef as the Object of the Statement) will meet the 
+filter condition if the targeted Statement meets the filter condition.
 
-The time and sequence based parameters MUST still be applied to the Statement 
-making the StatementRef in this manner. This rule applies recursively, so that "Statement a" is a 
-match when a targets b which targets c and the filter conditions described above match for 
-"Statement c".
+The time and sequence based parameters MUST still be applied to the Statement making the StatementRef in this manner. 
+This rule applies recursively, so that "Statement a" is a match when a targets b which targets c and the filter 
+conditions described above match for "Statement c".
 
 For example, consider the Statement "Ben passed explosives training", and a follow up
 Statement: "Andrew confirmed <StatementRef to original Statement\>". The follow up
@@ -786,13 +769,13 @@ Statements are filtered.
 
 <a name="queryLangFiltering" />
 
-###### Language filtering requirements for canonical format statements
+###### Language Filtering Requirements for Canonical Format Statements
 
-* Activity Objects contain Language Map Objects for name, description and interaction components. 
+* Activity Objects contain Language Map Objects within their "name", "description" and various interaction components. 
 The LRS MUST return only one language in each of these maps. 
 
 * The LRS MAY maintain canonical versions of language maps against any IRI identifying an object containing
-language maps. This includes the language map stored in the Verb Display property and potentially some 
+language maps. This includes the language map stored in the Verb's "display" property and potentially some 
 language maps used within extensions. 
 
 * If the LRS maintains a canonical version of a language map, it SHOULD* return this canonical language map
@@ -801,38 +784,36 @@ language maps used within extensions.
 * The LRS SHOULD* return only one language within each language map for which it returns a canonical map. 
 
 * In order to choose the most relevant language, the LRS MUST apply the Accept-Language header as 
-described in <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"> RFC 2616</a> 
+described in [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html) 
 (HTTP 1.1), except that this logic MUST be applied to each language map individually to select 
 which language entry to include, rather than to the resource (list of Statements) as a whole.
 
 <a name="voidedStatements" />
 
 ##### 2.1.4 Voided Statements
-[Section 4.3 Voided](#voided) describes the process by which statements can be voided. This section
-describes how voided statements are handled by the LRS when queried. 
+[Section 4.3 Voided](#voided) describes the process by which Statements can be voided. This section
+describes how voided Statements are handled by the LRS when queried. 
 
 Clients can identify the presence and statementId of any voided Statements by the target of the voiding Statement. 
-Aside from debugging tools, many Clients will not want to display voiding statements to their
-users and will not display these as part of activity streams and other reports. 
+Aside from debugging tools, many Learning Record Consumers will not want to display voiding Statements to their users 
+and will not display these as part of activity streams and other reports. 
 
 ###### Requirements
 
-* The LRS MUST not return any Statement which has been voided, unless that Statement has been
-requested by voidedStatementId. The process described in
-[the section on filter conditions for StatementRefs](#queryStatementRef) is no exception to this
-requirement. Clients wishing to retrieve voided Statements request these individually by voidedStatementId.
+* The LRS MUST not return any Statement which has been voided, unless that Statement has been requested by voidedStatementId. 
+The process described in [the section on filter conditions for StatementRefs](#queryStatementRef) is no exception to this
+requirement. The process of retrieving voiding Statements is to request each individually by voidedStatementId.
 
-* The LRS MUST still return any Statements targeting the voided 
-Statement, following the process and conditions described in
-[the section on filter conditions for StatementRefs](#queryStatementRef). This includes the
-voiding Statement, which cannot be voided. 
+* The LRS MUST still return any Statements targeting the voided Statement, following the process and conditions described in 
+[the section on filter conditions for StatementRefs](#queryStatementRef). This includes the voiding Statement, which cannot 
+be voided. 
 
 <a name="doctransfer"/>
 
 ### 2.2 Document Resources 
 
 ##### Description
-The Experience API provides a facility for Activity Providers to save arbitrary data in 
+The Experience API provides a facility for Learning Record Providers to save arbitrary data in 
 the form of documents, perhaps related to an Activity, Agent, or combination of both.
 
 ##### Details
@@ -841,14 +822,13 @@ in this specification do. The id is stored in the IRL, "updated" is HTTP header 
 "contents" is the HTTP document itself (as opposed to an Object).
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr><td>id</td><td>String</td><td>Set by AP, unique within the scope of the agent or activity.</td></tr>
+	<tr><td>id</td><td>String</td><td>Set by Learning Record Provider, unique within the scope of the agent or activity.</td></tr>
 	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
 	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
 
-The three Document Resources provide [document](#miscdocument) storage for learning activity 
-providers and Agents. The details of each Resource are found in the following sections, and the 
-information in this section applies to all three Resources.
+The three Document Resources provide [document](#miscdocument) storage.  The details of each Resource are found in 
+the following sections, and the information in this section applies to all three Resources.
 
 ###### Details
 
@@ -881,11 +861,10 @@ information in this section applies to all three Resources.
 
 ###### Requirements
 
-* An Activity Provider MAY send documents to any of the Document Resources for Activities and 
+* A Learning Record Provider MAY send documents to any of the Document Resources for Activities and 
 Agents that the LRS does not have prior knowledge of. 
 
-* The LRS MUST NOT reject documents on the basis of not having prior knowledge of the 
-Activity and/or Agent.
+* The LRS MUST NOT reject documents on the basis of not having prior knowledge of the Activity and/or Agent.
 
 ##### Last Modified
 The "Last Modified" header is set by the LRS when returning single or multiple documents in response
@@ -899,8 +878,8 @@ the most recently modified document was last modified.
 
 ###### JSON Procedure with Requirements
 
-If an Activity Provider stores variables as JSON Objects in a document with 
-content type application/json, they can manipulate them as sets of variables using POST.
+If a Learning Record Provider stores variables as JSON Objects in a document with content type application/json, 
+they can manipulate them as sets of variables using POST.
 
 The following process walks through that process and the process requirements.  
 For example, a document contains: 
@@ -913,15 +892,14 @@ For example, a document contains:
 ```  
 When an LRS receives a POST request with content type application/json for an existing document also of
 content type application/json, it MUST merge the posted document with the existing document. 
-In this context merge is defined as:
+In this context, merge is defined as:
 * de-serialize the Objects represented by each document.
 * for each property directly defined on the Object being posted, set the corresponding
 property on the existing Object equal to the value from the posted Object.    
 * store any valid json serialization of the existing Object as the document referenced in the request.
 
-Note that only top-level properties are merged, even if a top-level property is an Object.
-The entire contents of each original property are replaced with the entire contents of
-each new property.
+Note that only top-level properties are merged, even if a top-level property is an Object. The entire contents of each 
+original property are replaced with the entire contents of each new property.
 
 For example, this document is POSTed with the same id as the existing 
 document above:
@@ -948,11 +926,10 @@ of "application/json", or if either document cannot be parsed as a JSON Object, 
 respond with HTTP status code `400 Bad Request`, and MUST NOT update the target document
 as a result of the request.
 
-* If the merge is successful, the LRS MUST respond with HTTP 
-status code `204 No Content`.
+* If the merge is successful, the LRS MUST respond with HTTP status code `204 No Content`.
 
-* If an AP needs to delete
-a property, it SHOULD use a PUT request to replace the whole document as described below. 
+* If a Learning Record Provider needs to delete a property, it SHOULD use a PUT request to replace 
+the whole document as described below. 
 
 <a name="stateres"/> 
 
@@ -960,19 +937,18 @@ a property, it SHOULD use a PUT request to replace the whole document as describ
 
 ##### Description
 
-Generally, this is a scratch area for Activity Providers that do not have their 
-own internal storage, or need to persist state across devices. 
+Generally, this is a scratch area for Learning Record Providers that do not have their own internal storage, 
+or need to persist state across devices. 
 
 ##### Details
 
-The semantics of the call are driven by the stateId parameter. If it is included, 
-the GET and DELETE methods will act upon a single defined state document 
-identified by "stateId". Otherwise, GET will return the available ids, and DELETE 
-will delete all state in the context given through the other parameters. This Resource has
+The semantics of the call are driven by the "stateId" parameter. If it is included, the GET and DELETE methods will 
+act upon a single defined state document identified by "stateId". Otherwise, GET will return the available ids, 
+and DELETE will delete all state in the context given through the other parameters. This Resource has
 [Concurrency](#concurrency) controls associated with it.
 
 ###### Single Document (PUT | POST | GET | DELETE)
-Example endpoint: http://example.com/xAPI/activities/state
+Example resource endpoint: http://example.com/xAPI/activities/state
 
 Stores, changes, fetches, or deletes the document specified by the given stateId that 
 exists in the context of the specified Activity, Agent, and registration (if specified).  
@@ -1011,11 +987,10 @@ exists in the context of the specified Activity, Agent, and registration (if spe
 </table>
 
 ###### Multiple Document GET
-Example endpoint: http://example.com/xAPI/activities/state
+Example resource endpoint: http://example.com/xAPI/activities/state
 
-Fetches State Ids of all state data for this context (Activity + Agent \[ + 
-registration if specified\]). If "since" parameter is specified, this 
-is limited to entries that have been stored or updated since the specified 
+Fetches State Ids of all state data for this context (Activity + Agent \[ + registration if specified\]). 
+If "since" parameter is specified, this is limited to entries that have been stored or updated since the specified 
 Timestamp (exclusive). 
 
 **Content:** None.
@@ -1027,7 +1002,7 @@ Timestamp (exclusive).
 	<tr>
 		<td>activityId</td>
 		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with these states.</td>
+		<td>The Activity Id associated with these states.</td>
 		<td>Required</td>
 	</tr>
 	<tr>
@@ -1045,16 +1020,15 @@ Timestamp (exclusive).
 	<tr>
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of states stored since the specified Timestamp (exclusive) are returned.</td>
+		<td>Only Ids of states stored since the specified Timestamp (exclusive) are returned.</td>
 		<td>Optional</td>
 	</tr>
 </table>
 
 ###### Multiple Document DELETE
-Example endpoint: http://example.com/xAPI/activities/state
+Example resource endpoint: http://example.com/xAPI/activities/state
 
-Deletes all state data for this context (Activity + Agent \[+ registration if 
-specified\]).  
+Deletes all state data for this context (Activity + Agent \[+ registration if specified\]).  
 
 **Content:** None.
 
@@ -1063,8 +1037,8 @@ specified\]).
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>activityId</td>
-		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with this state.</td>
+		<td>Activity Id (IRI)</td>
+		<td>The Activity Id associated with this state.</td>
 		<td>Required</td>
 	</tr>
 	<tr>
@@ -1085,23 +1059,19 @@ specified\]).
 
 ### 2.4 Agents Resource
 
-The Agents Resource provides a method to retrieve a special Object with 
-combined information about an Agent derived from an outside service, such as a 
-directory service. This Resource has [Concurrency](#concurrency) controls associated 
-with it.
+The Agents Resource provides a method to retrieve a special Object with combined information about an Agent derived from 
+an outside service, such as a directory service. This Resource has [Concurrency](#concurrency) controls associated with it.
 
 ###### Combined Information GET 
 
 ###### Details
-Example endpoint: http://example.com/xAPI/agents
+Example resource endpoint: http://example.com/xAPI/agents
 
-Return a special, Person Object for a specified Agent. The Person Object is 
-very similar to an Agent Object, but instead of each attribute having a single 
-value, each attribute has an array value, and it is legal to include multiple 
-identifying properties. This is different from the 
-FOAF concept of person, person is being used here to indicate a person-centric 
-view of the LRS Agent data, but Agents just refer to one persona (a person in 
-one context).  
+Return a special, Person Object for a specified Agent. The Person Object is very similar to an Agent Object, 
+but instead of each attribute having a single value, each attribute has an array value, and it is legal to 
+include multiple identifying properties. This is different from the FOAF concept of person, person is being 
+used here to indicate a person-centric view of the LRS Agent data, but Agents just refer to one 
+persona (a person in one context).  
 
 The 'agent' parameter is a normal Agent Object with a single identifier and no arrays. 
 It is not a Person Object, nor is it a Group. 
@@ -1182,22 +1152,19 @@ See also: [Agent](#agent).
 
 ###### Requirements
 
-* All array properties MUST be populated with members with the 
-same definition as the similarly named property from Agent Objects.  
+* All array properties MUST be populated with members with the same definition as the similarly named property from Agent Objects.  
 
-* Additional properties not listed here SHOULD* NOT be added to this object and each 
-property MUST occur only once. 
+* Additional properties not listed here SHOULD* NOT be added to this object and each property MUST occur only once. 
 
 <a name="activitiesres"/> 
 
 ### 2.5 Activities Resource
 
-The Activities Resource provides a method to retrieve a full description 
-of an Activity from the LRS. This Resource has [Concurrency](#concurrency) controls 
-associated with it.
+The Activities Resource provides a method to retrieve a full description of an Activity from the LRS. 
+This Resource has [Concurrency](#concurrency) controls associated with it.
 
 ###### Full Activity Object GET
-Example endpoint: http://example.com/xAPI/activities
+Example resource endpoint: http://example.com/xAPI/activities
 
 Loads the complete Activity Object specified.  
 
@@ -1208,15 +1175,16 @@ Loads the complete Activity Object specified.
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>activityId</td>
-		<td>Activity id (IRI)</td>
-		<td>The id associated with the Activities to load.</td>
+		<td>Activity Id (IRI)</td>
+		<td>The Id associated with the Activities to load.</td>
 		<td>Required</td>
 	</td>
 </table>
 
 ###### Requirements
 
-* If an LRS does not have a canonical definition of the Activity to return, the LRS SHOULD* still return an Activity Object when queried.
+* If an LRS does not have a canonical definition of the Activity to return, the LRS SHOULD* still return an 
+Activity Object when queried.
 
 <a name="agentprofres"/>
 
@@ -1224,21 +1192,19 @@ Loads the complete Activity Object specified.
 
 ###### Description
 
-The Agent Profile Resource is much like the State Resource, allowing for arbitrary key / 
-document pairs to be saved which are related to an Agent. 
+The Agent Profile Resource is much like the State Resource, allowing for arbitrary key / document pairs to be saved 
+which are related to an Agent. 
 
 ###### Details
 
-The semantics of the call are driven by the profileId parameter. If it is included, 
-the GET method will act upon a single defined document identified by "profileId". 
-Otherwise, GET will return the available ids.  
+The semantics of the request are driven by the profileId parameter. If it is included, the GET method will act upon 
+a single defined document identified by "profileId". Otherwise, GET will return the available ids.  
 
 ###### Single Agent or Profile (PUT | POST | GET | DELETE) 
 
-Example endpoint: http://example.com/xAPI/agents/profile
+Example resource endpoint: http://example.com/xAPI/agents/profile
 
-Stores, changes, fetches, or deletes the specified profile document in the context of the 
-specified Agent.  
+Stores, changes, fetches, or deletes the specified profile document in the context of the specified Agent.  
 
 **Content (PUT | POST):** The document to be stored or updated.  
 **Content (GET | DELETE):** None.  
@@ -1257,20 +1223,19 @@ specified Agent.
 	<tr>
 		<td>profileId</td>
 		<td>String</td>
-		<td>The profile id associated with this profile.</td>
+		<td>The profile Id associated with this profile.</td>
 		<td>Required</td>
 	</tr>
 </table>  
 
-__Note:__ The agent parameter is an Agent Object and not a Group. Activity Providers wishing to store data
+__Note:__ The agent parameter is an Agent Object and not a Group. Learning Record Providers wishing to store data
 against an Identified Group can use the Identified Group's identifier within an Agent Object. 
 
 ###### Multiple Document GET 
-Example endpoint: http://example.com/xAPI/agents/profile
+Example resource endpoint: http://example.com/xAPI/agents/profile
 
-Fetches Profile Ids of all profile entries for an Agent. If "since" parameter is specified, 
-this is limited to entries that have been stored or updated since the specified 
-Timestamp (exclusive).  
+Fetches Profile Ids of all profile entries for an Agent. If "since" parameter is specified, this is limited to entries 
+that have been stored or updated since the specified Timestamp (exclusive).  
 
 **Content:** None.
 
@@ -1287,7 +1252,7 @@ Timestamp (exclusive).
 	<tr>
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of profiles stored since the specified Timestamp 
+		<td>Only Ids of profiles stored since the specified Timestamp 
 			(exclusive) are returned.</td>
 		<td>Optional</td>
 	</tr>
@@ -1299,20 +1264,19 @@ Timestamp (exclusive).
 
 ###### Description
 
-The Activity Profile Resource is much like the State Resource, allowing for arbitrary key 
-/ document pairs to be saved which are related to an Activity. 
+The Activity Profile Resource is much like the State Resource, allowing for arbitrary key / document pairs to be saved 
+which are related to an Activity. 
 
 ###### Details
 
-The semantics of the call are driven by the profileId parameter. If it is included, 
+The semantics of the request are driven by the profileId parameter. If it is included, 
 the GET method will act upon a single defined document identified by "profileId". 
-Otherwise, GET will return the available ids.
+Otherwise, GET will return the available Ids.
 
 ###### Single Document (PUT | POST | GET | DELETE)
-Example endpoint: http://example.com/xAPI/activities/profile
+Example resource endpoint: http://example.com/xAPI/activities/profile
 
-Stores, changes, fetches, or deletes the specified profile document in the context of the 
-specified Activity.  
+Stores, changes, fetches, or deletes the specified profile document in the context of the specified Activity.  
 
 **Content (PUT | POST):** The document to be stored or updated.  
 **Content (GET | DELETE):** None.  
@@ -1323,24 +1287,23 @@ specified Activity.
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>activityId</td>
-		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with this profile.</td>
+		<td>Activity Id (IRI)</td>
+		<td>The Activity Id associated with this profile.</td>
 		<td>Required</td>
 	</tr>
 	<tr>
 		<td>profileId</td>
 		<td>String</td>
-		<td>The profile id associated with this profile.</td>
+		<td>The profile Id associated with this profile.</td>
 		<td>Required</td>
 	</tr>
 </table>
 
 ###### Multiple Document GET
-Example endpoint: http://example.com/xAPI/activities/profile
+Example resource endpoint: http://example.com/xAPI/activities/profile
 
-Fetches Profile Ids of all profile entries for an Activity. If "since" parameter is 
-specified, this is limited to entries that have been stored or updated since 
-the specified Timestamp (exclusive).  
+Fetches Profile Ids of all profile entries for an Activity. If "since" parameter is specified, this is limited to 
+entries that have been stored or updated since the specified Timestamp (exclusive).  
 
 **Content:** None.
 
@@ -1350,14 +1313,14 @@ the specified Timestamp (exclusive).
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
 	<tr>
 		<td>activityId</td>
-		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with these profiles.</td>
+		<td>Activity Id (IRI)</td>
+		<td>The Activity Id associated with these profiles.</td>
 		<td>Required</td>
 	</tr>
 	<tr>
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of profiles stored since the specified Timestamp (exclusive) 
+		<td>Only Ids of profiles stored since the specified Timestamp (exclusive) 
 		are returned.</td>
 		<td>Optional</td>
 	</tr>
@@ -1370,36 +1333,34 @@ the specified Timestamp (exclusive).
 
 ###### Description
 
-Returns JSON Object containing information about this LRS, including the xAPI version
-supported.
+Returns JSON Object containing information about this LRS, including the xAPI version supported.
 
 ###### Rationale
 
-Primarily this resource exists to allow Clients that support multiple xAPI versions to
-decide which version to use when communicating with the LRS. Extensions are included to
-allow other uses to emerge.
+Primarily this resource exists to allow Clients that support multiple xAPI versions to decide which version to 
+use when communicating with the LRS. Extensions are included to allow other uses to emerge.
 
 ###### Details
 
 ###### Information GET
 
-Example endpoint: http://example.com/xAPI/about
+Example resource endpoint: http://example.com/xAPI/about
 
 **Content:** None.
 
 **Returns:** `200 OK`, JSON object containing basic metadata about this LRS
 <table border="1">
-	<tr><th>property</th><th>type</th><th>description</th><th>Required</th></tr>
+	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
 		<td>version</td>
-		<td>array of version strings</td>
+		<td>Array of version strings</td>
 		<td>xAPI versions this LRS supports</td>
 		<td>Required</td>
 	</tr>
 	<tr>
 		<td>extensions</td>
 		<td><a href="#miscext">Object</a></td>
-		<td>A map of other properties as needed.</td>
+		<td>A map of other properties as needed</td>
 		<td>Optional</td>
 	</tr>
 
@@ -1416,7 +1377,7 @@ the latest minor and patch version the LRS conforms to, for each major version.
 property MUST occur only once.  
 * An LRS SHOULD allow unauthenticated access to this resource
 * An LRS MUST NOT reject requests based on their version header as would otherwise be 
-required by <a href="#versioning"/>Versioning</a>.
+required by [Versioning](#versioning).
 
 <a name="validation"/> 
 
@@ -1424,12 +1385,10 @@ required by <a href="#versioning"/>Versioning</a>.
 
 ###### Description
 
-The function of the LRS within the xAPI is to store and retrieve Statements. 
-As long as it has sufficient information to perform these tasks, it is 
-expected that it does them. Validation of Statements in the Experience API is 
-focused solely on syntax, not semantics. Enforcing the rules that ensure 
-valid meaning among Verb definitions, Activity types, and extensions is the 
-responsibility of the Activity Provider sending the Statement. 
+The function of the LRS within the xAPI is to store and retrieve Statements. As long as it has sufficient information 
+to perform these tasks, it is expected that it does them. Validation of Statements in the Experience API is focused 
+solely on syntax, not semantics. Enforcing the rules that ensure valid meaning among Verb definitions, Activity types, 
+and extensions is the responsibility of the Learning Record Provider sending the Statement. 
 
 ###### Requirements
 
@@ -1473,19 +1432,24 @@ are unlikely. The requirements below only apply to Agent Profile Resource and Ac
 ##### LRS Requirements
 
 * An LRS responding to a GET request MUST add an ETag HTTP header to the response.
-* An LRS responding to a GET request without using a transfer encoding or using the identity transfer encoding MUST calculate the value of the ETag header to be a hexadecimal string
-of the SHA-1 digest of the contents. This hexidecimal string SHOULD be rendered using numbers and lowercase 
-characters only; uppercase characters SHOULD NOT be used. The requirement to calculate the ETag this way will be removed in a future version of the specification.
-* An LRS responding to a GET request using any non-identity transfer encoding MUST NOT calculate the included ETag as above, due to the interpretation of ETags by existing web infrastructure.
-* As defined in [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19), an LRS responding to a GET request MUST enclose the header in quotes.  
-* An LRS responding to a PUT request MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
-modifications made after the consumer last fetched the document.
-* An LRS responding to a PUT request MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
-when there is a resource present that the consumer is not aware of.
-* An LRS responding to a POST or DELETE request SHOULD* handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
-modifications made after the consumer last fetched the document.
-* An LRS responding to a POST request SHOULD* handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it contains "*", in order to to detect 
-when there is a resource present that the consumer is not aware of.
+* An LRS responding to a GET request without using a transfer encoding or using the identity transfer encoding MUST 
+calculate the value of the ETag header to be a hexadecimal string of the SHA-1 digest of the contents. This hexidecimal 
+string SHOULD be rendered using numbers and lowercase characters only; uppercase characters SHOULD NOT be used. 
+The requirement to calculate the ETag this way will be removed in a future version of the specification.
+* An LRS responding to a GET request using any non-identity transfer encoding MUST NOT calculate the included ETag as above, 
+due to the interpretation of ETags by existing web infrastructure.
+* As defined in [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19), an LRS responding to a GET 
+request MUST enclose the header in quotes.  
+* An LRS responding to a PUT request MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) 
+header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect modifications made after the Client 
+last fetched the document.
+* An LRS responding to a PUT request MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in 
+RFC2616, HTTP 1.1 if it contains "*", in order to to detect when there is a resource present that the Client is not aware of.
+* An LRS responding to a POST or DELETE request SHOULD* handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains 
+an ETag, in order to detect modifications made after the Client last fetched the document.
+* An LRS responding to a POST request SHOULD* handle the 
+[If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it 
+contains "*", in order to to detect when there is a resource present that the Client is not aware of.
 
 If the header precondition in either of the PUT request cases above fails, the LRS:
 
@@ -1500,7 +1464,7 @@ If the header precondition in any of the POST or DELETE request cases above fail
 If a PUT request is received without either header for a resource that already exists, the LRS:
 
 * MUST return HTTP status 409 "Conflict".
-* MUST return a response explaining that the consumer SHOULD
+* MUST return a response explaining that the Learning Record Provider SHOULD
 	- check the current state of the resource.
 	- set the "If-Match" header with the current ETag to resolve the conflict.
 * MUST NOT make a modification to the resource.
@@ -1512,42 +1476,40 @@ If a PUT request is received without either header for a resource that already e
 ##### Description
 
 This specification defines requirements, some of which are imposed on the LRS to accept or reject requests,
-return responses and perform other behaviours in certain conditions. In cases where an LRS is required 
+return responses and perform other behaviors in certain conditions. In cases where an LRS is required 
 to reject a request, the appropriate error code is listed as part of the requirement. 
 
-None of these requirements contradict the idea that the LRS is also allowed to 
-be configurable to reject requests and respond or behave differently on the basis of conditions 
-that are out of scope this specification. 
+None of these requirements contradict the idea that the LRS is also allowed to be configurable to reject requests 
+and respond or behave differently on the basis of conditions that are out of scope this specification. 
 
-One of these conditions is permission. For example, the LRS might assign permissions
-to a particular set of credentials such that those credentials can only issue statements
-relating to a particular agent. It could then reject any statements using those credentials
-not relating to that agent. The permissions that can be assigned by an LRS are out of scope of
-this specification, aside from the list of recommended OAuth Authorization scope values in
-section [6.4.2](#oauthscope). 
+One of these conditions is permission. For example, the LRS might assign permissions to a particular set of 
+credentials such that those credentials can only issue Statements relating to a particular agent. It could then 
+reject any statements using those credentials not relating to that agent. The permissions that can be assigned 
+by an LRS are out of scope of this specification, aside from the list of recommended OAuth Authorization scope 
+values in section [6.4.2](#oauthscope). 
 
 Permissions can also affect the response returned by an LRS to GET requests. For example, 
-a set of credentials might have permission only to view statements about a particular actor, in which case
-the LRS will filter any returned statements to exclude any statements not relating to that actor. See 
+a set of credentials might have permission only to view Statements about a particular actor, in which case
+the LRS will filter any returned Statements to exclude any Statements not relating to that Actor. See 
 [GET Statements](#stmtapiget) for details. 
 
-In cases explicitly allowed by this specification, the credentials used can also affect the LRS behaviour in 
+In cases explicitly allowed by this specification, the credentials used can also affect the LRS behavior in 
 handling a request, for example the LRS will normally overwrite the Authority property of a Statement, but can 
 sometimes accept a submitted authority if it has a strong trust relationship associated with the credentials 
 used to submit the statement. See [Authority](#authority) for details. 
 
 Permissions set by an LRS could cause a technically conformant LRS to fail conformance testing. 
-This could occur where requests made by the test suite are rejected on the basis of permissions. For this reason
+This could occur where requests made by the testing software are rejected on the basis of permissions. For this reason
 the LRS needs to be configurable, or credentials used for testing need to have sufficient permissions granted,
 such that permission restrictions do not affect the result of conformance testing. 
 
 Another condition is where the request sent is beyond the size limits set by the LRS. It would be unreasonable
 to expect the LRS to always accept requests of any size. The LRS can choose any size limit it sees fit, but
 needs to be configurable so as not to apply size limits during conformance testing. Of course, some size limits
-will still exist during conformance testing due to limitations of hardware etc. but it is expected that these limits
+will still exist during conformance testing due to limitations of hardware, etc. but it is expected that these limits
 are sufficiently high so as not to affect the running of tests. 
 
-The LRS can also reject requests or revoke credentials in case of suspected malicious intend, for example
+The LRS can also reject requests or revoke credentials in case of suspected malicious intent, for example
 an unexpected large number of requests made in a short period of time. It is expected that that limits 
 will be sufficiently high such that the rate of requests made during conformance testing will not trigger any rate limits.
 
@@ -1570,23 +1532,23 @@ is not allowed to perform the given action.
 
 * `404 Not Found` - Indicates the requested resource was not found. May be 
 returned by any method that returns a uniquely identified resource, for 
-instance, any State or Agent Profile or Activity Profile Resource call targeting a specific document, 
+instance, any State or Agent Profile or Activity Profile Resource request targeting a specific document, 
 or the method to retrieve a single Statement.
 
 * `409 Conflict` - Indicates an error condition due to a conflict with the 
 current state of a resource, in the case of State Resource, Agent Profile or Activity Profile Resource
-calls, or in the Statement PUT or POST calls. See Section [6.3 Concurrency](#concurrency) for more details.
+requests, or in the Statement PUT or POST calls. See Section [6.3 Concurrency](#concurrency) for more details.
 
 * `412 Precondition Failed` - Indicates an error condition due to a failure of 
 a precondition posted with the request, in the case of State or Agent Profile or Activity Profile 
-API calls. See Section [6.3 Concurrency](#concurrency) for more details.
+API requests. See Section [6.3 Concurrency](#concurrency) for more details.
 
 * `413 Request Entity Too Large` - Indicates that the LRS has rejected the Statement or 
 document because its size (or the size of an Attachment included in the request) is larger than 
 the maximum allowed by the LRS. 
 
 * `429 Too Many Requests` - Indicates that the LRS has rejected the request because it has received 
-too many requests from the client or set of credentials in a given amount of time. 
+too many requests from the Client or set of credentials in a given amount of time. 
 
 * `500 Internal Server Error` - Indicates a general error condition, typically an 
 unexpected exception in processing on the server.
@@ -1597,40 +1559,37 @@ unexpected exception in processing on the server.
 
 * An LRS SHOULD return a message in the response explaining the cause of the error.
 
-* An LRS SHOULD use content negotiation as described in [RFC 7231](http://tools.ietf.org/html/rfc7231#section-5.3) to decide the format of the error.
+* An LRS SHOULD use content negotiation as described in [RFC 7231](http://tools.ietf.org/html/rfc7231#section-5.3) 
+to decide the format of the error.
 
 * An LRS SHOULD allow for plain text, HTML, and JSON responses for errors (using content negotiation).
 
-* An AP SHOULD send an Accept header with requests to enable content negotiation.
+* A Learning Record Provider SHOULD send an Accept header with requests to enable content negotiation.
 
-* The LRS MUST reject with `HTTP 400 Bad Request` status any requests 
-that use any parameters which the LRS does not recognize in their 
-intended context in this specification ( __Note:__ LRSs MAY recognize and act on 
-parameters not in this specification).
+* The LRS MUST reject with `HTTP 400 Bad Request` status any requests that use any parameters which the LRS does 
+not recognize in their intended context in this specification. 
+( __Note:__ LRSs MAY recognize and act on parameters not in this specification).
 
-* The LRS MUST reject with `HTTP 400 Bad Request` status any requests 
-that use any parameters matching parameters described in this 
-specification in all but case.
+* The LRS MUST reject with `HTTP 400 Bad Request` status any requests that use any parameters matching parameters 
+described in this specification in all but case.
 
-* The LRS MUST reject a batch of statements if any statement within that 
-batch is rejected.
+* The LRS MUST reject a batch of statements if any Statement within that batch is rejected.
 
-* The LRS MUST reject with `HTTP 403 Forbidden` status any request rejected by the
-LRS where the credentials associated with the request do not have permission to make that request. 
+* The LRS MUST reject with `HTTP 403 Forbidden` status any request rejected by the LRS where the credentials 
+associated with the request do not have permission to make that request. 
 
-* The LRS MUST reject with `HTTP 413 Request Entity Too Large` status any request rejected by the
-LRS where the size of the Attachment, Statement or document is larger than the maximum allowed by the LRS.
+* The LRS MUST reject with `HTTP 413 Request Entity Too Large` status any request rejected by the LRS where the 
+size of the Attachment, Statement or document is larger than the maximum allowed by the LRS.
 
 * The LRS MAY choose any Attachment, Statement and document size limits and MAY vary this limit on any basis, e.g., per authority.
 
-* The LRS MUST reject with `429 Too Many Requests` status any request rejected by the
-LRS where the request is rejected due to too many requests being received by a particular client 
-or set of credentials in a given amount of time. 
+* The LRS MUST reject with `429 Too Many Requests` status any request rejected by the LRS where the request is rejected due 
+to too many requests being received by a particular Client or set of credentials in a given amount of time. 
 
 * The LRS MAY choose any rate limit and MAY vary this limit on any basis, e.g., per authority.
 
 The following requirements exist for the purposes of conformance testing, to ensure that any limitations or permissions implemented 
-by the LRS do not affect the running of a conformance test suite. 
+by the LRS do not affect the running of conformance testing software. 
 
 * The LRS SHOULD* be configurable not to reject any requests from a particular set of credentials on the basis of permissions. 
 This set of credentials SHOULD* be used for conformance testing but MAY be deleted/deactivated on live systems. 
@@ -1645,19 +1604,14 @@ This set of credentials SHOULD* be used for conformance testing but MAY be delet
 
 ###### Rationale
 
-Future revisions of the specification might introduce changes such as properties added to 
-Statements.
-
-Systems retrieving Statements might then receive responses that include Statements of different
-versions. The version header allows for these version differences to be handled correctly, and 
-to ascertain that no partial or mixed LRS version implementations exist.
-
-Using Semantic Versioning will allow Clients and LRSs to reliably know compatibility as the specification changes.
+Future revisions of the specification might introduce changes such as properties added to Statements. Using Semantic 
+Versioning will allow Clients and LRSs to remain interoperable as the specification changes.
 
 ###### Details
 
-Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html).  Every request from a Client and every response from the LRS includes an HTTP header with the name 
-“X-Experience-API-Version" and the version as the value. For example, ``X-Experience-API-Version : 1.0.3`` for version 1.0.3; 
+Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html).  
+Every request from a Client and every response from the LRS includes an HTTP header with the name “X-Experience-API-Version" 
+and the version as the value. For example, ``X-Experience-API-Version : 1.0.3`` for version 1.0.3; 
 see the [Revision History](#Appendix1A) for the current version of this specification. 
 
 ###### LRS Requirements
@@ -1669,8 +1623,7 @@ see the [Revision History](#Appendix1A) for the current version of this specific
 fully conformant implementation of the prior version specified in the header.
 * The LRS MUST accept requests with a version header starting with "1.0." if the request is otherwise valid. 
 * The LRS MUST reject requests with a version header of "1.1.0" or greater.
-* The LRS MUST make these rejects by responding with an HTTP 400 error including a short description 
-of the problem.
+* The LRS MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
 
 ###### Client Requirements
 
@@ -1682,9 +1635,9 @@ of the problem.
 
 ###### Conversion Requirements
 
-* Systems MUST NOT convert Statements of newer versions into a prior version format, e.g., in order to handle version differences.
-* Systems MAY convert Statements of older versions into a newer version only by following the methods described in
-<a href="#Appendix3A">Appendix A: Converting Statements to 1.0.0</a>.
+* Statements of newer versions MUST NOT be converted into a prior version format, e.g., in order to handle version differences.
+* Statements of prior versions MAY be converted into a newer version only by following the methods described in
+[Appendix A: Converting Statements to 1.0.0](Appendix3A).
 
 
 <a name="authentication"/>
@@ -1693,47 +1646,44 @@ of the problem.
 
 ###### Rationale
 
-In order to balance interoperability and the varying security requirements of different
-environments, several authentication options are defined.
+In order to balance interoperability and the varying security requirements of different environments, several 
+authentication options are defined.
 
 ###### Details
-The following authentication methods are defined within the specification. Any given LRS will 
-implement at least one of these methods and might implement additional methods not defined within
-this specification. 
+The following authentication methods are defined within the specification. Any given LRS will implement at least one 
+of these methods and might implement additional methods not defined within this specification. 
 
-- [OAuth 1.0 (RFC 5849)](http://tools.ietf.org/html/rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
-- [HTTP Basic Authentication](http://tools.ietf.org/html/rfc7235)
-- Common Access Cards
+* [OAuth 1.0 (RFC 5849)](http://tools.ietf.org/html/rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
+* [HTTP Basic Authentication](http://tools.ietf.org/html/rfc7235)
+* Common Access Cards
 
-While Common Access Cards are defined as an authentication option within this specification,
-the implementation details of this authentication method are not defined. The xAPI Working Group
-encourages LRS developers implementing Common Access Cards as an authentication method to collaborate
-in defining the details of this authentication method in a future version of this specification. 
+While Common Access Cards are defined as an authentication option within this specification, the implementation details of 
+this authentication method are not defined. The xAPI Working Group encourages LRS developers implementing Common Access Cards 
+as an authentication method to collaborate in defining the details of this authentication method in a future version of this 
+specification. 
 
 No further details are provided to describe HTTP Basic Authentication as this authentication method
 is clearly and completely defined in [RFC 7235](http://tools.ietf.org/html/rfc7235). 
 
 ###### Requirements
 
-- The LRS MUST support authentication using at least one of the authentication methods defined in this 
-specification.
+* The LRS MUST support authentication using at least one of the authentication methods defined in this specification.
 
-- The LRS MUST handle making, or delegating, decisions on the validity of Statements,
- and determining what operations might be performed based on the credentials used.
+* The LRS MUST handle making, or delegating, decisions on the validity of Statements, and determining what operations 
+might be performed based on the credentials used.
 
 <a name="authdefs"/>
 
 ### 4.1 OAuth 1.0 Authentication Scenarios and Methods
 
-The matrix and requirements below describe the possible authentication 
-scenarios used within OAuth and recommends the authentication workflow to be 
-used in these scenarios. The process described for each scenario is not intended 
+The matrix and requirements below describe the possible authentication scenarios used within OAuth and recommends the 
+authentication workflow to be used in these scenarios. The process described for each scenario is not intended 
 to be comprehensive, but rather outline variations to the standard OAuth workflow. 
 
 The requirements in this section only apply if the LRS supports OAuth 1.0.
 
-A **registered application** is an application that will authenticate to the LRS as an OAuth 
-consumer that has been registered with the LRS.
+A **registered application** is an application that will authenticate to the LRS as an OAuth consumer that has been 
+registered with the LRS.
 
 A **known user** is a user account on the LRS, or on a system which the LRS trusts to define users.
 
@@ -1780,39 +1730,38 @@ such a mechanism.
 **Process:** The standard workflow for OAUth 1.0 is used. 
 
 **Requirements:**
-* The LRS MUST support the endpoints in section [6.4.2 OAuth Authorization Scope](#oauthscope) to complete the standard OAuth workflow 
-(details not in this specification).
+* The LRS MUST support the endpoints in section [6.4.2 OAuth Authorization Scope](#oauthscope) to complete the 
+standard OAuth workflow (details not in this specification).
 * If this form of authentication is used to record Statements and no authority is specified, the LRS SHOULD 
 record the authority as a group consisting of an Agent representing the registered application, and an Agent 
 representing the known user.
 
 ###### Application registered + user unknown Process and Requirements
 **Process:** 
-The LRS honors requests that are signed using OAuth with the registered application's credentials and with an empty token and token secret.
+The LRS honors requests that are signed using OAuth with the registered application's credentials and with an empty token 
+and token secret.
 
 **Requirements:**
-* If this form of authentication is used to record Statements, the LRS SHOULD 
-record the authority as the Agent representing the registered application.
+* If this form of authentication is used to record Statements, the LRS SHOULD record the authority as the Agent representing 
+the registered application.
 
-###### Application not registered + known user Process and Requirements
+###### Application Not Registered + Known User Process and Requirements
 **Process:**
-The AP uses a consumer secret consisting of an empty string to call the 
-Temporary Credential Request endpoint specifying the "consumer_name" and other usual parameters.
-The "consumer_name" contains a string representing the application requesting access. 
+The Learning Record Provider uses a consumer secret consisting of an empty string to call the Temporary Credential 
+Request endpoint specifying the "consumer_name" and other usual parameters.  The "consumer_name" contains a string 
+representing the application requesting access. 
 
-The AP then sends the user's browser to the Resource Owner Authorization using the 
-temporary credentials obtained from the LRS. The Resource Owner Authorization presents a 
-page displaying the "consumer_name" plus a warning that the identity of the application requesting 
-authorization cannot be verified.
+The Learning Record Provider then sends the user's browser to the Resource Owner Authorization using the temporary 
+credentials obtained from the LRS. The Resource Owner Authorization presents a page displaying the "consumer_name" 
+plus a warning that the identity of the application requesting authorization cannot be verified.
 
 Otherwise the process follows the standard OAuth workflow. 
 
 **Requirements:**
-* If this form of authentication is used to record Statements, the LRS MUST record an authority 
-that includes both that application and the authenticating user, as a group, since OAuth specifies 
-an application.
+* If this form of authentication is used to record Statements, the LRS MUST record an authority that includes both 
+that application and the authenticating user, as a group, since OAuth specifies an application.
 
-###### No application + known user Process and Requirements
+###### No Application + Known User Process and Requirements
 **Process:**
 Use a username/password combination provided by the LRS for use by the known user.
 
@@ -1820,33 +1769,31 @@ Use a username/password combination provided by the LRS for use by the known use
 * If this form of authentication is used to record Statements, the LRS SHOULD 
 record the authority as the Agent representing the known user.
 
-###### No authorization Process and Requirements
+###### No Authorization Process and Requirements
 
 * Requests MUST include headers for HTTP Basic Authentication based on a username and password containing zero or
 more space characters. 
 * Requests SHOULD* include headers for HTTP Basic Authentication based on a username and password each consisting of 
-an empty string. In this case the HTTP Basic Authentication header will be `Basic ` followed by a base64 encoded version of the string `:`.
-This results in the string `Basic Og==`.
+an empty string. In this case the HTTP Basic Authentication header will be `Basic ` followed by a base64 encoded 
+version of the string `:`.  This results in the string `Basic Og==`.
 
-This is in order to distinguish an explicitly unauthenticated request from a request that needs to be given a HTTP Basic Authentication 
-challenge.
+This is in order to distinguish an explicitly unauthenticated request from a request that needs to be given a 
+HTTP Basic Authentication challenge.
 
 <a name="oauthscope"/> 
 
 ### 4.2 OAuth 1.0 Authorization Scope
 
 ##### Description
-These are recommendations for scopes designed to enable an LRS and an application
-communicating using the xAPI to negotiate a level of access which accomplishes what the
-application needs while minimizing the potential for misuse. The limitations of each scope
-are in addition to any security limitations placed on the user account associated with the
-request.
+These are recommendations for scopes designed to enable an LRS and an application communicating using the xAPI to 
+negotiate a level of access which accomplishes what the application needs while minimizing the potential for misuse. 
+The limitations of each scope are in addition to any security limitations placed on the user account associated 
+with the request.
 
 Elements of this section draw on [OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-3.3)
 despite this section describing requirements for LRS supporting [OAuth 1.0](http://tools.ietf.org/html/rfc5849). 
 
-The requirements in this section only apply if the LRS
-supports OAuth 1.0.
+The requirements in this section only apply if the LRS supports OAuth 1.0.
 
 ##### Details
 
@@ -1872,7 +1819,7 @@ The following table lists xAPI scope values:
 	<tr>
 		<td>define</td>
 		<td>(re)Define Activities and Actors. If storing a Statement 
-			when this is not granted, ids will be saved and the LRS 
+			when this is not granted, Ids will be saved and the LRS 
 			MAY save the original Statement for audit purposes, but 
 			SHOULD NOT update its canonical representation of any 
 			Actors or Activities.
@@ -1890,9 +1837,8 @@ The following table lists xAPI scope values:
 </table>
 
 ###### OAuth Extended Parameters  
-Note that the parameters "consumer_name" and "scope" are not part of 
-OAuth 1.0, and therefore if used MUST be passed as query string or form 
-parameters, not in the OAuth header.  
+Note that the parameters "consumer_name" and "scope" are not part of OAuth 1.0, and therefore if used MUST be passed 
+as query string or form parameters, not in the OAuth header.  
 
 ###### OAuth Endpoints  
 <table>
@@ -1919,34 +1865,28 @@ parameters, not in the OAuth header.
 </table>
 
 ##### Example
-The list of scopes determines the set of permissions that is being requested. 
-For example,an instructor might grant "statements/read" to a Client, 
-but the LRS would still limit that tool to Statements that the instructor could 
-read if querying the LRS with their credentials directly (such as Statements 
-relating to their students).
+The list of scopes determines the set of permissions that is being requested. For example, an instructor might grant 
+"statements/read" to an application (Client), but the LRS would still limit that tool to Statements that the instructor could 
+read if querying the LRS with their credentials directly (such as Statements relating to their students).
 
 ##### Requirements
 
 * The LRS MUST accept a scope parameter as defined in [OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-3.3).
-* The LRS MUST assume a requested scope of "statements/write" and "statements/read/mine" if no 
-scope is specified.
+* The LRS MUST assume a requested scope of "statements/write" and "statements/read/mine" if no scope is specified.
 * The LRS MUST support the scope of "all" as a minimum.
 * The LRS MAY support other scopes.
-* The Client SHOULD request only the minimal needed scopes, to increase the chances that the request
-will be granted.
+* The Client SHOULD request only the minimal needed scopes, to increase the chances that the request will be granted.
 
 <a name="security"/>
 
 ## 5.0 Security 
 
-Security beyond authentication (including the interpretation of OAuth
-authorization scopes) is beyond the current scope of this document and left to
-the individual LRS provider as an implementation detail. Implementors are
-encouraged to follow industry best practices, e.g., [The HTTPS-Only Standard](https://https.cio.gov) from the office of the White House CIO.
+Security beyond authentication (including the interpretation of OAuth authorization scopes) is beyond the current 
+scope of this document and left to the individual LRS provider as an implementation detail. Implementors are encouraged 
+to follow industry best practices, e.g., [The HTTPS-Only Standard](https://https.cio.gov) from the office of the White House CIO.
 
-While other security concerns are beyond the scope of this specification, 
-the xAPI Community remains dedicated to determining security best practices. 
-This effort has begun at [xAPIsec](https://github.com/xapisec/xapisec). 
+While other security concerns are beyond the scope of this specification, the xAPI Community remains dedicated to determining 
+security best practices. This effort has begun at [xAPIsec](https://github.com/xapisec/xapisec). 
 Participation is highly encouraged.
 
 <a name="append3"/>
@@ -1957,17 +1897,15 @@ Participation is highly encouraged.
 ### Appendix A: Converting Statements to 1.0.0
 
 ######Rationale
-This is a 1.0.0 specification, and as such implementers do not have to consider prior
-versions of the specification. However, prior versions did see notable adoption. This data
-conversion is specified in order
-to preserve the data tracked using earlier versions, and make it available to new implementers
-in a consistent manner.
+This is a 1.0.0 specification, and as such implementers do not have to consider prior versions of the specification. 
+However, prior versions did see notable adoption. This data conversion is specified in order to preserve the data 
+tracked using earlier versions, and make it available to new implementers in a consistent manner.
 
 ######Details
 
 ######Conversion of Statements created based on version 0.9
 
-A 1.0.0 system converting a Statement created in 0.9 MUST follow the steps below:
+A 1.0.0 Client or other system converting a Statement created in 0.9 MUST follow the steps below:
 
 * If the Statement has been voided or uses Verbs, Activity types, or properties not included in the
  0.9 specification, do not convert it.
@@ -1987,28 +1925,25 @@ A 1.0.0 system converting a Statement created in 0.9 MUST follow the steps below
 * Remove the "voided" property from the Statement, if present. Remember, if the value of the
   voided property is true, then the Statement MUST NOT be converted.
 * Add "version": "1.0.0"
-* If an authority was not previously set, set the authority to an Agent identified by
-an account with a homePage set to the home page corresponding to the
-system performing the conversion and an accountName of "unknown".
-* if the Statement property in Context was set, remove it from the Statement.
-* Preserve all other properties without modification, including "stored". Stored will still
-be updated if the Statement is passed to another system.
+* If an authority was not previously set, set the authority to an Agent identified by an account with a homePage 
+set to the home page corresponding to the system performing the conversion and an accountName of "unknown".
+* If the "statement" property in Context was set, remove it from the Statement.
+* Preserve all other properties without modification, including "stored". "stored" will still be updated if the Statement 
+is sent to an LRS.
 
 ######Conversion of Statements created based on version 0.95
 
-A 1.0.0 system converting a Statement created in 0.95 MUST follow the steps below:
+A 1.0.0 Client or other system converting a Statement created in 0.95 MUST follow the steps below:
 
 * If the Statement is voided, do not convert it.
 * Remove the "voided" property from the Statement, if present. Remember, if the value
   of the voided property is true, then the Statement MUST NOT be converted.
 * Add "version": "1.0.0"
-* If an authority was not previously set, set the authority to an Agent identified by
-an account with a homePage set to the home page corresponding to the
-system performing the conversion and an accountName of "unknown".
-* If the Statement property in Context was set to anything other than a
-StatementRef, remove it from the Statement.
-* Preserve all other properties without modification, including "stored". Stored will still
-be updated if the Statement is passed to another system.
+* If an authority was not previously set, set the authority to an Agent identified by an account with a homePage 
+set to the home page corresponding to the system performing the conversion and an accountName of "unknown".
+* If the Statement property in Context was set to anything other than a StatementRef, remove it from the Statement.
+* Preserve all other properties without modification, including "stored". "stored" will still be updated if the Statement 
+is sent to an LRS.
 
 
 ######Example
@@ -2141,10 +2076,10 @@ Converted to 1.0.0:
 
 ### Appendix B: Table of All Endpoints
 
-### Required Endpoints
+### Required Resource Endpoints
 <table>
 	<tr>
-		<th>Endpoint (Base Endpoint of the LRS Precedes Each Endpoint)</th>
+		<th>Endpoint (Base Resource Location of the LRS Precedes Each Endpoint)</th>
 		<th>Function</th>
 	</tr>
 	<tr>
@@ -2177,10 +2112,10 @@ Converted to 1.0.0:
 	</tr>
 </table>
 
-### OAuth Endpoints
+### OAuth Resource Endpoints
 <table>
 	<tr>
-		<th>Endpoint (Base Endpoint of the LRS Precedes Each Endpoint)</th>
+		<th>Endpoint (Base Resource Location of the LRS Precedes Each Endpoint)</th>
 		<th>Function</th>
 	</tr>
 	<tr>
@@ -2199,11 +2134,11 @@ Converted to 1.0.0:
 
 <a name="Appendix3C"/>
 
-### Appendix C: Cross Domain Request example
+### Appendix C: Cross Domain Request Example
 
-[Alternate Request Syntax](#alt-request-syntax) outlines alternative syntax for use 
-when the normal syntax cannot be used due to browser or querystring length restrictions. This appendix provides an example of a
-PUT statements request following this format. 
+[Alternate Request Syntax](#alt-request-syntax) outlines alternative syntax for use when the normal syntax cannot be used due 
+to browser or querystring length restrictions. This appendix provides an example of a PUT request to the Statements Resource 
+following this format. 
 
 Request using normal syntax:
 
@@ -2228,7 +2163,7 @@ Content:
 
 ```
 
-Request using using alternative syntax:
+Request using alternative syntax:
 
 ```
 URL: http://example.com/xAPI/statements?method=PUT&statementId=c70c2b85-c294-464f-baca-cebd4fb9b348
