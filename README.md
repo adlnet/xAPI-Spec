@@ -44,6 +44,6 @@ You'll need to [sign up for a GitHub account](https://github.com/signup/free) if
 you do not already have one in order to contribute to the specification.
 
 The xAPI Spec Working Group meets
-the first, second, and third Wednesdays of each month on GoToWebinar. See the [xAPI spec Google Group](https://groups.google.com/a/adlnet.gov/forum/#!forum/xapi-spec) for the latest webinar registration link and news about meetings. 
+the first, second, and third Wednesdays of each month on GoToWebinar. You can register at [https://attendee.gotowebinar.com/register/279276321478091778](https://attendee.gotowebinar.com/register/279276321478091778)
 
 Please refer to the [Contribution guidelines](CONTRIBUTING.md) for further direction and a list of contributors. 
