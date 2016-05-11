@@ -29,7 +29,7 @@ You'll need to [sign up for a GitHub account](https://github.com/signup/free) if
 to raise and comment on isues. 
 
 You can discuss any issues before or after raising them on the [specification Google Group](https://groups.google.com/a/adlnet.gov/forum/#!forum/xapi-spec)
-and at our [weekly specification calls](https://attendee.gotowebinar.com/register/100000000063672381). 
+and at our [weekly specification calls](https://attendee.gotowebinar.com/register/279276321478091778). 
 
 ##How you can contribute
 You'll need to [sign up for a GitHub account](https://github.com/signup/free) if you do not already have one in order
