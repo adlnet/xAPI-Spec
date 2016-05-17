@@ -228,11 +228,8 @@ JSON allows for objects to have properties that contain empty objects. This is n
 is not intended to contain data about a property then it is expected that the property will not be used at all. 
 All required properties are required to contain values. 
 
-###### Requirements
-* Statements and other objects SHOULD NOT include properties with a value of an empty object. 
 
 <a name="definitions"></a>
- 
 ## 4.0 Definitions  
 
 * [Activity](#def-activity)
