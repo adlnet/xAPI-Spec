@@ -135,6 +135,7 @@ conformant to this specification.
 
 ###### Requirements
 
+* Statements and other objects SHOULD NOT include properties with a value of an empty object. 
 * A Statement MUST use each property no more than one time.
 * A Statement MUST use “actor”, “verb”, and “object”.
 * A Statement MAY use its properties in any order.
