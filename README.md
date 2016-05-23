@@ -42,3 +42,6 @@ In addition to raising and discussing issues, you can contribute by:
 * [Making a Pull Request to address an issue](CONTRIBUTING.md#make-pr)
 
 Click the links above to find out how to do each of these things. 
+
+##License
+[Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
