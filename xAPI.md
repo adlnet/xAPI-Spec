@@ -215,6 +215,7 @@ OSD, Training Readiness & Strategy (TRS)
 	<tr><td>Jonathan Poltrack</td><td>ADL</td></tr>
 	<tr><td>Kris Miller</td><td>edcetra Training</td></tr>
 	<tr><td>Kris Rockwell</td><td>Hybrid Learning Systems</td></tr>
+	<tr><td>Dennis Hall</td><td>Learning Templates / MongoDev.com</td></tr>
 	<tr><td>Lang Holloman</td><td> </td></tr>
 	<tr><td>Lou Wolford</td><td>ADL</td></tr>
 	<tr><td>Luke Hickey</td><td>dominKnow</td></tr>
