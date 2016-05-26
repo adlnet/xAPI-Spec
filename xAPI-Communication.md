@@ -1566,6 +1566,12 @@ to decide the format of the error.
 
 * A Learning Record Provider SHOULD send an Accept header with requests to enable content negotiation.
 
+* The LRS SHOULD* reject any request with `HTTP 400 Bad Request` status where the content type header does not match the content 
+included in the request or where the structure of the request does not match the structure outlined in this specification 
+for a particular content type. For example, if the content of the request is formatted as JSON, the content type is expected 
+to be application/json. If the content type is application/x-www-form-urlencoded it is expected that the request will include a 
+method parameter as outlined in [Alternate Request Syntax](#alt-request-syntax).
+
 * The LRS MUST reject with `HTTP 400 Bad Request` status any requests that use any parameters which the LRS does 
 not recognize in their intended context in this specification. 
 ( __Note:__ LRSs MAY recognize and act on parameters not in this specification).
