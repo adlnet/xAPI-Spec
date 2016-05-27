@@ -2269,7 +2269,7 @@ are unlikely. The requirements below only apply to Agent Profile API and Activit
 * An LRS responding to a GET request MUST add an ETag HTTP header to the response. (The reason for 
 specifying the LRS ETag format is to allow API consumers that can't read the ETag header to calculate 
 it themselves.)
-* An LRS responding to a GET request MUST calculate the value of this header to be a hexidecimal string 
+* An LRS responding to a GET request MUST calculate the value of this header to be a hexadecimal string 
 of the SHA-1 digest of the contents.
 * An LRS responding to a GET request MUST enclose the header in quotes.  
 * An LRS responding to a PUT request MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect
@@ -2480,7 +2480,7 @@ parameters, not in the OAuth header.
 
 ##### Example
 The list of scopes determines the set of permissions that is being requested. 
-For example,an instructor might grant "statements/read" to a reporting tool, 
+For example, an instructor might grant "statements/read" to a reporting tool, 
 but the LRS would still limit that tool to Statements that the instructor could 
 read if querying the LRS with their credentials directly (such as Statements 
 relating to their students).
