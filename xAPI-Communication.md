@@ -1433,7 +1433,7 @@ are unlikely. The requirements below only apply to Agent Profile Resource and Ac
 
 * An LRS responding to a GET request MUST add an ETag HTTP header to the response.
 * An LRS responding to a GET request without using a transfer encoding or using the identity transfer encoding MUST 
-calculate the value of the ETag header to be a hexadecimal string of the SHA-1 digest of the contents. This hexidecimal 
+calculate the value of the ETag header to be a hexadecimal string of the SHA-1 digest of the contents. This hexadecimal 
 string SHOULD be rendered using numbers and lowercase characters only; uppercase characters SHOULD NOT be used. 
 The requirement to calculate the ETag this way will be removed in a future version of the specification.
 * An LRS responding to a GET request using any non-identity transfer encoding MUST NOT calculate the included ETag as above, 
