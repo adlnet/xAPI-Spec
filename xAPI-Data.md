@@ -2010,7 +2010,7 @@ do not guess at the possible ISO 3166-1 country code. For example, if
 only the primary language is known (e.g., English) then use the top level
 language tag "en", rather than "en-US". If the specific regional variation is known, then use the full language code.
 
-__Note:__ For Chinese languages, the signifcant linguistic diversity represented by "zh" means that the ISO 639 language 
+__Note:__ For Chinese languages, the significant linguistic diversity represented by "zh" means that the ISO 639 language 
 code is generally insufficient.
 
 The content of strings within a language map is plain text. It is expected that any formatting code 
