@@ -142,11 +142,12 @@ conformant to this specification.
 * The LRS MUST NOT return a different serialisation of any properties except those 
 [listed as exceptions above](#statement-immutablity-and-exceptions).
 
-###### Client Requirements
+###### Learning Record Provider Requirements
 
 The following requirements reiterate especially important requirements already included elsewhere, to emphasize,
-clarify, and provide implementation guidance.  Complete IRI validation is extremely difficult, so much of the burden 
-for ensuring data portability is on the Client.
+clarify, and provide implementation guidance.  Some types of validation, such as complete IRI validation and validation 
+that properties appear only once, are extremely difficult, so much of the burden 
+for ensuring data portability is on the Learning Record Provider.
 
 * Values requiring IRIs MUST be sent with valid IRIs. 
 * Keys of language maps MUST be sent with valid [RFC 5646](http://tools.ietf.org/html/rfc5646) language tags, for similar reasons.
@@ -154,6 +155,8 @@ for ensuring data portability is on the Client.
 * Values SHOULD be considered to be case sensitive unless specified otherwise. 
 * Lowercase SHOULD be used to send case insensitive data.
 * Additional properties SHOULD* NOT be added to Statements unless explicitly allowed by this specification. 
+* A property SHOULD not occur multiple times in an object. If properties are used multiple times within an object, the 
+behavior of the LRS is undefined; it is expected that most LRSs will use existing JSON parsing functionality of whichever code languages they use. 
 
 __Note:__ The LRS is recommended to reject Statements containing additional properties. Additional properties in 
 Statements would mean that the Statement would not be interoperable with all LRSs. 
@@ -170,7 +173,6 @@ Statements would mean that the Statement would not be interoperable with all LRS
     * where the case of a value restricted to enumerated values does not match
       an enumerated value given in this specification exactly.
     * where a key or value is not allowed by this specification.
-    * where a key occurs multiple times within an object. 
     * containing IRL or IRI values without a scheme.
 * The LRS MUST at least validate that the sequence of token lengths for language map keys
 matches the [RFC 5646](http://tools.ietf.org/html/rfc5646) standard.
