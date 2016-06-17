@@ -1571,7 +1571,7 @@ Used to record the time at which the experience described in the Statement.
 ###### Requirements
 
 * For requirements pertaining to the Timestamp data type, see [ISO 8601 Timestamps](#timestamps) below.
-* The stored property MUST be set by the LRS; An LRS SHOULD validate and then overwrite any value currently in the 
+* The stored property MUST be set by the LRS; An LRS SHOULD validate and then MUST overwrite any value currently in the 
 stored property of a Statement it receives.
 * The stored property SHOULD be the current or a past time.
 
