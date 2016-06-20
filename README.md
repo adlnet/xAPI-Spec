@@ -2,7 +2,7 @@ xAPI-Spec
 =========
 
 This Github repository contains the xAPI Specification. xAPI is a learning technologies interoperbility specification that describes communication 
-about learner activity and experiences between technologies. You can [read the latest release of the specification here](xAPI.md).  The group meets the first, second, and third Wednesdays of each month on GoToWebinar.  You can register [at https://attendee.gotowebinar.com/register/279276321478091778](https://attendee.gotowebinar.com/register/279276321478091778)
+about learner activity and experiences between technologies. You can [read the latest release of the specification here](xAPI.md).  The group meets the first, second, and third Wednesdays of each month on GoToWebinar.  You can register [at https://attendee.gotowebinar.com/register/7730918418468686596](https://attendee.gotowebinar.com/register/7730918418468686596)
 
 ## Specification versions
 The current version of the specification is [1.0.2](https://github.com/adlnet/xAPI-Spec/blob/master/xAPI.md). 
