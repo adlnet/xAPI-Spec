@@ -61,7 +61,7 @@ class Parser
 		else if( this.stack[0] && (match = /^(#+)\s*([^#]+)/.exec(text)) )
 		{
 			prevIndex = this.stack[1] ? this.stack[1].counter : 0;
-			block = new Block('s'+(prevIndex+1), match[2].trim());
+			block = new Block('s'+(prevIndex+1), match[2].trim(), linenum);
 			block.counter = prevIndex+1;
 			this.stack = [this.stack[0], block];
 
@@ -72,14 +72,40 @@ class Parser
 		// check for bulleted lists
 		else if( this.stack.length > 0 && (match = /^(\s*)[*+-] (.*)/.exec(text)) )
 		{
-			var lastBlock = this.stack[this.stack.length-1];
+			var lastBlock = this.stack.pop();
 
 			// start of a list under this heading
 			if( lastBlock.name.charAt(0) !== 'b' )
 			{
-				
+				block = new Block('b1', match[2], linenum);
+				block.counter = 1;
+				block.level = match[1];
+				this.stack.push(lastBlock);
+				this.stack.push(block);
+			}
+			else if( !match[1] )
+			{
+				if(lastBlock.level)
+					lastBlock = this.stack.pop();
+
+				block = new Block('b'+(lastBlock.counter+1), match[2], linenum);
+				block.counter = lastBlock.counter+1;
+				block.level = match[1];
+				this.stack.push(block);
+			}
+			else
+			{
+				if(!lastBlock.level)
+					this.stack.push(lastBlock);
+
+				block = new Block('b'+(lastBlock.level ? lastBlock.counter+1 : 1), match[2], linenum);
+				block.counter = lastBlock.level ? lastBlock.counter+1 : 1;
+				block.level = match[1];
+				this.stack.push(block);
 			}
 
+			var fullname = this.stack.map(x => x.name).join('.');
+			this.outBuffer.push( `${block.level}* <a name="${fullname}"></a>${block.text}` );
 		}
 
 		// every other line
@@ -106,5 +132,6 @@ if( process.argv.length <= 2 )
 else {
 	var parser = new Parser();
 	var output = parser.process( process.argv[process.argv.length-1] );
+	fs.writeFile('output.md', output);
 	//console.log(output);
 }
