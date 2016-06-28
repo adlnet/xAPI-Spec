@@ -105,7 +105,7 @@
 #Part One: About the Experience API
 
 <a name="introduction-partone"></a>
-## <a name="1.0">1.0</a> Introduction
+## 1.0 Introduction
 
 The Experience API (xAPI) is a technical specification that aims to facilitate the documentation and communication of 
 learning experiences. It specifies a structure to describe learning experiences and defines how these descriptions can 
@@ -119,23 +119,23 @@ to consider a wide range of formal and informal learning experiences, both on an
 more often than not is scattered across a wide variety of sources.
 
 Out of this perceived need, the xAPI community and specification were born. xAPI assumes that:
-  * <a name="1.0.b1"></a>There is a need to be able to analyze information about learning experiences and their outcomes distributed across 
+  * There is a need to be able to analyze information about learning experiences and their outcomes distributed across 
   a wide variety of sources, platforms and technologies.
-  * <a name="1.0.b2"></a>Developing a commonly-accepted framework for gathering, storing and exchanging this information represents the 
+  * Developing a commonly-accepted framework for gathering, storing and exchanging this information represents the 
   best way of achieving this.
 
 The goals of the xAPI are:
 
-* <a name="bNaN"></a>To make it easier to understand and compare learning experiences and their outcomes recorded across a wide 
+* To make it easier to understand and compare learning experiences and their outcomes recorded across a wide 
 variety of contexts, platforms and technologies.
-* <a name="bNaN"></a>To maximize interoperability of services which create, gather, store and process information about learning experiences.
-* <a name="bNaN"></a>To provide a guide to those who want to build applications that conform to and implement this specification.
-* <a name="bNaN"></a>To provide criteria against which conformance to this specification can be tested.
+* To maximize interoperability of services which create, gather, store and process information about learning experiences.
+* To provide a guide to those who want to build applications that conform to and implement this specification.
+* To provide criteria against which conformance to this specification can be tested.
 
 The document that follows sets out the xAPI specification which is designed to achieve these goals. 
 <a name="readingguidelines"></a>
 
-## <a name="2.0">2.0</a> How to Use This Document
+## 2.0 How to Use This Document
 
 This is a definitive document which describes how the Experience API is to be implemented.
 It is a technical document authored specifically for individuals and organizations implementing this 
@@ -166,7 +166,7 @@ data is transferred via HTTP requests and responses. Part three also defines sec
 exchange of information between the LRS and trusted clients.
 
 <a name="def-must-should-may"></a>
-### <a name="2.1">2.1</a> MUST / SHOULD / MAY 
+### 2.1 MUST / SHOULD / MAY 
 There are three levels of obligation with regards to conformance to the xAPI specification identified by the terms 
 MUST, SHOULD and MAY. A service or system that fails to implement a MUST (or a MUST NOT) requirement is non-conformant. 
 Failing to meet a SHOULD requirement is not a violation of conformity, but goes against the recommendations of the specification. 
@@ -182,7 +182,7 @@ The xAPI Working Group strongly encourages adopters to implement these requireme
 requirements, while continuing to support other adopters that might not do so.
 
 <a name="interpret-text-table"></a>
-### <a name="2.2">2.2</a> Guidelines for Interpreting Descriptive Text and Tables
+### 2.2 Guidelines for Interpreting Descriptive Text and Tables
 As a rule of thumb, if the guideline appears technical or seems to be a requirement, interpret it 
 as such. This is especially true of longer, more, detailed explanations and of tables, each of which would 
 be unintuitive and/or lengthy to dissect into a list of requirements.
@@ -207,7 +207,7 @@ to determine a sensible approach. This specification tries to avoid vagueness an
 even if there no requirement in a given area.
 
 <a name="json"></a>
-## <a name="3.0">3.0</a> Serialization and JavaScript Object Notation (JSON)
+## 3.0 Serialization and JavaScript Object Notation (JSON)
 
 Serialization is the process of translating data objects and structures into a format for storage or transmission, such that the 
 original data object can be recreated from the resulting serialization. In some cases it might be possible to serialize a piece 
@@ -230,38 +230,38 @@ All required properties are required to contain values.
 
 
 <a name="definitions"></a>
-## <a name="4.0">4.0</a> Definitions  
+## 4.0 Definitions  
 
-* <a name="4.0.b1"></a>[Activity](#def-activity)
-* <a name="4.0.b2"></a>[Activity Provider (AP)](#def-activity-provider)
-* <a name="4.0.b3"></a>[Actor](#def-actor)
-* <a name="4.0.b4"></a>[Application Programming Interface (API)](#def-api)
-* <a name="4.0.b5"></a>[Authentication](#def-authentication)
-* <a name="4.0.b6"></a>[Authorization](#def-authorization)
-* <a name="4.0.b7"></a>[Community of Practice](#def-community-of-practice)
-* <a name="4.0.b8"></a>[Endpoint](#endpoint)
-* <a name="4.0.b9"></a>[Experience API (xAPI)](#def-experience-api)
-* <a name="4.0.b10"></a>[Immutable](#def-immutable)
-* <a name="4.0.b11"></a>[Internationalized Resource Identifier (IRI)](#def-iri)
-* <a name="4.0.b12"></a>[Internationalized Resource Locator (IRL)](#def-irl)
-* <a name="4.0.b13"></a>[Inverse Functional Identifier](#def-inverse-functional-identifier)
-* <a name="4.0.b14"></a>[Learning Experience] (#def-learning-experience")
-* <a name="4.0.b15"></a>[Learning Management System (LMS)](#def-learning-management-system)
-* <a name="4.0.b16"></a>[Learning Record](#def-learning-record)
-* <a name="4.0.b17"></a>[Learning Record Consumer](#def-learning-record-consumer)
-* <a name="4.0.b18"></a>[Learning Record Provider](#def-learning-record-provider)
-* <a name="4.0.b19"></a>[Learning Record Store (LRS)](#def-learning-record-store)
-* <a name="4.0.b20"></a>[Metadata Provider](#def-metadata-provider)
-* <a name="4.0.b21"></a>[Metadata Consumer](#def-metadata-consumer)
-* <a name="4.0.b22"></a>[Persona](#def-persona)
-* <a name="4.0.b23"></a>[Profile](#def-profile)
-* <a name="4.0.b24"></a>[Registration](#def-registration)
-* <a name="4.0.b25"></a>[Representational State Transfer (REST)](#def-rest)
-* <a name="4.0.b26"></a>[Service](#def-service)
-* <a name="4.0.b27"></a>[Statement](#def-statement)
-* <a name="4.0.b28"></a>[Tin Can API (TCAPI)](#def-tcapi)
-* <a name="4.0.b29"></a>[Verb](#def-verb)
-* <a name="4.0.b30"></a>[Vocabulary](#def-vocabulary)
+* [Activity](#def-activity)
+* [Activity Provider (AP)](#def-activity-provider)
+* [Actor](#def-actor)
+* [Application Programming Interface (API)](#def-api)
+* [Authentication](#def-authentication)
+* [Authorization](#def-authorization)
+* [Community of Practice](#def-community-of-practice)
+* [Endpoint](#endpoint)
+* [Experience API (xAPI)](#def-experience-api)
+* [Immutable](#def-immutable)
+* [Internationalized Resource Identifier (IRI)](#def-iri)
+* [Internationalized Resource Locator (IRL)](#def-irl)
+* [Inverse Functional Identifier](#def-inverse-functional-identifier)
+* [Learning Experience] (#def-learning-experience")
+* [Learning Management System (LMS)](#def-learning-management-system)
+* [Learning Record](#def-learning-record)
+* [Learning Record Consumer](#def-learning-record-consumer)
+* [Learning Record Provider](#def-learning-record-provider)
+* [Learning Record Store (LRS)](#def-learning-record-store)
+* [Metadata Provider](#def-metadata-provider)
+* [Metadata Consumer](#def-metadata-consumer)
+* [Persona](#def-persona)
+* [Profile](#def-profile)
+* [Registration](#def-registration)
+* [Representational State Transfer (REST)](#def-rest)
+* [Service](#def-service)
+* [Statement](#def-statement)
+* [Tin Can API (TCAPI)](#def-tcapi)
+* [Verb](#def-verb)
+* [Vocabulary](#def-vocabulary)
 
 <a name="def-activity" ></a>
 
@@ -435,11 +435,11 @@ __Vocabulary__: A list or collection of the terms that are used by a COP for lab
 
 <a name="xapi-components" ></a>
 
-## <a name="5.0">5.0</a> xAPI Components
+## 5.0 xAPI Components
 
 This section explains and shows graphically how different pieces of xAPI can fit together.  
 
-##### <a name="5.0.s1"></a>Tracking Experiences
+##### Tracking Experiences
 
 ![Data Flow in xAPI](/xAPIDataFlow.jpg)
 
@@ -454,7 +454,7 @@ an account on the LRS/LRSs. The Learning Record Store has authentication and aut
 Learning Record Consumer can access Learning Records it is authorized to do so from the LRS. Components that interact with the LRS 
 in a request-response manner are referred to as Clients.
 
-##### <a name="5.0.s2"></a>Activity Data and Metadata
+##### Activity Data and Metadata
 
 ![xAPI Activity Data and Metadata](/xAPIMetadata.jpg)
 
@@ -470,7 +470,7 @@ A Metadata Consumer can access metadata via the IRI for the authoritative versio
 canonical version.
 
 
-##### <a name="5.0.s3"></a>Agent and Persona Management
+##### Agent and Persona Management
 
 ![xAPI Activity Data and Metadata](/xAPIPersonas.jpg)
 
@@ -491,7 +491,7 @@ that an LRS can take. It's also possible that some LRSs will have no mechanism f
 
 <a name="extending-xapi" ></a>
 
-## <a name="6.0">6.0</a> Extending xAPI
+## 6.0 Extending xAPI
 
 xAPI can be extended in a few ways. The most notable is Statement Extensions, which allow great flexibility within Statements. 
 It is recommended that Communities of Practice agree on how to use extensions for their particular use cases and utilize 
@@ -505,7 +505,7 @@ those listed in this specification can be implemented and co-exist with the Reso
 
 <a name="COPs" ></a>
 
-## <a name="7.0">7.0</a> Profiles, Vocabularies, and Communities of Practice
+## 7.0 Profiles, Vocabularies, and Communities of Practice
 
 xAPI strictly defines the structure of Statements, but is very flexible as to the contents of that structure. For example, the 
 specification requires that all Statements have a Verb property, but does not restrict the values of that property; any Verb 
@@ -526,71 +526,71 @@ field is the [Medbiquitous xAPI Interest Group](http://groups.medbiq.org/medbiq/
 
 
 <a name="append1"></a>
-## <a name="7.0.s1"></a>Appendices
+## Appendices
 
 <a name="Appendix1A"></a>
-### <a name="A">Appendix A</a>: Revision History
-###### <a name="0.8">0.8</a> (Project Tin Can API Deliverable) to 0.9 (March 31, 2012)  
+### Appendix A: Revision History
+###### 0.8 (Project Tin Can API Deliverable) to 0.9 (March 31, 2012)  
   
 Rustici Software, who delivered the Project Tin Can API, made modifications to the 
 API prior to the April 2012 Kickoff Meeting. It was voted in this meeting to 
 move those changes into the current specification and revision to 0.9.
 
-###### <a name="0.90">0.90</a> to 0.95 (August 31, 2012)  
+###### 0.90 to 0.95 (August 31, 2012)  
 
 "Core" Verbs and Activity types were removed from the specification. References 
 to these verbs in results, context, interactions, and Activity Definitions were 
 also  removed. It was recommended that implementers prefer community defined 
 verbs to creating their own verbs.
-* <a name="0.90.b1"></a>Verbs, Activity types, and extension keys are now URIs
-* <a name="0.90.b2"></a>Restructured and added language around some of the other implementation 
+- Verbs, Activity types, and extension keys are now URIs
+- Restructured and added language around some of the other implementation 
 details and scope.
-* <a name="0.90.b3"></a>Changed from using a person-centric view of Agents to a persona-centric 
+- Changed from using a person-centric view of Agents to a persona-centric 
 view.
-* <a name="0.90.b4"></a>Friend of a Friend (FOAF) Agent merging requirement was removed.
-* <a name="0.90.b5"></a>Agent Objects now have exactly 1 uniquely identifying property, instead 
+- Friend of a Friend (FOAF) Agent merging requirement was removed.
+- Agent Objects now have exactly 1 uniquely identifying property, instead 
 of at least one.
 
-###### <a name="0.95">0.95</a> to 1.0.0 (April 26, 2013) 
+###### 0.95 to 1.0.0 (April 26, 2013) 
 Various refinements and clarifications including:
-* <a name="0.95.b1"></a>Adding attachments
-* <a name="0.95.b2"></a>Activity metadata is now stored as JSON rather than XML
-* <a name="0.95.b3"></a>Changes to voiding Statements
-* <a name="0.95.b4"></a>Clarification and naming of the Document APIs
-* <a name="0.95.b5"></a>Changes to querying the Statement API
-* <a name="0.95.b6"></a>Signed Statements
+- Adding attachments
+- Activity metadata is now stored as JSON rather than XML
+- Changes to voiding Statements
+- Clarification and naming of the Document APIs
+- Changes to querying the Statement API
+- Signed Statements
 
 [0.95...1.0.0](https://github.com/adlnet/xAPI-Spec/compare/0.95-spec...1.0.0)
 
-###### <a name="1.0.0">1.0.0</a> to 1.0.1 (October 1, 2013)
+###### 1.0.0 to 1.0.1 (October 1, 2013)
 Clarifications and additional examples including:
-* <a name="1.0.0.b1"></a>Fixed various typos
-* <a name="1.0.0.b2"></a>Added additional examples in the appendices
+- Fixed various typos
+- Added additional examples in the appendices
 
 [1.0.0...1.0.1](https://github.com/adlnet/xAPI-Spec/compare/1.0.0...1.0.1)
 
-###### <a name="1.0.1">1.0.1</a> to 1.0.2 (October 1, 2014)
-* <a name="1.0.1.b1"></a>Added optional/required to tables
-* <a name="1.0.1.b2"></a>Added missing table heading on Interaction components
-* <a name="1.0.1.b3"></a>Change yes/no to required/optional in attachments
-* <a name="1.0.1.b4"></a>Clarified intent of 'moreInfo' property
+###### 1.0.1 to 1.0.2 (October 1, 2014)
+- Added optional/required to tables
+- Added missing table heading on Interaction components
+- Change yes/no to required/optional in attachments
+- Clarified intent of 'moreInfo' property
 
 [1.0.1...1.0.2](https://github.com/adlnet/xAPI-Spec/compare/1.0.1...1.0.2)
 
-###### <a name="1.0.2">1.0.2</a> to 1.0.3 (TBC, 2016)
-* <a name="1.0.2.b1"></a>Complete reorganization of the document into three parts
-* <a name="1.0.2.b2"></a>Many, many clarifications
-* <a name="1.0.2.b3"></a>Definitions slightly modified and greatly clarified
-* <a name="1.0.2.b4"></a>Removed back-references to SCORM
-* <a name="1.0.2.b5"></a>Additional explanatory text and diagrams
-* <a name="1.0.2.b6"></a>Rename Statement API and Document APIs to Statement Resource and Document Resources
+###### 1.0.2 to 1.0.3 (TBC, 2016)
+- Complete reorganization of the document into three parts
+- Many, many clarifications
+- Definitions slightly modified and greatly clarified
+- Removed back-references to SCORM
+- Additional explanatory text and diagrams
+- Rename Statement API and Document APIs to Statement Resource and Document Resources
 
 
 [1.0.2...1.0.3](https://github.com/adlnet/xAPI-Spec/compare/1.0.2...1.0.3)
 
 
 <a name="Appendix1B"></a>
-### <a name="B">Appendix B</a>: cmi5 Example 
+### Appendix B: cmi5 Example 
 
 The following example illustrates a statement following the cmi5 Community of Practice. It demonstrates use of Extensions 
 and "category" Context Activities.
