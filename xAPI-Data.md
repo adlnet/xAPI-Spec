@@ -355,8 +355,7 @@ The details of each property of a statement are described in the table below.
 		<td>Ordered array of Attachment Objects</td>
 	    <td>Headers for attachments to the Statement</td>
 	<td>Optional</td></tr>
-</table>  
-
+</table>
 
 ###### <a name="2.4.s2"></a>Example
 
@@ -431,7 +430,6 @@ The table below lists the properties of Agent Objects.
 </table>
 
 
-
 <a name="group"/>
 
 ##### <a name="2.4.2.2">2.4.2.2</a> When the Actor ObjectType is Group
@@ -456,7 +454,6 @@ The table below lists all properties of an Anonymous Group.
 	<td>Required</td></tr>
 </table>
 
-
 An Identified Group is used to uniquely identify a cluster of Agents.
 
 The table below lists all properties of an Identified Group.
@@ -471,7 +468,6 @@ The table below lists all properties of an Identified Group.
 	<tr id="2.4.2.2.s2.table2.row4"><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
 	    <td>An Inverse Functional Identifier unique to the Group.</td><td>Required</td></tr>	
 </table>
-
 
 ###### <a name="2.4.2.2.s3"></a>Requirements
 
@@ -522,7 +518,6 @@ but no others, SHOULD be used for this property and mbox_sha1sum.</td></tr>
 	<tr id="2.4.2.3.s3.table1.row4"><td>account</td><td><a href="#agentaccount">Object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
 </table>
 
-
 ###### <a name="2.4.2.3.s4"></a>Client Requirements
 * <a name="2.4.2.3.s4.b1"></a>The domain portions of email addresses are case insensitive. Clients SHOULD uses lowercase for the domain portion of the 
 email address when calculating the SHA1 hash for the "mbox_sha1sum" property. 
@@ -553,7 +548,6 @@ The table below lists all properties of Account Objects.
 	<tr id="2.4.2.4.s2.table1.row2"><td>name</td><td>String</td><td>The unique id or name used to log in to this account. This is based 
 			on FOAF's accountName.</td><td>Required</td></tr>
 </table>
-
 
 
 ###### <a name="2.4.2.4.s3"></a>Example
@@ -612,7 +606,6 @@ The table below lists all properties of the Verb Object.
 		<td>Recommended</td>
 	</tr>
 </table>
-
 
 ###### <a name="2.4.3.s4"></a>Verb Id Requirements
 
@@ -744,7 +737,6 @@ properties in this case.
 	</tr>
 </table>
 
-
 If it were possible to use the same id for two different Activities, the validity of Statements about 
 these Activities could be questioned. This means an LRS can't ever treat (references to) the same 
 Activity id as belonging to two different Activities, even if it thinks this was intended. Namely, 
@@ -793,7 +785,6 @@ The table below lists the properties of the Activity Definition Object:
 		<td>Optional</td>
 	</tr>
 </table>
-
 
 __Note:__ IRI fragments (sometimes called relative IRLs) are not valid IRIs. As with Verbs, it is recommended that
 those implementing xAPI look for and use established, widely adopted, Activity types.
@@ -873,8 +864,7 @@ The table below lists the properties for Interaction Activities.
 		<td>Specific to the given interactionType (<a href="#interactionComponentLists">see below</a>).</td>
 		<td>Optional</td>
 	</tr>
-</table>  
-
+</table>
 
 ###### <a name="2.4.4.1.s9"></a>Interaction Types
 The table below describes the kinds of interactions represented by each of the interactionTypes. These types of interactions 
@@ -932,7 +922,6 @@ Edition Run-Time Environment. See [Appendix C](#Appendix2C) for examples definit
 		<td>Another type of interaction that does not fit into those defined above.</td>
 	</tr>
 </table>
-
 
 ###### <a name="2.4.4.1.s10"></a>Response Patterns
 The table below outlines the format of the strings within correctResponsesPattern property for each interaction type. 
@@ -992,7 +981,6 @@ Run-Time Environment. See [Appendix C](#Appendix2C) for examples of each format.
 	</tr>
 </table>
 
-
 ###### <a name="2.4.4.1.s11"></a>Correct Responses Pattern
 The Correct Responses Pattern contains an array of response patterns. A learner's response will be considered correct if it 
 matches **any** of the response patterns in that array. Where a response pattern is a delimited list, the learner's response 
@@ -1048,7 +1036,6 @@ The following parameters are valid at the start of the string representing the l
 	</tr>
 </table>
 
-
 The following parameters are valid at the start of each item in the list for the listed interaction types:
 <table>
 	<tr><th>Parameter</th><th>Description</th><th>Value</th><th>Interaction types</th></tr>
@@ -1059,7 +1046,6 @@ The following parameters are valid at the start of each item in the list for the
 		<td>fill-in, long-fill-in, performance (string responses only)</td>
 	</tr>
 </table>
-
 
 
 ###### <a name="2.4.4.1.s13"></a>Requirements
@@ -1094,7 +1080,6 @@ Interaction components are defined as follows:
 	</tr>
 </table>
 
-
 <a name="#interactionComponentLists"/>
 
 Depending on Interaction Type, Interaction Activities can take additional properties, each containing a 
@@ -1113,7 +1098,6 @@ shows the supported interaction component list(s) for an Interaction Activity wi
 	<td>A list of the elements making up the performance interaction.</td></tr>
 	<tr id="2.4.4.1.s15.table2.row5"><td>true-false, fill-in, long-fill-in, numeric, other</td><td>[No component lists supported]</td><td></td></tr>
 </table>
-
 
 
 ###### <a name="2.4.4.1.s16"></a>Requirements
@@ -1168,7 +1152,6 @@ The table below lists all properties of a Statement Reference Object:
 	<tr id="2.4.4.3.s4.table1.row2"><td>id</td><td>UUID</td><td>The UUID of a Statement. 
 	</td><td>Required</td></tr>
 </table>
-
 
 ###### <a name="2.4.4.3.s5"></a>Example
 
@@ -1309,8 +1292,7 @@ The following table contains the properties of the Results Object.
 	<a href="#miscext">See: Extensions</a></td>
 	<td>Optional</td>
 </tr>
-</table> 
-
+</table>
 
 <a name="Score"/>
 
@@ -1352,7 +1334,6 @@ The table below defines the Score Object.
 		<td>Optional</td>
 	</tr>
 </table>
-
 
 The properties of the Score Object are based on the corresponding properties of cmi.score as defined in SCORM 2004 
 4th Edition. The "scaled" and "raw" properties do not necessarily relate directly as scaling and normalization can
@@ -1444,7 +1425,6 @@ The following table contains the properties of the Context Object.
 </tr>
 
 </table>
-
 
 ###### <a name="2.4.6.s4"></a>Requirements
 
@@ -1763,7 +1743,6 @@ The table below lists all properties of the Attachment object.
 	</tr>
 </table>
 
-
 In the case of wanting to include an attachment(s) for a SubStatement, it is strongly recommended to include the 
 attachment(s) in the Statement Attachment object and to include the payloads as normally done for a Statement.
 
@@ -1796,7 +1775,6 @@ The following table shows the data structure for the results of queries on the S
 		<td>Required if the list returned has been limited, otherwise optional.</td>
 	</tr>
 </table>
-
 
 ###### <a name="2.5.s3"></a>Requirements
 
@@ -1943,7 +1921,6 @@ For the structure of hosted metadata about all other identifiers, see the format
 		<td>Optional</td>
 	</tr>
 </table>
-
 
 Hosted metadata consists of a document containing a JSON object as described above. If this hosted metadata is provided, 
 it is the canonical source of information about the identifier it describes. It is recommended that those implementing xAPI
@@ -2124,7 +2101,6 @@ The table below provides some example ISO 8601 durations. This list is not inten
 		<td>Four weeks. Note that weeks cannot be combined with other time periods. 'P4W1D' is not valid.</td>
 	</tr>
 </table>
-
 
 Durations are expected to be presented in the format in which they are recorded. For example if a duration is tracked
 in seconds (or fractions of a second) there is no need to convert this to hours, minutes and seconds. 

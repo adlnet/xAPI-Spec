@@ -162,7 +162,7 @@ class Parser
 				block.counter = tc;
 				this.stack.push(block);
 
-				this.outBuffer.push(output);
+				this.outBuffer.push(output.trim());
 			}
 		}
 

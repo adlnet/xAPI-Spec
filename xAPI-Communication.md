@@ -470,7 +470,6 @@ Stores a single Statement with the given id. POST can also be used to store sing
 	<td>Id of Statement to record</td></td><td>Required</td></tr>
 </table>
 
-
 ###### <a name="2.1.1.s2"></a>LRS Requirements
 
 * <a name="2.1.1.s2.b1"></a>The LRS MAY respond before Statements that have been stored are available for retrieval.
@@ -706,7 +705,6 @@ retrieve them will be included in the StatementResult Object.
 	</tr>
 </table>
 
-
 __Note:__ The values of Boolean parameters are represented as `true` or `false` as in JSON.
 ###### <a name="2.1.3.s2"></a>Requirements
 
@@ -829,7 +827,6 @@ in this specification do. The id is stored in the IRL, "updated" is HTTP header 
 	<tr id="2.2.s2.table1.row3"><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
 
-
 The three Document Resources provide [document](#miscdocument) storage.  The details of each Resource are found in 
 the following sections, and the information in this section applies to all three Resources.
 
@@ -861,7 +858,6 @@ the following sections, and the information in this section applies to all three
 		<td>http://example.com/xAPI/agents/profile</td>
 	</tr>
 </table>
-
 
 ###### <a name="2.2.s4"></a>Requirements
 
@@ -990,7 +986,6 @@ exists in the context of the specified Activity, Agent, and registration (if spe
 	</tr>
 </table>
 
-
 ###### <a name="2.3.s4"></a>Multiple Document GET
 Example resource endpoint: http://example.com/xAPI/activities/state
 
@@ -1030,7 +1025,6 @@ Timestamp (exclusive).
 	</tr>
 </table>
 
-
 ###### <a name="2.3.s5"></a>Multiple Document DELETE
 Example resource endpoint: http://example.com/xAPI/activities/state
 
@@ -1060,7 +1054,6 @@ Deletes all state data for this context (Activity + Agent \[+ registration if sp
 		<td>Optional</td>
 	</tr>
 </table>
-
 
 <a name="agentsres"/>
 
@@ -1095,8 +1088,7 @@ It is not a Person Object, nor is it a Group.
 		<td>The Agent representation to use in fetching expanded Agent information.</td>
 		<td>Required</td>
 	</tr>
-</table>  
-
+</table>
 
 ###### <a name="2.4.s3"></a>Requirements
 * <a name="2.4.s3.b1"></a>An LRS capable of returning multiple identifying properties for a Person 
@@ -1154,8 +1146,7 @@ about the Agent it received in the request.
 		MUST be provided.</td>
 		<td>Optional</td>
 	</tr>
-</table> 
-
+</table>
 
 See also: [Agent](#agent).
 
@@ -1189,7 +1180,6 @@ Loads the complete Activity Object specified.
 		<td>Required</td>
 	</td>
 </table>
-
 
 ###### <a name="2.5.s2"></a>Requirements
 
@@ -1236,8 +1226,7 @@ Stores, changes, fetches, or deletes the specified profile document in the conte
 		<td>The profile Id associated with this profile.</td>
 		<td>Required</td>
 	</tr>
-</table>  
-
+</table>
 
 __Note:__ The agent parameter is an Agent Object and not a Group. Learning Record Providers wishing to store data
 against an Identified Group can use the Identified Group's identifier within an Agent Object. 
@@ -1267,8 +1256,7 @@ that have been stored or updated since the specified Timestamp (exclusive).
 			(exclusive) are returned.</td>
 		<td>Optional</td>
 	</tr>
-</table>  
-
+</table>
 
 <a name="actprofres"/> 
 
@@ -1311,7 +1299,6 @@ Stores, changes, fetches, or deletes the specified profile document in the conte
 	</tr>
 </table>
 
-
 ###### <a name="2.7.s4"></a>Multiple Document GET
 Example resource endpoint: http://example.com/xAPI/activities/profile
 
@@ -1338,7 +1325,6 @@ entries that have been stored or updated since the specified Timestamp (exclusiv
 		<td>Optional</td>
 	</tr>
 </table>
-
 
 
 <a name="aboutresource"/> 
@@ -1379,7 +1365,6 @@ Example resource endpoint: http://example.com/xAPI/about
 	</tr>
 
 </table>
-
 
 ###### <a name="2.8.s5"></a>Requirements
 
@@ -1732,8 +1717,7 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 
 </tr>
 
-</table> 
-
+</table>
 
 ##### <a name="4.1.s2"></a>Requirements
 
@@ -1858,7 +1842,6 @@ The following table lists xAPI scope values:
 	<tr id="4.2.s2.table1.row7"><td>all</td><td>unrestricted access</td></tr>
 </table>
 
-
 ###### <a name="4.2.s3"></a>OAuth Extended Parameters
 Note that the parameters "consumer_name" and "scope" are not part of OAuth 1.0, and therefore if used MUST be passed 
 as query string or form parameters, not in the OAuth header.  
@@ -1886,7 +1869,6 @@ as query string or form parameters, not in the OAuth header.
 		<td>http://example.com/xAPI/OAuth/token </td>
 	</tr>
 </table>
-
 
 ##### <a name="4.2.s5"></a>Example
 The list of scopes determines the set of permissions that is being requested. For example, an instructor might grant 
@@ -2136,7 +2118,6 @@ Converted to 1.0.0:
 	</tr>
 </table>
 
-
 ### <a name="B.s2"></a>OAuth Resource Endpoints
 <table>
 	<tr>
@@ -2156,7 +2137,6 @@ Converted to 1.0.0:
 		<td>Token Request</td>
 	</tr>
 </table>
-
 
 <a name="Appendix3C"/>
 
