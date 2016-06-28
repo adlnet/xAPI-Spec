@@ -19,6 +19,7 @@ class Parser
 	{
 		this.stack = [];
 		this.outBuffer = [];
+		this.tableCache = '';
 	}
 
 	process(filename)
@@ -69,8 +70,8 @@ class Parser
 			this.outBuffer.push( `${match[1]} <a name="${fullname}"></a>${block.text}` );
 		}
 
-		// check for bulleted lists
-		else if( this.stack.length > 0 && (match = /^(\s*)[*+-] (.*)/.exec(text)) )
+		// check for lists (ordered or unordered)
+		else if( this.stack.length > 0 && (match = /^(\s*)(?:[*+-]|\d+\.) (.*)/.exec(text)) )
 		{
 			var lastBlock = this.stack.pop();
 
@@ -83,6 +84,7 @@ class Parser
 				this.stack.push(lastBlock);
 				this.stack.push(block);
 			}
+			// next bullet in a top-level list
 			else if( !match[1] )
 			{
 				if(lastBlock.level)
@@ -93,6 +95,7 @@ class Parser
 				block.level = match[1];
 				this.stack.push(block);
 			}
+			// nested list
 			else
 			{
 				if(!lastBlock.level)
@@ -106,6 +109,61 @@ class Parser
 
 			var fullname = this.stack.map(x => x.name).join('.');
 			this.outBuffer.push( `${block.level}* <a name="${fullname}"></a>${block.text}` );
+		}
+
+		// check for tables
+		else if( this.stack.length > 0 && (/<\/?table.*?>/.test(text) || this.tableCache) )
+		{
+			this.tableCache += text+'\n';
+
+			// wait for table end to start processing
+			if( /<\/table>/.test(text) )
+			{
+				// name table
+				var lastBlock = this.stack.pop();
+				if( /^table/.test(lastBlock.name) ){
+					var tc = lastBlock.counter + 1;
+					var tname = 'table' + tc;
+				}
+				else {
+					tc = 1;
+					tname = 'table1';
+					if( !/^b/.test(lastBlock.name) )
+						this.stack.push(lastBlock);
+				}
+
+				var output = '', lastIndex = 0, rowCounter = 1;
+
+				// process rows
+				var rowRE = new RegExp(/<tr.*?>([\s\S]*?)<\/tr>/g);
+				while((match = rowRE.exec(this.tableCache)) !== null)
+				{
+					// output non-row text
+					output += this.tableCache.slice(lastIndex, match.index);
+
+					// not a header row
+					if(/<td>/.test(match[1]))
+					{
+						var fullname = this.stack.map(x => x.name).join('.');
+						output += `<tr id="${fullname}.${tname}.row${rowCounter++}">${match[1]}</tr>`;
+					}
+					else {
+						output += match[0];
+					}
+
+					lastIndex = rowRE.lastIndex;
+				}
+
+				// output remaining cache unmodified
+				output += this.tableCache.slice(lastIndex);
+				this.tableCache = '';
+
+				block = new Block(tname, output, linenum);
+				block.counter = tc;
+				this.stack.push(block);
+
+				this.outBuffer.push(output);
+			}
 		}
 
 		// every other line
