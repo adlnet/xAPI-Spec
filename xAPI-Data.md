@@ -1812,7 +1812,7 @@ for discoverability of the signer X.509 certificates SHOULD be used.
 ##### Signature Requirements
 * A Signed Statement MUST include a JSON web signature (JWS) as defined here:
 http://tools.ietf.org/html/draft-ietf-jose-json-web-signature, as an attachment with a usageType
-of "http://adlnet.gov/expapi/attachments/signature" and a contentType of "application/octet-stream".
+of "http://adlnet.gov/expapi/attachments/signature" and a contentType of "application/jose".
 * JWS Compact Serialization SHOULD* be used to create the JSON web signature. Use of JWS JSON Serialization is 
 strongly discouraged, is unlikely to be interoperble with other systems, and will be forbidden in a future version
 of this specification. 
