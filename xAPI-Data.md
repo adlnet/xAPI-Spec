@@ -1571,7 +1571,7 @@ Used to record the time at which the experience described in the Statement.
 ###### <a name="2.4.8.s3"></a>Requirements
 
 * <a name="2.4.8.s3.b1"></a>For requirements pertaining to the Timestamp data type, see [ISO 8601 Timestamps](#timestamps) below.
-* <a name="2.4.8.s3.b2"></a>The stored property MUST be set by the LRS; An LRS MUST validate and then overwrite any value currently in the 
+* <a name="2.4.8.s3.b2"></a>The stored property MUST be set by the LRS; An LRS SHOULD validate and then MUST overwrite any value currently in the 
 stored property of a Statement it receives.
 * <a name="2.4.8.s3.b3"></a>The stored property SHOULD be the current or a past time.
 
