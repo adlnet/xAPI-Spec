@@ -1810,9 +1810,9 @@ For interoperability, the "RSA + SHA" series of JWS algorithms have been selecte
 for discoverability of the signer X.509 certificates SHOULD be used.
 
 ##### Signature Requirements
-* A Signed Statement MUST include a JSON web signature (JWS) as defined here:
-http://tools.ietf.org/html/draft-ietf-jose-json-web-signature, as an attachment with a usageType
-of "http://adlnet.gov/expapi/attachments/signature" and a contentType of "application/octet-stream".
+* A Signed Statement MUST include a JSON web signature (JWS) as defined in [RFC7515](
+https://tools.ietf.org/html/rfc7515) as an attachment with a usageType
+of "http://adlnet.gov/expapi/attachments/signature" and a contentType of "application/jose".
 * JWS Compact Serialization SHOULD* be used to create the JSON web signature. Use of JWS JSON Serialization is 
 strongly discouraged, is unlikely to be interoperble with other systems, and will be forbidden in a future version
 of this specification. 
