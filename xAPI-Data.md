@@ -1255,37 +1255,38 @@ The following table contains the properties of the Results Object.
 
 <table border="1">
 <tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
+<tr id="2.4.5.s2.table1.row1">
 	<td>score</td>
 	<td>Object</td>
 	<td>The score of the Agent in relation to the success or quality of the experience. 
 	<a href ="#Score">See: Score</a></td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.5.s2.table1.row1">
+<tr id="2.4.5.s2.table1.row2">
 	<td>success</td>
 	<td>Boolean</td>
 	<td>Indicates whether or not the attempt on the Activity was successful.</td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.5.s2.table1.row2">
+<tr id="2.4.5.s2.table1.row3">
 	<td>completion</td>
 	<td>Boolean</td>
 	<td>Indicates whether or not the Activity was completed.</td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.5.s2.table1.row3">
+<tr id="2.4.5.s2.table1.row4">
 	<td>response</td>
 	<td>String</td>
 	<td>A response appropriately formatted for the given Activity.</td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.5.s2.table1.row4">
+<tr id="2.4.5.s2.table1.row5">
 	<td>duration</td>
 	<td><a href="#durations">Duration</a></td>
 	<td>Period of time over which the Statement occurred.</td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.5.s2.table1.row5">
+<tr id="2.4.5.s2.table1.row6">
 	<td>extensions</td>
 	<td>Object</td>
 	<td>A map of other properties as needed.

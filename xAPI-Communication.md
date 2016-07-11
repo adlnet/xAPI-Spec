@@ -1173,12 +1173,12 @@ Loads the complete Activity Object specified.
 **Returns:** `200 OK`, Content 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr>
+	<tr id="2.5.s1.table1.row1">
 		<td>activityId</td>
 		<td>Activity Id (IRI)</td>
 		<td>The Id associated with the Activities to load.</td>
 		<td>Required</td>
-	</td>
+	</tr>
 </table>
 
 ###### <a name="2.5.s2"></a>Requirements
