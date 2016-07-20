@@ -1672,6 +1672,11 @@ lack a version, the version MUST be set to 1.0.0.
 * <a name="2.4.10.s4.b1"></a>If Learning Record Providers set the Statement version, they MUST set it to 1.0.0.
 * <a name="2.4.10.s4.b2"></a>Learning Record Providers SHOULD NOT set the Statement version.
 
+__Note:__ The requirement for the version statement property to contain the version '1.0.0', rather than the latest
+patch version is deliberate since statements in any version of 1.0.x conform to the '1.0.0' data model. In fact, 
+a single statement may be included in multiple requests over time, each following a different patch version 
+of the specification. The patch version of the specification being followed can be determined from the 
+[X-Experience-API-Version header](./xAPI-Communication.md#versioning) being used in each request. 
 
 <a name="attachments"/>
 #### <a name="2.4.11">2.4.11</a> Attachments
