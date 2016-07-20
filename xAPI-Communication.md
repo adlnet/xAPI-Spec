@@ -502,13 +502,7 @@ do not match. See [Statement comparision requirements](statement-comparision-req
 
 Example resource endpoint: `http://example.com/xAPI/statements`
 
-Stores a Statement, or a set of Statements. 
-
-An alternative for systems 
-that generate a large amount of Statements is to provide the LRS side of the API 
-on the AP, and have the LRS query that API for the list of updated (or new) 
-Statements periodically. This will likely only be a realistic option for systems 
-that provide a lot of data to the LRS.  
+Stores a Statement, or a set of Statements.
 
 **Content:** An array of Statements or a single Statement to be stored. 
 
