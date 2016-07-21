@@ -724,10 +724,10 @@ an empty array.
 
 * <a name="2.1.3.s2.b5"></a>The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
 [ISO 8601 combined date and time](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations) format, 
-on all responses to Statements requests, with a value of the latest Timestamp for which all Statements that have or will have a 
+on all responses to Statements requests, with a value of the Timestamp for which all Statements that have or will have a 
 "stored" property before that time are known with reasonable certainty to be available for retrieval. This time SHOULD take 
 into account any temporary condition, such as excessive load, which might cause a delay in Statements 
-becoming available for retrieval.
+becoming available for retrieval. It is expected that this will be a recent timestamp, even if there are no recently received statements. 
 
 * <a name="2.1.3.s2.b6"></a>If the "attachment" property of a GET statement is used and is set to <code>true</code>, the LRS MUST use the 
 multipart response format and include all attachments as described in [4.1.11](#attachments).
