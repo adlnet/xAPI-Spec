@@ -1620,6 +1620,12 @@ Every request from a Client and every response from the LRS includes an HTTP hea
 and the version as the value. For example, ``X-Experience-API-Version : 1.0.3`` for version 1.0.3; 
 see the [Revision History](#Appendix1A) for the current version of this specification. 
 
+__Note:__ For patch versions of the specification later than 1.0.0, the X-Experience-API-Version header will not match the 
+[statement version property](./xAPI-Data.md#version) which is always '1.0.0' for all 1.0.x versions of the spec. The
+X-Experience-API-Version header enables the LRS and client to determine the exact patch version of the specification being 
+followed. While no communication incompatibility should arise among 1.0.x versions, there are sometimes clarifications 
+of previously intended behavior.
+
 ###### <a name="3.3.s3"></a>LRS Requirements
 
 * <a name="3.3.s3.b1"></a>The LRS MUST include the "X-Experience-API-Version" header in every response.
