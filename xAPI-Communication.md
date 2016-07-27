@@ -248,7 +248,7 @@ Strongly consider security risks before making the decision to use implementatio
 
 <a name="content-types"/> 
 ### <a name="1.5">1.5</a> Content Types
-Requests within this specification normally use an application/json content type. Exceptions to this are:
+Requests and responses within this specification normally use an application/json content type. Exceptions to this are:
 
 * <a name="1.5.b1"></a>Documents can have any content type. 
 * <a name="1.5.b2"></a>Statement requests that can sometimes include Attachments use the multipart/mixed content type. 
