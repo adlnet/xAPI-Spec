@@ -512,7 +512,7 @@ that provide a lot of data to the LRS.
 
 **Content:** An array of Statements or a single Statement to be stored. 
 
-**Returns:** `200 OK`, Array of Statement id(s) (UUID).  
+**Returns:** `200 OK`, Array of Statement id(s) (UUID) in the same order as the corresponding stored statements.  
 
 ###### <a name="2.1.2.s2"></a>Requirements
 
