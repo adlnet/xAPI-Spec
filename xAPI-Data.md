@@ -1822,7 +1822,7 @@ of "http://adlnet.gov/expapi/attachments/signature" and a contentType of "applic
 * <a name="2.6.s4.b2"></a>JWS Compact Serialization SHOULD* be used to create the JSON web signature. Use of JWS JSON Serialization is 
 strongly discouraged, is unlikely to be interoperble with other systems, and will be forbidden in a future version
 of this specification. 
-* <a name="2.6.s4.b3"></a>The JWS signature MUST have a payload of a valid JSON serialization of the complete Statement, minus signature.
+* <a name="2.6.s4.b3"></a>The JWS signature MUST have a payload of a valid JSON serialization of the complete Statement before the signature was added.
 * <a name="2.6.s4.b4"></a>The JWS signature MUST use an algorithm of "RS256","RS384", or "RS512".
 * <a name="2.6.s4.b5"></a>The JWS signature SHOULD have been created based on the private key associated with an
 X.509 certificate.
