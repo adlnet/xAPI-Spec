@@ -122,14 +122,14 @@ recommended that those implementing xAPI use current industry best practices.
 
 ###### <a name="1.1.s1"></a>Description
 The behavior of the LRS in response to PUT, POST, GET and DELETE requests is outlined in [Resources](#resources) below. 
-All resources that support GET requests also support HEAD requests.
+All resources that support GET requests also support HEAD.
 The LRS will respond to HEAD requests by returning the meta information only, using the HTTP headers, and 
 not the actual document.  
 
 ###### <a name="1.1.s2"></a>Rationale
 
 Clients accessing the LRS might need to check if a particular Statement exists, or determine
-the modification date of documents such as State, Activity Profile, or Agent Profile. Particularly
+the modification date of documents such as State or Activity or Agent profile. Particularly
 for large documents, it is more efficient not to retrieve the entire document just to check its
 modification date.
 
@@ -183,7 +183,7 @@ The lists above are not intended to be exhaustive. See requirements throughout t
 One of the goals of the xAPI is to allow cross-domain tracking, and even though xAPI seeks to enable tracking from 
 applications other than browsers, browsers still need to be supported. For example, Internet Explorer 8 and 9 do not 
 implement Cross Origin Resource Sharing, but rather use their own Cross Domain Request API, which cannot use all of 
-the xAPI as described above due to only supporting GET requests and POST requests, and not allowing HTTP headers to be set.  
+the xAPI as described above due to only supporting "GET" and "POST", and not allowing HTTP headers to be set.  
 
 ###### <a name="1.3.s2"></a>Details/Requirements
 
@@ -204,7 +204,7 @@ Example: http://example.com/xAPI/statements?method=PUT
 
 __Content__:  
 * <a name="1.3.s3.b4"></a>If the xAPI call involved sending content, the Learning Record Provider MUST URL encode that content and 
-include it as a form parameter named `content`. 
+include it as a form parameter called "content". 
 * <a name="1.3.s3.b5"></a>The LRS MUST interpret this content as a UTF-8 string. Storing binary data is not supported with this syntax.  
 
 __Headers__:  
@@ -213,20 +213,20 @@ expected to appear in the HTTP header as form parameters with the same names. Th
 to the following parameters: Authorization, X-Experience-API-Version, Content-Type, Content-Length,
 If-Match and If-None-Match. It does not apply to Content-Transfer-Encoding.
 * <a name="1.3.s3.b7"></a>The LRS MUST treat the form parameters listed above as header parameters. 
-* <a name="1.3.s3.b8"></a>The Learning Record Provider MUST include other header parameters not listed above in the HTTP 
-header as normal. 
-* <a name="1.3.s3.b9"></a>The Learning Record Provider SHOULD* still include a Content-Type header (in the HTTP header) 
-for this type of request with a value of 'application/x-www-form-urlencoded'. 
-* <a name="1.3.s3.b10"></a>The Content-Type form parameter SHOULD* specify the content type of the content within 
-the content form parameter. 
-* <a name="1.3.s3.b11"></a>The Learning Record Provider SHOULD* still include a Content-Length header (in the HTTP header) 
-for this type of request indicating the overall length of the request's content. 
-* <a name="1.3.s3.b12"></a>The Content-Length form parameter SHOULD* specify the length of the content within the content form parameter and 
-will therefore be a lower figure than the length listed in the Content-Length header. 
+* <a name="1.3.s3.b8"></a>The Learning Record Provider MUST include other header parameters not listed above in the HTTP header as normal. 
+* <a name="1.3.s3.b9"></a>The Learning Record Provider SHOULD* still include a Content-Type header (in the HTTP header) for this type of 
+request with a value of 'application/x-www-form-urlencoded'. 
+* <a name="1.3.s3.b10"></a>The Content-Type form parameter SHOULD* specify the content type of the content within the content form parameter. 
+* <a name="1.3.s3.b11"></a>The Learning Record Provider SHOULD* still include a Content-Length header (in the HTTP header) for this type of 
+request indicating the overall length of the request's content. 
+* <a name="1.3.s3.b12"></a>The Content-Length form parameter SHOULD* specify the length of the content within the 
+content form parameter and will therefore be a lower figure than the length listed in the Content-Length header. 
 
 __Query string parameters__:  
-* <a name="1.3.s3.b13"></a>Any query string parameters other than 'method' MUST instead be included as a form parameter with the same name. 
-* <a name="1.3.s3.b14"></a>The LRS MUST treat any form parameters other than "content" or the header parameters listed above as query string parameters. 
+* <a name="1.3.s3.b13"></a>Any query string parameters other than "method" MUST instead be included as a form parameter 
+with the same name. 
+* <a name="1.3.s3.b14"></a>The LRS MUST treat any form parameters other than "content" or the header parameters 
+listed above as query string parameters. 
 
 __Attachments__: Note that due to issues relating to encoding, it is not possible to send 
 binary data attachments using this syntax. See [4.1.11. Attachments](#attachments) 
@@ -250,58 +250,62 @@ Strongly consider security risks before making the decision to use implementatio
 
 <a name="content-types"/> 
 ### <a name="1.5">1.5</a> Content Types
-Requests and responses within this specification normally use an application/json content type. Exceptions to this are:
+Requests and responses within this specification normally use an `application/json` content type. Exceptions to this are:
 
 * <a name="1.5.b1"></a>Documents can have any content type. 
-* <a name="1.5.b2"></a>Statement requests that can sometimes include Attachments use the multipart/mixed content type. 
+* <a name="1.5.b2"></a>Statement requests that can sometimes include Attachments use the `multipart/mixed` content type. 
 
 <a name="applicationjson"/> 
 #### <a name="1.5.1">1.5.1</a> Application/JSON
-Requests within this specification normally use an application/json content type. 
+Requests within this specification normally use an `application/json` content type. 
 
 ###### <a name="1.5.1.s1"></a>LRS Requirements
-* <a name="1.5.1.s1.b1"></a>When receiving a PUT or POST with a document type of "application/json”, an LRS MUST accept batches 
-of Statements which contain no attachment Objects.
-* <a name="1.5.1.s1.b2"></a>When receiving a PUT or POST with a document type of "application/json”, an LRS MUST accept batches 
-of Statements which contain only attachment Objects with a populated fileUrl.
+* <a name="1.5.1.s1.b1"></a>When receiving a PUT or POST with a document type of `application/json`, an LRS MUST accept batches 
+of Statements which contain no Attachment Objects.
+* <a name="1.5.1.s1.b2"></a>When receiving a PUT or POST with a document type of `application/json`, an LRS MUST accept batches 
+of Statements which contain only Attachment Objects with a populated fileUrl.
 
 <a name="multipartmixed"/> 
 #### <a name="1.5.2">1.5.2</a> Multipart/Mixed
 
-The multipart/mixed content type is used for requests that *could* include Attachments. This does not mean that all 
-multipart/mixed requests neccesarily do include Attachments.
+The `multipart/mixed` content type is used for requests that *could* include Attachments. This does not mean that all 
+"multipart/mixed" requests neccesarily do include Attachments.
 
 ##### <a name="1.5.2.s1"></a>Procedure For The Exchange Of Attachments
 
 * <a name="1.5.2.s1.b1"></a>A Statement request including zero or more Attachments is construed as described below.
 
-* <a name="1.5.2.s1.b2"></a>The Statement is sent using a Content-Type of "multipart/mixed". Any Attachments are placed at the end of such transmissions.
+* <a name="1.5.2.s1.b2"></a>The Statement is sent using a Content-Type of `multipart/mixed`. Any Attachments are placed 
+at the end of such transmissions.
 
 * <a name="1.5.2.s1.b3"></a>The LRS decides whether to accept or reject the Statement based on the information in the first part.
 
-* <a name="1.5.2.s1.b4"></a>If it accepts the request, it can match the raw data of an Attachment(s) with the Attachment header by comparing the SHA-2 
-of the raw data to the SHA-2 declared in the header. It MUST not do so any other way.
+* <a name="1.5.2.s1.b4"></a>If it accepts the request, it can match the raw data of an Attachment(s) with the 
+Attachment header by comparing the SHA-2 of the raw data to the SHA-2 declared in the header. It MUST not do so any other way.
 
 ###### <a name="1.5.2.s2"></a>Requirements for Attachment Statement Batches
 
 A request transmitting a Statement batch, Statement results, or single Statement that includes Attachments MUST satisfy one of the 
 following criteria:
 
-* <a name="1.5.2.s2.b1"></a>It MUST be of type "application/json" and include a fileUrl for every Attachment EXCEPT for Statement 
-results when the Attachments filter is false.
-* <a name="1.5.2.s2.b2"></a>It MUST conform to the definition of multipart/mixed in [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt) and:
-    * <a name="1.5.2.s2.b2.b1"></a>The first part of the multipart document MUST contain the Statements themselves, with type "application/json".
-    * <a name="1.5.2.s2.b2.b2"></a>Each additional part contains the raw data for an Attachment and forms a logical part of the Statement. This 
-    capability will be available when issuing PUT or POST against the Statement resource.
-    * <a name="1.5.2.s2.b2.b3"></a>MUST include an X-Experience-API-Hash parameter in each part's header after the first (Statements) part.
-    * <a name="1.5.2.s2.b2.b4"></a>MUST include a Content-Transfer-Encoding parameter with a value of "binary" in each part's header after the first 
-     (Statements) part.
-    * <a name="1.5.2.s2.b2.b5"></a>SHOULD only include one copy of an Attachment's data when the same Attachment is used in multiple Statements that are 
-     sent together.
-    * <a name="1.5.2.s2.b2.b6"></a>SHOULD include a Content-Type parameter in each part's header. For the first part (containing the Statement) this 
-     MUST be "application/json".
-   	* <a name="1.5.2.s2.b2.b7"></a>Where parameters have a corresponding property within the attachment Object (outlined in the table above), and both 
-   	 the parameter and property are specified for a given Attachment, the value of these parameters and properties MUST match. 
+* <a name="1.5.2.s2.b1"></a>It MUST be of type `application/json` and include a fileUrl for every Attachment EXCEPT for Statement 
+results when the "attachments" filter is `false`.
+* <a name="1.5.2.s2.b2"></a>It MUST conform to the definition of "multipart/mixed" in [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt) and:
+    * <a name="1.5.2.s2.b2.b1"></a>The first part of the multipart document MUST contain the Statements themselves, 
+    with type `application/json`.
+    * <a name="1.5.2.s2.b2.b2"></a>Each additional part contains the raw data for an Attachment and forms a logical 
+    part of the Statement. This capability will be available when issuing PUT or POST requests against the Statement Resource.
+    * <a name="1.5.2.s2.b2.b3"></a>MUST include an X-Experience-API-Hash parameter in each part's header after the 
+    first (Statements) part.
+    * <a name="1.5.2.s2.b2.b4"></a>MUST include a Content-Transfer-Encoding parameter with a value of `binary` in each 
+    part's header after the first (Statements) part.
+    * <a name="1.5.2.s2.b2.b5"></a>SHOULD only include one copy of an Attachment's data when the same Attachment is used 
+    in multiple Statements that are sent together.
+    * <a name="1.5.2.s2.b2.b6"></a>SHOULD include a Content-Type parameter in each part's header. For the first part 
+    (containing the Statement) this MUST be `application/json`.
+   	* <a name="1.5.2.s2.b2.b7"></a>Where parameters have a corresponding property within the attachment Object 
+   	(outlined in the table above), and both the parameter and property are specified for a given Attachment, 
+	the value of these parameters and properties MUST match. 
 
 ###### <a name="1.5.2.s3"></a>LRS Requirements
 
@@ -310,53 +314,54 @@ when requested by the Client (see ["Statement Resource"](#stmtapi)).
 * <a name="1.5.2.s3.b2"></a>An LRS MUST NOT pull Statements from another LRS without requesting Attachments.
 * <a name="1.5.2.s3.b3"></a>An LRS MUST NOT push Statements into another LRS without including Attachment data
 received, if any, for those Attachments.
-* <a name="1.5.2.s3.b4"></a>When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST accept batches of 
+* <a name="1.5.2.s3.b4"></a>When receiving a PUT or POST with a document type of `multipart/mixed`, an LRS MUST accept batches of 
 Statements that contain Attachments in the Transmission Format described above.
-* <a name="1.5.2.s3.b5"></a>When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS MUST reject batches of 
+* <a name="1.5.2.s3.b5"></a>When receiving a PUT or POST with a document type of `multipart/mixed`, an LRS MUST reject batches of 
 Statements having Attachments that neither contain a fileUrl nor match a received Attachment part based on their hash.
-* <a name="1.5.2.s3.b6"></a>When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS SHOULD assume a 
+* <a name="1.5.2.s3.b6"></a>When receiving a PUT or POST with a document type of `multipart/mixed`, an LRS SHOULD assume a 
 Content-Transfer-Encoding of binary for Attachment parts.
 * <a name="1.5.2.s3.b7"></a>An LRS MAY reject (batches of) Statements that are larger than the LRS is configured to allow.
-* <a name="1.5.2.s3.b8"></a>When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS SHOULD* accept batches 
-of Statements which contain no attachment Objects.
-* <a name="1.5.2.s3.b9"></a>When receiving a PUT or POST with a document type of "multipart/mixed”, an LRS SHOULD* accept batches 
-of Statements which contain only attachment Objects with a populated fileUrl.
+* <a name="1.5.2.s3.b8"></a>When receiving a PUT or POST with a document type of `multipart/mixed`, an LRS SHOULD* accept batches 
+of Statements which contain no Attachment Objects.
+* <a name="1.5.2.s3.b9"></a>When receiving a PUT or POST with a document type of `multipart/mixed`, an LRS SHOULD* accept batches 
+of Statements which contain only Attachment Objects with a populated fileUrl.
 
-__Note:__ There is no requirement that Statement batches using the mime/multipart format
-contain Attachments.
+__Note:__ There is no requirement that Statement batches using the "mime/multipart" format contain Attachments.
 
 ###### <a name="1.5.2.s4"></a>Learning Record Provider Requirements
 
 * <a name="1.5.2.s4.b1"></a>A Learning Record Provider MAY send Statements with Attachments as described above.
-* <a name="1.5.2.s4.b2"></a>A Learning Record Provider MAY send multiple Statements where some or all have Attachments if using "POST".
-* <a name="1.5.2.s4.b3"></a>A Learning Record Provider MAY send batches of type "application/json" where every attachment
+* <a name="1.5.2.s4.b2"></a>A Learning Record Provider MAY send multiple Statements where some or all have 
+Attachments if using POST.
+* <a name="1.5.2.s4.b3"></a>A Learning Record Provider MAY send batches of type `application/json` where every attachment
 Object has a fileUrl, ignoring all requirements based on the "multipart/mixed" format.
 * <a name="1.5.2.s4.b4"></a>A Learning Record Provider SHOULD use SHA-256, SHA-384, or SHA-512 to populate the "sha2" property.
 
 ###### <a name="1.5.2.s5"></a>File URL
-The File URL is intended to provide a location from which the attachment can be received.
-There are, however, no requirements for the owner of the attachment to make the 
-attachment data available at the location indefinitely or to make the attachment publically
-available without security restrictions. When determining attachment hosting arrangements, 
+The File URL is intended to provide a location from which the Attachment can be received.
+There are, however, no requirements for the owner of the Attachment to make the 
+Attachment data available at the location indefinitely or to make the Attachment publically
+available without security restrictions. When determining Attachment hosting arrangements, 
 those creating Statements using the "fileUrl" property are encouraged to consider the needs of end recipient(s) 
-of the Statement especially if the attachment content is not included with the Statement.
+of the Statement, especially if the Attachment content is not included with the Statement.
 
-* <a name="1.5.2.s5.b1"></a>The attachment data SHOULD be retrievable at the URL indicated by the fileUrl.
+* <a name="1.5.2.s5.b1"></a>The Attachment data SHOULD be retrievable at the URL indicated by the fileUrl.
 * <a name="1.5.2.s5.b2"></a>The owner of the attachment MAY stop providing the attachment data at this IRL at any time. 
-* <a name="1.5.2.s5.b3"></a>Security restrictions MAY be applied to those attempting to access the attachment data at this IRL. 
+* <a name="1.5.2.s5.b3"></a>Security restrictions MAY be applied to those attempting to access the Attachment data at this IRL. 
 
-The period of time an attachment is made available for, and the security restrictions applied to
+The period of time an Attachment is made available for, and the security restrictions applied to
 hosted attachments, are out of scope of this specification. 
 
 ###### <a name="1.5.2.s6"></a>Example
 
-Below is an example of a very simple Statement with an attachment. Please note the following:
+Below is an example of a very simple Statement with an Attachment. Please note the following:
 
 * <a name="1.5.2.s6.b1"></a>The boundary in the sample was chosen to demonstrate valid character classes;
 * <a name="1.5.2.s6.b2"></a>The selected boundary does not appear in any of the parts;
-* <a name="1.5.2.s6.b3"></a>For readability the sample attachment is text/plain. Even if it had been a 'binary' type
-like 'image/jpeg' no encoding would be done, the raw octets would be included;
-* <a name="1.5.2.s6.b4"></a>Per RFC 2046, the boundary is <CRLF> followed by -- followed by the boundary string declared in the header.
+* <a name="1.5.2.s6.b3"></a>For readability the sample attachment is of type "text/plain". Even if it had been 
+a binary type like "image/jpeg", no encoding would be done, the raw octets would be included;
+* <a name="1.5.2.s6.b4"></a>Per RFC 2046, the boundary is `<CRLF>` followed by -- followed by the boundary string 
+declared in the header.
 
 __Note:__ Don't forget the ```<CRLF>```  when building or parsing these messages.
 
@@ -430,8 +435,8 @@ implement POST Statements for the purposes of receiving incoming Statements forw
 Such a system is not considered to be an LRS or 'partial LRS'; it is simply not an LRS. 
 
 __Note:__ In all of the example locations where xAPI resources are located (endpoints) given in the specification, 
-"http://example.com/xAPI/" is the example base endpoint (resource location) of the LRS. All other IRI 
-syntax after this represents the particular Resource used. A full list of the resource endpoints is included in 
+`http://example.com/xAPI/` is the example base endpoint (resource location) of the LRS. All other IRI 
+syntax after this represents the particular resource used. A full list of the resource endpoints is included in 
 [Appendix B: Table of All Resource Endpoints](#Appendix3B).
 
 ###### <a name="2.0.s1"></a>Requirements
@@ -441,8 +446,8 @@ syntax after this represents the particular Resource used. A full list of the re
 described in [Section 6.4.2 OAuth Authorization Scope](#oauthscope).
 * <a name="2.0.s1.b3"></a>The LRS MAY support additional resources not described in this specification. 
 * <a name="2.0.s1.b4"></a>Past, current and future versions of this specification do not and will not define resource endpoints 
-with path segments starting 'extensions/'. LRSs supporting additional resources not defined 
-in this specification SHOULD define their endpoints with path segments starting with 'extensions/'.
+with path segments starting with `extensions/`. LRSs supporting additional resources not defined in this specification SHOULD 
+define their endpoints/resource locations with path segments starting with `extensions/`.
 
 <a name="stmtres"/> 
 
@@ -477,22 +482,22 @@ Stores a single Statement with the given id. POST can also be used to store sing
 * <a name="2.1.1.s2.b1"></a>The LRS MAY respond before Statements that have been stored are available for retrieval.
 
 * <a name="2.1.1.s2.b2"></a>An LRS MUST NOT make any modifications to its state based on receiving a Statement
-with a statementID that it already has a Statement for. Whether it responds with
-`409 Conflict` or `204 No Content`, it MUST NOT modify the Statement or any other
-Object.
+with a statementId that it already has a Statement for. Whether it responds with `409 Conflict` or `204 No Content`, 
+it MUST NOT modify the Statement or any other Object.
 
 * <a name="2.1.1.s2.b3"></a>If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
 verify the received Statement matches the existing one and SHOULD return `409 Conflict` if they
 do not match. See [Statement comparision requirements](statement-comparision-requirements).
 
-* <a name="2.1.1.s2.b4"></a>If the LRS receives a batch of Statements containing two or more Statements with the same id, it SHOULD* reject the 
- batch and return `400 Bad Request`.
+* <a name="2.1.1.s2.b4"></a>If the LRS receives a batch of Statements containing two or more Statements with the same id, 
+it SHOULD* reject the batch and return `400 Bad Request`.
 
 
 
 ###### <a name="2.1.1.s3"></a>Learning Record Provider Requirements
 
-* <a name="2.1.1.s3.b1"></a>Learning Record Providers SHOULD POST Statements including the Statement "id" property instead of using PUT. 
+* <a name="2.1.1.s3.b1"></a>Learning Record Providers SHOULD POST Statements including the Statement "id" property 
+instead of using PUT. 
 * <a name="2.1.1.s3.b2"></a>When PUTing statements, the "id" property of the Statement SHOULD be used. 
 * <a name="2.1.1.s3.b3"></a>Where provided, the "id" property of the Statement MUST match the "statementId" parameter of the request. 
 
