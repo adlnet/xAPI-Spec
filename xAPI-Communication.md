@@ -498,7 +498,7 @@ it SHOULD* reject the batch and return `400 Bad Request`.
 
 * <a name="2.1.1.s3.b1"></a>Learning Record Providers SHOULD POST Statements including the Statement "id" property 
 instead of using PUT. 
-* <a name="2.1.1.s3.b2"></a>When PUTing statements, the "id" property of the Statement SHOULD be used. 
+* <a name="2.1.1.s3.b2"></a>When PUTing Statements, the "id" property of the Statement SHOULD be used. 
 * <a name="2.1.1.s3.b3"></a>Where provided, the "id" property of the Statement MUST match the "statementId" parameter of the request. 
 
 <a name="stmtrespost"/>
@@ -513,7 +513,7 @@ Stores a Statement, or a set of Statements.
 
 **Content:** An array of Statements or a single Statement to be stored. 
 
-**Returns:** `200 OK`, Array of Statement id(s) (UUID) in the same order as the corresponding stored statements.  
+**Returns:** `200 OK`, Array of Statement ids (UUID) in the same order as the corresponding stored Statements.  
 
 ###### <a name="2.1.2.s2"></a>Requirements
 
@@ -523,14 +523,13 @@ have limits. See [Alternate Request Syntax](#alt-request-syntax) for more detail
 * <a name="2.1.2.s2.b3"></a>The LRS MUST differentiate a POST to add a Statement or to list Statements based on the 
 parameters passed. See [Alternate Request Syntax](#alt-request-syntax) for more details.
 * <a name="2.1.2.s2.b4"></a>An LRS MUST NOT make any modifications to its state based on receiving a Statement
-with a statementID that it already has a Statement for. Whether it responds with
-`409 Conflict` or `204 No Content`, it MUST NOT modify the Statement or any other
-Object.
+with an id that it already has a Statement for. Whether it responds with `409 Conflict` or `204 No Content`, 
+it MUST NOT modify the Statement or any other Object.
 * <a name="2.1.2.s2.b5"></a>If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
 verify the received Statement matches the existing one and SHOULD return `409 Conflict` if they
 do not match. See [Statement comparision requirements](statement-comparision-requirements).
-* <a name="2.1.2.s2.b6"></a>If the LRS receives a batch of Statements containing two or more Statements with the same id, it SHOULD* reject the 
- batch and return `400 Bad Request`.
+* <a name="2.1.2.s2.b6"></a>If the LRS receives a batch of Statements containing two or more Statements with the same id, 
+it SHOULD* reject the batch and return `400 Bad Request`.
 
 <a name="stmtresget"/>
 
@@ -557,14 +556,14 @@ retrieve them will be included in the StatementResult Object.
 		<td>statementId</td>
 		<td>String</td>
 		<td> </td>
-		<td>ID of Statement to fetch</td>
+		<td>Id of Statement to fetch</td>
 		<td>Optional</td>
 	</tr>
 	<tr id="2.1.3.s1.table1.row2">
 		<td>voidedStatementId</td>
 		<td>String</td>
 		<td> </td>
-		<td>ID of voided Statement to fetch. see <a href="#voidedStatements">Voided
+		<td>Id of voided Statement to fetch. see <a href="#voidedStatements">Voided
 		Statements</a></td>
 		<td>Optional</td>
 	</tr>
@@ -572,15 +571,15 @@ retrieve them will be included in the StatementResult Object.
 		<td>agent</td>
 		<td>Agent or Identified Group Object (JSON)</td>
 		<td> </td>
-		<td>Filter, only return Statements for which the specified Agent or group is 
+		<td>Filter, only return Statements for which the specified Agent or Group is 
 		the Actor or Object of the Statement.
 			<ul>
 				<li> 
-					Agents or identified groups are equal when the same 
+					Agents or Identified Groups are equal when the same 
 					Inverse Functional Identifier is used in each Object compared and 
 					those Inverse Functional Identifiers have equal values.
 				</li><li>
-					For the purposes of this filter, groups that have members 
+					For the purposes of this filter, Groups that have members 
 					which match the specified Agent	based on their Inverse Functional
 					Identifier as described above are considered a match
 				</li>
@@ -594,7 +593,7 @@ retrieve them will be included in the StatementResult Object.
 		<td>verb</td>
 		<td>Verb id (IRI)</td>
 		<td> </td>
-		<td>Filter, only return Statements matching the specified verb id.</td>
+		<td>Filter, only return Statements matching the specified Verb id.</td>
 		<td>Optional</td>
 	</tr>
 	<tr id="2.1.3.s1.table1.row5">
@@ -613,7 +612,7 @@ retrieve them will be included in the StatementResult Object.
 		<td> </td>
 		<td>
 			Filter, only return Statements matching the specified registration 
-			id. Note that although frequently a unique Registration will be used 
+			id. Note that although frequently a unique registration will be used 
 			for one Actor assigned to one Activity, this cannot be assumed. 
 			If only Statements for a certain Actor or Activity are required, 
 			those parameters also need to be specified.
@@ -629,7 +628,7 @@ retrieve them will be included in the StatementResult Object.
 			any of the  context Activities, or any of those properties in a contained
 			SubStatement match the Activity parameter, instead of that parameter's 
 			normal behavior. Matching is defined in the same way it is for the 
-			'activity' parameter.
+			"activity" parameter.
 		</td>
 		<td>Optional</td>
 	</tr>
@@ -642,7 +641,7 @@ retrieve them will be included in the StatementResult Object.
 			the Actor, Object, Authority, Instructor, Team,
 			or any of these properties in a contained SubStatement match the Agent parameter,
 			instead of that parameter's normal behavior. Matching is defined in the same way
-			it is for the 'agent' parameter.
+			it is for the "agent" parameter.
 		</td>
 		<td>Optional</td>
 	</tr>
@@ -672,21 +671,21 @@ retrieve them will be included in the StatementResult Object.
 	</tr>
 	<tr id="2.1.3.s1.table1.row12">
 		<td>format</td>
-		<td>String: ('ids', 'exact', or 'canonical')</td>
+		<td>String: (`ids`, `exact`, or `canonical`)</td>
 		<td>exact</td>
-		<td>If 'ids', only include minimum information necessary in Agent, Activity, Verb 
-			and Group Objects to identify them. For anonymous groups this means including 
+		<td>If `ids`, only include minimum information necessary in Agent, Activity, Verb 
+			and Group Objects to identify them. For Anonymous Groups this means including 
 			the minimum information needed to identify each member. 
 			<br/><br/>
-			If 'exact', return Agent, Activity, Verb and Group Objects populated exactly as they 
+			If `exact`, return Agent, Activity, Verb and Group Objects populated exactly as they 
 			were when the Statement was received. An LRS requesting Statements for the purpose 
-			of importing them would use a format of 'exact' in order to maintain 
+			of importing them would use a format of "exact" in order to maintain 
 			<a href="./xAPI-Data.md#statement-immutablity-and-exceptions">Statement Immutability</a>.  
 			<br/><br/>
-			If 'canonical', return Activity Objects and Verbs populated with the canonical
+			If `canonical`, return Activity Objects and Verbs populated with the canonical
 			definition of the Activity Objects and Display of the Verbs as determined by the LRS, after
 			applying the <a href="#queryLangFiltering">language filtering process defined below</a>,
-			and return the original Agent and Group Objects as in 'exact' mode.  
+			and return the original Agent and Group Objects as in "exact" mode.  
 		</td>
 		<td>Optional</td>
 	</tr>
@@ -709,34 +708,33 @@ retrieve them will be included in the StatementResult Object.
 __Note:__ The values of Boolean parameters are represented as `true` or `false` as in JSON.
 ###### <a name="2.1.3.s2"></a>Requirements
 
-* <a name="2.1.3.s2.b1"></a>The LRS MUST reject with an `HTTP 400` error any requests to this resource 
+* <a name="2.1.3.s2.b1"></a>The LRS MUST reject with a `400 Bad Request` error any requests to this resource 
 which contain both statementId and voidedStatementId parameters
 
-* <a name="2.1.3.s2.b2"></a>The LRS MUST reject with an `HTTP 400` error any requests to this resource 
-which contain statementId or voidedStatementId parameters, and also contain any 
-other parameter besides "attachments" or "format".
+* <a name="2.1.3.s2.b2"></a>The LRS MUST reject with an `400 Bad Request` error any requests to this resource which 
+contain statementId or voidedStatementId parameters, and also contain any other parameter besides "attachments" or "format".
 
 * <a name="2.1.3.s2.b3"></a>The LRS MAY apply additional query filter criteria based on permissions associated
 with the credentials used. 
 
 * <a name="2.1.3.s2.b4"></a>In the event that no Statements are found matching the query filter criteria, the LRS MUST still return 
-`HTTP 200` and a [StatementResult](#retstmts) Object. In this case, the "statements" property will contain
-an empty array.
+`200 OK` and a [StatementResult](#retstmts) Object. In this case, the "statements" property will contain an empty array.
 
 * <a name="2.1.3.s2.b5"></a>The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
 [ISO 8601 combined date and time](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations) format, 
-on all responses to Statements requests, with a value of the Timestamp for which all Statements that have or will have a 
+on all responses to Statements Resource requests, with a value of the timestamp for which all Statements that have or will have a 
 "stored" property before that time are known with reasonable certainty to be available for retrieval. This time SHOULD take 
-into account any temporary condition, such as excessive load, which might cause a delay in Statements 
-becoming available for retrieval. It is expected that this will be a recent timestamp, even if there are no recently received statements. 
+into account any temporary condition, such as excessive load, which might cause a delay in Statements becoming available 
+for retrieval. It is expected that this will be a recent timestamp, even if there are no recently received Statements. 
 
-* <a name="2.1.3.s2.b6"></a>If the "attachment" property of a GET statement is used and is set to <code>true</code>, the LRS MUST use the 
-multipart response format and include all attachments as described in [4.1.11](#attachments).
+* <a name="2.1.3.s2.b6"></a>If the "attachment" property of a GET Statement is used and is set to `true`, the LRS MUST 
+use the multipart response format and include all Attachments as described in [4.1.11](#attachments).
 
-* <a name="2.1.3.s2.b7"></a>If the "attachment" property of a GET statement is used and is set to <code>false</code>, the LRS MUST NOT
-include attachment raw data and MUST report application/json.
+* <a name="2.1.3.s2.b7"></a>If the "attachment" property of a GET statement is used and is set to `false`, the LRS MUST NOT
+include Attachment raw data and MUST report `application/json`.
 
-* <a name="2.1.3.s2.b8"></a>The LRS SHOULD* include a "Last-Modified" header which matches the "stored" timestamp of the Statement. 
+* <a name="2.1.3.s2.b8"></a>The LRS SHOULD* include a "Last-Modified" header which matches the "stored" Timestamp 
+of the Statement. 
 
 <a name="queryStatementRef" />
 
@@ -747,8 +745,8 @@ meet the filter conditions of a query even if they do not match the original que
 These rules **do not** apply when retrieving a single Statement using "statementId" or "voidedStatementId" query 
 parameters.
 
-'Targeting Statements' means that one Statement (the targeting Statement) includes the Statement Id of another
-Statement (the targeted Statement) as a Statement Reference as the object of the Statement. 
+'Targeting Statements' means that one Statement (the targeting Statement) includes the Statement id of another
+Statement (the targeted Statement) as a Statement Reference as the Object of the Statement. 
 
 For filter parameters which are not time or sequence based (that is, other than "since", "until", or "limit"), 
 Statements which target another Statement (by using a StatementRef as the Object of the Statement) will meet the 
@@ -758,22 +756,22 @@ The time and sequence based parameters MUST still be applied to the Statement ma
 This rule applies recursively, so that "Statement a" is a match when a targets b which targets c and the filter 
 conditions described above match for "Statement c".
 
-For example, consider the Statement "Ben passed explosives training", and a follow up
+For example, consider the Statement 'Ben passed explosives training', and a follow up
 Statement: "Andrew confirmed <StatementRef to original Statement\>". The follow up
-Statement will not mention "Ben" or "explosives training", but when fetching Statements
-with an Actor filter of "Ben" or an Activity filter of "explosives training", both
+Statement will not mention 'Ben' or 'explosives training', but when fetching Statements
+with an Actor filter of 'Ben' or an Activity filter of 'explosives training', both
 Statements match and will be returned so long as they fall into the time or sequence
 being fetched.
 
-__Note:__ StatementRefs used as a value of the Statement property within Context do not affect how
+__Note:__ StatementRefs used as a value of the "Statement" property within Context do not affect how
 Statements are filtered.
 
 <a name="queryLangFiltering" />
 
 ###### <a name="2.1.3.s4"></a>Language Filtering Requirements for Canonical Format Statements
 
-* <a name="2.1.3.s4.b1"></a>Activity Objects contain Language Map Objects within their "name", "description" and various interaction components. 
-The LRS MUST return only one language in each of these maps. 
+* <a name="2.1.3.s4.b1"></a>Activity Objects contain Language Map Objects within their "name", "description" and various 
+interaction components. The LRS MUST return only one language in each of these maps. 
 
 * <a name="2.1.3.s4.b2"></a>The LRS MAY maintain canonical versions of language maps against any IRI identifying an object containing
 language maps. This includes the language map stored in the Verb's "display" property and potentially some 
@@ -784,7 +782,7 @@ language maps used within extensions.
 
 * <a name="2.1.3.s4.b4"></a>The LRS SHOULD* return only one language within each language map for which it returns a canonical map. 
 
-* <a name="2.1.3.s4.b5"></a>In order to choose the most relevant language, the LRS MUST apply the Accept-Language header as 
+* <a name="2.1.3.s4.b5"></a>In order to choose the most relevant language, the LRS MUST apply the "Accept-Language" header as 
 described in [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html) 
 (HTTP 1.1), except that this logic MUST be applied to each language map individually to select 
 which language entry to include, rather than to the resource (list of Statements) as a whole.
@@ -795,19 +793,20 @@ which language entry to include, rather than to the resource (list of Statements
 [Section 4.3 Voided](#voided) describes the process by which Statements can be voided. This section
 describes how voided Statements are handled by the LRS when queried. 
 
-Clients can identify the presence and statementId of any voided Statements by the target of the voiding Statement. 
+Clients can identify the presence and Statement id of any voided Statements by the target of the voiding Statement. 
 Aside from debugging tools, many Learning Record Consumers will not want to display voiding Statements to their users 
 and will not display these as part of activity streams and other reports. 
 
 ###### <a name="2.1.4.s1"></a>Requirements
 
-* <a name="2.1.4.s1.b1"></a>The LRS MUST not return any Statement which has been voided, unless that Statement has been requested by voidedStatementId. 
-The process described in [the section on filter conditions for StatementRefs](#queryStatementRef) is no exception to this
-requirement. The process of retrieving voiding Statements is to request each individually by voidedStatementId.
+* <a name="2.1.4.s1.b1"></a>The LRS MUST not return any Statement which has been voided, unless that Statement has been 
+requested by voidedStatementId. The process described in [the section on filter conditions for StatementRefs](#queryStatementRef) 
+is no exception to this requirement. The process of retrieving voiding Statements is to request each 
+individually by voidedStatementId.
 
-* <a name="2.1.4.s1.b2"></a>The LRS MUST still return any Statements targeting the voided Statement, following the process and conditions described in 
-[the section on filter conditions for StatementRefs](#queryStatementRef). This includes the voiding Statement, which cannot 
-be voided. 
+* <a name="2.1.4.s1.b2"></a>The LRS MUST still return any Statements targeting the voided Statement, following the process 
+and conditions described in [the section on filter conditions for StatementRefs](#queryStatementRef). This includes the 
+voiding Statement, which cannot be voided. 
 
 <a name="doctransfer"/>
 
@@ -823,13 +822,14 @@ in this specification do. The id is stored in the IRL, "updated" is HTTP header 
 "contents" is the HTTP document itself (as opposed to an Object).
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr id="2.2.s2.table1.row1"><td>id</td><td>String</td><td>Set by Learning Record Provider, unique within the scope of the agent or activity.</td></tr>
+	<tr id="2.2.s2.table1.row1"><td>id</td><td>String</td><td>Set by Learning Record Provider, unique within the scope 
+	of the Agent or Activity.</td></tr>
 	<tr id="2.2.s2.table1.row2"><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
 	<tr id="2.2.s2.table1.row3"><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
 
-The three Document Resources provide [document](#miscdocument) storage.  The details of each Resource are found in 
-the following sections, and the information in this section applies to all three Resources.
+The three Document Resources provide [document](#miscdocument) storage.  The details of each resource are found in 
+the following sections, and the information in this section applies to all three resources.
 
 ###### <a name="2.2.s3"></a>Details
 
@@ -868,8 +868,7 @@ Agents that the LRS does not have prior knowledge of.
 * <a name="2.2.s4.b2"></a>The LRS MUST NOT reject documents on the basis of not having prior knowledge of the Activity and/or Agent.
 
 ##### <a name="2.2.s5"></a>Last Modified
-The "Last Modified" header is set by the LRS when returning single or multiple documents in response
-to a GET request. 
+The "Last Modified" header is set by the LRS when returning single or multiple documents in response to a GET request. 
 
 ###### <a name="2.2.s6"></a>Requirements
 * <a name="2.2.s6.b1"></a>When returning a single document, the LRS SHOULD* include a "Last-Modified" header indicating when
@@ -879,7 +878,7 @@ the most recently modified document was last modified.
 
 ###### <a name="2.2.s7"></a>JSON Procedure with Requirements
 
-If a Learning Record Provider stores variables as JSON Objects in a document with content type application/json, 
+If a Learning Record Provider stores variables as JSON Objects in a document with content type `application/json`, 
 they can manipulate them as sets of variables using POST.
 
 The following process walks through that process and the process requirements.  
@@ -891,8 +890,8 @@ For example, a document contains:
 	"y" : "bar"
 }
 ```  
-When an LRS receives a POST request with content type application/json for an existing document also of
-content type application/json, it MUST merge the posted document with the existing document. 
+When an LRS receives a POST request with content type `application/json` for an existing document also of
+content type `application/json`, it MUST merge the posted document with the existing document. 
 In this context, merge is defined as:
 * <a name="2.2.s7.b1"></a>de-serialize the Objects represented by each document.
 * <a name="2.2.s7.b2"></a>for each property directly defined on the Object being posted, set the corresponding
@@ -902,8 +901,7 @@ property on the existing Object equal to the value from the posted Object.
 Note that only top-level properties are merged, even if a top-level property is an Object. The entire contents of each 
 original property are replaced with the entire contents of each new property.
 
-For example, this document is POSTed with the same id as the existing 
-document above:
+For example, this document is POSTed with the same id as the existing document above:
 
 ```
 {
@@ -923,7 +921,7 @@ the resulting document stored in the LRS is:
 ###### <a name="2.2.s8"></a>Requirements
 
 * <a name="2.2.s8.b1"></a>If the document being posted or any existing document does not have a Content-Type
-of "application/json", or if either document cannot be parsed as a JSON Object, the LRS MUST
+of `application/json`, or if either document cannot be parsed as a JSON Object, the LRS MUST
 respond with HTTP status code `400 Bad Request`, and MUST NOT update the target document
 as a result of the request.
 
@@ -945,13 +943,13 @@ or need to persist state across devices.
 
 The semantics of the call are driven by the "stateId" parameter. If it is included, the GET and DELETE methods will 
 act upon a single defined state document identified by "stateId". Otherwise, GET will return the available ids, 
-and DELETE will delete all state in the context given through the other parameters. This Resource has
+and DELETE will delete all state in the context given through the other parameters. This resource has
 [Concurrency](#concurrency) controls associated with it.
 
 ###### <a name="2.3.s3"></a>Single Document (PUT | POST | GET | DELETE)
 Example resource endpoint: http://example.com/xAPI/activities/state
 
-Stores, changes, fetches, or deletes the document specified by the given stateId that 
+Stores, changes, fetches, or deletes the document specified by the given "stateId" that 
 exists in the context of the specified Activity, Agent, and registration (if specified).  
 
 **Content (PUT | POST):** The document to be stored or updated.  
@@ -969,14 +967,14 @@ exists in the context of the specified Activity, Agent, and registration (if spe
 	</tr>
 	<tr id="2.3.s3.table1.row2">
 		<td>agent</td>
-		<td>Agent object (JSON)</td>
+		<td>Agent Object (JSON)</td>
 		<td>The Agent associated with this state.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.3.s3.table1.row3">
 		<td>registration</td>
 		<td>UUID</td>
-		<td>The Registration associated with this state.</td>
+		<td>The registration associated with this state.</td>
 		<td>Optional</td>
 	</tr>
 	<tr id="2.3.s3.table1.row4">
@@ -990,20 +988,20 @@ exists in the context of the specified Activity, Agent, and registration (if spe
 ###### <a name="2.3.s4"></a>Multiple Document GET
 Example resource endpoint: http://example.com/xAPI/activities/state
 
-Fetches State Ids of all state data for this context (Activity + Agent \[ + registration if specified\]). 
+Fetches State ids of all state data for this context (Activity + Agent \[ + registration if specified\]). 
 If "since" parameter is specified, this is limited to entries that have been stored or updated since the specified 
-Timestamp (exclusive). 
+timestamp (exclusive). 
 
 **Content:** None.
 
-**Returns:** `200 OK`, Array of State Ids  
+**Returns:** `200 OK`, Array of State ids  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr id="2.3.s4.table1.row1">
 		<td>activityId</td>
 		<td>Activity id (IRI)</td>
-		<td>The Activity Id associated with these states.</td>
+		<td>The Activity id associated with these states.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.3.s4.table1.row2">
@@ -1021,7 +1019,7 @@ Timestamp (exclusive).
 	<tr id="2.3.s4.table1.row4">
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only Ids of states stored since the specified Timestamp (exclusive) are returned.</td>
+		<td>Only ids of states stored since the specified Timestamp (exclusive) are returned.</td>
 		<td>Optional</td>
 	</tr>
 </table>
