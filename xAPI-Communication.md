@@ -122,14 +122,14 @@ recommended that those implementing xAPI use current industry best practices.
 
 ###### <a name="1.1.s1"></a>Description
 The behavior of the LRS in response to PUT, POST, GET and DELETE requests is outlined in [Resources](#resources) below. 
-All resources that support GET requests also support HEAD.
+All resources that support GET requests also support HEAD requests.
 The LRS will respond to HEAD requests by returning the meta information only, using the HTTP headers, and 
 not the actual document.  
 
 ###### <a name="1.1.s2"></a>Rationale
 
 Clients accessing the LRS might need to check if a particular Statement exists, or determine
-the modification date of documents such as State or Activity or Agent profile. Particularly
+the modification date of documents such as State, Activity Profile, or Agent Profile. Particularly
 for large documents, it is more efficient not to retrieve the entire document just to check its
 modification date.
 
@@ -183,7 +183,7 @@ The lists above are not intended to be exhaustive. See requirements throughout t
 One of the goals of the xAPI is to allow cross-domain tracking, and even though xAPI seeks to enable tracking from 
 applications other than browsers, browsers still need to be supported. For example, Internet Explorer 8 and 9 do not 
 implement Cross Origin Resource Sharing, but rather use their own Cross Domain Request API, which cannot use all of 
-the xAPI as described above due to only supporting "GET" and "POST", and not allowing HTTP headers to be set.  
+the xAPI as described above due to only supporting GET requests and POST requests, and not allowing HTTP headers to be set.  
 
 ###### <a name="1.3.s2"></a>Details/Requirements
 
@@ -204,7 +204,7 @@ Example: http://example.com/xAPI/statements?method=PUT
 
 __Content__:  
 * <a name="1.3.s3.b4"></a>If the xAPI call involved sending content, the Learning Record Provider MUST URL encode that content and 
-include it as a form parameter called "content". 
+include it as a form parameter named `content`. 
 * <a name="1.3.s3.b5"></a>The LRS MUST interpret this content as a UTF-8 string. Storing binary data is not supported with this syntax.  
 
 __Headers__:  
@@ -213,12 +213,14 @@ expected to appear in the HTTP header as form parameters with the same names. Th
 to the following parameters: Authorization, X-Experience-API-Version, Content-Type, Content-Length,
 If-Match and If-None-Match. It does not apply to Content-Transfer-Encoding.
 * <a name="1.3.s3.b7"></a>The LRS MUST treat the form parameters listed above as header parameters. 
-* <a name="1.3.s3.b8"></a>The Learning Record Provider MUST include other header parameters not listed above in the HTTP header as normal. 
-* <a name="1.3.s3.b9"></a>The Learning Record Provider SHOULD* still include a Content-Type header (in the HTTP header) for this type of 
-request with a value of 'application/x-www-form-urlencoded'. 
-* <a name="1.3.s3.b10"></a>The Content-Type form parameter SHOULD* specify the content type of the content within the content form parameter. 
-* <a name="1.3.s3.b11"></a>The Learning Record Provider SHOULD* still include a Content-Length header (in the HTTP header) for this type of 
-request indicating the overall length of the request's content. 
+* <a name="1.3.s3.b8"></a>The Learning Record Provider MUST include other header parameters not listed above in the HTTP 
+header as normal. 
+* <a name="1.3.s3.b9"></a>The Learning Record Provider SHOULD* still include a Content-Type header (in the HTTP header) 
+for this type of request with a value of 'application/x-www-form-urlencoded'. 
+* <a name="1.3.s3.b10"></a>The Content-Type form parameter SHOULD* specify the content type of the content within 
+the content form parameter. 
+* <a name="1.3.s3.b11"></a>The Learning Record Provider SHOULD* still include a Content-Length header (in the HTTP header) 
+for this type of request indicating the overall length of the request's content. 
 * <a name="1.3.s3.b12"></a>The Content-Length form parameter SHOULD* specify the length of the content within the content form parameter and 
 will therefore be a lower figure than the length listed in the Content-Length header. 
 
