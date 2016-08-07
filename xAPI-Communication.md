@@ -1036,8 +1036,8 @@ Deletes all state data for this context (Activity + Agent \[+ registration if sp
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr id="2.3.s5.table1.row1">
 		<td>activityId</td>
-		<td>Activity Id (IRI)</td>
-		<td>The Activity Id associated with this state.</td>
+		<td>Activity id (IRI)</td>
+		<td>The Activity id associated with this state.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.3.s5.table1.row2">
@@ -1059,7 +1059,7 @@ Deletes all state data for this context (Activity + Agent \[+ registration if sp
 ### <a name="2.4">2.4</a> Agents Resource
 
 The Agents Resource provides a method to retrieve a special Object with combined information about an Agent derived from 
-an outside service, such as a directory service. This Resource has [Concurrency](#concurrency) controls associated with it.
+an outside service, such as a directory service. This resource has [Concurrency](#concurrency) controls associated with it.
 
 ###### <a name="2.4.s1"></a>Combined Information GET
 
@@ -1072,7 +1072,7 @@ include multiple identifying properties. This is different from the FOAF concept
 used here to indicate a person-centric view of the LRS Agent data, but Agents just refer to one 
 persona (a person in one context).  
 
-The 'agent' parameter is a normal Agent Object with a single identifier and no arrays. 
+The "agent" parameter is a normal Agent Object with a single identifier and no arrays. 
 It is not a Person Object, nor is it a Group. 
 
 **Content:** None.
@@ -1093,9 +1093,9 @@ It is not a Person Object, nor is it a Group.
 * <a name="2.4.s3.b1"></a>An LRS capable of returning multiple identifying properties for a Person 
 Object SHOULD require the connecting credentials have increased, explicitly 
 given permissions. 
-* <a name="2.4.s3.b2"></a>An LRS SHOULD reject insufficiently privileged requests with 403 "Forbidden".
+* <a name="2.4.s3.b2"></a>An LRS SHOULD reject insufficiently privileged requests with `403 Forbidden`.
 * <a name="2.4.s3.b3"></a>If an LRS does not have any additional information about an Agent to return, 
-the LRS MUST still return a Person when queried, but that Person Object will only 
+the LRS MUST still return a Person Object when queried, but that Person Object will only 
 include the information associated with the requested Agent. 
 
 __Note:__ This means that if a request is made for an Agent which the LRS has no 
@@ -1111,7 +1111,7 @@ about the Agent it received in the request.
 	<tr id="2.4.s5.table1.row1">
 		<td>objectType</td>
 		<td>String</td>
-		<td>"Person"</td>
+		<td>`Person`</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.4.s5.table1.row2">
@@ -1151,16 +1151,18 @@ See also: [Agent](#agent).
 
 ###### <a name="2.4.s6"></a>Requirements
 
-* <a name="2.4.s6.b1"></a>All array properties MUST be populated with members with the same definition as the similarly named property from Agent Objects.  
+* <a name="2.4.s6.b1"></a>All array properties MUST be populated with members with the same definition as the 
+similarly named property from Agent Objects.  
 
-* <a name="2.4.s6.b2"></a>Additional properties not listed here SHOULD* NOT be added to this object and each property MUST occur only once. 
+* <a name="2.4.s6.b2"></a>Additional properties not listed here SHOULD* NOT be added to this object and each 
+property MUST occur only once. 
 
 <a name="activitiesres"/> 
 
 ### <a name="2.5">2.5</a> Activities Resource
 
 The Activities Resource provides a method to retrieve a full description of an Activity from the LRS. 
-This Resource has [Concurrency](#concurrency) controls associated with it.
+This resource has [Concurrency](#concurrency) controls associated with it.
 
 ###### <a name="2.5.s1"></a>Full Activity Object GET
 Example resource endpoint: http://example.com/xAPI/activities
@@ -1174,16 +1176,16 @@ Loads the complete Activity Object specified.
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr id="2.5.s1.table1.row1">
 		<td>activityId</td>
-		<td>Activity Id (IRI)</td>
-		<td>The Id associated with the Activities to load.</td>
+		<td>Activity id (IRI)</td>
+		<td>The id associated with the Activities to load.</td>
 		<td>Required</td>
 	</tr>
 </table>
 
 ###### <a name="2.5.s2"></a>Requirements
 
-* <a name="2.5.s2.b1"></a>If an LRS does not have a canonical definition of the Activity to return, the LRS SHOULD* still return an 
-Activity Object when queried.
+* <a name="2.5.s2.b1"></a>If an LRS does not have a canonical definition of the Activity to return, the LRS SHOULD* 
+still return an Activity Object when queried.
 
 <a name="agentprofres"/>
 
@@ -1196,7 +1198,7 @@ which are related to an Agent.
 
 ###### <a name="2.6.s2"></a>Details
 
-The semantics of the request are driven by the profileId parameter. If it is included, the GET method will act upon 
+The semantics of the request are driven by the "profileId" parameter. If it is included, the GET method will act upon 
 a single defined document identified by "profileId". Otherwise, GET will return the available ids.  
 
 ###### <a name="2.6.s3"></a>Single Agent or Profile (PUT | POST | GET | DELETE)
@@ -1209,7 +1211,7 @@ Stores, changes, fetches, or deletes the specified profile document in the conte
 **Content (GET | DELETE):** None.  
 
 **Returns (PUT | POST | DELETE):** `204 No Content`  
-**Returns (GET):** `200 OK`, the Profile document  
+**Returns (GET):** `200 OK`, the profile document  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -1222,23 +1224,23 @@ Stores, changes, fetches, or deletes the specified profile document in the conte
 	<tr id="2.6.s3.table1.row2">
 		<td>profileId</td>
 		<td>String</td>
-		<td>The profile Id associated with this profile.</td>
+		<td>The profile id associated with this profile.</td>
 		<td>Required</td>
 	</tr>
 </table>
 
-__Note:__ The agent parameter is an Agent Object and not a Group. Learning Record Providers wishing to store data
+__Note:__ The "agent" parameter is an Agent Object and not a Group. Learning Record Providers wishing to store data
 against an Identified Group can use the Identified Group's identifier within an Agent Object. 
 
 ###### <a name="2.6.s4"></a>Multiple Document GET
 Example resource endpoint: http://example.com/xAPI/agents/profile
 
-Fetches Profile Ids of all profile entries for an Agent. If "since" parameter is specified, this is limited to entries 
+Fetches profile ids of all profile entries for an Agent. If "since" parameter is specified, this is limited to entries 
 that have been stored or updated since the specified Timestamp (exclusive).  
 
 **Content:** None.
 
-**Returns:** `200 OK`, Array of Profile Ids  
+**Returns:** `200 OK`, Array of profile ids  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -1251,7 +1253,7 @@ that have been stored or updated since the specified Timestamp (exclusive).
 	<tr id="2.6.s4.table1.row2">
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only Ids of profiles stored since the specified Timestamp 
+		<td>Only ids of profiles stored since the specified Timestamp 
 			(exclusive) are returned.</td>
 		<td>Optional</td>
 	</tr>
@@ -1268,9 +1270,9 @@ which are related to an Activity.
 
 ###### <a name="2.7.s2"></a>Details
 
-The semantics of the request are driven by the profileId parameter. If it is included, 
+The semantics of the request are driven by the "profileId" parameter. If it is included, 
 the GET method will act upon a single defined document identified by "profileId". 
-Otherwise, GET will return the available Ids.
+Otherwise, GET will return the available ids.
 
 ###### <a name="2.7.s3"></a>Single Document (PUT | POST | GET | DELETE)
 Example resource endpoint: http://example.com/xAPI/activities/profile
@@ -1281,19 +1283,19 @@ Stores, changes, fetches, or deletes the specified profile document in the conte
 **Content (GET | DELETE):** None.  
 
 **Returns (PUT | POST | DELETE)** `204 No Content`  
-**Returns (GET):** `200 OK`, the Profile document  
+**Returns (GET):** `200 OK`, the profile document  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr id="2.7.s3.table1.row1">
 		<td>activityId</td>
-		<td>Activity Id (IRI)</td>
-		<td>The Activity Id associated with this profile.</td>
+		<td>Activity id (IRI)</td>
+		<td>The Activity id associated with this profile.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.7.s3.table1.row2">
 		<td>profileId</td>
 		<td>String</td>
-		<td>The profile Id associated with this profile.</td>
+		<td>The profile id associated with this profile.</td>
 		<td>Required</td>
 	</tr>
 </table>
@@ -1301,25 +1303,25 @@ Stores, changes, fetches, or deletes the specified profile document in the conte
 ###### <a name="2.7.s4"></a>Multiple Document GET
 Example resource endpoint: http://example.com/xAPI/activities/profile
 
-Fetches Profile Ids of all profile entries for an Activity. If "since" parameter is specified, this is limited to 
+Fetches profile ids of all profile entries for an Activity. If "since" parameter is specified, this is limited to 
 entries that have been stored or updated since the specified Timestamp (exclusive).  
 
 **Content:** None.
 
-**Returns:** `200 OK`, Array of Profile Ids  
+**Returns:** `200 OK`, Array of profile ids  
 
 <table>
 	<tr id="2.7.s4.table1.row1"><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
 	<tr>
 		<td>activityId</td>
-		<td>Activity Id (IRI)</td>
-		<td>The Activity Id associated with these profiles.</td>
+		<td>Activity id (IRI)</td>
+		<td>The Activity id associated with these profiles.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.7.s4.table1.row2">
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only Ids of profiles stored since the specified Timestamp (exclusive) 
+		<td>Only ids of profiles stored since the specified Timestamp (exclusive) 
 		are returned.</td>
 		<td>Optional</td>
 	</tr>
@@ -1367,14 +1369,14 @@ Example resource endpoint: http://example.com/xAPI/about
 
 ###### <a name="2.8.s5"></a>Requirements
 
-* <a name="2.8.s5.b1"></a>An LRS MUST return the JSON document described above, with a version property that includes
+* <a name="2.8.s5.b1"></a>An LRS MUST return the JSON document described above, with a "version" property that includes
 the latest minor and patch version the LRS conforms to, for each major version.
-    * <a name="2.8.s5.b1.b1"></a>For version 1.0.0 of this specification, this means that "1.0.0" MUST be included;
-    "0.9" and "0.95" MAY be included. (For the purposes of this requirement, "0.9" and "0.95"
+    * <a name="2.8.s5.b1.b1"></a>For version 1.0.0 of this specification, this means that `1.0.0` MUST be included;
+    `0.9` and `0.95` MAY be included. (For the purposes of this requirement, `0.9` and `0.95`
     are considered major versions.)
 * <a name="2.8.s5.b2"></a>Additional properties MUST NOT be added to this object outside of extensions and each 
 property MUST occur only once.  
-* <a name="2.8.s5.b3"></a>An LRS SHOULD allow unauthenticated access to this resource
+* <a name="2.8.s5.b3"></a>An LRS SHOULD allow unauthenticated access to this resource.
 * <a name="2.8.s5.b4"></a>An LRS MUST NOT reject requests based on their version header as would otherwise be 
 required by [Versioning](#versioning).
 
@@ -1415,54 +1417,53 @@ overwrite or remove existing data, being:
 The State Resource will permit PUT, POST and DELETE requests without concurrency headers, since state conflicts
 are unlikely. The requirements below only apply to Agent Profile Resource and Activity Profile Resource.
 
-* <a name="3.1.s3.b1"></a>A Client making a PUT request to either the Agent Profile Resource or Activity Profile Resource MUST include the 
-[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the 
+* <a name="3.1.s3.b1"></a>A Client making a PUT request to either the Agent Profile Resource or Activity Profile 
+Resource MUST include the "[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)" header or the 
 [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header.
 
-* <a name="3.1.s3.b2"></a>A Client making a POST request to either the Agent Profile Resource or Activity Profile Resource SHOULD* include the 
-[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header or the 
+* <a name="3.1.s3.b2"></a>A Client making a POST request to either the Agent Profile Resource or Activity Profile 
+Resource SHOULD* include the "[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)" header or the 
 [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header.
 
-* <a name="3.1.s3.b3"></a>A Client making a DELETE request to either the Agent Profile Resource or Activity Profile Resource SHOULD* include the 
-[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header.
+* <a name="3.1.s3.b3"></a>A Client making a DELETE request to either the Agent Profile Resource or Activity Profile 
+Resource SHOULD* include the "[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)" header.
 
 * <a name="3.1.s3.b4"></a>Clients SHOULD* use the ETag value provided by the LRS rather than calculating it themselves. 
 
 ##### <a name="3.1.s4"></a>LRS Requirements
 
 * <a name="3.1.s4.b1"></a>An LRS responding to a GET request MUST add an ETag HTTP header to the response.
-* <a name="3.1.s4.b2"></a>An LRS responding to a GET request without using a transfer encoding or using the identity transfer encoding MUST 
-calculate the value of the ETag header to be a hexadecimal string of the SHA-1 digest of the contents. This hexadecimal 
-string SHOULD be rendered using numbers and lowercase characters only; uppercase characters SHOULD NOT be used. 
+* <a name="3.1.s4.b2"></a>An LRS responding to a GET request without using a transfer encoding or using the identity 
+transfer encoding MUST calculate the value of the ETag header to be a hexadecimal string of the SHA-1 digest of the contents. 
+This hexadecimal string SHOULD be rendered using numbers and lowercase characters only; uppercase characters SHOULD NOT be used. 
 The requirement to calculate the ETag this way will be removed in a future version of the specification.
-* <a name="3.1.s4.b3"></a>An LRS responding to a GET request using any non-identity transfer encoding MUST NOT calculate the included ETag as above, 
-due to the interpretation of ETags by existing web infrastructure.
-* <a name="3.1.s4.b4"></a>As defined in [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19), an LRS responding to a GET 
-request MUST enclose the header in quotes.  
-* <a name="3.1.s4.b5"></a>An LRS responding to a PUT request MUST handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) 
-header as described in RFC2616, HTTP 1.1 if it contains an ETag, in order to detect modifications made after the Client 
-last fetched the document.
-* <a name="3.1.s4.b6"></a>An LRS responding to a PUT request MUST handle the [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in 
+* <a name="3.1.s4.b3"></a>An LRS responding to a GET request using any non-identity transfer encoding MUST NOT calculate 
+the included ETag as above, due to the interpretation of ETags by existing web infrastructure.
+* <a name="3.1.s4.b4"></a>As defined in [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19), 
+an LRS responding to a GET request MUST enclose the header in quotes.  
+* <a name="3.1.s4.b5"></a>An LRS responding to a PUT request MUST handle the "[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)" header as described in RFC2616, HTTP 1.1 if 
+it contains an ETag, in order to detect modifications made after the Client last fetched the document.
+* <a name="3.1.s4.b6"></a>An LRS responding to a PUT request MUST handle the "[If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26)" header as described in 
 RFC2616, HTTP 1.1 if it contains "*", in order to to detect when there is a resource present that the Client is not aware of.
-* <a name="3.1.s4.b7"></a>An LRS responding to a POST or DELETE request SHOULD* handle the [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header as described in RFC2616, HTTP 1.1 if it contains 
-an ETag, in order to detect modifications made after the Client last fetched the document.
+* <a name="3.1.s4.b7"></a>An LRS responding to a POST or DELETE request SHOULD* handle the "[If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24)" header as described in RFC2616, HTTP 1.1 
+if it contains an ETag, in order to detect modifications made after the Client last fetched the document.
 * <a name="3.1.s4.b8"></a>An LRS responding to a POST request SHOULD* handle the 
-[If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header as described in RFC2616, HTTP 1.1 if it 
+"[If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26)" header as described in RFC2616, HTTP 1.1 if it 
 contains "*", in order to to detect when there is a resource present that the Client is not aware of.
 
 If the header precondition in either of the PUT request cases above fails, the LRS:
 
-* <a name="3.1.s4.b9"></a>MUST return HTTP status 412 "Precondition Failed".
+* <a name="3.1.s4.b9"></a>MUST return HTTP status `412 Precondition Failed`.
 * <a name="3.1.s4.b10"></a>MUST NOT make a modification to the resource. 
 
 If the header precondition in any of the POST or DELETE request cases above fails, the LRS:
 
-* <a name="3.1.s4.b11"></a>SHOULD* return HTTP status 412 "Precondition Failed".
+* <a name="3.1.s4.b11"></a>SHOULD* return HTTP status `412 Precondition Failed`.
 * <a name="3.1.s4.b12"></a>SHOULD* NOT make a modification to the resource. 
 
 If a PUT request is received without either header for a resource that already exists, the LRS:
 
-* <a name="3.1.s4.b13"></a>MUST return HTTP status 409 "Conflict".
+* <a name="3.1.s4.b13"></a>MUST return HTTP status `409 Conflict`.
 * <a name="3.1.s4.b14"></a>MUST return a response explaining that the Learning Record Provider SHOULD
 	* <a name="3.1.s4.b14.b1"></a>check the current state of the resource.
 	* <a name="3.1.s4.b14.b2"></a>set the "If-Match" header with the current ETag to resolve the conflict.
@@ -1488,14 +1489,14 @@ by an LRS are out of scope of this specification, aside from the list of recomme
 values in section [6.4.2](#oauthscope). 
 
 Permissions can also affect the response returned by an LRS to GET requests. For example, 
-a set of credentials might have permission only to view Statements about a particular actor, in which case
+a set of credentials might have permission only to view Statements about a particular Actor, in which case
 the LRS will filter any returned Statements to exclude any Statements not relating to that Actor. See 
 [GET Statements](#stmtapiget) for details. 
 
 In cases explicitly allowed by this specification, the credentials used can also affect the LRS behavior in 
-handling a request, for example the LRS will normally overwrite the Authority property of a Statement, but can 
+handling a request, for example the LRS will normally overwrite the "authority" property of a Statement, but can 
 sometimes accept a submitted authority if it has a strong trust relationship associated with the credentials 
-used to submit the statement. See [Authority](#authority) for details. 
+used to submit the Statement. See [Authority](#authority) for details. 
 
 Permissions set by an LRS could cause a technically conformant LRS to fail conformance testing. 
 This could occur where requests made by the testing software are rejected on the basis of permissions. For this reason
