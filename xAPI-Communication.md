@@ -1514,30 +1514,26 @@ an unexpected large number of requests made in a short period of time. It is exp
 will be sufficiently high such that the rate of requests made during conformance testing will not trigger any rate limits.
 
 ##### <a name="3.2.s2"></a>Details
-The list below offers some general guidance on HTTP error codes that could
-be returned from various methods in the API. 
+The list below offers some general guidance on HTTP error codes that could be returned from various methods in the API. 
 
 * <a name="3.2.s2.b1"></a>`400 Bad Request` - Indicates
 an error condition caused by an invalid or missing argument. The term 
 "invalid arguments" includes malformed JSON or invalid Object structures.
 
 * <a name="3.2.s2.b2"></a>`401 Unauthorized` - Indicates that authentication is required, or in the 
-case authentication has been posted in the request, that the given credentials 
-have been refused.
+case authentication has been posted in the request, that the given credentials have been refused.
 
 * <a name="3.2.s2.b3"></a>`403 Forbidden` - Indicates that the request is unauthorized for the given 
-credentials. Note this is different than refusing the credentials given. In 
-this case, the credentials have been validated, but the authenticated Client 
-is not allowed to perform the given action.
+credentials. Note this is different than refusing the credentials given. In this case, the credentials 
+have been validated, but the authenticated Client is not allowed to perform the given action.
 
 * <a name="3.2.s2.b4"></a>`404 Not Found` - Indicates the requested resource was not found. May be 
-returned by any method that returns a uniquely identified resource, for 
-instance, any State or Agent Profile or Activity Profile Resource request targeting a specific document, 
-or the method to retrieve a single Statement.
+returned by any method that returns a uniquely identified resource, for instance, any State or Agent Profile 
+or Activity Profile Resource request targeting a specific document, or the method to retrieve a single Statement.
 
 * <a name="3.2.s2.b5"></a>`409 Conflict` - Indicates an error condition due to a conflict with the 
-current state of a resource, in the case of State Resource, Agent Profile or Activity Profile Resource
-requests, or in the Statement PUT or POST calls. See Section [6.3 Concurrency](#concurrency) for more details.
+current state of a resource, in the case of State Resource, Agent Profile Resource or Activity Profile Resource
+requests, or in the Statement Resource PUT or POST calls. See Section [6.3 Concurrency](#concurrency) for more details.
 
 * <a name="3.2.s2.b6"></a>`412 Precondition Failed` - Indicates an error condition due to a failure of 
 a precondition posted with the request, in the case of State or Agent Profile or Activity Profile 
@@ -1547,8 +1543,8 @@ API requests. See Section [6.3 Concurrency](#concurrency) for more details.
 document because its size (or the size of an Attachment included in the request) is larger than 
 the maximum allowed by the LRS. 
 
-* <a name="3.2.s2.b8"></a>`429 Too Many Requests` - Indicates that the LRS has rejected the request because it has received 
-too many requests from the Client or set of credentials in a given amount of time. 
+* <a name="3.2.s2.b8"></a>`429 Too Many Requests` - Indicates that the LRS has rejected the request because it 
+has received too many requests from the Client or set of credentials in a given amount of time. 
 
 * <a name="3.2.s2.b9"></a>`500 Internal Server Error` - Indicates a general error condition, typically an 
 unexpected exception in processing on the server.
@@ -1559,48 +1555,51 @@ unexpected exception in processing on the server.
 
 * <a name="3.2.s3.b2"></a>An LRS SHOULD return a message in the response explaining the cause of the error.
 
-* <a name="3.2.s3.b3"></a>An LRS SHOULD use content negotiation as described in [RFC 7231](http://tools.ietf.org/html/rfc7231#section-5.3) 
-to decide the format of the error.
+* <a name="3.2.s3.b3"></a>An LRS SHOULD use content negotiation as described in [RFC 7231](http://tools.ietf.org/html/rfc7231#section-5.3) to decide the format of the error.
 
 * <a name="3.2.s3.b4"></a>An LRS SHOULD allow for plain text, HTML, and JSON responses for errors (using content negotiation).
 
-* <a name="3.2.s3.b5"></a>A Learning Record Provider SHOULD send an Accept header with requests to enable content negotiation.
+* <a name="3.2.s3.b5"></a>A Learning Record Provider SHOULD send an "Accept" header with requests to enable content negotiation.
 
-* <a name="3.2.s3.b6"></a>The LRS SHOULD* reject any request with `HTTP 400 Bad Request` status where the content type header does not match the content 
-included in the request or where the structure of the request does not match the structure outlined in this specification 
-for a particular content type. For example, if the content of the request is formatted as JSON, the content type is expected 
-to be application/json. If the content type is application/x-www-form-urlencoded it is expected that the request will include a 
-method parameter as outlined in [Alternate Request Syntax](#alt-request-syntax).
+* <a name="3.2.s3.b6"></a>The LRS SHOULD* reject any request with `400 Bad Request` status where the content type header 
+does not match the content included in the request or where the structure of the request does not match the structure 
+outlined in this specification for a particular content type. For example, if the content of the request is formatted as JSON, 
+the content type is expected to be `application/json`. If the content type is application/x-www-form-urlencoded it is expected 
+that the request will include a method parameter as outlined in [Alternate Request Syntax](#alt-request-syntax).
 
-* <a name="3.2.s3.b7"></a>The LRS MUST reject with `HTTP 400 Bad Request` status any requests that use any parameters which the LRS does 
-not recognize in their intended context in this specification. 
+* <a name="3.2.s3.b7"></a>The LRS MUST reject with `400 Bad Request` status any requests that use any parameters which the LRS 
+does not recognize in their intended context in this specification. 
 ( __Note:__ LRSs MAY recognize and act on parameters not in this specification).
 
-* <a name="3.2.s3.b8"></a>The LRS MUST reject with `HTTP 400 Bad Request` status any requests that use any parameters matching parameters 
-described in this specification in all but case.
+* <a name="3.2.s3.b8"></a>The LRS MUST reject with `400 Bad Request` status any requests that use any parameters 
+matching parameters described in this specification in all but case.
 
 * <a name="3.2.s3.b9"></a>The LRS MUST reject a batch of statements if any Statement within that batch is rejected.
 
-* <a name="3.2.s3.b10"></a>The LRS MUST reject with `HTTP 403 Forbidden` status any request rejected by the LRS where the credentials 
-associated with the request do not have permission to make that request. 
+* <a name="3.2.s3.b10"></a>The LRS MUST reject with `403 Forbidden` status any request rejected by the LRS where the 
+credentials associated with the request do not have permission to make that request. 
 
-* <a name="3.2.s3.b11"></a>The LRS MUST reject with `HTTP 413 Request Entity Too Large` status any request rejected by the LRS where the 
-size of the Attachment, Statement or document is larger than the maximum allowed by the LRS.
+* <a name="3.2.s3.b11"></a>The LRS MUST reject with `413 Request Entity Too Large` status any request rejected by the LRS 
+where the size of the Attachment, Statement or document is larger than the maximum allowed by the LRS.
 
-* <a name="3.2.s3.b12"></a>The LRS MAY choose any Attachment, Statement and document size limits and MAY vary this limit on any basis, e.g., per authority.
+* <a name="3.2.s3.b12"></a>The LRS MAY choose any Attachment, Statement and document size limits and MAY vary this limit 
+on any basis, e.g., per authority.
 
-* <a name="3.2.s3.b13"></a>The LRS MUST reject with `429 Too Many Requests` status any request rejected by the LRS where the request is rejected due 
-to too many requests being received by a particular Client or set of credentials in a given amount of time. 
+* <a name="3.2.s3.b13"></a>The LRS MUST reject with `429 Too Many Requests` status any request rejected by the LRS where 
+the request is rejected due to too many requests being received by a particular Client or set of credentials in a given 
+amount of time. 
 
 * <a name="3.2.s3.b14"></a>The LRS MAY choose any rate limit and MAY vary this limit on any basis, e.g., per authority.
 
-The following requirements exist for the purposes of conformance testing, to ensure that any limitations or permissions implemented 
-by the LRS do not affect the running of conformance testing software. 
+The following requirements exist for the purposes of conformance testing, to ensure that any limitations or permissions 
+implemented by the LRS do not affect the running of conformance testing software. 
 
-* <a name="3.2.s3.b15"></a>The LRS SHOULD* be configurable not to reject any requests from a particular set of credentials on the basis of permissions. 
-This set of credentials SHOULD* be used for conformance testing but MAY be deleted/deactivated on live systems. 
+* <a name="3.2.s3.b15"></a>The LRS SHOULD* be configurable not to reject any requests from a particular set of credentials 
+on the basis of permissions. This set of credentials SHOULD* be used for conformance testing but MAY be deleted/deactivated 
+on live systems. 
 
-* <a name="3.2.s3.b16"></a>The LRS MUST be configurable to accept Attachments, Statements or documents of any reasonable size (see above).
+* <a name="3.2.s3.b16"></a>The LRS MUST be configurable to accept Attachments, Statements or documents of any reasonable 
+size (see above).
 
 * <a name="3.2.s3.b17"></a>The LRS MUST be configurable to accept requests at any reasonable rate. 
 
@@ -1615,14 +1614,14 @@ Versioning will allow Clients and LRSs to remain interoperable as the specificat
 
 ###### <a name="3.3.s2"></a>Details
 
-Starting with 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html).  
-Every request from a Client and every response from the LRS includes an HTTP header with the name “X-Experience-API-Version" 
+Starting with version 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html).  
+Every request from a Client and every response from the LRS includes an HTTP header with the name `X-Experience-API-Version` 
 and the version as the value. For example, ``X-Experience-API-Version : 1.0.3`` for version 1.0.3; 
 see the [Revision History](#Appendix1A) for the current version of this specification. 
 
-__Note:__ For patch versions of the specification later than 1.0.0, the X-Experience-API-Version header will not match the 
-[statement version property](./xAPI-Data.md#version) which is always '1.0.0' for all 1.0.x versions of the spec. The
-X-Experience-API-Version header enables the LRS and client to determine the exact patch version of the specification being 
+__Note:__ For patch versions of the specification later than 1.0.0, the "X-Experience-API-Version" header will not match the 
+[statement version property](./xAPI-Data.md#version) which is always `1.0.0` for all 1.0.x versions of the spec. The
+"X-Experience-API-Version" header enables the LRS and Client to determine the exact patch version of the specification being 
 followed. While no communication incompatibility should arise among 1.0.x versions, there are sometimes clarifications 
 of previously intended behavior.
 
@@ -1630,27 +1629,28 @@ of previously intended behavior.
 
 * <a name="3.3.s3.b1"></a>The LRS MUST include the "X-Experience-API-Version" header in every response.
 * <a name="3.3.s3.b2"></a>The LRS MUST set this header to the latest patch version.
-* <a name="3.3.s3.b3"></a>The LRS MUST accept requests with a version header of "1.0" as if the version header was "1.0.0".
-* <a name="3.3.s3.b4"></a>The LRS MUST reject requests with version header prior to "1.0.0" unless such requests are routed to a 
-fully conformant implementation of the prior version specified in the header.
-* <a name="3.3.s3.b5"></a>The LRS MUST accept requests with a version header starting with "1.0." if the request is otherwise valid. 
-* <a name="3.3.s3.b6"></a>The LRS MUST reject requests with a version header of "1.1.0" or greater.
-* <a name="3.3.s3.b7"></a>The LRS MUST make these rejects by responding with an HTTP 400 error including a short description of the problem.
+* <a name="3.3.s3.b3"></a>The LRS MUST accept requests with a version header of `1.0` as if the version header was `1.0.0`.
+* <a name="3.3.s3.b4"></a>The LRS MUST reject requests with version header prior to version 1.0.0 unless such requests are 
+routed to a fully conformant implementation of the prior version specified in the header.
+* <a name="3.3.s3.b5"></a>The LRS MUST accept requests with a version header starting with `1.0.` if the request is otherwise valid. 
+* <a name="3.3.s3.b6"></a>The LRS MUST reject requests with a version header of `1.1.0` or greater.
+* <a name="3.3.s3.b7"></a>The LRS MUST make these rejects by responding with a `400 Bad Request` error including a short 
+description of the problem.
 
 ###### <a name="3.3.s4"></a>Client Requirements
 
 * <a name="3.3.s4.b1"></a>The Client MUST include the "X-Experience-API-Version" header in every request.
 * <a name="3.3.s4.b2"></a>The Client MUST set this header to the latest patch version.
-* <a name="3.3.s4.b3"></a>The Client SHOULD tolerate receiving responses with a version of "1.0.0" or later.
+* <a name="3.3.s4.b3"></a>The Client SHOULD tolerate receiving responses with a version of `1.0.0` or greater.
 * <a name="3.3.s4.b4"></a>The Client SHOULD tolerate receiving data structures with additional properties.
 * <a name="3.3.s4.b5"></a>The Client SHOULD ignore any properties not defined in version 1.0.0 of the spec.
 
 ###### <a name="3.3.s5"></a>Conversion Requirements
 
-* <a name="3.3.s5.b1"></a>Statements of newer versions MUST NOT be converted into a prior version format, e.g., in order to handle version differences.
-* <a name="3.3.s5.b2"></a>Statements of prior versions MAY be converted into a newer version only by following the methods described in
-[Appendix A: Converting Statements to 1.0.0](Appendix3A).
-
+* <a name="3.3.s5.b1"></a>Statements of newer versions MUST NOT be converted into a prior version format, e.g., in order 
+to handle version differences.
+* <a name="3.3.s5.b2"></a>Statements of prior versions MAY be converted into a newer version only by following the methods 
+described in [Appendix A: Converting Statements to 1.0.0](Appendix3A).
 
 <a name="authentication"/>
 
@@ -1665,24 +1665,26 @@ authentication options are defined.
 The following authentication methods are defined within the specification. Any given LRS will implement at least one 
 of these methods and might implement additional methods not defined within this specification. 
 
-* <a name="4.0.s2.b1"></a>[OAuth 1.0 (RFC 5849)](http://tools.ietf.org/html/rfc5849), with signature methods of "HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
+* <a name="4.0.s2.b1"></a>[OAuth 1.0 (RFC 5849)](http://tools.ietf.org/html/rfc5849), with signature methods of 
+"HMAC-SHA1", "RSA-SHA1", and "PLAINTEXT"
 * <a name="4.0.s2.b2"></a>[HTTP Basic Authentication](http://tools.ietf.org/html/rfc7235)
 * <a name="4.0.s2.b3"></a>Common Access Cards
 
-While Common Access Cards are defined as an authentication option within this specification, the implementation details of 
+While Common Access Cards are defined as an authentication method within this specification, the implementation details of 
 this authentication method are not defined. The xAPI Working Group encourages LRS developers implementing Common Access Cards 
 as an authentication method to collaborate in defining the details of this authentication method in a future version of this 
 specification. 
 
-No further details are provided to describe HTTP Basic Authentication as this authentication method
+No further details are provided in this specification to describe HTTP Basic Authentication as this authentication method
 is clearly and completely defined in [RFC 7235](http://tools.ietf.org/html/rfc7235). 
 
 ###### <a name="4.0.s3"></a>Requirements
 
-* <a name="4.0.s3.b1"></a>The LRS MUST support authentication using at least one of the authentication methods defined in this specification.
+* <a name="4.0.s3.b1"></a>The LRS MUST support authentication using at least one of the authentication methods defined 
+in this specification.
 
-* <a name="4.0.s3.b2"></a>The LRS MUST handle making, or delegating, decisions on the validity of Statements, and determining what operations 
-might be performed based on the credentials used.
+* <a name="4.0.s3.b2"></a>The LRS MUST handle making, or delegating, decisions on the validity of Statements, and 
+determining what operations might be performed based on the credentials used.
 
 <a name="authdefs"/>
 
@@ -1728,8 +1730,8 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 ##### <a name="4.1.s2"></a>Requirements
 
 * <a name="4.1.s2.b1"></a>The LRS MUST record the application's name and a unique consumer key (identifier).
-* <a name="4.1.s2.b2"></a>The LRS MUST provide a mechanism to complete this registration, or delegate to another system that provides 
-such a mechanism.
+* <a name="4.1.s2.b2"></a>The LRS MUST provide a mechanism to complete this registration, or delegate to another system 
+that provides such a mechanism.
 * <a name="4.1.s2.b3"></a>The LRS MUST be able to be configured for complete support of the xAPI:
 	* <a name="4.1.s2.b3.b1"></a>With any of the methods below.
 	* <a name="4.1.s2.b3.b2"></a>In any of the workflow scenarios below.
@@ -1742,10 +1744,10 @@ such a mechanism.
 **Process:** The standard workflow for OAUth 1.0 is used. 
 
 **Requirements:**
-* <a name="4.1.s3.b1"></a>The LRS MUST support the endpoints in section [6.4.2 OAuth Authorization Scope](#oauthscope) to complete the 
-standard OAuth workflow (details not in this specification).
-* <a name="4.1.s3.b2"></a>If this form of authentication is used to record Statements and no authority is specified, the LRS SHOULD 
-record the authority as a group consisting of an Agent representing the registered application, and an Agent 
+* <a name="4.1.s3.b1"></a>The LRS MUST support the endpoints in section [6.4.2 OAuth Authorization Scope](#oauthscope) to 
+complete the standard OAuth workflow (details not in this specification).
+* <a name="4.1.s3.b2"></a>If this form of authentication is used to record Statements and no authority is specified, the LRS 
+SHOULD record the authority as a Group consisting of an Agent representing the registered application, and an Agent 
 representing the known user.
 
 ###### <a name="4.1.s4"></a>Application registered + user unknown Process and Requirements
@@ -1754,8 +1756,8 @@ The LRS honors requests that are signed using OAuth with the registered applicat
 and token secret.
 
 **Requirements:**
-* <a name="4.1.s4.b1"></a>If this form of authentication is used to record Statements, the LRS SHOULD record the authority as the Agent representing 
-the registered application.
+* <a name="4.1.s4.b1"></a>If this form of authentication is used to record Statements, the LRS SHOULD record the authority 
+as the Agent representing the registered application.
 
 ###### <a name="4.1.s5"></a>Application Not Registered + Known User Process and Requirements
 **Process:**
@@ -1770,8 +1772,8 @@ plus a warning that the identity of the application requesting authorization can
 Otherwise the process follows the standard OAuth workflow. 
 
 **Requirements:**
-* <a name="4.1.s5.b1"></a>If this form of authentication is used to record Statements, the LRS MUST record an authority that includes both 
-that application and the authenticating user, as a group, since OAuth specifies an application.
+* <a name="4.1.s5.b1"></a>If this form of authentication is used to record Statements, the LRS MUST record an authority 
+that includes both that application and the authenticating user, as a Group, since OAuth specifies an application.
 
 ###### <a name="4.1.s6"></a>No Application + Known User Process and Requirements
 **Process:**
@@ -1783,11 +1785,11 @@ record the authority as the Agent representing the known user.
 
 ###### <a name="4.1.s7"></a>No Authorization Process and Requirements
 
-* <a name="4.1.s7.b1"></a>Requests MUST include headers for HTTP Basic Authentication based on a username and password containing zero or
-more space characters. 
-* <a name="4.1.s7.b2"></a>Requests SHOULD* include headers for HTTP Basic Authentication based on a username and password each consisting of 
-an empty string. In this case the HTTP Basic Authentication header will be `Basic ` followed by a base64 encoded 
-version of the string `:`.  This results in the string `Basic Og==`.
+* <a name="4.1.s7.b1"></a>Requests MUST include headers for HTTP Basic Authentication based on a username and password 
+containing zero or more space characters. 
+* <a name="4.1.s7.b2"></a>Requests SHOULD* include headers for HTTP Basic Authentication based on a username and password 
+each consisting of an empty string. In this case the HTTP Basic Authentication header will be `Basic ` followed by a base64 
+encoded version of the string `:`.  This results in the string `Basic Og==`.
 
 This is in order to distinguish an explicitly unauthenticated request from a request that needs to be given a 
 HTTP Basic Authentication challenge.
@@ -1831,7 +1833,7 @@ The following table lists xAPI scope values:
 	<tr id="4.2.s2.table1.row4">
 		<td>define</td>
 		<td>(re)Define Activities and Actors. If storing a Statement 
-			when this is not granted, Ids will be saved and the LRS 
+			when this is not granted, ids will be saved and the LRS 
 			MAY save the original Statement for audit purposes, but 
 			SHOULD NOT update its canonical representation of any 
 			Actors or Activities.
@@ -1884,10 +1886,12 @@ read if querying the LRS with their credentials directly (such as Statements rel
 ##### <a name="4.2.s6"></a>Requirements
 
 * <a name="4.2.s6.b1"></a>The LRS MUST accept a scope parameter as defined in [OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-3.3).
-* <a name="4.2.s6.b2"></a>The LRS MUST assume a requested scope of "statements/write" and "statements/read/mine" if no scope is specified.
+* <a name="4.2.s6.b2"></a>The LRS MUST assume a requested scope of "statements/write" and "statements/read/mine" if no 
+scope is specified.
 * <a name="4.2.s6.b3"></a>The LRS MUST support the scope of "all" as a minimum.
 * <a name="4.2.s6.b4"></a>The LRS MAY support other scopes.
-* <a name="4.2.s6.b5"></a>The Client SHOULD request only the minimal needed scopes, to increase the chances that the request will be granted.
+* <a name="4.2.s6.b5"></a>The Client SHOULD request only the minimal needed scopes, to increase the chances that the 
+request will be granted.
 
 <a name="security"/>
 
@@ -1921,10 +1925,10 @@ A 1.0.0 Client or other system converting a Statement created in 0.9 MUST follow
 
 * <a name="A.s3.b1"></a>If the Statement has been voided or uses Verbs, Activity types, or properties not included in the
  0.9 specification, do not convert it.
-* <a name="A.s3.b2"></a>Prefix "verb" with "http://adlnet.gov/expapi/verbs/".
-* <a name="A.s3.b3"></a>Prefix any Activity ids which are not full absolute IRIs with "tag:adlnet.gov,2013:expapi:0.9:activities:"
-* <a name="A.s3.b4"></a>Prefix any extension keys which are not full absolute IRIs with "tag:adlnet.gov,2013:expapi:0.9:extensions:"
-* <a name="A.s3.b5"></a>Prefix Activity types with "http://adlnet.gov/expapi/activities/"
+* <a name="A.s3.b2"></a>Prefix "verb" with `http://adlnet.gov/expapi/verbs/`.
+* <a name="A.s3.b3"></a>Prefix any Activity ids which are not full absolute IRIs with `tag:adlnet.gov,2013:expapi:0.9:activities:`
+* <a name="A.s3.b4"></a>Prefix any extension keys which are not full absolute IRIs with `tag:adlnet.gov,2013:expapi:0.9:extensions:`
+* <a name="A.s3.b5"></a>Prefix Activity types with `http://adlnet.gov/expapi/activities/`
 * <a name="A.s3.b6"></a>for each Agent (Actor):
     * <a name="A.s3.b6.b1"></a>Search for Inverse Functional Identifiers in this order: "mbox, mbox_sha1sum, openid,
     account". Keep the first populated Inverse Functional Identifier found and discard the rest.
@@ -1935,27 +1939,28 @@ A 1.0.0 Client or other system converting a Statement created in 0.9 MUST follow
     array, discard the remaining elements.
     * <a name="A.s3.b6.b4"></a>Remove all remaining properties.
 * <a name="A.s3.b7"></a>Remove the "voided" property from the Statement, if present. Remember, if the value of the
-  voided property is true, then the Statement MUST NOT be converted.
-* <a name="A.s3.b8"></a>Add "version": "1.0.0"
-* <a name="A.s3.b9"></a>If an authority was not previously set, set the authority to an Agent identified by an account with a homePage 
-set to the home page corresponding to the system performing the conversion and an accountName of "unknown".
+  voided property is `true`, then the Statement MUST NOT be converted.
+* <a name="A.s3.b8"></a>Add `version": "1.0.0`
+* <a name="A.s3.b9"></a>If an authority was not previously set, set the authority to an Agent identified by an account 
+with a homePage set to the home page corresponding to the system performing the conversion and an accountName of `unknown`.
 * <a name="A.s3.b10"></a>If the "statement" property in Context was set, remove it from the Statement.
-* <a name="A.s3.b11"></a>Preserve all other properties without modification, including "stored". "stored" will still be updated if the Statement 
-is sent to an LRS.
+* <a name="A.s3.b11"></a>Preserve all other properties without modification, including the "stored" property. The "stored" 
+property will still be updated if the Statement is sent to an LRS.
 
 ###### <a name="A.s4"></a>Conversion of Statements created based on version 0.95
 
 A 1.0.0 Client or other system converting a Statement created in 0.95 MUST follow the steps below:
 
 * <a name="A.s4.b1"></a>If the Statement is voided, do not convert it.
-* <a name="A.s4.b2"></a>Remove the "voided" property from the Statement, if present. Remember, if the value
-  of the voided property is true, then the Statement MUST NOT be converted.
-* <a name="A.s4.b3"></a>Add "version": "1.0.0"
-* <a name="A.s4.b4"></a>If an authority was not previously set, set the authority to an Agent identified by an account with a homePage 
-set to the home page corresponding to the system performing the conversion and an accountName of "unknown".
-* <a name="A.s4.b5"></a>If the Statement property in Context was set to anything other than a StatementRef, remove it from the Statement.
-* <a name="A.s4.b6"></a>Preserve all other properties without modification, including "stored". "stored" will still be updated if the Statement 
-is sent to an LRS.
+* <a name="A.s4.b2"></a>Remove the "voided" property from the Statement, if present. Remember, if the value of the "voided" 
+property is `true`, then the Statement MUST NOT be converted.
+* <a name="A.s4.b3"></a>Add `version": "1.0.0`
+* <a name="A.s4.b4"></a>If an authority was not previously set, set the authority to an Agent identified by an account 
+with a homePage set to the home page corresponding to the system performing the conversion and an accountName of `unknown`.
+* <a name="A.s4.b5"></a>If the Statement property in Context was set to anything other than a StatementRef, 
+remove it from the Statement.
+* <a name="A.s4.b6"></a>Preserve all other properties without modification, including the "stored" property. The "stored" 
+property will still be updated if the Statement is sent to an LRS.
 
 
 ###### <a name="A.s5"></a>Example
