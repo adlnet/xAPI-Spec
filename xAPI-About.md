@@ -152,18 +152,18 @@ This specification is split into three parts. Part one is this introduction. It 
 high-level summaries and direction on how to read the rest of the specification. 
 
 Part two of this specification defines a data model for various data objects that are used in this specification. 
-The most significant object within the xAPI data model is the Statement object. This specification defines the properties 
+The most significant object within the xAPI data model is the "Statement" object. This specification defines the properties 
 of the Statement object (including "Actor", "Verb", "Object", "Result", and "Context") and the rules of syntax for the 
 values of those properties and how they are represented. This part helps to ensure that services implementing the 
 specification follow a consistent data structure.
 
 Part three of this specification sets out the transfer methods that must be used when communicating 
 information about learning experiences between services that adhere to the specification. This includes the format 
-of requests and the expected responses. Note that communication in xAPI is not restricted to a Learning Record Store (LRS) 
-receiving data from "content". LRSs can communicate with services ranging from Learning Record Providers to 
-Learning Record Consumers to other LRSs. xAPI follows the guidelines of the REST software architecture style, and as such 
+of requests and the expected responses. Note that communication in xAPI is not restricted to a "Learning Record Store" (LRS) 
+receiving data from "content". LRSs can communicate with services ranging from "Learning Record Providers" to 
+"Learning Record Consumers" to other LRSs. xAPI follows the guidelines of the REST software architecture style, and as such 
 data is transferred via HTTP requests and responses. Part three also defines security methods allowing for the trusted 
-exchange of information between the LRS and trusted clients.
+exchange of information between the LRS and trusted "Clients".
 
 <a name="def-must-should-may"></a>
 ### 2.1 MUST / SHOULD / MAY 
@@ -188,15 +188,15 @@ as such. This is especially true of longer, more, detailed explanations and of t
 be unintuitive and/or lengthy to dissect into a list of requirements.
 
 Tables are used throughout this specification to define requirements for lists of properties, parameters, etc.
-The tables define which properties are required, recommended and optional. Generally, 'optional' relates to the  
-service creating the object, while services receiving and interpreting the object need to be able to interpret all 
-properties of that object. Often, properties are optional because the data may not be relevant in all contexts; 
+The tables define which properties are required, recommended and optional. Generally, the notion of "optional" relates to 
+the service creating the object, while services receiving and interpreting the object need to be able to interpret all 
+properties of that object. Often, properties are optional because the data may not be relevant in every context; 
 if the data is relevant in a particular context, then it is expected the property will be populated.
 
 If an optional property or parameter contains an object with properties that are recommended or required, then 
 these properties are only recommended/required if the property or parameter containing them is used.
 
-Examples are provided through the specification and in appendices to illustrate implementation. The content of these 
+Examples are provided throughout the specification and in appendices to illustrate implementation. The content of these 
 examples is fictional in order to illustrate the requirements of the specification and may not always 
 illustrate the best practice approach to tracking the particular learning experience used in the example. Examples 
 can be used to inform interpretation of requirements, but are not intended to take precedence over requirements. 
@@ -265,12 +265,12 @@ All required properties are required to contain values.
 
 <a name="def-activity" ></a>
 
-__Activity__: A type of Object making up the “this” in “I did this”; it is something 
+__Activity__: A type of Object making up the "this" in "I did this"; it is something 
 with which an Actor interacted. It can be a unit of instruction, experience, or performance that is 
 to be tracked in meaningful combination with a Verb. Interpretation of Activity is broad, meaning that 
-Activities can even be tangible objects such as a chair (real or virtual). In the statement "Anna 
-tried a cake recipe", the recipe constitutes the Activity in terms of the xAPI statement. Other 
-examples of activities include a book, an e-learning course, a hike or a meeting.
+Activities can even be tangible objects such as a chair (real or virtual). In the Statement "Anna 
+tried a cake recipe", the recipe constitutes the Activity in terms of the xAPI Statement. Other 
+examples of Activities include a book, an e-learning course, a hike, or a meeting.
 
 <a name="def-activity-provider" ></a>
 
@@ -305,12 +305,16 @@ Management System (LMS).
 
 <a name="def-community-of-practice" ></a>
 
-__Community of Practice__: A group of practitioners connected by a common cause, role or purpose, which operates in a common modality. CoPs are focused on implementing xAPI within a specific knowledge domain or use case. CoPs, or independent developers, can create domain-specific vocabularies, profiles, and recipes. These practices usually involve work around defining use cases and curating the various vocabulary terms, synonyms, and other related metadata that might be preferred within a CoP. They can also reuse existing vocabularies, profiles, and recipes already published by other CoPs or participants of the xAPI community.
+__Community of Practice (CoP)__: A group of practitioners connected by a common cause, role or purpose, which operates in a common 
+modality. CoPs are focused on implementing xAPI within a specific knowledge domain or use case. CoPs or independent developers, 
+can create domain-specific vocabularies, profiles, and recipes. These practices usually involve work around defining use cases 
+and curating the various vocabulary terms, synonyms, and other related metadata that might be preferred within a CoP. They can 
+also reuse existing vocabularies, profiles, and recipes already published by other CoPs or participants of the xAPI community.
 
 <a name="def-endpoint" ></a>
 
-__Endpoint__: An entry point in a service-oriented-architecture.  xAPI mirrors this approach with Resources 
-by defining the IRI from which communication takes place as an Endpoint.
+__Endpoint__: An entry point in a service-oriented-architecture.  xAPI mirrors this approach with resources 
+by defining the IRI from which communication takes place as an endpoint.
 
 <a name="def-experience-api" ></a>
 
@@ -320,30 +324,26 @@ use of this information.
 
 <a name ="def-immutable" ></a>
 
-__Immutable__:  Adjective used to describe things which cannot be changed. With 
-some exceptions, Statements in the xAPI are immutable. This ensures that when 
-Statements are shared between LRSs, multiple copies of the Statement remain
-the same.
+__Immutable__:  Adjective used to describe things which cannot be changed. With some exceptions, Statements in the xAPI 
+are immutable. This ensures that when Statements are shared between LRSs, multiple copies of the Statement remain the same.
 
 <a name="def-iri" ></a>
 
-__Internationalized Resource Identifier  (IRI)__: A unique identifier which could be an IRL. 
-Used to identify an object such as a verb, activity or activity type. Unlike URIs, IRIs 
-can contain some characters outside of the ASCII character set in order to support international 
-languages. 
+__Internationalized Resource Identifier  (IRI)__: A unique identifier which could be an IRL. Used to identify an object 
+such as a verb, activity or activity type. Unlike URIs, IRIs can contain some characters outside of the ASCII character 
+set in order to support international languages. 
 
-IRIs always include a scheme. This is not a requirement of this standard, but part of the 
-definition of IRIs, per [RFC 3987](http://www.ietf.org/rfc/rfc3987.txt). What are sometimes 
-called 'relative IRIs' are not IRIs.
+IRIs always include a scheme. This is not a requirement of this standard, but part of the definition of IRIs, per 
+[RFC 3987](http://www.ietf.org/rfc/rfc3987.txt). What are sometimes called "relative IRIs" are not IRIs.
 
 <a name="def-irl" ></a>
 
-__Internationalized Resource Locator (IRL)__:  In the context of this document, 
-an IRL is an IRI that when translated into a URI (per the IRI to URI rules), is a URL. 
+__Internationalized Resource Locator (IRL)__:  In the context of this document, an IRL is an IRI that when translated 
+into a URI (per the IRI to URI rules), is a URL. 
 
 <a name="def-inverse-functional-identifier" ></a>
 
-__Inverse Functional Identifier__: An identifier which is unique to a particular persona or group.
+__Inverse Functional Identifier__: An identifier which is unique to a particular persona or Group.
 
 <a name="def-learning-experience" ></a>
 
