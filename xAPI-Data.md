@@ -1020,7 +1020,7 @@ Some of the values within the responses described above can be prepended with ce
 originally based on the characterstring delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These 
 parameters are represented by the format `{parameter=value}`. See [the long-fill-in example within Appendix C](#long-fill-in). 
 
-Characterstring parameters are not validated by the LRS. Systems interpreting statement data can use their best judgement 
+Characterstring parameters are not validated by the LRS. Systems interpreting Statement data can use their best judgement 
 in interpreting (or ignoring) invalid characterstring parameters and values.
 
 The following parameters are valid at the start of the string representing the list of items for the listed interaction types:
@@ -1046,10 +1046,10 @@ The following parameters are valid at the start of each item in the list for the
 <table>
 	<tr><th>Parameter</th><th>Description</th><th>Value</th><th>Interaction types</th></tr>
 	<tr id="2.4.4.1.s12.table2.row1">
-		<td><code>lang</code></td>
+		<td>lang</td>
 		<td>The language used within the item.</td>
 		<td><a href="http://tools.ietf.org/html/rfc5646">RFC 5646 Language Tag</a></td>
-		<td>fill-in, long-fill-in, performance (string responses only)</td>
+		<td>fill-in, long-fill-in, performance (String responses only)</td>
 	</tr>
 </table>
 
@@ -1057,9 +1057,11 @@ The following parameters are valid at the start of each item in the list for the
 ###### <a name="2.4.4.1.s13"></a>Requirements
 
 * <a name="2.4.4.1.s13.b1"></a>Interaction Activities MUST have a valid interactionType.
-* <a name="2.4.4.1.s13.b2"></a>Interaction Activities SHOULD have the Activity type "http://adlnet.gov/expapi/activities/cmi.interaction".
-* <a name="2.4.4.1.s13.b3"></a>An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as specified for Interaction Activities 
-and MAY return HTTP 400 "Bad Request" if the remaining properties are not valid for the Interaction Activity.
+* <a name="2.4.4.1.s13.b2"></a>Interaction Activities SHOULD have the Activity type 
+`http://adlnet.gov/expapi/activities/cmi.interaction`.
+* <a name="2.4.4.1.s13.b3"></a>An LRS, upon consuming a valid interactionType, MAY validate the remaining properties as 
+specified for Interaction Activities and MAY return `400 Bad Request` if the remaining properties are not valid for the 
+Interaction Activity.
 * <a name="2.4.4.1.s13.b4"></a>The LRS SHOULD* NOT enforce character limits relating to response patterns. 
 * <a name="2.4.4.1.s13.b5"></a>The LRS SHOULD* NOT limit the length of the correctResponsesPattern array for any interactionType. 
 
@@ -1088,8 +1090,8 @@ Interaction components are defined as follows:
 
 <a name="#interactionComponentLists"/>
 
-Depending on Interaction Type, Interaction Activities can take additional properties, each containing a 
-list of interaction components. These additional properties are called ‘interaction component lists’. The following table
+Depending on interactionType, Interaction Activities can take additional properties, each containing a 
+list of interaction components. These additional properties are called "interaction component lists". The following table
 shows the supported interaction component list(s) for an Interaction Activity with the given interactionType.
 
 <table>
@@ -1146,24 +1148,23 @@ A Statement Reference is a pointer to another pre-existing Statement.
 
 ###### <a name="2.4.4.3.s4"></a>Requirements
 
-* <a name="2.4.4.3.s4.b1"></a>A Statement Reference MUST specify an "objectType" property with the value "StatementRef".
-* <a name="2.4.4.3.s4.b2"></a>A Statement Reference MUST set the "id" property to the UUID of a Statement. There is no requirement for 
-the LRS to validate that the UUID matches a Statement that exists.
+* <a name="2.4.4.3.s4.b1"></a>A Statement Reference MUST specify an "objectType" property with the value `StatementRef`.
+* <a name="2.4.4.3.s4.b2"></a>A Statement Reference MUST set the "id" property to the UUID of a Statement. There is no 
+requirement for the LRS to validate that the UUID matches a Statement that exists.
 
 The table below lists all properties of a Statement Reference Object:
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.4.3.s4.table1.row1"><td>objectType</td><td>String</td><td>In this case, MUST be "StatementRef".</td><td>Required</td></tr>
+	<tr id="2.4.4.3.s4.table1.row1"><td>objectType</td><td>String</td><td>In this case, MUST be <code>"StatementRef"</code>.</td><td>Required</td></tr>
 	<tr id="2.4.4.3.s4.table1.row2"><td>id</td><td>UUID</td><td>The UUID of a Statement. 
 	</td><td>Required</td></tr>
 </table>
 
 ###### <a name="2.4.4.3.s5"></a>Example
 
-Assuming that some Statement has already been stored with 
-the id 8f87ccde-bb56-4c2e-ab83-44982ef22df0, the following example shows how a 
-comment could be issued on the original Statement, using a new Statement:  
+Assuming that some Statement has already been stored with the id `8f87ccde-bb56-4c2e-ab83-44982ef22df0`, the following example 
+shows how a comment could be issued on the original Statement, using a new Statement:  
 
 ```
 {
@@ -1199,7 +1200,7 @@ behavior).
 
 ###### <a name="2.4.4.3.s8"></a>Requirements
 
-* <a name="2.4.4.3.s8.b1"></a>A SubStatement MUST specify an "objectType" property with the value "SubStatement".
+* <a name="2.4.4.3.s8.b1"></a>A SubStatement MUST specify an "objectType" property with the value `SubStatement`.
 * <a name="2.4.4.3.s8.b2"></a>A SubStatement MUST be validated as a Statement in addition to other SubStatement requirements.
 * <a name="2.4.4.3.s8.b3"></a>A SubStatement MUST NOT have the "id", "stored", "version" or "authority" properties.
 * <a name="2.4.4.3.s8.b4"></a>A SubStatement MUST NOT contain a SubStatement of its own, i.e., cannot be nested.
@@ -1254,10 +1255,12 @@ example that follows logically states that "I planned to visit 'Some Awesome Web
 #### <a name="2.4.5">2.4.5</a> Result
 
 ###### <a name="2.4.5.s1"></a>Description
+
 An optional property that represents a measured outcome related to the Statement in which it is included.
 
 ###### <a name="2.4.5.s2"></a>Details
-The following table contains the properties of the Results Object.
+
+The following table contains the properties of the Result Object.
 
 <table border="1">
 <tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -1342,27 +1345,27 @@ The table below defines the Score Object.
 	</tr>
 </table>
 
-The properties of the Score Object are based on the corresponding properties of cmi.score as defined in SCORM 2004 
+The properties of the Score Object are based on the corresponding properties of `cmi.score` as defined in SCORM 2004 
 4th Edition. The "scaled" and "raw" properties do not necessarily relate directly as scaling and normalization can
 be applied differently by Learning Record Providers within different Communities of Practice. Scaling and normalization 
 are outside the scope of this specification.
 
 ###### <a name="2.4.5.1.s3"></a>Requirements
 
-* <a name="2.4.5.1.s3.b1"></a>The Score Object SHOULD include 'scaled' if a logical percent based score is known.
-* <a name="2.4.5.1.s3.b2"></a>The Score Object SHOULD NOT be used for scores relating to progress or completion. Consider using an extension
-(preferrably from an established Community of Practice) instead.
+* <a name="2.4.5.1.s3.b1"></a>The Score Object SHOULD include "scaled" if a logical percent based score is known.
+* <a name="2.4.5.1.s3.b2"></a>The Score Object SHOULD NOT be used for scores relating to progress or completion. Consider 
+using an extension (preferrably from an established Community of Practice) instead.
 
 <a name="context"/>
 
-#### <a name="2.4.6">2.4.6</a> Context
+#### <a name="2.4.6">2.4.6</a>Context
 
 ###### <a name="2.4.6.s1"></a>Description
-An optional property that provides a place to add contextual information to a Statement. All context properties are optional.
+An optional property that provides a place to add contextual information to a Statement. All "context" properties are optional.
 
 ###### <a name="2.4.6.s2"></a>Rationale
-The Context property provides a place to add some contextual information to a Statement. It can store information such 
-as the instructor for an experience, if this experience happened as part of a team Activity, or how an experience fits 
+The "context" property provides a place to add some contextual information to a Statement. It can store information such 
+as the instructor for an experience, if this experience happened as part of a team-based Activity, or how an experience fits 
 into some broader activity.
 
 ###### <a name="2.4.6.s3"></a>Details
@@ -1393,7 +1396,7 @@ The following table contains the properties of the Context Object.
 	<td>contextActivities</td>
 	<td>contextActivities Object</td>
 	<td>A map of the types of learning activity context that this Statement is related to.
-	Valid context types are: "parent", "grouping", "category" and "other".</td> 
+	Valid context types are: <code>parent</code>, <code>"grouping"</code>, <code>"category"</code> and <code>"other"</code>.</td>
 	<td>Optional</td>
 </tr>
 <tr id="2.4.6.s3.table1.row5">
@@ -1435,11 +1438,11 @@ The following table contains the properties of the Context Object.
 
 ###### <a name="2.4.6.s4"></a>Requirements
 
-* <a name="2.4.6.s4.b1"></a>The revision property MUST only be used if the Statement's Object is an Activity.
-* <a name="2.4.6.s4.b2"></a>The platform property MUST only be used if the Statement's Object is an Activity.
-* <a name="2.4.6.s4.b3"></a>The language property MUST NOT be used if not applicable or unknown.
-* <a name="2.4.6.s4.b4"></a>The revision property SHOULD be used to track fixes of minor issues (like a spelling error).
-* <a name="2.4.6.s4.b5"></a>The revision property SHOULD NOT be used if there is a major change in learning objectives, pedagogy, 
+* <a name="2.4.6.s4.b1"></a>The "revision" property MUST only be used if the Statement's Object is an Activity.
+* <a name="2.4.6.s4.b2"></a>The "platform" property MUST only be used if the Statement's Object is an Activity.
+* <a name="2.4.6.s4.b3"></a>The "language" property MUST NOT be used if not applicable or unknown.
+* <a name="2.4.6.s4.b4"></a>The "revision" property SHOULD be used to track fixes of minor issues (like a spelling error).
+* <a name="2.4.6.s4.b5"></a>The "revision" property SHOULD NOT be used if there is a major change in learning objectives, pedagogy, 
 or assets of an Activity. (Use a new Activity id instead).
 
 __Note:__ Revision has no behavioral implications within the scope of xAPI. It is simply stored
@@ -1450,51 +1453,56 @@ so that it is available (e.g. for interpreting and displaying data).
 ##### <a name="2.4.6.1">2.4.6.1</a> Registration Property
 
 ###### <a name="2.4.6.1.s1"></a>Rationale/Details
+
 When an LRS is an integral part of an LMS, the LMS likely supports the concept of registration. 
 The Experience API applies the concept of registration more broadly. A registration could be 
 considered to be an attempt, a session, or could span multiple Activities. There is no expectation that 
 completing an Activity ends a registration. Nor is a registration necessarily confined to a single Agent.
 
-The Registration is also used when storing documents within the State resource, e.g. for 
-bookmarking. Normally the same Registration is used for requests to both the Statement and 
-State resources relating to the same learning experience so that all data recorded for the experience is consistent. 
+The Registration is also used when storing documents within the State Resource, e.g. for 
+bookmarking. Normally the same registration is used for requests to both the Statement and 
+State Resources relating to the same learning experience so that all data recorded for the experience is consistent. 
 
 <a name="contextActivities"/>
 
 ##### <a name="2.4.6.2">2.4.6.2</a> ContextActivities Property
 
 ###### <a name="2.4.6.2.s1"></a>Description
+
 A map of the types of learning activity context that this Statement is related to.
 
 ###### <a name="2.4.6.2.s2"></a>Rationale
+
 Many Statements do not just involve one (Object) Activity that is the focus, but relate to other contextually relevant 
-Activities. "Context Activities" allow for these related Activities to be represented in a structured manner.
+Activities. The "contextActivities" property allow for these related Activities to be represented in a structured manner.
 
 ###### <a name="2.4.6.2.s3"></a>Details
+
 There are four valid context types. All, any or none of these MAY be used in a given Statement:
 
-* <a name="2.4.6.2.s3.b1"></a>__Parent__: an Activity with a direct relation to the Activity which is the Object of the Statement. In almost all cases 
-there is only one sensible parent or none, not multiple. For example: a Statement about a quiz question would have the quiz 
-as its parent Activity.
+* <a name="2.4.6.2.s3.b1"></a>__Parent__: an Activity with a direct relation to the Activity which is the Object of the Statement. 
+In almost all cases there is only one sensible parent or none, not multiple. For example: a Statement about a quiz question
+would have the quiz as its parent Activity.
  
-* <a name="2.4.6.2.s3.b2"></a>__Grouping__: an Activity with an indirect relation to the Activity which is the Object of the Statement. For example: 
-a course that is part of a qualification. The course has several classes. The course relates to a class as the parent, 
-the qualification relates to the class as the grouping.
+* <a name="2.4.6.2.s3.b2"></a>__Grouping__: an Activity with an indirect relation to the Activity which is the Object of the 
+Statement. For example: a course that is part of a qualification. The course has several classes. The course relates to a class 
+as the parent, the qualification relates to the class as the grouping.
 
-* <a name="2.4.6.2.s3.b3"></a>__Category__: an Activity used to categorize the Statement. "Tags" would be a synonym. Category SHOULD be used to 
-indicate a profile of xAPI behaviors, as well as other categorizations. For example: Anna attempts a biology exam, and 
-the Statement is tracked using the cmi5 profile. The Statement's Activity refers to the exam, and the category is the cmi5 
-profile.
+* <a name="2.4.6.2.s3.b3"></a>__Category__: an Activity used to categorize the Statement. "Tags" would be a synonym. 
+Category SHOULD be used to indicate a Profile of xAPI behaviors, as well as other categorizations. For example: Anna attempts 
+a biology exam, and the Statement is tracked using the cmi5 Profile. The Statement's Activity refers to the exam, and the 
+category is the cmi5 Profile.
 
-* <a name="2.4.6.2.s3.b4"></a>__Other__: a context Activity that doesn't fit one of the other properties. For example: Anna studies a textbook for 
-a biology exam. The Statement's Activity refers to the textbook, and the exam is a context Activity of type "other".
+* <a name="2.4.6.2.s3.b4"></a>__Other__: a contextActivity that doesn't fit one of the other properties. For example: Anna 
+studies a textbook for a biology exam. The Statement's Activity refers to the textbook, and the exam is a context Activity 
+of type `other`.
 
 Single Activity Objects are allowed as values so that 0.95 Statements will be compatible with 1.0.0.
 
 __Note:__ The values in this section are not for expressing all the relationships the Statement Object has. Instead, they 
 are for expressing relationships appropriate for the specific Statement (though the nature of the Object will often be 
 important in determining that). For instance, it is appropriate in a Statement about a test to include the course the test 
-is part of as "parent", but not to include every possible degree program the course could be part of in the grouping value.
+is part of as a "parent", but not to include every possible degree program the course could be part of in the grouping value.
 
 ###### <a name="2.4.6.2.s4"></a>Requirements
 * <a name="2.4.6.2.s4.b1"></a>Every key in the contextActivities Object MUST be one of parent, grouping, category, or other.
