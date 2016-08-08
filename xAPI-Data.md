@@ -520,8 +520,8 @@ but no others, SHOULD be used for this property and mbox_sha1sum.</td></tr>
 </table>
 
 ###### <a name="2.4.2.3.s4"></a>Client Requirements
-* <a name="2.4.2.3.s4.b1"></a>The domain portions of email addresses are case insensitive. Clients SHOULD uses lowercase for the domain portion of the 
-email address when calculating the SHA1 hash for the "mbox_sha1sum" property. 
+* <a name="2.4.2.3.s4.b1"></a>The domain portions of email addresses are case insensitive. Clients SHOULD uses lowercase 
+for the domain portion of the email address when calculating the SHA1 hash for the "mbox_sha1sum" property. 
 
 <a name="agentaccount"/>
 
@@ -546,8 +546,7 @@ The table below lists all properties of Account Objects.
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr id="2.4.2.4.s2.table1.row1"><td>homePage</td><td>IRL</td><td>The canonical home page for the system the account is on. This is based on FOAF's accountServiceHomePage.</td>
 	<td>Required</td></tr>
-	<tr id="2.4.2.4.s2.table1.row2"><td>name</td><td>String</td><td>The unique id or name used to log in to this account. This is based 
-			on FOAF's accountName.</td><td>Required</td></tr>
+	<tr id="2.4.2.4.s2.table1.row2"><td>name</td><td>String</td><td>The unique id or name used to log in to this account. This is based on FOAF's accountName.</td><td>Required</td></tr>
 </table>
 
 
@@ -570,7 +569,8 @@ This example shows an Agent identified by an opaque account:
 #### <a name="2.4.3">2.4.3</a> Verb
 
 ###### <a name="2.4.3.s1"></a>Description
-The Verb defines the action between Actor and Activity. 
+
+The Verb defines the action between an Actor and an Activity. 
 
 ###### <a name="2.4.3.s2"></a>Rationale
 
@@ -616,33 +616,38 @@ for a person reviewing the raw statement to disambiguate the Verb from other sim
 * <a name="2.4.3.s4.b3"></a>A single Verb IRI MUST NOT be used to refer to multiple meanings.
 
 ###### <a name="2.4.3.s5"></a>Verb Display AP Requirements
-* <a name="2.4.3.s5.b1"></a>The Display property SHOULD be used by all Statements.
-* <a name="2.4.3.s5.b2"></a>The Display property MUST be used to illustrate the meaning which is already determined by the Verb IRI.
+
+* <a name="2.4.3.s5.b1"></a>The "display" property SHOULD be used by all Statements.
+* <a name="2.4.3.s5.b2"></a>The "display" property MUST be used to illustrate the meaning which is already determined 
+by the Verb IRI.
 
 ###### <a name="2.4.3.s6"></a>Verb Display LRS Requirements
-The requirements below relate to the Display property as returned by the LRS via the API.  
 
-* <a name="2.4.3.s6.b1"></a>When queried for Statements with a Format of "exact", the LRS MUST return the Display property 
+The requirements below relate to the "display" property as returned by the LRS via the API.  
+
+* <a name="2.4.3.s6.b1"></a>When queried for Statements with a Format of `exact`, the LRS MUST return the "display" property 
 exactly as included (or omitted) within the Statement.
-* <a name="2.4.3.s6.b2"></a>When queried for Statements with a Format of "ids", the LRS SHOULD* NOT include the Display property.
-* <a name="2.4.3.s6.b3"></a>When queried for Statements with a Format of "canonical", the LRS SHOULD* return a canonical Display 
-for that Verb. 
-* <a name="2.4.3.s6.b4"></a>The LRS may determine its canonical Display based on the Verb Display property included within 
-Statements it receives, the Name property included in the metadata as described in 
-[section 5.4 Identifier metadata](#miscmeta), or the Verb Display as defined in some other location.
+* <a name="2.4.3.s6.b2"></a>When queried for Statements with a Format of `ids`, the LRS SHOULD* NOT include the "display" property.
+* <a name="2.4.3.s6.b3"></a>When queried for Statements with a Format of `canonical`, the LRS SHOULD* return a 
+canonical Display for that Verb. 
+* <a name="2.4.3.s6.b4"></a>The LRS may determine its canonical Display based on the Verb's "display" property included within 
+Statements it receives, the "name" property included in the metadata as described in 
+[section 5.4 Identifier metadata](#miscmeta), or the Verb's Display as defined in some other location.
 
 ###### <a name="2.4.3.s7"></a>Verb Display Learning Record Consumer Requirements
+
 The requirements below relate to the display property as displayed to a user by a Learning Record Consumer. 
 
-* <a name="2.4.3.s7.b1"></a>The Display property MUST NOT be used to alter the meaning of a Verb.
-* <a name="2.4.3.s7.b2"></a>A Learning Record Consumer MUST NOT use the Display property to infer any meaning from the Statement.
-* <a name="2.4.3.s7.b3"></a>A Learning Record Consumer MUST NOT use the Display property for any purpose other than display to a human.
-Using the Display property for aggregation or categorization of Statements is an example of violating this requirement. 
-* <a name="2.4.3.s7.b4"></a>A Learning Record Consumer displaying a Statement's Verb in a user interface MAY choose to render the Verb Display 
-property included within the Statement, the Name property included in the metadata as described in 
-[section 5.4 Identifier metadata](#miscmeta), or the Verb Display as defined in some other location.
-* <a name="2.4.3.s7.b5"></a>Learning Record Consumers displaying a Statement's Verb MUST NOT display a word that differs from the meaning of the 
-Verb but MAY alter the wording and tense displayed for the purposes of human-readability. 
+* <a name="2.4.3.s7.b1"></a>The "display" property MUST NOT be used to alter the meaning of a Verb.
+* <a name="2.4.3.s7.b2"></a>A Learning Record Consumer MUST NOT use the "display" property to infer any meaning from the Statement.
+* <a name="2.4.3.s7.b3"></a>A Learning Record Consumer MUST NOT use the "display" property for any purpose other than 
+to display to a human. Using the "display" property for aggregation or categorization of Statements is an example of 
+violating this requirement. 
+* <a name="2.4.3.s7.b4"></a>A Learning Record Consumer displaying a Statement's Verb in a user interface MAY choose to render 
+the Verb's "display" property included within the Statement, the "name" property included in the metadata as described in 
+[section 5.4 Identifier metadata](#miscmeta), or the Verb's Display as defined in some other location.
+* <a name="2.4.3.s7.b5"></a>Learning Record Consumers displaying a Statement's Verb MUST NOT display a word that differs 
+from the meaning of the Verb but MAY alter the wording and tense displayed for the purposes of human-readability. 
 
 ###### <a name="2.4.3.s8"></a>Example
 This example shows a Verb with the recommended properties set and using US English and Spanish languages. 
@@ -663,16 +668,17 @@ specification document, with the exception of the reserved Verb [http://adlnet.g
 ##### <a name="2.4.3.1">2.4.3.1</a> Use in Language and Semantics of Verbs
 
 ###### <a name="2.4.3.1.s1"></a>Details
+
 _Semantics_
 
-The IRI represented by the Verb Id identifies the particular semantics of a word, not the word itself. 
+The IRI represented by the Verb id identifies the particular semantics of a word, not the word itself. 
 
 For example, the English word "fired" could mean different things depending on context, such as 
 "fired(a weapon)", "fired(a kiln)", or "fired(an employee)". In this case, an IRI identifies one of 
 these specific meanings. 
 
-The display property has some flexibility in tense. While the human-readable portion of the Verb Id will 
-usually use the past tense, if conjugating verbs to another tense within the display property makes most
+The "display" property has some flexibility in tense. While the human-readable portion of the Verb id will 
+usually use the past tense, if conjugating verbs to another tense within the "display" property makes the most
 sense for the Statement as a whole, it is allowed.
 
 _Language_
@@ -682,14 +688,13 @@ A Verb in the Experience API is an IRI, and denotes a specific meaning not tied 
 For example, a particular Verb IRI such as http://example.org/firearms#fire might denote the action of firing a gun, 
 or the Verb IRI http://example.com/فعل/خواندن might denote the action of reading a book. 
 
-
 <a name="object"/>
 
 #### <a name="2.4.4">2.4.4</a> Object
 
 ###### <a name="2.4.4.s1"></a>Description
 
-The object defines the thing that was acted on. The Object of a Statement can be an Activity, Agent/Group, 
+The Object defines the thing that was acted on. The Object of a Statement can be an Activity, Agent/Group, 
 SubStatement, or Statement Reference.
 
 Some examples:
@@ -698,14 +703,14 @@ Some examples:
 
 * <a name="2.4.4.s1.b2"></a>The Object is an Agent: "Nellie interviewed Jeff."
 
-* <a name="2.4.4.s1.b3"></a>The Object is a SubStatement or Statement Reference (different implementations, but similar when human-read): 
-"Nellie commented on 'Jeff wrote an essay about hiking.'"
+* <a name="2.4.4.s1.b3"></a>The Object is a SubStatement or Statement Reference (different implementations, but similar 
+when human-read): "Nellie commented on 'Jeff wrote an essay about hiking.'"
 
 ###### <a name="2.4.4.s2"></a>Details
 
 Objects which are provided as a value for this property SHOULD include an "objectType" 
-property. If not specified, the objectType is assumed to be "Activity". Other valid values 
-are: [Agent](#agentasobj), [Group](#agentasobj), [SubStatement](#substmt) or [StatementRef](#stmtref).
+property. If not specified, the objectType is assumed to be `Activity`. Other valid values 
+are: `[Agent](#agentasobj)`, `[Group](#agentasobj)`, `[SubStatement](#substmt)` or `[StatementRef](#stmtref)`.
 The properties of an Object change according to the objectType.
 
 <a name="activity"/>
@@ -722,7 +727,7 @@ properties in this case.
 	<tr id="2.4.4.1.s1.table1.row1">
 		<td>objectType</td>
 		<td>String</td>
-		<td>MUST be "Activity" when present</td>
+		<td>MUST be `Activity` when present</td>
 		<td>Optional</td>
 	</tr>
 	<tr id="2.4.4.1.s1.table1.row2">
@@ -791,7 +796,7 @@ __Note:__ IRI fragments (sometimes called relative IRLs) are not valid IRIs. As 
 those implementing xAPI look for and use established, widely adopted, Activity types.
 
 
-###### <a name="2.4.4.1.s3"></a><a name="acturi" />Activity Id Requirements
+###### <a name="2.4.4.1.s3"></a><a name="acturi" />Activity id Requirements
 
 * <a name="2.4.4.1.s3.b1"></a>An Activity id MUST be unique.
 * <a name="2.4.4.1.s3.b2"></a>An Activity id MUST always reference the same Activity.
@@ -802,27 +807,24 @@ that domain remain unique.
 
 ###### <a name="2.4.4.1.s4"></a>LRS Requirements
 
-* <a name="2.4.4.1.s4.b1"></a>An LRS MUST NOT take action in the event it perceives an activity id is being used by multiple 
+* <a name="2.4.4.1.s4.b1"></a>An LRS MUST NOT take action in the event it perceives an Activity id is being used by multiple 
 authors and/or organizations.
-* <a name="2.4.4.1.s4.b2"></a>An LRS MUST NOT treat references to the same id as references to different Activities.
+* <a name="2.4.4.1.s4.b2"></a>An LRS MUST NOT treat references to the same Activity id as references to different Activities.
 * <a name="2.4.4.1.s4.b3"></a>Upon receiving a Statement with an Activity Definition that differs from the one stored, an LRS
 SHOULD decide whether it considers the Learning Record Provider to have the authority to change the definition and
 SHOULD update the stored Activity Definition accordingly if that decision is positive.
-* <a name="2.4.4.1.s4.b4"></a>An LRS MAY make small corrections to its canonical definition for the Activity when receiving a new definition 
-e.g. to fix a spelling.
-* <a name="2.4.4.1.s4.b5"></a>An LRS SHOULD NOT make significant changes to its canonical definition for the Activity based on an updated definition 
-e.g. changes to correct responses.
-
+* <a name="2.4.4.1.s4.b4"></a>An LRS MAY make small corrections to its canonical definition for the Activity when receiving 
+a new definition e.g. to fix a spelling.
+* <a name="2.4.4.1.s4.b5"></a>An LRS SHOULD NOT make significant changes to its canonical definition for the Activity 
+based on an updated definition e.g. changes to correct responses.
 
 ###### <a name="2.4.4.1.s5"></a>Learning Record Provider Requirements
 
-* <a name="2.4.4.1.s5.b1"></a>A Learning Record Provider MUST ensure that Activity ids are not reused across multiple Activities.
-* <a name="2.4.4.1.s5.b2"></a>A Learning Record Provider MUST only generate states or Statements against a certain Activity id that are compatible
-and consistent with states or Statements previously stored against the same id.
-* <a name="2.4.4.1.s5.b3"></a>A Learning Record Provider MUST NOT allow new versions (i.e. revisions or other platforms) of the Activity 
-to break compatibility.	
-
-
+* <a name="2.4.4.1.s5.b1"></a>A Learning Record Provider MUST ensure that Activity ids are not used across multiple Activities.
+* <a name="2.4.4.1.s5.b2"></a>A Learning Record Provider MUST only generate states or Statements against a certain Activity id 
+that are compatible and consistent with states or Statements previously stored against the same Activity id.
+* <a name="2.4.4.1.s5.b3"></a>A Learning Record Provider MUST NOT allow new versions (i.e. revisions or other platforms) 
+of the Activity to break compatibility.	
 
 <a name="interactionacts"/>
 
@@ -837,7 +839,7 @@ for recording interaction data. Since 1.0.3, direct references to the SCORM data
 associated requirements included directly in this document.
 
 These interaction definitions are simple to use, and consequently limited. It is expected that Communities of Practice
-requiring richer interactions definitions will do so through the use of Activity Types and Activity Definition Extensions. 
+requiring richer interactions definitions will do so through the use of Activity types and Activity Definition Extensions. 
 
 ###### <a name="2.4.4.1.s8"></a>Details
 
@@ -848,13 +850,13 @@ The table below lists the properties for Interaction Activities.
 	<tr id="2.4.4.1.s8.table1.row1">
 		<td>interactionType</td>
 		<td>String</td>
-		<td>The type of interaction. Possible values are: “true-false”, “choice”, “fill-in”, “long-fill-in”,
-		“matching”, “performance”, “sequencing”, “likert”, “numeric” or “other”. </td>
+		<td>The type of interaction. Possible values are: `true-false`, `choice`, `fill-in`, `long-fill-in`,
+		`matching`, `performance`, `sequencing`, `likert`, `numeric` or `other`. </td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.4.4.1.s8.table1.row2">
 		<td>correctResponsesPattern</td>
-		<td>An array of strings</td>
+		<td>Array of Strings</td>
 		<td>A pattern representing the correct response to the interaction. The structure of this pattern varies
 		depending on the interactionType. This is detailed below. </td>
 		<td>Optional</td>
@@ -868,6 +870,7 @@ The table below lists the properties for Interaction Activities.
 </table>
 
 ###### <a name="2.4.4.1.s9"></a>Interaction Types
+
 The table below describes the kinds of interactions represented by each of the interactionTypes. These types of interactions 
 were originally based on the types of interactions allowed for "cmi.interactions.n.type" in the SCORM 2004 4th 
 Edition Run-Time Environment. See [Appendix C](#Appendix2C) for examples definitions for each interaction type. 
@@ -876,7 +879,7 @@ Edition Run-Time Environment. See [Appendix C](#Appendix2C) for examples definit
 	<tr><th>interactionType</th><th>Description</th></tr>
 	<tr id="2.4.4.1.s9.table1.row1">
 		<td>true-false</td>
-		<td>An interaction with two possible responses: true or false.</td>
+		<td>An interaction with two possible responses: <code>true</code> or <code>false</code>.</td>
 	</tr>
 	<tr id="2.4.4.1.s9.table1.row2">
 		<td>choice</td>
@@ -888,19 +891,19 @@ Edition Run-Time Environment. See [Appendix C](#Appendix2C) for examples definit
 		<td>fill-in</td>
 		<td>An interaction which requires the learner to supply a short response in the form of one or more 
 			strings of characters. Typically, the correct response consists of part of a word, one word or a few words. 
-			'Short' means that the correct responses pattern and learner response strings will normally be 250 characters or less;
+			"Short" means that the correct responses pattern and learner response strings will normally be 250 characters or less;
 		</td>
 	</tr>
 	<tr id="2.4.4.1.s9.table1.row4">
 		<td>long-fill-in</td>
 		<td>An interaction which requires the learner to supply a response in the form of a long string of characters.
-			'Long' means that the correct responses pattern and learner response strings will normally be more than 250 characters.
+			"Long" means that the correct responses pattern and learner response strings will normally be more than 250 characters.
 		</td>
 	</tr>
 	<tr id="2.4.4.1.s9.table1.row5">
 		<td>matching</td>
 		<td>An interaction where the learner is asked to match items in one set (the source set) to items in another set (the target set).
-			Items do not have to pair off exactly and it's possible for multiple or zero source items to be matched to a given target and vice versa.</td>
+			Items do not have to pair off exactly and it is possible for multiple or zero source items to be matched to a given target and vice versa.</td>
 	</tr>
 	<tr id="2.4.4.1.s9.table1.row6">
 		<td>performance</td>
@@ -925,8 +928,8 @@ Edition Run-Time Environment. See [Appendix C](#Appendix2C) for examples definit
 </table>
 
 ###### <a name="2.4.4.1.s10"></a>Response Patterns
-The table below outlines the format of the strings within correctResponsesPattern property for each interaction type. 
-This format is also used to represent the learner's response within the result object. These formats were originally based on the 
+The table below outlines the format of the strings within "correctResponsesPattern" property for each interaction type. 
+This format is also used to represent the learner's response within the Result Object. These formats were originally based on the 
 requirements relating to "cmi.interactions.n.correct_responses.n.pattern" as defined in the SCORM 2004 4th Edition 
 Run-Time Environment. See [Appendix C](#Appendix2C) for examples of each format. 
 
@@ -956,7 +959,7 @@ Run-Time Environment. See [Appendix C](#Appendix2C) for examples of each format.
 		<td>
 			A list of steps containing a step ids and the response to that step.
 			Step ids are separated from responses by <code>[.]</code>. Steps are delimited by <code>[,]</code>.
-			The response can be a string as in a fill-in interaction or a number range as in a numeric interaction. 
+			The response can be a String as in a fill-in interaction or a number range as in a numeric interaction. 
 		</td>
 	</tr>
 	<tr id="2.4.4.1.s10.table1.row6">
@@ -983,6 +986,7 @@ Run-Time Environment. See [Appendix C](#Appendix2C) for examples of each format.
 </table>
 
 ###### <a name="2.4.4.1.s11"></a>Correct Responses Pattern
+
 The Correct Responses Pattern contains an array of response patterns. A learner's response will be considered correct if it 
 matches **any** of the response patterns in that array. Where a response pattern is a delimited list, the learner's response 
 is only considered correct if **all** of the items in that list match the learner's response. For example, consider the 
@@ -999,9 +1003,9 @@ In this example, either "foo" and "bar", *or* just "foo" are correct learner res
 
 The Correct Responses Pattern, if used, is intended to be an exhaustive list of possible correct responses. Where the criteria 
 for a question are complex and correct responses cannot be exhaustively listed, Learning Record Providers are discouraged from 
-using the "correct responses pattern" property.
+using the "correctResponsesPattern" property.
 
-Learning Record Consumers cannot infer success based on comparison of the Response with the Correct Responses Pattern, 
+Learning Record Consumers cannot infer success based on comparison of the response with the Correct Responses Pattern, 
 nor can they rely on the Correct Responses Pattern always being exhaustive. The Learning Record Provider is allowed to mark 
 questions as correct where the response does not match the correct responses pattern, though this is discouraged except in 
 exceptional circumstances.
@@ -1011,6 +1015,7 @@ answer; all answers are incorrect. Where any answer is correct (e.g. in a survey
 is omitted. 
 
 ###### <a name="2.4.4.1.s12"></a>Characterstring parameters
+
 Some of the values within the responses described above can be prepended with certain additional parameters. These were 
 originally based on the characterstring delimiters defined in the SCORM 2004 4th Edition Run-Time Environment. These 
 parameters are represented by the format `{parameter=value}`. See [the long-fill-in example within Appendix C](#long-fill-in). 
