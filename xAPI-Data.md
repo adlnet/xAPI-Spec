@@ -2024,18 +2024,19 @@ The following are data types requiring additional rules that are found commonly 
 ### <a name="4.1">4.1</a> Extensions
 
 ##### <a name="4.1.s1"></a>Description
-Extensions are available as part of Activity Definitions, as part of Statement context, or as part of a Statement result. 
-In each case, extensions intended to provide a natural way to extend those properties for some specialized use. The 
-contents of these extensions might be something valuable to just one application, or it might be a convention used by 
-an entire Community of Practice.
+
+Extensions are available as part of Activity Definitions, as part of a Statement's "context" property, or as part of a 
+Statement's "result" property. In each case, extensions are intended to provide a natural way to extend those properties 
+for some specialized use. The contents of these extensions might be something valuable to just one application, or it might 
+be a convention used by an entire Community of Practice.
 
 ##### <a name="4.1.s2"></a>Details
-Extensions are defined by a map and logically relate to the part of the Statement where they are 
-present. The values of an extension can be any JSON value or data structure. Extensions in Statement 
-context provide context to the core experience, while those in the result provide elements related to 
-some outcome. For Activities, extensions provide additional information that helps define an Activity 
-within some custom application or Community of Practice. The meaning and structure of extension values under an 
-IRI key are defined by the person who controls the IRI.
+
+Extensions are defined by a map and logically relate to the part of the Statement where they are present. The values of an 
+extension can be any JSON value or data structure. Extensions in the "context" property provide context to the core experience, 
+while those in the "result" property provide elements related to some outcome. Within Activities, extensions provide additional 
+information that helps define an Activity within some custom application or Community of Practice. The meaning and structure of 
+extension values under an IRI key are defined by the person who controls the IRI.
 
 ##### <a name="4.1.s3"></a>Requirements
 
@@ -2054,6 +2055,7 @@ __Note:__ A Statement defined entirely by its extensions becomes meaningless as 
 ### <a name="4.2">4.2</a> Language Maps
 
 ##### <a name="4.2.s1"></a>Description
+
 A language map is a dictionary where the key is a [RFC 5646 Language Tag](http://tools.ietf.org/html/rfc5646), and the 
 value is a string in the language specified in the tag. This map SHOULD be populated as fully as possible based on the 
 knowledge of the string in question in different languages. 
@@ -2061,18 +2063,18 @@ knowledge of the string in question in different languages.
 The shortest valid language code for each language string is generally preferred. The 
 [ISO 639 language code](https://www.loc.gov/standards/iso639-2/php/code_list.php) plus an 
 [ISO 3166-1 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) allows for the designation of
-basic languages (e.g., “es” for Spanish) and regions (e.g.,
-“es-MX”, the dialect of Spanish spoken in Mexico). If only the ISO 639 language code is known for certain, 
+basic languages (e.g., `es` for Spanish) and regions (e.g.,
+`es-MX`, the dialect of Spanish spoken in Mexico). If only the ISO 639 language code is known for certain, 
 do not guess at the possible ISO 3166-1 country code. For example, if
 only the primary language is known (e.g., English) then use the top level
-language tag "en", rather than "en-US". If the specific regional variation is known, then use the full language code.
+language tag `en`, rather than `en-US`. If the specific regional variation is known, then use the full language code.
 
-__Note:__ For Chinese languages, the significant linguistic diversity represented by "zh" means that the ISO 639 language 
+__Note:__ For Chinese languages, the significant linguistic diversity represented by `zh` means that the ISO 639 language 
 code is generally insufficient.
 
 The content of strings within a language map is plain text. It is expected that any formatting code 
 such as HTML tags or markdown will not be rendered, but will be displayed as code when this string is 
-displayed to an end user. An important exception to this is if language map object is used in an extension and 
+displayed to an end user. An important exception to this is if language map Object is used in an extension and 
 the owner of that extension IRI explicitly states that a particular form of code will be rendered.
 
 <a name="iris"/>
@@ -2106,8 +2108,8 @@ Statements sent to an LRS can be expected to keep precision to at least millisec
 * <a name="4.5.s1.b2"></a>A Timestamp SHOULD* be expressed using the format described in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt), which is a profile of ISO 8601. 
 * <a name="4.5.s1.b3"></a>A Timestamp MUST preserve precision to at least milliseconds (3 decimal points beyond seconds).  
 * <a name="4.5.s1.b4"></a>A Timestamp SHOULD* include the time zone.
-* <a name="4.5.s1.b5"></a>If the Timestamp includes a time zone, the LRS MAY be return the Timestamp using a different timezone to the one 
-originally used in the statement so long as the point in time referenced is not affected. 
+* <a name="4.5.s1.b5"></a>If the Timestamp includes a time zone, the LRS MAY be return the Timestamp using a different 
+timezone to the one originally used in the Statement so long as the point in time referenced is not affected. 
 * <a name="4.5.s1.b6"></a>The LRS SHOULD* return the Timestamp in UTC timezone. 
 * <a name="4.5.s1.b7"></a>A Timestamp MAY be truncated or rounded to a precision of at least 3 decimal digits for seconds. 
 
@@ -2119,18 +2121,20 @@ Durations are strings representing the amount of time something took.
 
 ###### <a name="4.6.s1"></a>Requirements
 
-* <a name="4.6.s1.b1"></a>A Duration MUST be expressed using the format for duration in ISO 8601:2004(E) section 4.4.3.2.
+* <a name="4.6.s1.b1"></a>A Duration MUST be expressed using the format for Duration in ISO 8601:2004(E) section 4.4.3.2.
 The alternative format (in conformity with the format used for time points and described in ISO 8601:2004(E) 
 section 4.4.3.3) MUST NOT be used.
 * <a name="4.6.s1.b2"></a>Learning Record Providers SHOULD provide a maximum precision of 0.01 seconds. 
-* <a name="4.6.s1.b3"></a>Learning Record Providers MAY provide less precision, for example in the case of reading a University Degree 
-precision might be in months or years. 
-* <a name="4.6.s1.b4"></a>On receiving a Duration with more than 0.01 second precision, the LRS SHOULD* NOT reject the request but MAY 
-truncate the Duration property to 0.01 second precision. 
-* <a name="4.6.s1.b5"></a>When comparing Durations, any precision beyond 0.01 second precision SHOULD* NOT be included in the comparison.
+* <a name="4.6.s1.b3"></a>Learning Record Providers MAY provide less precision, for example in the case of reading a 
+University Degree precision might be in months or years. 
+* <a name="4.6.s1.b4"></a>On receiving a Duration with more than 0.01 second precision, the LRS SHOULD* NOT reject the 
+request but MAY truncate the "duration" property to 0.01 second precision. 
+* <a name="4.6.s1.b5"></a>When comparing Durations, any precision beyond 0.01 second precision SHOULD* NOT be included 
+in the comparison.
 
 ###### <a name="4.6.s2"></a>Examples
-The table below provides some example ISO 8601 durations. This list is not intended to be exhaustive. 
+
+The table below provides some example ISO 8601 Durations. This list is not intended to be exhaustive. 
 
 <table>
 	<tr><th>Example</th><th>Explanation</th></tr>
@@ -2145,7 +2149,7 @@ The table below provides some example ISO 8601 durations. This list is not inten
 	</tr>
 	<tr id="4.6.s2.table1.row3">
 		<td>P3Y1M29DT4H35M59.14S</td>
-		<td>A duration also including years, months and days.</td>
+		<td>A Duration also including years, months and days.</td>
 	</tr>
 	<tr id="4.6.s2.table1.row4">
 		<td>P3Y</td>
@@ -2157,16 +2161,16 @@ The table below provides some example ISO 8601 durations. This list is not inten
 	</tr>
 </table>
 
-Durations are expected to be presented in the format in which they are recorded. For example if a duration is tracked
-in seconds (or fractions of a second) there is no need to convert this to hours, minutes and seconds. 
+Durations are expected to be presented in the format in which they are recorded. For example if a Duration is tracked
+in seconds (or fractions of a second) there is no need to convert this to hours, minutes, and seconds. 
 
 <a name="append2"/>
 ## <a name="4.6.s3"></a>Appendices
 <a name="Appendix2A"/>  
  
-### <a name="A">Appendix A</a>: Example statements
+### <a name="A">Appendix A</a>: Example Statements
 
-Example of a simple statement (line breaks are for display purposes only):  
+Example of a simple Statement (line breaks are for display purposes only):  
 ```
 {
 	"id":"fd41c918-b88b-4b20-a0a5-a4c32391aaa0",
@@ -2197,7 +2201,7 @@ Example of a simple statement (line breaks are for display purposes only):
 	}
 }
 ```   
-Completion with verb "attempted" and duration expressed in seconds (not converted to minutes and seconds):  
+Completion with Verb named "attempted" and Duration expressed in seconds (not converted to minutes and seconds):  
 ```
 {
 	"id":"7ccd3322-e1a5-411a-a67d-6a735c76f119",
@@ -2234,8 +2238,8 @@ Completion with verb "attempted" and duration expressed in seconds (not converte
 	}
 }
 ```  
-A long example statement showcasing most of the properties available. This example shows
-a statement returned by an LRS including the authority and stored properties set by the LRS:  
+A long example Statement showcasing most of the properties available. This example shows
+a Statement returned by an LRS including the "authority" and "stored" properties set by the LRS:  
 ```
 {
     "id": "6690e6c9-3ef0-4ed3-8b37-7f3964730bee",
@@ -2371,7 +2375,7 @@ a statement returned by an LRS including the authority and stored properties set
 ```  
 <a name="Appendix2B"/>  
 
-### <a name="B">Appendix B</a>: Example Statement objects of different types
+### <a name="B">Appendix B</a>: Examples of Statement's Objects of different types
 
 The Object of a Statement can be an Activity, an Agent, a Group or a Statement. 
 This appendix provides one example of each. 
@@ -2405,6 +2409,7 @@ This appendix provides one example of each.
 ```
 
 ###### <a name="B.s3"></a>Group
+
 This example shows an Identified Group with members. 
 ```
 {
@@ -2431,7 +2436,8 @@ This example shows an Identified Group with members.
 
 
 ###### <a name="B.s4"></a>Statement
-This example shows a SubStatement Object whose object is a Statement Reference.
+
+This example shows a SubStatement Object whose Object is a Statement Reference.
 
 ```
 {
@@ -2455,7 +2461,7 @@ This example shows a SubStatement Object whose object is a Statement Reference.
 
 <a name="Appendix2C"/>  
 
-### <a name="C">Appendix C</a>: Example definitions for Activities of type "cmi.interaction"
+### <a name="C">Appendix C</a>: Example definitions for Activities of type `cmi.interaction`
 
 ###### <a name="C.s1"></a>true-false
 
@@ -2733,7 +2739,7 @@ This example shows a SubStatement Object whose object is a Statement Reference.
 }
 ```
 
-In this example the minimum correct answer is 4 and there is no maximum. 5, 6 or 976 would all be correct answers. 
+In this example the minimum correct answer is `4` and there is no maximum. `5`, `6` or `976` would all be correct answers. 
 
 ###### <a name="C.s10"></a>other
 ```
@@ -2914,5 +2920,5 @@ Signed Statement
 }
 ```
 
-__Note:__ Attached signature not shown, see [Attachments](#attachments) for attachment message format.
+__Note:__ Attached signature not shown, see [Attachments](#attachments) for Attachment message format.
 
