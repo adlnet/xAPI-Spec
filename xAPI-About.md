@@ -441,21 +441,22 @@ This section explains and shows graphically how different pieces of xAPI can fit
 
 ##### Tracking Experiences
 
+###### Figure 1: Data Flow in xAPI
 ![Data Flow in xAPI](/xAPIDataFlow.jpg)
 
 Figure 1 shows the tracking of learning experiences. A learner has a Learning Experience. This experience could take place in an 
 online course, it could be on the job or it could be part of recreation. It really could be anything. This experience is tracked, 
-on the learner’s behalf, by a trusted Learning Record Provider. The Learning Record Provider may also be responsible for the 
-trusted relationship between the experience and the learner, and perhaps even launching “content” for the learner and digital 
-rights associated with the content, but shouldn't be viewed as boundaries or even "the norm".  
+on the learner’s behalf, by a trusted Learning Record Provider. The Learning Record Provider can also be responsible for the 
+trusted relationship between the experience and the learner. This might even include launching “content” for the learner and 
+managing digital rights associated with the content. 
 
-The Learning Record Provider creates Learning Records and sends them to one or more Learning Record Stores (LRS). The Learner has 
-an account on the LRS/LRSs. The Learning Record Store has authentication and authorization responsibilities with each party. A 
-Learning Record Consumer can access Learning Records it is authorized to do so from the LRS. Components that interact with the LRS 
-in a request-response manner are referred to as Clients.
+The Learning Record Provider creates Learning Records and sends them to one or more Learning Record Stores (LRSs). The LRS stores
+the Learning Records and makes them available to any authorized Client. A Learning Record Consumer is a type of client that accesses 
+Learning Records and makes use of them. 
 
 ##### Activity Data and Metadata
 
+###### Figure 2: xAPI Activity Data and Metadata
 ![xAPI Activity Data and Metadata](/xAPIMetadata.jpg)
 
 Understanding how a single Activity (as uniquely identified by its IRI) is defined and described is a key concept in xAPI. 
@@ -472,7 +473,8 @@ canonical version.
 
 ##### Agent and Persona Management
 
-![xAPI Activity Data and Metadata](/xAPIPersonas.jpg)
+###### Figure 3: xAPI Agent and Persona Management
+![xAPI Agent and Persona Managementa](/xAPIPersonas.jpg)
 
 xAPI grants the framework for allowing selective access to one's personal data. This is done through the management of what are 
 called personas. In xAPI, each persona represents the "I" in "I did this" and is logically the subject of the Statement. Each 
