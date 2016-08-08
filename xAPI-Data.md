@@ -1542,65 +1542,72 @@ useful when the Object of the Statement is an Agent, not an Activity.
 #### <a name="2.4.7">2.4.7</a> Timestamp
 
 ###### <a name="2.4.7.s1"></a>Description
+
 The time at which the experience occurred.
 
 ###### <a name="2.4.7.s2"></a>Details
 
-The timestamp property is of type [Timestamp](#timestamps). It is formatted according to the normal format of ISO 8601 and 
+The "timestamp" property is of type [Timestamp](#timestamps). It is formatted according to the normal format of ISO 8601 and 
 corresponds to the time of when the events described within this Statement occurred. If it is not included in the Statement 
 when it is submitted to the LRS, the LRS populates it with the same value it would use with [Stored](#stored).
 
-The timestamp property in a Statement can differ from the [stored property](#stored) (the time at which the Statement is 
+The "timestamp property" in a Statement can differ from the ["stored" property](#stored) (the time at which the Statement is 
 stored). Namely, there can be delays between the occurrence of the experience and the reception of the corresponding 
 Statement by the LRS. 
 
-Where the experience occurs over a period of time, the timestamp property can represent the start, end or any point of time 
+Where the experience occurs over a period of time, the "timestamp" property can represent the start, end or any point of time 
 during the experience. It is expected that Communities of Practice will define an appropriate point to record the 
-Timestamp for different experiences. For example, when recording the experience of eating at a restaurant, it might 
-be most appropriate to record the Timestamp of the start of the experience; when recording the experience of 
-completing a qualification, it might be most appropriate to record the Timestamp of the end of the experience.
+timestamp for different experiences. For example, when recording the experience of eating at a restaurant, it might 
+be most appropriate to record the timestamp of the start of the experience; when recording the experience of 
+completing a qualification, it might be most appropriate to record the timestamp of the end of the experience.
 These examples are for illustrative purposes only and are not meant to be prescriptive.
 
 ###### <a name="2.4.7.s3"></a>Requirements
 
 * <a name="2.4.7.s3.b1"></a>For requirements pertaining to the Timestamp data type, see [Part 3: Timestamps](#timestamps).
-* <a name="2.4.7.s3.b2"></a>The timestamp property SHOULD* be set by the LRS to the value of the [stored property](#stored) if not provided.
-* <a name="2.4.7.s3.b3"></a>A timestamp property MAY represent any point during an experience, not necessarily the beginning or end. 
-* <a name="2.4.7.s3.b4"></a>An AP MUST NOT use a future time for a timestamp property in a Statement.
-* <a name="2.4.7.s3.b5"></a>A SubStatement MAY have a timestamp property that is in the future.
-* <a name="2.4.7.s3.b6"></a>An LRS SHOULD* NOT reject a timestamp for having a greater value than the current time, to prevent issues due to 
-clock errors.
+* <a name="2.4.7.s3.b2"></a>The "timestamp" property SHOULD* be set by the LRS to the value of the ["stored" property](#stored) 
+if not provided.
+* <a name="2.4.7.s3.b3"></a>A "timestamp" property MAY represent any point during an experience, not necessarily the 
+beginning or end. 
+* <a name="2.4.7.s3.b4"></a>A Learning Record Provider MUST NOT use a future time for a "timestamp" property in a Statement.
+* <a name="2.4.7.s3.b5"></a>A SubStatement MAY have a "timestamp" property that is in the future.
+* <a name="2.4.7.s3.b6"></a>An LRS SHOULD* NOT reject a timestamp for having a greater value than the current time, to prevent 
+issues due to clock errors.
 
 <a name="stored"/> 
 
 #### <a name="2.4.8">2.4.8</a> Stored
 
 ###### <a name="2.4.8.s1"></a>Description
+
 The time at which a Statement is stored by the LRS. This can be any time between when the LRS receives the Statement and 
 when it is written to storage. 
 
 ###### <a name="2.4.8.s2"></a>Details
-The stored property is of type [Timestamp](#timestamps). The stored property is the literal time the Statement was stored. 
-Used to record the time at which the experience described in the Statement.
+
+The "stored" property is of type [Timestamp](#timestamps). The "stored" property is the literal time the Statement was stored. 
 
 ###### <a name="2.4.8.s3"></a>Requirements
 
 * <a name="2.4.8.s3.b1"></a>For requirements pertaining to the Timestamp data type, see [ISO 8601 Timestamps](#timestamps) below.
-* <a name="2.4.8.s3.b2"></a>The stored property MUST be set by the LRS; An LRS SHOULD validate and then MUST overwrite any value currently in the 
-stored property of a Statement it receives.
-* <a name="2.4.8.s3.b3"></a>The stored property SHOULD be the current or a past time.
+* <a name="2.4.8.s3.b2"></a>The "stored" property MUST be set by the LRS; An LRS SHOULD validate and then MUST overwrite any 
+value currently in the "stored" property of a Statement it receives.
+* <a name="2.4.8.s3.b3"></a>The "stored" property SHOULD be the current or a past time.
 
 <a name="authority"/> 
 
 #### <a name="2.4.9">2.4.9</a> Authority
 
 ###### <a name="2.4.9.s1"></a>Description
+
 The authority property provides information about whom or what has asserted that this Statement is true. 
 
 ###### <a name="2.4.9.s2"></a>Details
+
 The asserting authority represents the authenticating user or some system or application.
 
 ###### <a name="2.4.9.s3"></a>Requirements
+
 * <a name="2.4.9.s3.b1"></a>Authority MUST be an Agent, except in 3-legged OAuth, where it MUST be a Group with two Agents. 
 The two Agents represent an application and user together.
 * <a name="2.4.9.s3.b2"></a>The LRS MUST include the user as an Agent as the entire authority if a user connects 
@@ -1613,13 +1620,14 @@ where a strong trust relationship has been established, and with extreme caution
 * <a name="2.4.9.s3.b6"></a>The LRS MAY identify the user with any of the legal identifying properties if 
 a user connects directly (using HTTP Basic Authentication) or a part of 3-legged OAuth. 
 
-
 ##### <a name="2.4.9.s4"></a>OAuth Credentials as Authority
 
 ###### <a name="2.4.9.s5"></a>Description
+
 This is a workflow for use of OAuth. 2-legged and 3-legged OAuth are both supported.
 
 ###### <a name="2.4.9.s6"></a>Details
+
 This workflow assumes a Statement is stored using a validated OAuth connection and the LRS 
 creates or modifies the authority property of the Statement.
 
@@ -1629,18 +1637,19 @@ Facebook account will include credentials that are specific not only to Twitter 
 or them as a user, but the unique combination of both.
 
 ###### <a name="2.4.9.s7"></a>Requirements
+
 * <a name="2.4.9.s7.b1"></a>The authority MUST contain an Agent Object that represents the OAuth consumer, either by itself, or 
 as part of a group in the case of 3-legged OAuth.
 * <a name="2.4.9.s7.b2"></a>The Agent representing the OAuth consumer MUST be identified by account.
-* <a name="2.4.9.s7.b3"></a>The Agent representing the OAuth consumer MUST use the consumer key as the value of the Account "name” property.
+* <a name="2.4.9.s7.b3"></a>The Agent representing the OAuth consumer MUST use the consumer key as the value of the 
+account's "name" property.
 * <a name="2.4.9.s7.b4"></a>If the Agent representing the OAuth consumer is a registered application, the token request endpoint 
-MUST be used as the account homePage.
+MUST be used as the value of the account's "homePage" property.
 * <a name="2.4.9.s7.b5"></a>If the Agent representing the OAuth consumer is not a registered application, the temporary 
-credentials endpoint MUST be used as the Account "homePage".
+credentials endpoint MUST be used as the value of the account's "homePage" property.
 * <a name="2.4.9.s7.b6"></a>An LRS MUST NOT trust the application portion of the authority in the event the account name is from 
 the same source as the unregistered application. (Multiple unregistered applications could choose the same consumer key. 
-As a result, there is no consistent way to verify this combination of temporary credentials and 
-the account name.) 
+As a result, there is no consistent way to verify this combination of temporary credentials and the account name.) 
 * <a name="2.4.9.s7.b7"></a>Each unregistered consumer SHOULD use a unique consumer key.
 
 ###### <a name="2.4.9.s8"></a>Example
@@ -1668,40 +1677,46 @@ The pairing of an OAuth consumer and a user.
 
 #### <a name="2.4.10">2.4.10</a> Version
 ###### <a name="2.4.10.s1"></a>Description
+
 Version information in Statements helps Learning Record Consumers get their bearings. Since
 the Statement data model is guaranteed consistent through all 1.0.x versions, in order to support data
-flow among such LRSs the LRS is given some flexibility on Statement versions that are accepted.
+flow among such LRSs, the LRS is given some flexibility on Statement versions that are accepted.
 
 ###### <a name="2.4.10.s2"></a>Requirements
+
 * <a name="2.4.10.s2.b1"></a>Version MUST be formatted as laid out for the API version header in [Versioning](#versioning)
 
 ###### <a name="2.4.10.s3"></a>LRS Requirements
-* <a name="2.4.10.s3.b1"></a>An LRS MUST accept all Statements where their version starts with "1.0." if they otherwise validate.
-* <a name="2.4.10.s3.b2"></a>An LRS MUST reject all Statements with a version specified that does not start with "1.0.".
+
+* <a name="2.4.10.s3.b1"></a>An LRS MUST accept all Statements where their version starts with `1.0.` if they otherwise validate.
+* <a name="2.4.10.s3.b2"></a>An LRS MUST reject all Statements with a version specified that does not start with `1.0.`.
 * <a name="2.4.10.s3.b3"></a>Statements returned by an LRS MUST retain the version they are accepted with. If they
-lack a version, the version MUST be set to 1.0.0.
+lack a version, the version MUST be set to `1.0.0`.
 
 
 ###### <a name="2.4.10.s4"></a>Learning Record Provider Requirements
-* <a name="2.4.10.s4.b1"></a>If Learning Record Providers set the Statement version, they MUST set it to 1.0.0.
+
+* <a name="2.4.10.s4.b1"></a>If Learning Record Providers set the Statement version, they MUST set it to `1.0.0`.
 * <a name="2.4.10.s4.b2"></a>Learning Record Providers SHOULD NOT set the Statement version.
 
-__Note:__ The requirement for the version statement property to contain the version '1.0.0', rather than the latest
-patch version is deliberate since statements in any version of 1.0.x conform to the '1.0.0' data model. In fact, 
-a single statement may be included in multiple requests over time, each following a different patch version 
+__Note:__ The requirement for the "version" property to contain the value `1.0.0`, rather than the latest
+patch version is deliberate since Statements in any version of 1.0.x conform to the 1.0.0 data model. In fact, 
+a single Statement may be included in multiple requests over time, each following a different patch version 
 of the specification. The patch version of the specification being followed can be determined from the 
-[X-Experience-API-Version header](./xAPI-Communication.md#versioning) being used in each request. 
+["X-Experience-API-Version' header](./xAPI-Communication.md#versioning) being used in each request. 
 
 <a name="attachments"/>
 #### <a name="2.4.11">2.4.11</a> Attachments
 
 ###### <a name="2.4.11.s1"></a>Rationale
-In some cases an attachment is logically an important part of a learning record. It could be an essay, a video, etc. 
-Another example of such an attachment is (the image of) a certificate that was granted as a result of an experience. 
-It is useful to have a way to store these attachments in and retrieve them from an LRS. 
+
+In some cases an Attachment is logically an important part of a Learning Record. It could be an essay, a video, etc. 
+Another example of such an Attachment is (the image of) a certificate that was granted as a result of an experience. 
+It is useful to have a way to store these Attachments in and retrieve them from an LRS. 
 
 ###### <a name="2.4.11.s2"></a>Details
-The table below lists all properties of the Attachment object.
+
+The table below lists all properties of the Attachment Object.
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th><th>Corresponding request parameter</th></tr>
@@ -1710,8 +1725,8 @@ The table below lists all properties of the Attachment object.
 
 		<td>usageType</td>
 		<td>IRI</td>
-		<td>Identifies the usage of this attachment. For example: one expected use case
-		for attachments is to include a "completion certificate". A type IRI corresponding
+		<td>Identifies the usage of this Attachment. For example: one expected use case
+		for Attachments is to include a "completion certificate". An IRI corresponding
 		to this usage MUST be coined, and used with completion certificate attachments.</td>
 		<td>Required</td>
 		<td></td>
@@ -1719,36 +1734,36 @@ The table below lists all properties of the Attachment object.
 	<tr id="2.4.11.s2.table1.row2">
 		<td>display</td>
 		<td><a href="#misclangmap">Language Map</a></td>
-		<td>Display name (title) of this attachment.</td>
+		<td>Display name (title) of this Attachment.</td>
 		<td>Required</td>
 		<td></td>
 	</tr>
 	<tr id="2.4.11.s2.table1.row3">
 		<td>description</td>
 		<td><a href="#misclangmap">Language Map</a></td>
-		<td>A description of the attachment</td>
+		<td>A description of the Attachment</td>
 		<td>Optional</td>
 		<td></td>
 	</tr>
 	<tr id="2.4.11.s2.table1.row4">
 		<td>contentType</td>
 		<td><a href="https://www.ietf.org/rfc/rfc2046.txt?number=2046">Internet Media Type</a></td>
-		<td>The content type of the attachment.</td>
+		<td>The content type of the Attachment.</td>
 		<td>Required</td>
 		<td>Content-Type</td>
 	</tr>
 	<tr id="2.4.11.s2.table1.row5">
 		<td>length</td>
 		<td>Integer</td>
-		<td>The length of the attachment data in octets.</td>
+		<td>The length of the Attachment data in octets.</td>
 		<td>Required</td>
 		<td>Content-Length</td>
 	</tr>
 	<tr id="2.4.11.s2.table1.row6">
 		<td>sha2</td>
 		<td>String</td>
-		<td>The SHA-2 hash of the attachment data. <br/>
-		This property is always required, even if "fileURL" is also specified. 
+		<td>The SHA-2 hash of the Attachment data. <br/>
+		This property is always required, even if fileURL is also specified. 
 		</td>
 		<td>Required</td>
 		<td>X-Experience-API-Hash</td>
@@ -1756,31 +1771,33 @@ The table below lists all properties of the Attachment object.
 	<tr id="2.4.11.s2.table1.row7">
 		<td>fileUrl</td>
 		<td>IRL</td>
-		<td>An IRL at which the attachment data can be retrieved, or from which it used 
+		<td>An IRL at which the Attachment data can be retrieved, or from which it used 
 		to be retrievable. </td>
         <td>Optional</td>
 		<td></td>
 	</tr>
 </table>
 
-In the case of wanting to include an attachment(s) for a SubStatement, it is strongly recommended to include the 
-attachment(s) in the Statement Attachment object and to include the payloads as normally done for a Statement.
+In the case of wanting to include an Attachment(s) for a SubStatement, it is strongly recommended to include the 
+Attachment(s) in the Statement's Attachment object and to include the payloads as normally done for a Statement.
 
 <a name="retrieval"/> 
 ### <a name="2.5">2.5</a> Retrieval of Statements
 
 ###### <a name="2.5.s1"></a>Description
+
 A collection of Statements can be retrieved by performing a query on the Statement 
 Resource, see [Statement Resource](#stmtapi) for details. 
 
 ###### <a name="2.5.s2"></a>Details
+
 The following table shows the data structure for the results of queries on the Statement Resource.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.5.s2.table1.row1"><td>Statements</td><td>Array of Statements</td>
+	<tr id="2.5.s2.table1.row1"><td>statements</td><td>Array of Statements</td>
 		<td>List of Statements. If the list returned has been limited (due to pagination), 
-			and there are more results, they will be located at the statements property 
-			within the container located at the IRL provided by the more property of 
+			and there are more results, they will be located at the "statements" property 
+			within the container located at the IRL provided by the "more" property of 
 			this Statement result Object.
 			
 			Where no matching Statements are found, this property will contain an empty array.
@@ -1798,45 +1815,51 @@ The following table shows the data structure for the results of queries on the S
 
 ###### <a name="2.5.s3"></a>Requirements
 
-* <a name="2.5.s3.b1"></a>The IRL retrieved from the more property MUST be usable for at least 24 hours after it is returned by the LRS. 
-* <a name="2.5.s3.b2"></a>An LRS MAY include all necessary information within the more property IRL to continue the query to avoid the 
-need to store IRLs and associated query data.
-* <a name="2.5.s3.b3"></a>An LRS SHOULD NOT generate extremely long IRLs within the more property.
-* <a name="2.5.s3.b4"></a>An LRS MAY re-run the query at the point in time that the IRL retrieved from the more property is accessed such
-that the batch retrieved includes Statements which would have been included in that batch if present in the LRS at 
-the time the original query was run and excludes Statements from that batch which have since been voided. 
-* <a name="2.5.s3.b5"></a>Alternatively, an LRS MAY cache a list of Statements to be returned at the more property such that the batch of Statements
-returned matches those Statements that would have been returned when the original query was run. 
+* <a name="2.5.s3.b1"></a>The IRL retrieved from the "more" property MUST be usable for at least 24 hours after it is returned 
+by the LRS. 
+* <a name="2.5.s3.b2"></a>An LRS MAY include all necessary information within the "more" property IRL to continue the query 
+to avoid the need to store IRLs and associated query data.
+* <a name="2.5.s3.b3"></a>An LRS SHOULD NOT generate extremely long IRLs within the "more" property.
+* <a name="2.5.s3.b4"></a>An LRS MAY re-run the query at the point in time that the IRL retrieved from the "more" property 
+is accessed such that the batch retrieved includes Statements which would have been included in that batch if present in the 
+LRS at the time the original query was run and excludes Statements from that batch which have since been voided. 
+* <a name="2.5.s3.b5"></a>Alternatively, an LRS MAY cache a list of Statements to be returned at the "more" property such that 
+the batch of Statements returned matches those Statements that would have been returned when the original query was run. 
 * <a name="2.5.s3.b6"></a>An LRS MAY remove voided Statements from the cached list of Statements if using this method. 
-* <a name="2.5.s3.b7"></a>A Learning Record Consumer SHOULD NOT attempt to interpret any meaning from the IRL returned from the more property.
+* <a name="2.5.s3.b7"></a>A Learning Record Consumer SHOULD NOT attempt to interpret any meaning from the IRL returned from the 
+"more" property.
 
 <a name="signature"/>
 ### <a name="2.6">2.6</a> Signed Statements
 
 ##### <a name="2.6.s1"></a>Description
+
 A Statement can include a [digital signature](https://en.wikipedia.org/wiki/Digital_signature) 
 to provide strong and durable evidence of the authenticity and integrity of the Statement.
 
 ##### <a name="2.6.s2"></a>Rationale
+
 Some Statements will have regulatory or legal significance, or otherwise require strong
 and durable evidence of their authenticity and integrity. It might be necessary to verify
 these Statements without trusting the environment they were first recorded in, or perhaps
 without access to that environment. Digital signatures will enable a third-party to validate such Statements.
 
 ##### <a name="2.6.s3"></a>Details
-Signed Statements include a JSON web signature (JWS) as an attachment. This allows
+
+Signed Statements include a JSON web signature (JWS) as an Attachment. This allows
 the original serialization of the Statement to be included along with the signature.
 For interoperability, the "RSA + SHA" series of JWS algorithms have been selected, and
 for discoverability of the signer X.509 certificates SHOULD be used.
 
 ##### <a name="2.6.s4"></a>Signature Requirements
 * <a name="2.6.s4.b1"></a>A Signed Statement MUST include a JSON web signature (JWS) as defined here:
-http://tools.ietf.org/html/draft-ietf-jose-json-web-signature, as an attachment with a usageType
-of "http://adlnet.gov/expapi/attachments/signature" and a contentType of "application/octet-stream".
-* <a name="2.6.s4.b2"></a>JWS Compact Serialization SHOULD* be used to create the JSON web signature. Use of JWS JSON Serialization is 
-strongly discouraged, is unlikely to be interoperble with other systems, and will be forbidden in a future version
-of this specification. 
-* <a name="2.6.s4.b3"></a>The JWS signature MUST have a payload of a valid JSON serialization of the complete Statement before the signature was added.
+http://tools.ietf.org/html/draft-ietf-jose-json-web-signature, as an Attachment with a usageType
+of `http://adlnet.gov/expapi/attachments/signature` and a contentType of `application/octet-stream`.
+* <a name="2.6.s4.b2"></a>JWS Compact Serialization SHOULD* be used to create the JSON web signature. Use of JWS 
+JSON Serialization is strongly discouraged, is unlikely to be interoperble with other systems, and will be forbidden 
+in a future version of this specification. 
+* <a name="2.6.s4.b3"></a>The JWS signature MUST have a payload of a valid JSON serialization of the complete Statement 
+before the signature was added.
 * <a name="2.6.s4.b4"></a>The JWS signature MUST use an algorithm of "RS256","RS384", or "RS512".
 * <a name="2.6.s4.b5"></a>The JWS signature SHOULD have been created based on the private key associated with an
 X.509 certificate.
@@ -1844,16 +1867,16 @@ X.509 certificate.
 the associated certificate chain.
 
 ##### <a name="2.6.s5"></a>LRS Requirements
-* <a name="2.6.s5.b1"></a>The LRS MUST reject requests to store Statements that contain malformed signatures, with HTTP 400.
+* <a name="2.6.s5.b1"></a>The LRS MUST reject requests to store Statements that contain malformed signatures, with `400 Bad Request`.
 * <a name="2.6.s5.b2"></a>The LRS SHOULD include a message in the response of a rejected statement. 
 * <a name="2.6.s5.b3"></a>In order to verify signatures are well formed, the LRS MUST do the following:
     * <a name="2.6.s5.b3.b1"></a>Decode the JWS signature, and load the signed serialization of the Statement from the
       JWS signature payload.
-    * <a name="2.6.s5.b3.b2"></a>Validate that the "original" Statement is logically equivalent to the received Statement. 
+    * <a name="2.6.s5.b3.b2"></a>Validate that the original Statement is logically equivalent to the received Statement. 
     See [Statement comparision requirements](statement-comparision-requirements).
     * <a name="2.6.s5.b3.b3"></a>If the JWS header includes an X.509 certificate, validate the signature against that
     certificate as defined in JWS.
-    * <a name="2.6.s5.b3.b4"></a>Validate that the Signature Requirements outlined above have been met. 
+    * <a name="2.6.s5.b3.b4"></a>Validate that the signature requirements outlined above have been met. 
 
 __Note:__ The step of validating against the included X.509 certificate is intended as a
 way to catch mistakes in the signature, not as a security measure. The steps to authenticate
@@ -1861,13 +1884,13 @@ a signed Statement will vary based on the degree of certainty required and are o
 the scope of this specification.
 
 ##### <a name="2.6.s6"></a>Client Requirements
-* <a name="2.6.s6.b1"></a>Clients MUST follow the Signature Requirements outlined above.
+
+* <a name="2.6.s6.b1"></a>Clients MUST follow the signature requirements outlined above.
 * <a name="2.6.s6.b2"></a>Clients MUST NOT assume a signature is valid simply because an LRS has accepted it.
 
 ##### <a name="2.6.s7"></a>Example
+
 See [Appendix D: Example Signed Statement](#Appendix2D) for an example.
-
-
 
 <a name="metadata"/>
 
@@ -1877,6 +1900,7 @@ Metadata is additional information about the resource. It enables decision makin
 In xAPI, metadata can be utilized in a variety of locations. The most common is within [Activity Definitions](#actdef).
 
 <a name="iri-requirements"/>
+
 ### <a name="3.1">3.1</a> IRI Requirements
 
 xAPI uses IRIs for identifiers. Using IRIs ensures uniqueness and promotes resolvability. The LRS and Learning Record 
@@ -1884,30 +1908,37 @@ Provider each have responsibilities in regard to each IRI as outlined below. Act
 which can be found later in [this section](#actdef).
 
 ##### <a name="3.1.s1"></a>Metadata Provider Requirements
+
 These requirements also apply to Learning Record Providers defining new IRIs. 
 
-* <a name="3.1.s1.b1"></a>[Metadata Providers](#def-metadata-provider) defining new IRIs SHOULD* only use IRIs they control or have permission from the controller to use.
-* <a name="3.1.s1.b2"></a>[Metadata Providers](#def-metadata-provider) defining new Verb IRIs MUST only use IRIs they control or have permission from the controller to use.
-* <a name="3.1.s1.b3"></a>Where a suitable identifier already exists, the Metadata Provider SHOULD use the corresponding existing identifier and
-SHOULD NOT create a new identifier.
-* <a name="3.1.s1.b4"></a>When re-using an existing identifier, Metadata Providers SHOULD* ensure that the exact character equivelent IRI is used. 
+* <a name="3.1.s1.b1"></a>[Metadata Providers](#def-metadata-provider) defining new IRIs SHOULD* only use IRIs they control 
+or have permission from the controller to use.
+* <a name="3.1.s1.b2"></a>[Metadata Providers](#def-metadata-provider) defining new Verb IRIs MUST only use IRIs they control 
+or have permission from the controller to use.
+* <a name="3.1.s1.b3"></a>Where a suitable identifier already exists, the Metadata Provider SHOULD use the corresponding 
+existing identifier and SHOULD NOT create a new identifier.
+* <a name="3.1.s1.b4"></a>When re-using an existing identifier, Metadata Providers SHOULD* ensure that the exact character 
+equivelent IRI is used. 
 * <a name="3.1.s1.b5"></a>The Metadata Provider MAY create their own identifiers where a suitable identifier does not already exist.
-* <a name="3.1.s1.b6"></a>When defining identifiers, the Metadata Provider MAY use IRIs containing anchors so that a single page can contain 
-definitions for multiple identifiers. E.g. http://example.com/xapi/verbs#defenestrated
+* <a name="3.1.s1.b6"></a>When defining identifiers, the Metadata Provider MAY use IRIs containing anchors so that a single 
+page can contain definitions for multiple identifiers. E.g. `http://example.com/xapi/verbs#defenestrated`
 * <a name="3.1.s1.b7"></a>When defining identifiers, the Metadata Provider SHOULD use lowercase IRIs. 
 
 ##### <a name="3.1.s2"></a>LRS Requirements
+
 * <a name="3.1.s2.b1"></a>When storing or comparing IRIs, LRSs SHOULD* handle them only by using one or more of the approaches 
 described in [5.3.1 (Simple String Comparison) and 5.3.2 (Syntax-Based Normalization) of RFC 3987](https://tools.ietf.org/html/rfc3987#section-5.3), and 
 SHOULD* NOT handle them using any approaches described in [5.3.3 (Scheme-Based Normalization) or 5.3.4 (Protocol-Based Normalization) of the same RFC](https://tools.ietf.org/html/rfc3987#section-5.3), 
 or any other approaches.
-* <a name="3.1.s2.b2"></a>LRSs SHOULD* apply the same IRI comparison and normalization rules with all IRIs in parameters and fields defined to contain IRIs.
+* <a name="3.1.s2.b2"></a>LRSs SHOULD* apply the same IRI comparison and normalization rules with all IRIs in parameters and 
+fields defined to contain IRIs.
 
 <a name="miscmeta"/>
 
 ### <a name="3.2">3.2</a> Hosted Metadata
 
 ##### <a name="3.2.s1"></a>Description
+
 Additional information about an identifier can be provided within a Statement and can 
 be hosted at the location pointed to by the identifier IRI. Including metadata in a Statement
 allows metadata about the IRI to be expressed without the necessity of resolving it. Hosting
@@ -1915,7 +1946,9 @@ metadata at the IRI location allows the owner of the IRI to define the canonical
 that IRI. 
 
 ##### <a name="3.2.s2"></a>Details
+
 There are several types of IRI identifiers used in this specification:
+
 * <a name="3.2.s2.b1"></a>[Verb](#verb)
 * <a name="3.2.s2.b2"></a>[Activity id](#acturi)
 * <a name="3.2.s2.b3"></a>[Activity type](#acttype)
@@ -1931,7 +1964,7 @@ For the structure of hosted metadata about all other identifiers, see the format
 	<tr id="3.2.s2.table1.row1">
 		<td>name</td>
 		<td><a href="#misclangmap">Language Map</a></td>
-		<td>The human readable/visual name. For Verbs, this is equivalent to the display property in a Statement.</td>
+		<td>The human readable/visual name. For Verbs, this is equivalent to the "display" property in a Statement.</td>
 		<td>Optional</td>
 	</tr>
 	<tr id="3.2.s2.table1.row2">
@@ -1949,18 +1982,19 @@ look for and use established, widely adopted identifiers for all types of IRI id
 ##### <a name="3.2.s3"></a>Metadata Provider Requirements
 
 * <a name="3.2.s3.b1"></a>Metadata MAY be provided with an identifier.
-* <a name="3.2.s3.b2"></a>If metadata is provided, both name and description SHOULD be included.
+* <a name="3.2.s3.b2"></a>If metadata is provided, both "name" and "description" SHOULD be included.
 * <a name="3.2.s3.b3"></a>For any of the identifier IRIs above the Metadata Provider SHOULD make a human-readable description of the 
 intended usage accessible at the IRI.
-* <a name="3.2.s3.b4"></a>For any of the identifier IRIs above the Metadata Provider SHOULD ensure that this JSON metadata available at that 
-IRI when the IRI is requested and a Content-Type of "application/json" is requested.
-* <a name="3.2.s3.b5"></a>Where the IRI represents an Activity, the Metadata Provider MAY host metadata using the [Activity Definition](#actdef") 
-JSON format which is used in Statements, with a Content-Type of "application/json".
+* <a name="3.2.s3.b4"></a>For any of the identifier IRIs above the Metadata Provider SHOULD ensure that this JSON metadata 
+available at that IRI when the IRI is requested and a Content-Type of `application/json` is requested.
+* <a name="3.2.s3.b5"></a>Where the IRI represents an Activity, the Metadata Provider MAY host metadata using 
+the [Activity Definition](#actdef") JSON format which is used in Statements, with a Content-Type of `application/json`.
 
 ##### <a name="3.2.s4"></a>LRS Requirements
+
 * <a name="3.2.s4.b1"></a>The LRS MAY act as a [Metadata Consumer](#def-metadata-consumer) and attempt to resolve identifier IRIs.
 * <a name="3.2.s4.b2"></a>If an Activity IRI is a URL, an LRS SHOULD attempt to GET that URL, and include in HTTP
-headers: "Accept: application/json, */*". This SHOULD be done as soon as practical after the LRS
+headers: `Accept: application/json, */*`. This SHOULD be done as soon as practical after the LRS
 first encounters the Activity id.
 * <a name="3.2.s4.b3"></a>Upon loading JSON which is a valid Activity Definition from a URL used as an Activity id,
  an LRS SHOULD incorporate the loaded definition into its canonical definition for that Activity,
@@ -1970,6 +2004,7 @@ from a URL used as an Activity id, an LRS MAY consider this definition when dete
 its canonical representation of that Activity's definition.
 
 ##### <a name="3.2.s5"></a>Metadata Consumer Requirements
+
 * <a name="3.2.s5.b1"></a>If a Metadata Consumer obtains metadata from an IRI, it SHOULD make a strong presumption that the 
 metadata found at that IRI is authoritative in regards to the properties and languages included in that metadata. 
 * <a name="3.2.s5.b2"></a>The Metadata Consumer MAY use other sources of information to fill in missing details, 
