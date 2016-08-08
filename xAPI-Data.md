@@ -137,7 +137,7 @@ conformant to this specification.
 
 * <a name="2.2.s2.b1"></a>Statements and other objects SHOULD NOT include properties with a value of an empty object. 
 * <a name="2.2.s2.b2"></a>A Statement MUST use each property no more than one time.
-* <a name="2.2.s2.b3"></a>A Statement MUST use “actor”, “verb”, and “object”.
+* <a name="2.2.s2.b3"></a>A Statement MUST use "actor", "verb", and "object".
 * <a name="2.2.s2.b4"></a>A Statement MAY use its properties in any order.
 * <a name="2.2.s2.b5"></a>The LRS MUST NOT return a different serialisation of any properties except those 
 [listed as exceptions above](#statement-immutablity-and-exceptions).
@@ -150,13 +150,15 @@ that properties appear only once, are extremely difficult, so much of the burden
 for ensuring data portability is on the Learning Record Provider.
 
 * <a name="2.2.s3.b1"></a>Values requiring IRIs MUST be sent with valid IRIs. 
-* <a name="2.2.s3.b2"></a>Keys of language maps MUST be sent with valid [RFC 5646](http://tools.ietf.org/html/rfc5646) language tags, for similar reasons.
+* <a name="2.2.s3.b2"></a>Keys of language maps MUST be sent with valid [RFC 5646](http://tools.ietf.org/html/rfc5646) 
+language tags, for similar reasons.
 * <a name="2.2.s3.b3"></a>A library SHOULD be used to construct IRIs, as opposed to string concatenation. 
 * <a name="2.2.s3.b4"></a>Values SHOULD be considered to be case sensitive unless specified otherwise. 
 * <a name="2.2.s3.b5"></a>Lowercase SHOULD be used to send case insensitive data.
 * <a name="2.2.s3.b6"></a>Additional properties SHOULD* NOT be added to Statements unless explicitly allowed by this specification. 
-* <a name="2.2.s3.b7"></a>A property SHOULD not occur multiple times in an object. If properties are used multiple times within an object, the 
-behavior of the LRS is undefined; it is expected that most LRSs will use existing JSON parsing functionality of whichever code languages they use. 
+* <a name="2.2.s3.b7"></a>A property SHOULD not occur multiple times in an object. If properties are used multiple times 
+within an object, the behavior of the LRS is undefined; it is expected that most LRSs will use existing JSON parsing 
+functionality of whichever code languages they use. 
 
 __Note:__ The LRS is recommended to reject Statements containing additional properties. Additional properties in 
 Statements would mean that the Statement would not be interoperable with all LRSs. 
@@ -185,8 +187,8 @@ same types in Statements. __Note:__ string parameter values are not quoted as th
 non-format-following rejection requirement.
 * <a name="2.2.s4.b7"></a>The LRS MAY use best-effort validation for language map keys to satisfy the
 non-format-following rejection requirement.
-* <a name="2.2.s4.b8"></a>Additional properties SHOULD* NOT be added to Statements and other objects unless explicitly allowed by this specification and the 
-LRS SHOULD* reject Statements containing such additional properties.
+* <a name="2.2.s4.b8"></a>Additional properties SHOULD* NOT be added to Statements and other objects unless explicitly 
+allowed by this specification and the LRS SHOULD* reject Statements containing such additional properties.
 
 <a name="lifecycle" />
 
@@ -194,11 +196,10 @@ LRS SHOULD* reject Statements containing such additional properties.
 
 Statements are information about a tracked learning experience. Typically, the information represented in the 
 Statement has already happened. Thus, the natural language used in "display" or in the human-readable portion of 
-the Verb Id will usually use the past tense.
+the Verb id will usually use the past tense.
 
 Statements are expected to be permanent. The only way to undo a Statement within this specification is to 
-[void it](#voided). Voiding does not destroy a Statement, rather indicates the evidence in the 
-Statement is to be disregarded.
+[void it](#voided). Voiding does not destroy a Statement, rather indicates the evidence in the Statement is to be disregarded.
 
 <a name="statement-immutablity-and-exceptions" />
 
@@ -206,36 +207,38 @@ Statement is to be disregarded.
 
 Statements are immutable (they cannot be changed). The following are exceptions or areas not covered by this rule:
 
-* <a name="2.3.1.b1"></a>Potential or required assignments of properties during LRS processing ("id", "authority", "stored", "timestamp", "version"). 
+* <a name="2.3.1.b1"></a>Potential or required assignments of properties during LRS processing 
+("id", "authority", "stored", "timestamp", "version"). 
 
-* <a name="2.3.1.b2"></a>Activity Definitions referenced by a Statement. The content of Activity Definitions that are referenced in Statements 
-is not considered part of the Statement itself. This means a deep serialization of a Statement into JSON will change if 
-the referenced Activity Definition changes (see the [Statement API's](#stmtapi) "format" parameter for details).  
+* <a name="2.3.1.b2"></a>Activity Definitions referenced by a Statement. The content of Activity Definitions that are 
+referenced in Statements is not considered part of the Statement itself. This means a deep serialization of a Statement 
+into JSON will change if the referenced Activity Definition changes (see the [Statement API's](#stmtapi) "format" 
+parameter for details).  
 
-* <a name="2.3.1.b3"></a>Verbs referenced by a Statement. The Display property of the Verb is not considered 
+* <a name="2.3.1.b3"></a>Verbs referenced by a Statement. The "display" property of the Verb is not considered 
 part of the Statement itself (see the [Statement API's](#stmtapi) "format" parameter for details). 
 
-* <a name="2.3.1.b4"></a>Serialization of Timestamp data. This is not considered part of the immutable Statement itself. For example, 
-the timestamp and stored properties of a statement can be returned in a different timezone to the one with 
+* <a name="2.3.1.b4"></a>Serialization of Timestamp data. This is not considered part of the immutable Statement itself. 
+For example, the "timestamp" and "stored" properties of a Statement can be returned in a different timezone to the one with 
 which they were stored so long as the point in time referenced is not affected. 
 See [4.1.7 Timestamp](#timestamp) and [4.1.8 Stored](#stored) for details. 
 
-* <a name="2.3.1.b5"></a>Serialization of un-ordered lists. The list of Agents in a Group is not considered to be an ordered list.  Thus, 
-the LRS can return this list of agents in any order. See [4.1.2.2 Groups](#group).
+* <a name="2.3.1.b5"></a>Serialization of un-ordered lists. The list of Agents in a Group is not considered to be an ordered 
+list.  Thus, the LRS can return this list of Agents in any order. See [4.1.2.2 Groups](#group).
 
-* <a name="2.3.1.b6"></a>Attachments. These are not part of Statements and an LRS will return Statements without attachments when a Client
-requests them (see the [Statement API's](#stmtapi) "attachments" parameter for details).
+* <a name="2.3.1.b6"></a>Attachments. These are not part of Statements and an LRS will return Statements without 
+Attachments when a Client requests them (see the [Statement API's](#stmtapi) "attachments" parameter for details).
 
-* <a name="2.3.1.b7"></a>Case sensitivity. Some properties are case insensitive and changes in case therefore do not affect immutability. 
-For example, the domain portion an e-mail address is case insensitive. It is recommended to use lowercase for any case 
-insensitive text. 
+* <a name="2.3.1.b7"></a>Case sensitivity. Some properties are case insensitive and changes in case therefore do not affect 
+immutability. For example, the domain portion an e-mail address is case insensitive. It is recommended to use lowercase 
+for any case insensitive text. 
 
 The following explicitly are **not** exceptions and **are** covered by this rule:
 
 * <a name="2.3.1.b8"></a>Result Duration. Due to variable lengths of months, years and even minutes and the flexible nature of the 
-timestamp property as representing either the start, middle or end of the experience, it is not possible for 
+"timestamp" property as representing either the start, middle or end of the experience, it is not possible for 
 an LRS to accurately deserialize the Result Duration and convert between units of time. For this reason, the 
-Result Duration is considered a string for purposes of statement comparison. 
+Result Duration is considered a string for purposes of Statement comparison. 
 
 <a name="statement-comparision-requirements" />
 ###### <a name="2.3.1.s9"></a>Statement Comparision Requirements
@@ -259,34 +262,33 @@ nature of Experience API.
 
 However, not all Statements are perpetually valid once they have been issued. Mistakes or other factors could dictate 
 that a previously made Statement is marked as invalid. This is called "voiding a Statement" and the reserved 
-Verb “http://adlnet.gov/expapi/verbs/voided" is used for this purpose. Any Statement that voids another
+Verb `http://adlnet.gov/expapi/verbs/voided` is used for this purpose. Any Statement that voids another
 cannot itself be voided.
 
 ###### <a name="2.3.2.s2"></a>Requirements
 
-* <a name="2.3.2.s2.b1"></a>When issuing a Statement that voids another, the Object of that voiding Statement MUST have the "objectType" 
-property set to "StatementRef".
-* <a name="2.3.2.s2.b2"></a>When issuing a Statement that voids another, the Object of that voiding Statement MUST specify the id 
-of the statement-to-be-voided by its "id" property.
-* <a name="2.3.2.s2.b3"></a>an LRS MUST consider a Statement it contains "voided" if and only if the Statement is not itself a voiding 
-Statement and the LRS also contains a voiding Statement referring to the first Statement.
-* <a name="2.3.2.s2.b4"></a>Upon receiving a Statement that voids another, the LRS SHOULD reject the entire request which includes the 
-voiding Statement with HTTP 403 'Forbidden' if the request is not from a source authorized to void Statements.
-* <a name="2.3.2.s2.b5"></a>Upon receiving a Statement that voids another, the LRS SHOULD NOT* reject the request on the grounds of the 
-Object of that voiding Statement not being present. 
-* <a name="2.3.2.s2.b6"></a>Upon receiving a Statement that voids another, the LRS MAY roll back any changes to Activity or Agent 
-definitions which were introduced by the Statement that was just voided.
-* <a name="2.3.2.s2.b7"></a>A Learning Record Provider that wants to "unvoid" a previously voided Statement SHOULD issue that Statement 
-again under a new id.
+* <a name="2.3.2.s2.b1"></a>When issuing a Statement that voids another, the Object of that voiding Statement MUST have 
+the "objectType" property set to `StatementRef`.
+* <a name="2.3.2.s2.b2"></a>When issuing a Statement that voids another, the Object of that voiding Statement MUST specify 
+the id of the Statement-to-be-voided by its "id" property.
+* <a name="2.3.2.s2.b3"></a>an LRS MUST consider a Statement it contains voided if and only if the Statement is not itself 
+a voiding Statement and the LRS also contains a voiding Statement referring to the first Statement.
+* <a name="2.3.2.s2.b4"></a>Upon receiving a Statement that voids another, the LRS SHOULD reject the entire request which 
+includes the voiding Statement with `403 Forbidden` if the request is not from a source authorized to void Statements.
+* <a name="2.3.2.s2.b5"></a>Upon receiving a Statement that voids another, the LRS SHOULD NOT* reject the request on the 
+grounds of the Object of that voiding Statement not being present. 
+* <a name="2.3.2.s2.b6"></a>Upon receiving a Statement that voids another, the LRS MAY roll back any changes to Activity or 
+Agent definitions which were introduced by the Statement that was just voided.
+* <a name="2.3.2.s2.b7"></a>A Learning Record Provider that wants to "unvoid" a previously voided Statement SHOULD issue 
+that Statement again under a new id.
 
 __Note:__ See ["Statement References"](#stmtref) in [When the "Object" is a Statement](#stmtasobj) 
 for details about making references to other Statements.  To see how voided statements behave when queried, 
-See [StatementRef](#queryStatementRef) in 7.3 Statement API).
+See [StatementRef](./xAPI-Communication.md#queryStatementRef) in Part 3).
 
 ###### <a name="2.3.2.s3"></a>Example
 
-This example Statement voids a previous Statement which it identifies with the Statement id 
-"e05aa883-acaf-40ad-bf54-02c8ce485fb0".
+This example Statement voids a previous Statement which it identifies with the Statement id "e05aa883-acaf-40ad-bf54-02c8ce485fb0".
 
 ```
 {
@@ -311,7 +313,7 @@ This example Statement voids a previous Statement which it identifies with the S
 ### <a name="2.4">2.4</a> Statement Properties  
 
 ###### <a name="2.4.s1"></a>Details
-The details of each property of a statement are described in the table below.  
+The details of each property of a Statement are described in the table below.  
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -353,7 +355,7 @@ The details of each property of a statement are described in the table below.
 	<tr id="2.4.s1.table1.row11">
 		<td><a href="#attachments">attachments</a></td>
 		<td>Ordered array of Attachment Objects</td>
-	    <td>Headers for attachments to the Statement</td>
+	    <td>Headers for Attachments to the Statement</td>
 	<td>Optional</td></tr>
 </table>
 
@@ -381,20 +383,19 @@ When this Statement is returned from the LRS it will include some additional pro
 ```  
 See [Appendix A: Example Statements](#Appendix2A) for more examples. 
 
-
-
 <a name="stmtid"/> 
 
 #### <a name="2.4.1">2.4.1</a> ID 
 
 ###### <a name="2.4.1.s1"></a>Description
 
-A UUID (all versions of variant 2 in [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt) are valid, and the UUID MUST be in standard string form).
+A UUID (all versions of variant 2 in [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt) are valid, and the UUID MUST 
+be in standard string form).
 
 ###### <a name="2.4.1.s2"></a>Requirements
 
-* <a name="2.4.1.s2.b1"></a>Ids MUST be generated by the LRS if a Statement is received without an id.
-* <a name="2.4.1.s2.b2"></a>Ids SHOULD be generated by the Learning Record Provider.
+* <a name="2.4.1.s2.b1"></a>Statement ids MUST be generated by the LRS if a Statement is received without an id.
+* <a name="2.4.1.s2.b2"></a>Statement ids SHOULD be generated by the Learning Record Provider.
 
 <a name="actor"/>
 
@@ -405,7 +406,7 @@ The Actor defines who performed the action. The Actor of a Statement can be an A
 
 <a name="agent"/>
 
-##### <a name="2.4.2.1">2.4.2.1</a> When the Actor ObjectType is Agent
+##### <a name="2.4.2.1">2.4.2.1</a> When the Actor ObjectType is `Agent`
 ###### <a name="2.4.2.1.s1"></a>Description
 An Agent (an individual) is a persona or system.
 
@@ -436,7 +437,7 @@ The table below lists the properties of Agent Objects.
 ###### <a name="2.4.2.2.s1"></a>Description
 
 A Group represents a collection of Agents and can be used in most of the same situations an Agent 
-can be used.  There are two types of Groups, anonymous and identified.
+can be used.  There are two types of Groups, Anonymous Groups and Identified Groups.
 
 ###### <a name="2.4.2.2.s2"></a>Details
 
@@ -447,8 +448,8 @@ The table below lists all properties of an Anonymous Group.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.2.2.s2.table1.row1"><td>objectType</td><td>String</td><td>"Group". </td><td>Required</td></tr>
-	<tr id="2.4.2.2.s2.table1.row2"><td>name</td><td>String</td><td>Name of the group.</td><td>Optional</td></tr>
+	<tr id="2.4.2.2.s2.table1.row1"><td>objectType</td><td>String</td><td>`Group`. </td><td>Required</td></tr>
+	<tr id="2.4.2.2.s2.table1.row2"><td>name</td><td>String</td><td>Name of the Group.</td><td>Optional</td></tr>
 	<tr id="2.4.2.2.s2.table1.row3"><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td>
 	<td>The members of this Group. This is an unordered list.</td>
 	<td>Required</td></tr>
@@ -460,8 +461,8 @@ The table below lists all properties of an Identified Group.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.2.2.s2.table2.row1"><td>objectType</td><td>String</td><td>"Group". </td><td>Required</td></tr>
-	<tr id="2.4.2.2.s2.table2.row2"><td>name</td><td>String</td><td>Name of the group.</td><td>Optional</td></tr>
+	<tr id="2.4.2.2.s2.table2.row1"><td>objectType</td><td>String</td><td>`Group`. </td><td>Required</td></tr>
+	<tr id="2.4.2.2.s2.table2.row2"><td>name</td><td>String</td><td>Name of the Group.</td><td>Optional</td></tr>
 	<tr id="2.4.2.2.s2.table2.row3"><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td>
 	<td>The members of this Group. This is an unordered list.</td>
 	<td>Optional</td></tr>
@@ -471,26 +472,26 @@ The table below lists all properties of an Identified Group.
 
 ###### <a name="2.4.2.2.s3"></a>Requirements
 
-* <a name="2.4.2.2.s3.b1"></a>A Learning Record Consumer MUST consider each Anonymous Group distinct even if it has an identical set of members.
-* <a name="2.4.2.2.s3.b2"></a>Learning Record Providers SHOULD use an Identified Group when they wish to issue multiple statements, 
-aggregate data or store and retrieve documents relating to a group.
-* <a name="2.4.2.2.s3.b3"></a>A Learning Record Provider MAY include a complete or partial list of Agents in the 'member' property of a 
-given Anonymous or Identified Group.
-* <a name="2.4.2.2.s3.b4"></a>An LRS returning a Statement MAY return the list of group members in any order.
+* <a name="2.4.2.2.s3.b1"></a>A Learning Record Consumer MUST consider each Anonymous Group distinct even if it has an 
+identical set of members.
+* <a name="2.4.2.2.s3.b2"></a>Learning Record Providers SHOULD use an Identified Group when they wish to issue multiple 
+Statements, aggregate data or store and retrieve documents relating to a group.
+* <a name="2.4.2.2.s3.b3"></a>A Learning Record Provider MAY include a complete or partial list of Agents in the "member" 
+property of a given Anonymous or Identified Group.
+* <a name="2.4.2.2.s3.b4"></a>An LRS returning a Statement MAY return the list of Group members in any order.
 
 ###### <a name="2.4.2.2.s4"></a>Requirements for Anonymous Groups
 
-* <a name="2.4.2.2.s4.b1"></a>An Anonymous Group MUST include a 'member' property listing constituent Agents.
-* <a name="2.4.2.2.s4.b2"></a>An Anonymous Group MUST NOT contain Group Objects in the 'member' property.
-* <a name="2.4.2.2.s4.b3"></a>An Anonymous Group MUST NOT include any Inverse Functional Identifiers.
+* <a name="2.4.2.2.s4.b1"></a>An Anonymous Group MUST include a "member" property listing constituent Agents.
+* <a name="2.4.2.2.s4.b2"></a>An Anonymous Group MUST NOT contain Group Objects in the "member" identifiers.
 
 ###### <a name="2.4.2.2.s5"></a>Requirements for Identified Groups
 
 * <a name="2.4.2.2.s5.b1"></a>An Identified Group MUST include exactly one (1) Inverse Functional Identifier.
-* <a name="2.4.2.2.s5.b2"></a>An Identified Group MUST NOT contain Group Objects in the 'member' property.
-* <a name="2.4.2.2.s5.b3"></a>An Identified Group SHOULD NOT use Inverse Functional Identifiers that are also used as Agent identifiers.
-* <a name="2.4.2.2.s5.b4"></a>An Identified Group MAY include a 'member' property listing constituent Agents.
-
+* <a name="2.4.2.2.s5.b2"></a>An Identified Group MUST NOT contain Group Objects in the "member" property.
+* <a name="2.4.2.2.s5.b3"></a>An Identified Group SHOULD NOT use Inverse Functional Identifiers that are also used 
+as Agent identifiers.
+* <a name="2.4.2.2.s5.b4"></a>An Identified Group MAY include a "member' property listing constituent Agents.
 
 <a name="inversefunctional">
 
