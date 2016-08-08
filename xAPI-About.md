@@ -396,8 +396,17 @@ having a "home email" and a "work email".  Both are the same person, but have di
 
 <a name="def-profile" ></a>
 
-__Profile__: A specific set of rules and documentation for implementing xAPI in a particular context. Profiles generally provide a particular vocabulary of terms, some created specifically for the profile, and some are referenced from other vocabularies. Sometimes a profile might provide multiple vocabularies for different situations, and sometimes someone might curate a vocabulary from multiple sources without creating a profile.
+__Profile__: The term "profile" is used in two distinct ways. The first forms part of the technical specification and is used
+mainly within parts 2 and 3 of the specification. The second is used to describe documents outside of this specification and is
+used mainly within part 1. 
 
+1. A construct where information about the learner or activity is kept, typically in name/document pairs that have meaning to an 
+instructional system component.
+
+2. A specific set of rules and documentation for implementing xAPI in a particular context. Profiles generally provide a
+particular vocabulary of terms, some created specifically for the profile, and some are referenced from other vocabularies.
+Sometimes a profile might provide multiple vocabularies for different situations, and sometimes someone might curate a vocabulary 
+from multiple sources without creating a profile.
 
 <a name="def-registration" ></a>
 
