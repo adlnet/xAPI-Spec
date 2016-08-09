@@ -98,7 +98,7 @@
     *	5.0	[Security](./xAPI-Communication.md#security)
 	*	[Appendices](./xAPI-Communication.md#append3)  
 		*	[Appendix A: Converting Statements to 1.0.0](./xAPI-Communication.md#Appendix3A)  
-		*	[Appendix B: Table of All Endpoints](./xAPI-Communication.md#Appendix3B)  
+		*	[Appendix B: Table of All Resources](./xAPI-Communication.md#Appendix3B)  
 		*	[Appendix C: Cross Domain Request Example](./xAPI-Communication.md#Appendix3C)  
 
 # Part Three: Data Processing, Validation, and Security 
@@ -434,20 +434,19 @@ more of the resources and methods described in this section. For example a tool 
 implement POST Statements for the purposes of receiving incoming Statements forwarded by an LRS.
 Such a system is not considered to be an LRS or 'partial LRS'; it is simply not an LRS. 
 
-__Note:__ In all of the example locations where xAPI resources are located (endpoints) given in the specification, 
-`http://example.com/xAPI/` is the example base endpoint (resource location) of the LRS. All other IRI 
-syntax after this represents the particular resource used. A full list of the resource endpoints is included in 
-[Appendix B: Table of All Resource Endpoints](#Appendix3B).
+__Note:__ In all of the example endpoints where xAPI resources are located given in the specification, `http://example.com/xAPI/` 
+is the example base endpoint of the LRS. All other IRI syntax after this represents the particular resource used. 
+A full list of the endpoints is included in [Appendix B: Table of All Resources](#Appendix3B).
 
 ###### <a name="2.0.s1"></a>Requirements
 
 * <a name="2.0.s1.b1"></a>The LRS MUST support all of the resources described in [this section](#datatransfer). 
 * <a name="2.0.s1.b2"></a>If the LRS implements OAuth 1.0, the LRS MUST also support all of the OAuth resources 
-described in [Section 6.4.2 OAuth Authorization Scope](#oauthscope).
+described in [OAuth Authorization Scope](#oauthscope).
 * <a name="2.0.s1.b3"></a>The LRS MAY support additional resources not described in this specification. 
-* <a name="2.0.s1.b4"></a>Past, current and future versions of this specification do not and will not define resource endpoints 
+* <a name="2.0.s1.b4"></a>Past, current and future versions of this specification do not and will not define endpoints 
 with path segments starting with `extensions/`. LRSs supporting additional resources not defined in this specification SHOULD 
-define their endpoints/resource locations with path segments starting with `extensions/`.
+define their endpoints with path segments starting with `extensions/`.
 
 <a name="stmtres"/> 
 
@@ -463,7 +462,7 @@ The basic communication mechanism of the Experience API.
 
 ###### <a name="2.1.1.s1"></a>Details
 
-Example resource endpoint: `http://example.com/xAPI/statements`
+Example endpoint: `http://example.com/xAPI/statements`
 
 Stores a single Statement with the given id. POST can also be used to store single Statements.
 
@@ -507,13 +506,13 @@ instead of using PUT.
 
 ###### <a name="2.1.2.s1"></a>Details
 
-Example resource endpoint: `http://example.com/xAPI/statements`
+Example endpoint: `http://example.com/xAPI/statements`
 
 Stores a Statement, or a set of Statements.
 
 **Content:** An array of Statements or a single Statement to be stored. 
 
-**Returns:** `200 OK`, Array of Statement ids (UUID) in the same order as the corresponding stored Statements.  
+**Returns:** `200 OK`, Array of Statement id(s) (UUID) in the same order as the corresponding stored Statements.  
 
 ###### <a name="2.1.2.s2"></a>Requirements
 
@@ -537,7 +536,7 @@ it SHOULD* reject the batch and return `400 Bad Request`.
 
 ###### <a name="2.1.3.s1"></a>Details
 
-Example resource endpoint: `http://example.com/xAPI/statements`
+Example endpoint: `http://example.com/xAPI/statements`
 
 This method is called to fetch a single Statement or multiple Statements. If the statementId or voidedStatementId parameter 
 is specified a single Statement is returned.
@@ -671,18 +670,18 @@ retrieve them will be included in the StatementResult Object.
 	</tr>
 	<tr id="2.1.3.s1.table1.row12">
 		<td>format</td>
-		<td>String: (`ids`, `exact`, or `canonical`)</td>
+		<td>String: (<code>ids</code>, <code>exact</code>, or <code>canonical</code>)</td>
 		<td>exact</td>
-		<td>If `ids`, only include minimum information necessary in Agent, Activity, Verb 
+		<td>If <code>ids</code>, only include minimum information necessary in Agent, Activity, Verb 
 			and Group Objects to identify them. For Anonymous Groups this means including 
 			the minimum information needed to identify each member. 
 			<br/><br/>
-			If `exact`, return Agent, Activity, Verb and Group Objects populated exactly as they 
+			If <code>exact</code>, return Agent, Activity, Verb and Group Objects populated exactly as they 
 			were when the Statement was received. An LRS requesting Statements for the purpose 
 			of importing them would use a format of "exact" in order to maintain 
 			<a href="./xAPI-Data.md#statement-immutablity-and-exceptions">Statement Immutability</a>.  
 			<br/><br/>
-			If `canonical`, return Activity Objects and Verbs populated with the canonical
+			If <code>canonical</code>, return Activity Objects and Verbs populated with the canonical
 			definition of the Activity Objects and Display of the Verbs as determined by the LRS, after
 			applying the <a href="#queryLangFiltering">language filtering process defined below</a>,
 			and return the original Agent and Group Objects as in "exact" mode.  
@@ -947,7 +946,8 @@ and DELETE will delete all state in the context given through the other paramete
 [Concurrency](#concurrency) controls associated with it.
 
 ###### <a name="2.3.s3"></a>Single Document (PUT | POST | GET | DELETE)
-Example resource endpoint: http://example.com/xAPI/activities/state
+
+Example endpoint: http://example.com/xAPI/activities/state
 
 Stores, changes, fetches, or deletes the document specified by the given "stateId" that 
 exists in the context of the specified Activity, Agent, and registration (if specified).  
@@ -986,7 +986,8 @@ exists in the context of the specified Activity, Agent, and registration (if spe
 </table>
 
 ###### <a name="2.3.s4"></a>Multiple Document GET
-Example resource endpoint: http://example.com/xAPI/activities/state
+
+Example endpoint: http://example.com/xAPI/activities/state
 
 Fetches State ids of all state data for this context (Activity + Agent \[ + registration if specified\]). 
 If "since" parameter is specified, this is limited to entries that have been stored or updated since the specified 
@@ -994,7 +995,7 @@ timestamp (exclusive).
 
 **Content:** None.
 
-**Returns:** `200 OK`, Array of State ids  
+**Returns:** `200 OK`, Array of State id(s)  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -1025,7 +1026,8 @@ timestamp (exclusive).
 </table>
 
 ###### <a name="2.3.s5"></a>Multiple Document DELETE
-Example resource endpoint: http://example.com/xAPI/activities/state
+
+Example endpoint: http://example.com/xAPI/activities/state
 
 Deletes all state data for this context (Activity + Agent \[+ registration if specified\]).  
 
@@ -1064,7 +1066,8 @@ an outside service, such as a directory service. This resource has [Concurrency]
 ###### <a name="2.4.s1"></a>Combined Information GET
 
 ###### <a name="2.4.s2"></a>Details
-Example resource endpoint: http://example.com/xAPI/agents
+
+Example endpoint: http://example.com/xAPI/agents
 
 Return a special, Person Object for a specified Agent. The Person Object is very similar to an Agent Object, 
 but instead of each attribute having a single value, each attribute has an array value, and it is legal to 
@@ -1165,7 +1168,8 @@ The Activities Resource provides a method to retrieve a full description of an A
 This resource has [Concurrency](#concurrency) controls associated with it.
 
 ###### <a name="2.5.s1"></a>Full Activity Object GET
-Example resource endpoint: http://example.com/xAPI/activities
+
+Example endpoint: http://example.com/xAPI/activities
 
 Loads the complete Activity Object specified.  
 
@@ -1203,7 +1207,7 @@ a single defined document identified by "profileId". Otherwise, GET will return 
 
 ###### <a name="2.6.s3"></a>Single Agent or Profile (PUT | POST | GET | DELETE)
 
-Example resource endpoint: http://example.com/xAPI/agents/profile
+Example endpoint: http://example.com/xAPI/agents/profile
 
 Stores, changes, fetches, or deletes the specified profile document in the context of the specified Agent.  
 
@@ -1233,14 +1237,15 @@ __Note:__ The "agent" parameter is an Agent Object and not a Group. Learning Rec
 against an Identified Group can use the Identified Group's identifier within an Agent Object. 
 
 ###### <a name="2.6.s4"></a>Multiple Document GET
-Example resource endpoint: http://example.com/xAPI/agents/profile
+
+Example endpoint: http://example.com/xAPI/agents/profile
 
 Fetches profile ids of all profile entries for an Agent. If "since" parameter is specified, this is limited to entries 
 that have been stored or updated since the specified Timestamp (exclusive).  
 
 **Content:** None.
 
-**Returns:** `200 OK`, Array of profile ids  
+**Returns:** `200 OK`, Array of profile id(s)  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
@@ -1275,7 +1280,8 @@ the GET method will act upon a single defined document identified by "profileId"
 Otherwise, GET will return the available ids.
 
 ###### <a name="2.7.s3"></a>Single Document (PUT | POST | GET | DELETE)
-Example resource endpoint: http://example.com/xAPI/activities/profile
+
+Example endpoint: http://example.com/xAPI/activities/profile
 
 Stores, changes, fetches, or deletes the specified profile document in the context of the specified Activity.  
 
@@ -1301,14 +1307,15 @@ Stores, changes, fetches, or deletes the specified profile document in the conte
 </table>
 
 ###### <a name="2.7.s4"></a>Multiple Document GET
-Example resource endpoint: http://example.com/xAPI/activities/profile
+
+Example endpoint: http://example.com/xAPI/activities/profile
 
 Fetches profile ids of all profile entries for an Activity. If "since" parameter is specified, this is limited to 
 entries that have been stored or updated since the specified Timestamp (exclusive).  
 
 **Content:** None.
 
-**Returns:** `200 OK`, Array of profile ids  
+**Returns:** `200 OK`, Array of profile id(s)  
 
 <table>
 	<tr id="2.7.s4.table1.row1"><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
@@ -1345,7 +1352,7 @@ use when communicating with the LRS. Extensions are included to allow other uses
 
 ###### <a name="2.8.s4"></a>Information GET
 
-Example resource endpoint: http://example.com/xAPI/about
+Example endpoint: http://example.com/xAPI/about
 
 **Content:** None.
 
@@ -1486,7 +1493,7 @@ One of these conditions is permission. For example, the LRS might assign permiss
 credentials such that those credentials can only issue Statements relating to a particular agent. It could then 
 reject any statements using those credentials not relating to that agent. The permissions that can be assigned 
 by an LRS are out of scope of this specification, aside from the list of recommended OAuth Authorization scope 
-values in section [6.4.2](#oauthscope). 
+values in section [4.2](#oauthscope). 
 
 Permissions can also affect the response returned by an LRS to GET requests. For example, 
 a set of credentials might have permission only to view Statements about a particular Actor, in which case
@@ -1744,13 +1751,14 @@ that provides such a mechanism.
 **Process:** The standard workflow for OAUth 1.0 is used. 
 
 **Requirements:**
-* <a name="4.1.s3.b1"></a>The LRS MUST support the endpoints in section [6.4.2 OAuth Authorization Scope](#oauthscope) to 
-complete the standard OAuth workflow (details not in this specification).
+* <a name="4.1.s3.b1"></a>The LRS MUST support the resources in [OAuth Authorization Scope](#oauthscope) to complete 
+the standard OAuth workflow (details not in this specification).
 * <a name="4.1.s3.b2"></a>If this form of authentication is used to record Statements and no authority is specified, the LRS 
 SHOULD record the authority as a Group consisting of an Agent representing the registered application, and an Agent 
 representing the known user.
 
 ###### <a name="4.1.s4"></a>Application registered + user unknown Process and Requirements
+
 **Process:** 
 The LRS honors requests that are signed using OAuth with the registered application's credentials and with an empty token 
 and token secret.
@@ -1760,6 +1768,7 @@ and token secret.
 as the Agent representing the registered application.
 
 ###### <a name="4.1.s5"></a>Application Not Registered + Known User Process and Requirements
+
 **Process:**
 The Learning Record Provider uses a consumer secret consisting of an empty string to call the Temporary Credential 
 Request endpoint specifying the "consumer_name" and other usual parameters.  The "consumer_name" contains a string 
@@ -1854,7 +1863,7 @@ The following table lists xAPI scope values:
 Note that the parameters "consumer_name" and "scope" are not part of OAuth 1.0, and therefore if used MUST be passed 
 as query string or form parameters, not in the OAuth header.  
 
-###### <a name="4.2.s4"></a>OAuth Endpoints
+###### <a name="4.2.s4"></a>OAuth Resources
 <table>
 	<tr>
 		<th>Name</th>
@@ -2091,12 +2100,12 @@ Converted to 1.0.0:
 
 <a name="Appendix3B"/>
 
-### <a name="B">Appendix B</a>: Table of All Endpoints
+### <a name="B">Appendix B</a>: Table of All Resources
 
-### <a name="B.s1"></a>Required Resource Endpoints
+### <a name="B.s1"></a>Required Endpoint
 <table>
 	<tr>
-		<th>Endpoint (Base Resource Location of the LRS Precedes Each Endpoint)</th>
+		<th>Base Resource Endpoint of the LRS Precedes Each Endpoint</th>
 		<th>Function</th>
 	</tr>
 	<tr id="B.s1.table1.row1">
@@ -2129,10 +2138,10 @@ Converted to 1.0.0:
 	</tr>
 </table>
 
-### <a name="B.s2"></a>OAuth Resource Endpoints
+### <a name="B.s2"></a>OAuth Resources
 <table>
 	<tr>
-		<th>Endpoint (Base Resource Location of the LRS Precedes Each Endpoint)</th>
+		<th>Base Resource Endpoint of the LRS Precedes Each Endpoint</th>
 		<th>Function</th>
 	</tr>
 	<tr id="B.s2.table1.row1">
