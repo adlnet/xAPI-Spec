@@ -98,7 +98,7 @@
     *	5.0	[Security](./xAPI-Communication.md#security)
 	*	[Appendices](./xAPI-Communication.md#append3)  
 		*	[Appendix A: Converting Statements to 1.0.0](./xAPI-Communication.md#Appendix3A)  
-		*	[Appendix B: Table of All Endpoints](./xAPI-Communication.md#Appendix3B)  
+		*	[Appendix B: Table of All Resources](./xAPI-Communication.md#Appendix3B)  
 		*	[Appendix C: Cross Domain Request Example](./xAPI-Communication.md#Appendix3C)  
 
 <a name="partone" />
@@ -499,10 +499,10 @@ xAPI can be extended in a few ways. The most notable are Statement extensions, w
 It is recommended that Communities of Practice agree on how to use extensions for their particular use cases and utilize 
 Profiles whenever possible. Implementation details are covered in [4.1 Extensions](#miscext).
 
-The About Resource is another location where xAPI supports extensions.  The LRS may find it useful to communicate features or 
+The About Resource is another instance where xAPI supports extensions.  The LRS may find it useful to communicate features or 
 behaviors beyond this specification. The LRS can use extensions to the About Resource to facilitate this communication.
 
-Finally, the set of resources (endpoints) implemented is not expected to be constrained by this document. Resources beyond 
+Finally, the set of resources implemented is not expected to be constrained by this document. Resources beyond 
 those listed in this specification can be implemented and co-exist with the resources defined in this specification.
 
 <a name="COPs" ></a>
@@ -521,7 +521,7 @@ their metadata in a [Vocabulary](#def-vocabulary). A Profile is a set of rules a
 xAPI for the particular use case being addressed. It is very important that such communities exist and share best practices. 
 For more information on publishing vocabularies, see the [Vocabulary Companion Specification](https://adl.gitbooks.io/companion-specification-for-xapi-vocabularies/content) and [Vocabulary Primer](https://adl.gitbooks.io/experience-xapi-vocabulary-primer/content/) documents.
 
-It is recommended that a Profile use a unique "category" within a Statement's "context" property to refer to any Statement  
+It is recommended that a Profile use a unique "category" within a Statement's context to refer to any Statement  
 which implements the Profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current"), 
 which is designed for the traditional single learner, single online learning use case.  An example cmi5 Statement can 
 be found in [Appendix B: cmi5 Example](#Appendix1B).
@@ -559,7 +559,7 @@ Various refinements and clarifications including:
 - Adding Attachments
 - Activity metadata is now stored as JSON rather than XML
 - Changes to voiding Statements
-- Clarification and naming of the Document APIs (now Document Resources)
+- Clarification and naming of the Document APIs (later renamed to Document Resources)
 - Changes to querying the Statement API
 - Signed Statements
 
