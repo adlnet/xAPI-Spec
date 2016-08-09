@@ -1702,7 +1702,7 @@ __Note:__ The requirement for the "version" property to contain the value `1.0.0
 patch version is deliberate since Statements in any version of 1.0.x conform to the 1.0.0 data model. In fact, 
 a single Statement may be included in multiple requests over time, each following a different patch version 
 of the specification. The patch version of the specification being followed can be determined from the 
-["X-Experience-API-Version' header](./xAPI-Communication.md#versioning) being used in each request. 
+["X-Experience-API-Version" header](./xAPI-Communication.md#versioning) being used in each request. 
 
 <a name="attachments"/>
 #### <a name="2.4.11">2.4.11</a> Attachments
