@@ -2102,7 +2102,7 @@ Converted to 1.0.0:
 
 ### <a name="B">Appendix B</a>: Table of All Resources
 
-### <a name="B.s1"></a>Required Endpoint
+### <a name="B.s1"></a>Required Resources
 <table>
 	<tr>
 		<th>Base Resource Endpoint of the LRS Precedes Each Endpoint</th>
