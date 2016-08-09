@@ -406,7 +406,7 @@ The Actor defines who performed the action. The Actor of a Statement can be an A
 
 <a name="agent"/>
 
-##### <a name="2.4.2.1">2.4.2.1</a> When the Actor ObjectType is `Agent`
+##### <a name="2.4.2.1">2.4.2.1</a> When the Actor objectType is Agent
 ###### <a name="2.4.2.1.s1"></a>Description
 An Agent (an individual) is a persona or system.
 
@@ -421,7 +421,7 @@ The table below lists the properties of Agent Objects.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.2.1.s2.table1.row1"><td>objectType</td><td>string</td><td>"Agent". This property is optional except when the Agent is used as a Statement's object.</td>
+	<tr id="2.4.2.1.s2.table1.row1"><td>objectType</td><td>string</td><td><code>Agent</code>. This property is optional except when the Agent is used as a Statement's object.</td>
 	<td>Optional</td></tr>
 	<tr id="2.4.2.1.s2.table1.row2"><td>name</td><td>String</td><td>Full name of the Agent.</td>
 	<td>Optional</td></tr>
@@ -437,7 +437,7 @@ The table below lists the properties of Agent Objects.
 ###### <a name="2.4.2.2.s1"></a>Description
 
 A Group represents a collection of Agents and can be used in most of the same situations an Agent 
-can be used.  There are two types of Groups, Anonymous Groups and Identified Groups.
+can be used.  There are two types of Groups: Anonymous Groups and Identified Groups.
 
 ###### <a name="2.4.2.2.s2"></a>Details
 
@@ -448,7 +448,7 @@ The table below lists all properties of an Anonymous Group.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.2.2.s2.table1.row1"><td>objectType</td><td>String</td><td>`Group`. </td><td>Required</td></tr>
+	<tr id="2.4.2.2.s2.table1.row1"><td>objectType</td><td>String</td><td><code>Group</code>. </td><td>Required</td></tr>
 	<tr id="2.4.2.2.s2.table1.row2"><td>name</td><td>String</td><td>Name of the Group.</td><td>Optional</td></tr>
 	<tr id="2.4.2.2.s2.table1.row3"><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td>
 	<td>The members of this Group. This is an unordered list.</td>
@@ -461,7 +461,7 @@ The table below lists all properties of an Identified Group.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.2.2.s2.table2.row1"><td>objectType</td><td>String</td><td>`Group`. </td><td>Required</td></tr>
+	<tr id="2.4.2.2.s2.table2.row1"><td>objectType</td><td>String</td><td><code>Group</code>. </td><td>Required</td></tr>
 	<tr id="2.4.2.2.s2.table2.row2"><td>name</td><td>String</td><td>Name of the Group.</td><td>Optional</td></tr>
 	<tr id="2.4.2.2.s2.table2.row3"><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td>
 	<td>The members of this Group. This is an unordered list.</td>
@@ -491,7 +491,7 @@ property of a given Anonymous or Identified Group.
 * <a name="2.4.2.2.s5.b2"></a>An Identified Group MUST NOT contain Group Objects in the "member" property.
 * <a name="2.4.2.2.s5.b3"></a>An Identified Group SHOULD NOT use Inverse Functional Identifiers that are also used 
 as Agent identifiers.
-* <a name="2.4.2.2.s5.b4"></a>An Identified Group MAY include a "member' property listing constituent Agents.
+* <a name="2.4.2.2.s5.b4"></a>An Identified Group MAY include a "member" property listing constituent Agents.
 
 <a name="inversefunctional">
 
@@ -710,7 +710,7 @@ when human-read): "Nellie commented on 'Jeff wrote an essay about hiking.'"
 
 Objects which are provided as a value for this property SHOULD include an "objectType" 
 property. If not specified, the objectType is assumed to be `Activity`. Other valid values 
-are: `[Agent](#agentasobj)`, `[Group](#agentasobj)`, `[SubStatement](#substmt)` or `[StatementRef](#stmtref)`.
+are: [`Agent`](#agentasobj), [Group](#agentasobj), [SubStatement](#substmt) or [StatementRef](#stmtref).
 The properties of an Object change according to the objectType.
 
 <a name="activity"/>
@@ -727,7 +727,7 @@ properties in this case.
 	<tr id="2.4.4.1.s1.table1.row1">
 		<td>objectType</td>
 		<td>String</td>
-		<td>MUST be `Activity` when present</td>
+		<td>MUST be <code>Activity</code> when present</td>
 		<td>Optional</td>
 	</tr>
 	<tr id="2.4.4.1.s1.table1.row2">
