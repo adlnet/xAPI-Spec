@@ -708,9 +708,8 @@ when human-read): "Nellie commented on 'Jeff wrote an essay about hiking.'"
 
 ###### <a name="2.4.4.s2"></a>Details
 
-Objects which are provided as a value for this property SHOULD include an "objectType" 
-property. If not specified, the objectType is assumed to be `Activity`. Other valid values 
-are: [`Agent`](#agentasobj), [Group](#agentasobj), [SubStatement](#substmt) or [StatementRef](#stmtref).
+Objects which are provided as a value for this property SHOULD include an "objectType" property. If not specified, the 
+objectType is assumed to be `Activity`. Other valid values are: `Agent`, `Group`, `SubStatement` or `StatementRef`.
 The properties of an Object change according to the objectType.
 
 <a name="activity"/>
@@ -850,8 +849,8 @@ The table below lists the properties for Interaction Activities.
 	<tr id="2.4.4.1.s8.table1.row1">
 		<td>interactionType</td>
 		<td>String</td>
-		<td>The type of interaction. Possible values are: `true-false`, `choice`, `fill-in`, `long-fill-in`,
-		`matching`, `performance`, `sequencing`, `likert`, `numeric` or `other`. </td>
+		<td>The type of interaction. Possible values are: <code>true-false</code>, <code>choice</code>, <code>fill-in</code>, <code>long-fill-in</code>,
+		<code>matching</code>, <code>performance</code>, <code>sequencing</code>, <code>likert</code>, <code>numeric</code> or <code>other</code>. </td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.4.4.1.s8.table1.row2">
