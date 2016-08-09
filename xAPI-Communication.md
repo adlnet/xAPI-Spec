@@ -1114,7 +1114,7 @@ about the Agent it received in the request.
 	<tr id="2.4.s5.table1.row1">
 		<td>objectType</td>
 		<td>String</td>
-		<td>`Person`</td>
+		<td><code>Person</code></td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.4.s5.table1.row2">
