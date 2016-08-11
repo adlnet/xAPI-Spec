@@ -1368,7 +1368,7 @@ Example endpoint: http://example.com/xAPI/about
 	</tr>
 	<tr id="2.8.s4.table1.row2">
 		<td>extensions</td>
-		<td><a href="#./xAPI-Data.md#miscext">Object</a></td>
+		<td><a href="./xAPI-Data.md#miscext">Object</a></td>
 		<td>A map of other properties as needed</td>
 		<td>Optional</td>
 	</tr>
