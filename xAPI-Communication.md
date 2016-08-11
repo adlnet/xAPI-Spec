@@ -311,7 +311,7 @@ results when the "attachments" filter is `false`.
 ###### <a name="1.5.2.s3"></a>LRS Requirements
 
 * <a name="1.5.2.s3.b1"></a>An LRS MUST include Attachments in the Transmission Format described above
-when requested by the Client (see ["Statement Resource"](#stmtres)).
+when requested by the Client (see [Statement Resource](#stmtres)).
 * <a name="1.5.2.s3.b2"></a>An LRS MUST NOT pull Statements from another LRS without requesting Attachments.
 * <a name="1.5.2.s3.b3"></a>An LRS MUST NOT push Statements into another LRS without including Attachment data
 received, if any, for those Attachments.
@@ -542,7 +542,7 @@ Example endpoint: `http://example.com/xAPI/statements`
 This method is called to fetch a single Statement or multiple Statements. If the statementId or voidedStatementId parameter 
 is specified a single Statement is returned.
 
-Otherwise returns: A [StatementResult](./xAPI-Data.md#retstmts) Object, a list of Statements in reverse chronological order based 
+Otherwise returns: A [StatementResult](./xAPI-Data.md#retrieval) Object, a list of Statements in reverse chronological order based 
 on "stored" time, subject to permissions and maximum list length. If additional results are available, an IRL to 
 retrieve them will be included in the StatementResult Object.
 
@@ -718,7 +718,7 @@ contain statementId or voidedStatementId parameters, and also contain any other 
 with the credentials used. 
 
 * <a name="2.1.3.s2.b4"></a>In the event that no Statements are found matching the query filter criteria, the LRS MUST still return 
-`200 OK` and a [StatementResult](./xAPI-Data.md#retstmts) Object. In this case, the "statements" property will contain an empty array.
+`200 OK` and a [StatementResult](./xAPI-Data.md#retrieval) Object. In this case, the "statements" property will contain an empty array.
 
 * <a name="2.1.3.s2.b5"></a>The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
 [ISO 8601 combined date and time](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations) format, 
