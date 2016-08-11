@@ -444,7 +444,7 @@ This section explains and shows graphically how different pieces of xAPI can fit
 
 ##### Tracking Experiences
 
-![Data Flow in xAPI](/xAPIDataFlow.jpg)
+![Data Flow in xAPI](./xAPIDataFlow.jpg)
 
 Figure 1 shows the tracking of learning experiences. A learner has a learning experience. This experience could take place in an 
 online course, it could be on the job or it could be part of recreation. It really could be anything. This experience is tracked, 
@@ -459,7 +459,7 @@ with the LRS in a request-response manner are referred to as Clients.
 
 ##### Activity Data and Metadata
 
-![xAPI Activity Data and Metadata](/xAPIMetadata.jpg)
+![xAPI Activity Data and Metadata](./xAPIMetadata.jpg)
 
 Understanding how a single Activity (as uniquely identified by its IRI) is defined and described is a key concept in xAPI. 
 Figure 2 shows this process. An Activity (as a part of a Statement) has metadata properties that may be populated within the 
@@ -474,7 +474,7 @@ canonical version.
 
 ##### Agent and Persona Management
 
-![xAPI Activity Data and Metadata](/xAPIPersonas.jpg)
+![xAPI Activity Data and Metadata](./xAPIPersonas.jpg)
 
 xAPI grants the framework for allowing selective access to one's personal data. This is done through the management of what are 
 called personas. In xAPI, each persona represents the "I" in "I did this" and is logically the subject of the Statement. Each 
