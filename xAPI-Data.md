@@ -632,7 +632,7 @@ exactly as included (or omitted) within the Statement.
 canonical Display for that Verb. 
 * <a name="2.4.3.s6.b4"></a>The LRS may determine its canonical Display based on the Verb's "display" property included within 
 Statements it receives, the "name" property included in the metadata as described in 
-[section 5.4 Identifier metadata](#miscmeta), or the Verb's Display as defined in some other location.
+[3.2 Hosted Metadata](#miscmeta), or the Verb's Display as defined in some other location.
 
 ###### <a name="2.4.3.s7"></a>Verb Display Learning Record Consumer Requirements
 
@@ -645,7 +645,7 @@ to display to a human. Using the "display" property for aggregation or categoriz
 violating this requirement. 
 * <a name="2.4.3.s7.b4"></a>A Learning Record Consumer displaying a Statement's Verb in a user interface MAY choose to render 
 the Verb's "display" property included within the Statement, the "name" property included in the metadata as described in 
-[section 5.4 Identifier metadata](#miscmeta), or the Verb's Display as defined in some other location.
+[3.2 Hosted Metadata](#miscmeta), or the Verb's Display as defined in some other location.
 * <a name="2.4.3.s7.b5"></a>Learning Record Consumers displaying a Statement's Verb MUST NOT display a word that differs 
 from the meaning of the Verb but MAY alter the wording and tense displayed for the purposes of human-readability. 
 
@@ -863,7 +863,7 @@ The table below lists the properties for Interaction Activities.
 	<tr id="2.4.4.1.s8.table1.row3">
 		<td>choices | scale | source | target | steps</td>
 		<td>Array of interaction components</td>
-		<td>Specific to the given interactionType (<a href="#interactionComponentLists">see below</a>).</td>
+		<td>Specific to the given interactionType (see below).</td>
 		<td>Optional</td>
 	</tr>
 </table>
@@ -1563,7 +1563,7 @@ These examples are for illustrative purposes only and are not meant to be prescr
 
 ###### <a name="2.4.7.s3"></a>Requirements
 
-* <a name="2.4.7.s3.b1"></a>For requirements pertaining to the Timestamp data type, see [Part 3: Timestamps](#timestamps).
+* <a name="2.4.7.s3.b1"></a>For requirements pertaining to the Timestamp data type, see [Section 4.5 ISO 8601 Timestamps](#timestamps).
 * <a name="2.4.7.s3.b2"></a>The "timestamp" property SHOULD* be set by the LRS to the value of the ["stored" property](#stored) 
 if not provided.
 * <a name="2.4.7.s3.b3"></a>A "timestamp" property MAY represent any point during an experience, not necessarily the 
@@ -1683,7 +1683,7 @@ flow among such LRSs, the LRS is given some flexibility on Statement versions th
 
 ###### <a name="2.4.10.s2"></a>Requirements
 
-* <a name="2.4.10.s2.b1"></a>Version MUST be formatted as laid out for the API version header in [Versioning](#versioning)
+* <a name="2.4.10.s2.b1"></a>Version MUST be formatted as laid out for the API version header in [Versioning](#./xAPI-Communication.md#versioning)
 
 ###### <a name="2.4.10.s3"></a>LRS Requirements
 
