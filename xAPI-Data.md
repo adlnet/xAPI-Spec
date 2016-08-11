@@ -240,7 +240,7 @@ The following explicitly are **not** exceptions and **are** covered by this rule
 an LRS to accurately deserialize the Result Duration and convert between units of time. For this reason, the 
 Result Duration is considered a string for purposes of Statement comparison. 
 
-<a name="statement-comparision-requirements" />
+<a name="statement-comparison-requirements" />
 ###### <a name="2.3.1.s9"></a>Statement Comparision Requirements
 There are a number of scenarios outlined in this specification which require Statements to be
 compared to see if they match. In these scenarios, the following rules apply:
