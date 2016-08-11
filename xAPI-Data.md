@@ -212,22 +212,22 @@ Statements are immutable (they cannot be changed). The following are exceptions 
 
 * <a name="2.3.1.b2"></a>Activity Definitions referenced by a Statement. The content of Activity Definitions that are 
 referenced in Statements is not considered part of the Statement itself. This means a deep serialization of a Statement 
-into JSON will change if the referenced Activity Definition changes (see the [Statement API's](./xAPI-Communication.md#stmtres) "format" 
+into JSON will change if the referenced Activity Definition changes (see the [Statement Resource's](./xAPI-Communication.md#stmtres) "format" 
 parameter for details).  
 
 * <a name="2.3.1.b3"></a>Verbs referenced by a Statement. The "display" property of the Verb is not considered 
-part of the Statement itself (see the [Statement API's](./xAPI-Communication.md#stmtres) "format" parameter for details). 
+part of the Statement itself (see the [Statement Resource's](./xAPI-Communication.md#stmtres) "format" parameter for details). 
 
 * <a name="2.3.1.b4"></a>Serialization of Timestamp data. This is not considered part of the immutable Statement itself. 
 For example, the "timestamp" and "stored" properties of a Statement can be returned in a different timezone to the one with 
 which they were stored so long as the point in time referenced is not affected. 
-See [4.1.7 Timestamp](#timestamp) and [4.1.8 Stored](#stored) for details. 
+See [2.4.7 Timestamp](#timestamp) and [2.4.8 Stored](#stored) for details. 
 
 * <a name="2.3.1.b5"></a>Serialization of un-ordered lists. The list of Agents in a Group is not considered to be an ordered 
-list.  Thus, the LRS can return this list of Agents in any order. See [4.1.2.2 Groups](#group).
+list.  Thus, the LRS can return this list of Agents in any order. See [Groups](#group).
 
 * <a name="2.3.1.b6"></a>Attachments. These are not part of Statements and an LRS will return Statements without 
-Attachments when a Client requests them (see the [Statement API's](./xAPI-Communication.md#stmtres) "attachments" parameter for details).
+Attachments when a Client requests them (see the [Statement Resource's](./xAPI-Communication.md#stmtres) "attachments" parameter for details).
 
 * <a name="2.3.1.b7"></a>Case sensitivity. Some properties are case insensitive and changes in case therefore do not affect 
 immutability. For example, the domain portion an e-mail address is case insensitive. It is recommended to use lowercase 
