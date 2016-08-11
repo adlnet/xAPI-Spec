@@ -1910,9 +1910,9 @@ which can be found [here](#actdef).
 
 These requirements also apply to Learning Record Providers defining new IRIs. 
 
-* <a name="3.1.s1.b1"></a>[Metadata Providers](#def-metadata-provider) defining new IRIs SHOULD* only use IRIs they control 
+* <a name="3.1.s1.b1"></a>[Metadata Providers](./xAPI-About.md#def-metadata-provider) defining new IRIs SHOULD* only use IRIs they control 
 or have permission from the controller to use.
-* <a name="3.1.s1.b2"></a>[Metadata Providers](#def-metadata-provider) defining new Verb IRIs MUST only use IRIs they control 
+* <a name="3.1.s1.b2">Metadata Providers defining new Verb IRIs MUST only use IRIs they control 
 or have permission from the controller to use.
 * <a name="3.1.s1.b3"></a>Where a suitable identifier already exists, the Metadata Provider SHOULD use the corresponding 
 existing identifier and SHOULD NOT create a new identifier.
@@ -1968,7 +1968,7 @@ For the structure of hosted metadata about all other identifiers, see the format
 	</tr>
 	<tr id="3.2.s2.table1.row2">
 		<td>description</td>
-		<td><a href="lang-maps">Language Map</a></td>
+		<td><a href="#lang-maps">Language Map</a></td>
 		<td>description</td>
 		<td>Optional</td>
 	</tr>
@@ -1987,11 +1987,11 @@ intended usage accessible at the IRI.
 * <a name="3.2.s3.b4"></a>For any of the identifier IRIs above the Metadata Provider SHOULD ensure that this JSON metadata 
 available at that IRI when the IRI is requested and a Content-Type of `application/json` is requested.
 * <a name="3.2.s3.b5"></a>Where the IRI represents an Activity, the Metadata Provider MAY host metadata using 
-the [Activity Definition](#actdef") JSON format which is used in Statements, with a Content-Type of `application/json`.
+the [Activity Definition](#actdef) JSON format which is used in Statements, with a Content-Type of `application/json`.
 
 ##### <a name="3.2.s4"></a>LRS Requirements
 
-* <a name="3.2.s4.b1"></a>The LRS MAY act as a [Metadata Consumer](#def-metadata-consumer) and attempt to resolve identifier IRIs.
+* <a name="3.2.s4.b1"></a>The LRS MAY act as a [Metadata Consumer](./xAPI-About.md#def-metadata-consumer) and attempt to resolve identifier IRIs.
 * <a name="3.2.s4.b2"></a>If an Activity IRI is a URL, an LRS SHOULD attempt to GET that URL, and include in HTTP
 headers: `Accept: application/json, */*`. This SHOULD be done as soon as practical after the LRS
 first encounters the Activity id.
