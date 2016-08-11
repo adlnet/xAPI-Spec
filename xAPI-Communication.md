@@ -548,7 +548,7 @@ retrieve them will be included in the StatementResult Object.
 
 **Content:** None.
 
-**Returns:** `200 OK`, Statement or [Statement Result](./xAPI-Data.md#retstmts)
+**Returns:** `200 OK`, Statement or [Statement Result](./xAPI-Data.md#retrieval)
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th><th>Required</th></tr>
