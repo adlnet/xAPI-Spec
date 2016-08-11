@@ -1904,7 +1904,7 @@ In xAPI, metadata can be utilized in a variety of locations. The most common is 
 
 xAPI uses IRIs for identifiers. Using IRIs ensures uniqueness and promotes resolvability. The LRS and Learning Record 
 Provider each have responsibilities in regard to each IRI as outlined below. Activity Definitions have additional rules 
-which can be found later in [this section](#actdef).
+which can be found [here](#actdef).
 
 ##### <a name="3.1.s1"></a>Metadata Provider Requirements
 
