@@ -594,7 +594,7 @@ Clarifications and additional examples including:
 ### Appendix B: cmi5 Example 
 
 The following example illustrates a statement following the cmi5 Community of Practice. It demonstrates use of extensions 
-and "category" Context Activities.
+and "category" contextActivities.
 
 ```
 {  
