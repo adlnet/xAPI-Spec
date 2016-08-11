@@ -269,7 +269,7 @@ of Statements which contain only Attachment Objects with a populated fileUrl.
 #### <a name="1.5.2">1.5.2</a> Multipart/Mixed
 
 The `multipart/mixed` content type is used for requests that *could* include Attachments. This does not mean that all 
-"multipart/mixed" requests neccesarily do include Attachments.
+"multipart/mixed" requests necessarily do include Attachments.
 
 ##### <a name="1.5.2.s1"></a>Procedure For The Exchange Of Attachments
 
