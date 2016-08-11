@@ -73,7 +73,7 @@
 *	Part Three:	[Data Processing, Validation, and Security](./xAPI-Communication.md#partthree)  
 	*	1.0.	[Requests](./xAPI-Communication.md#requests)
 		*	1.1.	[HEAD Request Implementation](./xAPI-Communication.md#httphead)  
-	 	*	1.2.	[Headers](./xAPI-Communication.md#header-parameters) 
+	 	*	1.2.	[Headers](./xAPI-Communication.md#headers) 
 	 	*	1.3.	[Alternate Request Syntax](./xAPI-Communication.md#alt-request-syntax) 
 	 	*	1.4.	[Encoding](./xAPI-Communication.md#encoding) 
 	 	*	1.5.	[Content Types](./xAPI-Communication.md#content-types) 
@@ -212,11 +212,11 @@ Statements are immutable (they cannot be changed). The following are exceptions 
 
 * <a name="2.3.1.b2"></a>Activity Definitions referenced by a Statement. The content of Activity Definitions that are 
 referenced in Statements is not considered part of the Statement itself. This means a deep serialization of a Statement 
-into JSON will change if the referenced Activity Definition changes (see the [Statement API's](#stmtapi) "format" 
+into JSON will change if the referenced Activity Definition changes (see the [Statement API's](./xAPI-Communication.md#stmtres) "format" 
 parameter for details).  
 
 * <a name="2.3.1.b3"></a>Verbs referenced by a Statement. The "display" property of the Verb is not considered 
-part of the Statement itself (see the [Statement API's](#stmtapi) "format" parameter for details). 
+part of the Statement itself (see the [Statement API's](./xAPI-Communication.md#stmtres) "format" parameter for details). 
 
 * <a name="2.3.1.b4"></a>Serialization of Timestamp data. This is not considered part of the immutable Statement itself. 
 For example, the "timestamp" and "stored" properties of a Statement can be returned in a different timezone to the one with 
@@ -227,7 +227,7 @@ See [4.1.7 Timestamp](#timestamp) and [4.1.8 Stored](#stored) for details.
 list.  Thus, the LRS can return this list of Agents in any order. See [4.1.2.2 Groups](#group).
 
 * <a name="2.3.1.b6"></a>Attachments. These are not part of Statements and an LRS will return Statements without 
-Attachments when a Client requests them (see the [Statement API's](#stmtapi) "attachments" parameter for details).
+Attachments when a Client requests them (see the [Statement API's](./xAPI-Communication.md#stmtres) "attachments" parameter for details).
 
 * <a name="2.3.1.b7"></a>Case sensitivity. Some properties are case insensitive and changes in case therefore do not affect 
 immutability. For example, the domain portion an e-mail address is case insensitive. It is recommended to use lowercase 
@@ -1488,12 +1488,12 @@ Statement. For example: a course that is part of a qualification. The course has
 as the parent, the qualification relates to the class as the grouping.
 
 * <a name="2.4.6.2.s3.b3"></a>__Category__: an Activity used to categorize the Statement. "Tags" would be a synonym. 
-Category SHOULD be used to indicate a Profile of xAPI behaviors, as well as other categorizations. For example: Anna attempts 
-a biology exam, and the Statement is tracked using the cmi5 Profile. The Statement's Activity refers to the exam, and the 
-category is the cmi5 Profile.
+Category SHOULD be used to indicate a profile of xAPI behaviors, as well as other categorizations. For example: Anna attempts 
+a biology exam, and the Statement is tracked using the cmi5 profile. The Statement's Activity refers to the exam, and the 
+category is the cmi5 profile.
 
 * <a name="2.4.6.2.s3.b4"></a>__Other__: a contextActivity that doesn't fit one of the other properties. For example: Anna 
-studies a textbook for a biology exam. The Statement's Activity refers to the textbook, and the exam is a context Activity 
+studies a textbook for a biology exam. The Statement's Activity refers to the textbook, and the exam is a contextActivity 
 of type `other`.
 
 Single Activity Objects are allowed as values so that 0.95 Statements will be compatible with 1.0.0.
