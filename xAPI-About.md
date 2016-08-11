@@ -73,7 +73,7 @@
 *	Part Three:	[Data Processing, Validation, and Security](./xAPI-Communication.md#partthree)  
 	*	1.0.	[Requests](./xAPI-Communication.md#requests)
 		*	1.1.	[HEAD Request Implementation](./xAPI-Communication.md#httphead)  
-	 	*	1.2.	[Headers](./xAPI-Communication.md#header-parameters) 
+	 	*	1.2.	[Headers](./xAPI-Communication.md#header) 
 	 	*	1.3.	[Alternate Request Syntax](./xAPI-Communication.md#alt-request-syntax) 
 	 	*	1.4.	[Encoding](./xAPI-Communication.md#encoding) 
 	 	*	1.5.	[Content Types](./xAPI-Communication.md#content-types) 
@@ -221,7 +221,7 @@ is not conformant.
 
 Even within the rules of JSON there are possible variations of how data can be serialized, especially in relation to data 
 about time. This is significant as a number of features of xAPI rely on systems being able to determine whether two 
-Statements are equivalent. See [Immutability and exceptions](./xAPI-Data.md#statement-immutability-and-exceptions") 
+Statements are equivalent. See [Immutability and exceptions](./xAPI-Data.md#statement-immutability-and-exceptions) 
 for more details about the properties of the Statement affected by this. 
 
 JSON allows for objects to have properties that contain empty objects. This is not recommended within xAPI; if the Statement 
