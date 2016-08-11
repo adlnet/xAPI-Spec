@@ -39,7 +39,7 @@
 		*	2.1.	[Purpose](./xAPI-Data.md#statement-purpose)  
 	 	*	2.2.	[Formatting Requirements](./xAPI-Data.md#dataconstraints) 
 	 	*	2.3.	[Statement Lifecycle](./xAPI-Data.md#lifecycle) 
-		 	*	2.3.1.	[Statement Immutability](./xAPI-Data.md#statement-immutablity-and-exceptions) 
+		 	*	2.3.1.	[Statement Immutability](./xAPI-Data.md#statement-immutability-and-exceptions) 
 		 	*	2.3.2.	[Voiding](./xAPI-Data.md#voided) 
    		*	2.4.	[Statement Properties](./xAPI-Data.md#statement-properties)  
 	        *	2.4.1.	[ID](./xAPI-Data.md#stmtid)  
@@ -140,7 +140,7 @@ conformant to this specification.
 * <a name="2.2.s2.b3"></a>A Statement MUST use "actor", "verb", and "object".
 * <a name="2.2.s2.b4"></a>A Statement MAY use its properties in any order.
 * <a name="2.2.s2.b5"></a>The LRS MUST NOT return a different serialisation of any properties except those 
-[listed as exceptions above](#statement-immutablity-and-exceptions).
+[listed as exceptions above](#statement-immutability-and-exceptions).
 
 ###### <a name="2.2.s3"></a>Learning Record Provider Requirements
 
@@ -201,7 +201,7 @@ the Verb id will usually use the past tense.
 Statements are expected to be permanent. The only way to undo a Statement within this specification is to 
 [void it](#voided). Voiding does not destroy a Statement, rather indicates the evidence in the Statement is to be disregarded.
 
-<a name="statement-immutablity-and-exceptions" />
+<a name="statement-immutability-and-exceptions" />
 
 #### <a name="2.3.1">2.3.1</a> Statement Immutability
 
@@ -246,9 +246,9 @@ There are a number of scenarios outlined in this specification which require Sta
 compared to see if they match. In these scenarios, the following rules apply:
 
 * <a name="2.3.1.s9.b1"></a>Differences which could have been caused by 
-[exceptions to Statement immutability](#statement-immutablity-and-exceptions) MUST be ignored.
+[exceptions to Statement immutability](#statement-immutability-and-exceptions) MUST be ignored.
 * <a name="2.3.1.s9.b2"></a>Differences relating to a different serialisation of any properties not
-[listed as exceptions](#statement-immutablity-and-exceptions) MUST not be ignored. 
+[listed as exceptions](#statement-immutability-and-exceptions) MUST not be ignored. 
 
 <a name="voided"/>
 
