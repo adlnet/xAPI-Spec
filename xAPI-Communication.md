@@ -130,9 +130,8 @@ not the actual document.
 ###### <a name="1.1.s2"></a>Rationale
 
 Clients accessing the LRS might need to check if a particular Statement exists, or determine
-the modification date of documents such as State or Activity or Agent profile. Particularly
-for large documents, it is more efficient not to retrieve the entire document just to check its
-modification date.
+the modification date of documents such as those in State, Activity Profile, or Agent Profile Resources. Particularly
+for large documents, it is more efficient not to retrieve the entire document just to check its modification date.
 
 ###### <a name="1.1.s3"></a>LRS Requirements
 * <a name="1.1.s3.b1"></a>The LRS MUST respond to any HTTP HEAD request as it would have responded to an otherwise
@@ -1210,26 +1209,26 @@ a single defined document identified by "profileId". Otherwise, GET will return 
 
 Example endpoint: http://example.com/xAPI/agents/profile
 
-Stores, changes, fetches, or deletes the specified profile document in the context of the specified Agent.  
+Stores, changes, fetches, or deletes the specified Profile document in the context of the specified Agent.  
 
 **Content (PUT | POST):** The document to be stored or updated.  
 **Content (GET | DELETE):** None.  
 
 **Returns (PUT | POST | DELETE):** `204 No Content`  
-**Returns (GET):** `200 OK`, the profile document  
+**Returns (GET):** `200 OK`, the Profile document  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr id="2.6.s3.table1.row1">
 		<td>agent</td>
 		<td>Agent object (JSON)</td>
-		<td>The Agent associated with this profile.</td>
+		<td>The Agent associated with this Profile.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.6.s3.table1.row2">
 		<td>profileId</td>
 		<td>String</td>
-		<td>The profile id associated with this profile.</td>
+		<td>The profile id associated with this Profile.</td>
 		<td>Required</td>
 	</tr>
 </table>
@@ -1241,25 +1240,25 @@ against an Identified Group can use the Identified Group's identifier within an 
 
 Example endpoint: http://example.com/xAPI/agents/profile
 
-Fetches profile ids of all profile entries for an Agent. If "since" parameter is specified, this is limited to entries 
+Fetches Profile ids of all Profile entries for an Agent. If "since" parameter is specified, this is limited to entries 
 that have been stored or updated since the specified Timestamp (exclusive).  
 
 **Content:** None.
 
-**Returns:** `200 OK`, Array of profile id(s)  
+**Returns:** `200 OK`, Array of Profile id(s)  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr id="2.6.s4.table1.row1">
 		<td>agent</td>
 		<td>Agent object (JSON)</td>
-		<td>The Agent associated with this profile.</td>
+		<td>The Agent associated with this Profile.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.6.s4.table1.row2">
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of profiles stored since the specified Timestamp 
+		<td>Only ids of Profiles stored since the specified Timestamp 
 			(exclusive) are returned.</td>
 		<td>Optional</td>
 	</tr>
@@ -1284,25 +1283,25 @@ Otherwise, GET will return the available ids.
 
 Example endpoint: http://example.com/xAPI/activities/profile
 
-Stores, changes, fetches, or deletes the specified profile document in the context of the specified Activity.  
+Stores, changes, fetches, or deletes the specified Profile document in the context of the specified Activity.  
 
 **Content (PUT | POST):** The document to be stored or updated.  
 **Content (GET | DELETE):** None.  
 
 **Returns (PUT | POST | DELETE)** `204 No Content`  
-**Returns (GET):** `200 OK`, the profile document  
+**Returns (GET):** `200 OK`, the Profile document  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr id="2.7.s3.table1.row1">
 		<td>activityId</td>
 		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with this profile.</td>
+		<td>The Activity id associated with this Profile.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.7.s3.table1.row2">
 		<td>profileId</td>
 		<td>String</td>
-		<td>The profile id associated with this profile.</td>
+		<td>The profile id associated with this Profile.</td>
 		<td>Required</td>
 	</tr>
 </table>
@@ -1311,25 +1310,25 @@ Stores, changes, fetches, or deletes the specified profile document in the conte
 
 Example endpoint: http://example.com/xAPI/activities/profile
 
-Fetches profile ids of all profile entries for an Activity. If "since" parameter is specified, this is limited to 
+Fetches Profile ids of all Profile entries for an Activity. If "since" parameter is specified, this is limited to 
 entries that have been stored or updated since the specified Timestamp (exclusive).  
 
 **Content:** None.
 
-**Returns:** `200 OK`, Array of profile id(s)  
+**Returns:** `200 OK`, Array of Profile id(s)  
 
 <table>
 	<tr id="2.7.s4.table1.row1"><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
 	<tr>
 		<td>activityId</td>
 		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with these profiles.</td>
+		<td>The Activity id associated with these Profiles.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.7.s4.table1.row2">
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of profiles stored since the specified Timestamp (exclusive) 
+		<td>Only ids of Profiles stored since the specified Timestamp (exclusive) 
 		are returned.</td>
 		<td>Optional</td>
 	</tr>
@@ -1851,7 +1850,7 @@ The following table lists xAPI scope values:
 	</tr>
 	<tr id="4.2.s2.table1.row5">
 		<td>profile</td>
-		<td>read/write profile data, limited to Activities and Actors 
+		<td>read/write Profile data, limited to Activities and Actors 
 			associated with the current token to the extent it is 
 			possible to determine this relationship.
 		</td>
