@@ -828,7 +828,7 @@ in this specification do. The id is stored in the IRL, "updated" is HTTP header 
 	<tr id="2.2.s2.table1.row3"><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
 
-The three Document Resources provide [document](#documents) storage.  The details of each resource are found in 
+The three Document Resources provide [document](./xAPI-Data.md#documents) storage.  The details of each resource are found in 
 the following sections, and the information in this section applies to all three resources.
 
 ###### <a name="2.2.s3"></a>Details
