@@ -101,6 +101,7 @@
 		*	[Appendix B: Table of All Resources](./xAPI-Communication.md#Appendix3B)  
 		*	[Appendix C: Cross Domain Request Example](./xAPI-Communication.md#Appendix3C)  
 
+<a name="partthree" />
 # Part Three: Data Processing, Validation, and Security 
 
 This third part details the more technical side of the Experience API, dealing with how Statements are transferred between 
@@ -229,7 +230,7 @@ with the same name.
 listed above as query string parameters. 
 
 __Attachments__: Note that due to issues relating to encoding, it is not possible to send 
-binary data attachments using this syntax. See [4.1.11. Attachments](#attachments) 
+binary data attachments using this syntax. See [Attachments](.xAPI-Data.md#attachments) 
 
 * <a name="1.3.s3.b15"></a>The LRS MUST support the syntax above.  
 
@@ -310,7 +311,7 @@ results when the "attachments" filter is `false`.
 ###### <a name="1.5.2.s3"></a>LRS Requirements
 
 * <a name="1.5.2.s3.b1"></a>An LRS MUST include Attachments in the Transmission Format described above
-when requested by the Client (see ["Statement Resource"](#stmtapi)).
+when requested by the Client (see ["Statement Resource"](#stmtres)).
 * <a name="1.5.2.s3.b2"></a>An LRS MUST NOT pull Statements from another LRS without requesting Attachments.
 * <a name="1.5.2.s3.b3"></a>An LRS MUST NOT push Statements into another LRS without including Attachment data
 received, if any, for those Attachments.
@@ -440,7 +441,7 @@ A full list of the endpoints is included in [Appendix B: Table of All Resources]
 
 ###### <a name="2.0.s1"></a>Requirements
 
-* <a name="2.0.s1.b1"></a>The LRS MUST support all of the resources described in [this section](#datatransfer). 
+* <a name="2.0.s1.b1"></a>The LRS MUST support all of the resources described in this section. 
 * <a name="2.0.s1.b2"></a>If the LRS implements OAuth 1.0, the LRS MUST also support all of the OAuth resources 
 described in [OAuth Authorization Scope](#oauthscope).
 * <a name="2.0.s1.b3"></a>The LRS MAY support additional resources not described in this specification. 
@@ -486,7 +487,7 @@ it MUST NOT modify the Statement or any other Object.
 
 * <a name="2.1.1.s2.b3"></a>If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
 verify the received Statement matches the existing one and SHOULD return `409 Conflict` if they
-do not match. See [Statement comparision requirements](statement-comparision-requirements).
+do not match. See [Statement comparison requirements](./xAPI-Data.md#statement-comparison-requirements).
 
 * <a name="2.1.1.s2.b4"></a>If the LRS receives a batch of Statements containing two or more Statements with the same id, 
 it SHOULD* reject the batch and return `400 Bad Request`.
@@ -526,7 +527,7 @@ with an id that it already has a Statement for. Whether it responds with `409 Co
 it MUST NOT modify the Statement or any other Object.
 * <a name="2.1.2.s2.b5"></a>If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
 verify the received Statement matches the existing one and SHOULD return `409 Conflict` if they
-do not match. See [Statement comparision requirements](statement-comparision-requirements).
+do not match. See [Statement comparison requirements](./xAPI-Data.md#statement-comparison-requirements).
 * <a name="2.1.2.s2.b6"></a>If the LRS receives a batch of Statements containing two or more Statements with the same id, 
 it SHOULD* reject the batch and return `400 Bad Request`.
 
@@ -541,13 +542,13 @@ Example endpoint: `http://example.com/xAPI/statements`
 This method is called to fetch a single Statement or multiple Statements. If the statementId or voidedStatementId parameter 
 is specified a single Statement is returned.
 
-Otherwise returns: A [StatementResult](#retstmts) Object, a list of Statements in reverse chronological order based 
+Otherwise returns: A [StatementResult](./xAPI-Data.md#retstmts) Object, a list of Statements in reverse chronological order based 
 on "stored" time, subject to permissions and maximum list length. If additional results are available, an IRL to 
 retrieve them will be included in the StatementResult Object.
 
 **Content:** None.
 
-**Returns:** `200 OK`, Statement or [Statement Result](#retstmts) (See [Section 4.2](#retstmts) for details)
+**Returns:** `200 OK`, Statement or [Statement Result](./xAPI-Data.md#retstmts)
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th><th>Required</th></tr>
@@ -562,7 +563,7 @@ retrieve them will be included in the StatementResult Object.
 		<td>voidedStatementId</td>
 		<td>String</td>
 		<td> </td>
-		<td>Id of voided Statement to fetch. see <a href="#voidedStatements">Voided
+		<td>Id of voided Statement to fetch. see <a href="voidedStatements">Voided
 		Statements</a></td>
 		<td>Optional</td>
 	</tr>
@@ -583,7 +584,7 @@ retrieve them will be included in the StatementResult Object.
 					Identifier as described above are considered a match
 				</li>
 			</ul>
-			<br><br>See <a href="#actor">agent/group</a> Object definition
+			<br><br>See <a href="./xAPI-Data.md#actor">agent/group</a> Object definition
 			for details.
 		</td>
 		<td>Optional</td>
@@ -717,7 +718,7 @@ contain statementId or voidedStatementId parameters, and also contain any other 
 with the credentials used. 
 
 * <a name="2.1.3.s2.b4"></a>In the event that no Statements are found matching the query filter criteria, the LRS MUST still return 
-`200 OK` and a [StatementResult](#retstmts) Object. In this case, the "statements" property will contain an empty array.
+`200 OK` and a [StatementResult](./xAPI-Data.md#retstmts) Object. In this case, the "statements" property will contain an empty array.
 
 * <a name="2.1.3.s2.b5"></a>The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
 [ISO 8601 combined date and time](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations) format, 
@@ -727,7 +728,7 @@ into account any temporary condition, such as excessive load, which might cause 
 for retrieval. It is expected that this will be a recent timestamp, even if there are no recently received Statements. 
 
 * <a name="2.1.3.s2.b6"></a>If the "attachment" property of a GET Statement is used and is set to `true`, the LRS MUST 
-use the multipart response format and include all Attachments as described in [4.1.11](#attachments).
+use the multipart response format and include all Attachments as described in [4.1.11](./xAPI-Data.md#attachments).
 
 * <a name="2.1.3.s2.b7"></a>If the "attachment" property of a GET statement is used and is set to `false`, the LRS MUST NOT
 include Attachment raw data and MUST report `application/json`.
@@ -789,7 +790,7 @@ which language entry to include, rather than to the resource (list of Statements
 <a name="voidedStatements" />
 
 ##### <a name="2.1.4">2.1.4</a> Voided Statements
-[Section 4.3 Voided](#voided) describes the process by which Statements can be voided. This section
+[Section 4.3 Voided](./xAPI-Data.md#voided) describes the process by which Statements can be voided. This section
 describes how voided Statements are handled by the LRS when queried. 
 
 Clients can identify the presence and Statement id of any voided Statements by the target of the voiding Statement. 
@@ -827,7 +828,7 @@ in this specification do. The id is stored in the IRL, "updated" is HTTP header 
 	<tr id="2.2.s2.table1.row3"><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
 
-The three Document Resources provide [document](#miscdocument) storage.  The details of each resource are found in 
+The three Document Resources provide [document](#document) storage.  The details of each resource are found in 
 the following sections, and the information in this section applies to all three resources.
 
 ###### <a name="2.2.s3"></a>Details
@@ -1150,7 +1151,7 @@ about the Agent it received in the request.
 	</tr>
 </table>
 
-See also: [Agent](#agent).
+See also: [Agent](./xAPI-Data.md#agent).
 
 ###### <a name="2.4.s6"></a>Requirements
 
@@ -1367,7 +1368,7 @@ Example endpoint: http://example.com/xAPI/about
 	</tr>
 	<tr id="2.8.s4.table1.row2">
 		<td>extensions</td>
-		<td><a href="#miscext">Object</a></td>
+		<td><a href="#./xAPI-Data.md#miscext">Object</a></td>
 		<td>A map of other properties as needed</td>
 		<td>Optional</td>
 	</tr>
@@ -1498,12 +1499,12 @@ values in section [4.2](#oauthscope).
 Permissions can also affect the response returned by an LRS to GET requests. For example, 
 a set of credentials might have permission only to view Statements about a particular Actor, in which case
 the LRS will filter any returned Statements to exclude any Statements not relating to that Actor. See 
-[GET Statements](#stmtapiget) for details. 
+[GET Statements](#stmtresget) for details. 
 
 In cases explicitly allowed by this specification, the credentials used can also affect the LRS behavior in 
 handling a request, for example the LRS will normally overwrite the "authority" property of a Statement, but can 
 sometimes accept a submitted authority if it has a strong trust relationship associated with the credentials 
-used to submit the Statement. See [Authority](#authority) for details. 
+used to submit the Statement. See [Authority](./xAPI-Data.md#authority) for details. 
 
 Permissions set by an LRS could cause a technically conformant LRS to fail conformance testing. 
 This could occur where requests made by the testing software are rejected on the basis of permissions. For this reason
@@ -1624,7 +1625,7 @@ Versioning will allow Clients and LRSs to remain interoperable as the specificat
 Starting with version 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html).  
 Every request from a Client and every response from the LRS includes an HTTP header with the name `X-Experience-API-Version` 
 and the version as the value. For example, ``X-Experience-API-Version : 1.0.3`` for version 1.0.3; 
-see the [Revision History](#Appendix1A) for the current version of this specification. 
+see the [Revision History](./xAPI-About.md#Appendix1A) for the current version of this specification. 
 
 __Note:__ For patch versions of the specification later than 1.0.0, the "X-Experience-API-Version" header will not match the 
 [statement version property](./xAPI-Data.md#version) which is always `1.0.0` for all 1.0.x versions of the spec. The
@@ -1657,7 +1658,7 @@ description of the problem.
 * <a name="3.3.s5.b1"></a>Statements of newer versions MUST NOT be converted into a prior version format, e.g., in order 
 to handle version differences.
 * <a name="3.3.s5.b2"></a>Statements of prior versions MAY be converted into a newer version only by following the methods 
-described in [Appendix A: Converting Statements to 1.0.0](Appendix3A).
+described in [Appendix A: Converting Statements to 1.0.0](#Appendix3A).
 
 <a name="authentication"/>
 
