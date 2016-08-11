@@ -2758,7 +2758,7 @@ In this example the minimum correct answer is `4` and there is no maximum. `5`, 
 
 ### <a name="D">Appendix D</a>: Example Signed Statement
 
-An example signed Statement, as described in: [4.4 Signed Statements](#signature).
+An example signed Statement, as described in: [Section 2.6 Signed Statements](#signature).
 
 The original Statement serialization to be signed. New lines in this example are included
 via CR+LF (0x0D + 0x0A).
