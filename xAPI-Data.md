@@ -2379,7 +2379,7 @@ a Statement returned by an LRS including the "authority" and "stored" properties
 The Object of a Statement can be an Activity, an Agent, a Group or a Statement. 
 This appendix provides one example of each. 
 
-###### <a name="B.s1"></a>Activity
+###### <a name="B.s1"></a>Object is Activity
 ```
 {
     "id": "http://www.example.co.uk/exampleactivity",
@@ -2398,7 +2398,7 @@ This appendix provides one example of each.
 }
 ```
 
-###### <a name="B.s2"></a>Agent
+###### <a name="B.s2"></a>Object is Agent
 ```
 {
     "name": "Andrew Downes",
@@ -2407,7 +2407,7 @@ This appendix provides one example of each.
 }
 ```
 
-###### <a name="B.s3"></a>Group
+###### <a name="B.s3"></a>Object is Group
 
 This example shows an Identified Group with members. 
 ```
@@ -2434,7 +2434,7 @@ This example shows an Identified Group with members.
 ```
 
 
-###### <a name="B.s4"></a>Statement
+###### <a name="B.s4"></a>Object is Statement
 
 This example shows a SubStatement Object whose Object is a Statement Reference.
 
