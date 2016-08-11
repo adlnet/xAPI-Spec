@@ -1786,7 +1786,7 @@ Attachment(s) in the Statement's Attachment object and to include the payloads a
 ###### <a name="2.5.s1"></a>Description
 
 A collection of Statements can be retrieved by performing a query on the Statement 
-Resource, see [Statement Resource](#stmtapi) for details. 
+Resource, see [Statement Resource](./xAPI-Communication.md#stmtres) for details. 
 
 ###### <a name="2.5.s2"></a>Details
 
@@ -1852,7 +1852,7 @@ for discoverability of the signer X.509 certificates SHOULD be used.
 
 ##### <a name="2.6.s4"></a>Signature Requirements
 * <a name="2.6.s4.b1"></a>A Signed Statement MUST include a JSON web signature (JWS) as defined here:
-http://tools.ietf.org/html/draft-ietf-jose-json-web-signature, as an Attachment with a usageType
+http://tools.ietf.org/html/rfc7515, as an Attachment with a usageType
 of `http://adlnet.gov/expapi/attachments/signature` and a contentType of `application/octet-stream`.
 * <a name="2.6.s4.b2"></a>JWS Compact Serialization SHOULD* be used to create the JSON web signature. Use of JWS 
 JSON Serialization is strongly discouraged, is unlikely to be interoperble with other systems, and will be forbidden 
@@ -1872,7 +1872,7 @@ the associated certificate chain.
     * <a name="2.6.s5.b3.b1"></a>Decode the JWS signature, and load the signed serialization of the Statement from the
       JWS signature payload.
     * <a name="2.6.s5.b3.b2"></a>Validate that the original Statement is logically equivalent to the received Statement. 
-    See [Statement comparision requirements](statement-comparision-requirements).
+    See [Statement comparision requirements](#statement-comparison-requirements).
     * <a name="2.6.s5.b3.b3"></a>If the JWS header includes an X.509 certificate, validate the signature against that
     certificate as defined in JWS.
     * <a name="2.6.s5.b3.b4"></a>Validate that the signature requirements outlined above have been met. 
