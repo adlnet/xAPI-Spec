@@ -1683,7 +1683,7 @@ flow among such LRSs, the LRS is given some flexibility on Statement versions th
 
 ###### <a name="2.4.10.s2"></a>Requirements
 
-* <a name="2.4.10.s2.b1"></a>Version MUST be formatted as laid out for the API version header in [Versioning](#./xAPI-Communication.md#versioning)
+* <a name="2.4.10.s2.b1"></a>Version MUST be formatted as laid out for the API version header in [Versioning](./xAPI-Communication.md#versioning)
 
 ###### <a name="2.4.10.s3"></a>LRS Requirements
 
