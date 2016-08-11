@@ -755,13 +755,13 @@ The table below lists the properties of the Activity Definition Object:
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr id="2.4.4.1.s2.table1.row1">
 		<td>name</td>
-		<td><a href="#misclangmap">Language Map</a></td>
+		<td><a href="#lang-maps">Language Map</a></td>
 		<td>The human readable/visual name of the Activity</td>
 		<td>Recommended</td>
 	</tr>
 	<tr id="2.4.4.1.s2.table1.row2">
 		<td>description</td>
-		<td><a href="#misclangmap">Language Map</a></td>
+		<td><a href="#lang-maps">Language Map</a></td>
 		<td>A description of the Activity</td>
 		<td>Recommended</td>
 	</tr>
@@ -1080,7 +1080,7 @@ Interaction components are defined as follows:
         <td>Required</td>
 	<tr>
 		<td>description</td>
-		<td><a href="#misclangmap">Language Map</a></td>
+		<td><a href="#lang-maps">Language Map</a></td>
 		<td>A description of the interaction component 
 			(for example, the text for a given choice in a multiple-choice interaction)</td>
 		<td>Optional</td>
@@ -1732,14 +1732,14 @@ The table below lists all properties of the Attachment Object.
 	</tr>
 	<tr id="2.4.11.s2.table1.row2">
 		<td>display</td>
-		<td><a href="#misclangmap">Language Map</a></td>
+		<td><a href="#lang-maps">Language Map</a></td>
 		<td>Display name (title) of this Attachment.</td>
 		<td>Required</td>
 		<td></td>
 	</tr>
 	<tr id="2.4.11.s2.table1.row3">
 		<td>description</td>
-		<td><a href="#misclangmap">Language Map</a></td>
+		<td><a href="#lang-maps">Language Map</a></td>
 		<td>A description of the Attachment</td>
 		<td>Optional</td>
 		<td></td>
@@ -1962,13 +1962,13 @@ For the structure of hosted metadata about all other identifiers, see the format
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr id="3.2.s2.table1.row1">
 		<td>name</td>
-		<td><a href="#misclangmap">Language Map</a></td>
+		<td><a href="#lang-maps">Language Map</a></td>
 		<td>The human readable/visual name. For Verbs, this is equivalent to the "display" property in a Statement.</td>
 		<td>Optional</td>
 	</tr>
 	<tr id="3.2.s2.table1.row2">
 		<td>description</td>
-		<td><a href="misclangmap">Language Map</a></td>
+		<td><a href="lang-maps">Language Map</a></td>
 		<td>description</td>
 		<td>Optional</td>
 	</tr>
