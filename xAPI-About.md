@@ -245,7 +245,7 @@ All required properties are required to contain values.
 * [Internationalized Resource Identifier (IRI)](#def-iri)
 * [Internationalized Resource Locator (IRL)](#def-irl)
 * [Inverse Functional Identifier](#def-inverse-functional-identifier)
-* [Learning Experience] (#def-learning-experience")
+* [Learning Experience] (#def-learning-experience)
 * [Learning Management System (LMS)](#def-learning-management-system)
 * [Learning Record](#def-learning-record)
 * [Learning Record Consumer](#def-learning-record-consumer)
@@ -522,7 +522,7 @@ xAPI for the particular use case being addressed. It is very important that such
 For more information on publishing vocabularies, see the [Vocabulary Companion Specification](https://adl.gitbooks.io/companion-specification-for-xapi-vocabularies/content) and [Vocabulary Primer](https://adl.gitbooks.io/experience-xapi-vocabulary-primer/content/) documents.
 
 It is recommended that a Profile use a unique "category" within a Statement's context to refer to any Statement  
-which implements the Profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current"), 
+which implements the Profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current), 
 which is designed for the traditional single learner, single online learning use case.  An example cmi5 Statement can 
 be found in [Appendix B: cmi5 Example](#Appendix1B).
 
