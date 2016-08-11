@@ -728,7 +728,7 @@ into account any temporary condition, such as excessive load, which might cause 
 for retrieval. It is expected that this will be a recent timestamp, even if there are no recently received Statements. 
 
 * <a name="2.1.3.s2.b6"></a>If the "attachment" property of a GET Statement is used and is set to `true`, the LRS MUST 
-use the multipart response format and include all Attachments as described in [4.1.11](./xAPI-Data.md#attachments).
+use the multipart response format and include all Attachments as described in [Part Two](./xAPI-Data.md#attachments).
 
 * <a name="2.1.3.s2.b7"></a>If the "attachment" property of a GET statement is used and is set to `false`, the LRS MUST NOT
 include Attachment raw data and MUST report `application/json`.
@@ -790,7 +790,7 @@ which language entry to include, rather than to the resource (list of Statements
 <a name="voidedStatements" />
 
 ##### <a name="2.1.4">2.1.4</a> Voided Statements
-[Section 4.3 Voided](./xAPI-Data.md#voided) describes the process by which Statements can be voided. This section
+[Part Two](./xAPI-Data.md#voided) describes the process by which Statements can be voided. This section
 describes how voided Statements are handled by the LRS when queried. 
 
 Clients can identify the presence and Statement id of any voided Statements by the target of the voiding Statement. 
