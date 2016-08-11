@@ -497,7 +497,7 @@ that an LRS can take. It's also possible that some LRSs will have no mechanism f
 
 xAPI can be extended in a few ways. The most notable are Statement extensions, which allow great flexibility within Statements. 
 It is recommended that Communities of Practice agree on how to use extensions for their particular use cases and utilize 
-Profiles whenever possible. Implementation details are covered in [4.1 Extensions](./xAPI-Data.md#miscext).
+profiles whenever possible. Implementation details are covered in [4.1 Extensions](./xAPI-Data.md#miscext).
 
 The About Resource is another instance where xAPI supports extensions.  The LRS may find it useful to communicate features or 
 behaviors beyond this specification. The LRS can use extensions to the About Resource to facilitate this communication.
@@ -517,12 +517,12 @@ specification authors.
 It is intended that [Communities of Practice (CoPs)](#def-community-of-practice) will define Verbs, Activity types, 
 contextual relationships, extensions, etc. 
 to be used in their profiles by providing unique identifiers wherever applicable. The CoP will define these identifiers and 
-their metadata in a [Vocabulary](#def-vocabulary). A Profile is a set of rules and vocabularies to implemented in addition to 
+their metadata in a [Vocabulary](#def-vocabulary). A profile is a set of rules and vocabularies to implemented in addition to 
 xAPI for the particular use case being addressed. It is very important that such communities exist and share best practices. 
 For more information on publishing vocabularies, see the [Vocabulary Companion Specification](https://adl.gitbooks.io/companion-specification-for-xapi-vocabularies/content) and [Vocabulary Primer](https://adl.gitbooks.io/experience-xapi-vocabulary-primer/content/) documents.
 
-It is recommended that a Profile use a unique "category" within a Statement's context to refer to any Statement  
-which implements the Profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current), 
+It is recommended that a profile use a unique "category" within a Statement's context to refer to any Statement  
+which implements the profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current), 
 which is designed for the traditional single learner, single online learning use case.  An example cmi5 Statement can 
 be found in [Appendix B: cmi5 Example](#Appendix1B).
 
