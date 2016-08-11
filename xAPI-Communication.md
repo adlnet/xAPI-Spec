@@ -230,7 +230,7 @@ with the same name.
 listed above as query string parameters. 
 
 __Attachments__: Note that due to issues relating to encoding, it is not possible to send 
-binary data attachments using this syntax. See [Attachments](.xAPI-Data.md#attachments) 
+binary data attachments using this syntax. See [Attachments](./xAPI-Data.md#attachments) 
 
 * <a name="1.3.s3.b15"></a>The LRS MUST support the syntax above.  
 
