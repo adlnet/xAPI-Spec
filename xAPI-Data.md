@@ -322,7 +322,7 @@ The details of each property of a Statement are described in the table below.
 	<td>Recommended</td></tr>
 	<tr id="2.4.s1.table1.row2"><td><a href="#actor">actor</a></td><td>Object</td>
 	<td>Whom the Statement is about, as an <a href="#agent">Agent</a> or 
-		<a href="#group">Group</a> Object.</td>
+		<a href=#group>Group</a> Object.</td>
 	<td>Required</td></tr>
 	<tr id="2.4.s1.table1.row3"><td><a href="#verb">verb</a></td><td>Object</td>
 	<td>Action taken by the Actor.</td>
