@@ -78,7 +78,7 @@
 	 	*	1.4.	[Encoding](./xAPI-Communication.md#encoding) 
 	 	*	1.5.	[Content Types](./xAPI-Communication.md#content-types) 
 	        *	1.5.1.	[Application/JSON](./xAPI-Communication.md#applicationjson) 
-	        *	1.5.1.	[Multipart/Mixed](./xAPI-Communication.md#multipartmixed)
+	        *	1.5.2.	[Multipart/Mixed](./xAPI-Communication.md#multipartmixed)
 	*	2.0.	[Resources](./xAPI-Communication.md#datatransfer)   
 	 	*	2.1.	[Statement Resource](./xAPI-Communication.md#stmtres) 
 	 	*	2.2.	[Documents Resources](./xAPI-Communication.md#doctransfer) 
@@ -221,7 +221,7 @@ is not conformant.
 
 Even within the rules of JSON there are possible variations of how data can be serialized, especially in relation to data 
 about time. This is significant as a number of features of xAPI rely on systems being able to determine whether two 
-Statements are equivalent. See <a href="./xAPI-Data.md#statement-immutability-and-exceptions"> Immutability and exceptions</a> 
+Statements are equivalent. See [Immutability and exceptions](./xAPI-Data.md#statement-immutability-and-exceptions") 
 for more details about the properties of the Statement affected by this. 
 
 JSON allows for objects to have properties that contain empty objects. This is not recommended within xAPI; if the Statement 
@@ -239,7 +239,7 @@ All required properties are required to contain values.
 * [Authentication](#def-authentication)
 * [Authorization](#def-authorization)
 * [Community of Practice](#def-community-of-practice)
-* [Endpoint](#endpoint)
+* [Endpoint](#def-endpoint)
 * [Experience API (xAPI)](#def-experience-api)
 * [Immutable](#def-immutable)
 * [Internationalized Resource Identifier (IRI)](#def-iri)
@@ -497,7 +497,7 @@ that an LRS can take. It's also possible that some LRSs will have no mechanism f
 
 xAPI can be extended in a few ways. The most notable are Statement extensions, which allow great flexibility within Statements. 
 It is recommended that Communities of Practice agree on how to use extensions for their particular use cases and utilize 
-Profiles whenever possible. Implementation details are covered in [4.1 Extensions](#miscext).
+Profiles whenever possible. Implementation details are covered in [4.1 Extensions](./xAPI-Data.md#miscext).
 
 The About Resource is another instance where xAPI supports extensions.  The LRS may find it useful to communicate features or 
 behaviors beyond this specification. The LRS can use extensions to the About Resource to facilitate this communication.
@@ -528,7 +528,7 @@ be found in [Appendix B: cmi5 Example](#Appendix1B).
 
 CoPs are highly recommended to avoid duplication of effort, as creating too many ways to solve the same problem 
 will cause fragmentation in similar domains and can potentially hurt interoperability.  An example of a CoP for the medical 
-field is the [Medbiquitous xAPI Interest Group](http://groups.medbiq.org/medbiq/display/XIG/XAPI+Interest+Group+Home).
+field is the [Medbiquitous xAPI Interest Group](http://groups.medbiq.org:8090/display/XIG/Learning+Experience+Group+Home).
 
 
 <a name="append1"></a>
