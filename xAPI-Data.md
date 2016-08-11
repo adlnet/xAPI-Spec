@@ -599,7 +599,7 @@ The table below lists all properties of the Verb Object.
 	</tr>
 	<tr id="2.4.3.s3.table1.row2">
 		<td>display</td>
-		<td><a href="#misclangmap">Language Map</a></td>
+		<td><a href="#lang-map">Language Map</a></td>
 		<td>The human readable representation of the 
 			Verb in one or more languages. This does not have any impact on the 
 			meaning of the Statement, but serves to give a human-readable 
