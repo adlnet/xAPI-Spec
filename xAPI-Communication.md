@@ -39,7 +39,7 @@
 		*	2.1.	[Purpose](./xAPI-Data.md#statement-purpose)  
 	 	*	2.2.	[Formatting Requirements](./xAPI-Data.md#dataconstraints) 
 	 	*	2.3.	[Statement Lifecycle](./xAPI-Data.md#lifecycle) 
-		 	*	2.3.1.	[Statement Immutability](./xAPI-Data.md#statement-immutablity-and-exceptions) 
+		 	*	2.3.1.	[Statement Immutability](./xAPI-Data.md#statement-immutability-and-exceptions) 
 		 	*	2.3.2.	[Voiding](./xAPI-Data.md#voided) 
    		*	2.4.	[Statement Properties](./xAPI-Data.md#statement-properties)  
 	        *	2.4.1.	[ID](./xAPI-Data.md#stmtid)  
@@ -562,7 +562,7 @@ retrieve them will be included in the StatementResult Object.
 		<td>voidedStatementId</td>
 		<td>String</td>
 		<td> </td>
-		<td>Id of voided Statement to fetch. see <a href="voidedStatements">Voided
+		<td>Id of voided Statement to fetch. see <a href="./xAPI-Data.md#voided">Voided
 		Statements</a></td>
 		<td>Optional</td>
 	</tr>
@@ -679,7 +679,7 @@ retrieve them will be included in the StatementResult Object.
 			If <code>exact</code>, return Agent, Activity, Verb and Group Objects populated exactly as they 
 			were when the Statement was received. An LRS requesting Statements for the purpose 
 			of importing them would use a format of "exact" in order to maintain 
-			<a href="./xAPI-Data.md#statement-immutablity-and-exceptions">Statement Immutability</a>.  
+			<a href="./xAPI-Data.md#statement-immutability-and-exceptions">Statement Immutability</a>.  
 			<br/><br/>
 			If <code>canonical</code>, return Activity Objects and Verbs populated with the canonical
 			definition of the Activity Objects and Display of the Verbs as determined by the LRS, after
@@ -1540,7 +1540,7 @@ or Activity Profile Resource request targeting a specific document, or the metho
 
 * <a name="3.2.s2.b5"></a>`409 Conflict` - Indicates an error condition due to a conflict with the 
 current state of a resource, in the case of State Resource, Agent Profile Resource or Activity Profile Resource
-requests, or in the Statement Resource PUT or POST calls. See Section [6.3 Concurrency](#concurrency) for more details.
+requests, or in the Statement Resource PUT or POST calls. See Section [3.1 Concurrency](#concurrency) for more details.
 
 * <a name="3.2.s2.b6"></a>`412 Precondition Failed` - Indicates an error condition due to a failure of 
 a precondition posted with the request, in the case of State or Agent Profile or Activity Profile 
