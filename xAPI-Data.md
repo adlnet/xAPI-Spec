@@ -1357,7 +1357,7 @@ using an extension (preferrably from an established Community of Practice) inste
 
 <a name="context"/>
 
-#### <a name="2.4.6">2.4.6</a>Context
+#### <a name="2.4.6">2.4.6</a> Context
 
 ###### <a name="2.4.6.s1"></a>Description
 An optional property that provides a place to add contextual information to a Statement. All "context" properties are optional.
