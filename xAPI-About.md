@@ -39,7 +39,7 @@
 		*	2.1.	[Purpose](./xAPI-Data.md#statement-purpose)  
 	 	*	2.2.	[Formatting Requirements](./xAPI-Data.md#dataconstraints) 
 	 	*	2.3.	[Statement Lifecycle](./xAPI-Data.md#lifecycle) 
-		 	*	2.3.1.	[Statement Immutability](./xAPI-Data.md#statement-immutablity-and-exceptions) 
+		 	*	2.3.1.	[Statement Immutability](./xAPI-Data.md#statement-immutability-and-exceptions) 
 		 	*	2.3.2.	[Voiding](./xAPI-Data.md#voided) 
    		*	2.4.	[Statement Properties](./xAPI-Data.md#statement-properties)  
 	        *	2.4.1.	[ID](./xAPI-Data.md#stmtid)  
@@ -73,12 +73,12 @@
 *	Part Three:	[Data Processing, Validation, and Security](./xAPI-Communication.md#partthree)  
 	*	1.0.	[Requests](./xAPI-Communication.md#requests)
 		*	1.1.	[HEAD Request Implementation](./xAPI-Communication.md#httphead)  
-	 	*	1.2.	[Headers](./xAPI-Communication.md#header-parameters) 
+	 	*	1.2.	[Headers](./xAPI-Communication.md#headers) 
 	 	*	1.3.	[Alternate Request Syntax](./xAPI-Communication.md#alt-request-syntax) 
 	 	*	1.4.	[Encoding](./xAPI-Communication.md#encoding) 
 	 	*	1.5.	[Content Types](./xAPI-Communication.md#content-types) 
 	        *	1.5.1.	[Application/JSON](./xAPI-Communication.md#applicationjson) 
-	        *	1.5.1.	[Multipart/Mixed](./xAPI-Communication.md#multipartmixed)
+	        *	1.5.2.	[Multipart/Mixed](./xAPI-Communication.md#multipartmixed)
 	*	2.0.	[Resources](./xAPI-Communication.md#datatransfer)   
 	 	*	2.1.	[Statement Resource](./xAPI-Communication.md#stmtres) 
 	 	*	2.2.	[Documents Resources](./xAPI-Communication.md#doctransfer) 
@@ -221,7 +221,7 @@ is not conformant.
 
 Even within the rules of JSON there are possible variations of how data can be serialized, especially in relation to data 
 about time. This is significant as a number of features of xAPI rely on systems being able to determine whether two 
-Statements are equivalent. See <a href="./xAPI-Data.md#statement-immutability-and-exceptions"> Immutability and exceptions</a> 
+Statements are equivalent. See [Immutability and exceptions](./xAPI-Data.md#statement-immutability-and-exceptions) 
 for more details about the properties of the Statement affected by this. 
 
 JSON allows for objects to have properties that contain empty objects. This is not recommended within xAPI; if the Statement 
@@ -239,20 +239,20 @@ All required properties are required to contain values.
 * [Authentication](#def-authentication)
 * [Authorization](#def-authorization)
 * [Community of Practice](#def-community-of-practice)
-* [Endpoint](#endpoint)
+* [Endpoint](#def-endpoint)
 * [Experience API (xAPI)](#def-experience-api)
 * [Immutable](#def-immutable)
 * [Internationalized Resource Identifier (IRI)](#def-iri)
 * [Internationalized Resource Locator (IRL)](#def-irl)
 * [Inverse Functional Identifier](#def-inverse-functional-identifier)
-* [Learning Experience] (#def-learning-experience")
+* [Learning Experience] (#def-learning-experience)
 * [Learning Management System (LMS)](#def-learning-management-system)
 * [Learning Record](#def-learning-record)
 * [Learning Record Consumer](#def-learning-record-consumer)
 * [Learning Record Provider](#def-learning-record-provider)
 * [Learning Record Store (LRS)](#def-learning-record-store)
-* [Metadata Provider](#def-metadata-provider)
 * [Metadata Consumer](#def-metadata-consumer)
+* [Metadata Provider](#def-metadata-provider)
 * [Persona](#def-persona)
 * [Profile](#def-profile)
 * [Registration](#def-registration)
@@ -444,7 +444,7 @@ This section explains and shows graphically how different pieces of xAPI can fit
 
 ##### Tracking Experiences
 
-![Data Flow in xAPI](/xAPIDataFlow.jpg)
+![Data Flow in xAPI](./xAPIDataFlow.jpg)
 
 Figure 1 shows the tracking of learning experiences. A learner has a learning experience. This experience could take place in an 
 online course, it could be on the job or it could be part of recreation. It really could be anything. This experience is tracked, 
@@ -459,7 +459,7 @@ with the LRS in a request-response manner are referred to as Clients.
 
 ##### Activity Data and Metadata
 
-![xAPI Activity Data and Metadata](/xAPIMetadata.jpg)
+![xAPI Activity Data and Metadata](./xAPIMetadata.jpg)
 
 Understanding how a single Activity (as uniquely identified by its IRI) is defined and described is a key concept in xAPI. 
 Figure 2 shows this process. An Activity (as a part of a Statement) has metadata properties that may be populated within the 
@@ -474,7 +474,7 @@ canonical version.
 
 ##### Agent and Persona Management
 
-![xAPI Activity Data and Metadata](/xAPIPersonas.jpg)
+![xAPI Activity Data and Metadata](./xAPIPersonas.jpg)
 
 xAPI grants the framework for allowing selective access to one's personal data. This is done through the management of what are 
 called personas. In xAPI, each persona represents the "I" in "I did this" and is logically the subject of the Statement. Each 
@@ -497,7 +497,7 @@ that an LRS can take. It's also possible that some LRSs will have no mechanism f
 
 xAPI can be extended in a few ways. The most notable are Statement extensions, which allow great flexibility within Statements. 
 It is recommended that Communities of Practice agree on how to use extensions for their particular use cases and utilize 
-Profiles whenever possible. Implementation details are covered in [4.1 Extensions](#miscext).
+profiles whenever possible. Implementation details are covered in [4.1 Extensions](./xAPI-Data.md#miscext).
 
 The About Resource is another instance where xAPI supports extensions.  The LRS may find it useful to communicate features or 
 behaviors beyond this specification. The LRS can use extensions to the About Resource to facilitate this communication.
@@ -517,18 +517,18 @@ specification authors.
 It is intended that [Communities of Practice (CoPs)](#def-community-of-practice) will define Verbs, Activity types, 
 contextual relationships, extensions, etc. 
 to be used in their profiles by providing unique identifiers wherever applicable. The CoP will define these identifiers and 
-their metadata in a [Vocabulary](#def-vocabulary). A Profile is a set of rules and vocabularies to implemented in addition to 
+their metadata in a [Vocabulary](#def-vocabulary). A profile is a set of rules and vocabularies to implemented in addition to 
 xAPI for the particular use case being addressed. It is very important that such communities exist and share best practices. 
 For more information on publishing vocabularies, see the [Vocabulary Companion Specification](https://adl.gitbooks.io/companion-specification-for-xapi-vocabularies/content) and [Vocabulary Primer](https://adl.gitbooks.io/experience-xapi-vocabulary-primer/content/) documents.
 
-It is recommended that a Profile use a unique "category" within a Statement's context to refer to any Statement  
-which implements the Profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current"), 
+It is recommended that a profile use a unique "category" within a Statement's context to refer to any Statement  
+which implements the profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current), 
 which is designed for the traditional single learner, single online learning use case.  An example cmi5 Statement can 
 be found in [Appendix B: cmi5 Example](#Appendix1B).
 
 CoPs are highly recommended to avoid duplication of effort, as creating too many ways to solve the same problem 
 will cause fragmentation in similar domains and can potentially hurt interoperability.  An example of a CoP for the medical 
-field is the [Medbiquitous xAPI Interest Group](http://groups.medbiq.org/medbiq/display/XIG/XAPI+Interest+Group+Home).
+field is the [Medbiquitous xAPI Interest Group](http://groups.medbiq.org:8090/display/XIG/Learning+Experience+Group+Home).
 
 
 <a name="append1"></a>
@@ -594,7 +594,7 @@ Clarifications and additional examples including:
 ### Appendix B: cmi5 Example 
 
 The following example illustrates a statement following the cmi5 Community of Practice. It demonstrates use of extensions 
-and "category" Context Activities.
+and "category" contextActivities.
 
 ```
 {  

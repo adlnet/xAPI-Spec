@@ -39,7 +39,7 @@
 		*	2.1.	[Purpose](./xAPI-Data.md#statement-purpose)  
 	 	*	2.2.	[Formatting Requirements](./xAPI-Data.md#dataconstraints) 
 	 	*	2.3.	[Statement Lifecycle](./xAPI-Data.md#lifecycle) 
-		 	*	2.3.1.	[Statement Immutability](./xAPI-Data.md#statement-immutablity-and-exceptions) 
+		 	*	2.3.1.	[Statement Immutability](./xAPI-Data.md#statement-immutability-and-exceptions) 
 		 	*	2.3.2.	[Voiding](./xAPI-Data.md#voided) 
    		*	2.4.	[Statement Properties](./xAPI-Data.md#statement-properties)  
 	        *	2.4.1.	[ID](./xAPI-Data.md#stmtid)  
@@ -73,7 +73,7 @@
 *	Part Three:	[Data Processing, Validation, and Security](./xAPI-Communication.md#partthree)  
 	*	1.0.	[Requests](./xAPI-Communication.md#requests)
 		*	1.1.	[HEAD Request Implementation](./xAPI-Communication.md#httphead)  
-	 	*	1.2.	[Headers](./xAPI-Communication.md#header-parameters) 
+	 	*	1.2.	[Headers](./xAPI-Communication.md#headers) 
 	 	*	1.3.	[Alternate Request Syntax](./xAPI-Communication.md#alt-request-syntax) 
 	 	*	1.4.	[Encoding](./xAPI-Communication.md#encoding) 
 	 	*	1.5.	[Content Types](./xAPI-Communication.md#content-types) 
@@ -109,7 +109,7 @@
 ## <a name="1.0">1.0</a> Documents
 
 The Experience API provides a facility for Learning Record Providers to save arbitrary data in the form of documents.  This data 
-is largely unstructured, which allows for flexibility.  Specifics on document behaviors can be found in [Part 3](#doctransfer) 
+is largely unstructured, which allows for flexibility.  Specifics on document behaviors can be found in [Part 3](./xAPI-Communication.md#doctransfer) 
 
 <a name="statements" /> 
 
@@ -140,7 +140,7 @@ conformant to this specification.
 * <a name="2.2.s2.b3"></a>A Statement MUST use "actor", "verb", and "object".
 * <a name="2.2.s2.b4"></a>A Statement MAY use its properties in any order.
 * <a name="2.2.s2.b5"></a>The LRS MUST NOT return a different serialisation of any properties except those 
-[listed as exceptions above](#statement-immutablity-and-exceptions).
+[listed as exceptions above](#statement-immutability-and-exceptions).
 
 ###### <a name="2.2.s3"></a>Learning Record Provider Requirements
 
@@ -201,7 +201,7 @@ the Verb id will usually use the past tense.
 Statements are expected to be permanent. The only way to undo a Statement within this specification is to 
 [void it](#voided). Voiding does not destroy a Statement, rather indicates the evidence in the Statement is to be disregarded.
 
-<a name="statement-immutablity-and-exceptions" />
+<a name="statement-immutability-and-exceptions" />
 
 #### <a name="2.3.1">2.3.1</a> Statement Immutability
 
@@ -212,22 +212,22 @@ Statements are immutable (they cannot be changed). The following are exceptions 
 
 * <a name="2.3.1.b2"></a>Activity Definitions referenced by a Statement. The content of Activity Definitions that are 
 referenced in Statements is not considered part of the Statement itself. This means a deep serialization of a Statement 
-into JSON will change if the referenced Activity Definition changes (see the [Statement API's](#stmtapi) "format" 
+into JSON will change if the referenced Activity Definition changes (see the [Statement Resource's](./xAPI-Communication.md#stmtres) "format" 
 parameter for details).  
 
 * <a name="2.3.1.b3"></a>Verbs referenced by a Statement. The "display" property of the Verb is not considered 
-part of the Statement itself (see the [Statement API's](#stmtapi) "format" parameter for details). 
+part of the Statement itself (see the [Statement Resource's](./xAPI-Communication.md#stmtres) "format" parameter for details). 
 
 * <a name="2.3.1.b4"></a>Serialization of Timestamp data. This is not considered part of the immutable Statement itself. 
 For example, the "timestamp" and "stored" properties of a Statement can be returned in a different timezone to the one with 
 which they were stored so long as the point in time referenced is not affected. 
-See [4.1.7 Timestamp](#timestamp) and [4.1.8 Stored](#stored) for details. 
+See [2.4.7 Timestamp](#timestamp) and [2.4.8 Stored](#stored) for details. 
 
 * <a name="2.3.1.b5"></a>Serialization of un-ordered lists. The list of Agents in a Group is not considered to be an ordered 
-list.  Thus, the LRS can return this list of Agents in any order. See [4.1.2.2 Groups](#group).
+list.  Thus, the LRS can return this list of Agents in any order. See [Groups](#group).
 
 * <a name="2.3.1.b6"></a>Attachments. These are not part of Statements and an LRS will return Statements without 
-Attachments when a Client requests them (see the [Statement API's](#stmtapi) "attachments" parameter for details).
+Attachments when a Client requests them (see the [Statement Resource's](./xAPI-Communication.md#stmtres) "attachments" parameter for details).
 
 * <a name="2.3.1.b7"></a>Case sensitivity. Some properties are case insensitive and changes in case therefore do not affect 
 immutability. For example, the domain portion an e-mail address is case insensitive. It is recommended to use lowercase 
@@ -240,15 +240,15 @@ The following explicitly are **not** exceptions and **are** covered by this rule
 an LRS to accurately deserialize the Result Duration and convert between units of time. For this reason, the 
 Result Duration is considered a string for purposes of Statement comparison. 
 
-<a name="statement-comparision-requirements" />
+<a name="statement-comparison-requirements" />
 ###### <a name="2.3.1.s9"></a>Statement Comparision Requirements
 There are a number of scenarios outlined in this specification which require Statements to be
 compared to see if they match. In these scenarios, the following rules apply:
 
 * <a name="2.3.1.s9.b1"></a>Differences which could have been caused by 
-[exceptions to Statement immutability](#statement-immutablity-and-exceptions) MUST be ignored.
+[exceptions to Statement immutability](#statement-immutability-and-exceptions) MUST be ignored.
 * <a name="2.3.1.s9.b2"></a>Differences relating to a different serialisation of any properties not
-[listed as exceptions](#statement-immutablity-and-exceptions) MUST not be ignored. 
+[listed as exceptions](#statement-immutability-and-exceptions) MUST not be ignored. 
 
 <a name="voided"/>
 
@@ -322,7 +322,7 @@ The details of each property of a Statement are described in the table below.
 	<td>Recommended</td></tr>
 	<tr id="2.4.s1.table1.row2"><td><a href="#actor">actor</a></td><td>Object</td>
 	<td>Whom the Statement is about, as an <a href="#agent">Agent</a> or 
-		<a href="#group">Group</a> Object.</td>
+		<a href=#group>Group</a> Object.</td>
 	<td>Required</td></tr>
 	<tr id="2.4.s1.table1.row3"><td><a href="#verb">verb</a></td><td>Object</td>
 	<td>Action taken by the Actor.</td>
@@ -599,7 +599,7 @@ The table below lists all properties of the Verb Object.
 	</tr>
 	<tr id="2.4.3.s3.table1.row2">
 		<td>display</td>
-		<td><a href="#misclangmap">Language Map</a></td>
+		<td><a href="#lang-map">Language Map</a></td>
 		<td>The human readable representation of the 
 			Verb in one or more languages. This does not have any impact on the 
 			meaning of the Statement, but serves to give a human-readable 
@@ -632,7 +632,7 @@ exactly as included (or omitted) within the Statement.
 canonical Display for that Verb. 
 * <a name="2.4.3.s6.b4"></a>The LRS may determine its canonical Display based on the Verb's "display" property included within 
 Statements it receives, the "name" property included in the metadata as described in 
-[section 5.4 Identifier metadata](#miscmeta), or the Verb's Display as defined in some other location.
+[3.2 Hosted Metadata](#miscmeta), or the Verb's Display as defined in some other location.
 
 ###### <a name="2.4.3.s7"></a>Verb Display Learning Record Consumer Requirements
 
@@ -645,7 +645,7 @@ to display to a human. Using the "display" property for aggregation or categoriz
 violating this requirement. 
 * <a name="2.4.3.s7.b4"></a>A Learning Record Consumer displaying a Statement's Verb in a user interface MAY choose to render 
 the Verb's "display" property included within the Statement, the "name" property included in the metadata as described in 
-[section 5.4 Identifier metadata](#miscmeta), or the Verb's Display as defined in some other location.
+[3.2 Hosted Metadata](#miscmeta), or the Verb's Display as defined in some other location.
 * <a name="2.4.3.s7.b5"></a>Learning Record Consumers displaying a Statement's Verb MUST NOT display a word that differs 
 from the meaning of the Verb but MAY alter the wording and tense displayed for the purposes of human-readability. 
 
@@ -755,13 +755,13 @@ The table below lists the properties of the Activity Definition Object:
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr id="2.4.4.1.s2.table1.row1">
 		<td>name</td>
-		<td><a href="#misclangmap">Language Map</a></td>
+		<td><a href="#lang-maps">Language Map</a></td>
 		<td>The human readable/visual name of the Activity</td>
 		<td>Recommended</td>
 	</tr>
 	<tr id="2.4.4.1.s2.table1.row2">
 		<td>description</td>
-		<td><a href="#misclangmap">Language Map</a></td>
+		<td><a href="#lang-maps">Language Map</a></td>
 		<td>A description of the Activity</td>
 		<td>Recommended</td>
 	</tr>
@@ -863,7 +863,7 @@ The table below lists the properties for Interaction Activities.
 	<tr id="2.4.4.1.s8.table1.row3">
 		<td>choices | scale | source | target | steps</td>
 		<td>Array of interaction components</td>
-		<td>Specific to the given interactionType (<a href="#interactionComponentLists">see below</a>).</td>
+		<td>Specific to the given interactionType (see below).</td>
 		<td>Optional</td>
 	</tr>
 </table>
@@ -1080,7 +1080,7 @@ Interaction components are defined as follows:
         <td>Required</td>
 	<tr>
 		<td>description</td>
-		<td><a href="#misclangmap">Language Map</a></td>
+		<td><a href="#lang-maps">Language Map</a></td>
 		<td>A description of the interaction component 
 			(for example, the text for a given choice in a multiple-choice interaction)</td>
 		<td>Optional</td>
@@ -1357,7 +1357,7 @@ using an extension (preferrably from an established Community of Practice) inste
 
 <a name="context"/>
 
-#### <a name="2.4.6">2.4.6</a>Context
+#### <a name="2.4.6">2.4.6</a> Context
 
 ###### <a name="2.4.6.s1"></a>Description
 An optional property that provides a place to add contextual information to a Statement. All "context" properties are optional.
@@ -1488,12 +1488,12 @@ Statement. For example: a course that is part of a qualification. The course has
 as the parent, the qualification relates to the class as the grouping.
 
 * <a name="2.4.6.2.s3.b3"></a>__Category__: an Activity used to categorize the Statement. "Tags" would be a synonym. 
-Category SHOULD be used to indicate a Profile of xAPI behaviors, as well as other categorizations. For example: Anna attempts 
-a biology exam, and the Statement is tracked using the cmi5 Profile. The Statement's Activity refers to the exam, and the 
-category is the cmi5 Profile.
+Category SHOULD be used to indicate a profile of xAPI behaviors, as well as other categorizations. For example: Anna attempts 
+a biology exam, and the Statement is tracked using the cmi5 profile. The Statement's Activity refers to the exam, and the 
+category is the cmi5 profile.
 
 * <a name="2.4.6.2.s3.b4"></a>__Other__: a contextActivity that doesn't fit one of the other properties. For example: Anna 
-studies a textbook for a biology exam. The Statement's Activity refers to the textbook, and the exam is a context Activity 
+studies a textbook for a biology exam. The Statement's Activity refers to the textbook, and the exam is a contextActivity 
 of type `other`.
 
 Single Activity Objects are allowed as values so that 0.95 Statements will be compatible with 1.0.0.
@@ -1563,7 +1563,7 @@ These examples are for illustrative purposes only and are not meant to be prescr
 
 ###### <a name="2.4.7.s3"></a>Requirements
 
-* <a name="2.4.7.s3.b1"></a>For requirements pertaining to the Timestamp data type, see [Part 3: Timestamps](#timestamps).
+* <a name="2.4.7.s3.b1"></a>For requirements pertaining to the Timestamp data type, see [Section 4.5 ISO 8601 Timestamps](#timestamps).
 * <a name="2.4.7.s3.b2"></a>The "timestamp" property SHOULD* be set by the LRS to the value of the ["stored" property](#stored) 
 if not provided.
 * <a name="2.4.7.s3.b3"></a>A "timestamp" property MAY represent any point during an experience, not necessarily the 
@@ -1683,7 +1683,7 @@ flow among such LRSs, the LRS is given some flexibility on Statement versions th
 
 ###### <a name="2.4.10.s2"></a>Requirements
 
-* <a name="2.4.10.s2.b1"></a>Version MUST be formatted as laid out for the API version header in [Versioning](#versioning)
+* <a name="2.4.10.s2.b1"></a>Version MUST be formatted as laid out for the API version header in [Versioning](./xAPI-Communication.md#versioning)
 
 ###### <a name="2.4.10.s3"></a>LRS Requirements
 
@@ -1732,14 +1732,14 @@ The table below lists all properties of the Attachment Object.
 	</tr>
 	<tr id="2.4.11.s2.table1.row2">
 		<td>display</td>
-		<td><a href="#misclangmap">Language Map</a></td>
+		<td><a href="#lang-maps">Language Map</a></td>
 		<td>Display name (title) of this Attachment.</td>
 		<td>Required</td>
 		<td></td>
 	</tr>
 	<tr id="2.4.11.s2.table1.row3">
 		<td>description</td>
-		<td><a href="#misclangmap">Language Map</a></td>
+		<td><a href="#lang-maps">Language Map</a></td>
 		<td>A description of the Attachment</td>
 		<td>Optional</td>
 		<td></td>
@@ -1786,7 +1786,7 @@ Attachment(s) in the Statement's Attachment object and to include the payloads a
 ###### <a name="2.5.s1"></a>Description
 
 A collection of Statements can be retrieved by performing a query on the Statement 
-Resource, see [Statement Resource](#stmtapi) for details. 
+Resource, see [Statement Resource](./xAPI-Communication.md#stmtres) for details. 
 
 ###### <a name="2.5.s2"></a>Details
 
@@ -1852,7 +1852,7 @@ for discoverability of the signer X.509 certificates SHOULD be used.
 
 ##### <a name="2.6.s4"></a>Signature Requirements
 * <a name="2.6.s4.b1"></a>A Signed Statement MUST include a JSON web signature (JWS) as defined here:
-http://tools.ietf.org/html/draft-ietf-jose-json-web-signature, as an Attachment with a usageType
+http://tools.ietf.org/html/rfc7515, as an Attachment with a usageType
 of `http://adlnet.gov/expapi/attachments/signature` and a contentType of `application/octet-stream`.
 * <a name="2.6.s4.b2"></a>JWS Compact Serialization SHOULD* be used to create the JSON web signature. Use of JWS 
 JSON Serialization is strongly discouraged, is unlikely to be interoperble with other systems, and will be forbidden 
@@ -1872,7 +1872,7 @@ the associated certificate chain.
     * <a name="2.6.s5.b3.b1"></a>Decode the JWS signature, and load the signed serialization of the Statement from the
       JWS signature payload.
     * <a name="2.6.s5.b3.b2"></a>Validate that the original Statement is logically equivalent to the received Statement. 
-    See [Statement comparision requirements](statement-comparision-requirements).
+    See [Statement comparision requirements](#statement-comparison-requirements).
     * <a name="2.6.s5.b3.b3"></a>If the JWS header includes an X.509 certificate, validate the signature against that
     certificate as defined in JWS.
     * <a name="2.6.s5.b3.b4"></a>Validate that the signature requirements outlined above have been met. 
@@ -1904,15 +1904,15 @@ In xAPI, metadata can be utilized in a variety of locations. The most common is 
 
 xAPI uses IRIs for identifiers. Using IRIs ensures uniqueness and promotes resolvability. The LRS and Learning Record 
 Provider each have responsibilities in regard to each IRI as outlined below. Activity Definitions have additional rules 
-which can be found later in [this section](#actdef).
+which can be found [here](#actdef).
 
 ##### <a name="3.1.s1"></a>Metadata Provider Requirements
 
 These requirements also apply to Learning Record Providers defining new IRIs. 
 
-* <a name="3.1.s1.b1"></a>[Metadata Providers](#def-metadata-provider) defining new IRIs SHOULD* only use IRIs they control 
+* <a name="3.1.s1.b1"></a>[Metadata Providers](./xAPI-About.md#def-metadata-provider) defining new IRIs SHOULD* only use IRIs they control 
 or have permission from the controller to use.
-* <a name="3.1.s1.b2"></a>[Metadata Providers](#def-metadata-provider) defining new Verb IRIs MUST only use IRIs they control 
+* <a name="3.1.s1.b2">Metadata Providers defining new Verb IRIs MUST only use IRIs they control 
 or have permission from the controller to use.
 * <a name="3.1.s1.b3"></a>Where a suitable identifier already exists, the Metadata Provider SHOULD use the corresponding 
 existing identifier and SHOULD NOT create a new identifier.
@@ -1962,13 +1962,13 @@ For the structure of hosted metadata about all other identifiers, see the format
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr id="3.2.s2.table1.row1">
 		<td>name</td>
-		<td><a href="#misclangmap">Language Map</a></td>
+		<td><a href="#lang-maps">Language Map</a></td>
 		<td>The human readable/visual name. For Verbs, this is equivalent to the "display" property in a Statement.</td>
 		<td>Optional</td>
 	</tr>
 	<tr id="3.2.s2.table1.row2">
 		<td>description</td>
-		<td><a href="misclangmap">Language Map</a></td>
+		<td><a href="#lang-maps">Language Map</a></td>
 		<td>description</td>
 		<td>Optional</td>
 	</tr>
@@ -1987,11 +1987,11 @@ intended usage accessible at the IRI.
 * <a name="3.2.s3.b4"></a>For any of the identifier IRIs above the Metadata Provider SHOULD ensure that this JSON metadata 
 available at that IRI when the IRI is requested and a Content-Type of `application/json` is requested.
 * <a name="3.2.s3.b5"></a>Where the IRI represents an Activity, the Metadata Provider MAY host metadata using 
-the [Activity Definition](#actdef") JSON format which is used in Statements, with a Content-Type of `application/json`.
+the [Activity Definition](#actdef) JSON format which is used in Statements, with a Content-Type of `application/json`.
 
 ##### <a name="3.2.s4"></a>LRS Requirements
 
-* <a name="3.2.s4.b1"></a>The LRS MAY act as a [Metadata Consumer](#def-metadata-consumer) and attempt to resolve identifier IRIs.
+* <a name="3.2.s4.b1"></a>The LRS MAY act as a [Metadata Consumer](./xAPI-About.md#def-metadata-consumer) and attempt to resolve identifier IRIs.
 * <a name="3.2.s4.b2"></a>If an Activity IRI is a URL, an LRS SHOULD attempt to GET that URL, and include in HTTP
 headers: `Accept: application/json, */*`. This SHOULD be done as soon as practical after the LRS
 first encounters the Activity id.
@@ -2379,7 +2379,7 @@ a Statement returned by an LRS including the "authority" and "stored" properties
 The Object of a Statement can be an Activity, an Agent, a Group or a Statement. 
 This appendix provides one example of each. 
 
-###### <a name="B.s1"></a>Activity
+###### <a name="B.s1"></a>Object is Activity
 ```
 {
     "id": "http://www.example.co.uk/exampleactivity",
@@ -2398,7 +2398,7 @@ This appendix provides one example of each.
 }
 ```
 
-###### <a name="B.s2"></a>Agent
+###### <a name="B.s2"></a>Object is Agent
 ```
 {
     "name": "Andrew Downes",
@@ -2407,7 +2407,7 @@ This appendix provides one example of each.
 }
 ```
 
-###### <a name="B.s3"></a>Group
+###### <a name="B.s3"></a>Object is Group
 
 This example shows an Identified Group with members. 
 ```
@@ -2434,7 +2434,7 @@ This example shows an Identified Group with members.
 ```
 
 
-###### <a name="B.s4"></a>Statement
+###### <a name="B.s4"></a>Object is Statement
 
 This example shows a SubStatement Object whose Object is a Statement Reference.
 
@@ -2758,7 +2758,7 @@ In this example the minimum correct answer is `4` and there is no maximum. `5`, 
 
 ### <a name="D">Appendix D</a>: Example Signed Statement
 
-An example signed Statement, as described in: [4.4 Signed Statements](#signature).
+An example signed Statement, as described in: [Section 2.6 Signed Statements](#signature).
 
 The original Statement serialization to be signed. New lines in this example are included
 via CR+LF (0x0D + 0x0A).

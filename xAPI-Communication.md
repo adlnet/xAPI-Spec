@@ -39,7 +39,7 @@
 		*	2.1.	[Purpose](./xAPI-Data.md#statement-purpose)  
 	 	*	2.2.	[Formatting Requirements](./xAPI-Data.md#dataconstraints) 
 	 	*	2.3.	[Statement Lifecycle](./xAPI-Data.md#lifecycle) 
-		 	*	2.3.1.	[Statement Immutability](./xAPI-Data.md#statement-immutablity-and-exceptions) 
+		 	*	2.3.1.	[Statement Immutability](./xAPI-Data.md#statement-immutability-and-exceptions) 
 		 	*	2.3.2.	[Voiding](./xAPI-Data.md#voided) 
    		*	2.4.	[Statement Properties](./xAPI-Data.md#statement-properties)  
 	        *	2.4.1.	[ID](./xAPI-Data.md#stmtid)  
@@ -73,12 +73,12 @@
 *	Part Three:	[Data Processing, Validation, and Security](./xAPI-Communication.md#partthree)  
 	*	1.0.	[Requests](./xAPI-Communication.md#requests)
 		*	1.1.	[HEAD Request Implementation](./xAPI-Communication.md#httphead)  
-	 	*	1.2.	[Headers](./xAPI-Communication.md#header-parameters) 
+	 	*	1.2.	[Headers](./xAPI-Communication.md#headers) 
 	 	*	1.3.	[Alternate Request Syntax](./xAPI-Communication.md#alt-request-syntax) 
 	 	*	1.4.	[Encoding](./xAPI-Communication.md#encoding) 
 	 	*	1.5.	[Content Types](./xAPI-Communication.md#content-types) 
 	        *	1.5.1.	[Application/JSON](./xAPI-Communication.md#applicationjson) 
-	        *	1.5.1.	[Multipart/Mixed](./xAPI-Communication.md#multipartmixed)
+	        *	1.5.2.	[Multipart/Mixed](./xAPI-Communication.md#multipartmixed)
 	*	2.0.	[Resources](./xAPI-Communication.md#datatransfer)   
 	 	*	2.1.	[Statement Resource](./xAPI-Communication.md#stmtres) 
 	 	*	2.2.	[Documents Resources](./xAPI-Communication.md#doctransfer) 
@@ -101,6 +101,7 @@
 		*	[Appendix B: Table of All Resources](./xAPI-Communication.md#Appendix3B)  
 		*	[Appendix C: Cross Domain Request Example](./xAPI-Communication.md#Appendix3C)  
 
+<a name="partthree" />
 # Part Three: Data Processing, Validation, and Security 
 
 This third part details the more technical side of the Experience API, dealing with how Statements are transferred between 
@@ -129,9 +130,8 @@ not the actual document.
 ###### <a name="1.1.s2"></a>Rationale
 
 Clients accessing the LRS might need to check if a particular Statement exists, or determine
-the modification date of documents such as State or Activity or Agent profile. Particularly
-for large documents, it is more efficient not to retrieve the entire document just to check its
-modification date.
+the modification date of documents such as those in State, Activity Profile, or Agent Profile Resources. Particularly
+for large documents, it is more efficient not to retrieve the entire document just to check its modification date.
 
 ###### <a name="1.1.s3"></a>LRS Requirements
 * <a name="1.1.s3.b1"></a>The LRS MUST respond to any HTTP HEAD request as it would have responded to an otherwise
@@ -139,7 +139,7 @@ identical HTTP GET request except:
     * <a name="1.1.s3.b1.b1"></a>The message-body MUST be omitted.
     * <a name="1.1.s3.b1.b2"></a>The Content-Length header MAY be omitted, in order to avoid wasting LRS resources.
 
-<a name="header-parameters"/> 
+<a name="headers"/> 
 
 ### <a name="1.2">1.2</a> Headers
 
@@ -229,7 +229,7 @@ with the same name.
 listed above as query string parameters. 
 
 __Attachments__: Note that due to issues relating to encoding, it is not possible to send 
-binary data attachments using this syntax. See [4.1.11. Attachments](#attachments) 
+binary data attachments using this syntax. See [Attachments](./xAPI-Data.md#attachments) 
 
 * <a name="1.3.s3.b15"></a>The LRS MUST support the syntax above.  
 
@@ -310,7 +310,7 @@ results when the "attachments" filter is `false`.
 ###### <a name="1.5.2.s3"></a>LRS Requirements
 
 * <a name="1.5.2.s3.b1"></a>An LRS MUST include Attachments in the Transmission Format described above
-when requested by the Client (see ["Statement Resource"](#stmtapi)).
+when requested by the Client (see [Statement Resource](#stmtres)).
 * <a name="1.5.2.s3.b2"></a>An LRS MUST NOT pull Statements from another LRS without requesting Attachments.
 * <a name="1.5.2.s3.b3"></a>An LRS MUST NOT push Statements into another LRS without including Attachment data
 received, if any, for those Attachments.
@@ -440,7 +440,7 @@ A full list of the endpoints is included in [Appendix B: Table of All Resources]
 
 ###### <a name="2.0.s1"></a>Requirements
 
-* <a name="2.0.s1.b1"></a>The LRS MUST support all of the resources described in [this section](#datatransfer). 
+* <a name="2.0.s1.b1"></a>The LRS MUST support all of the resources described in this section. 
 * <a name="2.0.s1.b2"></a>If the LRS implements OAuth 1.0, the LRS MUST also support all of the OAuth resources 
 described in [OAuth Authorization Scope](#oauthscope).
 * <a name="2.0.s1.b3"></a>The LRS MAY support additional resources not described in this specification. 
@@ -486,7 +486,7 @@ it MUST NOT modify the Statement or any other Object.
 
 * <a name="2.1.1.s2.b3"></a>If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
 verify the received Statement matches the existing one and SHOULD return `409 Conflict` if they
-do not match. See [Statement comparision requirements](statement-comparision-requirements).
+do not match. See [Statement comparison requirements](./xAPI-Data.md#statement-comparison-requirements).
 
 * <a name="2.1.1.s2.b4"></a>If the LRS receives a batch of Statements containing two or more Statements with the same id, 
 it SHOULD* reject the batch and return `400 Bad Request`.
@@ -526,7 +526,7 @@ with an id that it already has a Statement for. Whether it responds with `409 Co
 it MUST NOT modify the Statement or any other Object.
 * <a name="2.1.2.s2.b5"></a>If the LRS receives a Statement with an id it already has a Statement for, it SHOULD
 verify the received Statement matches the existing one and SHOULD return `409 Conflict` if they
-do not match. See [Statement comparision requirements](statement-comparision-requirements).
+do not match. See [Statement comparison requirements](./xAPI-Data.md#statement-comparison-requirements).
 * <a name="2.1.2.s2.b6"></a>If the LRS receives a batch of Statements containing two or more Statements with the same id, 
 it SHOULD* reject the batch and return `400 Bad Request`.
 
@@ -541,13 +541,13 @@ Example endpoint: `http://example.com/xAPI/statements`
 This method is called to fetch a single Statement or multiple Statements. If the statementId or voidedStatementId parameter 
 is specified a single Statement is returned.
 
-Otherwise returns: A [StatementResult](#retstmts) Object, a list of Statements in reverse chronological order based 
+Otherwise returns: A [StatementResult](./xAPI-Data.md#retrieval) Object, a list of Statements in reverse chronological order based 
 on "stored" time, subject to permissions and maximum list length. If additional results are available, an IRL to 
 retrieve them will be included in the StatementResult Object.
 
 **Content:** None.
 
-**Returns:** `200 OK`, Statement or [Statement Result](#retstmts) (See [Section 4.2](#retstmts) for details)
+**Returns:** `200 OK`, Statement or [Statement Result](./xAPI-Data.md#retrieval)
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th><th>Required</th></tr>
@@ -562,7 +562,7 @@ retrieve them will be included in the StatementResult Object.
 		<td>voidedStatementId</td>
 		<td>String</td>
 		<td> </td>
-		<td>Id of voided Statement to fetch. see <a href="#voidedStatements">Voided
+		<td>Id of voided Statement to fetch. see <a href="./xAPI-Data.md#voided">Voided
 		Statements</a></td>
 		<td>Optional</td>
 	</tr>
@@ -583,7 +583,7 @@ retrieve them will be included in the StatementResult Object.
 					Identifier as described above are considered a match
 				</li>
 			</ul>
-			<br><br>See <a href="#actor">agent/group</a> Object definition
+			<br><br>See <a href="./xAPI-Data.md#actor">agent/group</a> Object definition
 			for details.
 		</td>
 		<td>Optional</td>
@@ -679,7 +679,7 @@ retrieve them will be included in the StatementResult Object.
 			If <code>exact</code>, return Agent, Activity, Verb and Group Objects populated exactly as they 
 			were when the Statement was received. An LRS requesting Statements for the purpose 
 			of importing them would use a format of "exact" in order to maintain 
-			<a href="./xAPI-Data.md#statement-immutablity-and-exceptions">Statement Immutability</a>.  
+			<a href="./xAPI-Data.md#statement-immutability-and-exceptions">Statement Immutability</a>.  
 			<br/><br/>
 			If <code>canonical</code>, return Activity Objects and Verbs populated with the canonical
 			definition of the Activity Objects and Display of the Verbs as determined by the LRS, after
@@ -717,7 +717,7 @@ contain statementId or voidedStatementId parameters, and also contain any other 
 with the credentials used. 
 
 * <a name="2.1.3.s2.b4"></a>In the event that no Statements are found matching the query filter criteria, the LRS MUST still return 
-`200 OK` and a [StatementResult](#retstmts) Object. In this case, the "statements" property will contain an empty array.
+`200 OK` and a [StatementResult](./xAPI-Data.md#retrieval) Object. In this case, the "statements" property will contain an empty array.
 
 * <a name="2.1.3.s2.b5"></a>The LRS MUST include the header "X-Experience-API-Consistent-Through", in 
 [ISO 8601 combined date and time](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations) format, 
@@ -727,7 +727,7 @@ into account any temporary condition, such as excessive load, which might cause 
 for retrieval. It is expected that this will be a recent timestamp, even if there are no recently received Statements. 
 
 * <a name="2.1.3.s2.b6"></a>If the "attachment" property of a GET Statement is used and is set to `true`, the LRS MUST 
-use the multipart response format and include all Attachments as described in [4.1.11](#attachments).
+use the multipart response format and include all Attachments as described in [Part Two](./xAPI-Data.md#attachments).
 
 * <a name="2.1.3.s2.b7"></a>If the "attachment" property of a GET statement is used and is set to `false`, the LRS MUST NOT
 include Attachment raw data and MUST report `application/json`.
@@ -789,7 +789,7 @@ which language entry to include, rather than to the resource (list of Statements
 <a name="voidedStatements" />
 
 ##### <a name="2.1.4">2.1.4</a> Voided Statements
-[Section 4.3 Voided](#voided) describes the process by which Statements can be voided. This section
+[Part Two](./xAPI-Data.md#voided) describes the process by which Statements can be voided. This section
 describes how voided Statements are handled by the LRS when queried. 
 
 Clients can identify the presence and Statement id of any voided Statements by the target of the voiding Statement. 
@@ -827,7 +827,7 @@ in this specification do. The id is stored in the IRL, "updated" is HTTP header 
 	<tr id="2.2.s2.table1.row3"><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
 
-The three Document Resources provide [document](#miscdocument) storage.  The details of each resource are found in 
+The three Document Resources provide [document](./xAPI-Data.md#documents) storage.  The details of each resource are found in 
 the following sections, and the information in this section applies to all three resources.
 
 ###### <a name="2.2.s3"></a>Details
@@ -1150,7 +1150,7 @@ about the Agent it received in the request.
 	</tr>
 </table>
 
-See also: [Agent](#agent).
+See also: [Agent](./xAPI-Data.md#agent).
 
 ###### <a name="2.4.s6"></a>Requirements
 
@@ -1209,26 +1209,26 @@ a single defined document identified by "profileId". Otherwise, GET will return 
 
 Example endpoint: http://example.com/xAPI/agents/profile
 
-Stores, changes, fetches, or deletes the specified profile document in the context of the specified Agent.  
+Stores, changes, fetches, or deletes the specified Profile document in the context of the specified Agent.  
 
 **Content (PUT | POST):** The document to be stored or updated.  
 **Content (GET | DELETE):** None.  
 
 **Returns (PUT | POST | DELETE):** `204 No Content`  
-**Returns (GET):** `200 OK`, the profile document  
+**Returns (GET):** `200 OK`, the Profile document  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr id="2.6.s3.table1.row1">
 		<td>agent</td>
 		<td>Agent object (JSON)</td>
-		<td>The Agent associated with this profile.</td>
+		<td>The Agent associated with this Profile.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.6.s3.table1.row2">
 		<td>profileId</td>
 		<td>String</td>
-		<td>The profile id associated with this profile.</td>
+		<td>The profile id associated with this Profile.</td>
 		<td>Required</td>
 	</tr>
 </table>
@@ -1240,25 +1240,25 @@ against an Identified Group can use the Identified Group's identifier within an 
 
 Example endpoint: http://example.com/xAPI/agents/profile
 
-Fetches profile ids of all profile entries for an Agent. If "since" parameter is specified, this is limited to entries 
+Fetches Profile ids of all Profile entries for an Agent. If "since" parameter is specified, this is limited to entries 
 that have been stored or updated since the specified Timestamp (exclusive).  
 
 **Content:** None.
 
-**Returns:** `200 OK`, Array of profile id(s)  
+**Returns:** `200 OK`, Array of Profile id(s)  
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr id="2.6.s4.table1.row1">
 		<td>agent</td>
 		<td>Agent object (JSON)</td>
-		<td>The Agent associated with this profile.</td>
+		<td>The Agent associated with this Profile.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.6.s4.table1.row2">
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of profiles stored since the specified Timestamp 
+		<td>Only ids of Profiles stored since the specified Timestamp 
 			(exclusive) are returned.</td>
 		<td>Optional</td>
 	</tr>
@@ -1283,25 +1283,25 @@ Otherwise, GET will return the available ids.
 
 Example endpoint: http://example.com/xAPI/activities/profile
 
-Stores, changes, fetches, or deletes the specified profile document in the context of the specified Activity.  
+Stores, changes, fetches, or deletes the specified Profile document in the context of the specified Activity.  
 
 **Content (PUT | POST):** The document to be stored or updated.  
 **Content (GET | DELETE):** None.  
 
 **Returns (PUT | POST | DELETE)** `204 No Content`  
-**Returns (GET):** `200 OK`, the profile document  
+**Returns (GET):** `200 OK`, the Profile document  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr id="2.7.s3.table1.row1">
 		<td>activityId</td>
 		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with this profile.</td>
+		<td>The Activity id associated with this Profile.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.7.s3.table1.row2">
 		<td>profileId</td>
 		<td>String</td>
-		<td>The profile id associated with this profile.</td>
+		<td>The profile id associated with this Profile.</td>
 		<td>Required</td>
 	</tr>
 </table>
@@ -1310,25 +1310,25 @@ Stores, changes, fetches, or deletes the specified profile document in the conte
 
 Example endpoint: http://example.com/xAPI/activities/profile
 
-Fetches profile ids of all profile entries for an Activity. If "since" parameter is specified, this is limited to 
+Fetches Profile ids of all Profile entries for an Activity. If "since" parameter is specified, this is limited to 
 entries that have been stored or updated since the specified Timestamp (exclusive).  
 
 **Content:** None.
 
-**Returns:** `200 OK`, Array of profile id(s)  
+**Returns:** `200 OK`, Array of Profile id(s)  
 
 <table>
 	<tr id="2.7.s4.table1.row1"><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
 	<tr>
 		<td>activityId</td>
 		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with these profiles.</td>
+		<td>The Activity id associated with these Profiles.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.7.s4.table1.row2">
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of profiles stored since the specified Timestamp (exclusive) 
+		<td>Only ids of Profiles stored since the specified Timestamp (exclusive) 
 		are returned.</td>
 		<td>Optional</td>
 	</tr>
@@ -1367,7 +1367,7 @@ Example endpoint: http://example.com/xAPI/about
 	</tr>
 	<tr id="2.8.s4.table1.row2">
 		<td>extensions</td>
-		<td><a href="#miscext">Object</a></td>
+		<td><a href="./xAPI-Data.md#miscext">Object</a></td>
 		<td>A map of other properties as needed</td>
 		<td>Optional</td>
 	</tr>
@@ -1498,12 +1498,12 @@ values in section [4.2](#oauthscope).
 Permissions can also affect the response returned by an LRS to GET requests. For example, 
 a set of credentials might have permission only to view Statements about a particular Actor, in which case
 the LRS will filter any returned Statements to exclude any Statements not relating to that Actor. See 
-[GET Statements](#stmtapiget) for details. 
+[GET Statements](#stmtresget) for details. 
 
 In cases explicitly allowed by this specification, the credentials used can also affect the LRS behavior in 
 handling a request, for example the LRS will normally overwrite the "authority" property of a Statement, but can 
 sometimes accept a submitted authority if it has a strong trust relationship associated with the credentials 
-used to submit the Statement. See [Authority](#authority) for details. 
+used to submit the Statement. See [Authority](./xAPI-Data.md#authority) for details. 
 
 Permissions set by an LRS could cause a technically conformant LRS to fail conformance testing. 
 This could occur where requests made by the testing software are rejected on the basis of permissions. For this reason
@@ -1540,7 +1540,7 @@ or Activity Profile Resource request targeting a specific document, or the metho
 
 * <a name="3.2.s2.b5"></a>`409 Conflict` - Indicates an error condition due to a conflict with the 
 current state of a resource, in the case of State Resource, Agent Profile Resource or Activity Profile Resource
-requests, or in the Statement Resource PUT or POST calls. See Section [6.3 Concurrency](#concurrency) for more details.
+requests, or in the Statement Resource PUT or POST calls. See Section [3.1 Concurrency](#concurrency) for more details.
 
 * <a name="3.2.s2.b6"></a>`412 Precondition Failed` - Indicates an error condition due to a failure of 
 a precondition posted with the request, in the case of State or Agent Profile or Activity Profile 
@@ -1624,7 +1624,7 @@ Versioning will allow Clients and LRSs to remain interoperable as the specificat
 Starting with version 1.0.0, xAPI will be versioned according to [Semantic Versioning 1.0.0](http://semver.org/spec/v1.0.0.html).  
 Every request from a Client and every response from the LRS includes an HTTP header with the name `X-Experience-API-Version` 
 and the version as the value. For example, ``X-Experience-API-Version : 1.0.3`` for version 1.0.3; 
-see the [Revision History](#Appendix1A) for the current version of this specification. 
+see the [Revision History](./xAPI-About.md#Appendix1A) for the current version of this specification. 
 
 __Note:__ For patch versions of the specification later than 1.0.0, the "X-Experience-API-Version" header will not match the 
 [statement version property](./xAPI-Data.md#version) which is always `1.0.0` for all 1.0.x versions of the spec. The
@@ -1657,7 +1657,7 @@ description of the problem.
 * <a name="3.3.s5.b1"></a>Statements of newer versions MUST NOT be converted into a prior version format, e.g., in order 
 to handle version differences.
 * <a name="3.3.s5.b2"></a>Statements of prior versions MAY be converted into a newer version only by following the methods 
-described in [Appendix A: Converting Statements to 1.0.0](Appendix3A).
+described in [Appendix A: Converting Statements to 1.0.0](#Appendix3A).
 
 <a name="authentication"/>
 
@@ -1850,7 +1850,7 @@ The following table lists xAPI scope values:
 	</tr>
 	<tr id="4.2.s2.table1.row5">
 		<td>profile</td>
-		<td>read/write profile data, limited to Activities and Actors 
+		<td>read/write Profile data, limited to Activities and Actors 
 			associated with the current token to the extent it is 
 			possible to determine this relationship.
 		</td>
