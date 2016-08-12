@@ -1860,7 +1860,10 @@ The following table lists xAPI scope values:
 </table>
 
 ###### <a name="4.2.s3"></a>OAuth Extended Parameters
-Note that the parameters "consumer_name" and "scope" are not part of OAuth 1.0, and therefore if used MUST be passed 
+
+#####<a name="4.2.s3.b1"></a><a name="4.2.s6"></a>Requirements
+
+* <a name="4.2.s3.b1"></a>The parameters "consumer_name" and "scope" are not part of OAuth 1.0, and therefore if used MUST be passed 
 as query string or form parameters, not in the OAuth header.  
 
 ###### <a name="4.2.s4"></a>OAuth Resources
