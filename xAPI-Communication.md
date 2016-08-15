@@ -1859,48 +1859,46 @@ The following table lists xAPI scope values:
 	<tr id="4.2.s2.table1.row7"><td>all</td><td>unrestricted access</td></tr>
 </table>
 
-###### <a name="4.2.s3"></a>OAuth Extended Parameters
-Note that the parameters "consumer_name" and "scope" are not part of OAuth 1.0, and therefore if used MUST be passed 
-as query string or form parameters, not in the OAuth header.  
-
-###### <a name="4.2.s4"></a>OAuth Resources
+###### <a name="4.2.s3"></a>OAuth Resources
 <table>
 	<tr>
 		<th>Name</th>
 		<th>Endpoint</th>
 		<th>Example</th>
 	</tr>
-	<tr id="4.2.s4.table1.row1">
+	<tr id="4.2.s3.table1.row1">
 		<td>Temporary Credential Request</td>
 		<td>OAuth/initiate</td>
 		<td>http://example.com/xAPI/OAuth/initiate</td>
 	</tr>
-	<tr id="4.2.s4.table1.row2">
+	<tr id="4.2.s3.table1.row2">
 		<td>Resource Owner Authorization</td>
 		<td>OAuth/authorize</td>
 		<td>http://example.com/xAPI/OAuth/authorize</td>
 	</tr>
-	<tr id="4.2.s4.table1.row3">
+	<tr id="4.2.s3.table1.row3">
 		<td>Token Request</td>
 		<td>OAuth/token</td>
 		<td>http://example.com/xAPI/OAuth/token </td>
 	</tr>
 </table>
 
-##### <a name="4.2.s5"></a>Example
+##### <a name="4.2.s4"></a>Example
 The list of scopes determines the set of permissions that is being requested. For example, an instructor might grant 
 "statements/read" to an application (Client), but the LRS would still limit that tool to Statements that the instructor could 
 read if querying the LRS with their credentials directly (such as Statements relating to their students).
 
-##### <a name="4.2.s6"></a>Requirements
+##### <a name="4.2.s5"></a>Requirements
 
-* <a name="4.2.s6.b1"></a>The LRS MUST accept a scope parameter as defined in [OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-3.3).
-* <a name="4.2.s6.b2"></a>The LRS MUST assume a requested scope of "statements/write" and "statements/read/mine" if no 
+* <a name="4.2.s5.b1"></a>The LRS MUST accept a scope parameter as defined in [OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-3.3).
+* <a name="4.2.s5.b2"></a>The LRS MUST assume a requested scope of "statements/write" and "statements/read/mine" if no 
 scope is specified.
-* <a name="4.2.s6.b3"></a>The LRS MUST support the scope of "all" as a minimum.
-* <a name="4.2.s6.b4"></a>The LRS MAY support other scopes.
-* <a name="4.2.s6.b5"></a>The Client SHOULD request only the minimal needed scopes, to increase the chances that the 
+* <a name="4.2.s5.b3"></a>The LRS MUST support the scope of "all" as a minimum.
+* <a name="4.2.s5.b4"></a>The LRS MAY support other scopes.
+* <a name="4.2.s5.b5"></a>The Client SHOULD request only the minimal needed scopes, to increase the chances that the 
 request will be granted.
+* <a name="4.2.s5.b6"></a>The parameters "consumer_name" and "scope" are not part of OAuth 1.0, and therefore if used MUST be passed 
+as query string or form parameters, not in the OAuth header.  
 
 <a name="security"/>
 
