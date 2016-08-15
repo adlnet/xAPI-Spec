@@ -1861,10 +1861,6 @@ The following table lists xAPI scope values:
 
 ###### <a name="4.2.s3"></a>OAuth Extended Parameters
 
-#####<a name="4.2.s3.b1"></a><a name="4.2.s6"></a>Requirements
-
-* <a name="4.2.s3.b1"></a>The parameters "consumer_name" and "scope" are not part of OAuth 1.0, and therefore if used MUST be passed 
-as query string or form parameters, not in the OAuth header.  
 
 ###### <a name="4.2.s4"></a>OAuth Resources
 <table>
@@ -1904,6 +1900,8 @@ scope is specified.
 * <a name="4.2.s6.b4"></a>The LRS MAY support other scopes.
 * <a name="4.2.s6.b5"></a>The Client SHOULD request only the minimal needed scopes, to increase the chances that the 
 request will be granted.
+* <a name="4.2.s6.b6"></a>The parameters "consumer_name" and "scope" are not part of OAuth 1.0, and therefore if used MUST be passed 
+as query string or form parameters, not in the OAuth header.  
 
 <a name="security"/>
 
