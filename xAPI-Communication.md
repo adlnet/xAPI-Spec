@@ -1205,7 +1205,7 @@ which are related to an Agent.
 The semantics of the request are driven by the "profileId" parameter. If it is included, the GET method will act upon 
 a single defined document identified by "profileId". Otherwise, GET will return the available ids.  
 
-###### <a name="2.6.s3"></a>Single Agent or Profile (PUT | POST | GET | DELETE)
+###### <a name="2.6.s3"></a>Single Agent or Profile Document (PUT | POST | GET | DELETE)
 
 Example endpoint: http://example.com/xAPI/agents/profile
 
@@ -1222,13 +1222,13 @@ Stores, changes, fetches, or deletes the specified Profile document in the conte
 	<tr id="2.6.s3.table1.row1">
 		<td>agent</td>
 		<td>Agent object (JSON)</td>
-		<td>The Agent associated with this Profile.</td>
+		<td>The Agent associated with this Profile document.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.6.s3.table1.row2">
 		<td>profileId</td>
 		<td>String</td>
-		<td>The profile id associated with this Profile.</td>
+		<td>The profile id associated with this Profile document.</td>
 		<td>Required</td>
 	</tr>
 </table>
@@ -1240,7 +1240,7 @@ against an Identified Group can use the Identified Group's identifier within an 
 
 Example endpoint: http://example.com/xAPI/agents/profile
 
-Fetches Profile ids of all Profile entries for an Agent. If "since" parameter is specified, this is limited to entries 
+Fetches Profile ids of all Profile documents for an Agent. If "since" parameter is specified, this is limited to entries 
 that have been stored or updated since the specified Timestamp (exclusive).  
 
 **Content:** None.
@@ -1252,7 +1252,7 @@ that have been stored or updated since the specified Timestamp (exclusive).
 	<tr id="2.6.s4.table1.row1">
 		<td>agent</td>
 		<td>Agent object (JSON)</td>
-		<td>The Agent associated with this Profile.</td>
+		<td>The Agent associated with this Profile document.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.6.s4.table1.row2">
@@ -1295,13 +1295,13 @@ Stores, changes, fetches, or deletes the specified Profile document in the conte
 	<tr id="2.7.s3.table1.row1">
 		<td>activityId</td>
 		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with this Profile.</td>
+		<td>The Activity id associated with this Profile document.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.7.s3.table1.row2">
 		<td>profileId</td>
 		<td>String</td>
-		<td>The profile id associated with this Profile.</td>
+		<td>The profile id associated with this Profile document.</td>
 		<td>Required</td>
 	</tr>
 </table>
@@ -1310,7 +1310,7 @@ Stores, changes, fetches, or deletes the specified Profile document in the conte
 
 Example endpoint: http://example.com/xAPI/activities/profile
 
-Fetches Profile ids of all Profile entries for an Activity. If "since" parameter is specified, this is limited to 
+Fetches Profile ids of all Profile documents for an Activity. If "since" parameter is specified, this is limited to 
 entries that have been stored or updated since the specified Timestamp (exclusive).  
 
 **Content:** None.
@@ -1322,13 +1322,13 @@ entries that have been stored or updated since the specified Timestamp (exclusiv
 	<tr>
 		<td>activityId</td>
 		<td>Activity id (IRI)</td>
-		<td>The Activity id associated with these Profiles.</td>
+		<td>The Activity id associated with these Profile documents.</td>
 		<td>Required</td>
 	</tr>
 	<tr id="2.7.s4.table1.row2">
 		<td>since</td>
 		<td>Timestamp</td>
-		<td>Only ids of Profiles stored since the specified Timestamp (exclusive) 
+		<td>Only ids of Profile documents stored since the specified Timestamp (exclusive) 
 		are returned.</td>
 		<td>Optional</td>
 	</tr>
@@ -1535,7 +1535,7 @@ credentials. Note this is different than refusing the credentials given. In this
 have been validated, but the authenticated Client is not allowed to perform the given action.
 
 * <a name="3.2.s2.b4"></a>`404 Not Found` - Indicates the requested resource was not found. May be 
-returned by any method that returns a uniquely identified resource, for instance, any State or Agent Profile 
+returned by any method that returns a uniquely identified resource, for instance, any State, Agent Profile, 
 or Activity Profile Resource request targeting a specific document, or the method to retrieve a single Statement.
 
 * <a name="3.2.s2.b5"></a>`409 Conflict` - Indicates an error condition due to a conflict with the 
@@ -1850,7 +1850,7 @@ The following table lists xAPI scope values:
 	</tr>
 	<tr id="4.2.s2.table1.row5">
 		<td>profile</td>
-		<td>read/write Profile data, limited to Activities and Actors 
+		<td>read/write Profile document data, limited to Activities and Actors 
 			associated with the current token to the extent it is 
 			possible to determine this relationship.
 		</td>

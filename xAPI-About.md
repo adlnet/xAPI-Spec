@@ -239,17 +239,18 @@ All required properties are required to contain values.
 * [Authentication](#def-authentication)
 * [Authorization](#def-authorization)
 * [Community of Practice](#def-community-of-practice)
+* [Document Profile Resource](#def-document-profile)
 * [Endpoint](#def-endpoint)
 * [Experience API (xAPI)](#def-experience-api)
 * [Immutable](#def-immutable)
 * [Internationalized Resource Identifier (IRI)](#def-iri)
 * [Internationalized Resource Locator (IRL)](#def-irl)
 * [Inverse Functional Identifier](#def-inverse-functional-identifier)
-* [Learning Experience] (#def-learning-experience)
+* [Learning Experience](#def-learning-experience)
 * [Learning Management System (LMS)](#def-learning-management-system)
 * [Learning Record](#def-learning-record)
-* [Learning Record Consumer](#def-learning-record-consumer)
-* [Learning Record Provider](#def-learning-record-provider)
+* [Learning Record Consumer (LRC)](#def-learning-record-consumer)
+* [Learning Record Provider (LRP)](#def-learning-record-provider)
 * [Learning Record Store (LRS)](#def-learning-record-store)
 * [Metadata Consumer](#def-metadata-consumer)
 * [Metadata Provider](#def-metadata-provider)
@@ -311,6 +312,11 @@ can create domain-specific vocabularies, profiles, and recipes. These practices 
 and curating the various vocabulary terms, synonyms, and other related metadata that might be preferred within a CoP. They can 
 also reuse existing vocabularies, profiles, and recipes already published by other CoPs or participants of the xAPI community.
 
+<a name="def-document-profile" ></a>
+
+__Document Profile Resource__: A construct where information about the learner or activity is kept, typically in name/document pairs 
+that have meaning to an instructional system component. Not to be confused with [Profile](#def-profile).
+
 <a name="def-endpoint" ></a>
 
 __Endpoint__: An entry point in a service-oriented-architecture.  xAPI mirrors this approach with resources 
@@ -365,12 +371,12 @@ takes on many forms, including Statements, documents, and their parts.  This def
 
 <a name="def-learning-record-consumer" ></a>
 
-__Learning Record Consumer__: An xAPI Client that accesses data from Learning Record Store(s) with the intent of processing 
+__Learning Record Consumer (LRC)__: An xAPI Client that accesses data from Learning Record Store(s) with the intent of processing 
 the data, including interpretation, analysis, translation, dissemination, and aggregation.
 
 <a name="def-learning-record-provider" ></a>
 
-__Learning Record Provider__: An xAPI Client that sends data to Learning Record Store(s).  Often, the Learning Record 
+__Learning Record Provider (LRP)__: An xAPI Client that sends data to Learning Record Store(s).  Often, the Learning Record 
 Provider will create Learning Records while monitoring a learner as a part of a Learning Experience.
 
 <a name="def-learning-record-store" ></a>
@@ -398,7 +404,7 @@ having a "home email" and a "work email".  Both are the same person, but have di
 __Profile__: A specific set of rules and documentation for implementing xAPI in a particular context. Profiles generally provide a 
 particular vocabulary of terms, some created specifically for the profile, and some are referenced from other vocabularies. 
 Sometimes a profile might provide multiple vocabularies for different situations, and sometimes someone might curate a vocabulary 
-from multiple sources without creating a profile.
+from multiple sources without creating a profile.  Not to be confused with [Document Profile Resource](#def-document-profile).
 
 <a name="def-registration" ></a>
 
