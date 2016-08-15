@@ -239,13 +239,14 @@ All required properties are required to contain values.
 * [Authentication](#def-authentication)
 * [Authorization](#def-authorization)
 * [Community of Practice](#def-community-of-practice)
+* [Document Profile Resource](#def-document-profile)
 * [Endpoint](#def-endpoint)
 * [Experience API (xAPI)](#def-experience-api)
 * [Immutable](#def-immutable)
 * [Internationalized Resource Identifier (IRI)](#def-iri)
 * [Internationalized Resource Locator (IRL)](#def-irl)
 * [Inverse Functional Identifier](#def-inverse-functional-identifier)
-* [Learning Experience] (#def-learning-experience)
+* [Learning Experience](#def-learning-experience)
 * [Learning Management System (LMS)](#def-learning-management-system)
 * [Learning Record](#def-learning-record)
 * [Learning Record Consumer](#def-learning-record-consumer)
@@ -310,6 +311,11 @@ modality. CoPs are focused on implementing xAPI within a specific knowledge doma
 can create domain-specific vocabularies, profiles, and recipes. These practices usually involve work around defining use cases 
 and curating the various vocabulary terms, synonyms, and other related metadata that might be preferred within a CoP. They can 
 also reuse existing vocabularies, profiles, and recipes already published by other CoPs or participants of the xAPI community.
+
+<a name="def-document-profile" ></a>
+
+__Document Profile Resource__: A construct where information about the learner or activity is kept, typically in name/document pairs 
+that have meaning to an instructional system component. Not to be confused with [Profile](#def-profile).
 
 <a name="def-endpoint" ></a>
 
@@ -398,7 +404,7 @@ having a "home email" and a "work email".  Both are the same person, but have di
 __Profile__: A specific set of rules and documentation for implementing xAPI in a particular context. Profiles generally provide a 
 particular vocabulary of terms, some created specifically for the profile, and some are referenced from other vocabularies. 
 Sometimes a profile might provide multiple vocabularies for different situations, and sometimes someone might curate a vocabulary 
-from multiple sources without creating a profile.
+from multiple sources without creating a profile.  Not to be confused with [Document Profile Resource](#def-document-profile).
 
 <a name="def-registration" ></a>
 
