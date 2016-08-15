@@ -249,8 +249,8 @@ All required properties are required to contain values.
 * [Learning Experience](#def-learning-experience)
 * [Learning Management System (LMS)](#def-learning-management-system)
 * [Learning Record](#def-learning-record)
-* [Learning Record Consumer](#def-learning-record-consumer)
-* [Learning Record Provider](#def-learning-record-provider)
+* [Learning Record Consumer (LRC)](#def-learning-record-consumer)
+* [Learning Record Provider (LRP)](#def-learning-record-provider)
 * [Learning Record Store (LRS)](#def-learning-record-store)
 * [Metadata Consumer](#def-metadata-consumer)
 * [Metadata Provider](#def-metadata-provider)
@@ -371,12 +371,12 @@ takes on many forms, including Statements, documents, and their parts.  This def
 
 <a name="def-learning-record-consumer" ></a>
 
-__Learning Record Consumer__: An xAPI Client that accesses data from Learning Record Store(s) with the intent of processing 
+__Learning Record Consumer (LRC)__: An xAPI Client that accesses data from Learning Record Store(s) with the intent of processing 
 the data, including interpretation, analysis, translation, dissemination, and aggregation.
 
 <a name="def-learning-record-provider" ></a>
 
-__Learning Record Provider__: An xAPI Client that sends data to Learning Record Store(s).  Often, the Learning Record 
+__Learning Record Provider (LRP)__: An xAPI Client that sends data to Learning Record Store(s).  Often, the Learning Record 
 Provider will create Learning Records while monitoring a learner as a part of a Learning Experience.
 
 <a name="def-learning-record-store" ></a>
