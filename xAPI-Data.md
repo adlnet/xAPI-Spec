@@ -33,7 +33,7 @@
 	*	[Appendices](./xAPI-About.md#append1)  
 		*	[Appendix A: Revision History](./xAPI-About.md#Appendix1A)  
 		*	[Appendix B: cmi5 Example](./xAPI-About.md#Appendix1B)  
-*	Part Two:	[Experience API (xAPI) Data](./xAPI-Data.md#parttwo)  
+*	Part Two:	[Experience API Data](./xAPI-Data.md#parttwo)  
 	*	1.0.	[Documents](./xAPI-Data.md#documents) 
 	*	2.0.	[Statements](./xAPI-Data.md#statements)  
 		*	2.1.	[Purpose](./xAPI-Data.md#statement-purpose)  
@@ -103,7 +103,7 @@
 
 
 <a name="parttwo" />
-#Part Two: Experience API (xAPI) Data
+#Part Two: Experience API Data
 
 <a name="documents" />
 ## <a name="1.0">1.0</a> Documents
