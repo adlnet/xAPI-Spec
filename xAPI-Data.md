@@ -167,8 +167,8 @@ Statements would mean that the Statement would not be interoperable with all LRS
 
 * <a name="2.2.s4.b1"></a>The LRS MUST reject Statements
     * <a name="2.2.s4.b1.b1"></a>with any null values (except inside extensions).
-    * <a name="2.2.s4.b1.b2"></a><a name="2.2.s4.b1.b3"></a>where the wrong data type is used e.g. with strings 
-    where numbers are required, even if those strings contain numbers or with strings where booleans are required, 
+    * <a name="2.2.s4.b1.b2"></a><a name="2.2.s4.b1.b3"></a>where the wrong data type is used for example, with strings 
+    where numbers are required, even if those strings contain numbers, or with strings where booleans are required, 
     even if those strings contain booleans.
     * <a name="2.2.s4.b1.b4"></a>with any non-format-following key or value, including the empty string, where a
       string with a particular format (such as mailto IRI, UUID, or IRI) is required.
