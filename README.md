@@ -6,7 +6,7 @@ about learner activity and experiences between technologies. The specification i
 divided into three documents:
 
 *   Part One:   [About the Experience API](./xAPI-About.md#partone)
-*   Part Two:   [Experience API (xAPI) Data](./xAPI-Data.md#parttwo)
+*   Part Two:   [Experience API Data](./xAPI-Data.md#parttwo)
 *   Part Three: [Data Processing, Validation, and Security](./xAPI-Communication.md#partthree)
 
 ## Specification versions
