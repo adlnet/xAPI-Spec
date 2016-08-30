@@ -139,8 +139,8 @@ conformant to this specification.
 * <a name="2.2.s2.b2"></a>A Statement MUST use each property no more than one time.
 * <a name="2.2.s2.b3"></a>A Statement MUST use "actor", "verb", and "object".
 * <a name="2.2.s2.b4"></a>A Statement MAY use its properties in any order.
-* <a name="2.2.s2.b5"></a>The LRS MUST NOT return a different serialisation of any properties except those 
-[listed as exceptions above](#statement-immutability-and-exceptions).
+* <a name="2.2.s2.b5"></a>The LRS MUST NOT return a different serialization of any properties except those 
+[listed as exceptions](#statement-immutability-and-exceptions).
 
 ###### <a name="2.2.s3"></a>Learning Record Provider Requirements
 
