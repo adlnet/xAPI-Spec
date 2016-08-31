@@ -247,7 +247,7 @@ compared to see if they match. In these scenarios, the following rules apply:
 
 * <a name="2.3.1.s9.b1"></a>Differences which could have been caused by 
 [exceptions to Statement immutability](#statement-immutability-and-exceptions) MUST be ignored.
-* <a name="2.3.1.s9.b2"></a>Differences relating to a different serialisation of any properties not
+* <a name="2.3.1.s9.b2"></a>Differences relating to a different serialization of any properties not
 [listed as exceptions](#statement-immutability-and-exceptions) MUST not be ignored. 
 
 <a name="voided"/>
