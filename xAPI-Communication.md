@@ -1910,18 +1910,12 @@ to follow industry best practices, e.g., [The HTTPS-Only Standard](https://https
 
 It is possible that security concerns may arise in the implementation of this specification, and implementers might choose to break a 
 conformance requirement for the sake of security. In these cases, implementers are encouraged to consider both the security and 
-interoperability implications of their implementation decisions. For example, in some implementations of an LRS, a malicious Learning 
-Record Provider might be able to use the Document APIs to store HTML documents in order to get around cross site scripting protections. 
-Limiting the storage of HTML documents in the Document APIs might be a reasonable response to this threat; disabling the Document APIs 
-entirely is not. 
+interoperability implications of their implementation decisions. In any case, the LRS will still need to be configurable such that it
+is able to pass conformance tests. 
 
 While other security concerns are beyond the scope of this specification, the xAPI Community remains dedicated to determining 
 security best practices. This effort has begun at [xAPIsec](https://github.com/xapisec/xapisec). 
 Participation is highly encouraged.
-
-##### <a name="5.0.s1"></a>Requirements
-* <a name="5.0.s1.b1"></a> LRSs and clients MAY make break conformance requirements with narrowly focused interventions for reasons
-of security. Where possible, approaches that satisfy security concerns without breaking conformance requirements are preferred. 
 
 <a name="append3"/>
 ## <a name="5.0.s1"></a>Appendices
