@@ -271,7 +271,7 @@ cannot itself be voided.
 the "objectType" property set to `StatementRef`.
 * <a name="2.3.2.s2.b2"></a>When issuing a Statement that voids another, the Object of that voiding Statement MUST specify 
 the id of the Statement-to-be-voided by its "id" property.
-* <a name="2.3.2.s2.b3"></a>an LRS MUST consider a Statement it contains voided if and only if the Statement is not itself 
+* <a name="2.3.2.s2.b3"></a>An LRS MUST consider a Statement it contains voided if and only if the Statement is not itself 
 a voiding Statement and the LRS also contains a voiding Statement referring to the first Statement.
 * <a name="2.3.2.s2.b4"></a>Upon receiving a Statement that voids another, the LRS SHOULD reject the entire request which 
 includes the voiding Statement with `403 Forbidden` if the request is not from a source authorized to void Statements.
@@ -503,7 +503,7 @@ Group that is guaranteed to only ever refer to that Agent or Identified Group.
 ###### <a name="2.4.2.3.s2"></a>Rationale
 Agents and Groups need to be uniquely identifiable in order for data to be stored and retrieved against them. 
 In an xAPI Statement this is accomplished using Inverse Functional Identifiers which are loosely inspired 
-on the widely accepted FOAF principle (see: [Friend Of A Friend](http://xmlns.com/foaf/spec/#term_Agent)).
+by the widely accepted FOAF principle (see: [Friend Of A Friend](http://xmlns.com/foaf/spec/#term_Agent)).
 
 ###### <a name="2.4.2.3.s3"></a>Details
 
@@ -520,7 +520,7 @@ but no others, SHOULD be used for this property and mbox_sha1sum.</td></tr>
 </table>
 
 ###### <a name="2.4.2.3.s4"></a>Client Requirements
-* <a name="2.4.2.3.s4.b1"></a>The domain portions of email addresses are case insensitive. Clients SHOULD uses lowercase 
+* <a name="2.4.2.3.s4.b1"></a>The domain portions of email addresses are case insensitive. Clients SHOULD use lowercase 
 for the domain portion of the email address when calculating the SHA1 hash for the "mbox_sha1sum" property. 
 
 <a name="agentaccount"/>
@@ -612,10 +612,10 @@ The table below lists all properties of the Verb Object.
 
 * <a name="2.4.3.s4.b1"></a>A system reading a Statement MUST use the Verb IRI to infer meaning.
 * <a name="2.4.3.s4.b2"></a>The IRI contained in an id SHOULD contain a human-readable portion which SHOULD provide meaning enough 
-for a person reviewing the raw statement to disambiguate the Verb from other similar(in syntax) Verbs.
+for a person reviewing the raw statement to disambiguate the Verb from other similar (in syntax) Verbs.
 * <a name="2.4.3.s4.b3"></a>A single Verb IRI MUST NOT be used to refer to multiple meanings.
 
-###### <a name="2.4.3.s5"></a>Verb Display AP Requirements
+###### <a name="2.4.3.s5"></a>Verb Display Learning Record Provider Requirements
 
 * <a name="2.4.3.s5.b1"></a>The "display" property SHOULD be used by all Statements.
 * <a name="2.4.3.s5.b2"></a>The "display" property MUST be used to illustrate the meaning which is already determined 
@@ -890,7 +890,7 @@ Edition Run-Time Environment. See [Appendix C](#Appendix2C) for examples definit
 		<td>fill-in</td>
 		<td>An interaction which requires the learner to supply a short response in the form of one or more 
 			strings of characters. Typically, the correct response consists of part of a word, one word or a few words. 
-			"Short" means that the correct responses pattern and learner response strings will normally be 250 characters or less;
+			"Short" means that the correct responses pattern and learner response strings will normally be 250 characters or less.
 		</td>
 	</tr>
 	<tr id="2.4.4.1.s9.table1.row4">
@@ -989,7 +989,7 @@ Run-Time Environment. See [Appendix C](#Appendix2C) for examples of each format.
 The Correct Responses Pattern contains an array of response patterns. A learner's response will be considered correct if it 
 matches **any** of the response patterns in that array. Where a response pattern is a delimited list, the learner's response 
 is only considered correct if **all** of the items in that list match the learner's response. For example, consider the 
-Correct Response Pattern with a value of:
+Correct Responses Pattern with a value of:
 
 ```
 "correctResponsesPattern": [
@@ -1009,8 +1009,8 @@ nor can they rely on the Correct Responses Pattern always being exhaustive. The 
 questions as correct where the response does not match the correct responses pattern, though this is discouraged except in 
 exceptional circumstances.
 
-Where the Correct Response Pattern contains an empty array, the meaning of this is that there is no correct
-answer; all answers are incorrect. Where any answer is correct (e.g. in a survey), the Correct Response Pattern property
+Where the Correct Responses Pattern contains an empty array, the meaning of this is that there is no correct
+answer; all answers are incorrect. Where any answer is correct (e.g. in a survey), the Correct Responses Pattern property
 is omitted. 
 
 ###### <a name="2.4.4.1.s12"></a>Characterstring parameters
@@ -1122,7 +1122,7 @@ See [Appendix C](#Appendix2C) for examples of Activity Definitions for each of t
 
 ###### <a name="2.4.4.2.s1"></a>Requirements
 
-* <a name="2.4.4.2.s1.b1"></a>Statements that specify an Agent or Group as an Object MUST specify an 'objectType' property. 
+* <a name="2.4.4.2.s1.b1"></a>Statements that specify an Agent or Group as an Object MUST specify an "objectType" property. 
 
 See [Actor](#actor) for details regarding Agents.  
 
@@ -1353,7 +1353,7 @@ are outside the scope of this specification.
 
 * <a name="2.4.5.1.s3.b1"></a>The Score Object SHOULD include "scaled" if a logical percent based score is known.
 * <a name="2.4.5.1.s3.b2"></a>The Score Object SHOULD NOT be used for scores relating to progress or completion. Consider 
-using an extension (preferrably from an established Community of Practice) instead.
+using an extension (preferably from an established Community of Practice) instead.
 
 <a name="context"/>
 
@@ -1859,7 +1859,7 @@ JSON Serialization is strongly discouraged, is unlikely to be interoperble with 
 in a future version of this specification. 
 * <a name="2.6.s4.b3"></a>The JWS signature MUST have a payload of a valid JSON serialization of the complete Statement 
 before the signature was added.
-* <a name="2.6.s4.b4"></a>The JWS signature MUST use an algorithm of "RS256","RS384", or "RS512".
+* <a name="2.6.s4.b4"></a>The JWS signature MUST use an algorithm of "RS256", "RS384", or "RS512".
 * <a name="2.6.s4.b5"></a>The JWS signature SHOULD have been created based on the private key associated with an
 X.509 certificate.
 * <a name="2.6.s4.b6"></a>If X.509 was used to sign, the JWS header SHOULD include the "x5c" property containing
