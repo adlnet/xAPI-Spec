@@ -1639,6 +1639,8 @@ of previously intended behavior.
 * <a name="3.3.s3.b3"></a>The LRS MUST accept requests with a version header of `1.0` as if the version header was `1.0.0`.
 * <a name="3.3.s3.b4"></a>The LRS MUST reject requests with version header prior to version 1.0.0 unless such requests are 
 routed to a fully conformant implementation of the prior version specified in the header.
+* <a name="3.3.s3.b4.1"></a>The LRS MUST reject requests without a version header unless such requests are 
+routed to a fully conformant 0.9 implementation.
 * <a name="3.3.s3.b5"></a>The LRS MUST accept requests with a version header starting with `1.0.` if the request is otherwise valid. 
 * <a name="3.3.s3.b6"></a>The LRS MUST reject requests with a version header of `1.1.0` or greater.
 * <a name="3.3.s3.b7"></a>The LRS MUST make these rejects by responding with a `400 Bad Request` error including a short 
