@@ -455,7 +455,6 @@ This section explains and shows graphically how different pieces of xAPI can fit
 
 Figure 1 shows the tracking of learning experiences. A learner has a learning experience. This experience could take place in an 
 online course, it could be on the job or it could be part of recreation. It really could be anything. This experience is tracked, 
-
 on the learner’s behalf, by a trusted Learning Record Provider (LRP). The Learning Record Provider can also be responsible for the 
 trusted relationship between the experience and the learner. This might even include launching content for the learner and 
 managing digital rights associated with the content.  
