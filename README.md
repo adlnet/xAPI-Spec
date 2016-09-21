@@ -46,4 +46,4 @@ you do not already have one in order to contribute to the specification.
 The xAPI Spec Working Group meets
 the first, second, and third Wednesdays of each month on GoToWebinar. You can register at [https://attendee.gotowebinar.com/register/7730918418468686596](https://attendee.gotowebinar.com/register/7730918418468686596)
 
-Please refer to the [Contribution guidelines](CONTRIBUTING.md) for further direction and a list of contributors. 
+Please refer to the [Contribution guidelines](CONTRIBUTING.md) for further direction and a list of contributors.
