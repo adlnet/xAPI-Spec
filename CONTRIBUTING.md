@@ -54,6 +54,7 @@
 | David Ells         | Rustici Software |
 | David N. Johnson   | Clear Learning Systems |
 | David Pate         | Riptide Software |
+| Dennis Hall        | Learning Templates
 | Doug Hagy          | Twin Lakes Consulting Corporation |
 | Eric Johnson       | Planning and Learning Technologies, Inc. |
 | Fiona Leteney      | Feenix e-learning |
