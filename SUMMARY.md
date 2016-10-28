@@ -1,6 +1,6 @@
 # Summary
 
-* Experience API(xAPI) Specification
+* [Experience API(xAPI) Specification](README.md)
 * Contributors
 * [Part One: About the xAPI](xAPI-About.md#partone)
 * [Part Two: xAPI Data](xAPI-Data.md#parttwo)
