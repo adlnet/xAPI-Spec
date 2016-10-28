@@ -2,5 +2,5 @@
 
 * Experience API(xAPI) Specification
 * Part One: About the xAPI
-* xAPI Data
+* Part Two: xAPI Data
 
