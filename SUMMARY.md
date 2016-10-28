@@ -1,6 +1,6 @@
 # Summary
 
 * Experience API(xAPI) Specification
-* About the xAPI
+* Part One: About the xAPI
 * xAPI Data
 
