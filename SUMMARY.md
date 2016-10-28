@@ -1,5 +1,5 @@
 # Summary
 
-* Experience API (xAPI) Specification
+* Experience API(xAPI) Specification
 * About the xAPI
 
