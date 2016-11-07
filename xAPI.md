@@ -2,6 +2,6 @@
 
 This specification is divided now into three documents. Please update your links:
 
-*   Part One:   [About the Experience API](./xAPI-About.md#partone)
+*   Part One:   [About the Experience API](./)
 *   Part Two:   [Experience API Data](./xAPI-Data.md#parttwo)
 *   Part Three: [Data Processing, Validation, and Security](./xAPI-Communication.md#partthree)
