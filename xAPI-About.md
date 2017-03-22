@@ -536,7 +536,7 @@ be found in [Appendix B: cmi5 Example](#Appendix1B).
 
 CoPs are highly recommended to avoid duplication of effort, as creating too many ways to solve the same problem 
 will cause fragmentation in similar domains and can potentially hurt interoperability.  An example of a CoP for the medical 
-field is the [Medbiquitous xAPI Interest Group](http://groups.medbiq.org:8090/display/XIG/Learning+Experience+Group+Home).
+field is the [MedBiquitous Learning Experience Working Group](http://groups.medbiq.org/medbiq/display/XIG/Learning+Experience+Group+Home).
 
 
 <a name="append1"></a>
