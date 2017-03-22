@@ -1721,9 +1721,7 @@ The table below lists all properties of the Attachment Object.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th><th>Corresponding request parameter</th></tr>
 	<tr id="2.4.11.s2.table1.row1">
-		<a name="attachmentUsage"></a>
-
-		<td>usageType</td>
+		<td><a name="attachmentUsage"></a>usageType</td>
 		<td>IRI</td>
 		<td>Identifies the usage of this Attachment. For example: one expected use case
 		for Attachments is to include a "completion certificate". An IRI corresponding
