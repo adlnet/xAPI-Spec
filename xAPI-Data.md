@@ -103,9 +103,11 @@
 
 
 <a name="parttwo" />
-#Part Two: Experience API Data
+
+# Part Two: Experience API Data
 
 <a name="documents" />
+
 ## <a name="1.0">1.0</a> Documents
 
 The Experience API provides a facility for Learning Record Providers to save arbitrary data in the form of documents.  This data 
@@ -116,6 +118,7 @@ is largely unstructured, which allows for flexibility.  Specifics on document be
 ## <a name="2.0">2.0</a> Statements  
 
 <a name="statement-purpose"/> 
+
 ### <a name="2.1">2.1</a> Purpose
 
 Statements are the evidence for any sort of experience or event which is to be tracked in xAPI. 
@@ -125,6 +128,7 @@ meant to be aggregated and analyzed to provide larger meaning for the overall ex
 just the sum of its parts.
 
 <a name="dataconstraints"/>
+
 ### <a name="2.2">2.2</a> Formatting Requirements
 
 ###### <a name="2.2.s1"></a>Details
@@ -242,7 +246,8 @@ an LRS to accurately deserialize the Result Duration and convert between units o
 Result Duration is considered a string for purposes of Statement comparison. 
 
 <a name="statement-comparison-requirements" />
-###### <a name="2.3.1.s9"></a>Statement Comparision Requirements
+
+###### <a name="2.3.1.s9"></a>Statement Comparison Requirements
 There are a number of scenarios outlined in this specification which require Statements to be
 compared to see if they match. In these scenarios, the following rules apply:
 
@@ -311,6 +316,7 @@ This example Statement voids a previous Statement which it identifies with the S
 }
 ```  
 <a name="statement-properties"/> 
+
 ### <a name="2.4">2.4</a> Statement Properties  
 
 ###### <a name="2.4.s1"></a>Details
@@ -408,6 +414,7 @@ The Actor defines who performed the action. The Actor of a Statement can be an A
 <a name="agent"/>
 
 ##### <a name="2.4.2.1">2.4.2.1</a> When the Actor objectType is Agent
+
 ###### <a name="2.4.2.1.s1"></a>Description
 An Agent (an individual) is a persona or system.
 
@@ -494,7 +501,7 @@ property of a given Anonymous or Identified Group.
 as Agent identifiers.
 * <a name="2.4.2.2.s5.b4"></a>An Identified Group MAY include a "member" property listing constituent Agents.
 
-<a name="inversefunctional">
+<a name="inversefunctional"/>
 
 ##### <a name="2.4.2.3">2.4.2.3</a> Inverse Functional Identifier
 ###### <a name="2.4.2.3.s1"></a>Description
@@ -600,7 +607,7 @@ The table below lists all properties of the Verb Object.
 	</tr>
 	<tr id="2.4.3.s3.table1.row2">
 		<td>display</td>
-		<td><a href="#lang-map">Language Map</a></td>
+		<td><a href="#lang-maps">Language Map</a></td>
 		<td>The human readable representation of the 
 			Verb in one or more languages. This does not have any impact on the 
 			meaning of the Statement, but serves to give a human-readable 
@@ -1706,6 +1713,7 @@ of the specification. The patch version of the specification being followed can 
 ["X-Experience-API-Version" header](./xAPI-Communication.md#versioning) being used in each request. 
 
 <a name="attachments"/>
+
 #### <a name="2.4.11">2.4.11</a> Attachments
 
 ###### <a name="2.4.11.s1"></a>Rationale
@@ -1782,6 +1790,7 @@ In the case of wanting to include an Attachment(s) for a SubStatement, it is str
 Attachment(s) in the Statement's Attachment object and to include the payloads as normally done for a Statement.
 
 <a name="retrieval"/> 
+
 ### <a name="2.5">2.5</a> Retrieval of Statements
 
 ###### <a name="2.5.s1"></a>Description
@@ -1830,6 +1839,7 @@ the batch of Statements returned matches those Statements that would have been r
 "more" property.
 
 <a name="signature"/>
+
 ### <a name="2.6">2.6</a> Signed Statements
 
 ##### <a name="2.6.s1"></a>Description
@@ -1856,7 +1866,7 @@ for discoverability of the signer X.509 certificates SHOULD be used.
 http://tools.ietf.org/html/rfc7515, as an Attachment with a usageType
 of `http://adlnet.gov/expapi/attachments/signature` and a contentType of `application/octet-stream`.
 * <a name="2.6.s4.b2"></a>JWS Compact Serialization SHOULD* be used to create the JSON web signature. Use of JWS 
-JSON Serialization is strongly discouraged, is unlikely to be interoperble with other systems, and will be forbidden 
+JSON Serialization is strongly discouraged, is unlikely to be interoperable with other systems, and will be forbidden 
 in a future version of this specification. 
 * <a name="2.6.s4.b3"></a>The JWS signature MUST have a payload of a valid JSON serialization of the complete Statement 
 before the signature was added.
@@ -1873,7 +1883,7 @@ the associated certificate chain.
     * <a name="2.6.s5.b3.b1"></a>Decode the JWS signature, and load the signed serialization of the Statement from the
       JWS signature payload.
     * <a name="2.6.s5.b3.b2"></a>Validate that the original Statement is logically equivalent to the received Statement. 
-    See [Statement comparision requirements](#statement-comparison-requirements).
+    See [Statement comparison requirements](#statement-comparison-requirements).
     * <a name="2.6.s5.b3.b3"></a>If the JWS header includes an X.509 certificate, validate the signature against that
     certificate as defined in JWS.
     * <a name="2.6.s5.b3.b4"></a>Validate that the signature requirements outlined above have been met. 
@@ -1913,12 +1923,12 @@ These requirements also apply to Learning Record Providers defining new IRIs.
 
 * <a name="3.1.s1.b1"></a>[Metadata Providers](./xAPI-About.md#def-metadata-provider) defining new IRIs SHOULD* only use IRIs they control 
 or have permission from the controller to use.
-* <a name="3.1.s1.b2">Metadata Providers defining new Verb IRIs MUST only use IRIs they control 
+* <a name="3.1.s1.b2"></a>Metadata Providers defining new Verb IRIs MUST only use IRIs they control 
 or have permission from the controller to use.
 * <a name="3.1.s1.b3"></a>Where a suitable identifier already exists, the Metadata Provider SHOULD use the corresponding 
 existing identifier and SHOULD NOT create a new identifier.
 * <a name="3.1.s1.b4"></a>When re-using an existing identifier, Metadata Providers SHOULD* ensure that the exact character 
-equivelent IRI is used. 
+equivalent IRI is used. 
 * <a name="3.1.s1.b5"></a>The Metadata Provider MAY create their own identifiers where a suitable identifier does not already exist.
 * <a name="3.1.s1.b6"></a>When defining identifiers, the Metadata Provider MAY use IRIs containing anchors so that a single 
 page can contain definitions for multiple identifiers. E.g. `http://example.com/xapi/verbs#defenestrated`
@@ -2165,7 +2175,9 @@ Durations are expected to be presented in the format in which they are recorded.
 in seconds (or fractions of a second) there is no need to convert this to hours, minutes, and seconds. 
 
 <a name="append2"/>
+
 ## <a name="4.6.s3"></a>Appendices
+
 <a name="Appendix2A"/>  
  
 ### <a name="A">Appendix A</a>: Example Statements
