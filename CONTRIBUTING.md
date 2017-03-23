@@ -138,7 +138,7 @@ anywhere. ADL views the Experience API as an evolved version of Sharable Content
 that can support similar use cases, but can also support many of the use cases gathered by ADL and submitted by
 those involved in distributed learning that SCORM could not enable.
 
-##How to Contribute
+## How to Contribute
 
 This document outlines various ways of contributing to the specification:
 
@@ -147,6 +147,7 @@ This document outlines various ways of contributing to the specification:
 * [Making a Pull Request to address an issue](#make-pr)
 
 <a name='review-pr'/>
+
 ### Review a Pull Request (PR)
 The most helpful **and** easiest way to contribute to the specification is to review an existing PR. You can find a
 [list of open PRs here](https://github.com/adlnet/xAPI-Spec/pulls). To review a PR you should:
@@ -175,6 +176,7 @@ When reviewing a PR please don't:
 * Make vague criticisms without suggesting the changes to the PR that would meet those criticisms.
 
 <a name='suggest-solution'/>
+
 ### Suggest a solution
 The second most helpful and second easiest way to contribute to the specification is to suggest a solution to an issue that has been raised.
 Ideally the person who raises the issue will propose a solution, but this does not always happen and you may be able to improve a suggestion.
@@ -193,6 +195,7 @@ Once your suggestion has been discussed and agreed, add another comment summaris
 Good and detailed suggested solutions for issues make it much easier to write PRa and helps to ensure those PRs are merged faster.
 
 <a name='make-pr'/>
+
 ### Make a Pull Request (PR)
 The hardest way of directly contributing to the specification is to make Pull Requests and the xAPI Working Group recommends only getting involved in this way if you are already used to Github and markdown and/or have previously contributed to reviewing PRs and suggesting solutions to issues.
 
@@ -323,7 +326,8 @@ direct you to a page that gives you the ability to submit a request to the
 master repository to merge in the changes you committed.
 
 <a name='style-guide'/>
-##Style Guide
+
+## Style Guide
 ### Expected Values
 
 If a specific data format and value are to be used, the `code` style should be used to denote this.
