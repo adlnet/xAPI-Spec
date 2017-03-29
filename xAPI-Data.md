@@ -116,6 +116,7 @@ is largely unstructured, which allows for flexibility.  Specifics on document be
 ## <a name="2.0">2.0</a> Statements  
 
 <a name="statement-purpose"/> 
+
 ### <a name="2.1">2.1</a> Purpose
 
 Statements are the evidence for any sort of experience or event which is to be tracked in xAPI. 
@@ -125,6 +126,7 @@ meant to be aggregated and analyzed to provide larger meaning for the overall ex
 just the sum of its parts.
 
 <a name="dataconstraints"/>
+
 ### <a name="2.2">2.2</a> Formatting Requirements
 
 ###### <a name="2.2.s1"></a>Details
@@ -310,7 +312,9 @@ This example Statement voids a previous Statement which it identifies with the S
 	}
 }
 ```  
+
 <a name="statement-properties"/> 
+
 ### <a name="2.4">2.4</a> Statement Properties  
 
 ###### <a name="2.4.s1"></a>Details
@@ -1782,6 +1786,7 @@ In the case of wanting to include an Attachment(s) for a SubStatement, it is str
 Attachment(s) in the Statement's Attachment object and to include the payloads as normally done for a Statement.
 
 <a name="retrieval"/> 
+
 ### <a name="2.5">2.5</a> Retrieval of Statements
 
 ###### <a name="2.5.s1"></a>Description
