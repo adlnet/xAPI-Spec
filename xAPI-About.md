@@ -102,7 +102,7 @@
 		*	[Appendix C: Cross Domain Request Example](./xAPI-Communication.md#Appendix3C)  
 
 <a name="partone" />
-#Part One: About the Experience API
+# Part One: About the Experience API
 
 <a name="introduction-partone"></a>
 ## 1.0 Introduction
