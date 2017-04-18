@@ -116,7 +116,7 @@
 | Zach Lowry         | Watershed |
 
 
-><a name="reqparticipants"></a>
+<a name="reqparticipants"></a>
 
 
 ### Historical Contributors
@@ -138,7 +138,7 @@ anywhere. ADL views the Experience API as an evolved version of Sharable Content
 that can support similar use cases, but can also support many of the use cases gathered by ADL and submitted by
 those involved in distributed learning that SCORM could not enable.
 
-##How to Contribute
+## How to Contribute
 
 This document outlines various ways of contributing to the specification:
 
@@ -323,7 +323,8 @@ direct you to a page that gives you the ability to submit a request to the
 master repository to merge in the changes you committed.
 
 <a name='style-guide'></a>
-##Style Guide
+## Style Guide
+
 ### Expected Values
 
 If a specific data format and value are to be used, the `code` style should be used to denote this.
