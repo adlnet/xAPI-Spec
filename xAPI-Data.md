@@ -102,13 +102,8 @@
 		*	[Appendix C: Cross Domain Request Example](./xAPI-Communication.md#Appendix3C)  
 
 
-<<<<<<< HEAD
-<a name="parttwo" />
-# Part Two: Experience API Data
-=======
 <a name="parttwo"></a>
-#Part Two: Experience API Data
->>>>>>> adlnet/master
+# Part Two: Experience API Data
 
 <a name="documents"></a>
 ## <a name="1.0">1.0</a> Documents

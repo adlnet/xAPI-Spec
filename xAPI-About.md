@@ -101,13 +101,8 @@
 		*	[Appendix B: Table of All Resources](./xAPI-Communication.md#Appendix3B)  
 		*	[Appendix C: Cross Domain Request Example](./xAPI-Communication.md#Appendix3C)  
 
-<<<<<<< HEAD
-<a name="partone" />
-# Part One: About the Experience API
-=======
 <a name="partone"></a>
-#Part One: About the Experience API
->>>>>>> adlnet/master
+# Part One: About the Experience API
 
 <a name="introduction-partone"></a>
 ## 1.0 Introduction

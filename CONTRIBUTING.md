@@ -116,7 +116,7 @@
 | Zach Lowry         | Watershed |
 
 
-><a name="reqparticipants"></a>
+<a name="reqparticipants"></a>
 
 
 ### Historical Contributors
@@ -322,13 +322,9 @@ click the "Pull Request" button at the top of your repository page. This will
 direct you to a page that gives you the ability to submit a request to the
 master repository to merge in the changes you committed.
 
-<<<<<<< HEAD
-<a name='style-guide'/>
-## Style Guide
-=======
 <a name='style-guide'></a>
-##Style Guide
->>>>>>> adlnet/master
+## Style Guide
+
 ### Expected Values
 
 If a specific data format and value are to be used, the `code` style should be used to denote this.
