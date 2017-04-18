@@ -1,7 +1,7 @@
 # xAPI-Spec
 
 
-<a name="contributors"/>
+<a name="contributors"></a>
 
 ## Contributors
 
@@ -24,7 +24,7 @@
 > _Director, ADL Initiative_
 >
 
-<a name="wg"/>
+<a name="wg"></a>
 
 ### Working Group Contributors
 |Name                |   Organization             |
@@ -116,7 +116,7 @@
 | Zach Lowry         | Watershed |
 
 
-><a name="reqparticipants"/>
+><a name="reqparticipants"></a>
 
 
 ### Historical Contributors
@@ -128,7 +128,7 @@ group, the Rustici Software UserVoice website, one-on-one interviews and various
 blogs were important sources from which requirements were gathered for the
 Experience API specification.
 
-<a name="adlrole"/>
+<a name="adlrole"></a>
 
 #### ADL's Role in the Experience API
 The Advanced Distributed Learning (ADL) Initiative has taken on the roles of steward and facilitator in the
@@ -146,7 +146,7 @@ This document outlines various ways of contributing to the specification:
 * [Suggesting solutions to issues](#suggest-solution)
 * [Making a Pull Request to address an issue](#make-pr)
 
-<a name='review-pr'/>
+<a name='review-pr'></a>
 ### Review a Pull Request (PR)
 The most helpful **and** easiest way to contribute to the specification is to review an existing PR. You can find a
 [list of open PRs here](https://github.com/adlnet/xAPI-Spec/pulls). To review a PR you should:
@@ -174,7 +174,7 @@ When reviewing a PR please don't:
 [Raise a separate issue](https://github.com/adlnet/xAPI-Spec/issues/new) for additional changes.
 * Make vague criticisms without suggesting the changes to the PR that would meet those criticisms.
 
-<a name='suggest-solution'/>
+<a name='suggest-solution'></a>
 ### Suggest a solution
 The second most helpful and second easiest way to contribute to the specification is to suggest a solution to an issue that has been raised.
 Ideally the person who raises the issue will propose a solution, but this does not always happen and you may be able to improve a suggestion.
@@ -192,7 +192,7 @@ Once your suggestion has been discussed and agreed, add another comment summaris
 
 Good and detailed suggested solutions for issues make it much easier to write PRa and helps to ensure those PRs are merged faster.
 
-<a name='make-pr'/>
+<a name='make-pr'></a>
 ### Make a Pull Request (PR)
 The hardest way of directly contributing to the specification is to make Pull Requests and the xAPI Working Group recommends only getting involved in this way if you are already used to Github and markdown and/or have previously contributed to reviewing PRs and suggesting solutions to issues.
 
@@ -322,7 +322,7 @@ click the "Pull Request" button at the top of your repository page. This will
 direct you to a page that gives you the ability to submit a request to the
 master repository to merge in the changes you committed.
 
-<a name='style-guide'/>
+<a name='style-guide'></a>
 ##Style Guide
 ### Expected Values
 

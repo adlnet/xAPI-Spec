@@ -101,7 +101,7 @@
 		*	[Appendix B: Table of All Resources](./xAPI-Communication.md#Appendix3B)  
 		*	[Appendix C: Cross Domain Request Example](./xAPI-Communication.md#Appendix3C)  
 
-<a name="partthree" />
+<a name="partthree"></a>
 # Part Three: Data Processing, Validation, and Security 
 
 This third part details the more technical side of the Experience API, dealing with how Statements are transferred between 
@@ -109,7 +109,7 @@ Learning Record Provider and LRS. A number of libraries are available for a rang
 which handle this part of the specification. It therefore might not be necessary for Learning Record Providers to fully 
 understand every detail of this part of the specification.
 
-<a name="requests"/>
+<a name="requests"></a>
 
 ## <a name="1.0">1.0</a> Requests
 
@@ -117,7 +117,7 @@ xAPI tracking is done via HTTP Requests from the Learning Record Provider (clien
 specification offers guidance in some aspects of this communication.  Where no guidance is offered, it is 
 recommended that those implementing xAPI use current industry best practices.
 
-<a name="httphead"/>
+<a name="httphead"></a>
 
 ### <a name="1.1">1.1</a> HEAD Request Implementation
 
@@ -139,7 +139,7 @@ identical HTTP GET request except:
     * <a name="1.1.s3.b1.b1"></a>The message-body MUST be omitted.
     * <a name="1.1.s3.b1.b2"></a>The Content-Length header MAY be omitted, in order to avoid wasting LRS resources.
 
-<a name="headers"/> 
+<a name="headers"></a> 
 
 ### <a name="1.2">1.2</a> Headers
 
@@ -173,7 +173,7 @@ to every type of request and/or situations:
 
 The lists above are not intended to be exhaustive. See requirements throughout this document for more details.
 
-<a name="alt-request-syntax"/>
+<a name="alt-request-syntax"></a>
 
 ### <a name="1.3">1.3</a> Alternate Request Syntax
 
@@ -241,21 +241,21 @@ intermediary server-side LRS on the same scheme as the Client code to route Stat
 
 Strongly consider security risks before making the decision to use implementations that use HTTP.
 
-<a name="encoding"/> 
+<a name="encoding"></a> 
 
 ### <a name="1.4">1.4</a> Encoding
 
 ###### <a name="1.4.s1"></a>Requirements
 * <a name="1.4.s1.b1"></a>All strings MUST be encoded and interpreted as UTF-8. 
 
-<a name="content-types"/> 
+<a name="content-types"></a> 
 ### <a name="1.5">1.5</a> Content Types
 Requests and responses within this specification normally use an `application/json` content type. Exceptions to this are:
 
 * <a name="1.5.b1"></a>Documents can have any content type. 
 * <a name="1.5.b2"></a>Statement requests that can sometimes include Attachments use the `multipart/mixed` content type. 
 
-<a name="applicationjson"/> 
+<a name="applicationjson"></a> 
 #### <a name="1.5.1">1.5.1</a> Application/JSON
 Requests within this specification normally use an `application/json` content type. 
 
@@ -265,7 +265,7 @@ of Statements which contain no Attachment Objects.
 * <a name="1.5.1.s1.b2"></a>When receiving a PUT or POST with a document type of `application/json`, an LRS MUST accept batches 
 of Statements which contain only Attachment Objects with a populated fileUrl.
 
-<a name="multipartmixed"/> 
+<a name="multipartmixed"></a> 
 #### <a name="1.5.2">1.5.2</a> Multipart/Mixed
 
 The `multipart/mixed` content type is used for requests that *could* include Attachments. This does not mean that all 
@@ -421,7 +421,7 @@ here is a simple attachment
 --abcABC0123'()+_,-./:=?--
 ```
 
-<a name="datatransfer"/> <a name="resources"/>
+<a name="datatransfer"></a> <a name="resources"></a>
 ## <a name="2.0">2.0</a> Resources
 
 The LRS is interacted with via RESTful HTTP methods to the resources outlined in this section.
@@ -448,7 +448,7 @@ described in [OAuth Authorization Scope](#oauthscope).
 with path segments starting with `extensions/`. LRSs supporting additional resources not defined in this specification SHOULD 
 define their endpoints with path segments starting with `extensions/`.
 
-<a name="stmtres"/> 
+<a name="stmtres"></a> 
 
 #### <a name="2.1">2.1</a> Statement Resource
 
@@ -456,7 +456,7 @@ define their endpoints with path segments starting with `extensions/`.
 
 The basic communication mechanism of the Experience API.  
 
-<a name="stmtresput"/>
+<a name="stmtresput"></a>
 
 #### <a name="2.1.1">2.1.1</a> PUT Statements
 
@@ -500,7 +500,7 @@ instead of using PUT.
 * <a name="2.1.1.s3.b2"></a>When PUTing Statements, the "id" property of the Statement SHOULD be used. 
 * <a name="2.1.1.s3.b3"></a>Where provided, the "id" property of the Statement MUST match the "statementId" parameter of the request. 
 
-<a name="stmtrespost"/>
+<a name="stmtrespost"></a>
 
 #### <a name="2.1.2">2.1.2</a> POST Statements
 
@@ -530,7 +530,7 @@ do not match. See [Statement comparison requirements](./xAPI-Data.md#statement-c
 * <a name="2.1.2.s2.b6"></a>If the LRS receives a batch of Statements containing two or more Statements with the same id, 
 it SHOULD* reject the batch and return `400 Bad Request`.
 
-<a name="stmtresget"/>
+<a name="stmtresget"></a>
 
 #### <a name="2.1.3">2.1.3</a> GET Statements
 
@@ -735,7 +735,7 @@ include Attachment raw data and MUST report `application/json`.
 * <a name="2.1.3.s2.b8"></a>The LRS SHOULD* include a "Last-Modified" header which matches the "stored" Timestamp 
 of the Statement. 
 
-<a name="queryStatementRef" />
+<a name="queryStatementRef"></a>
 
 ###### <a name="2.1.3.s3"></a>Filter Conditions for StatementRefs
 
@@ -765,7 +765,7 @@ being fetched.
 __Note:__ StatementRefs used as a value of the "Statement" property within Context do not affect how
 Statements are filtered.
 
-<a name="queryLangFiltering" />
+<a name="queryLangFiltering"></a>
 
 ###### <a name="2.1.3.s4"></a>Language Filtering Requirements for Canonical Format Statements
 
@@ -786,7 +786,7 @@ described in [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html)
 (HTTP 1.1), except that this logic MUST be applied to each language map individually to select 
 which language entry to include, rather than to the resource (list of Statements) as a whole.
 
-<a name="voidedStatements" />
+<a name="voidedStatements"></a>
 
 ##### <a name="2.1.4">2.1.4</a> Voided Statements
 [Part Two](./xAPI-Data.md#voided) describes the process by which Statements can be voided. This section
@@ -807,7 +807,7 @@ individually by voidedStatementId.
 and conditions described in [the section on filter conditions for StatementRefs](#queryStatementRef). This includes the 
 voiding Statement, which cannot be voided. 
 
-<a name="doctransfer"/>
+<a name="doctransfer"></a>
 
 ### <a name="2.2">2.2</a> Document Resources 
 
@@ -929,7 +929,7 @@ as a result of the request.
 * <a name="2.2.s8.b3"></a>If a Learning Record Provider needs to delete a property, it SHOULD use a PUT request to replace 
 the whole document as described below. 
 
-<a name="stateres"/> 
+<a name="stateres"></a> 
 
 ### <a name="2.3">2.3</a> State Resource
 
@@ -1056,7 +1056,7 @@ Deletes all state data for this context (Activity + Agent \[+ registration if sp
 	</tr>
 </table>
 
-<a name="agentsres"/>
+<a name="agentsres"></a>
 
 ### <a name="2.4">2.4</a> Agents Resource
 
@@ -1160,7 +1160,7 @@ similarly named property from Agent Objects.
 * <a name="2.4.s6.b2"></a>Additional properties not listed here SHOULD* NOT be added to this object and each 
 property MUST occur only once. 
 
-<a name="activitiesres"/> 
+<a name="activitiesres"></a> 
 
 ### <a name="2.5">2.5</a> Activities Resource
 
@@ -1191,7 +1191,7 @@ Loads the complete Activity Object specified.
 * <a name="2.5.s2.b1"></a>If an LRS does not have a canonical definition of the Activity to return, the LRS SHOULD* 
 still return an Activity Object when queried.
 
-<a name="agentprofres"/>
+<a name="agentprofres"></a>
 
 ### <a name="2.6">2.6</a> Agent Profile Resource
 
@@ -1264,7 +1264,7 @@ that have been stored or updated since the specified Timestamp (exclusive).
 	</tr>
 </table>
 
-<a name="actprofres"/> 
+<a name="actprofres"></a> 
 
 ### <a name="2.7">2.7</a> Activity Profile Resource
 
@@ -1335,7 +1335,7 @@ entries that have been stored or updated since the specified Timestamp (exclusiv
 </table>
 
 
-<a name="aboutresource"/> 
+<a name="aboutresource"></a> 
 
 ### <a name="2.8">2.8</a> About Resource
 
@@ -1387,7 +1387,7 @@ property MUST occur only once.
 * <a name="2.8.s5.b4"></a>An LRS MUST NOT reject requests based on their version header as would otherwise be 
 required by [Versioning](#versioning).
 
-<a name="validation"/> 
+<a name="validation"></a> 
 
 ## <a name="3.0">3.0</a> Data Validation
 
@@ -1403,7 +1403,7 @@ and extensions is the responsibility of the Learning Record Provider sending the
 * <a name="3.0.s2.b1"></a>The LRS SHOULD enforce rules regarding structure. 
 * <a name="3.0.s2.b2"></a>The LRS SHOULD NOT enforce rules regarding meaning.  
 
-<a name="concurrency"/>
+<a name="concurrency"></a>
 
 ### <a name="3.1">3.1</a> Concurrency
 
@@ -1476,7 +1476,7 @@ If a PUT request is received without either header for a resource that already e
 	* <a name="3.1.s4.b14.b2"></a>set the "If-Match" header with the current ETag to resolve the conflict.
 * <a name="3.1.s4.b15"></a>MUST NOT make a modification to the resource.
 
-<a name="errorcodes" /> 
+<a name="errorcodes"></a> 
 
 ### <a name="3.2">3.2</a> Error Codes
 
@@ -1610,7 +1610,7 @@ size (see above).
 
 * <a name="3.2.s3.b17"></a>The LRS MUST be configurable to accept requests at any reasonable rate. 
 
-<a name="versioning"/> 
+<a name="versioning"></a> 
 
 ### <a name="3.3">3.3</a> Versioning
 
@@ -1661,7 +1661,7 @@ to handle version differences.
 * <a name="3.3.s5.b2"></a>Statements of prior versions MAY be converted into a newer version only by following the methods 
 described in [Appendix A: Converting Statements to 1.0.0](#Appendix3A).
 
-<a name="authentication"/>
+<a name="authentication"></a>
 
 ## <a name="4.0">4.0</a> Authentication
 
@@ -1695,7 +1695,7 @@ in this specification.
 * <a name="4.0.s3.b2"></a>The LRS MUST handle making, or delegating, decisions on the validity of Statements, and 
 determining what operations might be performed based on the credentials used.
 
-<a name="authdefs"/>
+<a name="authdefs"></a>
 
 ### <a name="4.1">4.1</a> OAuth 1.0 Authentication Scenarios and Methods
 
@@ -1805,7 +1805,7 @@ encoded version of the string `:`.  This results in the string `Basic Og==`.
 This is in order to distinguish an explicitly unauthenticated request from a request that needs to be given a 
 HTTP Basic Authentication challenge.
 
-<a name="oauthscope"/> 
+<a name="oauthscope"></a> 
 
 ### <a name="4.2">4.2</a> OAuth 1.0 Authorization Scope
 
@@ -1902,7 +1902,7 @@ request will be granted.
 * <a name="4.2.s5.b6"></a>The parameters "consumer_name" and "scope" are not part of OAuth 1.0, and therefore if used MUST be passed 
 as query string or form parameters, not in the OAuth header.  
 
-<a name="security"/>
+<a name="security"></a>
 
 ## <a name="5.0">5.0</a> Security 
 
@@ -1919,10 +1919,10 @@ While other security concerns are beyond the scope of this specification, the xA
 security best practices. This effort has begun at [xAPIsec](https://github.com/xapisec/xapisec). 
 Participation is highly encouraged.
 
-<a name="append3"/>
+<a name="append3"></a>
 ## <a name="5.0.s1"></a>Appendices
 
-<a name="Appendix3A"/>
+<a name="Appendix3A"></a>
 
 ### <a name="A">Appendix A</a>: Converting Statements to 1.0.0
 
@@ -2103,7 +2103,7 @@ Converted to 1.0.0:
 ```
 
 
-<a name="Appendix3B"/>
+<a name="Appendix3B"></a>
 
 ### <a name="B">Appendix B</a>: Table of All Resources
 
@@ -2163,7 +2163,7 @@ Converted to 1.0.0:
 	</tr>
 </table>
 
-<a name="Appendix3C"/>
+<a name="Appendix3C"></a>
 
 ### <a name="C">Appendix C</a>: Cross Domain Request Example
 
