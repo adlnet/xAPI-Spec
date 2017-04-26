@@ -2141,7 +2141,7 @@ The table below provides some example ISO 8601 Durations. This list is not inten
 		<td>Four hours, thirty five minutes and 59.14 seconds.</td>
 	</tr>
 	<tr id="4.6.s2.table1.row2">
-		<td>P16559.14S</td>
+		<td>PT16559.14S</td>
 		<td>The same time period as above represented in seconds. 
 		(Note: if the time period in question contained a leap second, this conversion would be inaccurate)</td>
 	</tr>
