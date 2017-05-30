@@ -490,7 +490,7 @@ Agent or Group in xAPI corresponds to a persona. A learner sending Learning Reco
 associated with him or her. 
 
 In Figure 3, a learner accesses multiple services. Some of these services are used at work, others at home.  Some are used for 
-social purposes and others are used for educational or professional puproses.  Thus, there are multiple personas functioning 
+social purposes and others are used for educational or professional purposes.  Thus, there are multiple personas functioning 
 collectively within these services.  Each of these services send data to the LRS. Afterwards, there are Statements from three 
 different personas of the same learner. 
 
