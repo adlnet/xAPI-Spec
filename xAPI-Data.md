@@ -501,7 +501,7 @@ property of a given Anonymous or Identified Group.
 as Agent identifiers.
 * <a name="2.4.2.2.s5.b4"></a>An Identified Group MAY include a "member" property listing constituent Agents.
 
-<a name="inversefunctional"/>
+<a name="inversefunctional"></a>
 
 ##### <a name="2.4.2.3">2.4.2.3</a> Inverse Functional Identifier
 ###### <a name="2.4.2.3.s1"></a>Description
