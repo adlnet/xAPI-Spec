@@ -401,10 +401,7 @@ having a "home email" and a "work email".  Both are the same person, but have di
 
 <a name="def-profile"></a>
 
-__Profile__: A specific set of rules and documentation for implementing xAPI in a particular context. Profiles generally provide a 
-particular vocabulary of terms, some created specifically for the profile, and some are referenced from other vocabularies. 
-Sometimes a profile might provide multiple vocabularies for different situations, and sometimes someone might curate a vocabulary 
-from multiple sources without creating a profile.  Not to be confused with [Document Profile Resource](#def-document-profile).
+__Profile__: A profile is the human or machine-readable documentation of application-specific concepts, extensions, and statement templates used when implementing xAPI in a particular context.  Not to be confused with [Document Profile Resource](#def-document-profile).
 
 <a name="def-registration"></a>
 
@@ -439,8 +436,7 @@ A Verb represents the "did" in "I did this".
 <a name="def-vocabulary"></a>
 
 __Vocabulary__: A list or collection of the terms that are used by a COP for labeling or categorizing information in a 
-particular domain. The use of a vocabulary ensures that everyone is using the same word to mean the same thing. For more 
-information on vocabularies, see the [xAPI Vocabulary Companion Specification](https://github.com/adlnet/companion-specification-for-xapi-vocabularies/blob/master/SUMMARY.md).
+particular domain. The use of a vocabulary ensures that everyone is using the same word to mean the same thing. 
 
 <a name="xapi-components"></a>
 
@@ -525,12 +521,10 @@ specification authors.
 It is intended that [Communities of Practice (CoPs)](#def-community-of-practice) will define Verbs, Activity types, 
 contextual relationships, extensions, etc. 
 to be used in their profiles by providing unique identifiers wherever applicable. The CoP will define these identifiers and 
-their metadata in a [Vocabulary](#def-vocabulary). A profile is a set of rules and vocabularies to implemented in addition to 
-xAPI for the particular use case being addressed. It is very important that such communities exist and share best practices. 
-For more information on publishing vocabularies, see the [Vocabulary Companion Specification](https://adl.gitbooks.io/companion-specification-for-xapi-vocabularies/content) and [Vocabulary Primer](https://adl.gitbooks.io/experience-xapi-vocabulary-primer/content/) documents.
+their metadata in a [Profile](#def-profile). A profile is simply the documentation of application-specific vocabulary, extensions, and statement templates for use case being addressed. 
+For more information on publishing profiles, see the [Profile Companion Specification](https://github.com/adlnet/xapi-profiles).
 
-It is recommended that a profile use a unique "category" within a Statement's context to refer to any Statement  
-which implements the profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current), 
+It is recommended that each profile use a unique "category" identifier within a Statement's context to refer to any Statement  which implements the profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current), 
 which is designed for the traditional single learner, single online learning use case.  An example cmi5 Statement can 
 be found in [Appendix B: cmi5 Example](#Appendix1B).
 
