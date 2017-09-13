@@ -308,9 +308,8 @@ Management System (LMS).
 
 __Community of Practice (CoP)__: A group of practitioners connected by a common cause, role or purpose, which operates in a common 
 modality. CoPs are focused on implementing xAPI within a specific knowledge domain or use case. CoPs or independent developers, 
-can create domain-specific vocabularies, profiles, and recipes. These practices usually involve work around defining use cases 
-and curating the various vocabulary terms, synonyms, and other related metadata that might be preferred within a CoP. They can 
-also reuse existing vocabularies, profiles, and recipes already published by other CoPs or participants of the xAPI community.
+can create domain-specific profiles. These practices usually involve work around defining use cases 
+and curating the terms and other related metadata that might be preferred within a Profile.
 
 <a name="def-document-profile"></a>
 
@@ -401,10 +400,7 @@ having a "home email" and a "work email".  Both are the same person, but have di
 
 <a name="def-profile"></a>
 
-__Profile__: A specific set of rules and documentation for implementing xAPI in a particular context. Profiles generally provide a 
-particular vocabulary of terms, some created specifically for the profile, and some are referenced from other vocabularies. 
-Sometimes a profile might provide multiple vocabularies for different situations, and sometimes someone might curate a vocabulary 
-from multiple sources without creating a profile.  Not to be confused with [Document Profile Resource](#def-document-profile).
+__Profile__: A specific set of rules and documentation for implementing xAPI in a particular context. A profile provides a way to talk about vocabulary concepts, statement templates, and patterns for xAPI data. Not to be confused with [Document Profile Resource](#def-document-profile).
 
 <a name="def-registration"></a>
 
@@ -438,9 +434,7 @@ A Verb represents the "did" in "I did this".
 
 <a name="def-vocabulary"></a>
 
-__Vocabulary__: A list or collection of the terms that are used by a COP for labeling or categorizing information in a 
-particular domain. The use of a vocabulary ensures that everyone is using the same word to mean the same thing. For more 
-information on vocabularies, see the [xAPI Vocabulary Companion Specification](https://github.com/adlnet/companion-specification-for-xapi-vocabularies/blob/master/SUMMARY.md).
+__Vocabulary__: A vocabulary refers to the concepts and terms (e.g., Verbs, Activity Types) that are used by a COP for labeling or categorizing xAPI Profile information in a particular domain. Reusing vocabulary terms where appropriate ensures that everyone is using the same word to mean the same thing.
 
 <a name="xapi-components"></a>
 
@@ -515,28 +509,13 @@ those listed in this specification can be implemented and co-exist with the reso
 
 <a name="COPs"></a>
 
-## 7.0 Profiles, Vocabularies, and Communities of Practice
+## 7.0 Profiles and Communities of Practice
 
-xAPI strictly defines the structure of Statements, but is very flexible as to the contents of that structure. For example, the 
-specification requires that all Statements have a "verb" property, but does not restrict the values of that property; any Verb 
-can be used. This flexibility enables xAPI to be used in any context, including future use cases not envisaged by the 
-specification authors.
+xAPI strictly defines the structure of Statements, but is very flexible as to the contents of that structure. For example, the specification requires that all Statements have a "verb" property, but does not restrict the values of that property; any Verb can be used. This flexibility enables xAPI to be used in any context, including future use cases not envisaged by the specification authors. CoPs are highly recommended to avoid duplication of effort, as creating too many ways to solve the same problem will cause fragmentation in similar domains and can potentially hurt interoperability. 
 
-It is intended that [Communities of Practice (CoPs)](#def-community-of-practice) will define Verbs, Activity types, 
-contextual relationships, extensions, etc. 
-to be used in their profiles by providing unique identifiers wherever applicable. The CoP will define these identifiers and 
-their metadata in a [Vocabulary](#def-vocabulary). A profile is a set of rules and vocabularies to implemented in addition to 
-xAPI for the particular use case being addressed. It is very important that such communities exist and share best practices. 
-For more information on publishing vocabularies, see the [Vocabulary Companion Specification](https://adl.gitbooks.io/companion-specification-for-xapi-vocabularies/content) and [Vocabulary Primer](https://adl.gitbooks.io/experience-xapi-vocabulary-primer/content/) documents.
+It is intended that [LRP](#def-learning-record-provider developers) and[CoPs](#def-community-of-practice) will create and reuse [Profiles](#def-profile) of xAPI. A profile is simply the documentation of application-specific [vocabulary](#def-vocabulary), extensions, and statement templates for the particular use case being addressed. For more information on publishing Profiles, see the [Profile Companion Specification](https://github.com/adlnet/xapi-profiles).
 
-It is recommended that a profile use a unique "category" within a Statement's context to refer to any Statement  
-which implements the profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current), 
-which is designed for the traditional single learner, single online learning use case.  An example cmi5 Statement can 
-be found in [Appendix B: cmi5 Example](#Appendix1B).
-
-CoPs are highly recommended to avoid duplication of effort, as creating too many ways to solve the same problem 
-will cause fragmentation in similar domains and can potentially hurt interoperability.  An example of a CoP for the medical 
-field is the [MedBiquitous Learning Experience Working Group](http://groups.medbiq.org/medbiq/display/XIG/Learning+Experience+Group+Home).
+It is recommended that any Statement which implements a profile should specify the Profile IRI in the "category" property within a Statement's context. An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current), which is designed for the traditional single learner, single online learning use case.  An example cmi5 Statement can be found in [Appendix B: cmi5 Example](#Appendix1B).
 
 
 <a name="append1"></a>
