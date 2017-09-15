@@ -434,7 +434,7 @@ A Verb represents the "did" in "I did this".
 
 <a name="def-vocabulary"></a>
 
-__Vocabulary__: A vocabulary refers to the concepts and terms (e.g., Verbs, Activity Types) that are used by a COP for labeling or categorizing xAPI Profile information in a particular domain. Reusing vocabulary terms where appropriate ensures that everyone is using the same word to mean the same thing.
+__Vocabulary__: A vocabulary refers to identifying concepts such as Verbs or Activity Types in a Profile for a particular knowledge domain. Reusing vocabulary concepts where appropriate ensures that everyone is using the same word to mean the same thing.
 
 <a name="xapi-components"></a>
 
@@ -513,7 +513,7 @@ those listed in this specification can be implemented and co-exist with the reso
 
 xAPI strictly defines the structure of Statements, but is very flexible as to the contents of that structure. For example, the specification requires that all Statements have a "verb" property, but does not restrict the values of that property; any Verb can be used. This flexibility enables xAPI to be used in any context, including future use cases not envisaged by the specification authors. CoPs are highly recommended to avoid duplication of effort, as creating too many ways to solve the same problem will cause fragmentation in similar domains and can potentially hurt interoperability. 
 
-It is intended that [LRP](#def-learning-record-provider developers) and[CoPs](#def-community-of-practice) will create and reuse [Profiles](#def-profile) of xAPI. A profile is simply the documentation of application-specific [vocabulary](#def-vocabulary), extensions, and statement templates for the particular use case being addressed. For more information on publishing Profiles, see the [Profile Companion Specification](https://github.com/adlnet/xapi-profiles).
+It is intended that [LRP](#def-learning-record-provider) developers and[CoPs](#def-community-of-practice) will create and reuse [Profiles](#def-profile) of xAPI. A profile is simply the documentation of application-specific [vocabulary](#def-vocabulary), extensions, and statement templates for the particular use case being addressed. For more information on publishing Profiles, see the [Profile Companion Specification](https://github.com/adlnet/xapi-profiles).
 
 It is recommended that any Statement which implements a profile should specify the Profile IRI in the "category" property within a Statement's context. An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current), which is designed for the traditional single learner, single online learning use case.  An example cmi5 Statement can be found in [Appendix B: cmi5 Example](#Appendix1B).
 
