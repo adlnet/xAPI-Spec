@@ -1797,7 +1797,6 @@ The following table shows the data structure for the results of queries on the S
 			and there are more results, they will be located at the "statements" property 
 			within the container located at the IRL provided by the "more" property of 
 			this Statement result Object.
-			
 			Where no matching Statements are found, this property will contain an empty array.
 		</td>
 		<td>Required</td>
