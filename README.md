@@ -44,6 +44,9 @@ You'll need to [sign up for a GitHub account](https://github.com/signup/free) if
 you do not already have one in order to contribute to the specification.
 
 The xAPI Spec Working Group meets
-the first, second, and third Wednesdays of each month on GoToWebinar. You can register at [https://attendee.gotowebinar.com/register/5526804432322315009](https://attendee.gotowebinar.com/register/5526804432322315009)
+the first and third Wednesdays of each month at 2:30 (US Eastern) on GoToMeeting. You can join at [https://global.gotomeeting.com/join/686232837](https://global.gotomeeting.com/join/686232837)
+
+The xAPI Conformance Testing Working Group meets
+the second Wednesdays of each month at 2:30 (US Eastern) on GoToMeeting. You can join at [https://global.gotomeeting.com/join/686232837](https://global.gotomeeting.com/join/686232837)
 
 Please refer to the [Contribution guidelines](CONTRIBUTING.md) for further direction and a list of contributors.
