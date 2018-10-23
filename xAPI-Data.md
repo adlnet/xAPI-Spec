@@ -1608,70 +1608,17 @@ The asserting authority represents the authenticating user or some system or app
 
 ###### <a name="2.4.9.s3"></a>Requirements
 
-* <a name="2.4.9.s3.b1"></a>Authority MUST be an Agent, except in 3-legged OAuth, where it MUST be a Group with two Agents. 
-The two Agents represent an application and user together.
-* <a name="2.4.9.s3.b2"></a>The LRS MUST include the user as an Agent as the entire authority if a user connects 
-directly (using HTTP Basic Authentication) or is included as part of a Group. 
-* <a name="2.4.9.s3.b3"></a>The LRS MUST ensure that all Statements stored have an authority.
-* <a name="2.4.9.s3.b4"></a>The LRS SHOULD overwrite the authority on all Statements it stores,
+* <a name="2.4.9.s3.b1"></a>The LRS MUST ensure that all Statements stored have an authority.
+* <a name="2.4.9.s3.b2"></a>The LRS SHOULD overwrite the authority on all Statements it stores,
 based on the credentials used to send those Statements.
+* <a name="2.4.9.s3.b2"></a>When the LRS overwrites the authority, the LRS MUST apply a deterministic process to map
+the credentials used to store a statement to an authority.
 * <a name="2.4.9.s3.b5"></a>The LRS MAY leave the submitted authority unchanged but SHOULD do so only 
 where a strong trust relationship has been established, and with extreme caution.
-* <a name="2.4.9.s3.b6"></a>The LRS MAY identify the user with any of the legal identifying properties if 
-a user connects directly (using HTTP Basic Authentication) or a part of 3-legged OAuth. 
 
-##### <a name="2.4.9.s4"></a>OAuth Credentials as Authority
+Note: To promote interoperability, LRSs are encouraged to try to map the principal that most logically "owns"
+the credential used to send statements to an authority when overwriting the authority as described above.
 
-###### <a name="2.4.9.s5"></a>Description
-
-This is a workflow for use of OAuth. 2-legged and 3-legged OAuth are both supported.
-
-###### <a name="2.4.9.s6"></a>Details
-
-This workflow assumes a Statement is stored using a validated OAuth connection and the LRS 
-creates or modifies the authority property of the Statement.
-
-In a 3-legged OAuth workflow, authentication involves both an OAuth consumer and a user of the 
-OAuth service provider. For instance, requests made by an authorized Twitter plug-in on their 
-Facebook account will include credentials that are specific not only to Twitter as a Client application, 
-or them as a user, but the unique combination of both.
-
-###### <a name="2.4.9.s7"></a>Requirements
-
-* <a name="2.4.9.s7.b1"></a>The authority MUST contain an Agent Object that represents the OAuth consumer, either by itself, or 
-as part of a group in the case of 3-legged OAuth.
-* <a name="2.4.9.s7.b2"></a>The Agent representing the OAuth consumer MUST be identified by account.
-* <a name="2.4.9.s7.b3"></a>The Agent representing the OAuth consumer MUST use the consumer key as the value of the 
-account's "name" property.
-* <a name="2.4.9.s7.b4"></a>If the Agent representing the OAuth consumer is a registered application, the token request endpoint 
-MUST be used as the value of the account's "homePage" property.
-* <a name="2.4.9.s7.b5"></a>If the Agent representing the OAuth consumer is not a registered application, the temporary 
-credentials endpoint MUST be used as the value of the account's "homePage" property.
-* <a name="2.4.9.s7.b6"></a>An LRS MUST NOT trust the application portion of the authority in the event the account name is from 
-the same source as the unregistered application. (Multiple unregistered applications could choose the same consumer key. 
-As a result, there is no consistent way to verify this combination of temporary credentials and the account name.) 
-* <a name="2.4.9.s7.b7"></a>Each unregistered consumer SHOULD use a unique consumer key.
-
-###### <a name="2.4.9.s8"></a>Example
-
-The pairing of an OAuth consumer and a user.
-
-```
-"authority": {
-	"objectType" : "Group",
-	"member": [
-		{
-			"account": {
-				"homePage":"http://example.com/xAPI/OAuth/Token",
-				"name":"oauth_consumer_x75db"
-			}
-		},
-		{ 
-			"mbox":"mailto:bob@example.com" 
-		}
-	]
-}
-```
 
 <a name="version"></a> 
 
