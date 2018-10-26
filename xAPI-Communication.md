@@ -1667,7 +1667,7 @@ described in [Appendix A: Converting Statements to 1.0.0](#Appendix3A).
 
 ###### <a name="4.0.s1"></a>Rationale
 
-In order to support the varying security requirements of different environments, a specific authentication mechanisim is not defined. In practice [HTTP Basic Authentication](http://tools.ietf.org/html/rfc7235) has been very broadly used, so it may be worth considering as a lowest common denominator.
+In order to support the varying security requirements of different environments, a specific authentication mechanism is not defined. In practice [HTTP Basic Authentication](http://tools.ietf.org/html/rfc7235) has been very broadly used, so it may be worth considering as a lowest common denominator.
 
 ###### <a name="4.0.s2"></a>Requirements
 
