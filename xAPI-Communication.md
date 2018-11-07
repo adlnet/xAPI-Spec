@@ -683,7 +683,7 @@ retrieve them will be included in the StatementResult Object.
 			<br/><br/>
 			If <code>canonical</code>, return Activity Objects and Verbs populated with the canonical
 			definition of the Activity Objects and Display of the Verbs as determined by the LRS, after
-			applying the <a href="#queryLangFiltering">language filtering process defined below</a>,
+			applying the <a href="./xAPI-Communication.md#queryLangFiltering">language filtering process defined below</a>,
 			and return the original Agent and Group Objects as in "exact" mode.  
 		</td>
 		<td>Optional</td>
