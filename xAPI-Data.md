@@ -2671,8 +2671,8 @@ This example shows a SubStatement Object whose Object is a Statement Reference.
 			"id": "dg", 
 			"description": {
 				"en-US": "Strokes over par in disc golf at Liberty"
-				}
-			},
+			}
+		},
 		{
 			"id": "lunch", 
 			"description": {
