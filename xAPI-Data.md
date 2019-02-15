@@ -421,7 +421,7 @@ An Agent (an individual) is a persona or system.
 ###### <a name="2.4.2.1.s2"></a>Details
 
 * <a name="2.4.2.1.s2.b1"></a>An Agent MUST be identified by one (1) of the four types of Inverse Functional Identifiers (see
- [4.1.2.3 Inverse Functional Identifier](#inversefunctional));
+ [2.4.2.3 Inverse Functional Identifier](#inversefunctional));
 * <a name="2.4.2.1.s2.b2"></a>An Agent MUST NOT include more than one (1) Inverse Functional Identifier;
 * <a name="2.4.2.1.s2.b3"></a>An Agent SHOULD NOT use Inverse Functional Identifiers that are also used as a Group identifier.
 
@@ -433,7 +433,7 @@ The table below lists the properties of Agent Objects.
 	<td>Optional</td></tr>
 	<tr id="2.4.2.1.s2.table1.row2"><td>name</td><td>String</td><td>Full name of the Agent.</td>
 	<td>Optional</td></tr>
-	<tr id="2.4.2.1.s2.table1.row3"><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
+	<tr id="2.4.2.1.s2.table1.row3"><td colspan="2">see <a href="#inversefunctional"> 2.4.2.3 Inverse Functional Identifier</a></td>
 	    <td>An Inverse Functional Identifier unique to the Agent.</td>
 	    <td>Required</td></tr>
 </table>
@@ -449,7 +449,7 @@ can be used.  There are two types of Groups: Anonymous Groups and Identified Gro
 
 ###### <a name="2.4.2.2.s2"></a>Details
 
-An Anonymous Group is used describe a cluster of people where there is no ready identifier for 
+An Anonymous Group is used to describe a cluster of people where there is no ready identifier for 
 this cluster, e.g. an ad hoc team.
 
 The table below lists all properties of an Anonymous Group.
@@ -474,7 +474,7 @@ The table below lists all properties of an Identified Group.
 	<tr id="2.4.2.2.s2.table2.row3"><td>member</td><td>Array of <a href="#agent">Agent Objects</a></td>
 	<td>The members of this Group. This is an unordered list.</td>
 	<td>Optional</td></tr>
-	<tr id="2.4.2.2.s2.table2.row4"><td colspan="2">see <a href="#inversefunctional"> 4.1.2.3 Inverse Functional Identifier</a></td>
+	<tr id="2.4.2.2.s2.table2.row4"><td colspan="2">see <a href="#inversefunctional"> 2.4.2.3 Inverse Functional Identifier</a></td>
 	    <td>An Inverse Functional Identifier unique to the Group.</td><td>Required</td></tr>	
 </table>
 
@@ -1808,7 +1808,6 @@ The following table shows the data structure for the results of queries on the S
 			and there are more results, they will be located at the "statements" property 
 			within the container located at the IRL provided by the "more" property of 
 			this Statement result Object.
-			
 			Where no matching Statements are found, this property will contain an empty array.
 		</td>
 		<td>Required</td>
@@ -2685,8 +2684,8 @@ This example shows a SubStatement Object whose Object is a Statement Reference.
 			"id": "dg", 
 			"description": {
 				"en-US": "Strokes over par in disc golf at Liberty"
-				}
-			},
+			}
+		},
 		{
 			"id": "lunch", 
 			"description": {
