@@ -1665,13 +1665,12 @@ communication with ATC, an essay, a video, etc. Another example of such an attac
 certificate that was granted as a result of an experience. It is useful to have a way to store these attachments 
 in and retrieve them from an LRS. In the case of wanting to include an attachment(s) for a Sub-Statement, we strongly recommend including the attachment(s) in the Statement attachment field and including the payloads as you would normally for a Statement.
 
+<a name="attachmentUsage" />
 ###### Details
 The table below lists all properties of the Attachment Object.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
 	<tr>
-		<a name="attachmentUsage" />
-
 		<td>usageType</td>
 		<td>IRI</td>
 		<td>Identifies the usage of this attachment. For example: one expected use case
