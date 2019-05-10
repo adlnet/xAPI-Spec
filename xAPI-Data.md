@@ -1623,8 +1623,8 @@ the credentials used to store a statement to an authority.
 * <a name="2.4.9.s3.b5"></a>The LRS MAY leave the submitted authority unchanged but SHOULD do so only 
 where a strong trust relationship has been established, and with extreme caution.
 
-Note: To promote interoperability, LRSs are encouraged to try to map the principal that most logically "owns"
-the credential used to send statements to an authority when overwriting the authority as described above.
+Note: To promote interoperability, LRSs are encouraged to try to map the user or system
+the credential used to send statements are associated with to an authority when overwriting the authority as described above.
 
 
 <a name="version"></a> 
