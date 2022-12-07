@@ -1396,7 +1396,7 @@ The following table contains the properties of the Context Object.
 	<td>contextActivities</td>
 	<td>contextActivities Object</td>
 	<td>A map of the types of learning activity context that this Statement is related to.
-	Valid context types are: <code>parent</code>, <code>"grouping"</code>, <code>"category"</code> and <code>"other"</code>.</td>
+	Valid context types are: <code>parent</code>, <code>grouping</code>, <code>category</code> and <code>other</code>.</td>
 	<td>Optional</td>
 </tr>
 <tr id="2.4.6.s3.table1.row5">
