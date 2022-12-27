@@ -504,7 +504,7 @@ Group that is guaranteed to only ever refer to that Agent or Identified Group.
 ###### <a name="2.4.2.3.s2"></a>Rationale
 Agents and Groups need to be uniquely identifiable in order for data to be stored and retrieved against them. 
 In an xAPI Statement this is accomplished using Inverse Functional Identifiers which are loosely inspired 
-by the widely accepted FOAF principle (see: [Friend Of A Friend](http://xmlns.com/foaf/spec/#term_Agent)).
+by the widely accepted FOAF principle (see: [Friend Of A Friend](http://xmlns.com/foaf/0.1/)).
 
 ###### <a name="2.4.2.3.s3"></a>Details
 
@@ -512,10 +512,10 @@ The table below lists all possible Inverse Functional Identifier properties.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr id="2.4.2.3.s3.table1.row1"><td><a href="http://xmlns.com/foaf/spec/#term_mbox">mbox</a></td><td>mailto IRI</td><td>The required format is "mailto:email address". <br>
+	<tr id="2.4.2.3.s3.table1.row1"><td><a href="http://xmlns.com/foaf/0.1/#term_mbox">mbox</a></td><td>mailto IRI</td><td>The required format is "mailto:email address". <br>
 	Only email addresses that have only ever been and will ever be assigned to this Agent, 
 but no others, SHOULD be used for this property and mbox_sha1sum.</td></tr>
-	<tr id="2.4.2.3.s3.table1.row2"><td><a href="http://xmlns.com/foaf/spec/#term_mbox_sha1sum">mbox_sha1sum</a></td><td>String</td><td>The hex-encoded SHA1 hash of a mailto IRI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
+	<tr id="2.4.2.3.s3.table1.row2"><td><a href="http://xmlns.com/foaf/0.1/#term_mbox_sha1sum">mbox_sha1sum</a></td><td>String</td><td>The hex-encoded SHA1 hash of a mailto IRI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
 	<tr id="2.4.2.3.s3.table1.row3"><td>openid</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
 	<tr id="2.4.2.3.s3.table1.row4"><td>account</td><td><a href="#agentaccount">Object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
 </table>
