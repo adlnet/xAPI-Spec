@@ -438,7 +438,7 @@ A Verb represents the "did" in "I did this".
 
 <a name="def-vocabulary" ></a>
 
-__Vocabulary__: A list or collection of the terms that are used by a COP for labeling or categorizing information in a 
+__Vocabulary__: A list or collection of the terms that are used by a CoP for labeling or categorizing information in a 
 particular domain. The use of a vocabulary ensures that everyone is using the same word to mean the same thing. For more 
 information on vocabularies, see the [xAPI Vocabulary Companion Specification](https://github.com/adlnet/companion-specification-for-xapi-vocabularies/blob/master/SUMMARY.md).
 
