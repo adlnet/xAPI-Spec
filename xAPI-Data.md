@@ -1918,7 +1918,7 @@ or have permission from the controller to use.
 * <a name="3.1.s1.b3"></a>Where a suitable identifier already exists, the Metadata Provider SHOULD use the corresponding 
 existing identifier and SHOULD NOT create a new identifier.
 * <a name="3.1.s1.b4"></a>When re-using an existing identifier, Metadata Providers SHOULD* ensure that the exact character 
-equivelent IRI is used. 
+equivalent IRI is used. 
 * <a name="3.1.s1.b5"></a>The Metadata Provider MAY create their own identifiers where a suitable identifier does not already exist.
 * <a name="3.1.s1.b6"></a>When defining identifiers, the Metadata Provider MAY use IRIs containing anchors so that a single 
 page can contain definitions for multiple identifiers. E.g. `http://example.com/xapi/verbs#defenestrated`
