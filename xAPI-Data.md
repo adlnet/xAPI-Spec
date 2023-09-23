@@ -308,42 +308,42 @@ The details of each property of a Statement are described in the table below.
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.s1.table1.row1"><td>id</td><td>UUID</td>
+	<tr><td>id</td><td>UUID</td>
 	<td>UUID assigned by LRS if not set by the Learning Record Provider.</td>
 	<td>Recommended</td></tr>
-	<tr id="2.4.s1.table1.row2"><td><a href="#242-actor">actor</a></td><td>Object</td>
+	<tr><td><a href="#242-actor">actor</a></td><td>Object</td>
 	<td>Whom the Statement is about, as an <a href="#2421-when-the-actor-objecttype-is-agent">Agent</a> or 
 		<a href=#2422-when-the-actor-objecttype-is-group>Group</a> Object.</td>
 	<td>Required</td></tr>
-	<tr id="2.4.s1.table1.row3"><td><a href="#243-verb">verb</a></td><td>Object</td>
+	<tr><td><a href="#243-verb">verb</a></td><td>Object</td>
 	<td>Action taken by the Actor.</td>
 	<td>Required</td></tr>
-	<tr id="2.4.s1.table1.row4"><td><a href="#244-object">object</a></td><td>Object</td>
+	<tr><td><a href="#244-object">object</a></td><td>Object</td>
 	<td>Activity, Agent, or another Statement that is the Object of the Statement. 
 	</td>
 	<td>Required</td></tr>
-	<tr id="2.4.s1.table1.row5"><td><a href="#245-result">result</a></td><td>Object</td>
+	<tr><td><a href="#245-result">result</a></td><td>Object</td>
 	<td>Result Object, further details representing a measured outcome.</td>
 	<td>Optional</td></tr>
-	<tr id="2.4.s1.table1.row6"><td><a href="#246-context">context</a></td><td>Object</td>
+	<tr><td><a href="#246-context">context</a></td><td>Object</td>
 	<td>Context that gives the Statement more meaning. Examples: a team the Actor is 
 	working with, altitude at which a scenario was attempted in a flight simulator.</td>
 	<td>Optional</td></tr>
-	<tr id="2.4.s1.table1.row7"><td><a href="#247-timestamp">timestamp</a></td><td><a href="#45-iso-8601-timestamps">Timestamp</a></td>
+	<tr><td><a href="#247-timestamp">timestamp</a></td><td><a href="#45-iso-8601-timestamps">Timestamp</a></td>
 	<td>Timestamp of when the events described within this Statement occurred. Set by the LRS if not provided.</td>
 	<td>Optional</td></tr>
-	<tr id="2.4.s1.table1.row8"><td><a href="#248-stored">stored</a></td><td><a href="#45-iso-8601-timestamps">Timestamp</a></td>
+	<tr><td><a href="#248-stored">stored</a></td><td><a href="#45-iso-8601-timestamps">Timestamp</a></td>
 	<td>Timestamp of when this Statement was recorded. Set by LRS.</td>
 	<td>Set by LRS</td></tr>
-	<tr id="2.4.s1.table1.row9"><td><a href="#249-authority">authority</a></td><td>Object</td>
+	<tr><td><a href="#249-authority">authority</a></td><td>Object</td>
 	<td>Agent or Group who is asserting this Statement is true. Verified by the LRS based on 
 	authentication. Set by LRS if not provided or if a strong trust relationship between the Learning Record Provider 
 	and LRS has not been established.</td>
 	<td>Optional</td></tr>
-	<tr id="2.4.s1.table1.row10"><td><a href="#2410-version">version</a></td><td>Version</td>
+	<tr><td><a href="#2410-version">version</a></td><td>Version</td>
 	<td>The Statement’s associated xAPI version, formatted according to <a href="http://semver.org/spec/v1.0.0.html">Semantic Versioning 1.0.0</a>.</td>
 	<td>Not Recommended</td></tr>
-	<tr id="2.4.s1.table1.row11">
+	<tr>
 		<td><a href="#2411-attachments">attachments</a></td>
 		<td>Ordered array of Attachment Objects</td>
 	    <td>Headers for Attachments to the Statement</td>
@@ -409,11 +409,11 @@ The table below lists the properties of Agent Objects.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.2.1.s2.table1.row1"><td>objectType</td><td>string</td><td><code>Agent</code>. This property is optional except when the Agent is used as a Statement's object.</td>
+	<tr><td>objectType</td><td>string</td><td><code>Agent</code>. This property is optional except when the Agent is used as a Statement's object.</td>
 	<td>Optional</td></tr>
-	<tr id="2.4.2.1.s2.table1.row2"><td>name</td><td>String</td><td>Full name of the Agent.</td>
+	<tr><td>name</td><td>String</td><td>Full name of the Agent.</td>
 	<td>Optional</td></tr>
-	<tr id="2.4.2.1.s2.table1.row3"><td colspan="2">see <a href="#2423-inverse-functional-identifier"> 2.4.2.3 Inverse Functional Identifier</a></td>
+	<tr><td colspan="2">see <a href="#2423-inverse-functional-identifier"> 2.4.2.3 Inverse Functional Identifier</a></td>
 	    <td>An Inverse Functional Identifier unique to the Agent.</td>
 	    <td>Required</td></tr>
 </table>
@@ -435,9 +435,9 @@ The table below lists all properties of an Anonymous Group.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.2.2.s2.table1.row1"><td>objectType</td><td>String</td><td><code>Group</code>. </td><td>Required</td></tr>
-	<tr id="2.4.2.2.s2.table1.row2"><td>name</td><td>String</td><td>Name of the Group.</td><td>Optional</td></tr>
-	<tr id="2.4.2.2.s2.table1.row3"><td>member</td><td>Array of <a href="#2421-when-the-actor-objecttype-is-agent">Agent Objects</a></td>
+	<tr><td>objectType</td><td>String</td><td><code>Group</code>. </td><td>Required</td></tr>
+	<tr><td>name</td><td>String</td><td>Name of the Group.</td><td>Optional</td></tr>
+	<tr><td>member</td><td>Array of <a href="#2421-when-the-actor-objecttype-is-agent">Agent Objects</a></td>
 	<td>The members of this Group. This is an unordered list.</td>
 	<td>Required</td></tr>
 </table>
@@ -448,12 +448,12 @@ The table below lists all properties of an Identified Group.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.2.2.s2.table2.row1"><td>objectType</td><td>String</td><td><code>Group</code>. </td><td>Required</td></tr>
-	<tr id="2.4.2.2.s2.table2.row2"><td>name</td><td>String</td><td>Name of the Group.</td><td>Optional</td></tr>
-	<tr id="2.4.2.2.s2.table2.row3"><td>member</td><td>Array of <a href="#2421-when-the-actor-objecttype-is-agent">Agent Objects</a></td>
+	<tr><td>objectType</td><td>String</td><td><code>Group</code>. </td><td>Required</td></tr>
+	<tr><td>name</td><td>String</td><td>Name of the Group.</td><td>Optional</td></tr>
+	<tr><td>member</td><td>Array of <a href="#2421-when-the-actor-objecttype-is-agent">Agent Objects</a></td>
 	<td>The members of this Group. This is an unordered list.</td>
 	<td>Optional</td></tr>
-	<tr id="2.4.2.2.s2.table2.row4"><td colspan="2">see <a href="#2423-inverse-functional-identifier"> 2.4.2.3 Inverse Functional Identifier</a></td>
+	<tr><td colspan="2">see <a href="#2423-inverse-functional-identifier"> 2.4.2.3 Inverse Functional Identifier</a></td>
 	    <td>An Inverse Functional Identifier unique to the Group.</td><td>Required</td></tr>	
 </table>
 
@@ -497,12 +497,12 @@ The table below lists all possible Inverse Functional Identifier properties.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr id="2.4.2.3.s3.table1.row1"><td><a href="http://xmlns.com/foaf/spec/#term_mbox">mbox</a></td><td>mailto IRI</td><td>The required format is "mailto:email address". <br>
+	<tr><td><a href="http://xmlns.com/foaf/spec/#term_mbox">mbox</a></td><td>mailto IRI</td><td>The required format is "mailto:email address". <br>
 	Only email addresses that have only ever been and will ever be assigned to this Agent, 
 but no others, SHOULD be used for this property and mbox_sha1sum.</td></tr>
-	<tr id="2.4.2.3.s3.table1.row2"><td><a href="http://xmlns.com/foaf/spec/#term_mbox_sha1sum">mbox_sha1sum</a></td><td>String</td><td>The hex-encoded SHA1 hash of a mailto IRI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
-	<tr id="2.4.2.3.s3.table1.row3"><td>openid</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
-	<tr id="2.4.2.3.s3.table1.row4"><td>account</td><td><a href="#2424-account-object">Object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
+	<tr><td><a href="http://xmlns.com/foaf/spec/#term_mbox_sha1sum">mbox_sha1sum</a></td><td>String</td><td>The hex-encoded SHA1 hash of a mailto IRI (i.e. the value of an mbox property). An LRS MAY include Agents with a matching hash when a request is based on an mbox.</td></tr>
+	<tr><td>openid</td><td>URI</td><td>An openID that uniquely identifies the Agent.</td></tr>
+	<tr><td>account</td><td><a href="#2424-account-object">Object</a></td><td>A user account on an existing system e.g. an LMS or intranet.</td></tr>	
 </table>
 
 ###### Client Requirements
@@ -529,9 +529,9 @@ The table below lists all properties of Account Objects.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.2.4.s2.table1.row1"><td>homePage</td><td>IRL</td><td>The canonical home page for the system the account is on. This is based on FOAF's accountServiceHomePage.</td>
+	<tr><td>homePage</td><td>IRL</td><td>The canonical home page for the system the account is on. This is based on FOAF's accountServiceHomePage.</td>
 	<td>Required</td></tr>
-	<tr id="2.4.2.4.s2.table1.row2"><td>name</td><td>String</td><td>The unique id or name used to log in to this account. This is based on FOAF's accountName.</td><td>Required</td></tr>
+	<tr><td>name</td><td>String</td><td>The unique id or name used to log in to this account. This is based on FOAF's accountName.</td><td>Required</td></tr>
 </table>
 
 
@@ -573,7 +573,7 @@ The table below lists all properties of the Verb Object.
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.3.s3.table1.row1">
+	<tr>
 		<td>id</td>
 		<td>IRI</td>
 		<td>Corresponds to a Verb definition. Each Verb definition 
@@ -581,7 +581,7 @@ The table below lists all properties of the Verb Object.
 		</td>
 		<td>Required</td>
 	</tr>
-	<tr id="2.4.3.s3.table1.row2">
+	<tr>
 		<td>display</td>
 		<td><a href="#lang-map">Language Map</a></td>
 		<td>The human readable representation of the 
@@ -705,18 +705,18 @@ properties in this case.
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.4.1.s1.table1.row1">
+	<tr>
 		<td>objectType</td>
 		<td>String</td>
 		<td>MUST be <code>Activity</code> when present</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.4.4.1.s1.table1.row2">
+	<tr>
 		<td><a href="#activity-id-requirements">id</a></td><td>IRI</td>
 		<td>An identifier for a single unique Activity</td>
 		<td>Required</td>
 	</tr>
-	<tr id="2.4.4.1.s1.table1.row3">
+	<tr>
 		<td><a href="#activity-definition">definition</a></td>
 		<td>Object</td>
 		<td>Metadata, <a href="#activity-definition">See below</a></td>
@@ -735,26 +735,26 @@ The table below lists the properties of the Activity Definition Object:
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.4.1.s2.table1.row1">
+	<tr>
 		<td>name</td>
 		<td><a href="#42-language-maps">Language Map</a></td>
 		<td>The human readable/visual name of the Activity</td>
 		<td>Recommended</td>
 	</tr>
-	<tr id="2.4.4.1.s2.table1.row2">
+	<tr>
 		<td>description</td>
 		<td><a href="#42-language-maps">Language Map</a></td>
 		<td>A description of the Activity</td>
 		<td>Recommended</td>
 	</tr>
-	<tr id="2.4.4.1.s2.table1.row3">
+	<tr>
 		<a name="acttype"></a>
 		<td>type</td>
 		<td>IRI</td>
 		<td>The type of Activity.</td>
 		<td>Recommended</td>
 	</tr>
-	<tr id="2.4.4.1.s2.table1.row4">
+	<tr>
 		<td>moreInfo</td>
 		<td>IRL</td>
 		<td>Resolves to a document with human-readable information about the Activity, 
@@ -765,7 +765,7 @@ The table below lists the properties of the Activity Definition Object:
 	<tr>
 		<td colspan="4">Interaction properties, See: <a href="#interaction-activities">Interaction Activities</a></td>
 	</tr>
-	<tr id="2.4.4.1.s2.table1.row5">
+	<tr>
 		<td>extensions</td>
 		<td>Object</td>
 		<td>A map of other properties as needed (see: <a href="#41-extensions">Extensions</a>)</td>
@@ -826,21 +826,21 @@ The table below lists the properties for Interaction Activities.
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.4.1.s8.table1.row1">
+	<tr>
 		<td>interactionType</td>
 		<td>String</td>
 		<td>The type of interaction. Possible values are: <code>true-false</code>, <code>choice</code>, <code>fill-in</code>, <code>long-fill-in</code>,
 		<code>matching</code>, <code>performance</code>, <code>sequencing</code>, <code>likert</code>, <code>numeric</code> or <code>other</code>. </td>
 		<td>Required</td>
 	</tr>
-	<tr id="2.4.4.1.s8.table1.row2">
+	<tr>
 		<td>correctResponsesPattern</td>
 		<td>Array of Strings</td>
 		<td>A pattern representing the correct response to the interaction. The structure of this pattern varies
 		depending on the interactionType. This is detailed below. </td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.4.4.1.s8.table1.row3">
+	<tr>
 		<td>choices | scale | source | target | steps</td>
 		<td>Array of interaction components</td>
 		<td>Specific to the given interactionType (see below).</td>
@@ -856,51 +856,51 @@ Edition Run-Time Environment. See [Appendix C](#appendix-c-example-definitions-f
 
 <table>
 	<tr><th>interactionType</th><th>Description</th></tr>
-	<tr id="2.4.4.1.s9.table1.row1">
+	<tr>
 		<td>true-false</td>
 		<td>An interaction with two possible responses: <code>true</code> or <code>false</code>.</td>
 	</tr>
-	<tr id="2.4.4.1.s9.table1.row2">
+	<tr>
 		<td>choice</td>
 		<td>An interaction with a number of possible choices from which the learner can select. 
 			This includes interactions in which the learner can select only one answer from the list and
 			those where the learner can select multiple items.</td>
 	</tr>
-	<tr id="2.4.4.1.s9.table1.row3">
+	<tr>
 		<td>fill-in</td>
 		<td>An interaction which requires the learner to supply a short response in the form of one or more 
 			strings of characters. Typically, the correct response consists of part of a word, one word or a few words. 
 			"Short" means that the correct responses pattern and learner response strings will normally be 250 characters or less.
 		</td>
 	</tr>
-	<tr id="2.4.4.1.s9.table1.row4">
+	<tr>
 		<td>long-fill-in</td>
 		<td>An interaction which requires the learner to supply a response in the form of a long string of characters.
 			"Long" means that the correct responses pattern and learner response strings will normally be more than 250 characters.
 		</td>
 	</tr>
-	<tr id="2.4.4.1.s9.table1.row5">
+	<tr>
 		<td>matching</td>
 		<td>An interaction where the learner is asked to match items in one set (the source set) to items in another set (the target set).
 			Items do not have to pair off exactly and it is possible for multiple or zero source items to be matched to a given target and vice versa.</td>
 	</tr>
-	<tr id="2.4.4.1.s9.table1.row6">
+	<tr>
 		<td>performance</td>
 		<td>An interaction that requires the learner to perform a task that requires multiple steps.</td>
 	</tr>
-	<tr id="2.4.4.1.s9.table1.row7">
+	<tr>
 		<td>sequencing</td>
 		<td>An interaction where the learner is asked to order items in a set.</td>
 	</tr>
-	<tr id="2.4.4.1.s9.table1.row8">
+	<tr>
 		<td>likert</td>
 		<td>An interaction which asks the learner to select from a discrete set of choices on a scale</td>
 	</tr>
-	<tr id="2.4.4.1.s9.table1.row9">
+	<tr>
 		<td>numeric</td>
 		<td>Any interaction which requires a numeric response from the learner.</td>
 	</tr>
-	<tr id="2.4.4.1.s9.table1.row10">
+	<tr>
 		<td>other</td>
 		<td>Another type of interaction that does not fit into those defined above.</td>
 	</tr>
@@ -914,26 +914,26 @@ Run-Time Environment. See [Appendix C](#appendix-c-example-definitions-for-activ
 
 <table>
 	<tr><th>interactionType</th><th>Format</th></tr>
-	<tr id="2.4.4.1.s10.table1.row1">
+	<tr>
 		<td>true-false</td>
 		<td>Either <code>true</code> or <code>false</code></td>
 	</tr>
-	<tr id="2.4.4.1.s10.table1.row2">
+	<tr>
 		<td>choice</td>
 		<td>A list of item ids delimited by <code>[,]</code>. If the response contains only one item, the delimiter MUST not be used.</td>
 	</tr>
-	<tr id="2.4.4.1.s10.table1.row3">
+	<tr>
 		<td>fill-in and long-fill-in</td>
 		<td>A list of responses delimited by <code>[,]</code>. If the response contains only one item, the delimiter MUST not be used.</td>
 	</tr>
-	<tr id="2.4.4.1.s10.table1.row4">
+	<tr>
 		<td>matching</td>
 		<td>A list of matching pairs, where each  pair consists of a source item id followed by a target item id. 
 			Items can appear in multiple (or zero) pairs.
 			Items within a pair are delimited by <code>[.]</code>. Pairs are delimited by <code>[,]</code>.
 		</td>
 	</tr>
-	<tr id="2.4.4.1.s10.table1.row5">
+	<tr>
 		<td>performance</td>
 		<td>
 			A list of steps containing a step ids and the response to that step.
@@ -941,15 +941,15 @@ Run-Time Environment. See [Appendix C](#appendix-c-example-definitions-for-activ
 			The response can be a String as in a fill-in interaction or a number range as in a numeric interaction. 
 		</td>
 	</tr>
-	<tr id="2.4.4.1.s10.table1.row6">
+	<tr>
 		<td>sequencing</td>
 		<td>An ordered list of item ids delimited by <code>[,]</code>.</td>
 	</tr>
-	<tr id="2.4.4.1.s10.table1.row7">
+	<tr>
 		<td>likert</td>
 		<td>A single item id</td>
 	</tr>
-	<tr id="2.4.4.1.s10.table1.row8">
+	<tr>
 		<td>numeric</td>
 		<td>A range of numbers represented by a minimum and a maximum delimited by <code>[:]</code>. 
 			Where the range does not have a maximum or does not have a minimum, that number is omitted but the delimiter is
@@ -958,7 +958,7 @@ Run-Time Environment. See [Appendix C](#appendix-c-example-definitions-for-activ
 			with no delimiter MAY be used. 
 		</td>
 	</tr>
-	<tr id="2.4.4.1.s10.table1.row9">
+	<tr>
 		<td>other</td>
 		<td>Any format is valid within this string as appropriate for the type of interaction.</td>
 	</tr>
@@ -1005,14 +1005,14 @@ in interpreting (or ignoring) invalid characterstring parameters and values.
 The following parameters are valid at the start of the string representing the list of items for the listed interaction types:
 <table>
 	<tr><th>Parameter</th><th>Default</th><th>Description</th><th>Value</th><th>Interaction types</th></tr>
-	<tr id="2.4.4.1.s12.table1.row1">
+	<tr>
 		<td>case_matters</td>
 		<td>false</td>
 		<td>Whether or not the case of items in the list matters.</td>
 		<td><code>true</code> or <code>false</code></td>
 		<td>fill-in, long-fill-in</td>
 	</tr>
-	<tr id="2.4.4.1.s12.table1.row2">
+	<tr>
 		<td>order_matters</td>
 		<td>true</td>
 		<td>Whether or not the order of items in the list matters.</td>
@@ -1024,7 +1024,7 @@ The following parameters are valid at the start of the string representing the l
 The following parameters are valid at the start of each item in the list for the listed interaction types:
 <table>
 	<tr><th>Parameter</th><th>Description</th><th>Value</th><th>Interaction types</th></tr>
-	<tr id="2.4.4.1.s12.table2.row1">
+	<tr>
 		<td>lang</td>
 		<td>The language used within the item.</td>
 		<td><a href="http://tools.ietf.org/html/rfc5646">RFC 5646 Language Tag</a></td>
@@ -1053,7 +1053,7 @@ Interaction components are defined as follows:
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.4.1.s15.table1.row1">
+	<tr>
 		<td>id</td>
 		<td>String</td>
 		<td>Identifies the interaction component within the list.</td>
@@ -1073,16 +1073,16 @@ list of interaction components. These additional properties are called "interact
 shows the supported interaction component list(s) for an Interaction Activity with the given interactionType.
 
 <table>
-	<tr id="2.4.4.1.s15.table2.row1"><th>interactionType</th><th>supported interaction component list(s)</th><th>Description</th><tr>
+	<tr><th>interactionType</th><th>supported interaction component list(s)</th><th>Description</th><tr>
 	<tr><td>choice, sequencing</td><td>choices</td>
 	<td>A list of the options available in the interaction for selection or ordering.</td></tr>
-	<tr id="2.4.4.1.s15.table2.row2"><td>likert</td><td>scale</td>
+	<tr><td>likert</td><td>scale</td>
 	<td>A list of the options on the likert scale.</td></tr>
-	<tr id="2.4.4.1.s15.table2.row3"><td>matching</td><td>source, target</td>
+	<tr><td>matching</td><td>source, target</td>
 	<td>Lists of sources and targets to be matched.</td></tr>
-	<tr id="2.4.4.1.s15.table2.row4"><td>performance</td><td>steps</td>
+	<tr><td>performance</td><td>steps</td>
 	<td>A list of the elements making up the performance interaction.</td></tr>
-	<tr id="2.4.4.1.s15.table2.row5"><td>true-false, fill-in, long-fill-in, numeric, other</td><td>[No component lists supported]</td><td></td></tr>
+	<tr><td>true-false, fill-in, long-fill-in, numeric, other</td><td>[No component lists supported]</td><td></td></tr>
 </table>
 
 
@@ -1131,8 +1131,8 @@ The table below lists all properties of a Statement Reference Object:
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.4.3.s4.table1.row1"><td>objectType</td><td>String</td><td>In this case, MUST be <code>StatementRef</code>.</td><td>Required</td></tr>
-	<tr id="2.4.4.3.s4.table1.row2"><td>id</td><td>UUID</td><td>The UUID of a Statement. 
+	<tr><td>objectType</td><td>String</td><td>In this case, MUST be <code>StatementRef</code>.</td><td>Required</td></tr>
+	<tr><td>id</td><td>UUID</td><td>The UUID of a Statement. 
 	</td><td>Required</td></tr>
 </table>
 
@@ -1237,38 +1237,38 @@ The following table contains the properties of the Result Object.
 
 <table border="1">
 <tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-<tr id="2.4.5.s2.table1.row1">
+<tr>
 	<td>score</td>
 	<td>Object</td>
 	<td>The score of the Agent in relation to the success or quality of the experience. 
 	<a href ="#2451-score">See: Score</a></td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.5.s2.table1.row2">
+<tr>
 	<td>success</td>
 	<td>Boolean</td>
 	<td>Indicates whether or not the attempt on the Activity was successful.</td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.5.s2.table1.row3">
+<tr>
 	<td>completion</td>
 	<td>Boolean</td>
 	<td>Indicates whether or not the Activity was completed.</td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.5.s2.table1.row4">
+<tr>
 	<td>response</td>
 	<td>String</td>
 	<td>A response appropriately formatted for the given Activity.</td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.5.s2.table1.row5">
+<tr>
 	<td>duration</td>
 	<td><a href="#46-iso-8601-durations">Duration</a></td>
 	<td>Period of time over which the Statement occurred.</td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.5.s2.table1.row6">
+<tr>
 	<td>extensions</td>
 	<td>Object</td>
 	<td>A map of other properties as needed.
@@ -1289,27 +1289,27 @@ The table below defines the Score Object.
 
 <table border ="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.5.1.s2.table1.row1">
+	<tr>
 		<td>scaled</td>
 		<td>Decimal number between -1 and 1, inclusive</td>
 		<td>The score related to the experience as modified by scaling and/or normalization. 
 		</td>
 		<td>Recommended</td>
 	</tr>
-	<tr id="2.4.5.1.s2.table1.row2">
+	<tr>
 		<td>raw</td>
 		<td>Decimal number between min and max (if present, otherwise unrestricted), inclusive</td>
 		<td>The score achieved by the Actor in the experience described by the Statement. This is not modified by
 		any scaling or normalization.</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.4.5.1.s2.table1.row3">
+	<tr>
 		<td>min</td>
 		<td>Decimal number less than max (if present)</td>
 		<td>The lowest possible score for the experience described by the Statement.</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.4.5.1.s2.table1.row4">
+	<tr>
 		<td>max</td>
 		<td>Decimal number greater than min (if present)</td>
 		<td>The highest possible score for the experience described by the Statement.</td>
@@ -1345,44 +1345,44 @@ The following table contains the properties of the Context Object.
 
 <table border="1">
 <tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-<tr id="2.4.6.s3.table1.row1">
+<tr>
 	<td>registration</td>
 	<td>UUID</td>
 	<td>The registration that the Statement is associated with.</td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.6.s3.table1.row2">
+<tr>
 	<td>instructor</td>
 	<td>Agent (MAY be a Group)</td>
 	<td>Instructor that the Statement relates to, if not included as the Actor of the Statement.</td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.6.s3.table1.row3">
+<tr>
 	<td>team</td>
 	<td>Group</td>
 	<td>Team that this Statement relates to, if not included as the Actor of the Statement.</td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.6.s3.table1.row4">
+<tr>
 	<td>contextActivities</td>
 	<td>contextActivities Object</td>
 	<td>A map of the types of learning activity context that this Statement is related to.
 	Valid context types are: <code>parent</code>, <code>"grouping"</code>, <code>"category"</code> and <code>"other"</code>.</td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.6.s3.table1.row5">
+<tr>
 	<td>revision</td>
 	<td>String</td>
 	<td>Revision of the learning activity associated with this Statement. Format is free.
 	<td>Optional</td>
 </tr>
-<tr id="2.4.6.s3.table1.row6">
+<tr>
 	<td>platform</td>
 	<td>String</td>
 	<td>Platform used in the experience of this learning activity. </td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.6.s3.table1.row7">
+<tr>
 	<td>language</td>
 	<td>String (as defined in <a href="http://tools.ietf.org/html/rfc5646">RFC 5646</a>)</td>
 	<td>Code representing the language in which the experience being recorded in this 
@@ -1390,13 +1390,13 @@ The following table contains the properties of the Context Object.
 	</td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.6.s3.table1.row8">
+<tr>
 	<td>statement</td>
 	<td><a href="#statement-references">Statement Reference</a></td>
 	<td>Another Statement to be considered as context for this Statement. </td>
 	<td>Optional</td>
 </tr>
-<tr id="2.4.6.s3.table1.row9">
+<tr>
 	<td>extensions</td>
 	<td>Object</td>
 	<td>A map of any other domain-specific context relevant to this Statement. For example, 
@@ -1684,7 +1684,7 @@ The table below lists all properties of the Attachment Object.
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th><th>Corresponding request parameter</th></tr>
-	<tr id="2.4.11.s2.table1.row1">
+	<tr>
 		<td><a name="attachmentUsage"></a>usageType</td>
 		<td>IRI</td>
 		<td>Identifies the usage of this Attachment. For example: one expected use case
@@ -1693,35 +1693,35 @@ The table below lists all properties of the Attachment Object.
 		<td>Required</td>
 		<td></td>
 	</tr>
-	<tr id="2.4.11.s2.table1.row2">
+	<tr>
 		<td>display</td>
 		<td><a href="#42-language-maps">Language Map</a></td>
 		<td>Display name (title) of this Attachment.</td>
 		<td>Required</td>
 		<td></td>
 	</tr>
-	<tr id="2.4.11.s2.table1.row3">
+	<tr>
 		<td>description</td>
 		<td><a href="#42-language-maps">Language Map</a></td>
 		<td>A description of the Attachment</td>
 		<td>Optional</td>
 		<td></td>
 	</tr>
-	<tr id="2.4.11.s2.table1.row4">
+	<tr>
 		<td>contentType</td>
 		<td><a href="https://www.ietf.org/rfc/rfc2046.txt?number=2046">Internet Media Type</a></td>
 		<td>The content type of the Attachment.</td>
 		<td>Required</td>
 		<td>Content-Type</td>
 	</tr>
-	<tr id="2.4.11.s2.table1.row5">
+	<tr>
 		<td>length</td>
 		<td>Integer</td>
 		<td>The length of the Attachment data in octets.</td>
 		<td>Required</td>
 		<td>Content-Length</td>
 	</tr>
-	<tr id="2.4.11.s2.table1.row6">
+	<tr>
 		<td>sha2</td>
 		<td>String</td>
 		<td>The SHA-2 hash of the Attachment data. <br/>
@@ -1730,7 +1730,7 @@ The table below lists all properties of the Attachment Object.
 		<td>Required</td>
 		<td>X-Experience-API-Hash</td>
 	</tr>
-	<tr id="2.4.11.s2.table1.row7">
+	<tr>
 		<td>fileUrl</td>
 		<td>IRL</td>
 		<td>An IRL at which the Attachment data can be retrieved, or from which it used 
@@ -1755,7 +1755,7 @@ Resource, see [Statement Resource](./xAPI-Communication.md#21-statement-resource
 The following table shows the data structure for the results of queries on the Statement Resource.
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.5.s2.table1.row1"><td>statements</td><td>Array of Statements</td>
+	<tr><td>statements</td><td>Array of Statements</td>
 		<td>List of Statements. If the list returned has been limited (due to pagination), 
 			and there are more results, they will be located at the "statements" property 
 			within the container located at the IRL provided by the "more" property of 
@@ -1764,7 +1764,7 @@ The following table shows the data structure for the results of queries on the S
 		</td>
 		<td>Required</td>
 	</tr>
-	<tr id="2.5.s2.table1.row2"><td>more</td><td>IRL</td>
+	<tr><td>more</td><td>IRL</td>
 		<td>Relative IRL that can be used to fetch more results, including the full path 
 			and optionally a query string but excluding scheme, host, and port. 
 			Empty string if there are no more results to fetch.
@@ -1917,13 +1917,13 @@ For the structure of hosted metadata about all other identifiers, see the format
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="3.2.s2.table1.row1">
+	<tr>
 		<td>name</td>
 		<td><a href="#42-language-maps">Language Map</a></td>
 		<td>The human readable/visual name. For Verbs, this is equivalent to the "display" property in a Statement.</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="3.2.s2.table1.row2">
+	<tr>
 		<td>description</td>
 		<td><a href="#42-language-maps">Language Map</a></td>
 		<td>description</td>
@@ -2087,24 +2087,24 @@ The table below provides some example ISO 8601 Durations. This list is not inten
 
 <table>
 	<tr><th>Example</th><th>Explanation</th></tr>
-	<tr id="4.6.s2.table1.row1">
+	<tr>
 		<td>PT4H35M59.14S</td>
 		<td>Four hours, thirty five minutes and 59.14 seconds.</td>
 	</tr>
-	<tr id="4.6.s2.table1.row2">
+	<tr>
 		<td>PT16559.14S</td>
 		<td>The same time period as above represented in seconds. 
 		(Note: if the time period in question contained a leap second, this conversion would be inaccurate)</td>
 	</tr>
-	<tr id="4.6.s2.table1.row3">
+	<tr>
 		<td>P3Y1M29DT4H35M59.14S</td>
 		<td>A Duration also including years, months and days.</td>
 	</tr>
-	<tr id="4.6.s2.table1.row4">
+	<tr>
 		<td>P3Y</td>
 		<td>Approximately three years e.g. completion of a qualification.</td>
 	</tr>
-	<tr id="4.6.s2.table1.row5">
+	<tr>
 		<td>P4W</td>
 		<td>Four weeks. Note that weeks cannot be combined with other time periods. 'P4W1D' is not valid.</td>
 	</tr>

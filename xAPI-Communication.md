@@ -460,7 +460,7 @@ Stores a single Statement with the given id. POST can also be used to store sing
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.1.1.s1.table1.row1"><td>statementId</td><td>String</td><td> 
+	<tr><td>statementId</td><td>String</td><td> 
 	<td>Id of Statement to record</td></td><td>Required</td></tr>
 </table>
 
@@ -537,14 +537,14 @@ retrieve them will be included in the StatementResult Object.
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.1.3.s1.table1.row1">
+	<tr>
 		<td>statementId</td>
 		<td>String</td>
 		<td> </td>
 		<td>Id of Statement to fetch</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.1.3.s1.table1.row2">
+	<tr>
 		<td>voidedStatementId</td>
 		<td>String</td>
 		<td> </td>
@@ -552,7 +552,7 @@ retrieve them will be included in the StatementResult Object.
 		Statements</a></td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.1.3.s1.table1.row3">
+	<tr>
 		<td>agent</td>
 		<td>Agent or Identified Group Object (JSON)</td>
 		<td> </td>
@@ -574,14 +574,14 @@ retrieve them will be included in the StatementResult Object.
 		</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.1.3.s1.table1.row4">
+	<tr>
 		<td>verb</td>
 		<td>Verb id (IRI)</td>
 		<td> </td>
 		<td>Filter, only return Statements matching the specified Verb id.</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.1.3.s1.table1.row5">
+	<tr>
 		<td>activity</td>
 		<td>Activity id (IRI)</td>
 		<td> </td>
@@ -591,7 +591,7 @@ retrieve them will be included in the StatementResult Object.
 		</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.1.3.s1.table1.row6">
+	<tr>
 		<td>registration</td>
 		<td>UUID</td>
 		<td> </td>
@@ -604,7 +604,7 @@ retrieve them will be included in the StatementResult Object.
 		</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.1.3.s1.table1.row7">
+	<tr>
 	<td>related_activities</td>
 		<td>Boolean</td>
 		<td>false</td>
@@ -617,7 +617,7 @@ retrieve them will be included in the StatementResult Object.
 		</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.1.3.s1.table1.row8">
+	<tr>
 		<td>related_agents</td>
 		<td>Boolean</td>
 		<td>false</td>
@@ -630,21 +630,21 @@ retrieve them will be included in the StatementResult Object.
 		</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.1.3.s1.table1.row9">
+	<tr>
 		<td>since</td>
 		<td>Timestamp</td>
 		<td> </td>
 		<td>Only Statements stored since the specified Timestamp (exclusive) are returned.</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.1.3.s1.table1.row10">
+	<tr>
 		<td>until</td>
 		<td>Timestamp</td>
 		<td> </td>
 		<td>Only Statements stored at or before the specified Timestamp are returned.</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.1.3.s1.table1.row11">
+	<tr>
 		<td>limit</td>
 		<td>Nonnegative Integer</td>
 		<td>0</td>
@@ -654,7 +654,7 @@ retrieve them will be included in the StatementResult Object.
 		</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.1.3.s1.table1.row12">
+	<tr>
 		<td>format</td>
 		<td>String: (<code>ids</code>, <code>exact</code>, or <code>canonical</code>)</td>
 		<td>exact</td>
@@ -674,14 +674,14 @@ retrieve them will be included in the StatementResult Object.
 		</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.1.3.s1.table1.row13">
+	<tr>
 		<td>attachments</td><td>Boolean</td><td>false</td>
 		<td>If <code>true</code>, the LRS uses the multipart response format and includes all attachments as 
 		described previously.  If <code>false</code>, the LRS sends the prescribed response with Content-Type 
 		application/json and does not send attachment data.</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.1.3.s1.table1.row14">
+	<tr>
 		<td>ascending</td>
 		<td>Boolean</td>
 		<td>false</td>
@@ -803,10 +803,10 @@ in this specification do. The id is stored in the IRL, "updated" is HTTP header 
 "contents" is the HTTP document itself (as opposed to an Object).
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th></tr>
-	<tr id="2.2.s2.table1.row1"><td>id</td><td>String</td><td>Set by Learning Record Provider, unique within the scope 
+	<tr><td>id</td><td>String</td><td>Set by Learning Record Provider, unique within the scope 
 	of the Agent or Activity.</td></tr>
-	<tr id="2.2.s2.table1.row2"><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
-	<tr id="2.2.s2.table1.row3"><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
+	<tr><td>updated</td><td>Timestamp</td><td>When the document was most recently modified.</td></tr>
+	<tr><td>contents</td><td>Arbitrary binary data</td><td>The contents of the document</td></tr>
 </table>
 
 The three Document Resources provide [document](./xAPI-Data.md#10-documents) storage.  The details of each resource are found in 
@@ -821,19 +821,19 @@ the following sections, and the information in this section applies to all three
 		<th>Endpoint</th>
 		<th>Example</th>
 	</tr>
-	<tr id="2.2.s3.table1.row1">
+	<tr>
 		<td>State Resource</td>
 		<td>POST</td>
 		<td>activities/state</td>
 		<td>http://example.com/xAPI/activities/state</td>
 	</tr>
-	<tr id="2.2.s3.table1.row2">
+	<tr>
 		<td>Activity Profile Resource</td>
 		<td>POST</td>
 		<td>activities/profile</td>
 		<td>http://example.com/xAPI/activities/profile</td>
 	</tr>
-	<tr id="2.2.s3.table1.row3">
+	<tr>
 		<td>Agent Profile Resource</td>
 		<td>POST</td>
 		<td>agents/profile</td>
@@ -940,25 +940,25 @@ exists in the context of the specified Activity, Agent, and registration (if spe
 **Returns (GET):** `200 OK`, the State document 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.3.s3.table1.row1">
+	<tr>
 		<td>activityId</td>
 		<td>Activity id (IRI)</td>
 		<td>The Activity id associated with this state.</td>
 		<td>Required</td>
 	</tr>
-	<tr id="2.3.s3.table1.row2">
+	<tr>
 		<td>agent</td>
 		<td>Agent Object (JSON)</td>
 		<td>The Agent associated with this state.</td>
 		<td>Required</td>
 	</tr>
-	<tr id="2.3.s3.table1.row3">
+	<tr>
 		<td>registration</td>
 		<td>UUID</td>
 		<td>The registration associated with this state.</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.3.s3.table1.row4">
+	<tr>
 		<td>stateId</td>
 		<td>String</td>
 		<td>The id for this state, within the given context.</td>
@@ -980,25 +980,25 @@ timestamp (exclusive).
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.3.s4.table1.row1">
+	<tr>
 		<td>activityId</td>
 		<td>Activity id (IRI)</td>
 		<td>The Activity id associated with these states.</td>
 		<td>Required</td>
 	</tr>
-	<tr id="2.3.s4.table1.row2">
+	<tr>
 		<td>agent</td>
 		<td>Agent object (JSON)</td>
 		<td>The Agent associated with these states.</td>
 		<td>Required</td>
 	</tr>
-	<tr id="2.3.s4.table1.row3">
+	<tr>
 		<td>registration</td>
 		<td>UUID</td>
 		<td>The Registration associated with these states.</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.3.s4.table1.row4">
+	<tr>
 		<td>since</td>
 		<td>Timestamp</td>
 		<td>Only ids of states stored since the specified Timestamp (exclusive) are returned.</td>
@@ -1017,19 +1017,19 @@ Deletes all state data for this context (Activity + Agent \[+ registration if sp
 **Returns**: `204 No Content`  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.3.s5.table1.row1">
+	<tr>
 		<td>activityId</td>
 		<td>Activity id (IRI)</td>
 		<td>The Activity id associated with this state.</td>
 		<td>Required</td>
 	</tr>
-	<tr id="2.3.s5.table1.row2">
+	<tr>
 		<td>agent</td>
 		<td>Agent object (JSON)</td>
 		<td>The Agent associated with this state.</td>
 		<td>Required</td>
 	</tr>
-	<tr id="2.3.s5.table1.row3">
+	<tr>
 		<td>registration</td>
 		<td>UUID</td>
 		<td>The Registration associated with this state.</td>
@@ -1064,7 +1064,7 @@ It is not a Person Object, nor is it a Group.
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.s2.table1.row1">
+	<tr>
 		<td>agent</td>
 		<td>Agent object (JSON)</td>
 		<td>The Agent representation to use in fetching expanded Agent information.</td>
@@ -1091,37 +1091,37 @@ about the Agent it received in the request.
 
 <table>
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.4.s5.table1.row1">
+	<tr>
 		<td>objectType</td>
 		<td>String</td>
 		<td><code>Person</code></td>
 		<td>Required</td>
 	</tr>
-	<tr id="2.4.s5.table1.row2">
+	<tr>
 		<td>name</td>
 		<td>Array of strings.</td>
 		<td>List of names of Agents retrieved.</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.4.s5.table1.row3">
+	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/#term_mbox">mbox</a></td>
 		<td>Array of IRIs in the form "mailto:email address".</td>
 		<td>List of e-mail addresses of Agents retrieved.</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.4.s5.table1.row4">
+	<tr>
 		<td><a href="http://xmlns.com/foaf/spec/#term_mbox_sha1sum">mbox_sha1sum</a></td>
 		<td>Array of strings.</td>
 		<td>List of the SHA1 hashes of mailto IRIs (such as go in an mbox property).</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.4.s5.table1.row5">
+	<tr>
 		<td>openid*</td>
 		<td>Array of strings.</td>
 		<td>List of openids that uniquely identify the Agents retrieved.</td>
 		<td>Optional</td>
 	</tr>
-	<tr id="2.4.s5.table1.row6">
+	<tr>
 		<td>account*</td>
 		<td>Array of account objects.</td>
 		<td>List of accounts to match. Complete account Objects (homePage and name) 
@@ -1157,7 +1157,7 @@ Loads the complete Activity Object specified.
 **Returns:** `200 OK`, Content 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.5.s1.table1.row1">
+	<tr>
 		<td>activityId</td>
 		<td>Activity id (IRI)</td>
 		<td>The id associated with the Activities to load.</td>
@@ -1197,13 +1197,13 @@ Stores, changes, fetches, or deletes the specified Profile document in the conte
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.6.s3.table1.row1">
+	<tr>
 		<td>agent</td>
 		<td>Agent object (JSON)</td>
 		<td>The Agent associated with this Profile document.</td>
 		<td>Required</td>
 	</tr>
-	<tr id="2.6.s3.table1.row2">
+	<tr>
 		<td>profileId</td>
 		<td>String</td>
 		<td>The profile id associated with this Profile document.</td>
@@ -1227,13 +1227,13 @@ that have been stored or updated since the specified Timestamp (exclusive).
 
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.6.s4.table1.row1">
+	<tr>
 		<td>agent</td>
 		<td>Agent object (JSON)</td>
 		<td>The Agent associated with this Profile document.</td>
 		<td>Required</td>
 	</tr>
-	<tr id="2.6.s4.table1.row2">
+	<tr>
 		<td>since</td>
 		<td>Timestamp</td>
 		<td>Only ids of Profiles stored since the specified Timestamp 
@@ -1269,13 +1269,13 @@ Stores, changes, fetches, or deletes the specified Profile document in the conte
 **Returns (GET):** `200 OK`, the Profile document  
 <table>
 	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.7.s3.table1.row1">
+	<tr>
 		<td>activityId</td>
 		<td>Activity id (IRI)</td>
 		<td>The Activity id associated with this Profile document.</td>
 		<td>Required</td>
 	</tr>
-	<tr id="2.7.s3.table1.row2">
+	<tr>
 		<td>profileId</td>
 		<td>String</td>
 		<td>The profile id associated with this Profile document.</td>
@@ -1295,14 +1295,14 @@ entries that have been stored or updated since the specified Timestamp (exclusiv
 **Returns:** `200 OK`, Array of Profile id(s)  
 
 <table>
-	<tr id="2.7.s4.table1.row1"><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
+	<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Required</th><tr>
 	<tr>
 		<td>activityId</td>
 		<td>Activity id (IRI)</td>
 		<td>The Activity id associated with these Profile documents.</td>
 		<td>Required</td>
 	</tr>
-	<tr id="2.7.s4.table1.row2">
+	<tr>
 		<td>since</td>
 		<td>Timestamp</td>
 		<td>Only ids of Profile documents stored since the specified Timestamp (exclusive) 
@@ -1335,13 +1335,13 @@ Example endpoint: http://example.com/xAPI/about
 **Returns:** `200 OK`, JSON object containing basic metadata about this LRS
 <table border="1">
 	<tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr>
-	<tr id="2.8.s4.table1.row1">
+	<tr>
 		<td>version</td>
 		<td>Array of version strings</td>
 		<td>xAPI versions this LRS supports</td>
 		<td>Required</td>
 	</tr>
-	<tr id="2.8.s4.table1.row2">
+	<tr>
 		<td>extensions</td>
 		<td><a href="./xAPI-Data.md#41-extensions">Object</a></td>
 		<td>A map of other properties as needed</td>
@@ -1683,22 +1683,22 @@ A **known user** is a user account on the LRS, or on a system which the LRS trus
 
 <table border="1">
 <tr><th></th><th>Known user</th><th>User unknown</th></tr>
-<tr id="4.1.table1.row1">
+<tr>
 <td>Application is registered</td>
 <td>Standard workflow for OAuth.</td>
 <td>LRS trusts application to access xAPI without additional user credentials. OAuth token steps are not invoked</td>
 </tr>
-<tr id="4.1.table1.row2">
+<tr>
 <td>Application is not registered</td>
 <td>The application Agent is not identified as a registered Agent and the LRS cannot make assumptions on its identity.</td>
 <td></br></td>
 </tr>
-<tr id="4.1.table1.row3">
+<tr>
 <td>No application</td>
 <td>HTTP Basic Authentication is used instead of OAuth, since no application is involved.</td>
 <td></br></td>
 </tr>
-<tr id="4.1.table1.row4">
+<tr>
 <td>No authentication</td>
 <td align="center"colspan="2">MAY be supported by the LRS, possibly for testing purposes.</td>
 
@@ -1794,15 +1794,15 @@ The requirements in this section only apply if the LRS supports OAuth 1.0.
 The following table lists xAPI scope values:  
 <table>
 	<tr><th>Scope</th><th>Permission</th></tr>
-	<tr id="4.2.s2.table1.row1"><td>statements/write</td><td>write any Statement</td></tr>
-	<tr id="4.2.s2.table1.row2">
+	<tr><td>statements/write</td><td>write any Statement</td></tr>
+	<tr>
 		<td>statements/read/mine</td>
 		<td>read Statements written by "me", that is with an authority 
 			matching what the LRS would assign if writing a Statement with 
 			the current token.
 		</td>
 	</tr>
-	<tr id="4.2.s2.table1.row3"><td>statements/read</td><td>read any Statement</td>
+	<tr><td>statements/read</td><td>read any Statement</td>
 	<tr>
 		<td>state</td>
 		<td>read/write state data, limited to Activities and Actors 
@@ -1810,7 +1810,7 @@ The following table lists xAPI scope values:
 			possible to determine this relationship.
 		</td>
 	</tr>
-	<tr id="4.2.s2.table1.row4">
+	<tr>
 		<td>define</td>
 		<td>(re)Define Activities and Actors. If storing a Statement 
 			when this is not granted, ids will be saved and the LRS 
@@ -1819,15 +1819,15 @@ The following table lists xAPI scope values:
 			Actors or Activities.
 		</td>
 	</tr>
-	<tr id="4.2.s2.table1.row5">
+	<tr>
 		<td>profile</td>
 		<td>read/write Profile document data, limited to Activities and Actors 
 			associated with the current token to the extent it is 
 			possible to determine this relationship.
 		</td>
 	</tr>
-	<tr id="4.2.s2.table1.row6"><td>all/read</td><td>unrestricted read access</td></tr>
-	<tr id="4.2.s2.table1.row7"><td>all</td><td>unrestricted access</td></tr>
+	<tr><td>all/read</td><td>unrestricted read access</td></tr>
+	<tr><td>all</td><td>unrestricted access</td></tr>
 </table>
 
 ###### OAuth Resources
@@ -1837,17 +1837,17 @@ The following table lists xAPI scope values:
 		<th>Endpoint</th>
 		<th>Example</th>
 	</tr>
-	<tr id="4.2.s3.table1.row1">
+	<tr>
 		<td>Temporary Credential Request</td>
 		<td>OAuth/initiate</td>
 		<td>http://example.com/xAPI/OAuth/initiate</td>
 	</tr>
-	<tr id="4.2.s3.table1.row2">
+	<tr>
 		<td>Resource Owner Authorization</td>
 		<td>OAuth/authorize</td>
 		<td>http://example.com/xAPI/OAuth/authorize</td>
 	</tr>
-	<tr id="4.2.s3.table1.row3">
+	<tr>
 		<td>Token Request</td>
 		<td>OAuth/token</td>
 		<td>http://example.com/xAPI/OAuth/token </td>
@@ -2078,31 +2078,31 @@ Converted to 1.0.0:
 		<th>Base Resource Endpoint of the LRS Precedes Each Endpoint</th>
 		<th>Function</th>
 	</tr>
-	<tr id="B.s1.table1.row1">
+	<tr>
 		<td>statements</td>
 		<td>Statement Storage/Retrieval</td>
 	</tr>
-	<tr id="B.s1.table1.row2">
+	<tr>
 		<td>agents</td>
 		<td>Agent Object Storage/Retrieval</td>
 	</tr>
-	<tr id="B.s1.table1.row3">
+	<tr>
 		<td>agents/profile</td>
 		<td>Agent Profile Resource</td>
 	</tr>
-	<tr id="B.s1.table1.row4">
+	<tr>
 		<td>activities</td>
 		<td>Activity Object Storage/Retrieval</td>
 	</tr>
-	<tr id="B.s1.table1.row5">
+	<tr>
 		<td>activities/profile</td>
 		<td>Activity Profile Resource</td>
 	</tr>
-	<tr id="B.s1.table1.row6">
+	<tr>
 		<td>activities/state</td>
 		<td>State Resource</td>
 	</tr>
-	<tr id="B.s1.table1.row7">
+	<tr>
 		<td>about</td>
 		<td>LRS Information</td>
 	</tr>
@@ -2114,15 +2114,15 @@ Converted to 1.0.0:
 		<th>Base Resource Endpoint of the LRS Precedes Each Endpoint</th>
 		<th>Function</th>
 	</tr>
-	<tr id="B.s2.table1.row1">
+	<tr>
 		<td>OAuth/initiate</td>
 		<td>Temporary Credential Request</td>
 	</tr>
-	<tr id="B.s2.table1.row2">
+	<tr>
 		<td>OAuth/authorize</td>
 		<td>Resource Owner Authorization</td>
 	</tr>
-	<tr id="B.s2.table1.row3">
+	<tr>
 		<td>OAuth/token</td>
 		<td>Token Request</td>
 	</tr>
