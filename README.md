@@ -5,9 +5,9 @@ technologies interoperability specification that describes communication
 about learner activity and experiences between technologies. The specification is
 divided into three documents:
 
-*   Part One:   [About the Experience API](./xAPI-About.md#partone)
-*   Part Two:   [Experience API Data](./xAPI-Data.md#parttwo)
-*   Part Three: [Data Processing, Validation, and Security](./xAPI-Communication.md#partthree)
+*   Part One:   [About the Experience API](./xAPI-About.md#part-one-about-the-experience-api)
+*   Part Two:   [Experience API Data](./xAPI-Data.md#part-two-experience-api-data)
+*   Part Three: [Data Processing, Validation, and Security](./xAPI-Communication.md#part-three-data-processing-validation-and-security)
 
 ## Specification versions
 

@@ -20,91 +20,89 @@
 >send all feedback and inquiries to helpdesk@adlnet.gov  
 
 ## Table of Contents
-*	Part One:	[About the Experience API](./xAPI-About.md#partone)  
-	*	1.0.	[Introduction](./xAPI-About.md#introduction-partone) 
-	*	2.0.	[How To Use This Document](./xAPI-About.md#readingguidelines)  
-		*	2.1.	[MUST / SHOULD / MAY](./xAPI-About.md#def-must-should-may)  
-	 	*	2.2.	[Guidelines for Interpreting Descriptive Text and Tables](./xAPI-About.md#interpret-text-table)  
-	*	3.0.	[Serialization and JavaScript Object Notation](./xAPI-About.md#json)
-	*	4.0.	[Definitions](./xAPI-About.md#definitions) 
-	*	5.0.	[xAPI Components](./xAPI-About.md#xapi-components) 
-	*	6.0.	[Extending xAPI](./xAPI-About.md#extending-xapi) 
-	*	7.0.	[Profiles and Communities of Practice](./xAPI-About.md#COPs)  
-	*	[Appendices](./xAPI-About.md#append1)  
-		*	[Appendix A: Revision History](./xAPI-About.md#Appendix1A)  
-		*	[Appendix B: cmi5 Example](./xAPI-About.md#Appendix1B)  
-*	Part Two:	[Experience API Data](./xAPI-Data.md#parttwo)  
-	*	1.0.	[Documents](./xAPI-Data.md#documents) 
-	*	2.0.	[Statements](./xAPI-Data.md#statements)  
-		*	2.1.	[Purpose](./xAPI-Data.md#statement-purpose)  
-	 	*	2.2.	[Formatting Requirements](./xAPI-Data.md#dataconstraints) 
-	 	*	2.3.	[Statement Lifecycle](./xAPI-Data.md#lifecycle) 
-		 	*	2.3.1.	[Statement Immutability](./xAPI-Data.md#statement-immutability-and-exceptions) 
-		 	*	2.3.2.	[Voiding](./xAPI-Data.md#voided) 
-   		*	2.4.	[Statement Properties](./xAPI-Data.md#statement-properties)  
-	        *	2.4.1.	[ID](./xAPI-Data.md#stmtid)  
-	        *	2.4.2.	[Actor](./xAPI-Data.md#actor)  
-	        *	2.4.3.	[Verb](./xAPI-Data.md#verb)  
-	        *	2.4.4.	[Object](./xAPI-Data.md#object)  
-	        *	2.4.5.	[Result](./xAPI-Data.md#result)  
-	        *	2.4.6.	[Context](./xAPI-Data.md#context)  
-	        *	2.4.7.	[Timestamp](./xAPI-Data.md#timestamp)  
-	        *	2.4.8.	[Stored](./xAPI-Data.md#stored)  
-	        *	2.4.9.	[Authority](./xAPI-Data.md#authority)  
-	        *	2.4.10.	[Version](./xAPI-Data.md#version)  
-	        *	2.4.11.	[Attachments](./xAPI-Data.md#attachments)  
-    	*	2.5.	[Retrieval of Statements](./xAPI-Data.md#retrieval)   
-    	*	2.6.	[Signed Statements](./xAPI-Data.md#signature)  
-	*	3.0.	[Metadata](./xAPI-Data.md#metadata)
-		*	3.1.	[IRI Requirements](./xAPI-Data.md#iri-requirements)  
-		*	3.2.	[Hosted Metadata](./xAPI-Data.md#miscmeta)  
-    *	4.0.	[Special Data Types and Rules](./xAPI-Data.md#special-data)  
-		*	4.1.	[Extensions](./xAPI-Data.md#miscext) 
-		*	4.2.	[Language Maps](./xAPI-Data.md#lang-maps)
-		*	4.3.	[IRIs](./xAPI-Data.md#iris)
-		*	4.4.	[UUIDs](./xAPI-Data.md#uuids)
-		*	4.5.	[ISO 8601 Timestamps](./xAPI-Data.md#timestamps)
-		*	4.6.	[ISO 8601 Durations](./xAPI-Data.md#durations)
-	*	[Appendices](./xAPI-Data.md#append2)  
-		*	[Appendix A: Example Statements](./xAPI-Data.md#Appendix2A)  
-		*	[Appendix B: Example statement objects of different types](./xAPI-Data.md#Appendix2B)  
-		*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](./xAPI-Data.md#Appendix2C)  	
-		*	[Appendix D: Example Signed Statement](./xAPI-Data.md#Appendix2D)  
-*	Part Three:	[Data Processing, Validation, and Security](./xAPI-Communication.md#partthree)  
-	*	1.0.	[Requests](./xAPI-Communication.md#requests)
-		*	1.1.	[HEAD Request Implementation](./xAPI-Communication.md#httphead)  
-	 	*	1.2.	[Headers](./xAPI-Communication.md#headers) 
-	 	*	1.3.	[Alternate Request Syntax](./xAPI-Communication.md#alt-request-syntax) 
-	 	*	1.4.	[Encoding](./xAPI-Communication.md#encoding) 
-	 	*	1.5.	[Content Types](./xAPI-Communication.md#content-types) 
-	        *	1.5.1.	[Application/JSON](./xAPI-Communication.md#applicationjson) 
-	        *	1.5.2.	[Multipart/Mixed](./xAPI-Communication.md#multipartmixed)
-	*	2.0.	[Resources](./xAPI-Communication.md#datatransfer)   
-	 	*	2.1.	[Statement Resource](./xAPI-Communication.md#stmtres) 
+*	Part One:	[About the Experience API](./xAPI-About.md#part-one-about-the-experience-api)  
+	*	1.0.	[Introduction](./xAPI-About.md#10-introduction) 
+	*	2.0.	[How To Use This Document](./xAPI-About.md#20-how-to-use-this-document)  
+		*	2.1.	[MUST / SHOULD / MAY](./xAPI-About.md#21-must--should--may)  
+	 	*	2.2.	[Guidelines for Interpreting Descriptive Text and Tables](./xAPI-About.md#22-guidelines-for-interpreting-descriptive-text-and-tables)  
+	*	3.0.	[Serialization and JavaScript Object Notation](./xAPI-About.md#30-serialization-and-javascript-object-notation-json)
+	*	4.0.	[Definitions](./xAPI-About.md#40-definitions) 
+	*	5.0.	[xAPI Components](./xAPI-About.md#50-xapi-components) 
+	*	6.0.	[Extending xAPI](./xAPI-About.md#60-extending-xapi) 
+	*	7.0.	[Profiles and Communities of Practice](./xAPI-About.md#70-profiles-vocabularies-and-communities-of-practice)  
+	*	[Appendices](./xAPI-About.md#appendices)  
+		*	[Appendix A: Revision History](./xAPI-About.md#appendix-a-revision-history)  
+		*	[Appendix B: cmi5 Example](./xAPI-About.md#appendix-b-cmi5-example)  
+*	Part Two:	[Experience API Data](./xAPI-Data.md#part-two-experience-api-data)  
+	*	1.0.	[Documents](./xAPI-Data.md#10-documents) 
+	*	2.0.	[Statements](./xAPI-Data.md#20-statements)  
+		*	2.1.	[Purpose](./xAPI-Data.md#21-purpose)  
+	 	*	2.2.	[Formatting Requirements](./xAPI-Data.md#22-formatting-requirements) 
+	 	*	2.3.	[Statement Lifecycle](./xAPI-Data.md#23-statement-lifecycle) 
+		 	*	2.3.1.	[Statement Immutability](./xAPI-Data.md#231-statement-immutability) 
+		 	*	2.3.2.	[Voiding](./xAPI-Data.md#232-voiding) 
+   		*	2.4.	[Statement Properties](./xAPI-Data.md#24-statement-properties)  
+	        *	2.4.1.	[ID](./xAPI-Data.md#241-id)  
+	        *	2.4.2.	[Actor](./xAPI-Data.md#242-actor)  
+	        *	2.4.3.	[Verb](./xAPI-Data.md#243-verb)  
+	        *	2.4.4.	[Object](./xAPI-Data.md#244-object)  
+	        *	2.4.5.	[Result](./xAPI-Data.md#245-result)  
+	        *	2.4.6.	[Context](./xAPI-Data.md#246-context)  
+	        *	2.4.7.	[Timestamp](./xAPI-Data.md#247-timestamp)  
+	        *	2.4.8.	[Stored](./xAPI-Data.md#248-stored)  
+	        *	2.4.9.	[Authority](./xAPI-Data.md#249-authority)  
+	        *	2.4.10.	[Version](./xAPI-Data.md#2410-version)  
+	        *	2.4.11.	[Attachments](./xAPI-Data.md#2411-attachments)  
+    	*	2.5.	[Retrieval of Statements](./xAPI-Data.md#25-retrieval-of-statements)   
+    	*	2.6.	[Signed Statements](./xAPI-Data.md#26-signed-statements)  
+	*	3.0.	[Metadata](./xAPI-Data.md#30-metadata)
+		*	3.1.	[IRI Requirements](./xAPI-Data.md#31-iri-requirements)  
+		*	3.2.	[Hosted Metadata](./xAPI-Data.md#32-hosted-metadata)  
+    *	4.0.	[Special Data Types and Rules](./xAPI-Data.md#40-special-data-types-and-rules)  
+		*	4.1.	[Extensions](./xAPI-Data.md#41-extensions) 
+		*	4.2.	[Language Maps](./xAPI-Data.md#42-language-maps)
+		*	4.3.	[IRIs](./xAPI-Data.md#43-iris)
+		*	4.4.	[UUIDs](./xAPI-Data.md#44-uuids)
+		*	4.5.	[ISO 8601 Timestamps](./xAPI-Data.md#45-iso-8601-timestamps)
+		*	4.6.	[ISO 8601 Durations](./xAPI-Data.md#46-iso-8601-durations)
+	*	[Appendices](./xAPI-Data.md#appendices)  
+		*	[Appendix A: Example Statements](./xAPI-Data.md#appendix-a-example-statements)  
+		*	[Appendix B: Example statement objects of different types](./xAPI-Data.md#appendix-b-examples-of-statements-objects-of-different-types)  
+		*	[Appendix C: Example definitions for Activities of type "cmi.interaction"](./xAPI-Data.md#appendix-c-example-definitions-for-activities-of-type-cmiinteraction)  	
+		*	[Appendix D: Example Signed Statement](./xAPI-Data.md#appendix-d-example-signed-statement)  
+*	Part Three:	[Data Processing, Validation, and Security](./xAPI-Communication.md#part-three-data-processing-validation-and-security)  
+	*	1.0.	[Requests](./xAPI-Communication.md#10-requests)
+		*	1.1.	[HEAD Request Implementation](./xAPI-Communication.md#11-head-request-implementation)  
+	 	*	1.2.	[Headers](./xAPI-Communication.md#12-headers) 
+	 	*	1.3.	[Alternate Request Syntax](./xAPI-Communication.md#13-alternate-request-syntax) 
+	 	*	1.4.	[Encoding](./xAPI-Communication.md#14-encoding) 
+	 	*	1.5.	[Content Types](./xAPI-Communication.md#15-content-types) 
+	        *	1.5.1.	[Application/JSON](./xAPI-Communication.md#151-applicationjson) 
+	        *	1.5.2.	[Multipart/Mixed](./xAPI-Communication.md#152-multipartmixed)
+	*	2.0.	[Resources](./xAPI-Communication.md#20-resources)   
+	 	*	2.1.	[Statement Resource](./xAPI-Communication.md#21-statement-resource) 
 	 	*	2.2.	[Documents Resources](./xAPI-Communication.md#doctransfer) 
-	 	*	2.3.	[State Resource](./xAPI-Communication.md#stateres) 
-	 	*	2.4.	[Agents Resource](./xAPI-Communication.md#agentsres) 
-	 	*	2.5.	[Activities Resource](./xAPI-Communication.md#activitiesres) 
-	 	*	2.6.	[Agent Profile Resource](./xAPI-Communication.md#agentprofres) 
-	 	*	2.7.	[Activity Profile Resource](./xAPI-Communication.md#actprofres) 
-	 	*	2.8.	[About Resource](./xAPI-Communication.md#aboutresource) 
-   	*	3.0.	[Data Validation](./xAPI-Communication.md#validation)     
-    	*	3.1.	[Concurrency](./xAPI-Communication.md#concurrency)  
-    	*	3.2.	[Error Codes](./xAPI-Communication.md#errorcodes)
-    	*	3.3     [Versioning](./xAPI-Communication.md#versioning)  
-    *	4.0.	[Authentication](./xAPI-Communication.md#authentication)  
-		*	4.1.	[OAuth 1.0 Authentication Scenarios and Methods](./xAPI-Communication.md#authdefs) 
-		*	4.2.	[OAuth 1.0 Authorization Scope](./xAPI-Communication.md#oauthscope)
-    *	5.0	[Security](./xAPI-Communication.md#security)
-	*	[Appendices](./xAPI-Communication.md#append3)  
-		*	[Appendix A: Converting Statements to 1.0.0](./xAPI-Communication.md#Appendix3A)  
-		*	[Appendix B: Table of All Resources](./xAPI-Communication.md#Appendix3B)  
-		*	[Appendix C: Cross Domain Request Example](./xAPI-Communication.md#Appendix3C)  
+	 	*	2.3.	[State Resource](./xAPI-Communication.md#23-state-resource) 
+	 	*	2.4.	[Agents Resource](./xAPI-Communication.md#24-agents-resource) 
+	 	*	2.5.	[Activities Resource](./xAPI-Communication.md#25-activities-resource) 
+	 	*	2.6.	[Agent Profile Resource](./xAPI-Communication.md#26-agent-profile-resource) 
+	 	*	2.7.	[Activity Profile Resource](./xAPI-Communication.md#27-activity-profile-resource) 
+	 	*	2.8.	[About Resource](./xAPI-Communication.md#28-about-resource) 
+   	*	3.0.	[Data Validation](./xAPI-Communication.md#30-data-validation)     
+    	*	3.1.	[Concurrency](./xAPI-Communication.md#31-concurrency)  
+    	*	3.2.	[Error Codes](./xAPI-Communication.md#32-error-codes)
+    	*	3.3     [Versioning](./xAPI-Communication.md#33-versioning)  
+    *	4.0.	[Authentication](./xAPI-Communication.md#40-authentication)  
+		*	4.1.	[OAuth 1.0 Authentication Scenarios and Methods](./xAPI-Communication.md#41-oauth-10-authentication-scenarios-and-methods) 
+		*	4.2.	[OAuth 1.0 Authorization Scope](./xAPI-Communication.md#42-oauth-10-authorization-scope)
+    *	5.0	[Security](./xAPI-Communication.md#50-security)
+	*	[Appendices](./xAPI-Communication.md#appendices)  
+		*	[Appendix A: Converting Statements to 1.0.0](./xAPI-Communication.md#appendix-a-converting-statements-to-100)  
+		*	[Appendix B: Table of All Resources](./xAPI-Communication.md#appendix-b-table-of-all-resources)  
+		*	[Appendix C: Cross Domain Request Example](./xAPI-Communication.md#appendix-c-cross-domain-request-example)  
 
-<a name="partone"></a>
 # Part One: About the Experience API
 
-<a name="introduction-partone"></a>
 ## 1.0 Introduction
 
 The Experience API (xAPI) is a technical specification that aims to facilitate the documentation and communication of 
@@ -133,7 +131,6 @@ variety of contexts, platforms and technologies.
 * To provide criteria against which conformance to this specification can be tested.
 
 The document that follows sets out the xAPI specification which is designed to achieve these goals. 
-<a name="readingguidelines"></a>
 
 ## 2.0 How to Use This Document
 
@@ -165,7 +162,6 @@ receiving data from "content". LRSs can communicate with services ranging from "
 data is transferred via HTTP requests and responses. Part three also defines security methods allowing for the trusted 
 exchange of information between the LRS and trusted "Clients".
 
-<a name="def-must-should-may"></a>
 ### 2.1 MUST / SHOULD / MAY 
 There are three levels of obligation with regards to conformance to the xAPI specification identified by the terms 
 MUST, SHOULD and MAY. A service or system that fails to implement a MUST (or a MUST NOT) requirement is non-conformant. 
@@ -181,7 +177,6 @@ These recommendations cannot be MUST requirements within this version as these w
 The xAPI Working Group strongly encourages adopters to implement these requirements as though they were MUST 
 requirements, while continuing to support other adopters that might not do so.
 
-<a name="interpret-text-table"></a>
 ### 2.2 Guidelines for Interpreting Descriptive Text and Tables
 As a rule of thumb, if the guideline appears technical or seems to be a requirement, interpret it 
 as such. This is especially true of longer, more, detailed explanations and of tables, each of which would 
@@ -206,7 +201,6 @@ that detail can be considered to be outside of the scope of this specification. 
 to determine a sensible approach. This specification tries to avoid vagueness and will usually give a rationale 
 even if there no requirement in a given area.
 
-<a name="json"></a>
 ## 3.0 Serialization and JavaScript Object Notation (JSON)
 
 Serialization is the process of translating data objects and structures into a format for storage or transmission, such that the 
@@ -221,7 +215,7 @@ is not conformant.
 
 Even within the rules of JSON there are possible variations of how data can be serialized, especially in relation to data 
 about time. This is significant as a number of features of xAPI rely on systems being able to determine whether two 
-Statements are equivalent. See [Immutability and exceptions](./xAPI-Data.md#statement-immutability-and-exceptions) 
+Statements are equivalent. See [Immutability and exceptions](./xAPI-Data.md#231-statement-immutability) 
 for more details about the properties of the Statement affected by this. 
 
 JSON allows for objects to have properties that contain empty objects. This is not recommended within xAPI; if the Statement 
@@ -229,7 +223,6 @@ is not intended to contain data about a property then it is expected that the pr
 All required properties are required to contain values. 
 
 
-<a name="definitions"></a>
 ## 4.0 Definitions  
 
 * [Activity](#def-activity)
@@ -442,7 +435,6 @@ __Vocabulary__: A list or collection of the terms that are used by a COP for lab
 particular domain. The use of a vocabulary ensures that everyone is using the same word to mean the same thing. For more 
 information on vocabularies, see the [xAPI Vocabulary Companion Specification](https://github.com/adlnet/companion-specification-for-xapi-vocabularies/blob/master/SUMMARY.md).
 
-<a name="xapi-components"></a>
 
 ## 5.0 xAPI Components
 
@@ -495,17 +487,16 @@ collectively within these services.  Each of these services send data to the LRS
 different personas of the same learner. 
 
 The LRS can aggregate all of the information of each of the personas into one "Person" Object. This object can be retrieved from 
-The LRS via the [Agents Resource](./xAPI-Communication.md#agentsres). How the LRS knows that these 
+The LRS via the [Agents Resource](./xAPI-Communication.md#24-agents-resource). How the LRS knows that these 
 multiple personas belong to a single person is out of scope of this specification and there are several different approaches
 that an LRS can take. It's also possible that some LRSs will have no mechanism for associating personas. 
 
-<a name="extending-xapi"></a>
 
 ## 6.0 Extending xAPI
 
 xAPI can be extended in a few ways. The most notable are Statement extensions, which allow great flexibility within Statements. 
 It is recommended that Communities of Practice agree on how to use extensions for their particular use cases and utilize 
-profiles whenever possible. Implementation details are covered in [4.1 Extensions](./xAPI-Data.md#miscext).
+profiles whenever possible. Implementation details are covered in [4.1 Extensions](./xAPI-Data.md#41-extensions).
 
 The About Resource is another instance where xAPI supports extensions.  The LRS may find it useful to communicate features or 
 behaviors beyond this specification. The LRS can use extensions to the About Resource to facilitate this communication.
@@ -513,7 +504,6 @@ behaviors beyond this specification. The LRS can use extensions to the About Res
 Finally, the set of resources implemented is not expected to be constrained by this document. Resources beyond 
 those listed in this specification can be implemented and co-exist with the resources defined in this specification.
 
-<a name="COPs"></a>
 
 ## 7.0 Profiles, Vocabularies, and Communities of Practice
 
@@ -532,17 +522,15 @@ For more information on publishing vocabularies, see the [Vocabulary Companion S
 It is recommended that a profile use a unique "category" within a Statement's context to refer to any Statement  
 which implements the profile.  An example profile is [cmi5](https://github.com/AICC/CMI-5_Spec_Current), 
 which is designed for the traditional single learner, single online learning use case.  An example cmi5 Statement can 
-be found in [Appendix B: cmi5 Example](#Appendix1B).
+be found in [Appendix B: cmi5 Example](#appendix-b-cmi5-example).
 
 CoPs are highly recommended to avoid duplication of effort, as creating too many ways to solve the same problem 
 will cause fragmentation in similar domains and can potentially hurt interoperability.  An example of a CoP for the medical 
 field is the [MedBiquitous Learning Experience Working Group](http://groups.medbiq.org/medbiq/display/XIG/Learning+Experience+Group+Home).
 
 
-<a name="append1"></a>
 ## Appendices
 
-<a name="Appendix1A"></a>
 ### Appendix A: Revision History
 ###### 0.8 (Project Tin Can API Deliverable) to 0.9 (March 31, 2012)  
   
@@ -598,7 +586,6 @@ Clarifications and additional examples including:
 
 [1.0.2...1.0.3](https://github.com/adlnet/xAPI-Spec/compare/1.0.2...1.0.3)
 
-<a name="Appendix1B"></a>
 ### Appendix B: cmi5 Example 
 
 The following example illustrates a statement following the cmi5 Community of Practice. It demonstrates use of extensions 
