@@ -2197,8 +2197,11 @@ Content:
 Request using alternative syntax:
 
 ```
-URL: http://example.com/xAPI/statements?method=PUT&statementId=c70c2b85-c294-464f-baca-cebd4fb9b348
+URL: http://example.com/xAPI/statements
 Method: POST
+
+Query String Parameters:
+    method=PUT
 
 Request Headers:
     Accept:*/*
