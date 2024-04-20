@@ -11,8 +11,9 @@ divided into three documents:
 
 ## Specification versions
 
-The current version of the specification is
-[1.0.3](https://github.com/adlnet/xAPI-Spec/).
+This is an old version of the specification found at [1.0.3](https://github.com/adlnet/xAPI-Spec/).
+
+The current version of the specification is xAPI [2.0](https://opensource.ieee.org/xapi/xapi-base-standard-documentation).
 
 The next version of the specification has not been planned. 
 
